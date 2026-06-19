@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Invisible Millions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EFE6; --ink:#1C1A17; --mute:#6E665B;
+    --red:#B22234; --red-deep:#7d1623;
+    --teal:#1C7C7C; --teal-deep:#0f5252;
+    --gold:#E8A33D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  .serif{font-family:'Fraunces',Georgia,serif}
+
+  /* ---------- intro ---------- */
+  .intro{min-height:96vh;display:flex;flex-direction:column;justify-content:center;padding:10vh 24px;max-width:880px;margin:0 auto}
+  .eyebrow{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:1.4rem}
+  .intro h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.04;letter-spacing:-.01em}
+  .intro h1 em{font-style:normal;color:var(--red);background:linear-gradient(180deg,transparent 62%,rgba(178,34,52,.16) 62%)}
+  .intro p{font-size:clamp(1.1rem,2.4vw,1.45rem);color:var(--mute);margin-top:2rem;max-width:42ch}
+  .scrollcue{margin-top:3.2rem;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:.6rem}
+  .scrollcue .arrow{display:inline-block;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+  /* ---------- scrolly hero ---------- */
+  .scrolly{position:relative}
+  .graphic{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+  .graphic::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,transparent 45%,rgba(0,0,0,.14) 100%);pointer-events:none;z-index:3}
+  .mapbox{width:min(92vw,920px)}
+  svg .turkey-red{fill:var(--red);transition:fill-opacity 1.4s ease;fill-opacity:1}
+  .is-revealed svg .turkey-red{fill-opacity:.12}
+  svg .alevi{opacity:0;transform-box:fill-box;transform-origin:center;transition:opacity 1.2s ease .35s}
+  .is-revealed svg .alevi{opacity:1;animation:glow 2.6s ease-in-out 1.4s infinite}
+  @keyframes glow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.22)}}
+  svg .crack{stroke:var(--paper);stroke-width:3.2;fill:none;stroke-linecap:round;stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 1.3s ease}
+  .is-revealed svg .crack{stroke-dashoffset:0}
+  .maplabel{position:absolute;z-index:4;text-align:center;left:0;right:0;top:13%;transition:opacity .7s ease}
+  .maplabel .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.6rem,8vw,5rem);line-height:1;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .maplabel .sm{font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;opacity:.92;margin-top:.7rem;font-weight:700}
+  .is-revealed .maplabel.before{opacity:0}
+  .counter{position:absolute;z-index:4;left:0;right:0;bottom:11%;text-align:center;opacity:0;transition:opacity .8s ease .4s}
+  .is-revealed .counter{opacity:1}
+  .counter .num{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.4rem,8vw,4.6rem);color:var(--teal-deep);line-height:1}
+  .counter .cap{font-size:clamp(.95rem,2vw,1.2rem);font-weight:600;color:var(--ink);margin-top:.5rem}
+  .counter .cap b{color:var(--red-deep)}
+
+  .steps{position:relative;margin-top:-100vh;z-index:5;pointer-events:none}
+  .step{min-height:100vh;display:flex;align-items:center;padding:0 24px}
+  .step:first-child{min-height:120vh;align-items:flex-end;padding-bottom:12vh}
+  .step .card{pointer-events:auto;max-width:430px;background:rgba(243,239,230,.92);backdrop-filter:blur(3px);border:1px solid rgba(28,26,23,.1);border-radius:14px;padding:1.7rem 1.8rem;box-shadow:0 10px 40px rgba(0,0,0,.12)}
+  .step .card h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.1;margin-bottom:.7rem}
+  .step .card p{font-size:1.05rem;color:#34302a}
+  .step.r2 .card{margin-left:auto}
+  .step .tag{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:.7rem;display:block}
+  .step.r1 .tag{color:var(--red)} .step.r2 .tag{color:var(--teal)}
+
+  /* ---------- claims ---------- */
+  .claims{background:var(--ink);color:var(--paper);padding:14vh 0}
+  .claims .lead{max-width:760px;margin:0 auto 7vh;padding:0 24px}
+  .claims .lead .eyebrow{color:var(--gold)}
+  .claims .lead h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,4.6vw,2.7rem);line-height:1.12;color:#fff}
+  .claim{max-width:760px;margin:0 auto;padding:5.5vh 24px;border-top:1px solid rgba(243,239,230,.16);opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+  .claim.in{opacity:1;transform:none}
+  .claim .n{font-family:'Fraunces',serif;font-size:1rem;color:var(--gold);font-weight:600;letter-spacing:.04em}
+  .claim .t{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.8rem,5.4vw,3rem);line-height:1.06;margin:.5rem 0 .7rem}
+  .claim .d{font-size:1.08rem;color:#cfc7b8;max-width:54ch}
+  .claim .d .hl{color:var(--gold);font-weight:600}
+
+  /* ---------- why it matters ---------- */
+  .matter{padding:18vh 0;text-align:center}
+  .matter .wrap{max-width:820px}
+  .matter .eyebrow{color:var(--red)}
+  .matter h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,6vw,3.4rem);line-height:1.08;opacity:0;transform:translateY(30px);transition:.9s}
+  .matter.in h2{opacity:1;transform:none}
+  .matter h2 .u{color:var(--red);background:linear-gradient(180deg,transparent 64%,rgba(178,34,52,.18) 64%)}
+  .matter p{font-size:1.2rem;color:var(--mute);margin-top:1.8rem}
+
+  /* ---------- bridges ---------- */
+  .bridges{background:var(--teal-deep);color:#eafaf7;padding:15vh 0 17vh}
+  .bridges .head{max-width:760px;margin:0 auto 6vh;padding:0 24px;text-align:center}
+  .bridges .eyebrow{color:var(--gold)}
+  .bridges .head h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.9rem,5.2vw,3rem);color:#fff;line-height:1.08}
+  .bridges .head p{color:#bfe5e0;margin-top:1rem;font-size:1.1rem}
+  .grid{max-width:1040px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .bridge{background:rgba(255,255,255,.06);border:1px solid rgba(234,250,247,.16);border-radius:16px;padding:2rem 1.8rem;opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+  .bridge.in{opacity:1;transform:none}
+  .bridge .ico{width:54px;height:54px;border-radius:50%;background:var(--gold);color:var(--teal-deep);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem}
+  .bridge h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.4rem;color:#fff;margin-bottom:.6rem}
+  .bridge p{font-size:1rem;color:#cdeae6}
+
+  /* ---------- CTA ---------- */
+  .cta{padding:16vh 24px;text-align:center}
+  .cta h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,6vw,3.2rem);line-height:1.06}
+  .cta p{color:var(--mute);font-size:1.15rem;margin:1.4rem auto 2.6rem;max-width:46ch}
+  .cta a{display:inline-flex;align-items:center;gap:.6rem;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.2rem;border-radius:50px;transition:transform .15s ease,background .2s ease}
+  .cta a:hover{background:var(--red-deep);transform:translateY(-2px)}
+  .cta .by{margin-top:2.6rem;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);font-weight:700}
+  footer{padding:4vh 24px 6vh;text-align:center;font-size:.8rem;color:var(--mute)}
+</style>
+</head>
+<body>
+<h2 class="sr-only">A scrollable data story showing how millions of Alevis in Turkey have been miscounted as Sunni Muslims, and three cultural bridges for the gospel.</h2>
+
+<!-- INTRO -->
+<header class="intro">
+  <div class="eyebrow">Clarity for the Nations &middot; people group data</div>
+  <h1>We have spent decades trying to convert millions of people away from a religion they <em>do not even practice.</em></h1>
+  <p>This is the story of the largest hidden people group in Turkey, and how bad data sent good strategy in the wrong direction.</p>
+  <div class="scrollcue"><span class="arrow">&#8595;</span> Scroll</div>
+</header>
+
+<!-- SCROLLY HERO -->
+<section class="scrolly" aria-label="Map of Turkey transitioning from a single red block to a revealed Alevi region">
+  <div class="graphic" id="graphic">
+    <div class="maplabel before" id="labelBefore">
+      <div class="big">99%</div>
+      <div class="sm">Sunni Muslim &middot; what the data says</div>
+    </div>
+    <div class="mapbox">
+      <svg viewBox="0 0 1000 470" role="img" aria-label="Stylized map of Turkey. It begins filled solid red labeled ninety-nine percent Sunni Muslim, then cracks open to reveal a teal region representing four and a half to twenty million Alevis.">
+        <title>Turkey: the hidden Alevi millions</title>
+        <desc>A stylized map of Turkey shifts from a solid red block to a fractured shape revealing a large teal Alevi region.</desc>
+        <!-- revealed (under) layer -->
+        <g class="under">
+          <path d="M70,250 C95,205 150,196 210,196 C300,150 430,140 540,150 C640,140 760,150 850,176 C905,192 940,212 952,238 L980,226 L956,266 C940,300 880,322 800,330 C690,348 560,352 450,346 C360,352 250,344 180,322 C120,304 78,288 70,250 Z"
+                fill="#E7DECB" stroke="#cdbf9f" stroke-width="2"/>
+          <path class="alevi" d="M430,206 C520,188 650,196 740,214 C792,224 806,256 770,282 C700,312 560,316 470,304 C406,296 372,266 388,238 C398,222 412,210 430,206 Z"
+                fill="#1C7C7C" stroke="#E8A33D" stroke-width="4"/>
+        </g>
+        <!-- red monolith (over) -->
+        <path class="turkey-red" d="M70,250 C95,205 150,196 210,196 C300,150 430,140 540,150 C640,140 760,150 850,176 C905,192 940,212 952,238 L980,226 L956,266 C940,300 880,322 800,330 C690,348 560,352 450,346 C360,352 250,344 180,322 C120,304 78,288 70,250 Z"/>
+        <!-- cracks -->
+        <g>
+          <path class="crack" d="M250,180 L300,250 L260,330"/>
+          <path class="crack" d="M470,150 L500,250 L470,350"/>
+          <path class="crack" d="M700,160 L660,250 L710,340"/>
+          <path class="crack" d="M120,260 L400,255 L760,265 L950,250"/>
+          <path class="crack" d="M560,150 L600,250 L560,348"/>
+        </g>
+      </svg>
+    </div>
+    <div class="counter" id="counter">
+      <div class="num" id="num">4,500,000</div>
+      <div class="cap"><b id="capword">Alevis</b> hidden inside that red. Estimates run to <b>20,000,000+</b>.</div>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step r1">
+      <div class="card">
+        <span class="tag">What the map tells you</span>
+        <h2>One solid block of red.</h2>
+        <p>Open almost any missions database and Turkey reads as a near-monolith: 99% Sunni Muslim. Strategy gets built on that single number.</p>
+      </div>
+    </div>
+    <div class="step r2" id="revealStep">
+      <div class="card">
+        <span class="tag">What it hides</span>
+        <h2>It was never one block.</h2>
+        <p>Somewhere between 4.5 million and 20 million Alevis live inside that red. They broke from Sunni Islam roughly 700 years ago. For centuries they survived by hiding (taqiyya), so the data never saw them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLAIMS -->
+<section class="claims">
+  <div class="lead">
+    <div class="eyebrow">Who the Alevis actually are</div>
+    <h2>If you assumed they were Sunni, almost everything you would say next is aimed at the wrong target.</h2>
+  </div>
+  <div class="claim"><div class="n">01</div><div class="t">They do not attend mosques.</div><div class="d">Alevi worship happens in the cemevi, a gathering house, not the mosque. The five daily prayers and the pilgrimage to Mecca are not their practice.</div></div>
+  <div class="claim"><div class="n">02</div><div class="t">They do not veil.</div><div class="d">Men and women worship together. The social rules an outsider expects of a "traditional Muslim" community simply do not hold here.</div></div>
+  <div class="claim"><div class="n">03</div><div class="t">They drink wine in worship.</div><div class="d">The cem ceremony can include wine, music, and dance, practices that would be unthinkable in the Sunni framework strategists assumed.</div></div>
+  <div class="claim"><div class="n">04</div><div class="t">Their holy instrument is the saz.</div><div class="d">The long-necked lute is so central that Alevis call it <span class="hl">"the Quran with strings."</span> Truth is sung, not just recited.</div></div>
+  <div class="claim"><div class="n">05</div><div class="t">They broke away 700 years ago.</div><div class="d">Alevism diverged from Sunni legalism centuries ago, carrying a mystical, inward stream of faith that looks almost nothing like its neighbors.</div></div>
+  <div class="claim"><div class="n">06</div><div class="t">They survived by being invisible.</div><div class="d">Massacres at <span class="hl">Maras, Corum, and Sivas</span> from the 1970s to the 1990s taught a hard lesson: stay hidden. Which is exactly why the databases missed them.</div></div>
+</section>
+
+<!-- WHY IT MATTERS -->
+<section class="matter" id="matter">
+  <div class="wrap">
+    <div class="eyebrow">Why it matters</div>
+    <h2>Bad data does not just slow strategy. It <span class="u">misdiagnoses the heart</span> of a people.</h2>
+    <p>When we misidentify a group, we answer questions they were never asking, and we miss the questions they actually carry. To reach the Alevis, you do not argue them out of Sunni Islam. You meet them where they already are.</p>
+  </div>
+</section>
+
+<!-- BRIDGES -->
+<section class="bridges">
+  <div class="head">
+    <div class="eyebrow">Three bridges</div>
+    <h2>The same history that hid them is full of openings.</h2>
+    <p>Redemptive analogies already woven into Alevi life.</p>
+  </div>
+  <div class="grid">
+    <div class="bridge"><div class="ico" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+      <h3>Music and the saz</h3>
+      <p>If truth is meant to be sung, the gospel can be sung too. The instrument they love is an open door, not an obstacle.</p>
+    </div>
+    <div class="bridge"><div class="ico" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+      <h3>The Perfected Human</h3>
+      <p>Alevis long for the Insan-i Kamil, the perfected human being. Jesus is the One in whom that longing is finally answered.</p>
+    </div>
+    <div class="bridge"><div class="ico" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 8h10"/></svg></div>
+      <h3>Kerbela and the Cross</h3>
+      <p>Their faith centers on a righteous one who suffered unjustly at Kerbela. It is a short, profound step to the Cross.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Millions of people. Hiding in plain sight.</h2>
+  <p>The full essay unpacks the data, the history, and what it means for reaching Turkey.</p>
+  <a href="https://clarity4thenations.substack.com/p/the-invisible-millions-why-weve-been">Read the full essay &#8594;</a>
+  <div class="by">Clarity for the Nations &middot; by Bud Houston</div>
+</section>
+<footer>Sources: Joshua Project, Alevi community estimates, field research. clarity4thenations.substack.com</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+const graphic = $('#graphic');
+
+/* reveal the map when the second step reaches center, latch once */
+let counted = false;
+function runCounter(){
+  if(counted) return; counted = true;
+  const el = $('#num'), start = 4500000, end = 20000000, t0 = performance.now(), dur = 2000;
+  function tick(now){
+    const t = Math.min(1,(now-t0)/dur), e = 1-Math.pow(1-t,3);
+    const v = Math.round((start+(end-start)*e)/1000)*1000;
+    el.textContent = v.toLocaleString('en-US');
+    if(t<1) requestAnimationFrame(tick);
+    else el.textContent = '20,000,000+';
+  }
+  requestAnimationFrame(tick);
+}
+
+const heroObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      graphic.classList.add('is-revealed');
+      runCounter();
+    }
+  });
+},{threshold:0.55});
+heroObs.observe($('#revealStep'));
+
+/* generic reveal-on-scroll for claims, matter, bridges */
+const revObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target); } });
+},{threshold:0.25});
+document.querySelectorAll('.claim,.matter,.bridge').forEach((el,i)=>{
+  if(el.classList.contains('bridge')) el.style.transitionDelay = (i%3*0.12)+'s';
+  revObs.observe(el);
+});
+</script>
+</body>
+</html>

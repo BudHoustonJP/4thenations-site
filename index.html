@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clarity for the Nations</title>
+<meta name="description" content="Interactive stories on missions, data, and the unreached, by Bud Houston.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EFE6; --ink:#1C1A17; --mute:#6E665B;
+    --navy:#0B1F33; --gold:#E8A33D; --teal:#1C7C7C; --red:#B22234;
+    --line:rgba(28,26,23,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  header.hero{padding:14vh 0 7vh;border-bottom:1px solid var(--line)}
+  .hero .eyebrow{font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:1.3rem}
+  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.6rem,7vw,4.8rem);line-height:1.02;letter-spacing:-.01em;max-width:16ch}
+  .hero p{font-size:clamp(1.1rem,2.3vw,1.4rem);color:var(--mute);margin-top:1.8rem;max-width:54ch}
+
+  .section-label{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--mute);margin:7vh 0 2rem}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;padding-bottom:4vh}
+  .card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.12)}
+  .band{height:120px;position:relative;display:flex;align-items:flex-end;padding:16px 20px}
+  .band.japan{background:linear-gradient(135deg,var(--navy),#0E2A45)}
+  .band.alevi{background:linear-gradient(135deg,var(--red),#7d1623)}
+  .band .type{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#fff;background:rgba(255,255,255,.16);padding:5px 12px;border-radius:50px;backdrop-filter:blur(2px)}
+  .band .deco{position:absolute;right:18px;top:16px;font-family:'Fraunces',serif;font-weight:900;font-size:2.4rem;color:rgba(255,255,255,.9);line-height:1}
+  .band.japan .deco{color:var(--gold)}
+  .band.alevi .deco{color:#fff}
+  .card .body{padding:1.5rem 1.6rem 1.7rem;display:flex;flex-direction:column;flex:1}
+  .card h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;line-height:1.12;margin-bottom:.6rem}
+  .card .blurb{font-size:1rem;color:#39342d;flex:1}
+  .card .go{margin-top:1.3rem;font-weight:700;color:var(--red);display:inline-flex;align-items:center;gap:.5rem}
+  .card.alevi .go{color:var(--teal)}
+
+  .soon{margin:2vh 0 0;padding:2rem;border:1px dashed var(--line);border-radius:16px;color:var(--mute);font-size:1rem}
+  .soon b{color:var(--ink);font-weight:600}
+
+  footer{margin-top:10vh;border-top:1px solid var(--line);padding:5vh 0 7vh}
+  footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+  footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+  footer a.sub{text-decoration:none;font-weight:700;color:var(--red)}
+  footer small{display:block;color:var(--mute);margin-top:.8rem}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Clarity for the Nations</div>
+    <h1>The unreached world, told in stories you can see.</h1>
+    <p>Short, interactive takes on missions, data, and the places the gospel has not yet reached. Adapted from the essays by Bud Houston.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="section-label">The pieces</div>
+  <div class="grid">
+
+    <a class="card japan" href="japan-paradox.html">
+      <div class="band japan"><span class="type">Watch &middot; 45 sec</span><span class="deco">2M</span></div>
+      <div class="body">
+        <h2>The Japan Paradox</h2>
+        <p class="blurb">There are more Christians in Japan than in all 3,200 frontier people groups on earth, combined. So why is it still the world's largest mission field?</p>
+        <span class="go">View &#8594;</span>
+      </div>
+    </a>
+
+    <a class="card alevi" href="alevi-invisible-millions.html">
+      <div class="band alevi"><span class="type">Scroll story</span><span class="deco">?</span></div>
+      <div class="body">
+        <h2>The Invisible Millions</h2>
+        <p class="blurb">Millions of Alevis in Turkey, hidden inside one solid block of red. Watch the map crack open, and see who the data has been missing.</p>
+        <span class="go">View &#8594;</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="soon"><b>More on the way.</b> New interactive pieces from the Clarity for the Nations series are in production and will appear here as they launch.</div>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <div>
+      <div class="name">Clarity for the Nations</div>
+      <small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+    </div>
+    <a class="sub" href="https://clarity4thenations.substack.com">Read the essays on Substack &#8594;</a>
+  </div>
+</footer>
+</body>
+</html>

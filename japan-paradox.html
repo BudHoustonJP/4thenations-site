@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Japan Paradox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F33; --navy2:#0E2A45; --gold:#E8A33D; --gold-soft:#f2c989;
+    --white:#F6F4EE; --mute:#9DB2C6; --red:#D8694E; --teal:#3FB6B0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:#000;font-family:'Archivo',system-ui,sans-serif;overflow:hidden}
+  body{display:flex;align-items:center;justify-content:center}
+
+  /* 9:16 stage. Scales to fit any window; build/record at 1080x1920. */
+  .stage{
+    position:relative;
+    aspect-ratio:9/16;
+    height:100vh; max-height:100vh; width:auto; max-width:100vw;
+    background:radial-gradient(120% 80% at 50% 0%, var(--navy2) 0%, var(--navy) 55%, #07172a 100%);
+    overflow:hidden;
+    container-type:size;
+    color:var(--white);
+    box-shadow:0 0 60px rgba(0,0,0,.6);
+  }
+  /* subtle drifting grain/glow */
+  .stage::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(60% 40% at 50% 18%, rgba(232,163,61,.10), transparent 70%);
+    animation:breathe 6s ease-in-out infinite;
+  }
+  @keyframes breathe{0%,100%{opacity:.5}50%{opacity:1}}
+
+  .scene{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:8cqw;text-align:center;
+    opacity:0;visibility:hidden;
+    transition:opacity .8s ease;
+  }
+  .scene.on{opacity:1;visibility:visible}
+
+  .kicker{font-size:3.6cqw;letter-spacing:.5cqw;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:3cqw;opacity:.95}
+  .lead{font-size:9cqw;font-weight:900;line-height:1.04;letter-spacing:-.2cqw}
+  .lead .accent{color:var(--gold)}
+  .sub{font-size:4.4cqw;font-weight:400;color:var(--mute);margin-top:4cqw;line-height:1.3}
+
+  /* entrance helpers */
+  .rise{transform:translateY(4cqw);opacity:0;transition:all .7s cubic-bezier(.2,.7,.2,1)}
+  .scene.on .rise{transform:none;opacity:1}
+  .d1{transition-delay:.15s}.d2{transition-delay:.45s}.d3{transition-delay:.8s}.d4{transition-delay:1.15s}.d5{transition-delay:1.5s}
+
+  /* ---------- Scene 2: bars ---------- */
+  .barwrap{display:flex;gap:7cqw;align-items:flex-end;justify-content:center;height:58cqh;width:100%;margin-top:2cqw}
+  .col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;flex:1;max-width:36cqw}
+  .poplabel{font-size:3.3cqw;color:var(--mute);font-weight:600;margin-bottom:1.6cqw;line-height:1.2}
+  .popbig{display:block;font-size:6.2cqw;color:var(--white);font-weight:900;letter-spacing:-.2cqw}
+  .bar{width:100%;border-radius:2.2cqw 2.2cqw 0 0;height:0;transition:height 2.2s cubic-bezier(.2,.8,.2,1);position:relative}
+  .bar.japan{background:linear-gradient(180deg,var(--gold) 0%,#c9892b 100%);box-shadow:0 0 7cqw rgba(232,163,61,.35)}
+  .bar.frontier{background:linear-gradient(180deg,#516d88 0%,#2d4561 100%)}
+  .believers{font-size:4.6cqw;font-weight:900;margin-top:2.2cqw;letter-spacing:-.2cqw}
+  .blabel{font-size:3.1cqw;color:var(--mute);font-weight:600;margin-top:.6cqw}
+  .name{font-size:3.8cqw;font-weight:800;margin-top:2.4cqw;text-transform:uppercase;letter-spacing:.3cqw}
+  .name.j{color:var(--gold)}
+  .name.f{color:#cdd9e6}
+  .pulse{animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+  .scene2-cap{font-size:4.2cqw;color:var(--white);font-weight:600;margin-top:5cqw;line-height:1.3}
+  .scene2-cap b{color:var(--gold)}
+
+  /* ---------- Scene 3: reveal ---------- */
+  .reveal{font-size:8.6cqw;font-weight:900;line-height:1.06;letter-spacing:-.2cqw}
+  .reveal .big{color:var(--gold);display:block;font-size:11cqw;margin:1.5cqw 0}
+  .combined{display:inline-block;color:var(--red);font-weight:900}
+
+  /* ---------- Scene 4: stat stack ---------- */
+  .stat{display:flex;align-items:baseline;gap:3cqw;width:100%;justify-content:flex-start;
+        padding:3.4cqw 4cqw;border-left:1.1cqw solid var(--gold);background:rgba(255,255,255,.04);
+        border-radius:0 2cqw 2cqw 0;margin:2.1cqw 0;
+        transform:translateX(-6cqw);opacity:0;transition:all .6s cubic-bezier(.2,.7,.2,1)}
+  .stat.show{transform:none;opacity:1}
+  .stat .num{font-size:7.4cqw;font-weight:900;color:var(--gold);min-width:fit-content;letter-spacing:-.3cqw}
+  .stat .txt{font-size:3.9cqw;font-weight:600;color:var(--white);text-align:left;line-height:1.18}
+  .stat-title{font-size:4cqw;color:var(--mute);font-weight:700;text-transform:uppercase;letter-spacing:.4cqw;margin-bottom:3cqw}
+
+  /* ---------- Scene 5: close ---------- */
+  .close-lead{font-size:7cqw;color:var(--mute);font-weight:600;line-height:1.15}
+  .close-big{font-size:13cqw;font-weight:900;line-height:1;letter-spacing:-.4cqw;margin-top:2cqw}
+  .close-big .u{color:var(--gold)}
+  .cta{margin-top:9cqw;display:flex;flex-direction:column;align-items:center;gap:1.4cqw}
+  .cta .dot{width:2.4cqw;height:2.4cqw;border-radius:50%;background:var(--gold)}
+  .cta .pub{font-size:4.4cqw;font-weight:800;letter-spacing:.3cqw}
+  .cta .pub small{display:block;font-size:2.9cqw;color:var(--mute);font-weight:600;letter-spacing:.2cqw;margin-top:.8cqw;text-transform:uppercase}
+
+  /* progress + replay */
+  .progress{position:absolute;left:0;top:0;height:1cqw;background:var(--gold);width:0;z-index:6;transition:width .25s linear}
+  .replay{position:absolute;bottom:6cqw;left:50%;transform:translateX(-50%);
+          display:none;align-items:center;gap:2cqw;background:var(--gold);color:var(--navy);
+          font-family:inherit;font-weight:800;font-size:3.8cqw;border:none;border-radius:50cqw;
+          padding:2.8cqw 6cqw;cursor:pointer;z-index:7;box-shadow:0 1cqw 4cqw rgba(0,0,0,.4)}
+  .replay:hover{filter:brightness(1.07)}
+  .replay.show{display:flex}
+  .watermark{position:absolute;bottom:3cqw;left:0;right:0;text-align:center;font-size:2.6cqw;color:rgba(157,178,198,.55);font-weight:600;letter-spacing:.3cqw;z-index:4}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="progress" id="progress"></div>
+
+  <!-- SCENE 1 (0.0s) : title -->
+  <section class="scene" id="s1">
+    <div class="kicker rise d1">A missions data paradox</div>
+    <div class="lead rise d2">Japan is one of the world's <span class="accent">largest unreached fields.</span></div>
+    <div class="sub rise d4">But the numbers tell a stranger story.</div>
+  </section>
+
+  <!-- SCENE 2 (4.0s) : bars -->
+  <section class="scene" id="s2">
+    <div class="kicker rise d1">Believers, side by side</div>
+    <div class="barwrap">
+      <div class="col">
+        <div class="poplabel">from <span class="popbig">~125M</span> people</div>
+        <div class="bar japan" id="barJ"></div>
+        <div class="believers" id="numJ">0</div>
+        <div class="blabel">Christians</div>
+        <div class="name j">Japan</div>
+      </div>
+      <div class="col">
+        <div class="poplabel">from <span class="popbig">~2 BILLION</span> people</div>
+        <div class="bar frontier" id="barF"></div>
+        <div class="believers" id="numF">0</div>
+        <div class="blabel">believers</div>
+        <div class="name f">All 3,200 frontier peoples</div>
+      </div>
+    </div>
+    <div class="scene2-cap rise d5">Same number of believers. <b>16x the people.</b></div>
+  </section>
+
+  <!-- SCENE 3 (16.0s) : reveal -->
+  <section class="scene" id="s3">
+    <div class="reveal rise d1">
+      There are more Christians in Japan
+      <span class="big">than in all 3,200</span>
+      frontier people groups on earth <span class="combined">combined.</span>
+    </div>
+  </section>
+
+  <!-- SCENE 4 (21.0s) : stat stack -->
+  <section class="scene" id="s4">
+    <div class="stat-title rise d1">So what does Japan actually need?</div>
+    <div class="stat" id="st1"><span class="num" data-to="0.9" data-suffix="%" data-dec="1" data-prefix="0.6&ndash;">0</span><span class="txt">of Japan is evangelical, the work is real but thin</span></div>
+    <div class="stat" id="st2"><span class="num" data-to="800000" data-suffix="+" data-plus>0</span><span class="txt">people Japan loses every year as its population shrinks</span></div>
+    <div class="stat" id="st3"><span class="num" data-to="60" data-suffix="+">0</span><span class="txt">the average age of a Japanese pastor today</span></div>
+    <div class="stat" id="st4"><span class="num" data-to="3.4" data-suffix="M+" data-dec="1">0</span><span class="txt">foreign residents already living inside the country</span></div>
+  </section>
+
+  <!-- SCENE 5 (34.0s) : close -->
+  <section class="scene" id="s5">
+    <div class="close-lead rise d1">Japan doesn't need to be</div>
+    <div class="close-big rise d2">reached.</div>
+    <div class="close-lead rise d3" style="margin-top:6cqw">It needs to be</div>
+    <div class="close-big rise d4"><span class="u">unleashed.</span></div>
+    <div class="cta rise d5">
+      <div class="dot"></div>
+      <div class="pub">CLARITY FOR THE NATIONS<small>by Bud Houston</small></div>
+    </div>
+  </section>
+
+  <button class="replay" id="replay">&#8635;&nbsp; Replay</button>
+  <div class="watermark">Sources: Joshua Project, Pew, mission research &middot; clarity4thenations.substack.com</div>
+</div>
+
+<script>
+/* ----------------------------------------------------------------
+   TIMELINE (edit start times in seconds; durations auto-fill gaps)
+   ---------------------------------------------------------------- */
+const SCENES = [
+  { id:'s1', at:0.2 },   // title
+  { id:'s2', at:4.0 },   // bars
+  { id:'s3', at:16.5 },  // reveal
+  { id:'s4', at:21.5 },  // stat stack
+  { id:'s5', at:34.0 },  // close
+];
+const TOTAL = 46;        // total runtime (s); replay button appears after
+
+const $ = id => document.getElementById(id);
+let timers = [];
+const clearAll = () => { timers.forEach(clearTimeout); timers = []; };
+const after = (s, fn) => timers.push(setTimeout(fn, s*1000));
+
+/* number count-up */
+function countUp(el, to, {dec=0, suffix='', prefix='', dur=1.6}={}){
+  const start = performance.now();
+  function fmt(v){
+    let s;
+    if(dec>0) s = v.toFixed(dec);
+    else s = Math.round(v).toLocaleString('en-US');
+    return prefix + s + suffix;
+  }
+  function tick(now){
+    const t = Math.min(1,(now-start)/(dur*1000));
+    const eased = 1-Math.pow(1-t,3);
+    el.textContent = fmt(to*eased);
+    if(t<1) requestAnimationFrame(tick);
+    else el.textContent = fmt(to);
+  }
+  requestAnimationFrame(tick);
+}
+
+function showScene(id){
+  document.querySelectorAll('.scene').forEach(s=>s.classList.remove('on'));
+  $(id).classList.add('on');
+}
+
+function play(){
+  clearAll();
+  $('replay').classList.remove('show');
+  document.querySelectorAll('.scene').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.stat').forEach(s=>s.classList.remove('show'));
+  $('barJ').style.height='0'; $('barF').style.height='0';
+  $('numJ').textContent='0'; $('numF').textContent='0';
+  $('barJ').classList.remove('pulse');
+  $('progress').style.width='0';
+
+  // schedule scenes
+  SCENES.forEach(sc=> after(sc.at, ()=>showScene(sc.id)));
+
+  // SCENE 2 internal animation (bars + counters), starts ~0.6s after scene shows
+  const s2 = SCENES.find(s=>s.id==='s2').at;
+  after(s2+0.6, ()=>{
+    $('barJ').style.height='80%';
+    $('barF').style.height='72%';
+    countUp($('numJ'), 2000000, {suffix:'', dur:2.2});
+    countUp($('numF'), 2000000, {prefix:'< ', dur:2.2});
+  });
+  after(s2+3.0, ()=> $('barJ').classList.add('pulse'));
+
+  // SCENE 4 internal: reveal stats one at a time with count-ups
+  const s4 = SCENES.find(s=>s.id==='s4').at;
+  const stats = [
+    {row:'st1', to:0.9, dec:1, prefix:'0.6–', suffix:'%'},
+    {row:'st2', to:800000, suffix:'+'},
+    {row:'st3', to:60, suffix:'+'},
+    {row:'st4', to:3.4, dec:1, suffix:'M+'},
+  ];
+  stats.forEach((st,i)=>{
+    after(s4+0.4+i*2.6, ()=>{
+      const row=$(st.row); row.classList.add('show');
+      countUp(row.querySelector('.num'), st.to, {dec:st.dec||0, suffix:st.suffix||'', prefix:st.prefix||'', dur:1.3});
+    });
+  });
+
+  // progress bar
+  const t0 = performance.now();
+  (function prog(){
+    const p = Math.min(1,(performance.now()-t0)/(TOTAL*1000));
+    $('progress').style.width=(p*100)+'%';
+    if(p<1 && timers.length) requestAnimationFrame(prog);
+  })();
+
+  // replay
+  after(TOTAL, ()=> $('replay').classList.add('show'));
+}
+
+$('replay').addEventListener('click', play);
+window.addEventListener('load', ()=> setTimeout(play, 250));
+</script>
+</body>
+</html>
