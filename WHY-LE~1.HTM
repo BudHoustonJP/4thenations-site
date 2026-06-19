@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Leaders Don&#x27;t Need More Data | Clarity for the Nations</title>
+<meta name="description" content="Most leaders do not need more data. They need better data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;--accent:#1C6E8C;--deep:#124f66;--line:rgba(28,26,23,.12)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+  .serif{font-family:'Fraunces',Georgia,serif}
+
+  nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;
+       padding:14px 24px;background:rgba(243,239,230,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none}
+  nav .home{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--accent);text-decoration:none}
+
+  .hero{padding:13vh 0 8vh;border-bottom:1px solid var(--line)}
+  .hero .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:1.3rem}
+  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;letter-spacing:-.01em}
+  .chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.6rem}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem 1.3rem;min-width:140px}
+  .chip .num{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.5rem);color:var(--deep);line-height:1}
+  .chip .lab{font-size:.86rem;color:var(--mute);margin-top:.45rem;line-height:1.3;font-weight:500}
+  .cue{margin-top:3rem;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:700;display:flex;align-items:center;gap:.6rem}
+  .cue .a{display:inline-block;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+  .beats{padding:6vh 0 2vh}
+  .beat{padding:5vh 0;border-top:1px solid var(--line);opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+  .beat.in{opacity:1;transform:none}
+  .beat:first-child{border-top:none}
+  .beat .idx{font-family:'Fraunces',serif;font-weight:900;font-size:1rem;color:var(--accent)}
+  .beat h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.6rem,4.6vw,2.5rem);line-height:1.08;margin:.4rem 0 .8rem}
+  .beat p{font-size:clamp(1.05rem,2.2vw,1.2rem);color:#34302a;max-width:58ch}
+  .beat .stat{display:inline-block;margin-top:1.1rem;background:var(--accent);color:#fff;font-weight:700;
+               font-size:.92rem;padding:.5rem 1rem;border-radius:10px;line-height:1.3}
+
+  .quote{background:var(--accent);color:#fff;padding:13vh 0;margin:6vh 0}
+  .quote .wrap{max-width:760px}
+  .quote p{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,4.6vw,2.7rem);line-height:1.18}
+  .quote p+p{margin-top:1.6rem;opacity:.9;font-size:clamp(1.3rem,3.4vw,1.9rem)}
+
+  .closing{background:var(--ink);color:var(--paper);padding:15vh 0 13vh;text-align:center}
+  .closing h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.3rem);line-height:1.08;max-width:18ch;margin:0 auto}
+  .closing .links{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:.8rem}
+  .closing .links .lab{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#a59c8e;font-weight:700;margin-bottom:.4rem}
+  .closing a.essay{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;text-decoration:none;
+                    font-weight:600;padding:.85rem 1.8rem;border-radius:50px;font-size:1rem;transition:transform .15s,filter .2s;max-width:90vw}
+  .closing a.essay:hover{filter:brightness(1.1);transform:translateY(-2px)}
+
+  footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
+  footer a{color:var(--accent);font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+<h2 class="sr-only">Why Leaders Don&#x27;t Need More Data: a scrolling summary from Clarity for the Nations.</h2>
+<nav>
+  <a class="brand" href="index.html">Clarity for the Nations</a>
+  <a class="home" href="index.html">All pieces</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Better data, not more data</div>
+    <h1>His country looked over 50 percent Christian. He never heard the name of Jesus until he moved to the city at 29.</h1>
+    <div class="chips"><div class="chip"><span class="num">&gt;50%</span><div class="lab">how Christian his country looked</div></div><div class="chip"><span class="num">&lt;1%</span><div class="lab">how Christian his people actually are</div></div><div class="chip"><span class="num">0</span><div class="lab">believers, churches, or workers in his villages</div></div></div>
+    <div class="cue"><span class="a">&#8595;</span> Scroll</div>
+  </div>
+</header>
+
+<main class="beats">
+  <div class="wrap">
+    <div class="beat"><div class="idx">01</div><h2>Averages hide realities</h2><p>Ahmed's homeland looked reached, but his cluster of villages had no believers, no churches, no missionaries. National and people-group averages buried whole untouched populations.</p><div class="stat">under 1% Christian</div></div>
+<div class="beat"><div class="idx">02</div><h2>The problem is the wrong data</h2><p>Most leaders do not lack information. They lack the right information at the right time. You can have 16,000+ unreached groups on a spreadsheet and still not know the next step.</p><div class="stat">16,000+ groups</div></div>
+<div class="beat"><div class="idx">03</div><h2>Two metrics, too flat</h2><p>Our shared language rests on Engaged or Unengaged and Christian percentage. They have helped, but they are too flat for the decisions we actually make.</p></div>
+<div class="beat"><div class="idx">04</div><h2>Identical on paper, opposite in reality</h2><p>Two groups, both engaged, both 0.2 percent evangelical. One has churches multiplying; the other is fragile and stalling. The numbers cannot tell them apart.</p><div class="stat">0.2% vs 0.2%</div></div>
+<div class="beat"><div class="idx">05</div><h2>What the data cannot see</h2><p>It creates false equivalence, cannot see momentum, masks on-the-ground health, does not name the next step, and is quietly shaped by funding incentives.</p></div>
+<div class="beat"><div class="idx">06</div><h2>From numbers to clarity</h2><p>We need dimensions that actually help: what phase a people is in, how strong and healthy the engagement is, and what moves them to the next phase.</p></div>
+
+  </div>
+</main>
+
+<section class="quote"><div class="wrap"><p>&ldquo;Averages can hide realities.&rdquo;</p><p>&ldquo;The Great Commission does not need more spreadsheets.&rdquo;</p></div></section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>I cannot give you perfect data. But I can help you find clarity in the complexity.</h2>
+    <div class="links">
+      <span class="lab">Read the full essay</span>
+      <a class="essay" href="https://clarity4thenations.substack.com/p/why-most-missions-leaders-dont-need">Why Most Missions Leaders Don't Need More Data &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Adapted from <a href="https://clarity4thenations.substack.com">Clarity for the Nations</a> by Bud Houston &middot; <a href="index.html">Back to all pieces</a>
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.2});
+document.querySelectorAll('.beat').forEach(b=>io.observe(b));
+function countUp(el){
+  const t=parseFloat(el.dataset.target),dec=+(el.dataset.dec||0),pre=el.dataset.pre||'',suf=el.dataset.suf||'',sep=el.dataset.sep==='1';
+  const t0=performance.now(),dur=1600;
+  function fmt(v){let s=dec>0?v.toFixed(dec):(sep?Math.round(v).toLocaleString('en-US'):String(Math.round(v)));return pre+s+suf;}
+  function tick(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fmt(t*e);if(k<1)requestAnimationFrame(tick);else el.textContent=fmt(t);}
+  requestAnimationFrame(tick);
+}
+const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
+document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
+</script>
+</body>
+</html>

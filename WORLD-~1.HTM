@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Isn&#x27;t What You Think | Clarity for the Nations</title>
+<meta name="description" content="The world is mostly urban, but not mostly megacity. People groups are networks, not dots.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;--accent:#185FA5;--deep:#0c447c;--line:rgba(28,26,23,.12)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+  .serif{font-family:'Fraunces',Georgia,serif}
+
+  nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;
+       padding:14px 24px;background:rgba(243,239,230,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none}
+  nav .home{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--accent);text-decoration:none}
+
+  .hero{padding:13vh 0 8vh;border-bottom:1px solid var(--line)}
+  .hero .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:1.3rem}
+  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;letter-spacing:-.01em}
+  .chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.6rem}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem 1.3rem;min-width:140px}
+  .chip .num{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.5rem);color:var(--deep);line-height:1}
+  .chip .lab{font-size:.86rem;color:var(--mute);margin-top:.45rem;line-height:1.3;font-weight:500}
+  .cue{margin-top:3rem;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:700;display:flex;align-items:center;gap:.6rem}
+  .cue .a{display:inline-block;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+  .beats{padding:6vh 0 2vh}
+  .beat{padding:5vh 0;border-top:1px solid var(--line);opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+  .beat.in{opacity:1;transform:none}
+  .beat:first-child{border-top:none}
+  .beat .idx{font-family:'Fraunces',serif;font-weight:900;font-size:1rem;color:var(--accent)}
+  .beat h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.6rem,4.6vw,2.5rem);line-height:1.08;margin:.4rem 0 .8rem}
+  .beat p{font-size:clamp(1.05rem,2.2vw,1.2rem);color:#34302a;max-width:58ch}
+  .beat .stat{display:inline-block;margin-top:1.1rem;background:var(--accent);color:#fff;font-weight:700;
+               font-size:.92rem;padding:.5rem 1rem;border-radius:10px;line-height:1.3}
+
+  .quote{background:var(--accent);color:#fff;padding:13vh 0;margin:6vh 0}
+  .quote .wrap{max-width:760px}
+  .quote p{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,4.6vw,2.7rem);line-height:1.18}
+  .quote p+p{margin-top:1.6rem;opacity:.9;font-size:clamp(1.3rem,3.4vw,1.9rem)}
+
+  .closing{background:var(--ink);color:var(--paper);padding:15vh 0 13vh;text-align:center}
+  .closing h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.3rem);line-height:1.08;max-width:18ch;margin:0 auto}
+  .closing .links{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:.8rem}
+  .closing .links .lab{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#a59c8e;font-weight:700;margin-bottom:.4rem}
+  .closing a.essay{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;text-decoration:none;
+                    font-weight:600;padding:.85rem 1.8rem;border-radius:50px;font-size:1rem;transition:transform .15s,filter .2s;max-width:90vw}
+  .closing a.essay:hover{filter:brightness(1.1);transform:translateY(-2px)}
+
+  footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
+  footer a{color:var(--accent);font-weight:700;text-decoration:none}
+</style>
+</head>
+<body>
+<h2 class="sr-only">The World Isn&#x27;t What You Think: a scrolling summary from Clarity for the Nations.</h2>
+<nav>
+  <a class="brand" href="index.html">Clarity for the Nations</a>
+  <a class="home" href="index.html">All pieces</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">What new UN data means for strategy</div>
+    <h1>If you picture the unreached in either a remote village or a sprawling megacity, you are planning for a world that no longer exists.</h1>
+    <div class="chips"><div class="chip"><span class="num" data-target="81" data-pre="" data-suf="%" data-dec="0" data-sep="0">0%</span><div class="lab">of humanity is now urban-like</div></div><div class="chip"><span class="num" data-target="96" data-pre="" data-suf="%" data-dec="0" data-sep="0">0%</span><div class="lab">of cities have under 1 million people</div></div><div class="chip"><span class="num" data-target="7" data-pre="" data-suf="" data-dec="0" data-sep="0">0</span><div class="lab">countries drive half of all city growth</div></div></div>
+    <div class="cue"><span class="a">&#8595;</span> Scroll</div>
+  </div>
+</header>
+
+<main class="beats">
+  <div class="wrap">
+    <div class="beat"><div class="idx">01</div><h2>The numbers that rewrite strategy</h2><p>New UN data: 45% live in cities, 36% in towns, 19% rural. So 81% of humanity is urban-like, but 96% of the world's cities have fewer than 1 million people.</p><div class="stat">45 / 36 / 19, and 96% of cities under 1M</div></div>
+<div class="beat"><div class="idx">02</div><h2>From dot to network of nodes</h2><p>People live multi-local lives across origin villages, market towns, regional cities, metros, cross-border cities, diaspora, and online. The question shifts from 'where do they live?' to 'which nodes give the best leverage?'</p><div class="stat">7 node types</div></div>
+<div class="beat"><div class="idx">03</div><h2>Towns: the invisible third</h2><p>Towns house more than a third of humanity and are the most common settlement type in 71 countries, yet they are nearly invisible in mission portfolios. Often the most strategic first node.</p><div class="stat">a third of humanity, most common in 71 countries</div></div>
+<div class="beat"><div class="idx">04</div><h2>Seven countries shape everything</h2><p>India, Nigeria, Pakistan, DR Congo, Egypt, Bangladesh, and Ethiopia will add over 500 million city residents by 2050, more than half of global city growth.</p><div class="stat">plus 500 million city residents by 2050</div></div>
+<div class="beat"><div class="idx">05</div><h2>Collaboration becomes non-negotiable</h2><p>No single organization can work all the nodes for a people. A multi-node strategy forces shared research, agreed priorities, and regular communication across ministries.</p></div>
+<div class="beat"><div class="idx">06</div><h2>Co-architects, not implementers</h2><p>Believers in those seven growth countries already have relational access to nodes outsiders never could. Do not recruit them as 'local partners.' Invite them as co-designers.</p></div>
+<div class="beat"><div class="idx">07</div><h2>Track strategic nodes engaged</h2><p>Stop measuring presence in one location. Ask: across this people's network, how many nodes have ongoing witness, and where are the gaps?</p></div>
+
+  </div>
+</main>
+
+<section class="quote"><div class="wrap"><p>&ldquo;The world is mostly urban, but not mostly megacity.&rdquo;</p><p>&ldquo;They are not just local partners. They are potential co-architects.&rdquo;</p></div></section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>It is not about being everywhere. It is about being strategic about coverage and honest about gaps.</h2>
+    <div class="links">
+      <span class="lab">Read the full essay</span>
+      <a class="essay" href="https://clarity4thenations.substack.com/p/the-world-isnt-what-you-think-it">The World Isn't What You Think It Is &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Adapted from <a href="https://clarity4thenations.substack.com">Clarity for the Nations</a> by Bud Houston &middot; <a href="index.html">Back to all pieces</a>
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.2});
+document.querySelectorAll('.beat').forEach(b=>io.observe(b));
+function countUp(el){
+  const t=parseFloat(el.dataset.target),dec=+(el.dataset.dec||0),pre=el.dataset.pre||'',suf=el.dataset.suf||'',sep=el.dataset.sep==='1';
+  const t0=performance.now(),dur=1600;
+  function fmt(v){let s=dec>0?v.toFixed(dec):(sep?Math.round(v).toLocaleString('en-US'):String(Math.round(v)));return pre+s+suf;}
+  function tick(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fmt(t*e);if(k<1)requestAnimationFrame(tick);else el.textContent=fmt(t);}
+  requestAnimationFrame(tick);
+}
+const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
+document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
+</script>
+</body>
+</html>

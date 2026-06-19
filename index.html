@@ -4,48 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clarity for the Nations</title>
-<meta name="description" content="Interactive stories on missions, data, and the unreached, by Bud Houston.">
+<meta name="description" content="Interactive scroll stories on missions, data, and the unreached, by Bud Houston.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#F3EFE6; --ink:#1C1A17; --mute:#6E665B;
-    --navy:#0B1F33; --gold:#E8A33D; --teal:#1C7C7C; --red:#B22234;
-    --line:rgba(28,26,23,.12);
-  }
+  :root{--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;--red:#B22234;--line:rgba(28,26,23,.12)}
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
   a{color:inherit}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
   header.hero{padding:14vh 0 7vh;border-bottom:1px solid var(--line)}
   .hero .eyebrow{font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:1.3rem}
   .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.6rem,7vw,4.8rem);line-height:1.02;letter-spacing:-.01em;max-width:16ch}
-  .hero p{font-size:clamp(1.1rem,2.3vw,1.4rem);color:var(--mute);margin-top:1.8rem;max-width:54ch}
-
+  .hero p{font-size:clamp(1.1rem,2.3vw,1.4rem);color:var(--mute);margin-top:1.8rem;max-width:56ch}
   .section-label{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--mute);margin:7vh 0 2rem}
-
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;padding-bottom:4vh}
   .card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
   .card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.12)}
-  .band{height:120px;position:relative;display:flex;align-items:flex-end;padding:16px 20px}
-  .band.japan{background:linear-gradient(135deg,var(--navy),#0E2A45)}
-  .band.alevi{background:linear-gradient(135deg,var(--red),#7d1623)}
-  .band .type{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#fff;background:rgba(255,255,255,.16);padding:5px 12px;border-radius:50px;backdrop-filter:blur(2px)}
-  .band .deco{position:absolute;right:18px;top:16px;font-family:'Fraunces',serif;font-weight:900;font-size:2.4rem;color:rgba(255,255,255,.9);line-height:1}
-  .band.japan .deco{color:var(--gold)}
-  .band.alevi .deco{color:#fff}
-  .card .body{padding:1.5rem 1.6rem 1.7rem;display:flex;flex-direction:column;flex:1}
-  .card h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;line-height:1.12;margin-bottom:.6rem}
-  .card .blurb{font-size:1rem;color:#39342d;flex:1}
-  .card .go{margin-top:1.3rem;font-weight:700;color:var(--red);display:inline-flex;align-items:center;gap:.5rem}
-  .card.alevi .go{color:var(--teal)}
-
-  .soon{margin:2vh 0 0;padding:2rem;border:1px dashed var(--line);border-radius:16px;color:var(--mute);font-size:1rem}
-  .soon b{color:var(--ink);font-weight:600}
-
-  footer{margin-top:10vh;border-top:1px solid var(--line);padding:5vh 0 7vh}
+  .band{height:108px;position:relative;display:flex;align-items:flex-end;padding:14px 18px}
+  .band .type{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#fff;background:rgba(255,255,255,.18);padding:5px 11px;border-radius:50px}
+  .band .rank{position:absolute;right:16px;top:13px;font-family:'Fraunces',serif;font-weight:900;font-size:1.7rem;color:rgba(255,255,255,.85)}
+  .card .body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;flex:1}
+  .card h2{font-family:'Fraunces',serif;font-weight:900;font-size:1.4rem;line-height:1.12;margin-bottom:.55rem}
+  .card .blurb{font-size:.98rem;color:#39342d;flex:1}
+  .card .go{margin-top:1.2rem;font-weight:700;font-size:.95rem}
+  footer{margin-top:9vh;border-top:1px solid var(--line);padding:5vh 0 7vh}
   footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
   footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
   footer a.sub{text-decoration:none;font-weight:700;color:var(--red)}
@@ -57,35 +41,45 @@
   <div class="wrap">
     <div class="eyebrow">Clarity for the Nations</div>
     <h1>The unreached world, told in stories you can see.</h1>
-    <p>Short, interactive takes on missions, data, and the places the gospel has not yet reached. Adapted from the essays by Bud Houston.</p>
+    <p>Short, interactive takes on missions, data, and the places the gospel has not yet reached. Adapted from the essays by Bud Houston, ordered by the impact they had with readers.</p>
   </div>
 </header>
 
 <main class="wrap">
   <div class="section-label">The pieces</div>
   <div class="grid">
-
-    <a class="card japan" href="japan-paradox.html">
-      <div class="band japan"><span class="type">Watch &middot; 45 sec</span><span class="deco">2M</span></div>
-      <div class="body">
-        <h2>The Japan Paradox</h2>
-        <p class="blurb">There are more Christians in Japan than in all 3,200 frontier people groups on earth, combined. So why is it still the world's largest mission field?</p>
-        <span class="go">View &#8594;</span>
-      </div>
-    </a>
-
-    <a class="card alevi" href="alevi-invisible-millions.html">
-      <div class="band alevi"><span class="type">Scroll story</span><span class="deco">?</span></div>
-      <div class="body">
-        <h2>The Invisible Millions</h2>
-        <p class="blurb">Millions of Alevis in Turkey, hidden inside one solid block of red. Watch the map crack open, and see who the data has been missing.</p>
-        <span class="go">View &#8594;</span>
-      </div>
-    </a>
-
+    <a class="card" href="uzbekistan-opening.html"><div class="band" style="background:linear-gradient(135deg,#0F6E56,#085041)"><span class="type">Scroll story</span><span class="rank">01</span></div><div class="body"><h2>Uzbekistan Is Opening</h2><p class="blurb">An $8.2 billion remittance flow is really a network map for reaching a frontier people.</p><span class="go" style="color:#0F6E56">View &#8594;</span></div></a>
+    <a class="card" href="operators-not-graduates.html"><div class="band" style="background:linear-gradient(135deg,#0B1F33,#0E2A45)"><span class="type">Scroll story</span><span class="rank">02</span></div><div class="body"><h2>Operators, Not Graduates</h2><p class="blurb">Missions trains students when it needs to forge operators. What Top Gun understood.</p><span class="go" style="color:#0B1F33">View &#8594;</span></div></a>
+    <a class="card" href="japan-unreached.html"><div class="band" style="background:linear-gradient(135deg,#2E4374,#243456)"><span class="type">Scroll story</span><span class="rank">03</span></div><div class="body"><h2>The Japan Paradox</h2><p class="blurb">More Christians than all 3,200 frontier groups combined. Japan needs oxygen, not a spark.</p><span class="go" style="color:#2E4374">View &#8594;</span></div></a>
+    <a class="card" href="gospel-of-consumption.html"><div class="band" style="background:linear-gradient(135deg,#9A3B2E,#6f281e)"><span class="type">Scroll story</span><span class="rank">04</span></div><div class="body"><h2>The Gospel of Consumption</h2><p class="blurb">The church did not collapse from bad theology. It collapsed with the TV and the credit card.</p><span class="go" style="color:#9A3B2E">View &#8594;</span></div></a>
+    <a class="card" href="asking-the-wrong-question.html"><div class="band" style="background:linear-gradient(135deg,#137A6B,#0d544a)"><span class="type">Scroll story</span><span class="rank">05</span></div><div class="body"><h2>Asking the Wrong Question</h2><p class="blurb">Two peoples, same 0.5 percent, opposite realities. The metric that actually matters.</p><span class="go" style="color:#137A6B">View &#8594;</span></div></a>
+    <a class="card" href="multi-node-strategy.html"><div class="band" style="background:linear-gradient(135deg,#34507A,#26405f)"><span class="type">Scroll story</span><span class="rank">06</span></div><div class="body"><h2>Multi-Node Strategy</h2><p class="blurb">Jesus and Paul both ran a portfolio of nodes. The logic was the strategy.</p><span class="go" style="color:#34507A">View &#8594;</span></div></a>
+    <a class="card" href="alevi-invisible-millions.html"><div class="band" style="background:linear-gradient(135deg,#B22234,#7d1623)"><span class="type">Scroll story</span><span class="rank">07</span></div><div class="body"><h2>The Invisible Millions</h2><p class="blurb">Millions of Alevis in Turkey, hidden inside one solid block of red.</p><span class="go" style="color:#B22234">View &#8594;</span></div></a>
+    <a class="card" href="counting-what-counts.html"><div class="band" style="background:linear-gradient(135deg,#3B6D11,#27500a)"><span class="type">Scroll story</span><span class="rank">08</span></div><div class="body"><h2>Counting What Counts</h2><p class="blurb">Track the few metrics that match the phase you are actually in.</p><span class="go" style="color:#3B6D11">View &#8594;</span></div></a>
+    <a class="card" href="world-isnt-what-you-think.html"><div class="band" style="background:linear-gradient(135deg,#185FA5,#0c447c)"><span class="type">Scroll story</span><span class="rank">09</span></div><div class="body"><h2>The World Isn't What You Think</h2><p class="blurb">Mostly urban, but not mostly megacity. People groups are networks, not dots.</p><span class="go" style="color:#185FA5">View &#8594;</span></div></a>
+    <a class="card" href="christmas-and-the-nations.html"><div class="band" style="background:linear-gradient(135deg,#1B3A5B,#11293f)"><span class="type">Scroll story</span><span class="rank">10</span></div><div class="body"><h2>Christmas and the Nations</h2><p class="blurb">The first Gentiles to worship Jesus were Arabs. The lands that sent gold are now barely reached.</p><span class="go" style="color:#1B3A5B">View &#8594;</span></div></a>
+    <a class="card" href="following-the-funds.html"><div class="band" style="background:linear-gradient(135deg,#9A7B2E,#6f5820)"><span class="type">Scroll story</span><span class="rank">11</span></div><div class="body"><h2>Following the Funds</h2><p class="blurb">Migrants sent home $650 billion in 2023. That money is a roadmap for the Great Commission.</p><span class="go" style="color:#9A7B2E">View &#8594;</span></div></a>
+    <a class="card" href="why-mobilization-misses.html"><div class="band" style="background:linear-gradient(135deg,#6A4FB3,#4a3792)"><span class="type">Scroll story</span><span class="rank">12</span></div><div class="body"><h2>Why Mobilization Misses</h2><p class="blurb">A passionate rookie and a comfortable veteran fail for opposite reasons. One fix cannot serve both.</p><span class="go" style="color:#6A4FB3">View &#8594;</span></div></a>
+    <a class="card" href="walking-through-open-doors.html"><div class="band" style="background:linear-gradient(135deg,#2F6B4F,#1f4a37)"><span class="type">Scroll story</span><span class="rank">13</span></div><div class="body"><h2>Walking Through Open Doors</h2><p class="blurb">Ramadan is not a barrier to your Muslim neighbor. It is a once-a-year open door.</p><span class="go" style="color:#2F6B4F">View &#8594;</span></div></a>
+    <a class="card" href="why-leaders-dont-need-more-data.html"><div class="band" style="background:linear-gradient(135deg,#1C6E8C,#124f66)"><span class="type">Scroll story</span><span class="rank">14</span></div><div class="body"><h2>Why Leaders Don't Need More Data</h2><p class="blurb">His country looked over 50 percent Christian. He never heard the name of Jesus until he was 29.</p><span class="go" style="color:#1C6E8C">View &#8594;</span></div></a>
+    <a class="card" href="why-mission-research-matters.html"><div class="band" style="background:linear-gradient(135deg,#455A9E,#33457a)"><span class="type">Scroll story</span><span class="rank">15</span></div><div class="body"><h2>Why Mission Research Matters</h2><p class="blurb">Every decision your team makes is already shaped by research. The only question is whether you do it well.</p><span class="go" style="color:#455A9E">View &#8594;</span></div></a>
+    <a class="card" href="when-the-homeland-is-unreachable.html"><div class="band" style="background:linear-gradient(135deg,#B5603A,#8a4527)"><span class="type">Scroll story</span><span class="rank">16</span></div><div class="body"><h2>When the Homeland Is Unreachable</h2><p class="blurb">40 million Yemenis, a homeland welded shut, and a diaspora wide open.</p><span class="go" style="color:#B5603A">View &#8594;</span></div></a>
+    <a class="card" href="the-activity-trap.html"><div class="band" style="background:linear-gradient(135deg,#4A5A6A,#36434f)"><span class="type">Scroll story</span><span class="rank">17</span></div><div class="body"><h2>The Activity Trap</h2><p class="blurb">The military stopped counting bombs dropped. Missions must stop counting activity and measure effect.</p><span class="go" style="color:#4A5A6A">View &#8594;</span></div></a>
+    <a class="card" href="young-americans-religion.html"><div class="band" style="background:linear-gradient(135deg,#7A4B6B,#573349)"><span class="type">Scroll story</span><span class="rank">18</span></div><div class="body"><h2>What the Data Says</h2><p class="blurb">The youth-revival story is not in the data. The freefall stopped, but that is not revival.</p><span class="go" style="color:#7A4B6B">View &#8594;</span></div></a>
+    <a class="card" href="ego-and-logo.html"><div class="band" style="background:linear-gradient(135deg,#2C6E63,#1d4a43)"><span class="type">Scroll story</span><span class="rank">19</span></div><div class="body"><h2>Leave Your Ego and Logo</h2><p class="blurb">Same city, same people group, different logos. The Great Commission is not a competition.</p><span class="go" style="color:#2C6E63">View &#8594;</span></div></a>
+    <a class="card" href="every-map-has-a-fault.html"><div class="band" style="background:linear-gradient(135deg,#B5852F,#8a631f)"><span class="type">Scroll story</span><span class="rank">20</span></div><div class="body"><h2>Every Map Has a Fault</h2><p class="blurb">A worldview is a map. Find where it stops matching reality, and start there.</p><span class="go" style="color:#B5852F">View &#8594;</span></div></a>
+    <a class="card" href="labor-shortage.html"><div class="band" style="background:linear-gradient(135deg,#5E7A3A,#45591f)"><span class="type">Scroll story</span><span class="rank">21</span></div><div class="body"><h2>The Labor Shortage</h2><p class="blurb">An aging world and a youth wave are colliding. Economics is moving the unreached into reach.</p><span class="go" style="color:#5E7A3A">View &#8594;</span></div></a>
+    <a class="card" href="turkmenistan-2026.html"><div class="band" style="background:linear-gradient(135deg,#46637E,#324c63)"><span class="type">Scroll story</span><span class="rank">22</span></div><div class="body"><h2>Turkmenistan 2026</h2><p class="blurb">One of the world's most closed countries just cracked its door. A signal, not a green light.</p><span class="go" style="color:#46637E">View &#8594;</span></div></a>
+    <a class="card" href="city-is-the-village.html"><div class="band" style="background:linear-gradient(135deg,#4F7355,#38543d)"><span class="type">Scroll story</span><span class="rank">23</span></div><div class="body"><h2>The City Is the Village</h2><p class="blurb">A Nairobi taxi driver, fifteen years in the city, still buried in his village. Reach one, reach a village.</p><span class="go" style="color:#4F7355">View &#8594;</span></div></a>
+    <a class="card" href="four-questions.html"><div class="band" style="background:linear-gradient(135deg,#1F3A5F,#14283f)"><span class="type">Scroll story</span><span class="rank">24</span></div><div class="body"><h2>The Four Questions</h2><p class="blurb">Who, what, how, and how are we doing. The four questions every missionary must answer, in order.</p><span class="go" style="color:#1F3A5F">View &#8594;</span></div></a>
+    <a class="card" href="the-watched-world.html"><div class="band" style="background:linear-gradient(135deg,#5C4A6E,#423450)"><span class="type">Scroll story</span><span class="rank">25</span></div><div class="body"><h2>The Watched World</h2><p class="blurb">In a surveillance state, who can see you matters as much as who is unreached.</p><span class="go" style="color:#5C4A6E">View &#8594;</span></div></a>
+    <a class="card" href="learn-to-exit.html"><div class="band" style="background:linear-gradient(135deg,#3B6D55,#27503e)"><span class="type">Scroll story</span><span class="rank">26</span></div><div class="body"><h2>Learn to Exit</h2><p class="blurb">We strip the L off MAWL. We cannot finish the Great Commission until we learn to leave.</p><span class="go" style="color:#3B6D55">View &#8594;</span></div></a>
+    <a class="card" href="with-therefore-sent.html"><div class="band" style="background:linear-gradient(135deg,#C0703A,#8a4d27)"><span class="type">Scroll story</span><span class="rank">27</span></div><div class="body"><h2>With, Therefore Sent</h2><p class="blurb">Not grow then go. With-ness produces sent-ness. Every gift, every life, every vocation.</p><span class="go" style="color:#C0703A">View &#8594;</span></div></a>
+    <a class="card" href="sea-of-plastic.html"><div class="band" style="background:linear-gradient(135deg,#1C7FA0,#125b73)"><span class="type">Scroll story</span><span class="rank">28</span></div><div class="body"><h2>The Sea of Plastic</h2><p class="blurb">A field of greenhouses visible from space, a migrant labor force, a gospel node hiding in plain sight.</p><span class="go" style="color:#1C7FA0">View &#8594;</span></div></a>
+    <a class="card" href="geography-still-governs.html"><div class="band" style="background:linear-gradient(135deg,#7A5A3A,#57401f)"><span class="type">Scroll story</span><span class="rank">29</span></div><div class="body"><h2>Why Geography Still Governs</h2><p class="blurb">Terrain shaped who is unreached. Now the hardware is failing, and people are moving.</p><span class="go" style="color:#7A5A3A">View &#8594;</span></div></a>
+    <a class="card" href="migration-to-mobility.html"><div class="band" style="background:linear-gradient(135deg,#3A4E8C,#2a3a6a)"><span class="type">Scroll story</span><span class="rank">30</span></div><div class="body"><h2>From Migration to Mobility</h2><p class="blurb">Stop asking only where people live. Ask where they pass through, and stand at the hub.</p><span class="go" style="color:#3A4E8C">View &#8594;</span></div></a>
+    <a class="card" href="vision-for-vibes.html"><div class="band" style="background:linear-gradient(135deg,#6E4B7A,#4f3459)"><span class="type">Scroll story</span><span class="rank">31</span></div><div class="body"><h2>Have We Traded Vision for Vibes?</h2><p class="blurb">Vague hope is not a strategy. Pick one people group and do whatever it takes.</p><span class="go" style="color:#6E4B7A">View &#8594;</span></div></a>
   </div>
-
-  <div class="soon"><b>More on the way.</b> New interactive pieces from the Clarity for the Nations series are in production and will appear here as they launch.</div>
 </main>
 
 <footer>
