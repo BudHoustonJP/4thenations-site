@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">Counting What Counts: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,12 +91,12 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>The generic dashboard trap</h2><p>A team reports gospel shares and baptisms on the same form. Healthy shares, zero baptisms, month after month. Whether that is a problem depends entirely on where they are.</p></div>
-<div class="beat"><div class="idx">02</div><h2>Same numbers, different verdict</h2><p>Zero baptisms at six months in early evangelism may be right. The same numbers for seven years means something is deeply wrong, or the tracking is hiding it.</p><div class="stat">6 months vs 7 years</div></div>
-<div class="beat"><div class="idx">03</div><h2>Phase-specific metrics</h2><p>Early evangelism needs granular data: prayer hours, conversations, who is sharing, the response. Reproducing churches need a completely different dashboard of leadership and generational depth.</p></div>
-<div class="beat"><div class="idx">04</div><h2>What gets inspected gets expected</h2><p>Your team optimizes for whatever you ask about. Ask 'how many conversations?' and they chase conversations. Ask 'what did you learn?' and they think strategically.</p></div>
-<div class="beat"><div class="idx">05</div><h2>Find the flow, remove the drag</h2><p>The goal is not to manufacture movement but to find where the Spirit is already moving and get out of the way. Then your job shifts to removing barriers.</p></div>
-<div class="beat"><div class="idx">06</div><h2>A resolution worth keeping</h2><p>Maybe this year's goal is not a new initiative. It is to track the 3 to 5 metrics that signal progress to your next phase, and actually look at them every quarter.</p><div class="stat">3 to 5 metrics</div></div>
+    <div class="beat"><div class="idx">01</div><h2>The generic dashboard trap</h2><p>A team reports gospel shares and baptisms on the same form. Healthy shares, zero baptisms, month after month. Whether that is a problem depends entirely on where they are.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>Same numbers, different verdict</h2><p>Zero baptisms at six months in early evangelism may be right. The same numbers for seven years means something is deeply wrong, or the tracking is hiding it.</p><div class="stat">6 months vs 7 years</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>Phase-specific metrics</h2><p>Early evangelism needs granular data: prayer hours, conversations, who is sharing, the response. Reproducing churches need a completely different dashboard of leadership and generational depth.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>What gets inspected gets expected</h2><p>Your team optimizes for whatever you ask about. Ask 'how many conversations?' and they chase conversations. Ask 'what did you learn?' and they think strategically.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>Find the flow, remove the drag</h2><p>The goal is not to manufacture movement but to find where the Spirit is already moving and get out of the way. Then your job shifts to removing barriers.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>A resolution worth keeping</h2><p>Maybe this year's goal is not a new initiative. It is to track the 3 to 5 metrics that signal progress to your next phase, and actually look at them every quarter.</p><div class="stat">3 to 5 metrics</div><div class="meter"><span></span></div></div>
 
   </div>
 </main>
@@ -118,5 +130,6 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
 </body>
 </html>

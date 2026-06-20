@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">The Labor Shortage: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,16 +91,17 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>The demographic divide</h2><p>The graying world has capital but no young workers. The youth wave has workers but no jobs. Economics will do what economics always does.</p><div class="stat">Japan loses ~1M a year</div></div>
-<div class="beat"><div class="idx">02</div><h2>Who sends, who receives</h2><p>Senders cluster in the 10/40 Window. Receivers are wealthy aging nations and the Gulf states, built on imported labor from unreached contexts.</p><div class="stat">90% foreign-born, Dubai</div></div>
-<div class="beat"><div class="idx">03</div><h2>Diaspora believers as bridges</h2><p>A believer in the diaspora has access to their home village a foreign missionary can only dream of: language, family networks, cultural codes.</p></div>
-<div class="beat"><div class="idx">04</div><h2>Addition, not replacement</h2><p>Diaspora ministry does not replace frontier missions. Billions remain behind, and the youth wave means unreached regions are growing, not shrinking.</p></div>
-<div class="beat"><div class="idx">05</div><h2>The invisible middle</h2><p>81 percent of humanity lives in urban-like settings, yet 96 percent of cities have under 1 million people. Internal migration lands in secondary towns.</p><div class="stat">81% urban, 96% small cities</div></div>
-<div class="beat"><div class="idx">06</div><h2>A missionary force waiting</h2><p>Hundreds of thousands of Global South believers enter closed nations as essential economic assets. The brain drain is a deployment.</p><div class="stat">3.4M foreign residents, Japan</div></div>
+    <div class="beat"><div class="idx">01</div><h2>The demographic divide</h2><p>The graying world has capital but no young workers. The youth wave has workers but no jobs. Economics will do what economics always does.</p><div class="stat">Japan loses ~1M a year</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>Who sends, who receives</h2><p>Senders cluster in the 10/40 Window. Receivers are wealthy aging nations and the Gulf states, built on imported labor from unreached contexts.</p><div class="stat">90% foreign-born, Dubai</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>Diaspora believers as bridges</h2><p>A believer in the diaspora has access to their home village a foreign missionary can only dream of: language, family networks, cultural codes.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>Addition, not replacement</h2><p>Diaspora ministry does not replace frontier missions. Billions remain behind, and the youth wave means unreached regions are growing, not shrinking.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>The invisible middle</h2><p>81 percent of humanity lives in urban-like settings, yet 96 percent of cities have under 1 million people. Internal migration lands in secondary towns.</p><div class="stat">81% urban, 96% small cities</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>A missionary force waiting</h2><p>Hundreds of thousands of Global South believers enter closed nations as essential economic assets. The brain drain is a deployment.</p><div class="stat">3.4M foreign residents, Japan</div><div class="meter"><span></span></div></div>
 
   </div>
 </main>
 
+<section class="chartsec"><div class="wrap"><div class="chartcard"><h3>Dubai's workforce</h3><div class="cap">About 90 percent of Dubai's population is foreign-born.</div><div class="chartwrap"><canvas id="pchart" role="img" aria-label="Dubai's workforce"></canvas></div><div class="src">Illustrative; Gulf labor demographics.</div></div></div></section>
 <section class="quote"><div class="wrap"><p>&ldquo;The aging world has a labor vacuum. The unreached world has a labor surplus.&rdquo;</p><p>&ldquo;He is using the hunger for bread to bring people to the Bread of Life.&rdquo;</p></div></section>
 
 <section class="closing">
@@ -118,5 +131,8 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>(function(){var c=document.getElementById("pchart");if(!c)return;var d=false;new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!d){d=true;new Chart(c,{type:'doughnut',data:{labels:['Foreign-born 90%','Local 10%'],datasets:[{data:[90,10],backgroundColor:['#5E7A3A','#cdd9bb']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});}});},{threshold:.4}).observe(c);})();</script>
 </body>
 </html>

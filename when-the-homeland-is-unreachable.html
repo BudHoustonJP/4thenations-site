@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">When the Homeland Is Unreachable: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,13 +91,13 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>A nation of many peoples</h2><p>Yemen holds distinct groups: Northern Yemeni (20M), Yemeni Arabs (9.6M), Hadrami (6.1M), Tihami (3.3M), each with its own dialect and tribe.</p><div class="stat">20M Northern Yemeni</div></div>
-<div class="beat"><div class="idx">02</div><h2>The double lock</h2><p>Internal tribal and sectarian fracture is the first lock. Near-total external lockout, no visas, no religious freedom, is the second. The door is welded shut.</p><div class="stat">No. 3 on Open Doors</div></div>
-<div class="beat"><div class="idx">03</div><h2>Yemenis are not only in Yemen</h2><p>The two largest groups number 29.6 million globally, with a large diaspora across Africa, the Middle East, Europe, and North America.</p><div class="stat">29.6M globally</div></div>
-<div class="beat"><div class="idx">04</div><h2>Nodes, not dots</h2><p>A Yemeni shop owner in the Bronx who wires money to Sana'a every Friday is access. Reach him and you touch the village.</p><div class="stat">1M+ in the diaspora</div></div>
-<div class="beat"><div class="idx">05</div><h2>The US node</h2><p>Engaging Yemenis in America is not a consolation prize. Religious freedom is protected, churches can openly welcome, and converts face social cost but not legal persecution.</p><div class="stat">100k+ in the US</div></div>
-<div class="beat"><div class="idx">06</div><h2>The Egypt node</h2><p>Egyptian believers already speak Arabic and share Arab cultural frameworks. They are near-culture church planters for the node in their own backyard.</p><div class="stat">500k in Egypt</div></div>
-<div class="beat"><div class="idx">07</div><h2>Build for the reopening</h2><p>War does not last forever. Diaspora believers can become the pioneer missionaries who return when Yemen cracks open.</p></div>
+    <div class="beat"><div class="idx">01</div><h2>A nation of many peoples</h2><p>Yemen holds distinct groups: Northern Yemeni (20M), Yemeni Arabs (9.6M), Hadrami (6.1M), Tihami (3.3M), each with its own dialect and tribe.</p><div class="stat">20M Northern Yemeni</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>The double lock</h2><p>Internal tribal and sectarian fracture is the first lock. Near-total external lockout, no visas, no religious freedom, is the second. The door is welded shut.</p><div class="stat">No. 3 on Open Doors</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>Yemenis are not only in Yemen</h2><p>The two largest groups number 29.6 million globally, with a large diaspora across Africa, the Middle East, Europe, and North America.</p><div class="stat">29.6M globally</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>Nodes, not dots</h2><p>A Yemeni shop owner in the Bronx who wires money to Sana'a every Friday is access. Reach him and you touch the village.</p><div class="stat">1M+ in the diaspora</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>The US node</h2><p>Engaging Yemenis in America is not a consolation prize. Religious freedom is protected, churches can openly welcome, and converts face social cost but not legal persecution.</p><div class="stat">100k+ in the US</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>The Egypt node</h2><p>Egyptian believers already speak Arabic and share Arab cultural frameworks. They are near-culture church planters for the node in their own backyard.</p><div class="stat">500k in Egypt</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">07</div><h2>Build for the reopening</h2><p>War does not last forever. Diaspora believers can become the pioneer missionaries who return when Yemen cracks open.</p><div class="meter"><span></span></div></div>
 
   </div>
 </main>
@@ -119,5 +131,6 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
 </body>
 </html>

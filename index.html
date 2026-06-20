@@ -32,17 +32,16 @@
   .slide{grid-area:1/1;display:flex;flex-direction:column;justify-content:center;text-decoration:none;opacity:0;visibility:hidden;transition:opacity .7s ease;min-height:36vh}
   .slide.active{opacity:1;visibility:visible}
   .slide .mark{font-family:'Fraunces',serif;font-weight:900;font-size:3.4rem;line-height:.5;color:var(--gold);opacity:.7}
-  .slide .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.9rem,4.6vw,3.5rem);line-height:1.08;letter-spacing:-.01em;max-width:22ch;margin:.6rem 0 1.3rem;color:#F6F4EE}
+  .slide .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.9rem,4.6vw,3.5rem);line-height:1.08;letter-spacing:-.01em;max-width:24ch;margin:.6rem 0 1.3rem;color:#F6F4EE}
   .slide .src{font-weight:700;color:var(--gold);font-size:.95rem;text-transform:uppercase;letter-spacing:.1em}
   .slide .ar{display:inline-block;transition:transform .2s} .slide:hover .ar{transform:translateX(4px)}
-  .nav{position:absolute;top:42%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);width:44px;height:44px;border-radius:50%;font-size:1.5rem;line-height:1;cursor:pointer;color:#fff;z-index:3;display:flex;align-items:center;justify-content:center;transition:background .2s}
-  .nav:hover{background:rgba(255,255,255,.18)}
-  .nav.prev{left:-10px} .nav.next{right:-10px}
-  .dots{display:flex;gap:9px;margin-top:1.4rem}
+  .controls{display:flex;align-items:center;justify-content:flex-start;gap:1.1rem;margin-top:1.8rem}
+  .navbtn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);width:40px;height:40px;border-radius:50%;font-size:1.3rem;line-height:1;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .navbtn:hover{background:rgba(255,255,255,.18)}
+  .dots{display:flex;gap:9px}
   .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.32);border:none;cursor:pointer;padding:0;transition:all .25s}
   .dot.active{background:var(--gold);width:26px;border-radius:5px}
   .hero .tag{font-size:1.05rem;color:rgba(246,244,238,.72);margin-top:2.4rem;max-width:54ch}
-  @media(max-width:700px){.nav{display:none}.slide{min-height:46vh}}
   .explore{padding:8vh 0 3vh}
   .explore .sub{color:var(--mute);font-size:1.05rem;margin-bottom:2rem;max-width:60ch}
   .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:3.4rem}
@@ -87,19 +86,21 @@
   <div class="wrap">
     <div class="eyebrow">Clarity for the Nations</div>
     <div class="carousel" id="car">
-      <button class="nav prev" id="prev" aria-label="Previous">&#8249;</button>
       <div class="cwrap">
-      <a class="slide active" href="japan-unreached.html"><span class="mark">&ldquo;</span><p class="q">There are more Christians in Japan than in all 3,200 frontier people groups on earth, combined.</p><span class="src">The Japan Paradox <span class="ar">&#8594;</span></span></a>
-      <a class="slide" href="alevi-invisible-millions.html"><span class="mark">&ldquo;</span><p class="q">We have spent decades trying to convert millions of people away from a religion they do not even practice.</p><span class="src">The Invisible Millions <span class="ar">&#8594;</span></span></a>
-      <a class="slide" href="gospel-of-consumption.html"><span class="mark">&ldquo;</span><p class="q">The church did not collapse from bad theology. It collapsed the decade the TV and the credit card arrived.</p><span class="src">The Gospel of Consumption <span class="ar">&#8594;</span></span></a>
-      <a class="slide" href="christmas-and-the-nations.html"><span class="mark">&ldquo;</span><p class="q">The first Gentiles to worship Jesus were Arabs.</p><span class="src">Christmas and the Nations <span class="ar">&#8594;</span></span></a>
-      <a class="slide" href="world-isnt-what-you-think.html"><span class="mark">&ldquo;</span><p class="q">The world is mostly urban, but not mostly megacity.</p><span class="src">The World Isn't What You Think <span class="ar">&#8594;</span></span></a>
-      <a class="slide" href="migration-to-mobility.html"><span class="mark">&ldquo;</span><p class="q">Lagos receives 86 migrants every hour. Maybe the closed country is just a problem we defined too narrowly.</p><span class="src">From Migration to Mobility <span class="ar">&#8594;</span></span></a>
-      <a class="slide" href="learn-to-exit.html"><span class="mark">&ldquo;</span><p class="q">We cannot finish the Great Commission until we learn to exit.</p><span class="src">Learn to Exit <span class="ar">&#8594;</span></span></a>
-      <a class="slide" href="vision-for-vibes.html"><span class="mark">&ldquo;</span><p class="q">Strategy provides the momentum. The Spirit provides the steering.</p><span class="src">Have We Traded Vision for Vibes? <span class="ar">&#8594;</span></span></a>
+        <a class="slide active" href="japan-unreached.html"><span class="mark">&ldquo;</span><p class="q">There are more Christians in Japan than in all 3,200 frontier people groups on earth, combined.</p><span class="src">The Japan Paradox <span class="ar">&#8594;</span></span></a>
+        <a class="slide" href="alevi-invisible-millions.html"><span class="mark">&ldquo;</span><p class="q">We have spent decades trying to convert millions of people away from a religion they do not even practice.</p><span class="src">The Invisible Millions <span class="ar">&#8594;</span></span></a>
+        <a class="slide" href="gospel-of-consumption.html"><span class="mark">&ldquo;</span><p class="q">The church did not collapse from bad theology. It collapsed the decade the TV and the credit card arrived.</p><span class="src">The Gospel of Consumption <span class="ar">&#8594;</span></span></a>
+        <a class="slide" href="christmas-and-the-nations.html"><span class="mark">&ldquo;</span><p class="q">The first Gentiles to worship Jesus were Arabs.</p><span class="src">Christmas and the Nations <span class="ar">&#8594;</span></span></a>
+        <a class="slide" href="world-isnt-what-you-think.html"><span class="mark">&ldquo;</span><p class="q">The world is mostly urban, but not mostly megacity.</p><span class="src">The World Isn't What You Think <span class="ar">&#8594;</span></span></a>
+        <a class="slide" href="migration-to-mobility.html"><span class="mark">&ldquo;</span><p class="q">Lagos receives 86 migrants every hour. Maybe the closed country is just a problem we defined too narrowly.</p><span class="src">From Migration to Mobility <span class="ar">&#8594;</span></span></a>
+        <a class="slide" href="learn-to-exit.html"><span class="mark">&ldquo;</span><p class="q">We cannot finish the Great Commission until we learn to exit.</p><span class="src">Learn to Exit <span class="ar">&#8594;</span></span></a>
+        <a class="slide" href="vision-for-vibes.html"><span class="mark">&ldquo;</span><p class="q">Strategy provides the momentum. The Spirit provides the steering.</p><span class="src">Have We Traded Vision for Vibes? <span class="ar">&#8594;</span></span></a>
       </div>
-      <button class="nav next" id="next" aria-label="Next">&#8250;</button>
-      <div class="dots" id="dots"><button class="dot active" aria-label="quote 1"></button><button class="dot" aria-label="quote 2"></button><button class="dot" aria-label="quote 3"></button><button class="dot" aria-label="quote 4"></button><button class="dot" aria-label="quote 5"></button><button class="dot" aria-label="quote 6"></button><button class="dot" aria-label="quote 7"></button><button class="dot" aria-label="quote 8"></button></div>
+      <div class="controls">
+        <button class="navbtn" id="prev" aria-label="Previous">&#8249;</button>
+        <div class="dots" id="dots"><button class="dot active" aria-label="quote 1"></button><button class="dot" aria-label="quote 2"></button><button class="dot" aria-label="quote 3"></button><button class="dot" aria-label="quote 4"></button><button class="dot" aria-label="quote 5"></button><button class="dot" aria-label="quote 6"></button><button class="dot" aria-label="quote 7"></button><button class="dot" aria-label="quote 8"></button></div>
+        <button class="navbtn" id="next" aria-label="Next">&#8250;</button>
+      </div>
     </div>
     <p class="tag">Interactive takes on missions, data, and the unreached. Adapted from the essays by Bud Houston.</p>
   </div>

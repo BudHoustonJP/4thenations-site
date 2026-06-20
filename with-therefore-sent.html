@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">With, Therefore Sent: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,12 +91,12 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>One posture, two verbs</h2><p>Mark 3:14 holds the whole frame: appointed to be with him and to be sent out. The with-ness produces the sent-ness.</p><div class="stat">Mark 3:14</div></div>
-<div class="beat"><div class="idx">02</div><h2>With three at once</h2><p>A fully sent life means being with God, with the lost, and with the church at the same time. Remove any one and sent-ness breaks down.</p><div class="stat">3 spheres</div></div>
-<div class="beat"><div class="idx">03</div><h2>With the lost</h2><p>Discipleship quietly skips this. Pipelines produce insularity and call it maturity. Being with the lost is where urgency stops being theoretical.</p></div>
-<div class="beat"><div class="idx">04</div><h2>With the church confirms</h2><p>Antioch did not rubber-stamp a stranger. They had watched Barnabas and Saul for years before the Spirit said set them apart.</p><div class="stat">Acts 13:2-3</div></div>
-<div class="beat"><div class="idx">05</div><h2>Gifting shapes trajectory</h2><p>Apostle, prophet, evangelist, shepherd, teacher: not offices but how sent-ness is distributed. All five need all three spheres; the weighting differs.</p><div class="stat">5 gifts, Ephesians 4</div></div>
-<div class="beat"><div class="idx">06</div><h2>Your vocation is the vehicle</h2><p>The engineer in Central Asia, the nurse with her patients, the manager forming his team. Vocation is not secular. It is the calling.</p></div>
+    <div class="beat"><div class="idx">01</div><h2>One posture, two verbs</h2><p>Mark 3:14 holds the whole frame: appointed to be with him and to be sent out. The with-ness produces the sent-ness.</p><div class="stat">Mark 3:14</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>With three at once</h2><p>A fully sent life means being with God, with the lost, and with the church at the same time. Remove any one and sent-ness breaks down.</p><div class="stat">3 spheres</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>With the lost</h2><p>Discipleship quietly skips this. Pipelines produce insularity and call it maturity. Being with the lost is where urgency stops being theoretical.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>With the church confirms</h2><p>Antioch did not rubber-stamp a stranger. They had watched Barnabas and Saul for years before the Spirit said set them apart.</p><div class="stat">Acts 13:2-3</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>Gifting shapes trajectory</h2><p>Apostle, prophet, evangelist, shepherd, teacher: not offices but how sent-ness is distributed. All five need all three spheres; the weighting differs.</p><div class="stat">5 gifts, Ephesians 4</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>Your vocation is the vehicle</h2><p>The engineer in Central Asia, the nurse with her patients, the manager forming his team. Vocation is not secular. It is the calling.</p><div class="meter"><span></span></div></div>
 
   </div>
 </main>
@@ -118,5 +130,6 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
 </body>
 </html>

@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">The City Is the Village: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,12 +91,12 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>The assumption we get wrong</h2><p>We imagine migrants leave the village behind and become urban. A new Nairobi study shows rural linkages do not diminish over time.</p><div class="stat">472 surveyed</div></div>
-<div class="beat"><div class="idx">02</div><h2>Social veins still pumping</h2><p>Migrants stay connected through visits, remittances, retirement plans, and burial wishes. The spiritual ties are strongest, persisting into the second generation.</p><div class="stat">20-year ties equal 2-year ties</div></div>
-<div class="beat"><div class="idx">03</div><h2>Why movements burn rural</h2><p>The most explosive disciple-making movements are fundamentally rural even when ignited in cities, fueled by village-mirroring networks.</p><div class="stat">Ying and Grace Kai, China</div></div>
-<div class="beat"><div class="idx">04</div><h2>The dandelion strategy</h2><p>The migrant is the tip of a spear extended from a rural community. Engage one and you can reach an entire village.</p></div>
-<div class="beat"><div class="idx">05</div><h2>Target rural clusters</h2><p>Look for clusters defined by rural origin, organized through language or ethnic associations. Vocational training is a high-value entry point.</p></div>
-<div class="beat"><div class="idx">06</div><h2>Watch for the jump</h2><p>In the city, one people group lives next to another, sharing the same survival struggle. That struggle can bridge barriers never crossed in the countryside.</p><div class="stat">South Asians in Greece</div></div>
+    <div class="beat"><div class="idx">01</div><h2>The assumption we get wrong</h2><p>We imagine migrants leave the village behind and become urban. A new Nairobi study shows rural linkages do not diminish over time.</p><div class="stat">472 surveyed</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>Social veins still pumping</h2><p>Migrants stay connected through visits, remittances, retirement plans, and burial wishes. The spiritual ties are strongest, persisting into the second generation.</p><div class="stat">20-year ties equal 2-year ties</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>Why movements burn rural</h2><p>The most explosive disciple-making movements are fundamentally rural even when ignited in cities, fueled by village-mirroring networks.</p><div class="stat">Ying and Grace Kai, China</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>The dandelion strategy</h2><p>The migrant is the tip of a spear extended from a rural community. Engage one and you can reach an entire village.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>Target rural clusters</h2><p>Look for clusters defined by rural origin, organized through language or ethnic associations. Vocational training is a high-value entry point.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>Watch for the jump</h2><p>In the city, one people group lives next to another, sharing the same survival struggle. That struggle can bridge barriers never crossed in the countryside.</p><div class="stat">South Asians in Greece</div><div class="meter"><span></span></div></div>
 
   </div>
 </main>
@@ -118,5 +130,6 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
 </body>
 </html>

@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">Turkmenistan 2026: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,12 +91,12 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>A country built to stay closed</h2><p>After the USSR fell, Turkmenistan chose permanent neutrality and turned inward. Comparisons run to North Korea and Eritrea.</p><div class="stat">~6,000 visitors a year</div></div>
-<div class="beat"><div class="idx">02</div><h2>The e-visa signal</h2><p>In April 2025 parliament removed the letter-of-invitation requirement and authorized an e-visa system. The door is moving, not flung open.</p><div class="stat">April 2025</div></div>
-<div class="beat"><div class="idx">03</div><h2>The people behind the photos</h2><p>Ten frontier people groups: Turkmen, Aimaq, Western Baloch, Karakalpak, and more, each engaged minimally or not at all.</p><div class="stat">10 frontier groups</div></div>
-<div class="beat"><div class="idx">04</div><h2>Resources ready, workers missing</h2><p>Scripture exists in print and audio for most languages, and the JESUS film is online in Turkmen. What is missing is workers in real relationships.</p></div>
-<div class="beat"><div class="idx">05</div><h2>A door is not a mandate</h2><p>Mongolia in 1990, Myanmar in 2011. Openings are uneven and rarely permanent. Paul's Macedonian vision came with a window, not a guarantee.</p><div class="stat">Acts 16:10</div></div>
-<div class="beat"><div class="idx">06</div><h2>Creative access pathways</h2><p>Tourism as reconnaissance, genuine business as mission, registered humanitarian work, and diaspora engagement across Turkic kin networks.</p></div>
+    <div class="beat"><div class="idx">01</div><h2>A country built to stay closed</h2><p>After the USSR fell, Turkmenistan chose permanent neutrality and turned inward. Comparisons run to North Korea and Eritrea.</p><div class="stat">~6,000 visitors a year</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>The e-visa signal</h2><p>In April 2025 parliament removed the letter-of-invitation requirement and authorized an e-visa system. The door is moving, not flung open.</p><div class="stat">April 2025</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>The people behind the photos</h2><p>Ten frontier people groups: Turkmen, Aimaq, Western Baloch, Karakalpak, and more, each engaged minimally or not at all.</p><div class="stat">10 frontier groups</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>Resources ready, workers missing</h2><p>Scripture exists in print and audio for most languages, and the JESUS film is online in Turkmen. What is missing is workers in real relationships.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>A door is not a mandate</h2><p>Mongolia in 1990, Myanmar in 2011. Openings are uneven and rarely permanent. Paul's Macedonian vision came with a window, not a guarantee.</p><div class="stat">Acts 16:10</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>Creative access pathways</h2><p>Tourism as reconnaissance, genuine business as mission, registered humanitarian work, and diaspora engagement across Turkic kin networks.</p><div class="meter"><span></span></div></div>
 
   </div>
 </main>
@@ -118,5 +130,6 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
 </body>
 </html>

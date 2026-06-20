@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">Operators, Not Graduates: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,12 +91,12 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>The same crisis, avoided</h2><p>The Navy stopped treating pilots as students and started forging them as operators. Global missions faces an identical crisis and has largely avoided the reckoning.</p></div>
-<div class="beat"><div class="idx">02</div><h2>The container, not the content</h2><p>Our pipeline of churches, seminaries, and mission schools reproduces its own DNA: missionaries who are theologically informed but operationally underprepared. The problem is the container.</p></div>
-<div class="beat"><div class="idx">03</div><h2>Knowledge built inside experience</h2><p>Front-loaded information evaporates under real pressure. The dogfights of cross-cultural ministry happen in living rooms and marketplaces, not lecture halls.</p></div>
-<div class="beat"><div class="idx">04</div><h2>Six principles worth stealing</h2><p>Concepts over facts. Reverse-engineer the syllabus. Coach instead of evaluate. Augment with repetition. Structure the apprenticeship. Debrief relentlessly. Pilots spend more time debriefing than flying.</p><div class="stat">6 principles</div></div>
-<div class="beat"><div class="idx">05</div><h2>Training is a theological decision</h2><p>How you train reflects what you believe about a person: a bucket to fill with information, or an image-bearer to be forged for a task.</p></div>
-<div class="beat"><div class="idx">06</div><h2>The problem beneath the problem</h2><p>The classroom model mirrors consumer culture: show up, receive content, get certified, move on. It is passive and transactional, and it shapes who walks away from the field.</p></div>
+    <div class="beat"><div class="idx">01</div><h2>The same crisis, avoided</h2><p>The Navy stopped treating pilots as students and started forging them as operators. Global missions faces an identical crisis and has largely avoided the reckoning.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>The container, not the content</h2><p>Our pipeline of churches, seminaries, and mission schools reproduces its own DNA: missionaries who are theologically informed but operationally underprepared. The problem is the container.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>Knowledge built inside experience</h2><p>Front-loaded information evaporates under real pressure. The dogfights of cross-cultural ministry happen in living rooms and marketplaces, not lecture halls.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>Six principles worth stealing</h2><p>Concepts over facts. Reverse-engineer the syllabus. Coach instead of evaluate. Augment with repetition. Structure the apprenticeship. Debrief relentlessly. Pilots spend more time debriefing than flying.</p><div class="stat">6 principles</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>Training is a theological decision</h2><p>How you train reflects what you believe about a person: a bucket to fill with information, or an image-bearer to be forged for a task.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>The problem beneath the problem</h2><p>The classroom model mirrors consumer culture: show up, receive content, get certified, move on. It is passive and transactional, and it shapes who walks away from the field.</p><div class="meter"><span></span></div></div>
 
   </div>
 </main>
@@ -118,5 +130,6 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
 </body>
 </html>

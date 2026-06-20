@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">Why Mission Research Matters: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,12 +91,12 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>Four questions you are already asking</h2><p>Who are the people, what are they like, how can they be reached, and how are we doing. Every team answers these whether or not they call it research.</p><div class="stat">4 questions</div></div>
-<div class="beat"><div class="idx">02</div><h2>Define the harvest field</h2><p>A clear focus names the people segment, the geography, and what 'done' looks like. Saying no to everything outside it is hard but essential.</p><div class="stat">Behdini Kurds, N. Iraq</div></div>
-<div class="beat"><div class="idx">03</div><h2>Learn about, from, and with</h2><p>Know people well enough to share the gospel in a form they can receive, through reading, cultural interviews, and discovery together.</p></div>
-<div class="beat"><div class="idx">04</div><h2>People are networks, not dots</h2><p>A team may find a more receptive diaspora community in another city, creating a natural gospel corridor back to the homeland.</p></div>
-<div class="beat"><div class="idx">05</div><h2>The phases of engagement</h2><p>Percentage of believers tells you almost nothing. The phases, from Waiting to Sustained Presence, give a real diagnosis of where to direct energy.</p><div class="stat">Phase 0 to 7</div></div>
-<div class="beat"><div class="idx">06</div><h2>Stale data costs the body</h2><p>When you do not report, new teams use outdated info, organizations duplicate effort, and big gaps go unnoticed. Five minutes updates the global map.</p><div class="stat">5 minutes</div></div>
+    <div class="beat"><div class="idx">01</div><h2>Four questions you are already asking</h2><p>Who are the people, what are they like, how can they be reached, and how are we doing. Every team answers these whether or not they call it research.</p><div class="stat">4 questions</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>Define the harvest field</h2><p>A clear focus names the people segment, the geography, and what 'done' looks like. Saying no to everything outside it is hard but essential.</p><div class="stat">Behdini Kurds, N. Iraq</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>Learn about, from, and with</h2><p>Know people well enough to share the gospel in a form they can receive, through reading, cultural interviews, and discovery together.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>People are networks, not dots</h2><p>A team may find a more receptive diaspora community in another city, creating a natural gospel corridor back to the homeland.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>The phases of engagement</h2><p>Percentage of believers tells you almost nothing. The phases, from Waiting to Sustained Presence, give a real diagnosis of where to direct energy.</p><div class="stat">Phase 0 to 7</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>Stale data costs the body</h2><p>When you do not report, new teams use outdated info, organizations duplicate effort, and big gaps go unnoticed. Five minutes updates the global map.</p><div class="stat">5 minutes</div><div class="meter"><span></span></div></div>
 
   </div>
 </main>
@@ -118,5 +130,6 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
 </body>
 </html>

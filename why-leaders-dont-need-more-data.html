@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">Why Leaders Don&#x27;t Need More Data: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,12 +91,12 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>Averages hide realities</h2><p>Ahmed's homeland looked reached, but his cluster of villages had no believers, no churches, no missionaries. National and people-group averages buried whole untouched populations.</p><div class="stat">under 1% Christian</div></div>
-<div class="beat"><div class="idx">02</div><h2>The problem is the wrong data</h2><p>Most leaders do not lack information. They lack the right information at the right time. You can have 16,000+ unreached groups on a spreadsheet and still not know the next step.</p><div class="stat">16,000+ groups</div></div>
-<div class="beat"><div class="idx">03</div><h2>Two metrics, too flat</h2><p>Our shared language rests on Engaged or Unengaged and Christian percentage. They have helped, but they are too flat for the decisions we actually make.</p></div>
-<div class="beat"><div class="idx">04</div><h2>Identical on paper, opposite in reality</h2><p>Two groups, both engaged, both 0.2 percent evangelical. One has churches multiplying; the other is fragile and stalling. The numbers cannot tell them apart.</p><div class="stat">0.2% vs 0.2%</div></div>
-<div class="beat"><div class="idx">05</div><h2>What the data cannot see</h2><p>It creates false equivalence, cannot see momentum, masks on-the-ground health, does not name the next step, and is quietly shaped by funding incentives.</p></div>
-<div class="beat"><div class="idx">06</div><h2>From numbers to clarity</h2><p>We need dimensions that actually help: what phase a people is in, how strong and healthy the engagement is, and what moves them to the next phase.</p></div>
+    <div class="beat"><div class="idx">01</div><h2>Averages hide realities</h2><p>Ahmed's homeland looked reached, but his cluster of villages had no believers, no churches, no missionaries. National and people-group averages buried whole untouched populations.</p><div class="stat">under 1% Christian</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>The problem is the wrong data</h2><p>Most leaders do not lack information. They lack the right information at the right time. You can have 16,000+ unreached groups on a spreadsheet and still not know the next step.</p><div class="stat">16,000+ groups</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>Two metrics, too flat</h2><p>Our shared language rests on Engaged or Unengaged and Christian percentage. They have helped, but they are too flat for the decisions we actually make.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>Identical on paper, opposite in reality</h2><p>Two groups, both engaged, both 0.2 percent evangelical. One has churches multiplying; the other is fragile and stalling. The numbers cannot tell them apart.</p><div class="stat">0.2% vs 0.2%</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>What the data cannot see</h2><p>It creates false equivalence, cannot see momentum, masks on-the-ground health, does not name the next step, and is quietly shaped by funding incentives.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>From numbers to clarity</h2><p>We need dimensions that actually help: what phase a people is in, how strong and healthy the engagement is, and what moves them to the next phase.</p><div class="meter"><span></span></div></div>
 
   </div>
 </main>
@@ -118,5 +130,6 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
 </body>
 </html>

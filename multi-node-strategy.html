@@ -59,9 +59,21 @@
 
   footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
   footer a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
+  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
+  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
+  .beat.in .meter span{width:100%}
+  .chartsec{padding:1vh 0 3vh}
+  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
+  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
+  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
+  .chartwrap{position:relative;width:100%;height:320px}
+  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 <h2 class="sr-only">Multi-Node Strategy: a scrolling summary from Clarity for the Nations.</h2>
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
@@ -79,14 +91,14 @@
 
 <main class="beats">
   <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>Stability before expansion</h2><p>Jesus did not cross to the Decapolis until the Galilean movement was multiplying through his trained disciples. Productivity at the primary node is what affords the secondary excursion.</p></div>
-<div class="beat"><div class="idx">02</div><h2>Both ditches are real</h2><p>Expanding too early stalls both nodes. Staying entrenched buries the talent. Depth that never generates movement is not faithfulness.</p></div>
-<div class="beat"><div class="idx">03</div><h2>The non-residential spark</h2><p>In the Decapolis, Jesus heals one man, gives him one mandate ('Go home and tell'), and exits fast before becoming a dependency. He returns later to a Gentile crowd of 4,000.</p><div class="stat">Mark 5 to 7, the feeding of the 4,000</div></div>
-<div class="beat"><div class="idx">04</div><h2>Forced exits, phase-specific letters</h2><p>Paul spent as little as three weeks in Thessalonica before a forced exit. He managed the node remotely with letters and an envoy. The Epistles were phase-specific interventions.</p><div class="stat">3 weeks in Thessalonica (Acts 17)</div></div>
-<div class="beat"><div class="idx">05</div><h2>The Phase 6 hub</h2><p>Three years in Ephesus built a regional hub that formed and released local insiders like Epaphras to reach cities Paul never visited. He aimed for a reproducing network.</p><div class="stat">3 years, 'all Asia heard' (Acts 19:10)</div></div>
-<div class="beat"><div class="idx">06</div><h2>Spain: when the model must change</h2><p>'No place left' in the east was an assessment of network capacity. Spain was a Phase 0 frontier where the synagogue and Roman road would not be waiting. The model is not automatic at the frontier.</p><div class="stat">Romans 15</div></div>
-<div class="beat"><div class="idx">07</div><h2>Three tests: pattern or principle?</h2><p>A pattern becomes a binding principle only if it passes three tests: repetition across actors, theological grounding in God's nature, and adaptability into new cultural forms.</p><div class="stat">Repetition, Grounding, Adaptability</div></div>
-<div class="beat"><div class="idx">08</div><h2>Same principle, new form</h2><p>A hand-carried letter and a WhatsApp coaching call do the same work. The mistake is treating the form as binding; the bigger mistake is assuming its absence means the principle is gone.</p></div>
+    <div class="beat"><div class="idx">01</div><h2>Stability before expansion</h2><p>Jesus did not cross to the Decapolis until the Galilean movement was multiplying through his trained disciples. Productivity at the primary node is what affords the secondary excursion.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">02</div><h2>Both ditches are real</h2><p>Expanding too early stalls both nodes. Staying entrenched buries the talent. Depth that never generates movement is not faithfulness.</p><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">03</div><h2>The non-residential spark</h2><p>In the Decapolis, Jesus heals one man, gives him one mandate ('Go home and tell'), and exits fast before becoming a dependency. He returns later to a Gentile crowd of 4,000.</p><div class="stat">Mark 5 to 7, the feeding of the 4,000</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">04</div><h2>Forced exits, phase-specific letters</h2><p>Paul spent as little as three weeks in Thessalonica before a forced exit. He managed the node remotely with letters and an envoy. The Epistles were phase-specific interventions.</p><div class="stat">3 weeks in Thessalonica (Acts 17)</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">05</div><h2>The Phase 6 hub</h2><p>Three years in Ephesus built a regional hub that formed and released local insiders like Epaphras to reach cities Paul never visited. He aimed for a reproducing network.</p><div class="stat">3 years, 'all Asia heard' (Acts 19:10)</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">06</div><h2>Spain: when the model must change</h2><p>'No place left' in the east was an assessment of network capacity. Spain was a Phase 0 frontier where the synagogue and Roman road would not be waiting. The model is not automatic at the frontier.</p><div class="stat">Romans 15</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">07</div><h2>Three tests: pattern or principle?</h2><p>A pattern becomes a binding principle only if it passes three tests: repetition across actors, theological grounding in God's nature, and adaptability into new cultural forms.</p><div class="stat">Repetition, Grounding, Adaptability</div><div class="meter"><span></span></div></div>
+<div class="beat"><div class="idx">08</div><h2>Same principle, new form</h2><p>A hand-carried letter and a WhatsApp coaching call do the same work. The mistake is treating the form as binding; the bigger mistake is assuming its absence means the principle is gone.</p><div class="meter"><span></span></div></div>
 
   </div>
 </main>
@@ -120,5 +132,6 @@ function countUp(el){
 const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
 document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
 </script>
+<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
 </body>
 </html>
