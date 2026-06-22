@@ -1,138 +1,842 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>From Migration to Mobility | Clarity for the Nations</title>
-<meta name="description" content="Stop asking only where people live. Ask where they pass through, and stand at the hub.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>From Migration to Mobility</title>
+<meta name="description" content="The question is not just where people live, but where they pass through. A strategic look at migration, mobility, and the network." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-  :root{--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;--accent:#3A4E8C;--deep:#2a3a6a;--line:rgba(28,26,23,.12)}
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
-  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
-  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
-  a{color:inherit}
-  .serif{font-family:'Fraunces',Georgia,serif}
+  :root{
+    --paper:#F3EFE6;
+    --ink:#1C1A17;
+    --mute:#6E665B;
+    --accent:#3A4E8C;
+    --deep:#2A3A6A;
+    --secondary:#C77E3A;
+    --hero-bg:#141B33;
+    --card:#FBF9F4;
+    --line:rgba(28,26,23,0.12);
+    --shadow:0 14px 40px rgba(20,27,51,0.10);
+    --serif:"Fraunces", Georgia, "Times New Roman", serif;
+    --sans:"Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:-0.01em;margin:0;}
+  p{margin:0 0 1em;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  img{max-width:100%;}
 
-  nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;
-       padding:14px 24px;background:rgba(243,239,230,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  nav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none}
-  nav .home{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--accent);text-decoration:none}
+  /* Scroll progress bar */
+  #progress{
+    position:fixed;top:0;left:0;height:4px;width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--secondary));
+    z-index:120;transition:width 0.08s linear;
+  }
 
-  .hero{padding:13vh 0 8vh;border-bottom:1px solid var(--line)}
-  .hero .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:1.3rem}
-  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;letter-spacing:-.01em}
-  .chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.6rem}
-  .chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem 1.3rem;min-width:140px}
-  .chip .num{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.5rem);color:var(--deep);line-height:1}
-  .chip .lab{font-size:.86rem;color:var(--mute);margin-top:.45rem;line-height:1.3;font-weight:500}
-  .cue{margin-top:3rem;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:700;display:flex;align-items:center;gap:.6rem}
-  .cue .a{display:inline-block;animation:bob 1.8s ease-in-out infinite}
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+  /* Nav */
+  nav{
+    position:sticky;top:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;
+    padding:14px clamp(16px,4vw,48px);
+    background:rgba(243,239,230,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-family:var(--serif);font-weight:700;font-size:20px;color:var(--ink);letter-spacing:-0.02em;}
+  .brand:hover{text-decoration:none;color:var(--accent);}
+  .navlinks{display:flex;gap:clamp(10px,2.4vw,26px);flex-wrap:wrap;align-items:center;}
+  .navlinks a{font-size:14.5px;font-weight:500;color:var(--mute);letter-spacing:0.01em;}
+  .navlinks a:hover{color:var(--accent);text-decoration:none;}
 
-  .beats{padding:6vh 0 2vh}
-  .beat{padding:5vh 0;border-top:1px solid var(--line);opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
-  .beat.in{opacity:1;transform:none}
-  .beat:first-child{border-top:none}
-  .beat .idx{font-family:'Fraunces',serif;font-weight:900;font-size:1rem;color:var(--accent)}
-  .beat h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.6rem,4.6vw,2.5rem);line-height:1.08;margin:.4rem 0 .8rem}
-  .beat p{font-size:clamp(1.05rem,2.2vw,1.2rem);color:#34302a;max-width:58ch}
-  .beat .stat{display:inline-block;margin-top:1.1rem;background:var(--accent);color:#fff;font-weight:700;
-               font-size:.92rem;padding:.5rem 1rem;border-radius:10px;line-height:1.3}
+  /* Hero */
+  header.hero{
+    background:radial-gradient(120% 120% at 70% 0%, #1d2747 0%, var(--hero-bg) 60%);
+    color:#EDEAE2;
+    padding:clamp(54px,9vw,120px) clamp(20px,5vw,64px) clamp(56px,8vw,96px);
+    position:relative;overflow:hidden;
+  }
+  header.hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(60% 60% at 85% 110%, rgba(199,126,58,0.18), transparent 70%);
+  }
+  .hero-inner{max-width:980px;margin:0 auto;position:relative;z-index:2;}
+  .eyebrow{
+    text-transform:uppercase;letter-spacing:0.16em;font-size:12.5px;font-weight:600;
+    color:var(--secondary);margin-bottom:22px;
+  }
+  header.hero h1{
+    font-size:clamp(34px,6.2vw,68px);color:#F6F3EC;font-weight:600;
+    max-width:18ch;margin-bottom:30px;
+  }
+  .stat-row{display:flex;gap:18px;flex-wrap:wrap;margin-top:38px;}
+  .chip{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:16px;padding:20px 22px;
+    min-width:200px;flex:1 1 200px;
+  }
+  .chip .num{
+    font-family:var(--serif);font-weight:700;font-size:clamp(30px,4.6vw,46px);
+    color:#fff;line-height:1;display:block;
+  }
+  .chip .num .unit{color:var(--secondary);font-size:0.62em;margin-left:2px;}
+  .chip .lbl{font-size:13.5px;color:#BFC4D6;margin-top:10px;line-height:1.4;}
 
-  .quote{background:var(--accent);color:#fff;padding:13vh 0;margin:6vh 0}
-  .quote .wrap{max-width:760px}
-  .quote p{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,4.6vw,2.7rem);line-height:1.18}
-  .quote p+p{margin-top:1.6rem;opacity:.9;font-size:clamp(1.3rem,3.4vw,1.9rem)}
+  /* Section wrapper */
+  main{display:block;}
+  section.module{
+    padding:clamp(48px,8vw,108px) clamp(20px,5vw,64px);
+    border-bottom:1px solid var(--line);
+  }
+  section.module:nth-child(even){background:#EFE9DD;}
+  .wrap{max-width:920px;margin:0 auto;}
+  .kicker{
+    text-transform:uppercase;letter-spacing:0.15em;font-size:12.5px;font-weight:700;
+    color:var(--accent);margin-bottom:14px;
+  }
+  section.module h2{font-size:clamp(26px,4.4vw,42px);margin-bottom:18px;max-width:20ch;}
+  .lede{font-size:clamp(17px,2.2vw,20px);color:var(--mute);max-width:60ch;margin-bottom:30px;}
 
-  .closing{background:var(--ink);color:var(--paper);padding:15vh 0 13vh;text-align:center}
-  .closing h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.3rem);line-height:1.08;max-width:18ch;margin:0 auto}
-  .closing .links{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:.8rem}
-  .closing .links .lab{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#a59c8e;font-weight:700;margin-bottom:.4rem}
-  .closing a.essay{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;text-decoration:none;
-                    font-weight:600;padding:.85rem 1.8rem;border-radius:50px;font-size:1rem;transition:transform .15s,filter .2s;max-width:90vw}
-  .closing a.essay:hover{filter:brightness(1.1);transform:translateY(-2px)}
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
 
-  footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
-  footer a{color:var(--accent);font-weight:700;text-decoration:none}
+  /* Visual stage (always above text) */
+  .stage{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:clamp(18px,3vw,30px);
+    box-shadow:var(--shadow);
+    margin-bottom:26px;
+  }
+  .stage svg{width:100%;height:auto;display:block;}
 
-  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
-  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
-  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
-  .beat.in .meter span{width:100%}
-  .chartsec{padding:1vh 0 3vh}
-  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
-  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
-  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
-  .chartwrap{position:relative;width:100%;height:320px}
-  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
+  /* Segmented toggle */
+  .seg{
+    display:inline-flex;background:#E7E1D4;border-radius:999px;padding:5px;gap:4px;
+    border:1px solid var(--line);flex-wrap:wrap;
+  }
+  .seg button{
+    border:0;background:transparent;cursor:pointer;
+    font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--mute);
+    padding:10px 18px;border-radius:999px;transition:all 0.25s ease;
+  }
+  .seg button[aria-pressed="true"]{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(58,78,140,0.3);}
+  .seg button:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
+
+  .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:22px;}
+
+  /* Generic pill buttons */
+  .pill{
+    border:1px solid var(--line);background:var(--card);cursor:pointer;
+    font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink);
+    padding:11px 20px;border-radius:999px;transition:all 0.22s ease;
+  }
+  .pill:hover{border-color:var(--accent);color:var(--accent);}
+  .pill[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .pill.alt[aria-pressed="true"]{background:var(--secondary);border-color:var(--secondary);}
+  .pill:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
+
+  .panel{
+    background:rgba(58,78,140,0.06);
+    border-left:3px solid var(--accent);
+    border-radius:0 12px 12px 0;
+    padding:16px 20px;font-size:16px;color:var(--ink);margin-top:4px;
+  }
+  .panel.sec{background:rgba(199,126,58,0.08);border-left-color:var(--secondary);}
+
+  .note{font-size:14.5px;color:var(--mute);margin-top:18px;font-style:italic;}
+
+  /* Live flow readout */
+  .readout{
+    display:flex;gap:26px;flex-wrap:wrap;align-items:baseline;margin-bottom:18px;
+  }
+  .readout .big{
+    font-family:var(--serif);font-weight:700;font-size:clamp(38px,7vw,64px);
+    color:var(--accent);line-height:1;font-variant-numeric:tabular-nums;
+  }
+  .readout .meta{font-size:14px;color:var(--mute);}
+
+  /* Quote band */
+  .quoteband{
+    background:var(--accent);color:#F4F1EA;
+    padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px);
+  }
+  .quoteband .wrap{display:grid;gap:34px;}
+  @media(min-width:760px){.quoteband .wrap{grid-template-columns:1fr 1fr;}}
+  .pullquote{font-family:var(--serif);font-size:clamp(22px,3.2vw,30px);font-weight:500;line-height:1.3;}
+  .pullquote::before{content:"\201C";color:var(--secondary);font-size:1.4em;line-height:0;vertical-align:-0.25em;margin-right:4px;}
+
+  /* Closing band */
+  .closing{
+    background:var(--deep);color:#EDEAE2;text-align:center;
+    padding:clamp(54px,9vw,110px) clamp(20px,5vw,64px);
+  }
+  .closing h2{font-size:clamp(26px,4.6vw,44px);color:#F6F3EC;max-width:22ch;margin:0 auto 30px;}
+  .btn{
+    display:inline-block;background:var(--secondary);color:#1C1206;
+    font-weight:700;font-size:16px;padding:16px 34px;border-radius:999px;
+    transition:transform 0.2s ease,box-shadow 0.2s ease;
+    box-shadow:0 10px 26px rgba(199,126,58,0.35);
+  }
+  .btn:hover{transform:translateY(-2px);text-decoration:none;box-shadow:0 16px 34px rgba(199,126,58,0.45);}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px;}
+
+  /* Footer */
+  footer{
+    background:var(--hero-bg);color:#9CA2B8;
+    padding:38px clamp(20px,5vw,64px);
+    display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    font-size:14px;
+  }
+  footer a{color:#C7CCDD;font-weight:500;}
+  footer .flinks{display:flex;gap:22px;flex-wrap:wrap;}
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div>
-<h2 class="sr-only">From Migration to Mobility: a scrolling summary from Clarity for the Nations.</h2>
+<div id="progress" aria-hidden="true"></div>
+
 <nav>
   <a class="brand" href="index.html">Clarity for the Nations</a>
-  <a class="home" href="index.html">All pieces</a>
+  <div class="navlinks">
+    <a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+    <a href="index.html#pray">Pray for the Unreached</a>
+    <a href="about.html">About</a>
+  </div>
 </nav>
 
 <header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Reaching people who move</div>
-    <h1>Missions strategy has long been organized around places. What happens when the people we are trying to reach do not stay put?</h1>
-    <div class="chips"><div class="chip"><span class="num">80-90%</span><div class="lab">of Gulf workers are foreign</div></div><div class="chip"><span class="num">86</span><div class="lab">migrants Lagos gets per hour</div></div><div class="chip"><span class="num">3.5M</span><div class="lab">Christian immigrants in the Gulf</div></div></div>
-    <div class="cue"><span class="a">&#8595;</span> Scroll</div>
+  <div class="hero-inner">
+    <div class="eyebrow">Clarity for the Nations, Migration and Cities</div>
+    <h1>The question is not just where people live, but where they pass through.</h1>
+    <div class="stat-row" id="statRow">
+      <div class="chip">
+        <span class="num" data-target="86" data-suffix=""></span>
+        <span class="lbl">migrants arrive in Lagos every hour</span>
+      </div>
+      <div class="chip">
+        <span class="num" data-target="400000" data-suffix=""></span>
+        <span class="lbl">migrants Dhaka absorbs every year</span>
+      </div>
+      <div class="chip">
+        <span class="num" data-target="30000000" data-suffix=""></span>
+        <span class="lbl">foreign nationals in the Gulf, where reached meets unreached</span>
+      </div>
+    </div>
   </div>
 </header>
 
-<main class="beats">
-  <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>From migration to mobility</h2><p>Migration is a one-time move. Mobility is ongoing circulation through networks. The question is not just where people live, but where they pass through.</p><div class="stat">70% movement, W. Africa</div><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">02</div><h2>Hubs versus spokes</h2><p>Some locations are collection points where influence concentrates before dispersing. A worker at a hub has access to the entire network.</p><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">03</div><h2>The Lagos to Abidjan corridor</h2><p>1,000 km along the Gulf of Guinea, over 75 percent of ECOWAS economic activity. A team focused on transient Fulani in Abidjan reaches networks across the region.</p><div class="stat">86 migrants an hour, Lagos</div><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">04</div><h2>Where reached meets unreached</h2><p>The Gulf hosts 30 million foreign nationals and about 3.5 million Christian immigrants. Reached and unreached share workplaces as they never would at home.</p><div class="stat">3.5M Christians, the Gulf</div><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">05</div><h2>A naturally occurring force</h2><p>The Filipino diaspora is already positioned in restricted contexts. Day By Day Jesus Ministries grew from a Saudi small group to 6,000 members.</p><div class="stat">6,000 members</div><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">06</div><h2>The megacity magnet</h2><p>South Asia's five megacities draw the unreached into permanent moves. Dhaka absorbs 400,000 migrants a year; the hub becomes home.</p><div class="stat">400,000 a year, Dhaka</div><div class="meter"><span></span></div></div>
+<main>
 
-  </div>
+  <!-- MODULE 1: TOGGLE COMPARE -->
+  <section class="module reveal" id="m1">
+    <div class="wrap">
+      <div class="kicker">A change of frame</div>
+      <h2>Migration versus mobility</h2>
+
+      <div class="stage">
+        <div class="seg" role="group" aria-label="Choose a frame">
+          <button id="segMigration" aria-pressed="true">Migration (a one-time move)</button>
+          <button id="segMobility" aria-pressed="false">Mobility (ongoing circulation through networks)</button>
+        </div>
+        <svg id="m1svg" viewBox="0 0 600 260" role="img" aria-label="Diagram comparing migration and mobility"></svg>
+      </div>
+
+      <div class="panel" id="m1panel" aria-live="polite"></div>
+      <p class="note">In West Africa, about 70 percent of movement is circulation, not permanent relocation.</p>
+    </div>
+  </section>
+
+  <!-- MODULE 2: HUB AND SPOKE -->
+  <section class="module reveal" id="m2">
+    <div class="wrap">
+      <div class="kicker">Hubs versus spokes</div>
+      <h2>Stand where the network concentrates</h2>
+
+      <div class="stage">
+        <div class="controls" role="group" aria-label="Choose where to work">
+          <button class="pill" id="workSpoke" aria-pressed="false">Work a spoke</button>
+          <button class="pill alt" id="workHub" aria-pressed="true">Work the hub</button>
+        </div>
+        <svg id="m2svg" viewBox="0 0 600 380" role="img" aria-label="Hub and spoke network with flowing connections. Click the hub or a spoke node to select it."></svg>
+      </div>
+
+      <div class="panel sec" id="m2panel" aria-live="polite"></div>
+      <p class="note">Example: the Lagos to Abidjan corridor, 1,000 km along the Gulf of Guinea, carries over 75 percent of ECOWAS economic activity.</p>
+    </div>
+  </section>
+
+  <!-- MODULE 3: LIVE FLOW TICKER -->
+  <section class="module reveal" id="m3">
+    <div class="wrap">
+      <div class="kicker">The pace of arrival</div>
+      <h2>The hub becomes home</h2>
+
+      <div class="stage">
+        <div class="controls" role="group" aria-label="Choose a place to watch">
+          <button class="pill" id="flowLagos" aria-pressed="true">Lagos: 86 an hour</button>
+          <button class="pill" id="flowDhaka" aria-pressed="false">Dhaka: 400,000 a year</button>
+        </div>
+        <div class="readout">
+          <div>
+            <span class="big" id="flowCount">0</span>
+            <div class="meta" id="flowMeta">arrivals counted</div>
+          </div>
+          <div class="meta" id="flowRate"></div>
+        </div>
+        <svg id="m3svg" viewBox="0 0 600 180" role="img" aria-label="Dots accumulating to represent the live rate of arrival"></svg>
+      </div>
+
+      <div class="panel" id="m3panel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- MODULE 4: OVERLAP / BRIDGE -->
+  <section class="module reveal" id="m4">
+    <div class="wrap">
+      <div class="kicker">Where reached meets unreached</div>
+      <h2>They share workplaces they never would at home</h2>
+
+      <div class="stage">
+        <svg id="m4svg" viewBox="0 0 600 320" role="img" aria-label="Overlap of foreign nationals and Christian immigrants in the Gulf. Click a circle to reveal an example.">
+        </svg>
+        <div class="controls" role="group" aria-label="Reveal examples">
+          <button class="pill" id="ovGulf" aria-pressed="false">30 million foreign nationals</button>
+          <button class="pill alt" id="ovChristian" aria-pressed="false">3.5 million Christian immigrants</button>
+        </div>
+      </div>
+
+      <div class="panel sec" id="m4panel" aria-live="polite"></div>
+    </div>
+  </section>
+
 </main>
 
-<section class="chartsec"><div class="wrap"><div class="chartcard"><h3>The Lagos to Abidjan corridor</h3><div class="cap">1,000 km holding over 75 percent of West Africa's economic activity.</div><div class="chartwrap"><canvas id="pchart" role="img" aria-label="The Lagos to Abidjan corridor"></canvas></div><div class="src">City populations, millions.</div></div></div></section>
-<section class="quote"><div class="wrap"><p>&ldquo;The question is not just where unreached people live, but where they pass through.&rdquo;</p><p>&ldquo;Is the country actually closed, or have we defined the problem too narrowly?&rdquo;</p></div></section>
-
-<section class="closing">
+<!-- QUOTE BAND -->
+<section class="quoteband">
   <div class="wrap">
-    <h2>The movement is already happening. The only question is whether we will learn to see it.</h2>
-    <div class="links">
-      <span class="lab">Read the full essay</span>
-      <a class="essay" href="https://clarity4thenations.substack.com/p/from-migration-to-mobility-a-strategic">From Migration to Mobility: A Strategic Reframe for Reaching the Unreached &#8594;</a>
-    </div>
+    <blockquote class="pullquote">Migration is a one-time move. Mobility is ongoing circulation through networks.</blockquote>
+    <blockquote class="pullquote">A worker at a hub has access to the entire network.</blockquote>
   </div>
 </section>
 
+<!-- CLOSING BAND -->
+<section class="closing">
+  <h2>Stop asking only where people live. Stand at the hub, and reach the network.</h2>
+  <a class="btn" href="https://clarity4thenations.substack.com/p/from-migration-to-mobility-a-strategic" target="_blank" rel="noopener">Read the full essay</a>
+</section>
+
 <footer>
-  Adapted from <a href="https://clarity4thenations.substack.com">Clarity for the Nations</a> by Bud Houston &middot; <a href="index.html">Back to all pieces</a>
+  <a href="index.html">Clarity for the Nations</a>
+  <div class="flinks">
+    <a href="index.html">Home</a>
+    <a href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Substack</a>
+  </div>
 </footer>
 
 <script>
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.2});
-document.querySelectorAll('.beat').forEach(b=>io.observe(b));
-function countUp(el){
-  const t=parseFloat(el.dataset.target),dec=+(el.dataset.dec||0),pre=el.dataset.pre||'',suf=el.dataset.suf||'',sep=el.dataset.sep==='1';
-  const t0=performance.now(),dur=1600;
-  function fmt(v){let s=dec>0?v.toFixed(dec):(sep?Math.round(v).toLocaleString('en-US'):String(Math.round(v)));return pre+s+suf;}
-  function tick(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fmt(t*e);if(k<1)requestAnimationFrame(tick);else el.textContent=fmt(t);}
-  requestAnimationFrame(tick);
-}
-const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
-document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
+(function(){
+  "use strict";
+
+  /* ---------- SVG helper: namespaced element creator ---------- */
+  var SVGNS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs){
+    var node = document.createElementNS(SVGNS, tag);
+    if(attrs){
+      for(var k in attrs){
+        if(Object.prototype.hasOwnProperty.call(attrs, k)){
+          node.setAttribute(k, attrs[k]);
+        }
+      }
+    }
+    return node;
+  }
+  function clear(node){ while(node.firstChild){ node.removeChild(node.firstChild); } }
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Scroll progress bar ---------- */
+  var progress = document.getElementById("progress");
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop || document.body.scrollTop) / max * 100 : 0;
+    progress.style.width = pct.toFixed(2) + "%";
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll);
+  onScroll();
+
+  /* ---------- IntersectionObserver reveal ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, {threshold:0.16});
+    revealEls.forEach(function(n){ io.observe(n); });
+  } else {
+    revealEls.forEach(function(n){ n.classList.add("in"); });
+  }
+
+  /* ---------- Number formatting ---------- */
+  function fmt(n){ return Math.round(n).toLocaleString("en-US"); }
+
+  /* ---------- Count-up with requestAnimationFrame tween ---------- */
+  function countUp(node, target, dur){
+    if(reduceMotion){ node.textContent = fmt(target); return; }
+    var start = null;
+    function ease(t){ return 1 - Math.pow(1 - t, 3); }
+    function step(ts){
+      if(start === null) start = ts;
+      var t = Math.min((ts - start) / dur, 1);
+      node.textContent = fmt(target * ease(t));
+      if(t < 1) requestAnimationFrame(step);
+      else node.textContent = fmt(target);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* Fire hero count-ups when hero stat row enters view */
+  var statRow = document.getElementById("statRow");
+  var statFired = false;
+  function fireStats(){
+    if(statFired) return; statFired = true;
+    var nums = statRow.querySelectorAll(".num");
+    nums.forEach(function(n){
+      countUp(n, parseInt(n.getAttribute("data-target"),10), 1700);
+    });
+  }
+  if("IntersectionObserver" in window){
+    var sio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ fireStats(); sio.disconnect(); } });
+    }, {threshold:0.4});
+    sio.observe(statRow);
+  } else { fireStats(); }
+
+
+  /* ========================================================= */
+  /* MODULE 1: Migration vs Mobility toggle                    */
+  /* ========================================================= */
+  (function(){
+    var svg = document.getElementById("m1svg");
+    var panel = document.getElementById("m1panel");
+    var bMig = document.getElementById("segMigration");
+    var bMob = document.getElementById("segMobility");
+    var mode = "migration";
+    var rafId = null;
+
+    function drawMigration(){
+      if(rafId){ cancelAnimationFrame(rafId); rafId = null; }
+      clear(svg);
+      // Single arrow A -> B
+      var aX = 120, bX = 480, y = 130;
+      // arrow line
+      svg.appendChild(el("line", {x1:aX, y1:y, x2:bX-26, y2:y, stroke:"#3A4E8C", "stroke-width":6, "stroke-linecap":"round"}));
+      // arrowhead
+      var head = el("polygon", {points:(bX-26)+","+(y-12)+" "+bX+","+y+" "+(bX-26)+","+(y+12), fill:"#3A4E8C"});
+      svg.appendChild(head);
+      // node A
+      svg.appendChild(el("circle", {cx:aX, cy:y, r:30, fill:"#2A3A6A"}));
+      svg.appendChild(txt(aX, y+6, "A", "#fff", 22, 700));
+      // node B
+      svg.appendChild(el("circle", {cx:bX, cy:y, r:30, fill:"#2A3A6A"}));
+      svg.appendChild(txt(bX, y+6, "B", "#fff", 22, 700));
+      svg.appendChild(txt(aX, y-46, "Origin", "#6E665B", 14, 600));
+      svg.appendChild(txt(bX, y-46, "Destination", "#6E665B", 14, 600));
+      svg.appendChild(txt(300, y+72, "One move, in one direction", "#6E665B", 15, 500));
+    }
+
+    function txt(x,y,s,fill,size,weight){
+      var t = el("text", {x:x, y:y, "text-anchor":"middle", fill:fill, "font-family":"Inter, sans-serif", "font-size":size, "font-weight":weight||500});
+      t.textContent = s; return t;
+    }
+
+    function drawMobility(){
+      clear(svg);
+      var cx = 300, cy = 150;
+      var nodes = [
+        {x:120, y:70}, {x:480, y:70}, {x:520, y:200}, {x:300, y:270}, {x:90, y:210}
+      ];
+      // ring connecting nodes through center (network)
+      nodes.forEach(function(n){
+        svg.appendChild(el("line", {x1:cx, y1:cy, x2:n.x, y2:n.y, stroke:"#C77E3A", "stroke-width":2.5, "stroke-dasharray":"4 6", opacity:0.6}));
+      });
+      // nodes
+      nodes.forEach(function(n){
+        svg.appendChild(el("circle", {cx:n.x, cy:n.y, r:18, fill:"#2A3A6A"}));
+      });
+      // center
+      svg.appendChild(el("circle", {cx:cx, cy:cy, r:24, fill:"#C77E3A"}));
+      // moving dot circulating among nodes
+      var dot = el("circle", {cx:cx, cy:cy, r:8, fill:"#3A4E8C"});
+      svg.appendChild(dot);
+      svg.appendChild(txt(cx, cy+62, "Ongoing circulation through the network", "#6E665B", 15, 500));
+
+      if(reduceMotion){ dot.setAttribute("cx", nodes[0].x); dot.setAttribute("cy", nodes[0].y); return; }
+      // animate dot: center -> node -> center -> next node ...
+      var seq = [];
+      nodes.forEach(function(n){ seq.push({x:cx,y:cy}); seq.push({x:n.x,y:n.y}); });
+      var idx = 0, segDur = 700, segStart = null;
+      function lerp(a,b,t){ return a + (b-a)*t; }
+      function ease(t){ return t<0.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2; }
+      function step(ts){
+        if(mode !== "mobility"){ rafId = null; return; }
+        if(segStart === null) segStart = ts;
+        var t = Math.min((ts - segStart)/segDur, 1);
+        var from = seq[idx];
+        var to = seq[(idx+1) % seq.length];
+        var e = ease(t);
+        dot.setAttribute("cx", lerp(from.x, to.x, e).toFixed(1));
+        dot.setAttribute("cy", lerp(from.y, to.y, e).toFixed(1));
+        if(t >= 1){ idx = (idx+1) % seq.length; segStart = ts; }
+        rafId = requestAnimationFrame(step);
+      }
+      rafId = requestAnimationFrame(step);
+    }
+
+    function render(){
+      bMig.setAttribute("aria-pressed", mode==="migration" ? "true":"false");
+      bMob.setAttribute("aria-pressed", mode==="mobility" ? "true":"false");
+      if(mode === "migration"){
+        drawMigration();
+        panel.classList.remove("sec");
+        panel.textContent = "Migration is a one-time move: a person leaves an origin and settles at a destination. Strategy treats the destination as the whole story.";
+      } else {
+        if(rafId){ cancelAnimationFrame(rafId); rafId = null; }
+        drawMobility();
+        panel.classList.add("sec");
+        panel.textContent = "Mobility is ongoing circulation through networks: people keep moving among many points. Strategy has to follow the circulation, not just one stop.";
+      }
+    }
+
+    bMig.addEventListener("click", function(){ mode="migration"; render(); });
+    bMob.addEventListener("click", function(){ mode="mobility"; render(); });
+    render();
+  })();
+
+
+  /* ========================================================= */
+  /* MODULE 2: Hub and spoke network                           */
+  /* ========================================================= */
+  (function(){
+    var svg = document.getElementById("m2svg");
+    var panel = document.getElementById("m2panel");
+    var bSpoke = document.getElementById("workSpoke");
+    var bHub = document.getElementById("workHub");
+    var mode = "hub"; // "hub" or "spoke"
+    var selectedSpoke = 0;
+    var cx = 300, cy = 190, hubR = 34;
+    var spokes = [
+      {x:300, y:60,  name:"Lagos"},
+      {x:470, y:120, name:"Cotonou"},
+      {x:500, y:260, name:"Lome"},
+      {x:300, y:330, name:"Accra"},
+      {x:100, y:260, name:"Abidjan"},
+      {x:130, y:120, name:"Accra hinterland"}
+    ];
+    var dots = []; // flow dots, one per spoke
+    var rafId = null;
+
+    function build(){
+      clear(svg);
+      // spoke lines
+      spokes.forEach(function(s, i){
+        var line = el("line", {x1:cx, y1:cy, x2:s.x, y2:s.y, stroke:"#C9C0AE", "stroke-width":4, "stroke-linecap":"round"});
+        line.setAttribute("data-line", i);
+        svg.appendChild(line);
+      });
+      // spoke nodes (clickable)
+      spokes.forEach(function(s, i){
+        var g = el("g", {tabindex:"0", role:"button", "aria-label":"Spoke node "+s.name, cursor:"pointer"});
+        var c = el("circle", {cx:s.x, cy:s.y, r:20, fill:"#2A3A6A"});
+        c.setAttribute("data-node", i);
+        g.appendChild(c);
+        var t = el("text", {x:s.x, y:s.y - 28, "text-anchor":"middle", fill:"#6E665B", "font-family":"Inter, sans-serif", "font-size":12, "font-weight":600});
+        t.textContent = s.name;
+        g.appendChild(t);
+        g.addEventListener("click", function(){ mode="spoke"; selectedSpoke=i; render(); });
+        g.addEventListener("keydown", function(ev){
+          if(ev.key==="Enter" || ev.key===" "){ ev.preventDefault(); mode="spoke"; selectedSpoke=i; render(); }
+        });
+        svg.appendChild(g);
+      });
+      // hub (clickable)
+      var hg = el("g", {tabindex:"0", role:"button", "aria-label":"Central hub. Reaches the whole network.", cursor:"pointer"});
+      hg.appendChild(el("circle", {cx:cx, cy:cy, r:hubR+8, fill:"rgba(199,126,58,0.16)"}));
+      var hub = el("circle", {cx:cx, cy:cy, r:hubR, fill:"#C77E3A"});
+      hub.setAttribute("id","m2hub");
+      hg.appendChild(hub);
+      var ht = el("text", {x:cx, y:cy+5, "text-anchor":"middle", fill:"#fff", "font-family":"Inter, sans-serif", "font-size":13, "font-weight":700});
+      ht.textContent = "HUB";
+      hg.appendChild(ht);
+      hg.addEventListener("click", function(){ mode="hub"; render(); });
+      hg.addEventListener("keydown", function(ev){
+        if(ev.key==="Enter" || ev.key===" "){ ev.preventDefault(); mode="hub"; render(); }
+      });
+      svg.appendChild(hg);
+
+      // flow dots
+      dots = [];
+      spokes.forEach(function(s, i){
+        var d = el("circle", {cx:cx, cy:cy, r:5, fill:"#3A4E8C"});
+        svg.appendChild(d);
+        dots.push({node:d, i:i, phase: i / spokes.length});
+      });
+    }
+
+    function lerp(a,b,t){ return a+(b-a)*t; }
+
+    function animate(ts){
+      var base = (ts/2600); // cycles
+      dots.forEach(function(d){
+        var active = (mode==="hub") || (mode==="spoke" && d.i===selectedSpoke);
+        if(!active){ d.node.setAttribute("opacity","0"); return; }
+        d.node.setAttribute("opacity","1");
+        var p = (base + d.phase) % 1;        // 0..1 along path
+        // ping-pong: hub->spoke (0..0.5) then spoke->hub (0.5..1)
+        var s = spokes[d.i];
+        var t, fromX, fromY, toX, toY;
+        if(p < 0.5){ t = p/0.5; fromX=cx; fromY=cy; toX=s.x; toY=s.y; }
+        else { t = (p-0.5)/0.5; fromX=s.x; fromY=s.y; toX=cx; toY=cy; }
+        d.node.setAttribute("cx", lerp(fromX,toX,t).toFixed(1));
+        d.node.setAttribute("cy", lerp(fromY,toY,t).toFixed(1));
+      });
+      rafId = requestAnimationFrame(animate);
+    }
+
+    function render(){
+      bHub.setAttribute("aria-pressed", mode==="hub" ? "true":"false");
+      bSpoke.setAttribute("aria-pressed", mode==="spoke" ? "true":"false");
+      // light up lines and nodes
+      spokes.forEach(function(s, i){
+        var line = svg.querySelector('[data-line="'+i+'"]');
+        var node = svg.querySelector('[data-node="'+i+'"]');
+        var lit = (mode==="hub") || (mode==="spoke" && i===selectedSpoke);
+        if(line){ line.setAttribute("stroke", lit ? "#C77E3A" : "#C9C0AE"); line.setAttribute("stroke-width", lit ? 5 : 3); }
+        if(node){ node.setAttribute("fill", lit ? "#3A4E8C" : "#9aa0b3"); }
+      });
+      if(mode==="hub"){
+        panel.textContent = "Work the hub: a worker stationed where the network concentrates has access to every spoke. All nodes light up. One position reaches the whole corridor.";
+      } else {
+        panel.textContent = "Work a spoke: you reach one node, "+spokes[selectedSpoke].name+". Valuable, but the rest of the network keeps circulating without contact.";
+      }
+    }
+
+    build();
+    render();
+    if(reduceMotion){
+      dots.forEach(function(d){
+        var active=(mode==="hub")||(mode==="spoke"&&d.i===selectedSpoke);
+        d.node.setAttribute("opacity", active?"1":"0");
+        d.node.setAttribute("cx", spokes[d.i].x); d.node.setAttribute("cy", spokes[d.i].y);
+      });
+    } else {
+      rafId = requestAnimationFrame(animate);
+    }
+    bHub.addEventListener("click", function(){ mode="hub"; render(); });
+    bSpoke.addEventListener("click", function(){ if(mode!=="spoke"){ selectedSpoke=4; } mode="spoke"; render(); });
+  })();
+
+
+  /* ========================================================= */
+  /* MODULE 3: Live flow ticker                                */
+  /* ========================================================= */
+  (function(){
+    var svg = document.getElementById("m3svg");
+    var countNode = document.getElementById("flowCount");
+    var metaNode = document.getElementById("flowMeta");
+    var rateNode = document.getElementById("flowRate");
+    var panel = document.getElementById("m3panel");
+    var bLagos = document.getElementById("flowLagos");
+    var bDhaka = document.getElementById("flowDhaka");
+
+    // perRealSecond: how many arrivals counted per real second of watching
+    var modes = {
+      lagos: {perSec: 1.2,  label:"Lagos: about 86 arrivals per hour", meta:"arrivals counted in Lagos", desc:"At about 86 an hour, Lagos keeps absorbing new arrivals around the clock. The hub becomes home faster than strategy adjusts."},
+      dhaka: {perSec: 90,   label:"Dhaka: about 400,000 arrivals per year", meta:"arrivals counted in Dhaka", desc:"Dhaka absorbs about 400,000 migrants a year. The rate is so steady the city is always becoming someone new home."}
+    };
+    var mode = "lagos";
+    var count = 0;
+    var lastTs = null;
+    var rafId = null;
+    var maxDots = 60;
+    var dotEls = [];
+
+    function buildDots(){
+      clear(svg);
+      dotEls = [];
+      var cols = 20, rows = 3, gapX = 600/cols, gapY = 56, ox = gapX/2, oy = 50;
+      for(var r=0;r<rows;r++){
+        for(var c=0;c<cols;c++){
+          var d = el("circle", {cx:(ox+c*gapX).toFixed(1), cy:(oy+r*gapY).toFixed(1), r:6, fill:"#3A4E8C", opacity:0.12});
+          svg.appendChild(d);
+          dotEls.push(d);
+        }
+      }
+    }
+
+    function tick(ts){
+      if(lastTs === null) lastTs = ts;
+      var dt = (ts - lastTs)/1000;
+      lastTs = ts;
+      count += modes[mode].perSec * dt;
+      countNode.textContent = fmt(count);
+      // light dots proportionally, cycling
+      var lit = Math.floor(count) % (maxDots+1);
+      for(var i=0;i<dotEls.length;i++){
+        dotEls[i].setAttribute("opacity", i < lit ? "1" : "0.12");
+        dotEls[i].setAttribute("fill", i < lit ? "#C77E3A" : "#3A4E8C");
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function reset(){
+      count = 0; lastTs = null;
+      countNode.textContent = "0";
+      metaNode.textContent = modes[mode].meta;
+      rateNode.textContent = modes[mode].label;
+      panel.textContent = modes[mode].desc;
+      dotEls.forEach(function(d){ d.setAttribute("opacity","0.12"); d.setAttribute("fill","#3A4E8C"); });
+    }
+
+    function setMode(m){
+      mode = m;
+      bLagos.setAttribute("aria-pressed", m==="lagos"?"true":"false");
+      bDhaka.setAttribute("aria-pressed", m==="dhaka"?"true":"false");
+      reset();
+    }
+
+    buildDots();
+    setMode("lagos");
+    bLagos.addEventListener("click", function(){ setMode("lagos"); });
+    bDhaka.addEventListener("click", function(){ setMode("dhaka"); });
+
+    // Start ticking only when module is on screen, pause when off (saves CPU)
+    var running = false;
+    function start(){ if(running||reduceMotion) return; running=true; lastTs=null; rafId=requestAnimationFrame(tick); }
+    function stop(){ running=false; if(rafId){ cancelAnimationFrame(rafId); rafId=null; } }
+    if("IntersectionObserver" in window){
+      var mio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ start(); } else { stop(); } });
+      }, {threshold:0.25});
+      mio.observe(document.getElementById("m3"));
+    } else { start(); }
+    if(reduceMotion){ count = 0; countNode.textContent = "0"; }
+  })();
+
+
+  /* ========================================================= */
+  /* MODULE 4: Overlap / bridge                                */
+  /* ========================================================= */
+  (function(){
+    var svg = document.getElementById("m4svg");
+    var panel = document.getElementById("m4panel");
+    var bGulf = document.getElementById("ovGulf");
+    var bChristian = document.getElementById("ovChristian");
+
+    var leftCx = 235, rightCx = 365, cy = 150, R = 120;
+    var gulfCircle, christCircle, gulfLabel, christLabel;
+
+    function build(){
+      clear(svg);
+      // bridging arcs between the two populations (they share workplaces)
+      for(var i=0;i<4;i++){
+        var y = 90 + i*40;
+        var path = el("path", {
+          d:"M "+(leftCx+30)+" "+y+" Q 300 "+(y-30)+" "+(rightCx-30)+" "+y,
+          fill:"none", stroke:"#C77E3A", "stroke-width":2, opacity:0.35, "stroke-dasharray":"3 5"
+        });
+        svg.appendChild(path);
+      }
+
+      // Gulf circle (foreign nationals, accent)
+      gulfCircle = el("circle", {cx:leftCx, cy:cy, r:R, fill:"rgba(58,78,140,0.18)", stroke:"#3A4E8C", "stroke-width":3, cursor:"pointer"});
+      christCircle = el("circle", {cx:rightCx, cy:cy, r:84, fill:"rgba(199,126,58,0.22)", stroke:"#C77E3A", "stroke-width":3, cursor:"pointer"});
+      svg.appendChild(gulfCircle);
+      svg.appendChild(christCircle);
+
+      gulfLabel = el("text", {x:leftCx-44, y:cy-4, "text-anchor":"middle", fill:"#2A3A6A", "font-family":"Fraunces, serif", "font-size":24, "font-weight":700, "pointer-events":"none"});
+      gulfLabel.textContent = "30M";
+      svg.appendChild(gulfLabel);
+      var gulfSub = el("text", {x:leftCx-44, y:cy+18, "text-anchor":"middle", fill:"#6E665B", "font-family":"Inter, sans-serif", "font-size":12, "font-weight":600, "pointer-events":"none"});
+      gulfSub.textContent = "foreign nationals";
+      svg.appendChild(gulfSub);
+
+      christLabel = el("text", {x:rightCx+30, y:cy-4, "text-anchor":"middle", fill:"#9a5e22", "font-family":"Fraunces, serif", "font-size":20, "font-weight":700, "pointer-events":"none"});
+      christLabel.textContent = "3.5M";
+      svg.appendChild(christLabel);
+      var cSub = el("text", {x:rightCx+30, y:cy+16, "text-anchor":"middle", fill:"#6E665B", "font-family":"Inter, sans-serif", "font-size":11, "font-weight":600, "pointer-events":"none"});
+      cSub.textContent = "Christian immigrants";
+      svg.appendChild(cSub);
+
+      svg.appendChild((function(){
+        var t = el("text", {x:300, y:300, "text-anchor":"middle", fill:"#6E665B", "font-family":"Inter, sans-serif", "font-size":13, "font-weight":500});
+        t.textContent = "In the Gulf, reached and unreached share the same workplaces.";
+        return t;
+      })());
+
+      // make circles keyboard-focusable
+      [gulfCircle, christCircle].forEach(function(c){ c.setAttribute("tabindex","0"); c.setAttribute("role","button"); });
+      gulfCircle.setAttribute("aria-label","About 30 million foreign nationals in the Gulf");
+      christCircle.setAttribute("aria-label","About 3.5 million Christian immigrants in the Gulf");
+
+      gulfCircle.addEventListener("click", function(){ showGulf(); });
+      christCircle.addEventListener("click", function(){ showChrist(); });
+      gulfCircle.addEventListener("keydown", keyHandler(showGulf));
+      christCircle.addEventListener("keydown", keyHandler(showChrist));
+    }
+
+    function keyHandler(fn){
+      return function(ev){ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); fn(); } };
+    }
+
+    function showGulf(){
+      bGulf.setAttribute("aria-pressed","true");
+      bChristian.setAttribute("aria-pressed","false");
+      gulfCircle.setAttribute("fill","rgba(58,78,140,0.34)");
+      christCircle.setAttribute("fill","rgba(199,126,58,0.22)");
+      panel.textContent = "About 30 million foreign nationals live and work in the Gulf. It is one of the densest concentrations of mobility on earth, where the reached and the unreached meet daily.";
+    }
+    function showChrist(){
+      bChristian.setAttribute("aria-pressed","true");
+      bGulf.setAttribute("aria-pressed","false");
+      christCircle.setAttribute("fill","rgba(199,126,58,0.4)");
+      gulfCircle.setAttribute("fill","rgba(58,78,140,0.18)");
+      panel.textContent = "About 3.5 million Christian immigrants are already inside that flow. Example: the Filipino diaspora. Day By Day Jesus Ministries grew from a Saudi small group to 6,000 members.";
+    }
+
+    build();
+    bGulf.addEventListener("click", showGulf);
+    bChristian.addEventListener("click", showChrist);
+    panel.textContent = "Click a circle, or a button, to reveal who is in the overlap.";
+  })();
+
+})();
 </script>
-<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script>(function(){var c=document.getElementById("pchart");if(!c)return;var d=false;new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!d){d=true;new Chart(c,{type:'bar',data:{labels:['Lagos','Abidjan','Accra'],datasets:[{label:'Population (millions)',data:[23,4.7,3.4],backgroundColor:['#3A4E8C','#6c7fb5','#aab6da']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return v+'M';}}}}}});}});},{threshold:.4}).observe(c);})();</script>
 </body>
 </html>

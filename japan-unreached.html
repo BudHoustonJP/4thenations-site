@@ -1,138 +1,1055 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Japan Paradox | Clarity for the Nations</title>
-<meta name="description" content="Japan does not need a pioneer spark. It needs to be unleashed.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Japan Paradox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-  :root{--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;--accent:#2E4374;--deep:#243456;--line:rgba(28,26,23,.12)}
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
-  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
-  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
-  a{color:inherit}
-  .serif{font-family:'Fraunces',Georgia,serif}
+  :root {
+    --paper: #F3EFE6;
+    --ink: #1C1A17;
+    --mute: #6E665B;
+    --accent: #2E4374;
+    --deep: #243456;
+    --secondary: #C77E3A;
+    --hero-bg: #16203A;
+    --card: #FFFFFF;
+    --line: rgba(28, 26, 23, 0.12);
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, sans-serif;
+  }
 
-  nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;
-       padding:14px 24px;background:rgba(243,239,230,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  nav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none}
-  nav .home{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--accent);text-decoration:none}
+  * { box-sizing: border-box; }
 
-  .hero{padding:13vh 0 8vh;border-bottom:1px solid var(--line)}
-  .hero .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:1.3rem}
-  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;letter-spacing:-.01em}
-  .chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.6rem}
-  .chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem 1.3rem;min-width:140px}
-  .chip .num{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.5rem);color:var(--deep);line-height:1}
-  .chip .lab{font-size:.86rem;color:var(--mute);margin-top:.45rem;line-height:1.3;font-weight:500}
-  .cue{margin-top:3rem;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:700;display:flex;align-items:center;gap:.6rem}
-  .cue .a{display:inline-block;animation:bob 1.8s ease-in-out infinite}
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+  html { scroll-behavior: smooth; }
 
-  .beats{padding:6vh 0 2vh}
-  .beat{padding:5vh 0;border-top:1px solid var(--line);opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
-  .beat.in{opacity:1;transform:none}
-  .beat:first-child{border-top:none}
-  .beat .idx{font-family:'Fraunces',serif;font-weight:900;font-size:1rem;color:var(--accent)}
-  .beat h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.6rem,4.6vw,2.5rem);line-height:1.08;margin:.4rem 0 .8rem}
-  .beat p{font-size:clamp(1.05rem,2.2vw,1.2rem);color:#34302a;max-width:58ch}
-  .beat .stat{display:inline-block;margin-top:1.1rem;background:var(--accent);color:#fff;font-weight:700;
-               font-size:.92rem;padding:.5rem 1rem;border-radius:10px;line-height:1.3}
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  .quote{background:var(--accent);color:#fff;padding:13vh 0;margin:6vh 0}
-  .quote .wrap{max-width:760px}
-  .quote p{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,4.6vw,2.7rem);line-height:1.18}
-  .quote p+p{margin-top:1.6rem;opacity:.9;font-size:clamp(1.3rem,3.4vw,1.9rem)}
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.1; margin: 0; }
 
-  .closing{background:var(--ink);color:var(--paper);padding:15vh 0 13vh;text-align:center}
-  .closing h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.3rem);line-height:1.08;max-width:18ch;margin:0 auto}
-  .closing .links{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:.8rem}
-  .closing .links .lab{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#a59c8e;font-weight:700;margin-bottom:.4rem}
-  .closing a.essay{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;text-decoration:none;
-                    font-weight:600;padding:.85rem 1.8rem;border-radius:50px;font-size:1rem;transition:transform .15s,filter .2s;max-width:90vw}
-  .closing a.essay:hover{filter:brightness(1.1);transform:translateY(-2px)}
+  a { color: var(--accent); }
 
-  footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
-  footer a{color:var(--accent);font-weight:700;text-decoration:none}
+  /* Scroll progress bar */
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--secondary);
+    z-index: 100;
+    transition: width 0.08s linear;
+  }
 
-  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);width:0;z-index:60;transition:width .12s linear}
-  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;max-width:58ch;overflow:hidden}
-  .beat .meter span{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s ease .12s}
-  .beat.in .meter span{width:100%}
-  .chartsec{padding:1vh 0 3vh}
-  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;max-width:720px;margin:0 auto}
-  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
-  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
-  .chartwrap{position:relative;width:100%;height:320px}
-  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
+  /* Nav */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    background: rgba(243, 239, 230, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--mute);
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero {
+    background: var(--hero-bg);
+    color: #F3EFE6;
+    position: relative;
+    overflow: hidden;
+    padding: 92px 22px 84px;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 70%;
+    height: 140%;
+    background: radial-gradient(circle at center, rgba(46, 67, 116, 0.85) 0%, rgba(46, 67, 116, 0) 62%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--secondary);
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    color: #FFFFFF;
+    max-width: 16ch;
+    letter-spacing: -0.015em;
+  }
+  .hero p.sub {
+    margin-top: 20px;
+    font-size: clamp(1rem, 2.2vw, 1.18rem);
+    color: rgba(243, 239, 230, 0.8);
+    max-width: 56ch;
+  }
+
+  /* Stat chips */
+  .chips {
+    margin-top: 42px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .chip {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    padding: 22px 20px;
+  }
+  .chip .num {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+    color: #FFFFFF;
+    letter-spacing: -0.01em;
+  }
+  .chip .lbl {
+    margin-top: 8px;
+    font-size: 0.82rem;
+    color: rgba(243, 239, 230, 0.72);
+    line-height: 1.45;
+  }
+
+  /* Sections */
+  .section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 78px 22px;
+  }
+  .kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 14px;
+  }
+  .section h2 {
+    font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+    color: var(--deep);
+    max-width: 20ch;
+    letter-spacing: -0.01em;
+  }
+  .section .intro {
+    margin-top: 16px;
+    max-width: 60ch;
+    color: var(--mute);
+    font-size: 1.05rem;
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* White interactive card */
+  .card {
+    margin-top: 30px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px 26px 30px;
+    box-shadow: 0 22px 48px -34px rgba(28, 26, 23, 0.4);
+  }
+  .caption {
+    margin-top: 18px;
+    font-size: 0.88rem;
+    color: var(--mute);
+    line-height: 1.55;
+  }
+
+  /* Toggle segmented control */
+  .seg {
+    display: inline-flex;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px;
+    gap: 4px;
+    margin-bottom: 22px;
+  }
+  .seg button {
+    border: 0;
+    background: transparent;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.86rem;
+    color: var(--mute);
+    padding: 9px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+  }
+  .seg button.active {
+    background: var(--accent);
+    color: #FFFFFF;
+  }
+  .seg button:focus-visible {
+    outline: 3px solid var(--secondary);
+    outline-offset: 2px;
+  }
+
+  /* Slider module */
+  .slider-wrap { margin-top: 8px; }
+  .slider-wrap label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+    height: 28px;
+    cursor: pointer;
+  }
+  .slider-ends {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--mute);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .phase-badge {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 7px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #FFFFFF;
+    background: var(--accent);
+    transition: background 0.3s;
+  }
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .metric {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .metric .mlabel {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--mute);
+    font-weight: 700;
+  }
+  .metric .mval {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--deep);
+    margin-top: 6px;
+  }
+
+  /* Bridge explorer */
+  .bridge-readout {
+    margin-top: 18px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--secondary);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    color: var(--ink);
+    min-height: 1.5em;
+  }
+  .node-rect {
+    cursor: pointer;
+  }
+  .node-rect:focus-visible {
+    outline: 3px solid var(--secondary);
+    outline-offset: 2px;
+  }
+
+  /* Accordion */
+  .acc-progress-track {
+    height: 8px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 22px;
+  }
+  .acc-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--secondary);
+    border-radius: 999px;
+    transition: width 0.5s ease;
+  }
+  .acc-item {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    background: var(--card);
+  }
+  .acc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--deep);
+    padding: 18px 20px;
+    cursor: pointer;
+  }
+  .acc-head:focus-visible {
+    outline: 3px solid var(--secondary);
+    outline-offset: -3px;
+  }
+  .acc-head .plus {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--secondary);
+    transition: transform 0.3s;
+    flex: 0 0 auto;
+  }
+  .acc-item.open .plus { transform: rotate(45deg); }
+  .acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .acc-body-inner {
+    padding: 0 20px 20px;
+    color: var(--mute);
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  /* Quote band */
+  .quote-band {
+    background: var(--accent);
+    color: #FFFFFF;
+    padding: 72px 22px;
+  }
+  .quote-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    display: grid;
+    gap: 34px;
+  }
+  .quote-band blockquote {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.4rem, 3.6vw, 2.1rem);
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+  }
+  .quote-band blockquote::before {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 4px;
+    background: var(--secondary);
+    margin-bottom: 18px;
+  }
+
+  /* Closing band */
+  .closing {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 84px 22px;
+    text-align: center;
+  }
+  .closing-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .closing p.takeaway {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    line-height: 1.28;
+    margin: 0 0 34px;
+    letter-spacing: -0.01em;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--secondary);
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 15px 32px;
+    border-radius: 999px;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .btn:hover { transform: translateY(-2px); background: #b06f30; }
+  .btn:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 3px; }
+
+  /* Footer */
+  footer {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    padding: 40px 22px;
+  }
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: var(--mute);
+  }
+  .footer-inner a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 18px;
+  }
+
+  @media (max-width: 640px) {
+    .nav-inner { padding: 12px 16px; }
+    .section { padding: 56px 16px; }
+    .hero { padding: 70px 16px 64px; }
+    .card { padding: 22px 18px 24px; }
+  }
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div>
-<h2 class="sr-only">The Japan Paradox: a scrolling summary from Clarity for the Nations.</h2>
-<nav>
-  <a class="brand" href="index.html">Clarity for the Nations</a>
-  <a class="home" href="index.html">All pieces</a>
+
+<div id="progress" aria-hidden="true"></div>
+
+<nav aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Clarity for the Nations</a>
+    <div class="nav-links">
+      <a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+      <a href="index.html#pray">Pray for the Unreached</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
 </nav>
 
 <header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">When 'unreached' does not mean unreached</div>
-    <h1>There are more Christians in Japan than in all 3,200 frontier people groups combined. So why is it our largest field?</h1>
-    <div class="chips"><div class="chip"><span class="num" data-target="2000000" data-pre="" data-suf="" data-dec="0" data-sep="1">0</span><div class="lab">Christians in Japan</div></div><div class="chip"><span class="num" data-target="3200" data-pre="" data-suf="" data-dec="0" data-sep="1">0</span><div class="lab">frontier groups have fewer believers, combined</div></div><div class="chip"><span class="num" data-target="800000" data-pre="" data-suf="+" data-dec="0" data-sep="1">0+</span><div class="lab">people Japan loses each year</div></div></div>
-    <div class="cue"><span class="a">&#8595;</span> Scroll</div>
+  <div class="hero-inner">
+    <div class="eyebrow">Clarity for the Nations, Data and Strategy</div>
+    <h1>Japan's church outnumbers all 3,200 frontier groups on earth, combined.</h1>
+    <p class="sub">Japan is filed under "unreached," yet it holds one of the largest pools of believers anywhere outside the reached world. The paradox is not the size of the field. It is what we do with the force already standing in it.</p>
+    <div class="chips" id="chips">
+      <div class="chip">
+        <div class="num" data-target="2000000" data-suffix="">0</div>
+        <div class="lbl">Christians in Japan (about 2 million)</div>
+      </div>
+      <div class="chip">
+        <div class="num" data-target="3200" data-suffix="">0</div>
+        <div class="lbl">frontier people groups it outnumbers, across 2 billion people</div>
+      </div>
+      <div class="chip">
+        <div class="num" data-target="3400000" data-suffix="">0</div>
+        <div class="lbl">foreign residents, the untapped harvest force</div>
+      </div>
+    </div>
   </div>
 </header>
 
-<main class="beats">
-  <div class="wrap">
-    <div class="beat"><div class="idx">01</div><h2>A confusing headline</h2><p>By the numbers Japan is the world's second-largest unreached people group, 0.6 to 0.9% evangelical. But the label hides what is actually there.</p><div class="stat">0.6 to 0.9% evangelical, about 2 million Christians</div><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">02</div><h2>The comparison that stuns</h2><p>There are fewer than 2 million believers across all 3,200 Frontier People Groups, roughly 2 billion people, combined. Japan's church outnumbers them all.</p><div class="stat">2 million vs 3,200 groups across 2 billion people</div><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">03</div><h2>A church on a demographic cliff</h2><p>Japan loses over 800,000 people a year, and the church mirrors it: aging, not multiplying, stuck in maintenance mode, with the average pastor over 60.</p><div class="stat">minus 800,000 per year, pastors average 60+</div><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">04</div><h2>Awaken the diaspora</h2><p>Japan opened its doors to over 3.4 million foreign residents, including many evangelical Brazilians, Filipinos, Koreans, and Chinese. The greatest untapped force in the harvest.</p><div class="stat">3.4 million foreign residents</div><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">05</div><h2>Empower the indigenous</h2><p>Stop importing Western church forms. Invest in young Japanese leaders building a contextual, reproducing, disciple-making movement in homes, cafes, and workplaces.</p><div class="meter"><span></span></div></div>
-<div class="beat"><div class="idx">06</div><h2>Rethink Western sending</h2><p>Western workers often fill Japanese pastoral roles, creating dependency. Use non-residential models, then step back and free workers for true frontier fields.</p><div class="meter"><span></span></div></div>
-
-  </div>
-</main>
-
-<section class="chartsec"><div class="wrap"><div class="chartcard"><h3>Same believers, very different scale</h3><div class="cap">Japan and all 3,200 frontier peoples each have about 2 million Christians. Look at the populations.</div><div class="chartwrap"><canvas id="pchart" role="img" aria-label="Same believers, very different scale"></canvas></div><div class="src">Population in millions.</div></div></div></section>
-<section class="quote"><div class="wrap"><p>&ldquo;The Japanese do not need a pioneer spark. They need a strategic pivot.&rdquo;</p><p>&ldquo;Japan does not need to be reached for the first time. It needs to be unleashed.&rdquo;</p></div></section>
-
-<section class="closing">
-  <div class="wrap">
-    <h2>The fire is there. It does not need a spark. It needs oxygen.</h2>
-    <div class="links">
-      <span class="lab">Read the full essay</span>
-      <a class="essay" href="https://clarity4thenations.substack.com/p/when-unreached-doesnt-mean-unreached">When 'Unreached' Doesn't Mean Unreached &#8594;</a>
+<!-- MODULE 1: TOGGLE COMPARISON -->
+<section class="section reveal" id="m1">
+  <div class="kicker">The comparison that stuns</div>
+  <h2>One nation versus 3,200 groups</h2>
+  <p class="intro">Switch between two views of the same comparison. By believers, Japan stands shoulder to shoulder with every frontier group combined. By groups represented, the gap is staggering.</p>
+  <div class="card">
+    <div class="seg" role="tablist" aria-label="Comparison view">
+      <button id="m1-viewA" class="active" role="tab" aria-selected="true">Believers</button>
+      <button id="m1-viewB" role="tab" aria-selected="false">Groups represented</button>
     </div>
+    <svg id="m1-svg" viewBox="0 0 600 300" width="100%" role="img" aria-label="Bar comparison of Japan versus all frontier groups"></svg>
+    <p class="caption">Japan's roughly 2 million believers rival every frontier group combined, yet those groups span about 2 billion people.</p>
+  </div>
+</section>
+
+<!-- MODULE 2: SLIDER -->
+<section class="section reveal" id="m2">
+  <div class="kicker">A church on a demographic cliff</div>
+  <h2>Aging, not multiplying</h2>
+  <p class="intro">Drag the slider from today toward one generation on. The population bar shrinks as Japan loses people each year, and the pastor-age indicator climbs.</p>
+  <div class="card">
+    <div class="slider-wrap">
+      <label for="m2-range">Move the timeline</label>
+      <input type="range" id="m2-range" min="0" max="100" value="0" aria-describedby="m2-phase" />
+      <div class="slider-ends"><span>Today</span><span>One generation on</span></div>
+    </div>
+    <svg id="m2-svg" viewBox="0 0 600 200" width="100%" role="img" aria-label="Shrinking population bar and rising pastor age"></svg>
+    <div class="metric-row">
+      <div class="metric">
+        <div class="mlabel">Annual change</div>
+        <div class="mval" id="m2-pop">minus 800,000 / yr</div>
+      </div>
+      <div class="metric">
+        <div class="mlabel">Average pastor age</div>
+        <div class="mval" id="m2-age">over 60</div>
+      </div>
+    </div>
+    <span class="phase-badge" id="m2-phase">Maintenance mode</span>
+    <p class="caption">Japan loses over 800,000 people a year, and the average pastor is already over 60. A maintenance posture cannot meet that math.</p>
+  </div>
+</section>
+
+<!-- MODULE 3: BRIDGE EXPLORER -->
+<section class="section reveal" id="m3">
+  <div class="kicker">Awaken the diaspora</div>
+  <h2>The force already inside the gates</h2>
+  <p class="intro">Among Japan's 3.4 million foreign residents are large evangelical diaspora communities. Click a community to trace its bridge into Japan's harvest.</p>
+  <div class="card">
+    <svg id="m3-svg" viewBox="0 0 600 340" width="100%" role="img" aria-label="Diaspora communities bridging to Japan's harvest"></svg>
+    <div class="bridge-readout" id="m3-readout">Click a community on the left to see how it bridges into Japan's harvest.</div>
+  </div>
+</section>
+
+<!-- MODULE 4: ACCORDION -->
+<section class="section reveal" id="m4">
+  <div class="kicker">Three shifts</div>
+  <h2>What changes if the paradox is true</h2>
+  <p class="intro">Open each shift to see what a sending posture asks of the global church. The bar fills as you explore all three.</p>
+  <div class="card">
+    <div class="acc-progress-track" aria-hidden="true"><div class="acc-progress-fill" id="m4-fill"></div></div>
+    <div id="m4-acc"></div>
+  </div>
+</section>
+
+<!-- QUOTE BAND -->
+<section class="quote-band">
+  <div class="quote-inner">
+    <blockquote>Japan's church outnumbers all 3,200 frontier groups combined.</blockquote>
+    <blockquote>The greatest untapped force in the harvest is already inside the country.</blockquote>
+  </div>
+</section>
+
+<!-- CLOSING BAND -->
+<section class="closing">
+  <div class="closing-inner">
+    <p class="takeaway">A church this large is not a spark to light. It is a force to awaken and send.</p>
+    <a class="btn" href="https://clarity4thenations.substack.com/p/when-unreached-doesnt-mean-unreached" target="_blank" rel="noopener">Read the full essay</a>
   </div>
 </section>
 
 <footer>
-  Adapted from <a href="https://clarity4thenations.substack.com">Clarity for the Nations</a> by Bud Houston &middot; <a href="index.html">Back to all pieces</a>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html">Home</a>
+      <a href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+    <div>Clarity for the Nations</div>
+  </div>
 </footer>
 
 <script>
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.2});
-document.querySelectorAll('.beat').forEach(b=>io.observe(b));
-function countUp(el){
-  const t=parseFloat(el.dataset.target),dec=+(el.dataset.dec||0),pre=el.dataset.pre||'',suf=el.dataset.suf||'',sep=el.dataset.sep==='1';
-  const t0=performance.now(),dur=1600;
-  function fmt(v){let s=dec>0?v.toFixed(dec):(sep?Math.round(v).toLocaleString('en-US'):String(Math.round(v)));return pre+s+suf;}
-  function tick(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fmt(t*e);if(k<1)requestAnimationFrame(tick);else el.textContent=fmt(t);}
-  requestAnimationFrame(tick);
-}
-const ho=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);ho.unobserve(e.target);}});},{threshold:.6});
-document.querySelectorAll('.num[data-target]').forEach(n=>ho.observe(n));
+(function () {
+  "use strict";
+
+  var SVGNS = "http://www.w3.org/2000/svg";
+
+  // el() helper: create namespaced SVG element with attributes and optional text
+  function el(tag, attrs, text) {
+    var node = document.createElementNS(SVGNS, tag);
+    if (attrs) {
+      for (var k in attrs) {
+        if (Object.prototype.hasOwnProperty.call(attrs, k)) {
+          node.setAttribute(k, attrs[k]);
+        }
+      }
+    }
+    if (text != null) node.textContent = text;
+    return node;
+  }
+
+  // ---- Scroll progress bar ----
+  var progress = document.getElementById("progress");
+  function onScroll() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop || document.body.scrollTop) / max * 100 : 0;
+    progress.style.width = pct + "%";
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // ---- IntersectionObserver reveal ----
+  var revObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add("in");
+        revObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach(function (n) { revObs.observe(n); });
+
+  // ---- Count-up ----
+  function formatNum(n) {
+    return Math.round(n).toLocaleString("en-US");
+  }
+  function countUp(node, target, dur) {
+    var start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var t = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      node.textContent = formatNum(target * eased);
+      if (t < 1) requestAnimationFrame(step);
+      else node.textContent = formatNum(target);
+    }
+    requestAnimationFrame(step);
+  }
+  // Fire count-up when chips enter view
+  var chipsFired = false;
+  var chipObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && !chipsFired) {
+        chipsFired = true;
+        document.querySelectorAll("#chips .num").forEach(function (n) {
+          countUp(n, parseInt(n.getAttribute("data-target"), 10), 1600);
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  chipObs.observe(document.getElementById("chips"));
+
+  // Generic rAF tween helper
+  function tween(dur, onUpdate, onDone) {
+    var start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var t = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      onUpdate(eased);
+      if (t < 1) requestAnimationFrame(step);
+      else if (onDone) onDone();
+    }
+    requestAnimationFrame(step);
+  }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  /* =========================================================
+     MODULE 1: TOGGLE COMPARISON
+     ========================================================= */
+  (function () {
+    var svg = document.getElementById("m1-svg");
+    var btnA = document.getElementById("m1-viewA");
+    var btnB = document.getElementById("m1-viewB");
+
+    // Layout
+    var W = 600, baseY = 250, maxBarH = 190;
+    var barW = 150;
+    var jpX = 110, frX = 360;
+
+    // Data. View A: believers. Japan ~2,000,000, frontier slightly under 2,000,000.
+    // View B: groups. Japan = 1, Frontier = 3200.
+    var views = {
+      A: {
+        jp: { val: 2000000, label: "Japan", sub: "about 2,000,000 believers", frac: 1.0 },
+        fr: { val: 1900000, label: "All frontier groups", sub: "fewer than 2,000,000 believers", frac: 0.95 }
+      },
+      B: {
+        jp: { val: 1, label: "Japan", sub: "1 group", frac: 0.02 },
+        fr: { val: 3200, label: "Frontier", sub: "3,200 groups", frac: 1.0 }
+      }
+    };
+
+    var current = "A";
+    var jpRect, frRect, jpValTxt, frValTxt, jpSub, frSub;
+    var animState = { jpFrac: 1.0, frFrac: 0.95 };
+
+    function build() {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      // axis line
+      svg.appendChild(el("line", { x1: 40, y1: baseY, x2: W - 20, y2: baseY, stroke: "rgba(28,26,23,0.18)", "stroke-width": 1 }));
+
+      // Japan bar
+      jpRect = el("rect", { x: jpX, width: barW, fill: "#2E4374", rx: 6 });
+      svg.appendChild(jpRect);
+      // Frontier bar
+      frRect = el("rect", { x: frX, width: barW, fill: "#C77E3A", rx: 6 });
+      svg.appendChild(frRect);
+
+      // Value labels (above bars)
+      jpValTxt = el("text", { x: jpX + barW / 2, "text-anchor": "middle", "font-family": "Fraunces, serif", "font-weight": "700", "font-size": "20", fill: "#243456" });
+      frValTxt = el("text", { x: frX + barW / 2, "text-anchor": "middle", "font-family": "Fraunces, serif", "font-weight": "700", "font-size": "20", fill: "#243456" });
+      svg.appendChild(jpValTxt);
+      svg.appendChild(frValTxt);
+
+      // Category labels (below axis)
+      svg.appendChild(el("text", { x: jpX + barW / 2, y: baseY + 24, "text-anchor": "middle", "font-family": "Inter, sans-serif", "font-weight": "700", "font-size": "14", fill: "#1C1A17" }, "Japan"));
+      svg.appendChild(el("text", { x: frX + barW / 2, y: baseY + 24, "text-anchor": "middle", "font-family": "Inter, sans-serif", "font-weight": "700", "font-size": "14", fill: "#1C1A17" }, "Frontier"));
+
+      jpSub = el("text", { x: jpX + barW / 2, y: baseY + 42, "text-anchor": "middle", "font-family": "Inter, sans-serif", "font-size": "11", fill: "#6E665B" });
+      frSub = el("text", { x: frX + barW / 2, y: baseY + 42, "text-anchor": "middle", "font-family": "Inter, sans-serif", "font-size": "11", fill: "#6E665B" });
+      svg.appendChild(jpSub);
+      svg.appendChild(frSub);
+    }
+
+    function render() {
+      var v = views[current];
+      var jpH = animState.jpFrac * maxBarH;
+      var frH = animState.frFrac * maxBarH;
+      jpRect.setAttribute("y", baseY - jpH);
+      jpRect.setAttribute("height", Math.max(0, jpH));
+      frRect.setAttribute("y", baseY - frH);
+      frRect.setAttribute("height", Math.max(0, frH));
+      jpValTxt.setAttribute("y", baseY - jpH - 10);
+      frValTxt.setAttribute("y", baseY - frH - 10);
+      jpValTxt.textContent = current === "A" ? "2M" : "1";
+      frValTxt.textContent = current === "A" ? "<2M" : "3,200";
+      jpSub.textContent = v.jp.sub;
+      frSub.textContent = v.fr.sub;
+    }
+
+    function setView(view) {
+      if (view === current) return;
+      current = view;
+      btnA.classList.toggle("active", view === "A");
+      btnB.classList.toggle("active", view === "B");
+      btnA.setAttribute("aria-selected", view === "A");
+      btnB.setAttribute("aria-selected", view === "B");
+
+      var v = views[view];
+      var fromJp = animState.jpFrac, fromFr = animState.frFrac;
+      var toJp = v.jp.frac, toFr = v.fr.frac;
+      tween(700, function (t) {
+        animState.jpFrac = lerp(fromJp, toJp, t);
+        animState.frFrac = lerp(fromFr, toFr, t);
+        render();
+      });
+    }
+
+    btnA.addEventListener("click", function () { setView("A"); });
+    btnB.addEventListener("click", function () { setView("B"); });
+
+    build();
+    render();
+  })();
+
+  /* =========================================================
+     MODULE 2: SLIDER (demographic cliff)
+     ========================================================= */
+  (function () {
+    var svg = document.getElementById("m2-svg");
+    var range = document.getElementById("m2-range");
+    var phase = document.getElementById("m2-phase");
+    var popEl = document.getElementById("m2-pop");
+    var ageEl = document.getElementById("m2-age");
+
+    var W = 600;
+    var popBar, ageMarker, ageLabel, popLabel;
+    var fullPopW = 360, popX = 180, popY = 50, popH = 36;
+    var ageTrackX = 180, ageTrackY = 130, ageTrackW = 360, ageTrackH = 36;
+
+    function build() {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      // population row label
+      svg.appendChild(el("text", { x: 20, y: popY + 24, "font-family": "Inter, sans-serif", "font-weight": "700", "font-size": "13", fill: "#1C1A17" }, "Population"));
+      // population track
+      svg.appendChild(el("rect", { x: popX, y: popY, width: fullPopW, height: popH, rx: 8, fill: "rgba(28,26,23,0.08)" }));
+      popBar = el("rect", { x: popX, y: popY, width: fullPopW, height: popH, rx: 8, fill: "#2E4374" });
+      svg.appendChild(popBar);
+      popLabel = el("text", { x: popX + 10, y: popY + 24, "font-family": "Inter, sans-serif", "font-weight": "700", "font-size": "13", fill: "#FFFFFF" }, "100%");
+      svg.appendChild(popLabel);
+
+      // pastor age row label
+      svg.appendChild(el("text", { x: 20, y: ageTrackY + 24, "font-family": "Inter, sans-serif", "font-weight": "700", "font-size": "13", fill: "#1C1A17" }, "Pastor age"));
+      // age track
+      svg.appendChild(el("rect", { x: ageTrackX, y: ageTrackY, width: ageTrackW, height: ageTrackH, rx: 8, fill: "rgba(28,26,23,0.08)" }));
+      ageMarker = el("rect", { x: ageTrackX, y: ageTrackY - 6, width: 16, height: ageTrackH + 12, rx: 4, fill: "#C77E3A" });
+      svg.appendChild(ageMarker);
+      ageLabel = el("text", { x: ageTrackX, y: ageTrackY - 12, "text-anchor": "middle", "font-family": "Fraunces, serif", "font-weight": "700", "font-size": "16", fill: "#243456" }, "60");
+      svg.appendChild(ageLabel);
+    }
+
+    function update(raw) {
+      var t = raw / 100; // 0 today -> 1 one generation on
+
+      // Population shrinks. Use stated figure of minus 800,000 per year.
+      // Over one generation (~30 yrs) that is up to ~24,000,000 lost.
+      var startPop = 124000000;
+      var lostTotal = 24000000; // 800,000 * 30 yrs at full slide
+      var lost = lostTotal * t;
+      var curPop = startPop - lost;
+      var frac = curPop / startPop;
+      popBar.setAttribute("width", Math.max(2, fullPopW * frac));
+      popLabel.textContent = Math.round(frac * 100) + "%";
+
+      // Pastor age climbs from over 60 upward.
+      var age = 60 + Math.round(t * 18); // 60 -> 78
+      var markX = ageTrackX + (ageTrackW - 16) * t;
+      ageMarker.setAttribute("x", markX);
+      ageLabel.setAttribute("x", markX + 8);
+      ageLabel.textContent = age + "+";
+
+      // Readout metrics
+      popEl.textContent = "minus 800,000 / yr";
+      ageEl.textContent = "over " + age;
+
+      // Phase thresholds
+      var label, color;
+      if (t < 0.34) { label = "Maintenance mode"; color = "#2E4374"; }
+      else if (t < 0.67) { label = "Decline"; color = "#8a5a2a"; }
+      else { label = "Cliff"; color = "#C77E3A"; }
+      phase.textContent = label;
+      phase.style.background = color;
+    }
+
+    range.addEventListener("input", function () { update(parseInt(range.value, 10)); });
+
+    build();
+    update(0);
+  })();
+
+  /* =========================================================
+     MODULE 3: BRIDGE EXPLORER
+     ========================================================= */
+  (function () {
+    var svg = document.getElementById("m3-svg");
+    var readout = document.getElementById("m3-readout");
+
+    var W = 600, H = 340;
+    var leftX = 60, leftW = 170, leftH = 52, leftGap = 14;
+    var rightX = 380, rightW = 170, rightH = 90;
+    var topPad = 24;
+
+    var nodes = [
+      { id: "brazil", label: "Brazil", detail: "Evangelical Brazilians in Japan are a ready sending force inside the country." },
+      { id: "philippines", label: "Philippines", detail: "Filipino believers across Japan form vibrant congregations poised to reach neighbors and coworkers." },
+      { id: "korea", label: "Korea", detail: "Korean churches in Japan carry a strong missions heritage and proximity to the harvest." },
+      { id: "china", label: "China", detail: "Chinese Christians among Japan's residents bridge into students, workers, and families." }
+    ];
+
+    var arcs = {};
+    var rects = {};
+    var rightCx, rightCy;
+
+    function build() {
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      // Right node (Japan's harvest)
+      rightCy = H / 2;
+      var ry = rightCy - rightH / 2;
+      rightCx = rightX;
+      svg.appendChild(el("rect", { x: rightX, y: ry, width: rightW, height: rightH, rx: 12, fill: "#16203A" }));
+      svg.appendChild(el("text", { x: rightX + rightW / 2, y: rightCy - 4, "text-anchor": "middle", "font-family": "Fraunces, serif", "font-weight": "700", "font-size": "18", fill: "#FFFFFF" }, "Japan's"));
+      svg.appendChild(el("text", { x: rightX + rightW / 2, y: rightCy + 18, "text-anchor": "middle", "font-family": "Fraunces, serif", "font-weight": "700", "font-size": "18", fill: "#FFFFFF" }, "harvest"));
+
+      var totalH = nodes.length * leftH + (nodes.length - 1) * leftGap;
+      var startY = (H - totalH) / 2;
+
+      // Draw arcs first (under nodes)
+      nodes.forEach(function (n, i) {
+        var ny = startY + i * (leftH + leftGap);
+        var sy = ny + leftH / 2;
+        var sx = leftX + leftW;
+        var ex = rightX;
+        var ey = rightCy;
+        var mx = (sx + ex) / 2;
+        var d = "M " + sx + " " + sy + " C " + mx + " " + sy + ", " + mx + " " + ey + ", " + ex + " " + ey;
+        var arc = el("path", { d: d, fill: "none", stroke: "rgba(46,67,116,0.22)", "stroke-width": 2 });
+        svg.appendChild(arc);
+        arcs[n.id] = arc;
+      });
+
+      // Draw left nodes
+      nodes.forEach(function (n, i) {
+        var ny = startY + i * (leftH + leftGap);
+        var g = el("g", {});
+        var rect = el("rect", {
+          x: leftX, y: ny, width: leftW, height: leftH, rx: 10,
+          fill: "#FFFFFF", stroke: "#C77E3A", "stroke-width": 2,
+          class: "node-rect", tabindex: "0", role: "button",
+          "aria-label": "Show how " + n.label + " bridges to Japan's harvest"
+        });
+        var txt = el("text", {
+          x: leftX + leftW / 2, y: ny + leftH / 2 + 5, "text-anchor": "middle",
+          "font-family": "Inter, sans-serif", "font-weight": "700", "font-size": "15", fill: "#243456",
+          "pointer-events": "none"
+        }, n.label);
+        g.appendChild(rect);
+        g.appendChild(txt);
+        svg.appendChild(g);
+        rects[n.id] = rect;
+
+        function activate() { select(n); }
+        rect.addEventListener("click", activate);
+        rect.addEventListener("mouseenter", activate);
+        rect.addEventListener("keydown", function (ev) {
+          if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); activate(); }
+        });
+      });
+    }
+
+    function select(n) {
+      // Reset all
+      nodes.forEach(function (m) {
+        arcs[m.id].setAttribute("stroke", "rgba(46,67,116,0.22)");
+        arcs[m.id].setAttribute("stroke-width", "2");
+        rects[m.id].setAttribute("fill", "#FFFFFF");
+      });
+      // Highlight selected with animated stroke
+      var arc = arcs[n.id];
+      var len = arc.getTotalLength ? arc.getTotalLength() : 300;
+      arc.setAttribute("stroke", "#C77E3A");
+      arc.setAttribute("stroke-width", "4");
+      arc.setAttribute("stroke-dasharray", len);
+      arc.setAttribute("stroke-dashoffset", len);
+      rects[n.id].setAttribute("fill", "#FBEFE2");
+      tween(600, function (t) {
+        arc.setAttribute("stroke-dashoffset", len * (1 - t));
+      }, function () {
+        arc.removeAttribute("stroke-dasharray");
+        arc.removeAttribute("stroke-dashoffset");
+      });
+      readout.textContent = n.detail;
+    }
+
+    build();
+  })();
+
+  /* =========================================================
+     MODULE 4: ACCORDION SELF-ASSESSMENT
+     ========================================================= */
+  (function () {
+    var container = document.getElementById("m4-acc");
+    var fill = document.getElementById("m4-fill");
+
+    var items = [
+      { title: "Awaken the diaspora", body: "Mobilize the evangelical Brazilians, Filipinos, Koreans, and Chinese already living and working in Japan." },
+      { title: "Empower the indigenous", body: "Stop importing Western church forms. Invest in young Japanese leaders building a contextual, reproducing, disciple-making movement in homes, cafes, and workplaces." },
+      { title: "Rethink Western sending", body: "Western workers often fill Japanese pastoral roles and create dependency. Use non-residential models, then step back and free workers for true frontier fields." }
+    ];
+
+    var opened = {};
+
+    function updateProgress() {
+      var count = 0;
+      for (var k in opened) { if (opened[k]) count++; }
+      fill.style.width = (count / items.length * 100) + "%";
+    }
+
+    items.forEach(function (it, i) {
+      var wrap = document.createElement("div");
+      wrap.className = "acc-item";
+
+      var head = document.createElement("button");
+      head.className = "acc-head";
+      head.setAttribute("aria-expanded", "false");
+      head.id = "m4-head-" + i;
+      head.innerHTML = '<span>' + it.title + '</span><span class="plus" aria-hidden="true">+</span>';
+
+      var body = document.createElement("div");
+      body.className = "acc-body";
+      body.id = "m4-body-" + i;
+      head.setAttribute("aria-controls", body.id);
+
+      var inner = document.createElement("div");
+      inner.className = "acc-body-inner";
+      inner.textContent = it.body;
+      body.appendChild(inner);
+
+      function toggle() {
+        var isOpen = wrap.classList.toggle("open");
+        head.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        if (isOpen) {
+          body.style.maxHeight = body.scrollHeight + "px";
+          opened[i] = true;
+        } else {
+          body.style.maxHeight = "0px";
+        }
+        updateProgress();
+      }
+
+      head.addEventListener("click", toggle);
+
+      wrap.appendChild(head);
+      wrap.appendChild(body);
+      container.appendChild(wrap);
+    });
+
+    updateProgress();
+  })();
+
+})();
 </script>
-<script>addEventListener("scroll",function(){var h=document.documentElement,e=document.getElementById("progress");if(e)e.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";});</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script>(function(){var c=document.getElementById("pchart");if(!c)return;var d=false;new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!d){d=true;new Chart(c,{type:'bar',data:{labels:['Japan','All 3,200 frontier peoples'],datasets:[{label:'Population (millions)',data:[125,2000],backgroundColor:['#2E4374','#9fb0cc']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return v+'M';}}}}}});}});},{threshold:.4}).observe(c);})();</script>
+
 </body>
 </html>

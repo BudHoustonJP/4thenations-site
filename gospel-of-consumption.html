@@ -3,156 +3,817 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Gospel of Consumption | Clarity for the Nations</title>
-<meta name="description" content="Why the Western church collapsed: a story of formation, not money. Charts and data from the essays by Bud Houston.">
+<title>The Gospel of Consumption</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;--red:#B22234;--gold:#E8A33D;--c:#9A3B2E;--cd:#6f281e;--line:rgba(28,26,23,.12)}
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;scroll-padding-top:72px}
-  body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
-  a{color:inherit}
-  .wrap{max-width:840px;margin:0 auto;padding:0 24px}
-  .progress{position:fixed;top:0;left:0;height:4px;background:var(--c);width:0;z-index:60;transition:width .12s linear}
-  .topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
-  .topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
-  .topnav .links{display:flex;gap:1.4rem;flex-wrap:wrap}
-  .topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
-  .topnav .links a:hover{opacity:1;color:var(--red)}
-  header.hero{position:relative;background:#26211f;color:#F4EFE7;overflow:hidden;padding:13vh 0 9vh}
-  header.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(75% 60% at 50% 0%,rgba(154,59,46,.45),transparent 60%)}
-  .hero .wrap{position:relative;z-index:2}
-  .hero .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:1.4rem}
-  .hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.2rem,5.6vw,4rem);line-height:1.05;letter-spacing:-.01em;max-width:20ch}
-  .statrow{display:flex;flex-wrap:wrap;gap:14px;margin-top:3rem}
-  .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:1.1rem 1.4rem;min-width:150px}
-  .stat .num{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,4.6vw,2.7rem);color:var(--gold);line-height:1;white-space:nowrap}
-  .stat .lab{font-size:.85rem;color:rgba(244,239,231,.8);margin-top:.5rem;line-height:1.3}
-  .sec{padding:6vh 0;border-top:1px solid var(--line)}
-  .beat{max-width:640px;opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
-  .beat.in{opacity:1;transform:none}
-  .beat .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.6rem,8vw,4rem);color:var(--c);line-height:1;white-space:nowrap}
-  .beat .biglab{font-size:.8rem;color:var(--mute);font-weight:600;margin-top:.35rem;text-transform:uppercase;letter-spacing:.08em}
-  .beat .tagword{font-family:'Fraunces',serif;font-weight:900;font-size:1.4rem;color:var(--c)}
-  .beat h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.1rem);line-height:1.12;margin:.9rem 0 .6rem}
-  .beat p{font-size:1.08rem;color:#34302a}
-  .beat .meter{height:5px;background:rgba(28,26,23,.1);border-radius:3px;margin-top:1.2rem;overflow:hidden}
-  .beat .meter span{display:block;height:100%;width:0;background:var(--c);transition:width 1.2s ease .15s}
-  .beat.in .meter span{width:100%}
-  .chartcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.6rem 1.2rem;margin:3vh 0 0;max-width:720px}
-  .chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;margin-bottom:.3rem}
-  .chartcard .cap{font-size:.86rem;color:var(--mute);margin-bottom:1rem}
-  .chartwrap{position:relative;width:100%;height:320px}
-  .chartcard .src{font-size:.78rem;color:var(--mute);margin-top:.8rem}
-  .quote{background:var(--c);color:#fff;padding:12vh 0;margin:6vh 0 0}
-  .quote .wrap{max-width:760px}
-  .quote p{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,4.4vw,2.6rem);line-height:1.18}
-  .quote p+p{margin-top:1.4rem;opacity:.92;font-size:clamp(1.3rem,3.2vw,1.8rem)}
-  .closing{background:var(--ink);color:var(--paper);padding:14vh 0 12vh;text-align:center}
-  .closing h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.4vw,3.2rem);line-height:1.08;max-width:20ch;margin:0 auto}
-  .closing .links{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:.8rem}
-  .closing .links .lab{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#a59c8e;font-weight:700;margin-bottom:.4rem}
-  .closing a.essay{display:inline-flex;align-items:center;gap:.5rem;background:var(--c);color:#fff;text-decoration:none;font-weight:600;padding:.85rem 1.8rem;border-radius:50px;font-size:1rem;transition:transform .15s,filter .2s}
-  .closing a.essay:hover{filter:brightness(1.12);transform:translateY(-2px)}
-  footer{padding:5vh 24px 7vh;text-align:center;font-size:.82rem;color:var(--mute)}
-  footer a{color:var(--c);font-weight:700;text-decoration:none}
+  :root{
+    --paper:#F3EFE6;
+    --ink:#1C1A17;
+    --mute:#6E665B;
+    --accent:#9A3B2E;
+    --deep:#6F281E;
+    --secondary:#2F6B4F;
+    --hero-bg:#2A1512;
+    --card:#FFFFFF;
+    --line:rgba(28,26,23,0.12);
+    --shadow:0 18px 40px rgba(28,26,23,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.brand,.eyebrow,.kicker{font-family:'Fraunces',Georgia,serif;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+
+  /* scroll progress bar */
+  .progress-track{
+    position:fixed;top:0;left:0;right:0;height:4px;
+    background:transparent;z-index:120;
+  }
+  .progress-fill{
+    height:100%;width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--deep));
+  }
+
+  /* nav */
+  .nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(243,239,230,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px;margin:0 auto;padding:14px 22px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .brand{
+    font-weight:700;font-size:1.12rem;letter-spacing:.2px;
+    text-decoration:none;color:var(--ink);
+  }
+  .brand span{color:var(--accent);}
+  .nav-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
+  .nav-links a{
+    text-decoration:none;color:var(--mute);font-size:.86rem;font-weight:600;
+    letter-spacing:.3px;white-space:nowrap;
+  }
+  .nav-links a:hover{color:var(--accent);}
+  .nav-cta{
+    background:var(--accent);color:#fff !important;
+    padding:8px 14px;border-radius:999px;
+  }
+  .nav-cta:hover{background:var(--deep);}
+
+  /* hero */
+  .hero{
+    background:var(--hero-bg);color:#F3EFE6;
+    padding:96px 22px 78px;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 78% 18%,rgba(154,59,46,0.30),transparent 55%);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1080px;margin:0 auto;position:relative;z-index:1;}
+  .eyebrow{
+    text-transform:uppercase;letter-spacing:2.5px;font-size:.74rem;
+    font-weight:600;color:#D9A79C;margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2rem,5.4vw,3.7rem);
+    line-height:1.07;font-weight:600;margin:0 0 18px;
+    max-width:18ch;
+  }
+  .hero p.lede{
+    color:rgba(243,239,230,0.78);font-size:1.06rem;max-width:60ch;margin:0 0 40px;
+  }
+  .stat-row{display:flex;flex-wrap:wrap;gap:18px;}
+  .chip{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:16px;padding:18px 20px;flex:1 1 220px;min-width:200px;
+  }
+  .chip .num{
+    font-family:'Fraunces',serif;font-size:2.5rem;font-weight:600;
+    color:#F0C8BF;line-height:1;display:flex;align-items:baseline;gap:2px;
+  }
+  .chip .num .suffix{font-size:1.4rem;}
+  .chip .lbl{
+    margin-top:10px;color:rgba(243,239,230,0.72);font-size:.82rem;line-height:1.45;
+  }
+
+  /* quote band */
+  .quote-band{
+    background:var(--accent);color:#fff;padding:64px 22px;
+  }
+  .quote-inner{
+    max-width:1080px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;
+  }
+  .quote-inner blockquote{
+    margin:0;font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.8vw,1.85rem);
+    line-height:1.32;font-weight:500;font-style:italic;
+    position:relative;padding-left:26px;
+  }
+  .quote-inner blockquote::before{
+    content:"";position:absolute;left:0;top:6px;bottom:6px;width:4px;
+    background:rgba(255,255,255,0.45);border-radius:4px;
+  }
+
+  /* modules */
+  .modules{max-width:1080px;margin:0 auto;padding:30px 22px 10px;}
+  .module{
+    padding:60px 0;border-bottom:1px solid var(--line);
+  }
+  .module:last-child{border-bottom:none;}
+  .kicker{
+    text-transform:uppercase;letter-spacing:2.2px;font-size:.74rem;
+    font-weight:600;color:var(--accent);margin-bottom:12px;
+  }
+  .module h2{
+    font-size:clamp(1.6rem,3.6vw,2.5rem);font-weight:600;line-height:1.12;
+    margin:0 0 14px;max-width:20ch;
+  }
+  .module .intro{
+    color:var(--mute);max-width:62ch;margin:0 0 30px;font-size:1.02rem;
+  }
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:20px;padding:30px;box-shadow:var(--shadow);
+  }
+  .caption{
+    margin-top:18px;color:var(--mute);font-size:.82rem;line-height:1.5;
+    font-style:italic;
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---- Module 1 slider ---- */
+  .m1-wrap{display:flex;flex-direction:column;gap:24px;}
+  .m1-live{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .m1-year{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:600;color:var(--ink);}
+  .m1-pct{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:600;color:var(--accent);}
+  .m1-pct .small{font-size:1.3rem;}
+  .m1-pcttext{color:var(--mute);font-size:.92rem;}
+  .m1-bararea{display:flex;align-items:flex-end;gap:26px;}
+  .m1-barbox{
+    position:relative;width:120px;height:230px;
+    background:rgba(28,26,23,0.06);border-radius:12px;overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .m1-barfill{
+    position:absolute;left:0;right:0;bottom:0;
+    background:linear-gradient(180deg,var(--accent),var(--deep));
+    border-radius:0 0 11px 11px;
+  }
+  .m1-track-wrap{flex:1;}
+  .m1-track-label{font-size:.82rem;color:var(--mute);margin-bottom:8px;}
+  input[type="range"].m1-range{
+    -webkit-appearance:none;appearance:none;width:100%;height:8px;
+    background:rgba(28,26,23,0.12);border-radius:999px;outline:none;margin:10px 0 4px;
+  }
+  input[type="range"].m1-range::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;
+    background:var(--accent);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25);cursor:pointer;
+  }
+  input[type="range"].m1-range::-moz-range-thumb{
+    width:26px;height:26px;border-radius:50%;background:var(--accent);
+    border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25);cursor:pointer;
+  }
+  .m1-markers{position:relative;height:42px;margin-top:6px;}
+  .m1-marker{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
+  .m1-marker .dot{width:10px;height:10px;border-radius:50%;background:var(--deep);margin:0 auto 4px;}
+  .m1-marker .txt{font-size:.7rem;color:var(--mute);line-height:1.2;white-space:nowrap;}
+
+  /* ---- Module 2 svg trend ---- */
+  .m2-note{
+    margin-top:18px;min-height:64px;background:rgba(154,59,46,0.06);
+    border-left:3px solid var(--accent);border-radius:0 10px 10px 0;
+    padding:14px 18px;font-size:.92rem;color:var(--ink);
+  }
+  .m2-note strong{color:var(--accent);}
+  .m2-pt{cursor:pointer;}
+  .m2-hit{cursor:pointer;}
+
+  /* ---- Module 3 toggle ---- */
+  .m3-toggle{
+    display:inline-flex;background:rgba(28,26,23,0.06);border-radius:999px;
+    padding:5px;gap:4px;flex-wrap:wrap;
+  }
+  .m3-btn{
+    border:none;background:transparent;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;color:var(--mute);
+    padding:10px 18px;border-radius:999px;transition:all .25s ease;
+  }
+  .m3-btn.active{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(154,59,46,0.3);}
+  .m3-panel{
+    margin-top:24px;padding:24px;border-radius:14px;
+    background:rgba(28,26,23,0.04);border:1px solid var(--line);
+    transition:opacity .35s ease;
+  }
+  .m3-panel h3{margin:0 0 8px;font-size:1.25rem;color:var(--accent);}
+  .m3-panel p{margin:0;color:var(--ink);}
+  .m3-panel .quoteline{
+    margin-top:14px;font-style:italic;color:var(--mute);font-size:.94rem;
+  }
+
+  /* ---- Module 4 growth ---- */
+  .m4-live{
+    font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3rem);
+    font-weight:600;color:var(--secondary);margin-bottom:6px;display:flex;align-items:baseline;gap:8px;
+  }
+  .m4-live .unit{font-size:1.1rem;color:var(--mute);font-family:'Inter',sans-serif;font-weight:600;}
+  .m4-sub{color:var(--mute);font-size:.9rem;margin-bottom:20px;}
+  .m4-endpoints{display:flex;justify-content:space-between;font-size:.8rem;color:var(--mute);margin-top:8px;}
+  .m4-note{
+    margin-top:18px;background:rgba(47,107,79,0.08);border-left:3px solid var(--secondary);
+    border-radius:0 10px 10px 0;padding:14px 18px;font-size:.92rem;color:var(--ink);
+  }
+
+  /* ---- Module 5 ring ---- */
+  .m5-wrap{display:flex;flex-wrap:wrap;gap:30px;align-items:center;}
+  .m5-ringbox{position:relative;width:240px;flex:0 0 240px;}
+  .m5-center{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;pointer-events:none;
+  }
+  .m5-pct{font-family:'Fraunces',serif;font-size:3rem;font-weight:600;color:var(--accent);line-height:1;}
+  .m5-cap{font-size:.78rem;color:var(--mute);margin-top:6px;max-width:14ch;}
+  .m5-side{flex:1;min-width:240px;}
+  .m5-side h3{margin:0 0 8px;font-size:1.2rem;}
+  .m5-ringgroup{cursor:pointer;outline:none;}
+  .m5-ringgroup:focus-visible{outline:3px solid var(--accent);outline-offset:6px;border-radius:50%;}
+  .m5-reveal{
+    margin-top:16px;background:rgba(154,59,46,0.06);border-left:3px solid var(--accent);
+    border-radius:0 10px 10px 0;padding:14px 18px;font-size:.92rem;color:var(--ink);
+    opacity:0;max-height:0;overflow:hidden;transition:opacity .4s ease,max-height .4s ease,margin .4s ease;
+  }
+  .m5-reveal.show{opacity:1;max-height:200px;}
+  .m5-hint{font-size:.8rem;color:var(--mute);margin-top:10px;}
+
+  /* closing band */
+  .closing{
+    background:var(--hero-bg);color:#F3EFE6;padding:74px 22px;margin-top:30px;
+  }
+  .closing-inner{max-width:780px;margin:0 auto;text-align:center;}
+  .closing .kicker2{
+    text-transform:uppercase;letter-spacing:2.5px;font-size:.74rem;font-weight:600;
+    color:#D9A79C;margin-bottom:18px;
+  }
+  .closing h2{
+    font-family:'Fraunces',serif;font-size:clamp(1.5rem,3.6vw,2.3rem);
+    font-weight:500;line-height:1.3;margin:0 0 30px;
+  }
+  .btn-essay{
+    display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+    font-weight:600;padding:16px 30px;border-radius:999px;font-size:1rem;
+    transition:background .25s ease,transform .25s ease;
+  }
+  .btn-essay:hover{background:var(--deep);transform:translateY(-2px);}
+
+  /* footer */
+  .footer{
+    background:var(--paper);padding:40px 22px;border-top:1px solid var(--line);
+  }
+  .footer-inner{
+    max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;
+    align-items:center;gap:18px;flex-wrap:wrap;
+  }
+  .footer a{color:var(--mute);text-decoration:none;font-size:.88rem;font-weight:600;}
+  .footer a:hover{color:var(--accent);}
+  .footer .copy{font-size:.8rem;color:var(--mute);}
+
+  @media(max-width:720px){
+    .quote-inner{grid-template-columns:1fr;gap:26px;}
+    .nav-links{gap:13px;}
+    .card{padding:22px;}
+    .m1-barbox{width:90px;height:190px;}
+  }
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div>
-<nav class="topnav">
-  <a class="brand" href="index.html">Clarity for the Nations</a>
-  <div class="links">
-    <a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
-    <a href="index.html#pray">Pray for the Unreached</a>
-    <a href="about.html">About</a>
+
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Clarity<span>4theNations</span></a>
+    <div class="nav-links">
+      <a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+      <a href="index.html#pray">Pray for the Unreached</a>
+      <a href="about.html">About</a>
+      <a class="nav-cta" href="https://clarity4thenations.substack.com/p/the-gospel-of-consumption" target="_blank" rel="noopener">Read the essay</a>
+    </div>
   </div>
 </nav>
 
 <header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Two parts &middot; formation and the church</div>
+  <div class="hero-inner">
+    <div class="eyebrow">Clarity for the Nations, Church and Culture</div>
     <h1>The church did not collapse from bad theology. It collapsed the decade the TV and the credit card arrived.</h1>
-    <div class="statrow">
-      <div class="stat"><div class="num" data-count="87" data-suffix="%">0</div><div class="lab">of US homes had a TV by 1960, up from 9 percent</div></div>
-      <div class="stat"><div class="num" data-count="5.1" data-suffix="%" data-dec="1">0</div><div class="lab">of missionaries leave the field every year</div></div>
-      <div class="stat"><div class="num" data-count="104215" data-prefix="$" data-sep="1">0</div><div class="lab">average American debt (2023)</div></div>
+    <p class="lede">A story about the verb of the faith, how it changed from create to consume, and what that quietly did to belonging, to attendance, and to the people we send abroad.</p>
+    <div class="stat-row">
+      <div class="chip">
+        <div class="num"><span class="cu" data-target="87">0</span><span class="suffix">%</span></div>
+        <div class="lbl">percent of US homes with a television by 1960, up from 9 percent in 1950</div>
+      </div>
+      <div class="chip">
+        <div class="num"><span class="cu" data-target="71">0</span><span class="suffix">%</span></div>
+        <div class="lbl">percent of missionaries who leave the field for preventable reasons</div>
+      </div>
+      <div class="chip">
+        <div class="num"><span class="cu" data-target="734">0</span><span class="suffix">M</span></div>
+        <div class="lbl">million Christians in Africa today, up from under 10 million in 1900</div>
+      </div>
     </div>
   </div>
 </header>
 
-<main>
-  <section class="sec"><div class="wrap"><div class="beat"><div class="tagword">Catechized</div><h2>A story of formation, not money</h2><p>Consumerism is a training program. It promises endless satisfaction through instant gratification, teaching us to solve discomfort by spending and to build identity from what we own.</p><div class="meter"><span></span></div></div></div></section>
+<section class="quote-band">
+  <div class="quote-inner">
+    <blockquote>We changed the verb of Christianity from create to consume.</blockquote>
+    <blockquote>We risk exporting the very disease that killed us.</blockquote>
+  </div>
+</section>
 
-  <section class="sec"><div class="wrap">
-    <div class="beat"><div class="big" data-count="87" data-suffix="%">0</div><div class="biglab">TV homes by 1960, from 9 percent</div><h2>The universal catechist</h2><p>Television ownership exploded from 9 percent of US homes in 1950 to 87 percent in 1960. Credit cards removed the last brake on spending: BankAmericard launched in 1958, Barclaycard in 1966.</p><div class="meter"><span></span></div></div>
-    <div class="chartcard">
-      <h3>US homes with a television</h3>
-      <div class="cap">From 9 percent to 87 percent in a single decade.</div>
-      <div class="chartwrap"><canvas id="tvChart" role="img" aria-label="Line chart showing US television ownership rising from 9 percent in 1950 to 87 percent in 1960."></canvas></div>
-      <div class="src">US TV household penetration, 1950 to 1960.</div>
+<main class="modules">
+
+  <!-- MODULE 1 -->
+  <section class="module reveal" id="module1">
+    <div class="kicker">The universal catechist</div>
+    <h2>A single decade rewired the home</h2>
+    <p class="intro">Slide through the 1950s. The television arrived in the living room faster than almost any technology before it, and the credit card followed close behind. Drag the slider to watch the home rewire itself.</p>
+    <div class="card">
+      <div class="m1-wrap">
+        <div class="m1-live">
+          <span class="m1-year" id="m1Year">1950</span>
+          <span class="m1-pct"><span id="m1Pct">9</span><span class="small">%</span></span>
+          <span class="m1-pcttext">of US households own a television</span>
+        </div>
+        <div class="m1-bararea">
+          <div class="m1-barbox"><div class="m1-barfill" id="m1Fill" style="height:9%"></div></div>
+          <div class="m1-track-wrap">
+            <div class="m1-track-label">Drag to scrub from 1950 to 1960</div>
+            <input type="range" class="m1-range" id="m1Range" min="1950" max="1960" step="1" value="1950"
+              aria-label="Year from 1950 to 1960" aria-valuetext="1950, 9 percent of US households own a television">
+            <div class="m1-markers" id="m1Markers"></div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">US TV household penetration, 1950 to 1960. Endpoints shown: 9 percent in 1950, 87 percent in 1960. Intermediate years interpolated for the scrub.</div>
     </div>
-  </div></section>
+  </section>
 
-  <section class="sec"><div class="wrap">
-    <div class="beat"><div class="tagword">1945</div><div class="biglab">the break point</div><h2>The life cycle broke</h2><p>For generations, people drifted from church as young adults and returned with age. Every birth cohort after 1945 broke that pattern. The Silent Generation climbed to 47 percent weekly attendance. Every cohort since starts lower and stays flatter.</p><div class="meter"><span></span></div></div>
-    <div class="chartcard">
-      <h3>Peak weekly church attendance, by generation</h3>
-      <div class="cap">The old pattern of returning with age stopped after the Silent Generation.</div>
-      <div class="chartwrap"><canvas id="genChart" role="img" aria-label="Bar chart of peak weekly church attendance by generation: Silent 47 percent, Boomer 31 percent, Gen X 25 percent, Millennial about 20 percent."></canvas></div>
-      <div class="src">Approximate, General Social Survey (analysis by Ryan Burge). Millennials still declining.</div>
+  <!-- MODULE 2 -->
+  <section class="module reveal" id="module2">
+    <div class="kicker">The break point</div>
+    <h2>The life cycle broke after 1945</h2>
+    <p class="intro">For generations, people drifted from church when young and returned with age. Hover or tap each generation to read the note. After the Silent Generation, the old pattern of returning stopped.</p>
+    <div class="card">
+      <div id="m2Chart"></div>
+      <div class="m2-note" id="m2Note"><strong>Hover or tap a point.</strong> Each generation marks its approximate peak weekly church attendance.</div>
+      <div class="caption">Approximate, General Social Survey, analysis by Ryan Burge. The old pattern of returning with age stopped after the Silent Generation. The Silent figure is the stated 47 percent; later cohorts shown as an approximate downward trend.</div>
     </div>
-  </div></section>
+  </section>
 
-  <section class="sec"><div class="wrap"><div class="beat"><div class="tagword">Consume</div><h2>From creators to consumers</h2><p>We changed the verb of Christianity from create to consume. The church became a product you attend instead of a vocation you inhabit. You can hear it in the line, "I am just not getting fed."</p><div class="meter"><span></span></div></div></div></section>
+  <!-- MODULE 3 -->
+  <section class="module reveal" id="module3">
+    <div class="kicker">From creators to consumers</div>
+    <h2>We changed the verb</h2>
+    <p class="intro">One word decides whether faith is something you build or something you attend. Toggle between the two and watch the posture shift.</p>
+    <div class="card">
+      <div class="m3-toggle" role="tablist" aria-label="Create or consume">
+        <button class="m3-btn active" id="m3Create" role="tab" aria-selected="true">Create (a vocation you inhabit)</button>
+        <button class="m3-btn" id="m3Consume" role="tab" aria-selected="false">Consume (a product you attend)</button>
+      </div>
+      <div class="m3-panel" id="m3Panel">
+        <h3 id="m3Title">Create: a vocation you inhabit</h3>
+        <p id="m3Body">Faith as a craft. You show up to make something, to serve, to build a people. Belonging is produced by what you give, so absence is felt by the whole body. The question is what can I offer here.</p>
+        <p class="quoteline" id="m3Quote">A maker rarely asks to be entertained.</p>
+      </div>
+    </div>
+  </section>
 
-  <section class="sec"><div class="wrap"><div class="beat"><div class="big" data-count="5.1" data-suffix="%" data-dec="1">0</div><div class="biglab">leave the field each year</div><h2>Why missionaries quit</h2><p>It is neurological, not only spiritual. The dopamine loop craves novelty; missions is slow and un-novel. Liquid modernity makes commitment feel like a burden, and the paradox of choice makes closing doors terrifying. Of those who leave, 71 percent go for preventable reasons.</p><div class="meter"><span></span></div></div></div></section>
+  <!-- MODULE 4 -->
+  <section class="module reveal" id="module4">
+    <div class="kicker">The Global South inversion</div>
+    <h2>Africa did not catch the disease</h2>
+    <p class="intro">While the comparison engine saturated the West, the church in Africa grew on a different curve. Scroll this into view and watch it climb.</p>
+    <div class="card">
+      <div class="m4-live"><span id="m4Num">0</span><span class="unit">million Christians in Africa</span></div>
+      <div class="m4-sub">From under 10 million in 1900 to 734 million today.</div>
+      <div id="m4Chart"></div>
+      <div class="m4-endpoints"><span>1900: under 10 million</span><span>Today: 734 million</span></div>
+      <div class="m4-note">Not because poverty is virtuous, but because the comparison engine had not yet saturated. They still know how to stay.</div>
+    </div>
+  </section>
 
-  <section class="sec"><div class="wrap"><div class="beat"><div class="big" data-count="734" data-suffix="M">0</div><div class="biglab">Christians in Africa today, from under 10M in 1900</div><h2>The Global South inversion</h2><p>Africa went from under 10 million Christians in 1900 to 734 million today. Not because poverty is virtuous, but because the comparison engine had not yet saturated. They still know how to stay.</p><div class="meter"><span></span></div></div></div></section>
+  <!-- MODULE 5 -->
+  <section class="module reveal" id="module5">
+    <div class="kicker">Why missionaries quit</div>
+    <h2>Most of it was preventable</h2>
+    <p class="intro">When senders count the cost, they often picture danger and hardship. The data points somewhere quieter. Click or hover the ring to read why.</p>
+    <div class="card">
+      <div class="m5-wrap">
+        <div class="m5-ringbox">
+          <div id="m5Ring" class="m5-ringgroup" role="button" tabindex="0"
+            aria-label="71 percent of missionaries leave for preventable reasons. Activate to reveal a note."></div>
+          <div class="m5-center">
+            <div class="m5-pct"><span id="m5Pct">0</span>%</div>
+            <div class="m5-cap">leave for preventable reasons</div>
+          </div>
+        </div>
+        <div class="m5-side">
+          <h3>The slow, un-novel work</h3>
+          <p style="margin:0;color:var(--mute);">Roughly seven in ten departures trace back to causes a sender could have addressed before deploying anyone.</p>
+          <div class="m5-reveal" id="m5Reveal">It is neurological, not only spiritual: the dopamine loop craves novelty, and missions is slow and un-novel.</div>
+          <div class="m5-hint">Click, tap, or press Enter on the ring.</div>
+        </div>
+      </div>
+      <div class="caption">Ring fills to the stated figure: 71 percent leave for preventable reasons.</div>
+    </div>
+  </section>
 
-  <section class="sec"><div class="wrap"><div class="beat"><div class="big" data-count="104215" data-prefix="$" data-sep="1">0</div><div class="biglab">average American debt</div><h2>Sending shackled soldiers</h2><p>We are imprisoned before we ever hear the call, and we risk exporting the very disease that killed us. The fix: build, do not attend; run a dopamine audit; screen senders for identity stability before deployment.</p><div class="meter"><span></span></div></div></div></section>
 </main>
 
-<section class="quote"><div class="wrap">
-  <p>&ldquo;You cannot serve both the Gospel of Christ and the Gospel of Consumption.&rdquo;</p>
-  <p>&ldquo;We are sending soldiers into battle who are already shackled.&rdquo;</p>
-</div></section>
-
-<section class="closing"><div class="wrap">
-  <h2>The unreached hearts may be the senders'.</h2>
-  <div class="links">
-    <span class="lab">Read the full essays</span>
-    <a class="essay" href="https://clarity4thenations.substack.com/p/the-gospel-of-consumption">The Gospel of Consumption, Part 1 &#8594;</a>
-    <a class="essay" href="https://clarity4thenations.substack.com/p/the-gospel-of-consumption-part-2">The Gospel of Consumption, Part 2 &#8594;</a>
+<section class="closing">
+  <div class="closing-inner">
+    <div class="kicker2">The takeaway</div>
+    <h2>Build, do not attend. Run a dopamine audit. Screen senders for identity before you deploy them.</h2>
+    <a class="btn-essay" href="https://clarity4thenations.substack.com/p/the-gospel-of-consumption" target="_blank" rel="noopener">Read the full essay</a>
   </div>
-</div></section>
+</section>
 
-<footer>Adapted from <a href="https://clarity4thenations.substack.com">Clarity for the Nations</a> by Bud Houston &middot; <a href="index.html">Back to all pieces</a></footer>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="nav-links" style="gap:24px;">
+      <a href="index.html">Home</a>
+      <a href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Substack</a>
+    </div>
+    <div class="copy">Clarity for the Nations, Church and Culture</div>
+  </div>
+</footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-  const prog=document.getElementById('progress');
-  addEventListener('scroll',()=>{const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';});
-  function countUp(el){
-    const to=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',sep=el.dataset.sep==='1';
-    const t0=performance.now(),dur=1500;
-    function fmt(v){let s=dec>0?v.toFixed(dec):(sep?Math.round(v).toLocaleString('en-US'):String(Math.round(v)));return pre+s+suf;}
-    function tick(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fmt(to*e);if(k<1)requestAnimationFrame(tick);else el.textContent=fmt(to);}
-    requestAnimationFrame(tick);
+(function(){
+  "use strict";
+
+  var SVGNS = "http://www.w3.org/2000/svg";
+
+  // createElementNS helper
+  function el(tag, attrs, parent){
+    var node = document.createElementNS(SVGNS, tag);
+    if(attrs){
+      for(var k in attrs){
+        if(attrs.hasOwnProperty(k)) node.setAttribute(k, attrs[k]);
+      }
+    }
+    if(parent) parent.appendChild(node);
+    return node;
   }
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('[data-count]').forEach(countUp);io.unobserve(e.target);}});},{threshold:.3});
-  document.querySelectorAll('.beat').forEach(b=>io.observe(b));
-  document.querySelectorAll('.hero [data-count]').forEach(countUp);
-  let tvDone=false,genDone=false;
-  const cObs=new IntersectionObserver((es)=>{es.forEach(e=>{
-    if(!e.isIntersecting)return;
-    if(e.target.id==='tvChart'&&!tvDone){tvDone=true;new Chart(e.target,{type:'line',data:{labels:['1950','1952','1954','1956','1958','1960'],datasets:[{label:'US homes with a TV (%)',data:[9,30,52,72,83,87],borderColor:'#9A3B2E',backgroundColor:'rgba(154,59,46,.12)',fill:true,tension:.35,pointRadius:4,pointBackgroundColor:'#9A3B2E',borderWidth:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{callback:v=>v+'%'}}}}});}
-    if(e.target.id==='genChart'&&!genDone){genDone=true;new Chart(e.target,{type:'bar',data:{labels:['Silent','Boomer','Gen X','Millennial'],datasets:[{label:'Peak weekly attendance (%)',data:[47,31,25,20],backgroundColor:['#9A3B2E','#b15a48','#c98072','#e0a89d']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:60,ticks:{callback:v=>v+'%'}}}}});}
-  });},{threshold:.4});
-  cObs.observe(document.getElementById('tvChart'));
-  cObs.observe(document.getElementById('genChart'));
+
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+  /* ---------- scroll progress ---------- */
+  var progressFill = document.getElementById("progressFill");
+  function onScroll(){
+    var h = document.documentElement;
+    var scrolled = h.scrollTop || document.body.scrollTop;
+    var max = (h.scrollHeight - h.clientHeight) || 1;
+    progressFill.style.width = (scrolled / max * 100) + "%";
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* ---------- count-up (hero chips) ---------- */
+  function countUp(node, target, dur){
+    var start = null;
+    function step(ts){
+      if(start === null) start = ts;
+      var t = Math.min((ts - start) / dur, 1);
+      var val = Math.round(easeOutCubic(t) * target);
+      node.textContent = val;
+      if(t < 1) requestAnimationFrame(step);
+      else node.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+  var chipsAnimated = false;
+  function maybeCountChips(){
+    if(chipsAnimated) return;
+    var hero = document.querySelector(".hero");
+    var rect = hero.getBoundingClientRect();
+    if(rect.top < window.innerHeight && rect.bottom > 0){
+      chipsAnimated = true;
+      var nodes = document.querySelectorAll(".cu");
+      for(var i=0;i<nodes.length;i++){
+        (function(n){
+          countUp(n, parseInt(n.getAttribute("data-target"),10), 1500);
+        })(nodes[i]);
+      }
+    }
+  }
+  maybeCountChips();
+  window.addEventListener("scroll", maybeCountChips, {passive:true});
+
+  /* ---------- IntersectionObserver reveal ---------- */
+  var io = null;
+  if("IntersectionObserver" in window){
+    io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add("in");
+          if(e.target.id === "module4") spawnGrowth();
+          if(e.target.id === "module5") spawnRing();
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.18});
+    var reveals = document.querySelectorAll(".reveal");
+    for(var r=0;r<reveals.length;r++) io.observe(reveals[r]);
+  } else {
+    var all = document.querySelectorAll(".reveal");
+    for(var a=0;a<all.length;a++) all[a].classList.add("in");
+    spawnGrowth(); spawnRing();
+  }
+
+  /* ============ MODULE 1: slider scrub ============ */
+  (function(){
+    var range = document.getElementById("m1Range");
+    var yearEl = document.getElementById("m1Year");
+    var pctEl = document.getElementById("m1Pct");
+    var fill = document.getElementById("m1Fill");
+    var markersWrap = document.getElementById("m1Markers");
+
+    // endpoints: 1950 = 9, 1960 = 87. Linear interpolation across years.
+    function pctForYear(y){
+      var t = (y - 1950) / 10;
+      return Math.round(9 + t * (87 - 9));
+    }
+
+    function pctPosForYear(y){
+      return ((y - 1950) / 10) * 100;
+    }
+
+    // fixed markers on the track
+    var markerData = [
+      {year:1958, label:"BankAmericard 1958"},
+      {year:1960, label:"Barclaycard 1966"} // Barclaycard sits beyond the track; pin at far right with year noted
+    ];
+    // Barclaycard 1966 is past 1960; place its marker near the end and let the label carry the year.
+    var markerPositions = [
+      {pos: pctPosForYear(1958), label:"BankAmericard 1958"},
+      {pos: 100, label:"Barclaycard 1966"}
+    ];
+    markerPositions.forEach(function(m){
+      var d = document.createElement("div");
+      d.className = "m1-marker";
+      d.style.left = m.pos + "%";
+      d.innerHTML = '<div class="dot"></div><div class="txt">'+m.label+'</div>';
+      markersWrap.appendChild(d);
+    });
+
+    function update(){
+      var y = parseInt(range.value, 10);
+      var p = pctForYear(y);
+      yearEl.textContent = y;
+      pctEl.textContent = p;
+      fill.style.height = p + "%";
+      range.setAttribute("aria-valuetext", y + ", " + p + " percent of US households own a television");
+    }
+    range.addEventListener("input", update);
+    range.addEventListener("change", update);
+    update();
+  })();
+
+  /* ============ MODULE 2: hover trend SVG ============ */
+  (function(){
+    var host = document.getElementById("m2Chart");
+    var noteEl = document.getElementById("m2Note");
+
+    var W = 640, H = 320, padL = 56, padR = 28, padT = 26, padB = 58;
+
+    // Silent = stated 47%. Later cohorts: approximate downward, flatter.
+    var pts = [
+      {gen:"Silent",     val:47, note:"<strong>Silent Generation: 47 percent.</strong> The stated peak weekly attendance. This cohort still returned to church as it aged."},
+      {gen:"Boomer",     val:34, note:"<strong>Boomer (approximate, lower).</strong> The return-with-age pattern weakens. Trend shown as approximate."},
+      {gen:"Gen X",      val:26, note:"<strong>Gen X (approximate, lower and flatter).</strong> Less drift back to church with age. Trend shown as approximate."},
+      {gen:"Millennial", val:21, note:"<strong>Millennial (approximate, lowest and flattest).</strong> The old life cycle no longer pulls people back. Trend shown as approximate."}
+    ];
+
+    var maxY = 50;
+    function xFor(i){ return padL + (i/(pts.length-1)) * (W - padL - padR); }
+    function yFor(v){ return padT + (1 - v/maxY) * (H - padT - padB); }
+
+    var svg = el("svg", {viewBox:"0 0 "+W+" "+H, width:"100%", role:"img",
+      "aria-label":"Approximate peak weekly church attendance by generation, declining and flattening after the Silent Generation"}, host);
+
+    // gridlines + y labels
+    var ticks = [0,10,20,30,40,50];
+    ticks.forEach(function(t){
+      var y = yFor(t);
+      el("line", {x1:padL, y1:y, x2:W-padR, y2:y, stroke:"rgba(28,26,23,0.08)", "stroke-width":1}, svg);
+      var lab = el("text", {x:padL-10, y:y+4, "text-anchor":"end", "font-size":12, fill:"#6E665B", "font-family":"Inter,sans-serif"}, svg);
+      lab.textContent = t + "%";
+    });
+
+    // stair / line path
+    var dPath = "";
+    pts.forEach(function(p,i){
+      var x = xFor(i), y = yFor(p.val);
+      dPath += (i===0 ? "M" : "L") + x + " " + y + " ";
+    });
+    el("path", {d:dPath, fill:"none", stroke:"#9A3B2E", "stroke-width":3, "stroke-linejoin":"round", "stroke-linecap":"round"}, svg);
+
+    // x labels + points + hit areas
+    pts.forEach(function(p,i){
+      var x = xFor(i), y = yFor(p.val);
+      var xlab = el("text", {x:x, y:H-padB+24, "text-anchor":"middle", "font-size":13, fill:"#1C1A17", "font-family":"Inter,sans-serif", "font-weight":600}, svg);
+      xlab.textContent = p.gen;
+      var vlab = el("text", {x:x, y:y-14, "text-anchor":"middle", "font-size":12, fill:"#6E665B", "font-family":"Inter,sans-serif"}, svg);
+      vlab.textContent = (i===0? "47%" : "~"+p.val+"%");
+
+      var circle = el("circle", {cx:x, cy:y, r:7, fill:"#9A3B2E", stroke:"#fff", "stroke-width":2, "class":"m2-pt"}, svg);
+      // larger invisible hit target for touch
+      var hit = el("circle", {cx:x, cy:y, r:24, fill:"transparent", "class":"m2-hit", tabindex:"0",
+        role:"button", "aria-label":p.gen + " generation, " + (i===0?"47 percent":"approximately "+p.val+" percent")}, svg);
+
+      function show(){
+        noteEl.innerHTML = p.note;
+        circle.setAttribute("r", 10);
+      }
+      function hide(){ circle.setAttribute("r", 7); }
+      hit.addEventListener("mouseenter", show);
+      hit.addEventListener("mouseleave", hide);
+      hit.addEventListener("focus", show);
+      hit.addEventListener("blur", hide);
+      hit.addEventListener("click", show);
+      hit.addEventListener("touchstart", function(ev){ ev.preventDefault(); show(); }, {passive:false});
+      hit.addEventListener("keydown", function(ev){ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); show(); } });
+    });
+  })();
+
+  /* ============ MODULE 3: toggle compare ============ */
+  (function(){
+    var btnCreate = document.getElementById("m3Create");
+    var btnConsume = document.getElementById("m3Consume");
+    var titleEl = document.getElementById("m3Title");
+    var bodyEl = document.getElementById("m3Body");
+    var quoteEl = document.getElementById("m3Quote");
+    var panel = document.getElementById("m3Panel");
+
+    var data = {
+      create:{
+        title:"Create: a vocation you inhabit",
+        body:"Faith as a craft. You show up to make something, to serve, to build a people. Belonging is produced by what you give, so absence is felt by the whole body. The question is what can I offer here.",
+        quote:"A maker rarely asks to be entertained."
+      },
+      consume:{
+        title:"Consume: a product you attend",
+        body:"Faith as a service to receive. You show up to be served, and you grade the experience. Belonging is conditional on the quality, so when the product disappoints, you shop elsewhere or stay home.",
+        quote:'You can hear it in "I am just not getting fed."'
+      }
+    };
+
+    function set(mode){
+      var d = data[mode];
+      panel.style.opacity = 0;
+      setTimeout(function(){
+        titleEl.textContent = d.title;
+        bodyEl.textContent = d.body;
+        quoteEl.textContent = d.quote;
+        panel.style.opacity = 1;
+      }, 160);
+      var isCreate = mode === "create";
+      btnCreate.classList.toggle("active", isCreate);
+      btnConsume.classList.toggle("active", !isCreate);
+      btnCreate.setAttribute("aria-selected", isCreate ? "true":"false");
+      btnConsume.setAttribute("aria-selected", !isCreate ? "true":"false");
+    }
+    btnCreate.addEventListener("click", function(){ set("create"); });
+    btnConsume.addEventListener("click", function(){ set("consume"); });
+  })();
+
+  /* ============ MODULE 4: animated growth ============ */
+  var growthSpawned = false;
+  function spawnGrowth(){
+    if(growthSpawned) return;
+    growthSpawned = true;
+
+    var host = document.getElementById("m4Chart");
+    var numEl = document.getElementById("m4Num");
+    var W = 640, H = 220, padL = 40, padR = 24, padT = 18, padB = 36;
+
+    var svg = el("svg", {viewBox:"0 0 "+W+" "+H, width:"100%", role:"img",
+      "aria-label":"Christians in Africa growing from under 10 million in 1900 to 734 million today"}, host);
+
+    // baseline
+    el("line", {x1:padL, y1:H-padB, x2:W-padR, y2:H-padB, stroke:"rgba(28,26,23,0.12)", "stroke-width":1}, svg);
+
+    var startVal = 10, endVal = 734, maxY = 760;
+    function yFor(v){ return padT + (1 - v/maxY) * (H - padT - padB); }
+
+    var x0 = padL + 70;
+    var x1 = W - padR - 70;
+
+    // growing area path under a curve from start to end
+    var area = el("path", {fill:"rgba(47,107,79,0.18)", stroke:"none"}, svg);
+    var line = el("path", {fill:"none", stroke:"#2F6B4F", "stroke-width":3, "stroke-linecap":"round"}, svg);
+    var headDot = el("circle", {r:6, fill:"#2F6B4F", stroke:"#fff", "stroke-width":2, cx:x0, cy:yFor(startVal)}, svg);
+
+    function buildPath(progress){
+      // ease the value upward; curve x linearly across the span
+      var pts = [], steps = 40;
+      for(var i=0;i<=steps;i++){
+        var f = i/steps;
+        if(f > progress){ break; }
+        var x = x0 + f * (x1 - x0);
+        // value follows an accelerating curve (most growth in the 20th century tail)
+        var v = startVal + (endVal - startVal) * Math.pow(f, 1.8);
+        pts.push([x, yFor(v)]);
+      }
+      if(pts.length < 2) pts.push([x0, yFor(startVal)]);
+      var lp = "M" + pts[0][0] + " " + pts[0][1];
+      for(var j=1;j<pts.length;j++) lp += " L" + pts[j][0] + " " + pts[j][1];
+      var last = pts[pts.length-1];
+      var ap = lp + " L" + last[0] + " " + (H-padB) + " L" + pts[0][0] + " " + (H-padB) + " Z";
+      return {line:lp, area:ap, head:last};
+    }
+
+    var dur = 1800, start = null;
+    function step(ts){
+      if(start === null) start = ts;
+      var t = Math.min((ts - start)/dur, 1);
+      var e = easeOutCubic(t);
+      var paths = buildPath(e);
+      line.setAttribute("d", paths.line);
+      area.setAttribute("d", paths.area);
+      headDot.setAttribute("cx", paths.head[0]);
+      headDot.setAttribute("cy", paths.head[1]);
+      var v = Math.round(startVal + (endVal - startVal) * Math.pow(e, 1.8));
+      numEl.textContent = v;
+      if(t < 1) requestAnimationFrame(step);
+      else { numEl.textContent = endVal; }
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ============ MODULE 5: ring / donut ============ */
+  var ringSpawned = false;
+  function spawnRing(){
+    if(ringSpawned) return;
+    ringSpawned = true;
+
+    var host = document.getElementById("m5Ring");
+    var pctEl = document.getElementById("m5Pct");
+    var revealEl = document.getElementById("m5Reveal");
+
+    var size = 240, stroke = 22, r = (size - stroke)/2, cx = size/2, cy = size/2;
+    var circ = 2 * Math.PI * r;
+    var target = 71;
+
+    var svg = el("svg", {viewBox:"0 0 "+size+" "+size, width:"100%"}, host);
+    // track
+    el("circle", {cx:cx, cy:cy, r:r, fill:"none", stroke:"rgba(28,26,23,0.10)", "stroke-width":stroke}, svg);
+    // progress
+    var prog = el("circle", {cx:cx, cy:cy, r:r, fill:"none", stroke:"#9A3B2E",
+      "stroke-width":stroke, "stroke-linecap":"round",
+      "stroke-dasharray":circ, "stroke-dashoffset":circ,
+      transform:"rotate(-90 "+cx+" "+cy+")"}, svg);
+
+    var dur = 1700, start = null;
+    function step(ts){
+      if(start === null) start = ts;
+      var t = Math.min((ts - start)/dur, 1);
+      var e = easeOutCubic(t);
+      var val = e * target;
+      prog.setAttribute("stroke-dashoffset", circ * (1 - val/100));
+      pctEl.textContent = Math.round(val);
+      if(t < 1) requestAnimationFrame(step);
+      else pctEl.textContent = target;
+    }
+    requestAnimationFrame(step);
+
+    function toggleReveal(){ revealEl.classList.add("show"); }
+    host.addEventListener("click", toggleReveal);
+    host.addEventListener("mouseenter", toggleReveal);
+    host.addEventListener("keydown", function(ev){
+      if(ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); toggleReveal(); }
+    });
+  }
+
+})();
 </script>
 </body>
 </html>
