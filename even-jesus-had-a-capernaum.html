@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Even Jesus Had a Capernaum &middot; Clarity for the Nations</title>
+<meta name="description" content="Why Jesus stayed in Capernaum, and what it means for working in post-Christian cities today. An interactive scroll from Clarity for the Nations by Bud Houston.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+  --accent:#C05A2E;--deep:#7C3318;
+  --line:rgba(28,26,23,.12);
+  --darkbg:#241610;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--accent),var(--deep));z-index:60;transition:width .08s linear}
+
+/* nav */
+.topnav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.4rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+
+/* hero */
+header.hero{position:relative;background:var(--darkbg);color:#F6F1EC;overflow:hidden;padding:13vh 0 10vh}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.10}
+header.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(72% 58% at 50% 0%,rgba(192,90,46,.34),transparent 64%),linear-gradient(180deg,rgba(36,22,16,.05),var(--darkbg) 92%)}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:1.4rem}
+.hero .eyebrow{color:#E89A6E}
+.hook{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.05;letter-spacing:-.01em;max-width:18ch;margin:0 0 2.6rem}
+.chips{display:flex;flex-wrap:wrap;gap:14px}
+.chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.20);border-radius:14px;padding:1.1rem 1.3rem;min-width:150px;flex:1 1 150px;max-width:240px}
+.chip .num{font-family:'Fraunces',serif;font-weight:900;font-size:2.5rem;line-height:1;color:#E89A6E;display:block}
+.chip .lab{display:block;margin-top:.55rem;font-size:.86rem;color:rgba(246,241,236,.78);line-height:1.35}
+
+/* lede */
+.lede{padding:8vh 0 2vh}
+.lede p{font-size:1.22rem;line-height:1.7;color:#33302a;max-width:62ch}
+.lede p+p{margin-top:1.2rem}
+
+/* beats */
+.beats{padding:4vh 0 2vh}
+.beat{padding:6.5vh 0;border-top:1px solid var(--line)}
+.beat:first-child{border-top:none}
+.beat .top{font-family:'Fraunces',serif;font-weight:900;line-height:.95;color:var(--accent);opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.beat .top.num{font-size:clamp(3.4rem,12vw,6rem)}
+.beat .top.word{font-size:clamp(2.2rem,7vw,3.4rem);letter-spacing:-.01em}
+.beat h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.8vw,2.1rem);line-height:1.12;margin:.7rem 0 .9rem;max-width:24ch;opacity:0;transform:translateY(18px);transition:opacity .7s ease .08s,transform .7s ease .08s}
+.beat p{font-size:1.08rem;color:#3a352e;max-width:60ch;opacity:0;transform:translateY(18px);transition:opacity .7s ease .16s,transform .7s ease .16s}
+.beat .meter{margin-top:1.7rem;height:8px;border-radius:6px;background:rgba(28,26,23,.10);overflow:hidden;max-width:520px}
+.beat .meter span{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--deep));transition:width 1.3s cubic-bezier(.22,.61,.36,1)}
+.beat.show .top,.beat.show h2,.beat.show p{opacity:1;transform:none}
+
+/* chart card */
+.chartsec{padding:5vh 0}
+.chartcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.9rem 1.7rem 2rem;box-shadow:0 10px 34px rgba(0,0,0,.06)}
+.chartcard .ceyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.5rem}
+.chartcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.4rem;line-height:1.15;margin-bottom:.4rem}
+.chartcard .csub{color:var(--mute);font-size:.96rem;margin-bottom:1.4rem;max-width:56ch}
+.chartwrap{position:relative;height:320px;width:100%}
+.chartcard .cnote{margin-top:1rem;font-size:.82rem;color:var(--mute)}
+
+/* quote band */
+.quoteband{background:var(--accent);color:#FBF3EC;padding:9vh 0}
+.quoteband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.6rem,4.4vw,2.6rem);line-height:1.18;max-width:22ch}
+.quoteband .q+.q{margin-top:2.4rem;padding-top:2.4rem;border-top:1px solid rgba(255,255,255,.28)}
+.quoteband .mk{font-size:2.6rem;line-height:.3;opacity:.55;display:block;margin-bottom:.4rem}
+
+/* closing */
+.closing{background:var(--ink);color:#F6F1EC;padding:11vh 0;text-align:center}
+.closing .eyebrow{color:#E89A6E;margin-bottom:1.2rem}
+.closing h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.8rem,4.8vw,2.8rem);line-height:1.16;max-width:20ch;margin:0 auto 2.2rem}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Bible &amp; Strategy</div>
+<h1 class="hook">The most resourced field was the least responsive.</h1>
+<div class="chips">
+<div class="chip"><span class="num" data-target="170" data-suffix="">0</span><span class="lab">towns and villages Jesus reached across Galilee</span></div>
+<div class="chip"><span class="num" data-target="3" data-suffix="">0</span><span class="lab">operational base cities that drew the Woe</span></div>
+<div class="chip"><span class="num" data-target="72" data-suffix="">0</span><span class="lab">disciples deployed outward to the frontier</span></div>
+</div>
+</div>
+</header>
+
+<section class="lede">
+<div class="wrap">
+<p>Capernaum saw more miracles than any city in the ancient world. Chorazin and Bethsaida watched Jesus heal, teach, and feed crowds for three years. These were his primary operational bases. Yet in Luke 10, Jesus pronounces a Woe on all three.</p>
+<p>What do we do when the primary node, the field that receives the most ministry attention, simply does not respond? The modern post-Christian Western city is a Capernaum problem. The strategic moves Jesus made in response shape exactly how we should think about ours.</p>
+</div>
+</section>
+
+<section class="beats">
+<div class="wrap">
+
+<div class="beat" data-fill="92">
+<div class="top num" data-target="3" data-suffix="">0</div>
+<h2>The Woe Fell on the Most-Resourced Field</h2>
+<p>Eckhard Schnabel estimates Jesus covered roughly 170 towns in Galilee, but Capernaum, Chorazin, and Bethsaida saw him most often. Despite extraordinary access, the cities themselves did not repent. The condemnation in Luke 10:13-15 is among the sharpest in the Gospels.</p>
+<div class="meter"><span></span></div>
+</div>
+
+<div class="beat" data-fill="78">
+<div class="top word">Familiar.</div>
+<h2>Not Hostile. Familiar.</h2>
+<p>These cities were not Pharisaic in their opposition. They were something more dangerous than hostility. Familiarity bred complacency. The miracles became entertainment, the teaching local color, the Messiah just the carpenter who did remarkable things. They treated the most significant ministry in history as ambient noise.</p>
+<div class="meter"><span></span></div>
+</div>
+
+<div class="beat" data-fill="70">
+<div class="top word">Noise.</div>
+<h2>The Modern Capernaum</h2>
+<p>London. Vienna. Boston. Paris. Cities where the gospel has been present for centuries, where cathedrals hold prime real estate and Scripture shaped the language. The faith that built the city has become a museum the city visits on holidays. The gospel has become noise: familiar, but not formational.</p>
+<div class="meter"><span></span></div>
+</div>
+
+<div class="beat" data-fill="100">
+<div class="top num" data-target="72" data-suffix="">0</div>
+<h2>What Jesus Was Actually Doing</h2>
+<p>He was not trying to convert Capernaum and failing. He was finding, forming, and deploying the people who would carry the gospel everywhere else. Peter, Andrew, James, John, and Matthew all came from these towns. The Twelve were sent in pairs (Mark 6:7) and the seventy-two were sent out (Luke 10:1), from this very base.</p>
+<div class="meter"><span></span></div>
+</div>
+
+<div class="beat" data-fill="64">
+<div class="top word">Stay.</div>
+<h2>Two Different Kinds of Staying</h2>
+<p>Last week's argument warned against staying past the threshold, propping up a field that has already reached local reproduction. This is different. Here the node never reached corporate response, yet it still produces apostolic individuals. The question is not whether to exit the city. The question is what to do while you stay.</p>
+<div class="meter"><span></span></div>
+</div>
+
+<div class="beat" data-fill="88">
+<div class="top word">Frontier.</div>
+<h2>Tyre and Sidon Are Waiting</h2>
+<p>Jesus sent the few outward, never back into the saturated field. The modern Tyre and Sidon is the global unreached frontier, and diaspora communities are the bridge. The Persian house church in Berlin links to Iran. The Afghan community in Frankfurt links to Central Asia. The Somali population in Minneapolis links to the Horn of Africa. The Bangladeshi diaspora in London links to one of the most unreached peoples on earth.</p>
+<div class="meter"><span></span></div>
+</div>
+
+<div class="beat" data-fill="80">
+<div class="top num" data-target="4" data-suffix="">0</div>
+<h2>The Capernaum Audit for Your Team</h2>
+<p>Ask four questions this week. The Metric Shift: are we measuring the city's revival, or the remnant it produces? The Retain vs. Deploy Trap: are we forming the few for deployment, or quietly keeping them to prop up local ministry? The Bridge Strategy: where are the bridges to the frontier? The Dual Posture: what is our exact plan to stay faithful here while deploying our best people elsewhere?</p>
+<div class="meter"><span></span></div>
+</div>
+
+</div>
+</section>
+
+<section class="chartsec">
+<div class="wrap">
+<div class="chartcard">
+<div class="ceyebrow">The Sending Waves</div>
+<h3>Deployment From the Base</h3>
+<p class="csub">Capernaum did not respond as a city, yet it functioned as a launch point. The two recorded sending waves both went outward from the operational base, not back into it.</p>
+<div class="chartwrap"><canvas id="sendChart"></canvas></div>
+<p class="cnote">Figures stated in the article: the Twelve (Mark 6:7) and the seventy-two (Luke 10:1).</p>
+</div>
+</div>
+</section>
+
+<section class="quoteband">
+<div class="wrap">
+<p class="q"><span class="mk">&ldquo;</span>The most resourced field was the least responsive.</p>
+<p class="q"><span class="mk">&ldquo;</span>The gospel has become noise. Familiar, but not formational.</p>
+</div>
+</section>
+
+<section class="closing">
+<div class="wrap">
+<div class="eyebrow">The Takeaway</div>
+<h2>Maintain the base. Find the remnant. Send them to the frontier.</h2>
+<a class="btn" href="https://clarity4thenations.substack.com/p/even-jesus-had-a-capernaum" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<a class="sub" href="index.html">Back to all essays &#8594;</a>
+</div>
+<div class="wrap" style="margin-top:1.2rem">
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read on Substack &#8594;</a>
+</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+/* scroll progress bar */
+const bar=document.getElementById('progress');
+function onScroll(){
+  const h=document.documentElement;
+  const max=h.scrollHeight-h.clientHeight;
+  const pct=max>0?(h.scrollTop||document.body.scrollTop)/max*100:0;
+  bar.style.width=pct+'%';
+}
+document.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+
+/* count-up helper */
+function countUp(el,target,dur,suffix){
+  const start=performance.now();
+  function step(now){
+    const t=Math.min((now-start)/dur,1);
+    const eased=1-Math.pow(1-t,3);
+    el.textContent=Math.round(eased*target)+(suffix||'');
+    if(t<1)requestAnimationFrame(step);
+    else el.textContent=target+(suffix||'');
+  }
+  requestAnimationFrame(step);
+}
+
+/* hero chips count up on load */
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.chip .num').forEach(el=>{
+    countUp(el,parseFloat(el.dataset.target),1400,el.dataset.suffix);
+  });
+});
+
+/* beats reveal + meter fill + number count-up */
+const beats=document.querySelectorAll('.beat');
+const bObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const beat=e.target;
+      beat.classList.add('show');
+      const span=beat.querySelector('.meter span');
+      if(span)span.style.width=(beat.dataset.fill||70)+'%';
+      const num=beat.querySelector('.top.num');
+      if(num&&!num.dataset.done){num.dataset.done='1';countUp(num,parseFloat(num.dataset.target),1200,num.dataset.suffix);}
+      bObs.unobserve(beat);
+    }
+  });
+},{threshold:.35});
+beats.forEach(b=>bObs.observe(b));
+
+/* chart on scroll-into-view */
+let chartMade=false;
+const chartEl=document.querySelector('.chartsec');
+const cObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&!chartMade&&window.Chart){
+      chartMade=true;
+      const ctx=document.getElementById('sendChart');
+      new Chart(ctx,{
+        type:'bar',
+        data:{
+          labels:['The Twelve (Mark 6:7)','The Seventy-two (Luke 10:1)'],
+          datasets:[{
+            label:'Disciples sent outward',
+            data:[12,72],
+            backgroundColor:['#E0986F','#C05A2E'],
+            borderColor:['#7C3318','#7C3318'],
+            borderWidth:1,
+            borderRadius:8,
+            maxBarThickness:120
+          }]
+        },
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.parsed.y+' sent'}}},
+          scales:{
+            y:{beginAtZero:true,ticks:{color:'#6E665B'},grid:{color:'rgba(28,26,23,.08)'},title:{display:true,text:'Number sent',color:'#6E665B'}},
+            x:{ticks:{color:'#1C1A17',font:{weight:'600'}},grid:{display:false}}
+          },
+          animation:{duration:1100}
+        }
+      });
+      cObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+if(chartEl)cObs.observe(chartEl);
+</script>
+</body>
+</html>
