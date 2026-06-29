@@ -19,9 +19,9 @@
   .wrap > .panel{order:2;}
   .wrap > .exportbar{order:3;}
   .wrap > .card{order:4;}
-  .wrap > .analysis{order:5;}
-  .wrap > details{order:6;}
-  .wrap > .sig{order:7;}
+  .wrap > .analysis{order:6;}
+  .wrap > details{order:7;}
+  .wrap > .sig{order:8;}
 
   .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);font-weight:700;margin:0 0 8px;}
   h1{font-family:var(--serif);font-weight:700;font-size:clamp(26px,5vw,40px);line-height:1.06;margin:0 0 6px;letter-spacing:-.01em;}
@@ -170,6 +170,24 @@
   .nav-dd.open .nav-ddmenu{display:flex}
   .nav-ddmenu a{padding:.6rem .8rem;border-radius:8px;font-size:.9rem;font-weight:600;color:var(--ink);text-decoration:none;opacity:1}
   .nav-ddmenu a:hover{background:var(--stone)}
+  .wrap > .mult-block{order:5;}
+  .mult-block{margin-top:24px;}
+  .mult-h{font-family:var(--serif);font-size:27px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
+  .mult .mult-rate{font-size:14px;color:var(--muted);margin:14px 0 0;}
+  .mult .mult-rate b{color:var(--navy);}
+  .mult-note{display:block;margin-top:8px;font-size:13px;color:var(--muted);}
+  .mcard{margin-top:18px;}
+  .mc-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 4px;}
+  .mc-col{background:var(--navy-soft);border-radius:12px;padding:16px;text-align:center;}
+  .mc-col2{background:var(--clay-soft);}
+  .mc-k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0;}
+  .mc-big{font-family:var(--serif);font-weight:700;font-size:clamp(34px,8vw,52px);line-height:1;margin:6px 0 0;color:var(--navy);font-variant-numeric:tabular-nums;}
+  .mc-col2 .mc-big{color:var(--clay);}
+  .mc-u{font-size:13px;color:var(--ink);margin:2px 0 0;font-weight:600;}
+  .mc-sm{font-size:12px;color:var(--muted);margin:6px 0 0;}
+  .mc-para{font-size:15px;line-height:1.55;color:var(--ink);margin:16px 0 0;}
+  .mc-export{margin-top:14px;}
+  @media(max-width:430px){.mc-two{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -205,6 +223,11 @@
     <div class="field">
       <label for="city">Metro area</label>
       <select id="city" aria-label="Metro area"></select>
+    </div>
+
+    <div class="field" id="cityNameField" style="display:none;">
+      <label for="cityName">City / place name</label>
+      <div class="ibox"><input id="cityName" value="" placeholder="e.g., Your City, ST" aria-label="City or place name"></div>
     </div>
 
     <div class="field">
@@ -378,6 +401,59 @@
     <button class="btn" id="reset">Reset to DFW defaults</button>
   </section>
 
+  <div class="mult-block">
+    <section class="panel mult">
+      <h2 class="mult-h">Second perspective: multiplication</h2>
+      <p class="hint">The same goal, reached not by addition but by disciples who make disciples.</p>
+
+      <div class="field">
+        <label for="mDisc">Disciples you are starting with</label>
+        <div class="ibox"><span>disciples</span><input id="mDisc" inputmode="numeric" value="100" aria-label="Starting disciples"></div>
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><span class="lwrap"><label for="mPct">Share who multiply</label></span><span class="slider-val"><span id="mPctV">50</span>%</span></div>
+        <p class="slider-note">Each generation, the share of disciples who go on to make new disciples.</p>
+        <input type="range" id="mPct" min="0" max="100" step="1" value="50">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><span class="lwrap"><label for="mEach">New disciples each multiplier makes</label></span><span class="slider-val"><span id="mEachV">3</span></span></div>
+        <p class="slider-note">Per generation. Growth per generation = 1 + share &times; new-each.</p>
+        <input type="range" id="mEach" min="1" max="10" step="1" value="3">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><span class="lwrap"><label for="mGen">Generation length</label></span><span class="slider-val"><span id="mGenV">1.0</span> yr</span></div>
+        <p class="slider-note">Time for one reproduction cycle.</p>
+        <input type="range" id="mGen" min="0.5" max="5" step="0.5" value="1">
+      </div>
+
+      <p class="mult-rate">Each generation multiplies the disciples by <b id="mFactor">2.5x</b>.<span class="mult-note" id="mClarify"></span></p>
+    </section>
+
+    <section class="card mcard size-fit" aria-live="polite">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <p class="card-eyebrow">Two ways to the same goal</p>
+        <h2 class="card-pg" id="mcPlace">Dallas-Fort Worth</h2>
+        <div class="mc-two">
+          <div class="mc-col"><p class="mc-k">Addition</p><p class="mc-big" id="mcAddDay">184</p><p class="mc-u">baptisms / day</p><p class="mc-sm">every day for <b id="mcAddYears">10</b> years</p></div>
+          <div class="mc-col mc-col2"><p class="mc-k">Multiplication</p><p class="mc-big" id="mcMultYears">11</p><p class="mc-u">years</p><p class="mc-sm">from <b id="mcD0">100</b> disciples at <b id="mcFactor2">2.5x</b> / yr</p></div>
+        </div>
+        <p class="mc-para" id="mcPara"></p>
+        <div class="card-foot"><span><b>4thenations.com</b></span><span id="mcGoalFoot">Goal</span></div>
+      </div>
+    </section>
+
+    <div class="exportbar mc-export">
+      <div class="dlrow">
+        <button class="dlbtn" id="mDownloadBtn">Download PNG</button>
+        <span class="dlhint">Saves the two-perspective card as an image.</span>
+      </div>
+    </div>
+  </div>
+
   <details>
     <summary>Assumptions, model notes, and sources</summary>
     <div class="notes">
@@ -447,7 +523,7 @@
   sel.value=slug('Dallas-Fort Worth, TX');
 
   function placeName(){
-    if(sel.value==='custom') return ($('pop')._customName||'Custom metro');
+    if(sel.value==='custom'){var n=$('cityName').value.trim();return n||'Your city';}
     var t=sel.options[sel.selectedIndex].textContent;
     return t.replace(/\s*\(.*\)$/,'');
   }
@@ -511,6 +587,47 @@
     else if(dis2) note='This metro is above 2% evangelical, so Reach 2% is off. Reach 10% and the increase goals remain.';
     else note='All four goals are available while the metro is below that level.';
     $('goalNote').textContent=note;
+  }
+
+  function renderMult(){
+    if(!document.getElementById('mDisc')) return;
+    $('mPctV').textContent=$('mPct').value;
+    $('mEachV').textContent=$('mEach').value;
+    $('mGenV').textContent=(+$('mGen').value).toFixed(1);
+    ['mPct','mEach','mGen'].forEach(function(id){var e=$(id);if(e&&e.type==='range')setFill(e);});
+    var D0=Math.max(1,num($('mDisc').value));
+    var m=+$('mPct').value/100, r=+$('mEach').value, L=Math.max(0.1,+$('mGen').value);
+    var factor=1+m*r, fTxt=(Math.round(factor*100)/100)+'x';
+    $('mFactor').textContent=fTxt; $('mcFactor2').textContent=fTxt;
+    var pop=num($('pop').value);
+    var b=+$('birthRate').value/1000, d=+$('deathRate').value/1000, mig=+$('netMig').value/1000;
+    var resBel=+$('resBel').value/100;
+    var g=b-d+mig, c=1+g;
+    var eT=(goal==='reach2')?0.02:(goal==='reach10')?0.10:(goal==='inc10')?(resBel+0.10):(resBel+0.02);
+    var goalShort=(goal==='reach2')?'reach 2% evangelical':(goal==='reach10')?'reach 10% evangelical':(goal==='inc10')?('add 10 points to '+(resBel*100).toFixed(1)+'%'):('add 2 points to '+(resBel*100).toFixed(1)+'%');
+    var K=eT*pop, aYr=Math.pow(factor,1/L);
+    var rc=reachCalc(); var addDay=Math.max(0,Math.round(rc.perDay));
+    var gw=(L===1)?'year':(L<1?(Math.round(L*12)+' months'):((Math.round(L*10)/10)+' years'));
+    var place=placeName();
+    $('mcPlace').textContent=place;
+    $('mcAddDay').textContent=fmt(addDay);
+    $('mcAddYears').textContent=years;
+    $('mcD0').textContent=fmt(D0);
+    $('mcGoalFoot').textContent='Goal: '+goalShort;
+    $('mClarify').textContent='Note: the '+$('perDay').textContent+' a day at the top is just to keep even. This is the pace to actually reach your goal.';
+    var never=false, solveT=0;
+    if(K<=D0){ solveT=0; }
+    else if(aYr<=c){ never=true; }
+    else { solveT=Math.log(K/D0)/Math.log(aYr/c); }
+    if(never){
+      $('mcMultYears').textContent='never';
+      $('mcPara').innerHTML='To '+goalShort+', addition asks for about <b>'+fmt(addDay)+'</b> baptisms a day, every day for <b>'+years+'</b> years. At these multiplication assumptions the disciples do not outpace population growth, so they never get there. Raise the share who multiply, the new-each, or shorten the generation.';
+    } else {
+      var yr=Math.max(0,solveT);
+      var yrTxt=(yr<10?(Math.round(yr*10)/10):Math.round(yr));
+      $('mcMultYears').textContent=yrTxt;
+      $('mcPara').innerHTML='Addition says we need about <b>'+fmt(addDay)+'</b> baptisms a day, every day for <b>'+years+'</b> years, to '+goalShort+'. But start with <b>'+fmt(D0)+'</b> disciples, train them so <b>'+$('mPct').value+'%</b> make disciples who each reproduce <b>'+$('mEach').value+'</b> more every '+gw+', and we reach the same goal in about <b>'+yrTxt+'</b> years. Which one seems more possible?';
+    }
   }
 
   function render(){
@@ -585,11 +702,14 @@
     $('rcReqBar').style.height=(perDay/top*100)+'%';
     $('rcActBar').style.height=(actual/top*100)+'%';
     $('gapX').textContent=gapTxt;
+    renderMult();
   }
 
   // events
   ids.forEach(function(id){$(id).addEventListener('input',render);});
-  $('pop').addEventListener('input',function(){ sel.value='custom'; render(); });
+  ['mDisc','mPct','mEach','mGen'].forEach(function(id){var e=$(id);if(e)e.addEventListener('input',render);});
+  $('cityName').addEventListener('input',render);
+  $('pop').addEventListener('input',function(){ sel.value='custom'; $('cityNameField').style.display=''; render(); });
   $('pop').addEventListener('blur',function(){var v=num(this.value);this.value=v?nf.format(v):'0';render();});
   $('actual').addEventListener('blur',function(){this.value=fmt(num(this.value));render();});
 
@@ -598,6 +718,8 @@
       $('pop').value=nf.format(lookup[sel.value].pop);
       $('resBel').value=lookup[sel.value].ev;
     }
+    $('cityNameField').style.display=(sel.value==='custom')?'':'none';
+    if(sel.value==='custom') $('cityName').focus();
     render();
   });
 
@@ -657,8 +779,23 @@
       .catch(function(err){ restore(); console.error(err); alert('Could not generate the image. Try again, or take a manual screenshot.'); btn.textContent=label; btn.disabled=false; });
   });
 
+  $('mDownloadBtn').addEventListener('click',function(){
+    var card=document.querySelector('.mcard'); var btn=$('mDownloadBtn');
+    if(!window.htmlToImage){ alert('The image library did not load. Reload, or take a manual screenshot.'); return; }
+    var w=card.offsetWidth, h=card.offsetHeight;
+    var ratio=Math.max(2,Math.min(4,1080/w));
+    var name=(dlslug(placeName())||'city')+'-two-perspectives.png';
+    var label=btn.textContent; btn.textContent='Rendering...'; btn.disabled=true;
+    var prev={w:card.style.width,h:card.style.height,mh:card.style.minHeight,sh:card.style.boxShadow,m:card.style.margin};
+    card.style.width=w+'px'; card.style.height=h+'px'; card.style.minHeight=h+'px'; card.style.boxShadow='none'; card.style.margin='0';
+    function restore(){card.style.width=prev.w;card.style.height=prev.h;card.style.minHeight=prev.mh;card.style.boxShadow=prev.sh;card.style.margin=prev.m;}
+    window.htmlToImage.toPng(card,{pixelRatio:ratio,backgroundColor:'#F5F5F4',width:w,height:h,cacheBust:true})
+      .then(function(url){ restore(); var a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); btn.textContent=label; btn.disabled=false; })
+      .catch(function(err){ restore(); console.error(err); alert('Could not generate the image. Try again, or screenshot.'); btn.textContent=label; btn.disabled=false; });
+  });
+
   $('reset').addEventListener('click',function(){
-    sel.value=defaults.city; $('pop').value=defaults.pop;
+    sel.value=defaults.city; $('cityNameField').style.display='none'; $('cityName').value=''; $('pop').value=defaults.pop;
     $('birthRate').value=defaults.birthRate; $('deathRate').value=defaults.deathRate; $('netMig').value=defaults.netMig;
     $('birthsLost').value=defaults.birthsLost; $('resBel').value=defaults.resBel; $('migBel').value=defaults.migBel;
     $('deathBel').value=defaults.deathBel; $('actual').value=defaults.actual;
