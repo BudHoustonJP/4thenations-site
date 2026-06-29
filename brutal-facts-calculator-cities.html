@@ -212,7 +212,7 @@
   <header>
     <p class="kicker">Clarity for the Nations</p>
     <h1>The Brutal Facts Calculator</h1>
-    <p class="lede">Pick a North American metro, tune the assumptions, and confront the math. How many people would need to come to faith and be baptized each day just to keep even with births, migration, and death?</p>
+    <p class="lede">Pick a North American metro, tune the assumptions, and confront the math. How many people would need to come to faith and be baptized each day just to hold the evangelical share steady against births, migration, and death?</p>
   </header>
 
   <!-- ================= CONTROLS ================= -->
@@ -254,12 +254,6 @@
     </div>
 
     <div class="slider">
-      <div class="slider-top"><span class="lwrap"><label for="birthsLost">Births counted as lost</label></span><span class="slider-val"><span id="birthsLostV">100</span>%</span></div>
-      <p class="slider-note">Share of newborns who still need to come to faith.</p>
-      <input type="range" id="birthsLost" min="0" max="100" step="1" value="100">
-    </div>
-
-    <div class="slider">
       <div class="slider-top"><span class="lwrap"><label for="resBel">Evangelical share, residents</label><button class="info" type="button" aria-label="Definition of evangelical share">i<span class="tip">The share of residents who are evangelical, the way Pew's Religious Landscape Study counts it: self-identified affiliation with an evangelical-tradition denomination, not a measure of who is actively practicing. National average is about 23%, but secular metros run far lower (New York and San Francisco near 9 to 10%, Seattle about 21%).</span></button></span><span class="slider-val"><span id="resBelV">30</span>%</span></div>
       <p class="slider-note">Sets the lost-population snapshot and the reach goal. Auto-filled per metro; edit freely.</p>
       <input type="range" id="resBel" min="0" max="60" step="0.5" value="30">
@@ -275,14 +269,6 @@
       <div class="slider-top"><span class="lwrap"><label for="deathBel">Evangelical share among the dying</label><button class="info right" type="button" aria-label="Definition of believer share among the dying">i<span class="tip">The share of those who die each year who were evangelical. Usually higher than the general share, since older people are more religious. Raising it increases the believers needing replacement but lowers the number dying separated from God. Pick one premise and stay consistent.</span></button></span><span class="slider-val"><span id="deathBelV">30</span>%</span></div>
       <p class="slider-note">Usually above the base, since older people are more religious.</p>
       <input type="range" id="deathBel" min="0" max="80" step="1" value="30">
-    </div>
-
-    <div class="field">
-      <label for="modelGB">Keep-even model<button class="info" type="button" aria-label="Model definitions" style="margin-left:6px;">i<span class="tip">Gospel burden counts every death in full, since each one removes a person who may or may not have been reached. Net floor subtracts the lost who die, since they also leave the pool, giving a conservative lower bound. The honest answer sits between the two.</span></button></label>
-      <div class="seg" role="group" aria-label="Model">
-        <button id="modelGB" aria-pressed="true">Gospel burden<br>(count all deaths)</button>
-        <button id="modelNF" aria-pressed="false">Net floor<br>(subtract lost deaths)</button>
-      </div>
     </div>
 
     <div class="field">
@@ -335,11 +321,11 @@
     <div class="card-body">
       <p class="card-eyebrow">The Brutal Facts</p>
       <h2 class="card-pg" id="cPlace">Dallas-Fort Worth</h2>
-      <p class="card-sub">Baptisms required just to keep even</p>
+      <p class="card-sub">Baptisms required to hold the share steady</p>
 
       <div class="hero">
         <div class="hero-num"><span id="perDay">759</span><span class="hero-unit">/ day</span></div>
-        <p class="hero-label">to keep even with births, migration, and death</p>
+        <p class="hero-label">to hold the evangelical share steady</p>
         <p class="hero-sub"><span id="perYear">277,055</span> per year &middot; about <span id="perHour">32</span> per hour</p>
       </div>
 
@@ -368,23 +354,23 @@
 
   <!-- ================= ANALYSIS ================= -->
   <section class="panel analysis">
-    <h2>What grows the unreached population</h2>
-    <p class="hint">The pieces behind the keep-even number, and a reality check.</p>
+    <h2>What erodes the evangelical share</h2>
+    <p class="hint">The pieces behind holding the share steady, and a reality check.</p>
 
     <div class="brk-row">
-      <div class="brk-line"><span class="nm">Births (counted as lost)</span><span class="vl"><b id="bBirth">103,466</b> / yr</span></div>
+      <div class="brk-line"><span class="nm">Believers to match new births</span><span class="vl"><b id="bBirth">103,466</b> / yr</span></div>
       <div class="bar"><i class="c-birth" id="barBirth" style="width:37%"></i></div>
     </div>
     <div class="brk-row">
-      <div class="brk-line"><span class="nm">Non-believer net in-migration</span><span class="vl"><b id="bMig">97,658</b> / yr</span></div>
+      <div class="brk-line"><span class="nm">Net dilution from migration</span><span class="vl"><b id="bMig">97,658</b> / yr</span></div>
       <div class="bar"><i class="c-mig" id="barMig" style="width:35%"></i></div>
     </div>
     <div class="brk-row">
-      <div class="brk-line"><span class="nm" id="deathLbl">All deaths (replacement plus lost)</span><span class="vl"><b id="bDeath">75,931</b> / yr</span></div>
+      <div class="brk-line"><span class="nm" id="deathLbl">Net believer deaths to replace</span><span class="vl"><b id="bDeath">75,931</b> / yr</span></div>
       <div class="bar"><i class="c-death" id="barDeath" style="width:27%"></i></div>
     </div>
     <div class="totline">
-      <span class="nm">Total to offset per year</span>
+      <span class="nm">Total per year to hold the share</span>
       <span class="vl" id="bTotal">277,055</span>
     </div>
 
@@ -395,7 +381,7 @@
         <div class="rc-col req"><div class="cnum" id="rcReqN">759</div><div class="bk" id="rcReqBar" style="height:100%"></div><div class="clbl">Required<br>per day</div></div>
         <div class="rc-col act"><div class="cnum" id="rcActN">50</div><div class="bk" id="rcActBar" style="height:7%"></div><div class="clbl">Actual<br>per day</div></div>
       </div>
-      <p class="gap-line">This metro is running <b id="gapX">15x</b> short of replacement rate.</p>
+      <p class="gap-line">This metro is running <b id="gapX">15x</b> short of holding the share.</p>
     </div>
 
     <button class="btn" id="reset">Reset to DFW defaults</button>
@@ -457,8 +443,8 @@
   <details>
     <summary>Assumptions, model notes, and sources</summary>
     <div class="notes">
-      <p><b>What this is.</b> A gospel-burden model. It sizes the annual evangelistic need by counting every event that creates a need for a new believer: births (all counted as lost), non-believer net in-migration, and deaths. It is not a net population balance.</p>
-      <p><b>Gospel burden vs net floor.</b> Gospel burden counts all deaths in full. Net floor subtracts the lost who die, since they also leave the pool, giving a conservative lower bound. The honest answer sits between the two.</p>
+      <p><b>What this is.</b> A keep-the-share model. It sizes the baptisms per year needed to hold the evangelical share steady as the population changes, counting new believers to match births, the dilution from non-believer migration, and the net loss of believers through death.</p>
+      <p><b>How it is computed.</b> Per year: share times births, plus migration times the gap between the local share and the believing share of migrants, plus deaths times the gap between the believer share of the dying and the local share. Children of believers are not counted as believers; they need their own conversion.</p>
       <p><b>The migration lever.</b> Migration is a rate per 1,000 so it scales with population. International-heavy migration lowers the in-migrant evangelical share, which raises the figure.</p>
       <p><b>The reach goal.</b> Separate from the keep-even number, this solves for the baptisms per day to move the evangelical share to the chosen target over the chosen horizon, accounting for population growth, migration, and believer deaths. A reach target turns off once the metro is already above it; most US metros are above 2% and 10% evangelical, so the increase goals are usually the live ones.</p>
       <p><b>Definitions matter.</b> Evangelical share here is self-identified, not practicing. State the definition whenever you cite a number from this tool.</p>
@@ -528,11 +514,10 @@
     return t.replace(/\s*\(.*\)$/,'');
   }
 
-  var ids=['pop','birthRate','deathRate','netMig','birthsLost','resBel','migBel','deathBel','actual'];
-  var model='gb';
+  var ids=['pop','birthRate','deathRate','netMig','resBel','migBel','deathBel','actual'];
   var goal='reach10';   // reach2 | inc2 | reach10 | inc10
   var years=10;
-  var defaults={city:slug('Dallas-Fort Worth, TX'),pop:'8,344,032',birthRate:12.4,deathRate:9.1,netMig:15.2,birthsLost:100,resBel:30,migBel:23,deathBel:30,actual:50};
+  var defaults={city:slug('Dallas-Fort Worth, TX'),pop:'8,344,032',birthRate:12.4,deathRate:9.1,netMig:15.2,resBel:30,migBel:23,deathBel:30,actual:50};
 
   function setFill(el){var mn=+el.min,mx=+el.max,v=+el.value;el.style.setProperty('--fill',((v-mn)/(mx-mn)*100)+'%');}
   function flash(el){el.style.opacity='.55';requestAnimationFrame(function(){requestAnimationFrame(function(){el.style.opacity='1';});});}
@@ -541,18 +526,17 @@
   function calc(){
     var pop=num($('pop').value);
     var birthRate=+$('birthRate').value, deathRate=+$('deathRate').value, migRate=+$('netMig').value;
-    var birthsLost=+$('birthsLost').value/100, migBel=+$('migBel').value/100, deathBel=+$('deathBel').value/100;
-    var resBel=+$('resBel').value/100;
-    var births=pop*birthRate/1000, deaths=pop*deathRate/1000, netMig=pop*migRate/1000;
-    var lostBirths=births*birthsLost;
-    var nonBelMig=netMig*(1-migBel);
+    var migBel=+$('migBel').value/100, deathBel=+$('deathBel').value/100, s=+$('resBel').value/100;
+    var b=birthRate/1000, d=deathRate/1000, m=migRate/1000;
+    var births=pop*b, deaths=pop*d, netMig=pop*m;
+    var cBirth=s*pop*b;
+    var cMig=pop*m*(s-migBel);
+    var cDeath=pop*d*(deathBel-s);
+    var total=cBirth+cMig+cDeath;
     var believerDeaths=deaths*deathBel, lostDeaths=deaths*(1-deathBel);
-    var deathComponent,total;
-    if(model==='gb'){deathComponent=deaths;total=lostBirths+nonBelMig+deathComponent;}
-    else{deathComponent=believerDeaths-lostDeaths;total=lostBirths+nonBelMig+believerDeaths-lostDeaths;}
-    var lostNow=pop*(1-resBel);
-    return {births:births,deaths:deaths,netMig:netMig,lostBirths:lostBirths,nonBelMig:nonBelMig,
-            believerDeaths:believerDeaths,lostDeaths:lostDeaths,deathComponent:deathComponent,total:total,lostNow:lostNow};
+    var lostNow=pop*(1-s);
+    return {births:births,deaths:deaths,netMig:netMig,cBirth:cBirth,cMig:cMig,cDeath:cDeath,
+            believerDeaths:believerDeaths,lostDeaths:lostDeaths,total:total,lostNow:lostNow};
   }
 
   // --- reach-goal calculation (new; includes migration) ---
@@ -614,7 +598,7 @@
     $('mcAddYears').textContent=years;
     $('mcD0').textContent=fmt(D0);
     $('mcGoalFoot').textContent='Goal: '+goalShort;
-    $('mClarify').textContent='Note: the '+$('perDay').textContent+' a day at the top is just to keep even. This is the pace to actually reach your goal.';
+    $('mClarify').textContent='Note: the '+$('perDay').textContent+' a day at the top only holds the share steady. This is the pace to actually raise it to your goal.';
     var never=false, solveT=0;
     if(K<=D0){ solveT=0; }
     else if(aYr<=c){ never=true; }
@@ -634,7 +618,6 @@
     $('birthRateV').textContent=(+$('birthRate').value).toFixed(1);
     $('deathRateV').textContent=(+$('deathRate').value).toFixed(1);
     $('netMigV').textContent=(+$('netMig').value).toFixed(1);
-    $('birthsLostV').textContent=$('birthsLost').value;
     $('resBelV').textContent=(+$('resBel').value);
     $('migBelV').textContent=$('migBel').value;
     $('deathBelV').textContent=$('deathBel').value;
@@ -680,20 +663,18 @@
     $('sGoal').textContent=fmt(goalDay)+' / day';
 
     // brutal-fact sentence
-    $('cFact').innerHTML='Keeping even takes <b>'+fmt(perDay)+' baptisms a day</b>. At an estimated '+fmt(actual)+' a day, this metro runs <b>'+gapTxt+'</b> short, while <b>'+fmt(lostDay)+'</b> die each day separated from God.';
+    $('cFact').innerHTML='Holding the evangelical share steady takes <b>'+fmt(perDay)+' baptisms a day</b>. At an estimated '+fmt(actual)+' a day, this metro runs <b>'+gapTxt+'</b> short, while <b>'+fmt(lostDay)+'</b> die each day separated from God.';
 
     // analysis breakdown
-    $('bBirth').textContent=fmt(r.lostBirths);
-    $('bMig').textContent=fmt(r.nonBelMig);
-    var deathShown=(model==='gb')?r.deaths:r.deathComponent;
-    $('bDeath').textContent=fmt(deathShown);
-    $('deathLbl').textContent=(model==='gb')?'All deaths (replacement plus lost)':'Deaths, net (replace believers, less lost)';
+    $('bBirth').textContent=fmt(r.cBirth);
+    $('bMig').textContent=fmt(r.cMig);
+    $('bDeath').textContent=fmt(r.cDeath);
     $('bTotal').textContent=fmt(perYear);
-    var parts=[Math.abs(r.lostBirths),Math.abs(r.nonBelMig),Math.abs(deathShown),1];
+    var parts=[Math.abs(r.cBirth),Math.abs(r.cMig),Math.abs(r.cDeath),1];
     var mx=Math.max.apply(null,parts);
-    $('barBirth').style.width=(Math.abs(r.lostBirths)/mx*100)+'%';
-    $('barMig').style.width=(Math.abs(r.nonBelMig)/mx*100)+'%';
-    $('barDeath').style.width=(Math.abs(deathShown)/mx*100)+'%';
+    $('barBirth').style.width=(Math.abs(r.cBirth)/mx*100)+'%';
+    $('barMig').style.width=(Math.abs(r.cMig)/mx*100)+'%';
+    $('barDeath').style.width=(Math.abs(r.cDeath)/mx*100)+'%';
 
     // reality check
     $('rcReqN').textContent=fmt(perDay);
@@ -723,9 +704,6 @@
     render();
   });
 
-  function setModel(m){model=m;$('modelGB').setAttribute('aria-pressed',m==='gb');$('modelNF').setAttribute('aria-pressed',m==='nf');render();}
-  $('modelGB').addEventListener('click',function(){setModel('gb');});
-  $('modelNF').addEventListener('click',function(){setModel('nf');});
 
   $('goalReach2').addEventListener('click',function(){ if(this.disabled)return; goal='reach2'; render(); });
   $('goalInc2').addEventListener('click',function(){ goal='inc2'; render(); });
@@ -797,11 +775,11 @@
   $('reset').addEventListener('click',function(){
     sel.value=defaults.city; $('cityNameField').style.display='none'; $('cityName').value=''; $('pop').value=defaults.pop;
     $('birthRate').value=defaults.birthRate; $('deathRate').value=defaults.deathRate; $('netMig').value=defaults.netMig;
-    $('birthsLost').value=defaults.birthsLost; $('resBel').value=defaults.resBel; $('migBel').value=defaults.migBel;
+    $('resBel').value=defaults.resBel; $('migBel').value=defaults.migBel;
     $('deathBel').value=defaults.deathBel; $('actual').value=defaults.actual;
     goal='reach10'; years=10;
     Array.prototype.forEach.call(document.querySelectorAll('.yr'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-y')==='10');});
-    setModel('gb');
+    render();
   });
 
   render();
