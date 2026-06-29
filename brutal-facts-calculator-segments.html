@@ -146,6 +146,22 @@
   .nav-dd.open .nav-ddmenu{display:flex}
   .nav-ddmenu a{padding:.6rem .8rem;border-radius:8px;font-size:.9rem;font-weight:600;color:var(--ink);text-decoration:none;opacity:1}
   .nav-ddmenu a:hover{background:var(--stone)}
+  .mult-h{font-family:var(--serif);font-size:27px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
+  .mult .mult-rate{font-size:14px;color:var(--muted);margin:14px 0 0;}
+  .mult .mult-rate b{color:var(--navy);}
+  .mult-note{display:block;margin-top:8px;font-size:13px;color:var(--muted);}
+  .mcard{margin-top:18px;}
+  .mc-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 4px;}
+  .mc-col{background:var(--navy-soft);border-radius:12px;padding:16px;text-align:center;}
+  .mc-col2{background:var(--clay-soft);}
+  .mc-k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0;}
+  .mc-big{font-family:var(--serif);font-weight:700;font-size:clamp(34px,8vw,52px);line-height:1;margin:6px 0 0;color:var(--navy);font-variant-numeric:tabular-nums;}
+  .mc-col2 .mc-big{color:var(--clay);}
+  .mc-u{font-size:13px;color:var(--ink);margin:2px 0 0;font-weight:600;}
+  .mc-sm{font-size:12px;color:var(--muted);margin:6px 0 0;}
+  .mc-para{font-size:15px;line-height:1.55;color:var(--ink);margin:16px 0 0;}
+  .mc-export{margin-top:14px;}
+  @media(max-width:430px){.mc-two{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -299,6 +315,56 @@
     <button class="btn" id="reset">Reset</button>
   </section>
 
+  <section class="panel mult">
+    <h2 class="mult-h">Second perspective: multiplication</h2>
+    <p class="slider-note" style="margin:0 0 14px;">The same goal, reached not by addition but by disciples who make disciples.</p>
+
+    <div class="field">
+      <label for="mDisc">Disciples you are starting with</label>
+      <div class="ibox"><input id="mDisc" inputmode="numeric" value="100" aria-label="Starting disciples"><span>disciples</span></div>
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><label for="mPct">Share who multiply</label><span class="slider-val"><span id="mPctV">50</span>%</span></div>
+      <p class="slider-note">Each generation, the share of disciples who make new disciples.</p>
+      <input type="range" id="mPct" min="0" max="100" step="1" value="50">
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><label for="mEach">New disciples each multiplier makes</label><span class="slider-val"><span id="mEachV">3</span></span></div>
+      <p class="slider-note">Per generation. Growth per generation = 1 + share &times; new-each.</p>
+      <input type="range" id="mEach" min="1" max="10" step="1" value="3">
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><label for="mGen">Generation length</label><span class="slider-val"><span id="mGenV">1.0</span> yr</span></div>
+      <p class="slider-note">Time for one reproduction cycle.</p>
+      <input type="range" id="mGen" min="0.5" max="5" step="0.5" value="1">
+    </div>
+
+    <p class="mult-rate">Each generation multiplies the disciples by <b id="mFactor">2.5x</b>.<span class="mult-note" id="mClarify"></span></p>
+  </section>
+
+  <section class="card mcard size-fit" aria-live="polite">
+    <div class="card-top"></div>
+    <div class="card-body">
+      <p class="card-eyebrow">Two ways to the same goal</p>
+      <h2 class="card-pg" id="mcPg">Sample People Group</h2>
+      <p class="card-country" id="mcCountry">Sample Country</p>
+      <div class="mc-two">
+        <div class="mc-col"><p class="mc-k">Addition</p><p class="mc-big" id="mcAddDay">8</p><p class="mc-u">baptisms / day</p><p class="mc-sm">every day for <b id="mcAddYears">10</b> years</p></div>
+        <div class="mc-col mc-col2"><p class="mc-k">Multiplication</p><p class="mc-big" id="mcMultYears">11</p><p class="mc-u">years</p><p class="mc-sm">from <b id="mcD0">100</b> disciples at <b id="mcFactor2">2.5x</b> / yr</p></div>
+      </div>
+      <p class="mc-para" id="mcPara"></p>
+      <div class="card-foot"><span><b>4thenations.com</b></span><span id="mcGoalFoot">Goal</span></div>
+    </div>
+  </section>
+
+  <div class="dlrow mc-export">
+    <button class="dlbtn" id="mDownloadBtn">Download PNG</button>
+    <span class="dlhint">Saves the two-perspective card as an image.</span>
+  </div>
+
   <details>
     <summary>How the math works, assumptions, and sources</summary>
     <div class="notes">
@@ -372,6 +438,45 @@
             lostNow:lostNow,lostFuture:lostFuture,dieLostYear:dieLostYear,growth:growth};
   }
 
+  function renderMult(){
+    if(!document.getElementById('mDisc')) return;
+    $('mPctV').textContent=$('mPct').value;
+    $('mEachV').textContent=$('mEach').value;
+    $('mGenV').textContent=(+$('mGen').value).toFixed(1);
+    [$('mPct'),$('mEach'),$('mGen')].forEach(setFill);
+    var D0=Math.max(1,num($('mDisc').value));
+    var mm=+$('mPct').value/100, rr=+$('mEach').value, L=Math.max(0.1,+$('mGen').value);
+    var factor=1+mm*rr, fTxt=(Math.round(factor*100)/100)+'x';
+    $('mFactor').textContent=fTxt; $('mcFactor2').textContent=fTxt;
+    var c2=calc();
+    var addDay=Math.max(0,Math.round(isFinite(c2.crossDay)?c2.crossDay:0));
+    var g=(+$('birthRate').value - +$('deathRate').value)/1000, cc=1+g;
+    var K=c2.eT*c2.P0, aYr=Math.pow(factor,1/L);
+    var evShown=num($('evPct').value);
+    var goalShort=(goal==='reach2')?'reach 2% evangelical':(goal==='reach10')?'reach 10% evangelical':(goal==='inc10')?('add 10 points to '+evShown.toFixed(2)+'%'):('add 2 points to '+evShown.toFixed(2)+'%');
+    var gw=(L===1)?'year':(L<1?(Math.round(L*12)+' months'):((Math.round(L*10)/10)+' years'));
+    $('mcPg').textContent=$('pg').value.trim()||'Unnamed people group';
+    $('mcCountry').textContent=$('country').value.trim()||'';
+    $('mcAddDay').textContent=fmt(addDay);
+    $('mcAddYears').textContent=years;
+    $('mcD0').textContent=fmt(D0);
+    $('mcGoalFoot').textContent='Goal: '+goalShort;
+    $('mClarify').textContent='Addition here is the '+fmt(addDay)+' a day from the card above; this is the same goal reached a different way.';
+    var never=false, solveT=0;
+    if(K<=D0){ solveT=0; }
+    else if(aYr<=cc){ never=true; }
+    else { solveT=Math.log(K/D0)/Math.log(aYr/cc); }
+    if(never){
+      $('mcMultYears').textContent='never';
+      $('mcPara').innerHTML='To '+goalShort+', addition asks for about <b>'+fmt(addDay)+'</b> baptisms a day, every day for <b>'+years+'</b> years. At these multiplication assumptions the disciples do not outpace population growth, so they never get there. Raise the share who multiply, the new-each, or shorten the generation.';
+    } else {
+      var yr=Math.max(0,solveT);
+      var yrTxt=(yr<10?(Math.round(yr*10)/10):Math.round(yr));
+      $('mcMultYears').textContent=yrTxt;
+      $('mcPara').innerHTML='Addition says we need about <b>'+fmt(addDay)+'</b> baptisms a day, every day for <b>'+years+'</b> years, to '+goalShort+'. But start with <b>'+fmt(D0)+'</b> disciples, train them so <b>'+$('mPct').value+'%</b> make disciples who each reproduce <b>'+$('mEach').value+'</b> more every '+gw+', and we reach the same goal in about <b>'+yrTxt+'</b> years. Which one seems more possible?';
+    }
+  }
+
   function render(){
     $('birthRateV').textContent=(+$('birthRate').value);
     $('deathRateV').textContent=(+$('deathRate').value);
@@ -422,9 +527,11 @@
                             'That is steady, reachable growth if conversions are discipled and reproduce.';
     var floored=(r.evRaw<0.00001)?' (reported 0.00%, treated as 0.001% to compute a base).':'';
     $('cFact').innerHTML='To get there, the evangelical community must grow <b>'+fmt(pct)+'% per year</b>, every year, for '+years+' years'+floored+'. '+framing;
+    renderMult();
   }
 
   ids.forEach(function(id){$(id).addEventListener('input',render);});
+  ['mDisc','mPct','mEach','mGen'].forEach(function(id){var e=$(id);if(e)e.addEventListener('input',render);});
   $('pg').addEventListener('input',render);
   $('country').addEventListener('input',render);
   $('pop').addEventListener('blur',function(){var v=num(this.value);this.value=v?nf.format(v):'0';render();});
@@ -494,6 +601,21 @@
   });
   document.addEventListener('click',function(e){
     if(!e.target.closest('.info')) Array.prototype.forEach.call(document.querySelectorAll('.info'),function(x){x.classList.remove('open');});
+  });
+
+  $('mDownloadBtn').addEventListener('click',function(){
+    var card=document.querySelector('.mcard'); var btn=$('mDownloadBtn');
+    if(!window.htmlToImage){ alert('The image library did not load. Reload, or take a manual screenshot.'); return; }
+    var w=card.offsetWidth, h=card.offsetHeight;
+    var ratio=Math.max(2,Math.min(4,1080/w));
+    var name=[slug($('pg').value)||'people-group',slug($('country').value)].filter(Boolean).join('-')+'-two-perspectives.png';
+    var label=btn.textContent; btn.textContent='Rendering...'; btn.disabled=true;
+    var prev={w:card.style.width,h:card.style.height,mh:card.style.minHeight,sh:card.style.boxShadow,m:card.style.margin};
+    card.style.width=w+'px'; card.style.height=h+'px'; card.style.minHeight=h+'px'; card.style.boxShadow='none'; card.style.margin='0';
+    function restore(){card.style.width=prev.w;card.style.height=prev.h;card.style.minHeight=prev.mh;card.style.boxShadow=prev.sh;card.style.margin=prev.m;}
+    window.htmlToImage.toPng(card,{pixelRatio:ratio,backgroundColor:'#F5F5F4',width:w,height:h,cacheBust:true})
+      .then(function(url){ restore(); var a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); btn.textContent=label; btn.disabled=false; })
+      .catch(function(err){ restore(); console.error(err); alert('Could not generate the image. Try again, or screenshot.'); btn.textContent=label; btn.disabled=false; });
   });
 
   $('reset').addEventListener('click',function(){
