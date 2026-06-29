@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Brutal Facts Calculator: North American metros | Clarity for the Nations</title>
+<style>
+  :root{
+    --stone:#F5F5F4;--paper:#FFFFFF;--ink:#1C1917;--muted:#6B645C;--line:#E4E0DA;
+    --navy:#1F3864;--navy-soft:#E7ECF4;--clay:#9E2B25;--clay-soft:#F3E4E2;--gold:#B8862F;
+    --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--stone);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:30px 20px 70px;display:flex;flex-direction:column;}
+  .wrap > header{order:1;}
+  .wrap > .panel{order:2;}
+  .wrap > .exportbar{order:3;}
+  .wrap > .card{order:4;}
+  .wrap > .analysis{order:5;}
+  .wrap > details{order:6;}
+  .wrap > .sig{order:7;}
+
+  .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);font-weight:700;margin:0 0 8px;}
+  h1{font-family:var(--serif);font-weight:700;font-size:clamp(26px,5vw,40px);line-height:1.06;margin:0 0 6px;letter-spacing:-.01em;}
+  .lede{font-size:16px;color:var(--muted);margin:0;}
+
+  /* ===== controls ===== */
+  .panel{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:24px;}
+  .panel h2{font-family:var(--serif);font-size:19px;margin:0 0 4px;font-weight:700;}
+  .panel .hint{font-size:13px;color:var(--muted);margin:0 0 18px;}
+  .field{margin-bottom:18px;}
+  .field > label{display:block;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin-bottom:7px;}
+  select{width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font-family:var(--sans);font-size:15px;font-weight:600;padding:11px 12px;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231F3864' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
+  select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .ibox{display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;}
+  .ibox span{padding:0 12px;color:var(--muted);font-size:14px;background:var(--stone);align-self:stretch;display:flex;align-items:center;border-right:1px solid var(--line);}
+  .ibox input{border:0;outline:0;font-size:20px;font-family:var(--serif);font-weight:700;color:var(--navy);padding:11px 13px;width:100%;font-variant-numeric:tabular-nums;background:#fff;}
+
+  .slider{margin-bottom:18px;}
+  .slider-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px;gap:10px;}
+  .slider-top .lwrap{display:flex;align-items:center;gap:6px;}
+  .slider-top label{font-size:14px;font-weight:600;color:var(--ink);}
+  .slider-val{font-family:var(--serif);font-weight:700;font-size:17px;color:var(--navy);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;}
+  .slider-val .ab{font-family:var(--sans);font-size:12px;color:var(--muted);font-weight:600;display:block;}
+  .slider-note{font-size:12px;color:var(--muted);margin:0 0 9px;}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(var(--navy),var(--navy)) no-repeat var(--stone);background-size:var(--fill,50%) 100%;cursor:pointer;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--paper);border:2px solid var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:pointer;}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--paper);border:2px solid var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:pointer;}
+  input[type=range]:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  .seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;}
+  .seg button{flex:1;border:0;background:#fff;padding:10px 8px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;line-height:1.25;}
+  .seg button[aria-pressed=true]{background:var(--navy);color:#fff;}
+  .seg button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+  .seg4{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:9px;overflow:hidden;}
+  .seg4 button{border:0;background:#fff;padding:11px 8px;font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;line-height:1.2;}
+  .seg4 button[aria-pressed=true]{background:var(--navy);color:#fff;}
+  .seg4 button:disabled{opacity:.4;cursor:not-allowed;background:var(--stone);}
+  .seg4 button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+  /* tooltips */
+  .info{position:relative;flex:none;width:16px;height:16px;border-radius:50%;border:1px solid var(--muted);background:#fff;color:var(--muted);font-size:11px;font-weight:700;line-height:1;cursor:pointer;font-family:var(--serif);display:inline-flex;align-items:center;justify-content:center;padding:0;}
+  .info:hover,.info:focus-visible{border-color:var(--navy);color:var(--navy);}
+  .info .tip{display:none;position:absolute;left:0;bottom:calc(100% + 9px);width:min(80vw,300px);background:var(--ink);color:#fff;font-family:var(--sans);font-weight:400;font-size:12px;line-height:1.5;letter-spacing:normal;text-transform:none;padding:11px 13px;border-radius:9px;z-index:40;box-shadow:0 6px 20px rgba(0,0,0,.2);text-align:left;}
+  .info .tip::after{content:'';position:absolute;top:100%;left:9px;border:6px solid transparent;border-top-color:var(--ink);}
+  .info.right .tip{left:auto;right:0;}
+  .info.right .tip::after{left:auto;right:9px;}
+  .info:hover .tip,.info:focus .tip,.info.open .tip{display:block;}
+
+  /* ===== export bar ===== */
+  .exportbar{margin-top:24px;}
+  .sizebar{display:flex;align-items:center;gap:10px;margin:0 0 12px;flex-wrap:wrap;}
+  .sizebar-l{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);}
+  .sizebar .seg{flex:1;min-width:240px;}
+  .dlrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .dlbtn{border:0;background:var(--navy);color:#fff;border-radius:9px;padding:11px 22px;font-weight:700;font-size:15px;cursor:pointer;font-family:var(--sans);}
+  .dlbtn:hover{background:#16294a;}
+  .dlbtn:disabled{opacity:.6;cursor:default;}
+  .dlbtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .dlhint{font-size:12px;color:var(--muted);}
+
+  /* ===== infographic card ===== */
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 2px 14px rgba(28,25,23,.06);display:flex;flex-direction:column;margin:0 auto;}
+  .card.size-fit{width:100%;}
+  .card.size-portrait{width:min(94vw,470px);min-height:calc(min(94vw,470px) * 1.25);}
+  .card.size-story{width:min(94vw,430px);min-height:calc(min(94vw,430px) * 1.7778);}
+  .card.size-square{width:min(94vw,540px);min-height:min(94vw,540px);}
+  .card.size-wide{width:min(98vw,700px);min-height:calc(min(98vw,700px) / 1.91);}
+  .card-top{height:7px;background:linear-gradient(90deg,var(--navy),var(--clay));}
+  .card-body{padding:30px 30px 26px;flex:1;display:flex;flex-direction:column;justify-content:center;}
+  .card-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);font-weight:700;margin:0 0 7px;}
+  .card-pg{font-family:var(--serif);font-weight:700;font-size:clamp(26px,5.5vw,38px);line-height:1.05;margin:0;color:var(--ink);letter-spacing:-.01em;}
+  .card-sub{font-size:13px;color:var(--muted);margin:5px 0 0;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+
+  .hero{background:var(--navy-soft);border-radius:13px;padding:24px 20px 18px;margin-top:20px;text-align:center;}
+  .hero-num{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:clamp(56px,14vw,98px);line-height:.85;letter-spacing:-.02em;font-variant-numeric:tabular-nums;}
+  .hero-num #perDay{transition:opacity .15s ease;}
+  .hero-unit{font-family:var(--serif);font-size:.34em;color:var(--ink);font-weight:400;margin-left:7px;letter-spacing:0;}
+  .hero-label{font-size:15px;line-height:1.4;color:var(--ink);margin:10px auto 0;max-width:30ch;}
+  .hero-label b{color:var(--clay);}
+  .hero-sub{font-size:13px;color:var(--muted);margin:7px 0 0;font-variant-numeric:tabular-nums;}
+
+  .cost{background:var(--clay-soft);border-radius:13px;padding:15px 20px;margin-top:13px;text-align:center;}
+  .cost-l{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);font-weight:700;margin:0;}
+  .cost-v{font-family:var(--serif);font-weight:700;font-size:clamp(28px,7vw,38px);color:var(--clay);margin:4px 0 0;font-variant-numeric:tabular-nums;line-height:1;}
+  .cost-sub{font-family:var(--sans);font-size:13px;font-weight:600;opacity:.8;display:block;margin-top:5px;}
+
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-top:13px;}
+  .stat{background:var(--paper);padding:14px 16px;}
+  .stat .l{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 4px;}
+  .stat .v{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.05;}
+  .stat .v.clay{color:var(--clay);}
+  .stat.full{grid-column:1 / -1;}
+
+  .card-fact{background:var(--stone);border-left:3px solid var(--gold);border-radius:0 9px 9px 0;padding:13px 15px;margin-top:18px;font-size:14px;color:var(--ink);}
+  .card-fact b{color:var(--clay);}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);gap:10px;flex-wrap:wrap;}
+  .card-foot b{color:var(--navy);}
+
+  /* ===== analysis ===== */
+  .brk-row{margin-bottom:14px;}
+  .brk-line{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;margin-bottom:5px;}
+  .brk-line .nm{color:var(--ink);font-weight:600;}
+  .brk-line .vl{color:var(--muted);font-variant-numeric:tabular-nums;}
+  .brk-line .vl b{color:var(--ink);}
+  .bar{height:9px;border-radius:6px;background:var(--stone);overflow:hidden;}
+  .bar i{display:block;height:100%;border-radius:6px;transition:width .18s ease;}
+  .c-birth{background:var(--navy);}
+  .c-mig{background:#5B7CA8;}
+  .c-death{background:var(--gold);}
+  .totline{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:12px;margin-top:4px;}
+  .totline .nm{font-weight:700;}
+  .totline .vl{font-family:var(--serif);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;}
+  .rc{margin-top:24px;}
+  .rc-grid{display:flex;gap:10px;align-items:flex-end;height:120px;margin:14px 0 10px;}
+  .rc-col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;}
+  .rc-col .bk{width:100%;border-radius:8px 8px 0 0;transition:height .18s ease;min-height:4px;}
+  .rc-col.req .bk{background:var(--navy);}
+  .rc-col.act .bk{background:var(--clay);}
+  .rc-col .cnum{font-family:var(--serif);font-weight:700;font-size:17px;margin-bottom:6px;font-variant-numeric:tabular-nums;}
+  .rc-col .clbl{font-size:12px;color:var(--muted);margin-top:8px;text-align:center;}
+  .gap-line{font-size:15px;color:var(--ink);background:var(--clay-soft);border-radius:9px;padding:12px 14px;}
+  .gap-line b{color:var(--clay);font-variant-numeric:tabular-nums;}
+
+  .btn{border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:9px;padding:10px 18px;font-weight:600;font-size:14px;cursor:pointer;font-family:var(--sans);margin-top:18px;}
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  details{margin-top:24px;border-top:1px solid var(--line);padding-top:16px;}
+  summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--navy);}
+  .notes{font-size:13px;color:var(--muted);margin-top:12px;}
+  .notes p{margin:0 0 9px;}
+  .sig{margin-top:30px;font-size:13px;color:var(--muted);text-align:center;}
+  .sig b{color:var(--ink);}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+
+  .sitenav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.4rem;padding:12px 20px;background:#F3EFE6;border-bottom:1px solid var(--line);flex-wrap:wrap;font-family:var(--sans)}
+  .sitenav .brand{font-family:var(--serif);font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+  .sitenav .links{display:flex;gap:1.3rem;flex-wrap:wrap;align-items:center}
+  .sitenav .links>a{text-decoration:none;font-weight:600;font-size:.9rem;color:var(--ink);opacity:.85}
+  .sitenav .links>a:hover{opacity:1;color:var(--clay)}
+  .nav-dd{position:relative}
+  .nav-ddbtn{background:none;border:none;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;color:var(--ink);opacity:.85;display:flex;align-items:center;gap:.3rem;padding:0}
+  .nav-ddbtn:hover{opacity:1;color:var(--clay)}
+  .nav-dd .caret{font-size:.7em;transition:transform .2s}
+  .nav-dd.open .caret{transform:rotate(180deg)}
+  .nav-ddmenu{position:absolute;top:150%;right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,.14);min-width:240px;display:none;flex-direction:column;padding:6px;z-index:60}
+  .nav-dd.open .nav-ddmenu{display:flex}
+  .nav-ddmenu a{padding:.6rem .8rem;border-radius:8px;font-size:.9rem;font-weight:600;color:var(--ink);text-decoration:none;opacity:1}
+  .nav-ddmenu a:hover{background:var(--stone)}
+</style>
+</head>
+<body>
+<nav class="sitenav">
+  <a class="brand" href="index.html">Clarity for the Nations</a>
+  <div class="links">
+    <a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+    <a href="index.html#pray">Pray for the Unreached</a>
+    <div class="nav-dd">
+      <button class="nav-ddbtn" aria-expanded="false">Brutal Facts Calculator <span class="caret">&#9662;</span></button>
+      <div class="nav-ddmenu">
+        <a href="brutal-facts-calculator-cities.html">City Brutal Facts</a>
+        <a href="brutal-facts-calculator-segments.html">People Segment Brutal Facts</a>
+      </div>
+    </div>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header>
+    <p class="kicker">Clarity for the Nations</p>
+    <h1>The Brutal Facts Calculator</h1>
+    <p class="lede">Pick a North American metro, tune the assumptions, and confront the math. How many people would need to come to faith and be baptized each day just to keep even with births, migration, and death?</p>
+  </header>
+
+  <!-- ================= CONTROLS ================= -->
+  <section class="panel">
+    <h2>Set the inputs</h2>
+    <p class="hint">Choosing a metro loads its population and an estimated evangelical share. Edit anything.</p>
+
+    <div class="field">
+      <label for="city">Metro area</label>
+      <select id="city" aria-label="Metro area"></select>
+    </div>
+
+    <div class="field">
+      <label for="pop">Population</label>
+      <div class="ibox"><span>people</span><input id="pop" inputmode="numeric" value="8,344,032" aria-label="Population"></div>
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><span class="lwrap"><label for="birthRate">Birth rate</label></span><span class="slider-val"><span id="birthRateV">12.4</span> / 1,000</span></div>
+      <p class="slider-note">Live births per 1,000 each year. (US about 12, Canada about 10.)</p>
+      <input type="range" id="birthRate" min="5" max="20" step="0.1" value="12.4">
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><span class="lwrap"><label for="deathRate">Death rate</label></span><span class="slider-val"><span id="deathRateV">9.1</span> / 1,000</span></div>
+      <p class="slider-note">Deaths per 1,000 each year.</p>
+      <input type="range" id="deathRate" min="4" max="15" step="0.1" value="9.1">
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><span class="lwrap"><label for="netMig">Net in-migration</label></span><span class="slider-val"><span id="netMigV">15.2</span> / 1,000<span class="ab">&#8776; <span id="netMigAbs">126,829</span> / yr</span></span></div>
+      <p class="slider-note">Net arrivals per 1,000. Scales with population. Can go negative.</p>
+      <input type="range" id="netMig" min="-10" max="30" step="0.1" value="15.2">
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><span class="lwrap"><label for="birthsLost">Births counted as lost</label></span><span class="slider-val"><span id="birthsLostV">100</span>%</span></div>
+      <p class="slider-note">Share of newborns who still need to come to faith.</p>
+      <input type="range" id="birthsLost" min="0" max="100" step="1" value="100">
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><span class="lwrap"><label for="resBel">Evangelical share, residents</label><button class="info" type="button" aria-label="Definition of evangelical share">i<span class="tip">The share of residents who are evangelical, the way Pew's Religious Landscape Study counts it: self-identified affiliation with an evangelical-tradition denomination, not a measure of who is actively practicing. National average is about 23%, but secular metros run far lower (New York and San Francisco near 9 to 10%, Seattle about 21%).</span></button></span><span class="slider-val"><span id="resBelV">30</span>%</span></div>
+      <p class="slider-note">Sets the lost-population snapshot and the reach goal. Auto-filled per metro; edit freely.</p>
+      <input type="range" id="resBel" min="0" max="60" step="0.5" value="30">
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><span class="lwrap"><label for="migBel">Evangelical share, in-migrants</label><button class="info" type="button" aria-label="Definition of in-migrant believer share">i<span class="tip">The share of net new arrivals who are already evangelical. Lower this when migration is heavily international, since most of the world's migrants come from non-evangelical backgrounds. It reduces how many newcomers arrive already reached.</span></button></span><span class="slider-val"><span id="migBelV">23</span>%</span></div>
+      <p class="slider-note">Lower if migration is heavily international.</p>
+      <input type="range" id="migBel" min="0" max="60" step="1" value="23">
+    </div>
+
+    <div class="slider">
+      <div class="slider-top"><span class="lwrap"><label for="deathBel">Evangelical share among the dying</label><button class="info right" type="button" aria-label="Definition of believer share among the dying">i<span class="tip">The share of those who die each year who were evangelical. Usually higher than the general share, since older people are more religious. Raising it increases the believers needing replacement but lowers the number dying separated from God. Pick one premise and stay consistent.</span></button></span><span class="slider-val"><span id="deathBelV">30</span>%</span></div>
+      <p class="slider-note">Usually above the base, since older people are more religious.</p>
+      <input type="range" id="deathBel" min="0" max="80" step="1" value="30">
+    </div>
+
+    <div class="field">
+      <label for="modelGB">Keep-even model<button class="info" type="button" aria-label="Model definitions" style="margin-left:6px;">i<span class="tip">Gospel burden counts every death in full, since each one removes a person who may or may not have been reached. Net floor subtracts the lost who die, since they also leave the pool, giving a conservative lower bound. The honest answer sits between the two.</span></button></label>
+      <div class="seg" role="group" aria-label="Model">
+        <button id="modelGB" aria-pressed="true">Gospel burden<br>(count all deaths)</button>
+        <button id="modelNF" aria-pressed="false">Net floor<br>(subtract lost deaths)</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Reach goal (shown on the card)</label>
+      <div class="seg4" role="group" aria-label="Reach goal">
+        <button id="goalReach2" aria-pressed="false">Reach 2%</button>
+        <button id="goalInc2" aria-pressed="false">Increase by 2 points</button>
+        <button id="goalReach10" aria-pressed="true">Reach 10%</button>
+        <button id="goalInc10" aria-pressed="false">Increase by 10 points</button>
+      </div>
+      <p class="slider-note" id="goalNote" style="margin-top:8px;">Reach targets switch off once the metro is already above that level.</p>
+    </div>
+
+    <div class="field">
+      <label>Years to reach the goal</label>
+      <div class="seg" role="group" aria-label="Years">
+        <button class="yr" data-y="5" aria-pressed="false">5</button>
+        <button class="yr" data-y="10" aria-pressed="true">10</button>
+        <button class="yr" data-y="20" aria-pressed="false">20</button>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom:0;">
+      <label for="actual">Actual baptisms per day (your estimate)</label>
+      <div class="ibox"><span>per day</span><input id="actual" inputmode="numeric" value="50" aria-label="Actual baptisms per day"></div>
+    </div>
+  </section>
+
+  <!-- ================= EXPORT BAR ================= -->
+  <div class="exportbar">
+    <div class="sizebar">
+      <span class="sizebar-l">Fit to image</span>
+      <div class="seg" role="group" aria-label="Card size">
+        <button class="sz" data-s="fit" aria-pressed="true">Fit screen</button>
+        <button class="sz" data-s="portrait" aria-pressed="false">Portrait</button>
+        <button class="sz" data-s="story" aria-pressed="false">Story</button>
+        <button class="sz" data-s="square" aria-pressed="false">Square</button>
+        <button class="sz" data-s="wide" aria-pressed="false">Wide</button>
+      </div>
+    </div>
+    <div class="dlrow">
+      <button class="dlbtn" id="downloadBtn">Download PNG</button>
+      <span class="dlhint">Saves the card as a high-resolution image.</span>
+    </div>
+  </div>
+
+  <!-- ================= INFOGRAPHIC CARD ================= -->
+  <section class="card size-fit" aria-live="polite">
+    <div class="card-top"></div>
+    <div class="card-body">
+      <p class="card-eyebrow">The Brutal Facts</p>
+      <h2 class="card-pg" id="cPlace">Dallas-Fort Worth</h2>
+      <p class="card-sub">Baptisms required just to keep even</p>
+
+      <div class="hero">
+        <div class="hero-num"><span id="perDay">759</span><span class="hero-unit">/ day</span></div>
+        <p class="hero-label">to keep even with births, migration, and death</p>
+        <p class="hero-sub"><span id="perYear">277,055</span> per year &middot; about <span id="perHour">32</span> per hour</p>
+      </div>
+
+      <div class="cost">
+        <p class="cost-l">Die separated from God</p>
+        <p class="cost-v"><span id="lostDay">146</span> / day<span class="cost-sub" id="lostSub">(53,290 a year &middot; about 6 an hour)</span></p>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><p class="l">Lost people now</p><p class="v clay" id="sLostNow">6,424,905</p></div>
+        <div class="stat"><p class="l">To offset each year</p><p class="v" id="sPerYear">277,055</p></div>
+        <div class="stat"><p class="l">Believer deaths to replace / day</p><p class="v" id="sRepl">62</p></div>
+        <div class="stat"><p class="l">Net in-migration / yr</p><p class="v" id="sMig">126,829</p></div>
+        <div class="stat"><p class="l">Running short of replacement</p><p class="v clay" id="sGap">15x</p></div>
+        <div class="stat"><p class="l" id="sGoalL">To reach 10% evangelical</p><p class="v" id="sGoal">0 / day</p></div>
+      </div>
+
+      <div class="card-fact" id="cFact"></div>
+
+      <div class="card-foot">
+        <span><b>4thenations.com</b></span>
+        <span>Data: user provided</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ANALYSIS ================= -->
+  <section class="panel analysis">
+    <h2>What grows the unreached population</h2>
+    <p class="hint">The pieces behind the keep-even number, and a reality check.</p>
+
+    <div class="brk-row">
+      <div class="brk-line"><span class="nm">Births (counted as lost)</span><span class="vl"><b id="bBirth">103,466</b> / yr</span></div>
+      <div class="bar"><i class="c-birth" id="barBirth" style="width:37%"></i></div>
+    </div>
+    <div class="brk-row">
+      <div class="brk-line"><span class="nm">Non-believer net in-migration</span><span class="vl"><b id="bMig">97,658</b> / yr</span></div>
+      <div class="bar"><i class="c-mig" id="barMig" style="width:35%"></i></div>
+    </div>
+    <div class="brk-row">
+      <div class="brk-line"><span class="nm" id="deathLbl">All deaths (replacement plus lost)</span><span class="vl"><b id="bDeath">75,931</b> / yr</span></div>
+      <div class="bar"><i class="c-death" id="barDeath" style="width:27%"></i></div>
+    </div>
+    <div class="totline">
+      <span class="nm">Total to offset per year</span>
+      <span class="vl" id="bTotal">277,055</span>
+    </div>
+
+    <div class="rc">
+      <h2 style="font-size:18px;margin-bottom:2px;">Reality check</h2>
+      <p class="hint" style="margin-bottom:0;">Required versus what is actually happening.</p>
+      <div class="rc-grid">
+        <div class="rc-col req"><div class="cnum" id="rcReqN">759</div><div class="bk" id="rcReqBar" style="height:100%"></div><div class="clbl">Required<br>per day</div></div>
+        <div class="rc-col act"><div class="cnum" id="rcActN">50</div><div class="bk" id="rcActBar" style="height:7%"></div><div class="clbl">Actual<br>per day</div></div>
+      </div>
+      <p class="gap-line">This metro is running <b id="gapX">15x</b> short of replacement rate.</p>
+    </div>
+
+    <button class="btn" id="reset">Reset to DFW defaults</button>
+  </section>
+
+  <details>
+    <summary>Assumptions, model notes, and sources</summary>
+    <div class="notes">
+      <p><b>What this is.</b> A gospel-burden model. It sizes the annual evangelistic need by counting every event that creates a need for a new believer: births (all counted as lost), non-believer net in-migration, and deaths. It is not a net population balance.</p>
+      <p><b>Gospel burden vs net floor.</b> Gospel burden counts all deaths in full. Net floor subtracts the lost who die, since they also leave the pool, giving a conservative lower bound. The honest answer sits between the two.</p>
+      <p><b>The migration lever.</b> Migration is a rate per 1,000 so it scales with population. International-heavy migration lowers the in-migrant evangelical share, which raises the figure.</p>
+      <p><b>The reach goal.</b> Separate from the keep-even number, this solves for the baptisms per day to move the evangelical share to the chosen target over the chosen horizon, accounting for population growth, migration, and believer deaths. A reach target turns off once the metro is already above it; most US metros are above 2% and 10% evangelical, so the increase goals are usually the live ones.</p>
+      <p><b>Definitions matter.</b> Evangelical share here is self-identified, not practicing. State the definition whenever you cite a number from this tool.</p>
+      <p><b>City evangelical estimates.</b> Per-metro shares are starting estimates anchored to Pew's 2023-24 Religious Landscape Study, which reports evangelical share for 34 large metros. Edit any value. For precise figures use the Pew RLS metro pages.</p>
+      <p><b>Sources.</b> Metro populations: US Census Bureau 2024 and Statistics Canada 2024 estimates. Evangelical shares: Pew Research Center 2023-24 Religious Landscape Study. Births: March of Dimes PeriStats. Baptism benchmark: Lifeway Research 2024 Annual Church Profile. Figures are estimates for strategy and mobilization, rounded for display.</p>
+    </div>
+  </details>
+
+  <p class="sig"><b>4thenations.com</b></p>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
+<script>
+(function(){
+  var nf=new Intl.NumberFormat('en-US');
+  function $(id){return document.getElementById(id);}
+  function num(s){return parseFloat(String(s).replace(/[^0-9.\-]/g,''))||0;}
+  function fmt(n){return nf.format(isFinite(n)?Math.round(n):0);}
+  function fmtPop(n){n=isFinite(n)?n:0;if(n>=1e6)return (n/1e6).toFixed(n>=1e7?0:1)+'M';if(n>=1e4)return Math.round(n/1e3)+'K';return nf.format(Math.round(n));}
+
+  // ---- metro data: [name, population, evangelical % estimate] ----
+  // Populations: US Census 2024 / StatCan 2024. Evangelical: estimates anchored to Pew 2023-24 RLS.
+  var US=[
+    ["New York, NY",21000000,9],["Los Angeles, CA",12678000,13],["Chicago, IL",9408576,16],
+    ["Dallas-Fort Worth, TX",8344032,30],["Houston, TX",7796182,28],["Miami, FL",6457988,18],
+    ["Atlanta, GA",6411149,30],["Washington, DC",6160891,14],["Philadelphia, PA",5861831,16],
+    ["Phoenix, AZ",5186958,21],["Boston, MA",5025517,9],["Riverside-San Bernardino, CA",4669149,20],
+    ["San Francisco, CA",4648486,10],["Detroit, MI",4400578,22],["Seattle, WA",4145494,21],
+    ["Minneapolis-St. Paul, MN",3757952,20],["Tampa, FL",3424560,24],["San Diego, CA",3295298,18],
+    ["Denver, CO",3052498,20],["Orlando, FL",2940513,24],["Charlotte, NC",2883370,34],
+    ["Baltimore, MD",2859024,18],["St. Louis, MO",2811927,28],["San Antonio, TX",2763006,28],
+    ["Austin, TX",2550637,24],["Portland, OR",2537904,18],["Sacramento, CA",2463127,19],
+    ["Pittsburgh, PA",2429917,22],["Las Vegas, NV",2398871,18],["Cincinnati, OH",2302815,27],
+    ["Kansas City, MO",2253579,28],["Columbus, OH",2225377,26],["Indianapolis, IN",2174833,30],
+    ["Cleveland, OH",2171877,24],["Nashville, TN",2150553,36],["Virginia Beach-Norfolk, VA",1810000,28],
+    ["Jacksonville, FL",1770000,31],["Providence, RI",1680000,10],["Milwaukee, WI",1570000,22],
+    ["Raleigh, NC",1550000,30],["Oklahoma City, OK",1510000,38],["Richmond, VA",1360000,27],
+    ["Memphis, TN",1340000,36],["Louisville, KY",1300000,31]
+  ];
+  var CA=[
+    ["Toronto, ON",7106379,6],["Montreal, QC",4615154,4],["Vancouver, BC",3108941,8],
+    ["Calgary, AB",1690000,10],["Edmonton, AB",1550000,10],["Ottawa-Gatineau, ON-QC",1490000,6]
+  ];
+
+  function slug(name){return name.toLowerCase().replace(/[^a-z0-9]+/g,'-');}
+  var lookup={};
+  var sel=$('city');
+  function addGroup(label,arr){
+    var g=document.createElement('optgroup'); g.label=label;
+    arr.forEach(function(row){
+      var o=document.createElement('option');
+      var key=slug(row[0]); o.value=key; o.textContent=row[0]+'  ('+nf.format(row[1])+')';
+      lookup[key]={pop:row[1],ev:row[2]}; g.appendChild(o);
+    });
+    sel.appendChild(g);
+  }
+  addGroup('United States',US);
+  addGroup('Canada',CA);
+  var customOpt=document.createElement('option'); customOpt.value='custom'; customOpt.textContent='Not listed (enter values)';
+  sel.appendChild(customOpt);
+  sel.value=slug('Dallas-Fort Worth, TX');
+
+  function placeName(){
+    if(sel.value==='custom') return ($('pop')._customName||'Custom metro');
+    var t=sel.options[sel.selectedIndex].textContent;
+    return t.replace(/\s*\(.*\)$/,'');
+  }
+
+  var ids=['pop','birthRate','deathRate','netMig','birthsLost','resBel','migBel','deathBel','actual'];
+  var model='gb';
+  var goal='reach10';   // reach2 | inc2 | reach10 | inc10
+  var years=10;
+  var defaults={city:slug('Dallas-Fort Worth, TX'),pop:'8,344,032',birthRate:12.4,deathRate:9.1,netMig:15.2,birthsLost:100,resBel:30,migBel:23,deathBel:30,actual:50};
+
+  function setFill(el){var mn=+el.min,mx=+el.max,v=+el.value;el.style.setProperty('--fill',((v-mn)/(mx-mn)*100)+'%');}
+  function flash(el){el.style.opacity='.55';requestAnimationFrame(function(){requestAnimationFrame(function(){el.style.opacity='1';});});}
+
+  // --- keep-even calculation (unchanged model) ---
+  function calc(){
+    var pop=num($('pop').value);
+    var birthRate=+$('birthRate').value, deathRate=+$('deathRate').value, migRate=+$('netMig').value;
+    var birthsLost=+$('birthsLost').value/100, migBel=+$('migBel').value/100, deathBel=+$('deathBel').value/100;
+    var resBel=+$('resBel').value/100;
+    var births=pop*birthRate/1000, deaths=pop*deathRate/1000, netMig=pop*migRate/1000;
+    var lostBirths=births*birthsLost;
+    var nonBelMig=netMig*(1-migBel);
+    var believerDeaths=deaths*deathBel, lostDeaths=deaths*(1-deathBel);
+    var deathComponent,total;
+    if(model==='gb'){deathComponent=deaths;total=lostBirths+nonBelMig+deathComponent;}
+    else{deathComponent=believerDeaths-lostDeaths;total=lostBirths+nonBelMig+believerDeaths-lostDeaths;}
+    var lostNow=pop*(1-resBel);
+    return {births:births,deaths:deaths,netMig:netMig,lostBirths:lostBirths,nonBelMig:nonBelMig,
+            believerDeaths:believerDeaths,lostDeaths:lostDeaths,deathComponent:deathComponent,total:total,lostNow:lostNow};
+  }
+
+  // --- reach-goal calculation (new; includes migration) ---
+  function reachCalc(){
+    var pop=num($('pop').value);
+    var b=+$('birthRate').value/1000, d=+$('deathRate').value/1000, mig=+$('netMig').value/1000;
+    var resBel=+$('resBel').value/100, migBel=+$('migBel').value/100;
+    var g=b-d+mig;
+    var PY=pop*Math.pow(1+g,years);
+    var E0=resBel*pop;
+    var eT=(goal==='reach2')?0.02:(goal==='reach10')?0.10:(goal==='inc10')?(resBel+0.10):(resBel+0.02);
+    var s=1-d, survive=Math.pow(s,years), annuity=(1-survive)/d;
+    var believingMig=pop*mig*migBel;                 // evangelical arrivals per year (approx, constant)
+    var X=(eT*PY - E0*survive)/annuity - believingMig;
+    if(!isFinite(X)||X<0) X=0;
+    return {perDay:X/365, eT:eT};
+  }
+
+  function updateGoalAvailability(){
+    var ev=+$('resBel').value;
+    var dis2=ev>=2, dis10=ev>=10;
+    $('goalReach2').disabled=dis2;
+    $('goalReach10').disabled=dis10;
+    if(goal==='reach2'&&dis2){ goal=dis10?'inc2':'reach10'; }
+    if(goal==='reach10'&&dis10){ goal='inc2'; }
+    $('goalReach2').setAttribute('aria-pressed',goal==='reach2');
+    $('goalInc2').setAttribute('aria-pressed',goal==='inc2');
+    $('goalReach10').setAttribute('aria-pressed',goal==='reach10');
+    $('goalInc10').setAttribute('aria-pressed',goal==='inc10');
+    var note;
+    if(dis10) note='This metro is already above 10% evangelical, so reach targets are off. Use the increase goals.';
+    else if(dis2) note='This metro is above 2% evangelical, so Reach 2% is off. Reach 10% and the increase goals remain.';
+    else note='All four goals are available while the metro is below that level.';
+    $('goalNote').textContent=note;
+  }
+
+  function render(){
+    $('birthRateV').textContent=(+$('birthRate').value).toFixed(1);
+    $('deathRateV').textContent=(+$('deathRate').value).toFixed(1);
+    $('netMigV').textContent=(+$('netMig').value).toFixed(1);
+    $('birthsLostV').textContent=$('birthsLost').value;
+    $('resBelV').textContent=(+$('resBel').value);
+    $('migBelV').textContent=$('migBel').value;
+    $('deathBelV').textContent=$('deathBel').value;
+    ids.forEach(function(id){var e=$(id);if(e.type==='range')setFill(e);});
+    updateGoalAvailability();
+
+    var r=calc();
+    $('netMigAbs').textContent=fmt(r.netMig);
+
+    var perDay=Math.max(0,Math.round(r.total/365));
+    var perYear=Math.max(0,Math.round(r.total));
+    var perHour=Math.round(perDay/24);
+    var lostDay=Math.round(r.lostDeaths/365), lostHour=Math.round(r.lostDeaths/365/24), replDay=Math.round(r.believerDeaths/365);
+    var lostYear=Math.round(r.lostDeaths);
+
+    // card header + hero
+    $('cPlace').textContent=placeName();
+    var pd=$('perDay'); if(pd.textContent!==fmt(perDay))flash(pd); pd.textContent=fmt(perDay);
+    $('perYear').textContent=fmt(perYear);
+    $('perHour').textContent=fmt(perHour);
+
+    // cost banner
+    $('lostDay').textContent=fmt(lostDay);
+    $('lostSub').textContent='('+fmt(lostYear)+' a year \u00b7 about '+fmt(lostHour)+' an hour)';
+
+    // stat grid
+    $('sLostNow').textContent=fmt(r.lostNow);
+    $('sPerYear').textContent=fmt(perYear);
+    $('sRepl').textContent=fmt(replDay);
+    $('sMig').textContent=fmt(r.netMig);
+
+    var actual=Math.max(0,num($('actual').value));
+    var gapTxt;
+    if(actual<=0) gapTxt='infinite';
+    else{var x=perDay/actual; gapTxt=(x>=10?Math.round(x):x.toFixed(1))+'x';}
+    $('sGap').textContent=gapTxt;
+
+    // reach goal
+    var rc=reachCalc();
+    var goalDay=Math.max(0,Math.round(rc.perDay));
+    var goalName=(goal==='reach2')?'To reach 2% evangelical':(goal==='reach10')?'To reach 10% evangelical':(goal==='inc10')?('To add 10 points to '+(+$('resBel').value).toFixed(1)+'%'):('To add 2 points to '+(+$('resBel').value).toFixed(1)+'%');
+    $('sGoalL').textContent=goalName+' in '+years+' yr';
+    $('sGoal').textContent=fmt(goalDay)+' / day';
+
+    // brutal-fact sentence
+    $('cFact').innerHTML='Keeping even takes <b>'+fmt(perDay)+' baptisms a day</b>. At an estimated '+fmt(actual)+' a day, this metro runs <b>'+gapTxt+'</b> short, while <b>'+fmt(lostDay)+'</b> die each day separated from God.';
+
+    // analysis breakdown
+    $('bBirth').textContent=fmt(r.lostBirths);
+    $('bMig').textContent=fmt(r.nonBelMig);
+    var deathShown=(model==='gb')?r.deaths:r.deathComponent;
+    $('bDeath').textContent=fmt(deathShown);
+    $('deathLbl').textContent=(model==='gb')?'All deaths (replacement plus lost)':'Deaths, net (replace believers, less lost)';
+    $('bTotal').textContent=fmt(perYear);
+    var parts=[Math.abs(r.lostBirths),Math.abs(r.nonBelMig),Math.abs(deathShown),1];
+    var mx=Math.max.apply(null,parts);
+    $('barBirth').style.width=(Math.abs(r.lostBirths)/mx*100)+'%';
+    $('barMig').style.width=(Math.abs(r.nonBelMig)/mx*100)+'%';
+    $('barDeath').style.width=(Math.abs(deathShown)/mx*100)+'%';
+
+    // reality check
+    $('rcReqN').textContent=fmt(perDay);
+    $('rcActN').textContent=fmt(actual);
+    var top=Math.max(perDay,actual,1);
+    $('rcReqBar').style.height=(perDay/top*100)+'%';
+    $('rcActBar').style.height=(actual/top*100)+'%';
+    $('gapX').textContent=gapTxt;
+  }
+
+  // events
+  ids.forEach(function(id){$(id).addEventListener('input',render);});
+  $('pop').addEventListener('input',function(){ sel.value='custom'; render(); });
+  $('pop').addEventListener('blur',function(){var v=num(this.value);this.value=v?nf.format(v):'0';render();});
+  $('actual').addEventListener('blur',function(){this.value=fmt(num(this.value));render();});
+
+  sel.addEventListener('change',function(){
+    if(sel.value!=='custom' && lookup[sel.value]){
+      $('pop').value=nf.format(lookup[sel.value].pop);
+      $('resBel').value=lookup[sel.value].ev;
+    }
+    render();
+  });
+
+  function setModel(m){model=m;$('modelGB').setAttribute('aria-pressed',m==='gb');$('modelNF').setAttribute('aria-pressed',m==='nf');render();}
+  $('modelGB').addEventListener('click',function(){setModel('gb');});
+  $('modelNF').addEventListener('click',function(){setModel('nf');});
+
+  $('goalReach2').addEventListener('click',function(){ if(this.disabled)return; goal='reach2'; render(); });
+  $('goalInc2').addEventListener('click',function(){ goal='inc2'; render(); });
+  $('goalReach10').addEventListener('click',function(){ if(this.disabled)return; goal='reach10'; render(); });
+  $('goalInc10').addEventListener('click',function(){ goal='inc10'; render(); });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.yr'),function(btn){
+    btn.addEventListener('click',function(){
+      years=+btn.getAttribute('data-y');
+      Array.prototype.forEach.call(document.querySelectorAll('.yr'),function(b){b.setAttribute('aria-pressed',b===btn);});
+      render();
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.sz'),function(btn){
+    btn.addEventListener('click',function(){
+      var card=document.querySelector('.card');
+      card.className='card size-'+btn.getAttribute('data-s');
+      Array.prototype.forEach.call(document.querySelectorAll('.sz'),function(b){b.setAttribute('aria-pressed',b===btn);});
+    });
+  });
+
+  // info tooltips
+  Array.prototype.forEach.call(document.querySelectorAll('.info'),function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      var open=b.classList.contains('open');
+      Array.prototype.forEach.call(document.querySelectorAll('.info'),function(x){x.classList.remove('open');});
+      if(!open) b.classList.add('open');
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.info')) Array.prototype.forEach.call(document.querySelectorAll('.info'),function(x){x.classList.remove('open');});
+  });
+
+  // download PNG
+  function dlslug(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+  $('downloadBtn').addEventListener('click',function(){
+    var card=document.querySelector('.card');
+    var btn=$('downloadBtn');
+    if(!window.htmlToImage){ alert('The image library did not load. Connect to the internet and reload, or take a manual screenshot of the card.'); return; }
+    var w=card.offsetWidth, h=card.offsetHeight;
+    var ratio=Math.max(2,Math.min(4,1080/w));
+    var name=(dlslug(placeName())||'metro')+'-brutal-facts.png';
+    var label=btn.textContent; btn.textContent='Rendering...'; btn.disabled=true;
+    var prev={w:card.style.width,h:card.style.height,mh:card.style.minHeight,sh:card.style.boxShadow,m:card.style.margin};
+    card.style.width=w+'px'; card.style.height=h+'px'; card.style.minHeight=h+'px'; card.style.boxShadow='none'; card.style.margin='0';
+    function restore(){card.style.width=prev.w;card.style.height=prev.h;card.style.minHeight=prev.mh;card.style.boxShadow=prev.sh;card.style.margin=prev.m;}
+    window.htmlToImage.toPng(card,{pixelRatio:ratio,backgroundColor:'#F5F5F4',width:w,height:h,cacheBust:true})
+      .then(function(url){ restore(); var a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); btn.textContent=label; btn.disabled=false; })
+      .catch(function(err){ restore(); console.error(err); alert('Could not generate the image. Try again, or take a manual screenshot.'); btn.textContent=label; btn.disabled=false; });
+  });
+
+  $('reset').addEventListener('click',function(){
+    sel.value=defaults.city; $('pop').value=defaults.pop;
+    $('birthRate').value=defaults.birthRate; $('deathRate').value=defaults.deathRate; $('netMig').value=defaults.netMig;
+    $('birthsLost').value=defaults.birthsLost; $('resBel').value=defaults.resBel; $('migBel').value=defaults.migBel;
+    $('deathBel').value=defaults.deathBel; $('actual').value=defaults.actual;
+    goal='reach10'; years=10;
+    Array.prototype.forEach.call(document.querySelectorAll('.yr'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-y')==='10');});
+    setModel('gb');
+  });
+
+  render();
+})();
+</script>
+<script>(function(){var dd=document.querySelector(".nav-dd");if(!dd)return;var b=dd.querySelector(".nav-ddbtn");b.addEventListener("click",function(e){e.stopPropagation();var o=dd.classList.toggle("open");b.setAttribute("aria-expanded",o);});document.addEventListener("click",function(){dd.classList.remove("open");b.setAttribute("aria-expanded","false");});})();</script>
+</body>
+</html>
