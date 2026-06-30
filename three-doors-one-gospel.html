@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Doors, One Gospel &middot; Clarity for the Nations</title>
+<meta name="description" content="Power, truth, and love: the same gospel needs a different point of entry in every worldview. An interactive scroll from Clarity for the Nations by Bud Houston.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#6B4FA0;--deep:#463275;
+--power:#C0392B;--powerdeep:#8F271C;
+--truth:#2563A8;--truthdeep:#173f72;
+--love:#D98A2B;--lovedeep:#9c5f15;
+--line:rgba(28,26,23,.12);--darkbg:#1E1830;--card:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+.narrow{max-width:760px}
+
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--accent),var(--love));z-index:60;transition:width .08s linear}
+
+.topnav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.3rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+
+header.hero{position:relative;background:var(--darkbg);color:#F6F1EC;overflow:hidden;padding:13vh 0 10vh}
+.hero svg.bg{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+header.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 58% at 50% 0%,rgba(107,79,160,.40),transparent 64%),linear-gradient(180deg,rgba(30,24,48,.04),var(--darkbg) 92%)}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:1.4rem}
+.hero .eyebrow{color:#B9A6E0}
+.hook{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.1rem,6vw,3.7rem);line-height:1.05;letter-spacing:-.01em;max-width:18ch;margin:0 0 2.6rem}
+.chips{display:flex;flex-wrap:wrap;gap:14px}
+.chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.20);border-radius:14px;padding:1.05rem 1.25rem;min-width:148px;flex:1 1 148px;max-width:240px}
+.chip .num{font-family:'Fraunces',serif;font-weight:900;font-size:2.4rem;line-height:1;color:#C9B7EC;display:block}
+.chip .lab{display:block;margin-top:.5rem;font-size:.85rem;color:rgba(246,241,236,.78);line-height:1.35}
+
+.lede{padding:8vh 0 1vh}
+.lede p{font-size:1.2rem;line-height:1.7;color:#33302a}
+.lede p+p{margin-top:1.1rem}
+
+section.mod{padding:7vh 0;border-top:1px solid var(--line)}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.7rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.55rem,4vw,2.25rem);line-height:1.12;margin-bottom:.8rem;max-width:22ch}
+.mod .intro{font-size:1.06rem;color:#3a352e;max-width:60ch;margin-bottom:2.2rem}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+.viz{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.6rem 1.5rem 1.8rem;box-shadow:0 12px 34px rgba(0,0,0,.06)}
+.viz .hint{font-size:.85rem;color:var(--mute);margin-top:1rem}
+.viz .caption{font-size:.8rem;color:var(--mute);margin-top:.7rem;font-style:italic}
+
+/* doors */
+.door{cursor:pointer}
+.door:focus{outline:none}
+.door:focus .frame{stroke:var(--accent);stroke-width:4}
+.door-readout{margin-top:1.2rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;min-height:96px}
+.door-readout .t{font-weight:700;font-family:'Fraunces',serif;font-size:1.2rem}
+.door-readout .v{font-size:.92rem;color:var(--mute);margin:.2rem 0 .5rem;font-style:italic}
+.door-readout .d{font-size:.98rem;color:#3a352e;line-height:1.55}
+.legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1rem;font-size:.84rem;color:#3a352e}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:.4rem;vertical-align:middle}
+
+/* segmented worldview */
+.seg{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:50px;padding:4px;margin-top:.2rem;flex-wrap:wrap;gap:2px}
+.seg button{font-family:inherit;font-weight:700;font-size:.9rem;border:none;background:transparent;color:var(--mute);padding:.55rem 1.05rem;border-radius:50px;cursor:pointer;transition:all .2s}
+.seg button.on{color:#fff}
+.seg button[data-w="power"].on{background:var(--power)}
+.seg button[data-w="truth"].on{background:var(--truth)}
+.seg button[data-w="posttruth"].on{background:var(--love)}
+.wv-panel{margin-top:1.4rem}
+.wv-card{display:none;border:1px solid var(--line);border-radius:16px;padding:1.3rem 1.4rem;background:#fff}
+.wv-card.show{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.wv-tag{display:inline-block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;border-radius:50px;padding:.28rem .9rem;margin-bottom:.7rem;color:#fff}
+.wv-q{font-family:'Fraunces',serif;font-weight:900;font-size:1.35rem;margin-bottom:.4rem;line-height:1.18}
+.wv-card p{color:#3a352e;margin-bottom:.7rem}
+.wv-card p:last-child{margin-bottom:0}
+.wv-door{font-weight:700}
+.wv-verdict{display:inline-block;margin-top:.4rem;font-size:.86rem;font-weight:700;border-radius:8px;padding:.4rem .8rem;background:var(--paper);border:1px solid var(--line)}
+
+/* day slider */
+.daybar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.3rem}
+.daybar input[type=range]{flex:1;min-width:220px;accent-color:var(--accent)}
+.day-state{font-family:'Fraunces',serif;font-weight:900;font-size:1.35rem;min-width:9ch}
+.ticks{display:flex;justify-content:space-between;font-size:.72rem;color:var(--mute);margin-top:.3rem}
+.day-desc{font-size:.98rem;color:#3a352e;margin-top:.9rem;min-height:2.8em}
+
+/* boundaries accordion */
+.bnd{display:grid;gap:.9rem;margin-top:1.4rem}
+.bcard{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.bcard button.head{width:100%;text-align:left;background:none;border:none;font-family:inherit;cursor:pointer;padding:1.1rem 1.2rem;display:flex;align-items:center;gap:.9rem}
+.bcard .dot{flex:0 0 16px;width:16px;height:16px;border-radius:4px}
+.bcard .bt{font-family:'Fraunces',serif;font-weight:900;font-size:1.08rem;flex:1}
+.bcard .chev{color:var(--mute);transition:transform .25s;font-size:1.1rem}
+.bcard.open .chev{transform:rotate(90deg)}
+.bcard .body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 1.2rem 0 3rem}
+.bcard.open .body{max-height:420px}
+.bcard .body p{color:#3a352e;font-size:.98rem;padding-bottom:.6rem}
+.bcard .body .fail{font-weight:700;padding-bottom:1.1rem}
+.bnd-progress{margin-top:1.4rem}
+.bnd-progress .track{height:8px;border-radius:6px;background:rgba(28,26,23,.10);overflow:hidden}
+.bnd-progress .fill{height:100%;width:0;background:linear-gradient(90deg,var(--power),var(--truth),var(--love));transition:width .5s ease}
+.bnd-progress .pl{font-size:.88rem;color:var(--mute);margin-top:.5rem;font-weight:600}
+
+/* team audit checkable */
+.team{display:grid;gap:.9rem;margin-top:1.4rem}
+.tcard{display:flex;gap:.9rem;align-items:flex-start;border:1px solid var(--line);border-radius:14px;background:#fff;padding:1.1rem 1.2rem;cursor:pointer;transition:border-color .2s,background .2s;text-align:left;font-family:inherit;width:100%}
+.tcard:hover{border-color:var(--ink)}
+.tcard.done{background:#FBF8F2;border-color:var(--accent)}
+.tcard .box{flex:0 0 26px;width:26px;height:26px;border-radius:7px;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1rem;transition:background .2s}
+.tcard.done .box{background:var(--accent)}
+.tcard .qx{font-size:.99rem;color:#2c2820;line-height:1.5}
+.tcard .qx b{font-family:'Fraunces',serif}
+.team-meter{margin-top:1.4rem}
+.team-meter .track{height:8px;border-radius:6px;background:rgba(28,26,23,.10);overflow:hidden}
+.team-meter .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--deep));transition:width .5s ease}
+.team-meter .pl{font-size:.88rem;color:var(--mute);margin-top:.5rem;font-weight:600}
+
+/* quote + closing */
+.quoteband{background:var(--accent);color:#F6F0FB;padding:9vh 0}
+.quoteband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,4.2vw,2.4rem);line-height:1.2;max-width:24ch}
+.quoteband .q+.q{margin-top:2.2rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.28)}
+.quoteband .mk{font-size:2.4rem;line-height:.3;opacity:.55;display:block;margin-bottom:.3rem}
+.closing{background:var(--ink);color:#F6F1EC;padding:11vh 0;text-align:center}
+.closing .eyebrow{color:#B9A6E0;margin-bottom:1.2rem}
+.closing h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.8rem,4.8vw,2.8rem);line-height:1.16;max-width:20ch;margin:0 auto 2.2rem}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta:hover{filter:brightness(1.1);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+@media(max-width:560px){.mod h2{font-size:1.5rem}.hook{font-size:2.1rem}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<svg class="bg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<g id="doorsbg"></g>
+</svg>
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Bible &amp; Strategy</div>
+<h1 class="hook">The argument was not wrong. It was aimed at the wrong door.</h1>
+<div class="chips">
+<div class="chip"><span class="num" data-target="3">0</span><span class="lab">avenues the church carries into every field: power, truth, love</span></div>
+<div class="chip"><span class="num" data-target="1">0</span><span class="lab">gospel that has to walk through every one of them</span></div>
+<div class="chip"><span class="num" data-target="10">0</span><span class="lab">years an airtight case can move nothing at the wrong door</span></div>
+</div>
+</div>
+</header>
+
+<section class="lede">
+<div class="wrap narrow">
+<p class="reveal">A Western worker with a seminary degree and an airtight case for the resurrection can spend ten years in a folk-Islamic village and watch nothing move. Then a child gets healed after prayer, and the whole household wants to know who Jesus is.</p>
+<p class="reveal">We read that as a miracle. It is also a diagnosis. The church carries three things into every field: power, truth, and love. In any given worldview, one of them breaks ground first and opens the way for the other two. Lead with the right one and the gospel walks in. Lead with the wrong one and you knock for a decade on a door nobody uses. Scroll through, and work the controls.</p>
+</div>
+</section>
+
+<!-- MODULE 1: THREE DOORS -->
+<section class="mod" id="m1">
+<div class="wrap narrow">
+<div class="kicker reveal">The kingdom advances through all three</div>
+<h2 class="reveal">One gospel, behind three different doors</h2>
+<p class="intro reveal">Power, truth, and love are not a marketing model laid over the gospel. They are how the New Testament describes the Kingdom expanding. Click or tap a door to open it and read its grounding in Scripture. Notice the same light is behind all three.</p>
+<div class="viz reveal">
+<svg id="doors" viewBox="0 0 600 320" width="100%" role="img" aria-label="Three doors labeled power, truth, and love"></svg>
+<div class="legend">
+<span><i style="background:var(--power)"></i>Power</span>
+<span><i style="background:var(--truth)"></i>Truth</span>
+<span><i style="background:var(--love)"></i>Love</span>
+</div>
+<div class="door-readout" id="doorReadout">
+<div class="t">Three doors, one gospel.</div>
+<div class="v">The ideal is all three at once.</div>
+<div class="d">Open a door to see how Scripture grounds it. Jesus healed out of compassion (love), demonstrating the power of God, to validate the truth of his message. The three were never meant to be separated.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MODULE 2: WORLDVIEW TO ENTRY POINT -->
+<section class="mod" id="m2">
+<div class="wrap narrow">
+<div class="kicker reveal">Which one goes first</div>
+<h2 class="reveal">The same gospel needs a different point of entry</h2>
+<p class="intro reveal">Reading the map tells you where a person is standing. It does not tell you how to move them. Pick a worldview and see which door tends to break ground, and where the Western default of leading with truth misfires.</p>
+<div class="seg reveal" id="wvSeg">
+<button class="on" data-w="power">Power-oriented</button>
+<button data-w="truth">Truth-oriented</button>
+<button data-w="posttruth">Post-truth</button>
+</div>
+<div class="wv-panel reveal">
+<div class="wv-card show" id="wv-power">
+<span class="wv-tag" style="background:var(--power)">Lead with power</span>
+<div class="wv-q">The daily question: who is stronger?</div>
+<p>Folk religion, animism, and most popular-level Islam and Hinduism live in a world of spirits, curses, ancestors, and unseen forces. Power here is not only dramatic healing or exorcism. It is release from crippling fear, freedom from addiction, the breaking of generational bondage.</p>
+<p>Paul Hiebert named the Western blind spot here the flaw of the excluded middle: we bring high theology and empirical facts and skip the realm where these people actually live. Truth lands only after power has answered the question they are actually asking.</p>
+<span class="wv-verdict">Door that breaks ground: <span class="wv-door" style="color:var(--power)">Power</span></span>
+</div>
+<div class="wv-card" id="wv-truth">
+<span class="wv-tag" style="background:var(--truth)">Lead with truth</span>
+<div class="wv-q">The daily question: is it true?</div>
+<p>Modern, literate, argument-respecting contexts, including much of the secular West until recently and large parts of the educated global church. Here declarative persuasion still works. The case for the resurrection, the coherence of the Christian story, the historical evidence: these open the door.</p>
+<p>This is the one door Western workers know how to use. So we use it everywhere, and outside it we answer questions nobody is asking.</p>
+<span class="wv-verdict">Door that breaks ground: <span class="wv-door" style="color:var(--truth)">Truth</span></span>
+</div>
+<div class="wv-card" id="wv-posttruth">
+<span class="wv-tag" style="background:var(--love)">Lead with love</span>
+<div class="wv-q">The daily question: why trust the category at all?</div>
+<p>The secular, post-Christian West, and increasingly the global cities its culture exports to. These people have heard the propositions and filed them under things religious people claim. Another argument bounces off, because the problem is not the evidence. It is that they no longer trust the category.</p>
+<p>What breaks through is a long demonstration of love: meals dropped off during a divorce, a standing seat at the table, the same people still showing up three years later. Embodied, costly, and credible, not a sharper syllogism.</p>
+<span class="wv-verdict">Door that breaks ground: <span class="wv-door" style="color:var(--lovedeep)">Love</span></span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MODULE 3: WHICH MAP IS LOAD-BEARING -->
+<section class="mod" id="m3">
+<div class="wrap narrow">
+<div class="kicker reveal">The categories are heuristics, not boxes</div>
+<h2 class="reveal">One person can live on three maps in a single day</h2>
+<p class="intro reveal">A university student in Nairobi may reason in a truth frame in the classroom, a post-truth frame on her feed, and a power frame the moment a family crisis hits. Drag through her day and watch which door becomes load-bearing.</p>
+<div class="viz reveal">
+<svg id="maps" viewBox="0 0 600 240" width="100%" role="img" aria-label="Three doors rising and falling across a day"></svg>
+<div class="daybar">
+<span class="day-state" id="dayState">Classroom</span>
+<input type="range" id="day" min="0" max="100" value="8" aria-label="A day in her life from morning to evening">
+</div>
+<div class="ticks"><span>Morning: classroom</span><span>Afternoon: the feed</span><span>Evening: a crisis</span></div>
+<div class="day-desc" id="dayDesc">In the lecture hall she reasons in a truth frame. Evidence and argument actually land here.</div>
+<div class="caption">The argument of the essay, illustrated. The weights show emphasis, not measured data.</div>
+</div>
+</div>
+</section>
+
+<!-- MODULE 4: THE BOUNDARIES -->
+<section class="mod" id="m4">
+<div class="wrap narrow">
+<div class="kicker reveal">What Jesus refused to do</div>
+<h2 class="reveal">Lead with one, but never amputate the other two</h2>
+<p class="intro reveal">The moment you lead with one, you are tempted to abandon the rest. That is how movements go wrong. Open each boundary to see where Jesus drew the line, and what the avenue collapses into when it is cut loose.</p>
+<div class="bnd reveal" id="bnd">
+<div class="bcard"><button class="head"><span class="dot" style="background:var(--power)"></span><span class="bt">The boundary on power</span><span class="chev">&#8250;</span></button><div class="body"><p>Jesus refused to use power as spectacle or proof on demand. In the wilderness he would not turn stones to bread or throw himself from the temple to force a sign (Matt 4). When Herod wanted a miracle for entertainment, Jesus gave him silence (Luke 23:8-9). He healed constantly, then told people to keep quiet about it (Mark 1:44).</p><p class="fail" style="color:var(--powerdeep)">Cut loose from truth, power drifts into mysticism. A circus.</p></div></div>
+<div class="bcard"><button class="head"><span class="dot" style="background:var(--truth)"></span><span class="bt">The boundary on truth</span><span class="chev">&#8250;</span></button><div class="body"><p>Jesus told hard truth, but he refused to weaponize it. He looked at the rich young ruler, loved him, and only then named the one thing he lacked (Mark 10:21). With Nicodemus he gave a respected Pharisee the hardest truth in a patient, private dialogue aimed at rescue rather than condemnation (John 3:17). And he kept truth to the right timing: you cannot bear them now (John 16:12).</p><p class="fail" style="color:var(--truthdeep)">Cut loose from love, truth hardens into legalism. A club.</p></div></div>
+<div class="bcard"><button class="head"><span class="dot" style="background:var(--love)"></span><span class="bt">The boundary on love</span><span class="chev">&#8250;</span></button><div class="body"><p>Love never collapsed into mere affirmation. He loved the rich young ruler and still let him leave grieving. He loved Peter and still said get behind me, Satan (Matt 16:23). He made a whip and cleared the temple because love for the Father's house and for the exploited demanded confrontation (John 2). At the well, his love looked like naming her five husbands, not avoiding the subject (John 4).</p><p class="fail" style="color:var(--lovedeep)">Cut loose from truth, love collapses into sociology. Sentiment.</p></div></div>
+</div>
+<div class="bnd-progress">
+<div class="track"><div class="fill" id="bndFill"></div></div>
+<div class="pl" id="bndLabel">0 of 3 boundaries opened</div>
+</div>
+</div>
+</section>
+
+<!-- MODULE 5: FOR YOUR TEAM -->
+<section class="mod" id="m5">
+<div class="wrap narrow">
+<div class="kicker reveal">For your team</div>
+<h2 class="reveal">Four questions to carry into your next planning meeting</h2>
+<p class="intro reveal">Tap each one you intend to put in front of your team. The meter fills as you commit to all four.</p>
+<div class="team reveal" id="team">
+<button class="tcard"><span class="box">&#10003;</span><span class="qx"><b>The avenue audit.</b> When you assess a target people group, do you map which avenue (power, truth, or love) is most likely to break ground first, or do you deploy the same approach you would use anywhere?</span></button>
+<button class="tcard"><span class="box">&#10003;</span><span class="qx"><b>The pipeline test.</b> How much of your training is built around argument and apologetics, and would that pipeline actually equip a worker for a power-oriented or a post-truth context?</span></button>
+<button class="tcard"><span class="box">&#10003;</span><span class="qx"><b>The order question.</b> Where are you currently leading with truth in a setting that needs power or love first, and what would it cost you to change the order?</span></button>
+<button class="tcard"><span class="box">&#10003;</span><span class="qx"><b>The blind spot.</b> Which of the three is your team weakest at demonstrating, and what does that gap quietly teach the people watching you?</span></button>
+</div>
+<div class="team-meter">
+<div class="track"><div class="fill" id="teamFill"></div></div>
+<div class="pl" id="teamLabel">0 of 4 marked for the team</div>
+</div>
+</div>
+</section>
+
+<section class="quoteband">
+<div class="wrap narrow">
+<p class="q"><span class="mk">&ldquo;</span>Another argument is not a key. It is a locked door with a fresh coat of paint.</p>
+<p class="q"><span class="mk">&ldquo;</span>The tip of the spear is not the whole spear.</p>
+</div>
+</section>
+
+<section class="closing">
+<div class="wrap narrow">
+<div class="eyebrow">The takeaway</div>
+<h2>Read the map. Lead with the right door. Never amputate the other two.</h2>
+<a class="cta" href="https://clarity4thenations.substack.com/p/three-doors-one-gospel" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<a class="sub" href="index.html">Back to all essays &#8594;</a>
+</div>
+<div class="wrap" style="margin-top:1rem">
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read on Substack &#8594;</a>
+</div>
+</footer>
+
+<script>
+var SVGNS="http://www.w3.org/2000/svg";
+function el(tag,attrs){var e=document.createElementNS(SVGNS,tag);if(attrs)for(var k in attrs)e.setAttribute(k,attrs[k]);return e;}
+
+/* progress bar */
+var bar=document.getElementById('progress');
+function onScroll(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* generic reveal */
+var revObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target);}});},{threshold:.16});
+document.querySelectorAll('.reveal').forEach(function(n){revObs.observe(n);});
+
+/* count-up */
+function countUp(node,target,dur){var start=performance.now();function step(now){var t=Math.min((now-start)/dur,1);var e=1-Math.pow(1-t,3);node.textContent=Math.round(e*target);if(t<1)requestAnimationFrame(step);else node.textContent=target;}requestAnimationFrame(step);}
+window.addEventListener('load',function(){document.querySelectorAll('.chip .num').forEach(function(n){countUp(n,parseFloat(n.dataset.target),1300);});});
+
+/* hero background: three faint doors with a glow */
+(function(){var g=document.getElementById('doorsbg');if(!g)return;
+var cols=['rgba(192,57,43,.5)','rgba(37,99,168,.5)','rgba(217,138,43,.5)'];
+var xs=[300,600,900];
+xs.forEach(function(x,i){
+g.appendChild(el('rect',{x:x-95,y:150,width:190,height:330,rx:10,fill:'none',stroke:cols[i],'stroke-width':2}));
+g.appendChild(el('line',{x1:x,y1:150,x2:x,y2:480,stroke:cols[i],'stroke-width':1.4}));
+var c=el('circle',{cx:x+(i===0?40:-40),cy:320,r:5,fill:cols[i]});g.appendChild(c);
+});
+var glow=el('circle',{cx:600,cy:300,r:120,fill:'rgba(201,183,236,.18)'});g.insertBefore(glow,g.firstChild);
+var an=el('animate',{attributeName:'r',values:'120;150;120',dur:'4s',repeatCount:'indefinite'});glow.appendChild(an);
+})();
+
+/* MODULE 1: three doors */
+(function(){
+var svg=document.getElementById('doors');if(!svg)return;
+var defs=el('defs');
+var rg=el('radialGradient',{id:'gospelLight',cx:'50%',cy:'45%',r:'65%'});
+rg.appendChild(el('stop',{offset:'0%','stop-color':'#FFF6DC'}));
+rg.appendChild(el('stop',{offset:'60%','stop-color':'#FBE8B0'}));
+rg.appendChild(el('stop',{offset:'100%','stop-color':'#E9C76A','stop-opacity':'0'}));
+defs.appendChild(rg);svg.appendChild(defs);
+var content={
+power:{color:'#C0392B',t:'Power',v:'"The kingdom of God does not consist in talk but in power." (1 Cor 4:20)',d:'Jesus pointed to power encounters as evidence the Kingdom had arrived (Luke 11:20). Acts ties the spread of the witness to the power of the Spirit (Acts 1:8), and the healing at the Beautiful Gate triggers mass conversion (Acts 3).'},
+truth:{color:'#2563A8',t:'Truth',v:'"I am the way, and the truth, and the life." (John 14:6)',d:'Apprehending the truth brings freedom (John 8:32). Paul reasoned in synagogues, in the marketplace, and at the Areopagus (Acts 17). Most of the Epistles exist to guard that truth from corruption.'},
+love:{color:'#D98A2B',t:'Love',v:'"By this all people will know that you are my disciples, if you have love for one another." (John 13:35)',d:'The Jerusalem church grew not only because of Pentecost but because believers sold their possessions to care for the needy (Acts 2 and 4). Without love, Paul insists, both truth and power are worthless (1 Cor 13).'}
+};
+var order=['power','truth','love'];
+var doorW=150,doorH=215,topY=48,gap=18;
+var totalW=order.length*doorW+(order.length-1)*gap;
+var startX=(600-totalW)/2;
+var rT=svg.parentNode.querySelector('#doorReadout .t');
+var rV=svg.parentNode.querySelector('#doorReadout .v');
+var rD=svg.parentNode.querySelector('#doorReadout .d');
+order.forEach(function(key,i){
+var c=content[key];
+var x=startX+i*(doorW+gap);
+var hinge=x+8;
+// light behind
+var light=el('ellipse',{cx:x+doorW/2,cy:topY+doorH/2,rx:doorW*0.46,ry:doorH*0.42,fill:'url(#gospelLight)',opacity:0});
+svg.appendChild(light);
+// doorway opening (dark interior)
+svg.appendChild(el('rect',{x:x+8,y:topY+8,width:doorW-16,height:doorH-8,rx:4,fill:'#241a14'}));
+// group (interactive)
+var g=el('g',{class:'door',tabindex:0,role:'button','aria-label':'Open the '+c.t+' door'});
+// frame
+g.appendChild(el('rect',{class:'frame',x:x,y:topY,width:doorW,height:doorH+8,rx:8,fill:'none',stroke:'#3a2f26','stroke-width':3}));
+// door panel
+var panel=el('rect',{x:x+6,y:topY+6,width:doorW-12,height:doorH-4,rx:5,fill:c.color});
+g.appendChild(panel);
+// panel grain lines
+g.appendChild(el('line',{x1:x+doorW/2,y1:topY+14,x2:x+doorW/2,y2:topY+doorH-2,stroke:'rgba(255,255,255,.16)','stroke-width':2}));
+var knob=el('circle',{cx:x+doorW-22,cy:topY+doorH/2,r:5,fill:'#fff','fill-opacity':.85});
+g.appendChild(knob);
+// label
+var lab=el('text',{x:x+doorW/2,y:topY+doorH+30,'text-anchor':'middle','font-size':15,'font-weight':700,fill:c.color,'font-family':'Inter,sans-serif'});
+lab.textContent=c.t.toUpperCase();
+svg.appendChild(g);svg.appendChild(lab);
+var open=false;var raf=null;
+function tween(to){
+if(raf)cancelAnimationFrame(raf);
+var from=open?1:0.12;var start=performance.now(),dur=520;
+function step(now){
+var k=Math.min((now-start)/dur,1);var e=1-Math.pow(1-k,3);
+var sx=from+(to-from)*e;
+panel.setAttribute('transform','translate('+hinge+',0) scale('+sx.toFixed(3)+',1) translate('+(-hinge)+',0)');
+knob.setAttribute('opacity',sx<0.6?0:0.85);
+if(k<1)raf=requestAnimationFrame(step);
+}
+raf=requestAnimationFrame(step);
+}
+function activate(){
+open=!open;
+tween(open?0.12:1);
+light.style.transition='opacity .5s ease';
+light.setAttribute('opacity',open?1:0);
+if(open){rT.textContent=c.t;rT.style.color=c.color;rV.textContent=c.v;rD.textContent=c.d;}
+}
+g.addEventListener('click',activate);
+g.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();activate();}});
+});
+// entrance: gentle nudge of frames
+var dObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){svg.querySelectorAll('.door rect.frame').forEach(function(f,i){f.style.transition='stroke-width .4s ease';setTimeout(function(){f.setAttribute('stroke-width',3);},120*i);});dObs.unobserve(e.target);}});},{threshold:.3});
+dObs.observe(svg);
+})();
+
+/* MODULE 2: worldview segmented */
+(function(){
+var seg=document.getElementById('wvSeg');if(!seg)return;
+seg.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){
+seg.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
+document.querySelectorAll('.wv-card').forEach(function(c){c.classList.remove('show');});
+document.getElementById('wv-'+b.dataset.w).classList.add('show');
+});});
+})();
+
+/* MODULE 3: day maps */
+(function(){
+var svg=document.getElementById('maps');if(!svg)return;
+var W=600,H=240,baseY=186,maxH=128,barW=92;
+var bars=[
+{key:'power',label:'POWER',color:'#C0392B',center:83,x:150},
+{key:'truth',label:'TRUTH',color:'#2563A8',center:16,x:300},
+{key:'love',label:'LOVE',color:'#D98A2B',center:50,x:450}
+];
+// baseline
+svg.appendChild(el('line',{x1:40,y1:baseY,x2:560,y2:baseY,stroke:'rgba(28,26,23,.18)','stroke-width':1.5}));
+// timeline track + sun marker
+svg.appendChild(el('line',{x1:40,y1:30,x2:560,y2:30,stroke:'rgba(28,26,23,.14)','stroke-width':2,'stroke-linecap':'round'}));
+var sun=el('circle',{cx:40,cy:30,r:8,fill:'#E8A33D',stroke:'#fff','stroke-width':2});
+bars.forEach(function(b){
+b.rect=el('rect',{x:b.x-barW/2,y:baseY-18,width:barW,height:18,rx:6,fill:b.color});
+svg.appendChild(b.rect);
+b.cap=el('text',{x:b.x,y:baseY+22,'text-anchor':'middle','font-size':13,'font-weight':700,fill:b.color,'font-family':'Inter,sans-serif'});
+b.cap.textContent=b.label;svg.appendChild(b.cap);
+b.val=el('text',{x:b.x,y:baseY-26,'text-anchor':'middle','font-size':12,'font-weight':700,fill:b.color,'font-family':'Inter,sans-serif',opacity:0});
+svg.appendChild(b.val);
+});
+svg.appendChild(sun);
+var slider=document.getElementById('day');
+var stateEl=document.getElementById('dayState');
+var descEl=document.getElementById('dayDesc');
+var zones=[
+{max:34,name:'Classroom',color:'#2563A8',desc:'In the lecture hall she reasons in a truth frame. Evidence and argument actually land here.'},
+{max:67,name:'The feed',color:'#D98A2B',desc:'Scrolling, she is in a post-truth frame. Another argument just bounces off. What reaches her is love, shown over time.'},
+{max:101,name:'A crisis',color:'#C0392B',desc:'A family crisis hits. Now the question is not is it true. It is who is stronger. The power door is the one that opens.'}
+];
+function zoneFor(v){for(var i=0;i<zones.length;i++){if(v<zones[i].max)return zones[i];}return zones[zones.length-1];}
+function weight(v,c){var d=(v-c)/24;return Math.exp(-d*d);}
+function draw(v){
+var ws=bars.map(function(b){return weight(v,b.center);});
+var maxw=Math.max.apply(null,ws);
+bars.forEach(function(b,i){
+var h=18+ws[i]*maxH;
+b.rect.setAttribute('y',baseY-h);
+b.rect.setAttribute('height',h);
+var dom=ws[i]>=maxw-0.001;
+b.rect.setAttribute('opacity',dom?1:0.32);
+b.val.setAttribute('opacity',dom?1:0);
+b.val.setAttribute('y',baseY-h-8);
+b.val.textContent=dom?'load-bearing':'';
+});
+sun.setAttribute('cx',40+(v/100)*520);
+var z=zoneFor(v);
+stateEl.textContent=z.name;stateEl.style.color=z.color;
+descEl.textContent=z.desc;
+}
+slider.addEventListener('input',function(){draw(+slider.value);});
+draw(+slider.value);
+var swept=false;
+var mObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!swept){swept=true;var v=8;var iv=setInterval(function(){v+=2.2;if(v>=92){v=92;clearInterval(iv);}slider.value=v;draw(v);},24);mObs.unobserve(e.target);}});},{threshold:.4});
+mObs.observe(svg);
+})();
+
+/* MODULE 4: boundaries accordion */
+(function(){
+var bnd=document.getElementById('bnd');if(!bnd)return;
+var cards=[].slice.call(bnd.querySelectorAll('.bcard'));
+var opened={};
+var fill=document.getElementById('bndFill');var label=document.getElementById('bndLabel');
+cards.forEach(function(card,i){
+card.querySelector('.head').addEventListener('click',function(){
+var isOpen=card.classList.toggle('open');
+if(isOpen)opened[i]=true;
+var n=Object.keys(opened).length;
+fill.style.width=(n/cards.length*100)+'%';
+label.textContent=n+' of '+cards.length+' boundaries opened'+(n===cards.length?'. Jesus held all three.':'');
+});
+});
+})();
+
+/* MODULE 5: team audit checkable */
+(function(){
+var team=document.getElementById('team');if(!team)return;
+var cards=[].slice.call(team.querySelectorAll('.tcard'));
+var fill=document.getElementById('teamFill');var label=document.getElementById('teamLabel');
+function refresh(){
+var n=cards.filter(function(c){return c.classList.contains('done');}).length;
+fill.style.width=(n/cards.length*100)+'%';
+label.textContent=n+' of '+cards.length+' marked for the team'+(n===cards.length?'. Take these into the meeting.':'');
+}
+cards.forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('done');refresh();});});
+})();
+</script>
+</body>
+</html>
