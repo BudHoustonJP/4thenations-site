@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everyone Is Already Ordained &middot; Clarity for the Nations</title>
+<meta name="description" content="The Great Commission is not waiting on more clergy. It is waiting on a royal priesthood that forgot it exists. An interactive scroll from Clarity for the Nations by Bud Houston.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#A86A16;--deep:#6E430C;
+--sea:#2E6E8E;--seadeep:#1D4E66;--gold:#E8A33D;--blood:#9A2333;
+--line:rgba(28,26,23,.12);--darkbg:#211A0F;--card:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+.narrow{max-width:760px}
+
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:60;transition:width .08s linear}
+
+.topnav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.3rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+
+header.hero{position:relative;background:var(--darkbg);color:#F6F1EC;overflow:hidden;padding:13vh 0 10vh}
+.hero svg.bg{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+header.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 58% at 50% 0%,rgba(168,106,22,.34),transparent 64%),linear-gradient(180deg,rgba(33,26,15,.04),var(--darkbg) 92%)}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:1.4rem}
+.hero .eyebrow{color:#E8C06A}
+.hook{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.1rem,6vw,3.7rem);line-height:1.05;letter-spacing:-.01em;max-width:20ch;margin:0 0 2.6rem}
+.chips{display:flex;flex-wrap:wrap;gap:14px}
+.chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.20);border-radius:14px;padding:1.05rem 1.25rem;min-width:148px;flex:1 1 148px;max-width:250px}
+.chip .num{font-family:'Fraunces',serif;font-weight:900;font-size:2.4rem;line-height:1;color:#E8C06A;display:block}
+.chip .lab{display:block;margin-top:.5rem;font-size:.85rem;color:rgba(246,241,236,.78);line-height:1.35}
+
+.lede{padding:8vh 0 1vh}
+.lede p{font-size:1.2rem;line-height:1.7;color:#33302a}
+.lede p+p{margin-top:1.1rem}
+
+section.mod{padding:7vh 0;border-top:1px solid var(--line)}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.7rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.55rem,4vw,2.25rem);line-height:1.12;margin-bottom:.8rem;max-width:24ch}
+.mod .intro{font-size:1.06rem;color:#3a352e;max-width:62ch;margin-bottom:2.2rem}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+.viz{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.6rem 1.5rem 1.8rem;box-shadow:0 12px 34px rgba(0,0,0,.06)}
+.viz .hint{font-size:.85rem;color:var(--mute);margin-top:1rem}
+.viz .caption{font-size:.8rem;color:var(--mute);margin-top:.7rem;font-style:italic}
+
+/* escalator slider */
+.esc-readout{display:flex;flex-wrap:wrap;gap:1.6rem;align-items:flex-end;margin-top:1.2rem}
+.esc-big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.4rem,7vw,3.4rem);line-height:.95;color:var(--accent)}
+.esc-big small{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.85rem;color:var(--mute);margin-top:.5rem;letter-spacing:.02em}
+.esc-add{font-family:'Fraunces',serif;font-weight:900;font-size:1.7rem;color:var(--blood);line-height:1}
+.esc-add small{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.8rem;color:var(--mute);margin-top:.4rem}
+.decaybar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1.4rem}
+.decaybar input[type=range]{flex:1;min-width:220px;accent-color:var(--accent)}
+.yearpill{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;color:var(--ink);min-width:6ch}
+.ticks{display:flex;justify-content:space-between;font-size:.72rem;color:var(--mute);margin-top:.3rem}
+.esc-state{font-size:.98rem;color:#3a352e;margin-top:1rem;min-height:2.6em}
+
+/* two priesthoods toggle */
+.seg{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:50px;padding:4px;margin-top:.4rem;flex-wrap:wrap}
+.seg button{font-family:inherit;font-weight:700;font-size:.9rem;border:none;background:transparent;color:var(--mute);padding:.55rem 1.1rem;border-radius:50px;cursor:pointer;transition:all .2s}
+.seg button.on{background:var(--accent);color:#fff}
+.pr-panel{margin-top:1.4rem}
+.pr-card{display:none;border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.5rem;background:#fff}
+.pr-card.show{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pr-tag{display:inline-block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;border-radius:50px;padding:.25rem .8rem;margin-bottom:.8rem}
+.pr-tag.cap{background:rgba(154,35,51,.12);color:var(--blood)}
+.pr-tag.roy{background:rgba(46,110,142,.14);color:var(--seadeep)}
+.pr-card h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.3rem;margin-bottom:.5rem}
+.pr-card p{color:#3a352e}
+.pr-meter{margin-top:1.2rem}
+.pr-meter .lb{font-size:.82rem;color:var(--mute);margin-bottom:.4rem;font-weight:600}
+.pr-meter .track{height:12px;border-radius:8px;background:rgba(28,26,23,.10);overflow:hidden}
+.pr-meter .fill{height:100%;width:20%;border-radius:8px;transition:width .6s cubic-bezier(.22,.61,.36,1),background .4s}
+
+/* consecration accordion */
+.audit{display:grid;gap:.9rem;margin-top:1.4rem}
+.qcard{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.qcard button.head{width:100%;text-align:left;background:none;border:none;font-family:inherit;cursor:pointer;padding:1.1rem 1.2rem;display:flex;align-items:center;gap:.9rem}
+.qcard .qn{flex:0 0 34px;width:34px;height:34px;border-radius:50%;border:2px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;transition:all .25s}
+.qcard.open .qn,.qcard.reviewed .qn{background:var(--accent);color:#fff}
+.qcard .qt{font-family:'Fraunces',serif;font-weight:900;font-size:1.06rem;flex:1;line-height:1.2}
+.qcard .chev{color:var(--mute);transition:transform .25s;font-size:1.1rem}
+.qcard.open .chev{transform:rotate(90deg)}
+.qcard .body{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 1.2rem 0 4.2rem}
+.qcard.open .body{max-height:400px}
+.qcard .body p{color:#3a352e;padding-bottom:1.1rem;font-size:.98rem}
+.audit-progress{margin-top:1.5rem}
+.audit-progress .track{height:8px;border-radius:6px;background:rgba(28,26,23,.10);overflow:hidden}
+.audit-progress .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--deep));transition:width .5s ease}
+.audit-progress .pl{font-size:.85rem;color:var(--mute);margin-top:.5rem}
+
+/* ear hand foot */
+.body-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:1.6rem;align-items:start}
+@media(max-width:640px){.body-grid{grid-template-columns:1fr}}
+.hotspot{cursor:pointer}
+.hotspot .ring{transition:r .4s cubic-bezier(.22,.61,.36,1),opacity .3s}
+.hotspot .mark{opacity:0;transition:opacity .45s}
+.hotspot.claimed .mark{opacity:1}
+.hotspot text{font-size:12px;font-weight:700;pointer-events:none}
+.ehf-side{display:flex;flex-direction:column;gap:1rem}
+.ehf-readout{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;min-height:96px}
+.ehf-readout .t{font-family:'Fraunces',serif;font-weight:900;font-size:1.15rem;color:var(--accent)}
+.ehf-readout .d{font-size:.96rem;color:#3a352e;margin-top:.35rem}
+.ehf-meter .lb{font-size:.85rem;color:var(--mute);margin-bottom:.45rem;font-weight:600}
+.ehf-seg{display:flex;gap:8px}
+.ehf-seg span{flex:1;height:12px;border-radius:6px;background:rgba(28,26,23,.10);transition:background .4s}
+.ehf-seg span.on{background:var(--blood)}
+.ehf-verdict{margin-top:.9rem;font-weight:700;font-size:1rem;color:var(--mute);min-height:2.4em}
+.ehf-verdict.whole{color:var(--seadeep)}
+
+/* node explorer */
+.bridge-detail{margin-top:1.1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:76px;font-size:1rem;color:#3a352e}
+.bridge-detail b{color:var(--accent)}
+.bridge-detail .st{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;border-radius:50px;padding:.2rem .7rem;margin-top:.6rem}
+.bridge-detail .st.dep{background:rgba(46,110,142,.14);color:var(--seadeep)}
+.bridge-detail .st.wait{background:rgba(168,106,22,.15);color:var(--deep)}
+.bnode{cursor:pointer}
+.bnode text{font-size:12.5px;font-weight:600}
+.bnode .pad{fill:transparent}
+.legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1rem;font-size:.84rem;color:#3a352e}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:.4rem;vertical-align:middle}
+
+/* team questions */
+.team{display:grid;gap:.9rem;margin-top:1.6rem}
+.tq{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.3rem;display:flex;gap:1rem;align-items:flex-start}
+.tq .n{flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.tq p{color:#39342d;font-size:1rem}
+
+/* quote + closing */
+.quoteband{background:var(--accent);color:#FBF3EC;padding:9vh 0}
+.quoteband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.55rem,4.2vw,2.5rem);line-height:1.2;max-width:24ch}
+.quoteband .q+.q{margin-top:2.2rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.28)}
+.quoteband .mk{font-size:2.4rem;line-height:.3;opacity:.55;display:block;margin-bottom:.3rem}
+.closing{background:var(--ink);color:#F6F1EC;padding:11vh 0;text-align:center}
+.closing .eyebrow{color:#E8C06A;margin-bottom:1.2rem}
+.closing h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.8rem,4.8vw,2.8rem);line-height:1.16;max-width:20ch;margin:0 auto 2.2rem}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta:hover{filter:brightness(1.08);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+@media(max-width:560px){.mod h2{font-size:1.5rem}.hook{font-size:2.1rem}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<svg class="bg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<g id="constellation" stroke="rgba(232,192,106,.30)" stroke-width="1"></g>
+</svg>
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Bible &amp; Strategy</div>
+<h1 class="hook">The Great Commission is not a staffing problem. It is a priesthood that forgot it exists.</h1>
+<div class="chips">
+<div class="chip"><span class="num" data-target="75488">0</span><span class="lab">worker-units the unreached need right now (Joshua Project standard)</span></div>
+<div class="chip"><span class="num" data-target="1200">0</span><span class="lab">new units of need added every year, before we deploy anyone</span></div>
+<div class="chip"><span class="num" data-target="7000" data-suffix="+">0</span><span class="lab">frontier peoples a professional-only workforce can never cover</span></div>
+</div>
+</div>
+</header>
+
+<section class="lede">
+<div class="wrap narrow">
+<p class="reveal">We keep framing the Great Commission as a staffing problem. Not enough goers. Not enough senders. Not enough funded units to cover the frontier. So we recruit harder, mobilize louder, and the math still does not close.</p>
+<p class="reveal">Two things are wrong with that math. The target is not standing still, and we are counting the wrong workforce. Scripture already ordained the many, and most of them do not know it. Scroll through, and work the controls.</p>
+</div>
+</section>
+
+<!-- MODULE 1: ESCALATOR SLIDER -->
+<section class="mod" id="m1">
+<div class="wrap narrow">
+<div class="kicker reveal">The moving target</div>
+<h2 class="reveal">The need grows before we deploy a single worker</h2>
+<p class="intro reveal">Joshua Project sets one worker-unit per 50,000 unreached people. That population grows about 1.6 percent a year, so the need climbs on its own. Drag through the years and watch the backlog rise before anyone is sent.</p>
+<div class="viz reveal">
+<svg id="esc" viewBox="0 0 600 320" width="100%" role="img" aria-label="Worker-unit need rising over the years"></svg>
+<div class="esc-readout">
+<div class="esc-big"><span id="escNeed">75,488</span><small>worker-units needed</small></div>
+<div class="esc-add"><span id="escAdd">+0</span><small>new units of need since today</small></div>
+</div>
+<div class="decaybar">
+<span class="yearpill" id="escYear">Today</span>
+<input type="range" id="escSlider" min="0" max="20" value="0" step="1" aria-label="Years from today">
+</div>
+<div class="ticks"><span>Today</span><span>+10 years</span><span>+20 years</span></div>
+<div class="esc-state" id="escState">This is today's shortfall: 75,488 worker-units, and it is already the floor, not the ceiling.</div>
+<div class="caption">A worker-unit is roughly two people (for example a couple). Projection uses Joshua Project's stated standard and the article's 1.6 percent annual growth. Illustrative, not a forecast.</div>
+</div>
+</div>
+</section>
+
+<!-- MODULE 2: TWO PRIESTHOODS TOGGLE -->
+<section class="mod" id="m2">
+<div class="wrap narrow">
+<div class="kicker reveal">The workforce we forgot</div>
+<h2 class="reveal">We are counting the ordained few. Scripture ordained the many.</h2>
+<p class="intro reveal">Under the Old Covenant a credentialed class stood between God and the people. The cross dissolved that into a royal priesthood of all believers (1 Peter 2:9). Flip between the two models and watch the ceiling move.</p>
+<div class="viz reveal">
+<div class="seg" id="prSeg">
+<button class="on" data-pr="cap">Residual Levitical model</button>
+<button data-pr="roy">Royal priesthood (1 Peter 2:9)</button>
+</div>
+<div class="pr-panel">
+<div class="pr-card show" id="pr-cap">
+<span class="pr-tag cap">The ceiling</span>
+<h3>A professional class carries the gospel</h3>
+<p>A specialized class does the sacred work. Everyone else funds it, attends it, and applauds it. That made sense when access to God ran through a credentialed few. It is a liability now, because it caps the workforce at exactly the point the task requires it to expand. There will never be enough professional goers to cover 7,000-plus frontier peoples across the nodes they now occupy.</p>
+</div>
+<div class="pr-card" id="pr-roy">
+<span class="pr-tag roy">The delivery mechanism</span>
+<h3>Every believer is a consecrated priest</h3>
+<p>Under the New Covenant every person in Christ was consecrated for priestly work. The workforce is not concentrated inside sending agencies. It is already distributed across labor corridors and gateway cities. Peter did not write "royal priesthood" to a seminary. He wrote it to scattered exiles (1 Peter 1:1). The first people told they were a priesthood were a diaspora.</p>
+</div>
+</div>
+<div class="pr-meter">
+<div class="lb" id="prLb">The available workforce, under this model</div>
+<div class="track"><div class="fill" id="prFill" style="background:var(--blood)"></div></div>
+</div>
+<div class="hint">The bottleneck is theological, not logistical. The frontier is not short on people. It is short on believers who know they were ordained to reach it.</div>
+</div>
+</div>
+</section>
+
+<!-- MODULE 3: CONSECRATION ACCORDION -->
+<section class="mod" id="m3">
+<div class="wrap narrow">
+<div class="kicker reveal">Exodus 29, element for element</div>
+<h2 class="reveal">What consecrated Aaron now consecrates you</h2>
+<p class="intro reveal">The ceremony that set apart Aaron and his sons maps onto what happens to every believer. Open each step of the ordination.</p>
+<div class="audit reveal" id="conAudit">
+<div class="qcard"><button class="head"><span class="qn">1</span><span class="qt">Washed before serving (Exodus 29:4)</span><span class="chev">&#8250;</span></button><div class="body"><p>They did not wash themselves. This is regeneration, the washing of rebirth by the Spirit (Titus 3:5). No one qualifies for priestly work in their natural state.</p></div></div>
+<div class="qcard"><button class="head"><span class="qn">2</span><span class="qt">Stripped and re-dressed in holy garments (Exodus 29:5-9)</span><span class="chev">&#8250;</span></button><div class="body"><p>The believer is clothed in the righteousness of Christ (Galatians 3:27), serving not in personal merit but in imputed standing.</p></div></div>
+<div class="qcard"><button class="head"><span class="qn">3</span><span class="qt">Anointed with oil (Exodus 29:7)</span><span class="chev">&#8250;</span></button><div class="body"><p>The ancient sign of the Spirit, once reserved for kings, prophets, and priests, is no longer rationed to a select few. It rests on every believer (1 John 2:20; 2 Corinthians 1:21-22).</p></div></div>
+</div>
+<div class="audit-progress">
+<div class="track"><div class="fill" id="conFill"></div></div>
+<div class="pl" id="conLabel">0 of 3 revealed. One step remains after these: the blood.</div>
+</div>
+</div>
+</section>
+
+<!-- MODULE 4: EAR HAND FOOT -->
+<section class="mod" id="m4">
+<div class="wrap narrow">
+<div class="kicker reveal">The sharpest image</div>
+<h2 class="reveal">The blood touched the ear, the thumb, and the toe. Not the r&eacute;sum&eacute;.</h2>
+<p class="intro reveal">Moses put the blood of ordination on three places (Exodus 29:20): the right ear, the right thumb, the right big toe. What you hear, what you do, where you go. Claim all three. Hold back one and the sacrifice is not yet whole (Romans 12:1).</p>
+<div class="viz reveal">
+<div class="body-grid">
+<svg id="figure" viewBox="0 0 300 460" width="100%" role="img" aria-label="A figure with three points of consecration: ear, hand, and foot"></svg>
+<div class="ehf-side">
+<div class="ehf-readout" id="ehfReadout">
+<div class="t">The whole person, claimed for mission</div>
+<div class="d">Tap the ear, the hand, and the foot. Each one is a part of you set apart.</div>
+</div>
+<div class="ehf-meter">
+<div class="lb">The living sacrifice</div>
+<div class="ehf-seg"><span id="segEar"></span><span id="segHand"></span><span id="segFoot"></span></div>
+<div class="ehf-verdict" id="ehfVerdict">0 of 3 claimed. Held back is not yet whole.</div>
+</div>
+</div>
+</div>
+<div class="caption">The three marks illustrate the argument of Exodus 29:20 and Romans 12:1. A conceptual diagram, not measured data.</div>
+</div>
+</div>
+</section>
+
+<!-- MODULE 5: NODE EXPLORER -->
+<section class="mod" id="m5">
+<div class="wrap narrow">
+<div class="kicker reveal">Already in position</div>
+<h2 class="reveal">The priesthood is already standing at the node</h2>
+<p class="intro reveal">If every believer is a priest, the workforce is not locked inside sending agencies. It is already scattered across nodes no agency visa will reach. Click a priest to see where they already stand.</p>
+<div class="viz reveal">
+<svg id="bridge" viewBox="0 0 600 360" width="100%" role="img" aria-label="Believers already standing at frontier nodes"></svg>
+<div class="legend">
+<span><i style="background:var(--accent)"></i>The priesthood, already scattered</span>
+<span><i style="background:var(--sea)"></i>The node they occupy</span>
+</div>
+<div class="bridge-detail" id="bridgeDetail">Click a priest on the left. Some have already been deployed and only need to be told. Others are sitting in your pews, ordained to go, and still waiting to be sent.</div>
+</div>
+</div>
+</section>
+
+<!-- TEAM QUESTIONS -->
+<section class="mod" id="team">
+<div class="wrap narrow">
+<div class="kicker reveal">For your team</div>
+<h2 class="reveal">Three questions before you recruit one more worker</h2>
+<div class="team reveal">
+<div class="tq"><span class="n">1</span><p>What share of your mobilization strategy assumes the workforce must be recruited and sent, versus awakened where it already lives?</p></div>
+<div class="tq"><span class="n">2</span><p>Are there believers already present in your target nodes, through diaspora, business, or study, counted in your strategy, or invisible to it?</p></div>
+<div class="tq"><span class="n">3</span><p>If every member of your sending church is an ordained priest, what changes about how you disciple them long before anyone talks about going?</p></div>
+</div>
+</div>
+</section>
+
+<section class="quoteband">
+<div class="wrap narrow">
+<p class="q"><span class="mk">&ldquo;</span>Ordination was democratized at the cross. We still run the org chart like it wasn't.</p>
+<p class="q"><span class="mk">&ldquo;</span>The first people told they were a priesthood were a diaspora.</p>
+</div>
+</section>
+
+<section class="closing">
+<div class="wrap narrow">
+<div class="eyebrow">The takeaway</div>
+<h2>The priesthood is not understaffed. It is asleep at its post.</h2>
+<a class="cta" href="https://clarity4thenations.substack.com/p/everyone-is-already-ordained" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<a class="sub" href="index.html">Back to all essays &#8594;</a>
+</div>
+<div class="wrap" style="margin-top:1rem">
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read on Substack &#8594;</a>
+</div>
+</footer>
+
+<script>
+var SVGNS="http://www.w3.org/2000/svg";
+function el(tag,attrs){var e=document.createElementNS(SVGNS,tag);if(attrs)for(var k in attrs)e.setAttribute(k,attrs[k]);return e;}
+
+/* progress bar */
+var bar=document.getElementById('progress');
+function onScroll(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* generic reveal */
+var revObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target);}});},{threshold:.16});
+document.querySelectorAll('.reveal').forEach(function(n){revObs.observe(n);});
+
+/* count-up */
+function countUp(node,target,dur){var suf=node.dataset.suffix||'';var start=performance.now();function step(now){var t=Math.min((now-start)/dur,1);var e=1-Math.pow(1-t,3);node.textContent=Math.round(e*target).toLocaleString()+suf;if(t<1)requestAnimationFrame(step);else node.textContent=target.toLocaleString()+suf;}requestAnimationFrame(step);}
+window.addEventListener('load',function(){document.querySelectorAll('.chip .num').forEach(function(n){countUp(n,parseFloat(n.dataset.target),1500);});});
+
+/* hero constellation: a scattered priesthood */
+(function(){var g=document.getElementById('constellation');if(!g)return;var nodes=[];var N=26;for(var i=0;i<N;i++){nodes.push({x:Math.random()*1200,y:Math.random()*600});}
+nodes.forEach(function(n,i){nodes.forEach(function(m,j){if(j>i){var dx=n.x-m.x,dy=n.y-m.y;if(Math.sqrt(dx*dx+dy*dy)<200){g.appendChild(el('line',{x1:n.x,y1:n.y,x2:m.x,y2:m.y}));}}});});
+nodes.forEach(function(n,i){var c=el('circle',{cx:n.x,cy:n.y,r:i%7===0?5:2.3,fill:i%7===0?'#E8C06A':'rgba(232,192,106,.62)'});if(i%7===0){var a=el('animate',{attributeName:'r',values:'5;8;5',dur:(2.4+i*0.1)+'s',repeatCount:'indefinite'});c.appendChild(a);}g.appendChild(c);});})();
+
+/* MODULE 1: escalator */
+(function(){
+var svg=document.getElementById('esc');if(!svg)return;
+var W=600,H=320,padL=60,padR=24,padT=24,padB=52;
+var plotW=W-padL-padR,plotH=H-padT-padB;
+var base=75488,rate=0.016,years=20;
+var yMin=70000,yMax=106000;
+function need(y){return base*Math.pow(1+rate,y);}
+function PX(y){return padL+(y/years)*plotW;}
+function PY(v){return (H-padB)-((v-yMin)/(yMax-yMin))*plotH;}
+// plot bg
+svg.appendChild(el('rect',{x:padL,y:padT,width:plotW,height:plotH,fill:'#FAF7F0',stroke:'rgba(28,26,23,.12)',rx:8}));
+// horizontal gridlines + labels
+[80000,90000,100000].forEach(function(v){
+svg.appendChild(el('line',{x1:padL,y1:PY(v),x2:W-padR,y2:PY(v),stroke:'rgba(28,26,23,.09)'}));
+var t=el('text',{x:padL-8,y:PY(v)+4,fill:'#6E665B','font-size':11,'text-anchor':'end'});t.textContent=(v/1000)+'k';svg.appendChild(t);
+});
+// flat "today" reference line
+var flatY=PY(base);
+svg.appendChild(el('line',{x1:PX(0),y1:flatY,x2:PX(years),y2:flatY,stroke:'#6E665B','stroke-width':1.4,'stroke-dasharray':'5 6'}));
+var flab=el('text',{x:PX(0)+6,y:flatY-8,fill:'#6E665B','font-size':11,'font-weight':600});flab.textContent="Today's need: 75,488";svg.appendChild(flab);
+// shaded backlog area (between curve and flat line)
+var areaPts='';
+for(var yy=0;yy<=years;yy++){areaPts+=PX(yy).toFixed(1)+','+PY(need(yy)).toFixed(1)+' ';}
+areaPts+=PX(years).toFixed(1)+','+flatY.toFixed(1)+' '+PX(0).toFixed(1)+','+flatY.toFixed(1);
+svg.appendChild(el('polygon',{points:areaPts,fill:'rgba(154,35,51,.14)'}));
+// need curve
+var d='M'+PX(0).toFixed(1)+' '+PY(need(0)).toFixed(1);
+for(var y2=1;y2<=years;y2++){d+=' L'+PX(y2).toFixed(1)+' '+PY(need(y2)).toFixed(1);}
+svg.appendChild(el('path',{d:d,fill:'none',stroke:'#A86A16','stroke-width':2.6,'stroke-linejoin':'round','stroke-linecap':'round'}));
+// x axis
+svg.appendChild(el('line',{x1:padL,y1:H-padB,x2:W-padR,y2:H-padB,stroke:'#1C1A17','stroke-width':1.4}));
+var xl=el('text',{x:padL+plotW/2,y:H-14,fill:'#6E665B','font-size':12,'font-weight':600,'text-anchor':'middle'});xl.textContent='Years from today (need compounds at 1.6% a year)';svg.appendChild(xl);
+// marker
+var marker=el('line',{x1:PX(0),y1:padT,x2:PX(0),y2:H-padB,stroke:'#A86A16','stroke-width':1.2,'stroke-dasharray':'3 4',opacity:.7});svg.appendChild(marker);
+var dot=el('circle',{cx:PX(0),cy:PY(need(0)),r:7,fill:'#A86A16',stroke:'#fff','stroke-width':2.5});svg.appendChild(dot);
+var needEl=document.getElementById('escNeed'),addEl=document.getElementById('escAdd'),yearEl=document.getElementById('escYear'),stateEl=document.getElementById('escState');
+function stateFor(y,add){
+if(y===0)return "This is today's shortfall: 75,488 worker-units, and it is already the floor, not the ceiling.";
+if(y<=5)return "The backlog is climbing while we recruit. That is "+Math.round(add).toLocaleString()+" units of new need, before a single worker is deployed.";
+if(y<=12)return "This is the down escalator. The need is outrunning the sending, by "+Math.round(add).toLocaleString()+" units and still moving.";
+return "Deploy nobody, and the growth alone (+"+Math.round(add).toLocaleString()+" units) is a second mission field on top of the first.";
+}
+function set(y){
+var v=need(y),add=v-base;
+marker.setAttribute('x1',PX(y));marker.setAttribute('x2',PX(y));
+dot.setAttribute('cx',PX(y));dot.setAttribute('cy',PY(v));
+needEl.textContent=Math.round(v).toLocaleString();
+addEl.textContent='+'+Math.round(add).toLocaleString();
+yearEl.textContent=(y===0?'Today':'+'+y+(y===1?' yr':' yrs'));
+stateEl.textContent=stateFor(y,add);
+}
+var slider=document.getElementById('escSlider');
+slider.addEventListener('input',function(){set(+slider.value);});
+set(0);
+// entrance sweep
+var swept=false;
+var eObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!swept){swept=true;var y=0;var iv=setInterval(function(){y+=1;if(y>=7){y=7;clearInterval(iv);}slider.value=y;set(y);},110);eObs.unobserve(e.target);}});},{threshold:.4});
+eObs.observe(svg);
+})();
+
+/* MODULE 2: two priesthoods */
+(function(){
+var seg=document.getElementById('prSeg');if(!seg)return;
+var fill=document.getElementById('prFill'),lb=document.getElementById('prLb');
+function apply(kind){
+seg.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x.dataset.pr===kind);});
+document.querySelectorAll('.pr-card').forEach(function(c){c.classList.remove('show');});
+document.getElementById('pr-'+kind).classList.add('show');
+if(kind==='cap'){fill.style.width='16%';fill.style.background='var(--blood)';lb.textContent='The available workforce, capped at the credentialed few';}
+else{fill.style.width='100%';fill.style.background='var(--sea)';lb.textContent='The available workforce, every believer consecrated';}
+}
+seg.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.pr);});});
+apply('cap');
+})();
+
+/* MODULE 3: consecration accordion */
+(function(){
+var audit=document.getElementById('conAudit');if(!audit)return;
+var cards=[].slice.call(audit.querySelectorAll('.qcard'));
+var reviewed={};
+var fill=document.getElementById('conFill');var label=document.getElementById('conLabel');
+cards.forEach(function(card,i){
+card.querySelector('.head').addEventListener('click',function(){
+var open=card.classList.toggle('open');
+if(open){card.classList.add('reviewed');reviewed[i]=true;}
+var n=Object.keys(reviewed).length;
+fill.style.width=(n/cards.length*100)+'%';
+label.textContent=(n<cards.length?(n+' of '+cards.length+' revealed. One step remains after these: the blood.'):'The wash, the garments, the oil. Now the blood, below.');
+});
+});
+})();
+
+/* MODULE 4: ear hand foot */
+(function(){
+var svg=document.getElementById('figure');if(!svg)return;
+// stylized figure
+svg.appendChild(el('circle',{cx:150,cy:70,r:42,fill:'#EFE7D8',stroke:'rgba(28,26,23,.18)','stroke-width':2}));
+// torso
+svg.appendChild(el('path',{d:'M110 120 Q150 106 190 120 L206 300 Q150 314 94 300 Z',fill:'#EFE7D8',stroke:'rgba(28,26,23,.18)','stroke-width':2}));
+// right arm (figure's right = viewer left)
+svg.appendChild(el('path',{d:'M112 128 L74 210 L90 300',fill:'none',stroke:'#EFE7D8','stroke-width':22,'stroke-linecap':'round'}));
+svg.appendChild(el('path',{d:'M112 128 L74 210 L90 300',fill:'none',stroke:'rgba(28,26,23,.16)','stroke-width':2}));
+// left arm
+svg.appendChild(el('path',{d:'M188 128 L224 208',fill:'none',stroke:'#EFE7D8','stroke-width':22,'stroke-linecap':'round'}));
+// legs
+svg.appendChild(el('path',{d:'M132 300 L124 430',fill:'none',stroke:'#EFE7D8','stroke-width':26,'stroke-linecap':'round'}));
+svg.appendChild(el('path',{d:'M172 300 L182 430',fill:'none',stroke:'#EFE7D8','stroke-width':26,'stroke-linecap':'round'}));
+var parts=[
+{id:'Ear',cx:118,cy:64,lx:70,ly:64,anchor:'end',t:'The ear',d:'The right ear, for hearing God’s voice. What you hear is claimed.',seg:'segEar'},
+{id:'Hand',cx:92,cy:300,lx:64,ly:322,anchor:'middle',t:'The hand',d:'The right thumb, for the doing. What you do is claimed.',seg:'segHand'},
+{id:'Foot',cx:124,cy:438,lx:124,ly:456,anchor:'middle',t:'The foot',d:'The right big toe, for the going. Where you go is claimed.',seg:'segFoot'}
+];
+var claimed={};
+var readT=document.querySelector('#ehfReadout .t'),readD=document.querySelector('#ehfReadout .d');
+var verdict=document.getElementById('ehfVerdict');
+parts.forEach(function(p){
+var g=el('g',{class:'hotspot',tabindex:0,role:'button','aria-label':p.id});
+var ring=el('circle',{class:'ring',cx:p.cx,cy:p.cy,r:15,fill:'none',stroke:'#A86A16','stroke-width':3});
+var pulse=el('animate',{attributeName:'r',values:'13;17;13',dur:'2.2s',repeatCount:'indefinite'});ring.appendChild(pulse);
+var mark=el('circle',{class:'mark',cx:p.cx,cy:p.cy,r:9,fill:'#9A2333'});
+var lab=el('text',{x:p.lx,y:p.ly,fill:'#1C1A17','text-anchor':p.anchor});lab.textContent=p.id;
+g.appendChild(ring);g.appendChild(mark);g.appendChild(lab);svg.appendChild(g);
+function activate(){
+claimed[p.id]=true;g.classList.add('claimed');
+ring.setAttribute('stroke','#9A2333');
+document.getElementById(p.seg).classList.add('on');
+readT.textContent=p.t;readD.textContent=p.d;
+var n=Object.keys(claimed).length;
+if(n>=3){verdict.textContent='3 of 3 claimed. A whole living sacrifice (Romans 12:1). The whole person, claimed for mission.';verdict.classList.add('whole');}
+else{verdict.textContent=n+' of 3 claimed. Held back is not yet whole.';verdict.classList.remove('whole');}
+}
+g.addEventListener('click',activate);
+g.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();activate();}});
+});
+})();
+
+/* MODULE 5: node explorer */
+(function(){
+var svg=document.getElementById('bridge');if(!svg)return;
+var W=600,lx=132,rx=470,top=64,gap=74;
+var data=[
+{who:'Filipino nurse',node:'the Gulf',comm:'a Filipino nurse',detail:'standing inside a state no missionary visa will reach',status:'dep'},
+{who:'Indian engineer',node:'Toronto',comm:'an Indian engineer',detail:'living in a gateway city full of unreached neighbors',status:'dep'},
+{who:'Nigerian trader',node:'Guangzhou',comm:'a Nigerian trader',detail:'working a trade node the church rarely bothers to count',status:'dep'},
+{who:'A believer in your pews',node:'your target people',comm:'a believer in your pews',detail:'ordained to go, and still waiting to be sent',status:'wait'}
+];
+var hl=el('text',{x:lx,y:30,fill:'#A86A16','font-size':12,'font-weight':700,'text-anchor':'middle'});hl.textContent='The scattered priesthood';svg.appendChild(hl);
+var hr=el('text',{x:rx,y:30,fill:'#1D4E66','font-size':12,'font-weight':700,'text-anchor':'middle'});hr.textContent='The node they occupy';svg.appendChild(hr);
+var detail=document.getElementById('bridgeDetail');
+var arcs=[];
+data.forEach(function(d,i){
+var y=top+i*gap;
+var path=el('path',{d:'M'+(lx+8)+' '+y+' C '+(W/2)+' '+y+', '+(W/2)+' '+y+', '+(rx-8)+' '+y,fill:'none',stroke:'rgba(28,26,23,.16)','stroke-width':2});
+svg.appendChild(path);arcs.push(path);
+var rnode=el('g');
+var rc=el('circle',{cx:rx,cy:y,r:7,fill:'#2E6E8E'});
+var rt=el('text',{x:rx+14,y:y+4,fill:'#1C1A17','font-size':12.5,'font-weight':600});rt.textContent=d.node;
+rnode.appendChild(rc);rnode.appendChild(rt);svg.appendChild(rnode);
+var g=el('g',{class:'bnode',tabindex:0,role:'button','aria-label':d.who});
+var pad=el('rect',{class:'pad',x:lx-116,y:y-18,width:240,height:36,rx:8});
+var lc=el('circle',{cx:lx,cy:y,r:8,fill:'#A86A16',stroke:'#fff','stroke-width':2});
+var lt=el('text',{x:lx-14,y:y+4,fill:'#1C1A17','font-size':12.5,'font-weight':700,'text-anchor':'end'});lt.textContent=d.who;
+g.appendChild(pad);g.appendChild(lc);g.appendChild(lt);svg.appendChild(g);
+function activate(){
+arcs.forEach(function(a){a.setAttribute('stroke','rgba(28,26,23,.16)');a.setAttribute('stroke-width',2);});
+path.setAttribute('stroke','#A86A16');path.setAttribute('stroke-width',4);
+var st=d.status==='dep'?'<span class="st dep">Already deployed, needs to be told</span>':'<span class="st wait">Waiting to be sent</span>';
+detail.innerHTML='A priest is <b>'+d.comm+'</b> at <b>'+d.node+'</b>, '+d.detail+'.<br>'+st;
+}
+g.addEventListener('click',activate);g.addEventListener('mouseenter',activate);g.addEventListener('focus',activate);
+g.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();activate();}});
+});
+})();
+</script>
+</body>
+</html>
