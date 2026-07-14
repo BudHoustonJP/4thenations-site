@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extractive Churches Produce Passive Priests &middot; Clarity for the Nations</title>
+<meta name="description" content="More discipleship material than any generation in history, and still weak at making disciples. The problem is not the material. It is the design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#8C2F4F;--deep:#5E1F35;
+--inc:#0F7D6B;--incdeep:#0A574B;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+header.hero{background:linear-gradient(160deg,#2A1019 0%,var(--deep) 55%,#3A1522 100%);color:#F6F4EE;padding:12vh 0 9vh;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.1}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#E8A0B8;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:22ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.78);max-width:56ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#F2B8CC}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.75);margin-top:.35rem}
+.qband{background:var(--accent);color:#FBF6F0;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:34ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#F2CBDA}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.2rem}
+.segbtn{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem 1.3rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn.on-ext{background:var(--accent);border-color:var(--accent);color:#fff}
+.segbtn.on-inc{background:var(--inc);border-color:var(--inc);color:#fff}
+.verdict{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem;transition:background .3s}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem}
+.v-ext{background:rgba(140,47,79,.08)} .v-ext .tag{background:var(--accent)}
+.v-inc{background:rgba(15,125,107,.08)} .v-inc .tag{background:var(--inc)}
+.chain-node{cursor:pointer}
+.chain-node:focus{outline:none}
+.chain-node:focus circle{stroke:var(--ink);stroke-width:3}
+.detail{margin-top:1.2rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;font-size:.98rem;min-height:4.4rem}
+.detail b{color:var(--accent)}
+.ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:1.2rem}
+.abtn{font:inherit;font-weight:700;font-size:.95rem;padding:.65rem 1.4rem;border-radius:50px;border:none;background:var(--inc);color:#fff;cursor:pointer;transition:filter .2s,opacity .2s}
+.abtn:hover{filter:brightness(1.1)}
+.abtn[disabled]{opacity:.4;cursor:default}
+.abtn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line)}
+.counters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1.2rem}
+.cnt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.7rem 1.1rem}
+.cnt .n{font-family:'Fraunces',serif;font-weight:900;font-size:1.6rem;line-height:1;color:var(--inc)}
+.cnt .l{font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.25rem}
+.caption{margin-top:1.1rem;font-size:.98rem;color:#39342d;min-height:3.2rem}
+.stagedots{display:flex;gap:7px;margin-top:.9rem}
+.sdot{width:9px;height:9px;border-radius:50%;background:rgba(28,26,23,.18)}
+.sdot.on{background:var(--inc)}
+input[type=range]{width:100%;accent-color:var(--inc);height:34px;cursor:pointer}
+.bars{display:flex;align-items:flex-end;gap:5%;height:230px;padding:0 2%;margin-top:1.4rem}
+.barcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.barval{font-weight:700;font-size:.95rem;margin-bottom:.35rem;color:var(--ink)}
+.bar{width:100%;max-width:110px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--inc),var(--incdeep));transition:height .45s ease;min-height:10px}
+.barlab{font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.5rem;text-align:center}
+.slider-read{margin-top:1.2rem;font-size:1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem}
+.slider-read b{color:var(--inc)}
+.qz{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
+.qz .qhead{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.2rem;background:none;border:none;font:inherit;font-weight:700;font-size:1rem;text-align:left;cursor:pointer}
+.qz .qhead .st{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.qz .qbody{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qz.open .qbody{max-height:340px}
+.qz .qinner{padding:0 1.2rem 1.2rem;display:flex;flex-direction:column;gap:9px}
+.opt{font:inherit;font-size:.95rem;text-align:left;padding:.8rem 1rem;border-radius:10px;border:2px solid var(--line);background:#fff;cursor:pointer;transition:all .15s}
+.opt:hover{border-color:var(--ink)}
+.opt.pick-e{border-color:var(--accent);background:rgba(140,47,79,.07)}
+.opt.pick-i{border-color:var(--inc);background:rgba(15,125,107,.07)}
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:1.2rem 0}
+.pbar .fill{height:100%;width:0;background:var(--inc);transition:width .4s ease}
+#quizverdict{display:none;border-radius:12px;padding:1.1rem 1.2rem;font-size:1rem;margin-top:.4rem}
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:24ch;margin:0 auto 2rem}
+.cta-btn{display:inline-block;background:#F2B8CC;color:var(--deep);text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Church &amp; Culture</div>
+<h1>More curriculum than any generation in history. Fewer disciples. The problem is the design.</h1>
+<p class="sub">Borrowing the extractive-versus-inclusive lens from Why Nations Fail, this essay argues that most churches are structured to gather from their members, not to develop them. A priest is someone who has been handed the work.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="2">0</div><div class="l">ways to build a church</div></div>
+<div class="chip"><div class="n" data-count="4">0</div><div class="l">links in one chain (2 Tim 2:2)</div></div>
+<div class="chip"><div class="n" data-count="6">0</div><div class="l">Tuesdays to hand off a ministry</div></div>
+</div>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;A pastor's job is not to do the ministry. It is to build the ministers.&rdquo;</p>
+<p class="q">&ldquo;Extractive churches consume priests. Inclusive churches export them.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<section class="mod" id="m1">
+<div class="kicker">The frame, from Why Nations Fail</div>
+<h2>Which way does the ministry flow?</h2>
+<p class="intro">Acemoglu and Robinson showed that extractive institutions pull resources toward a narrow elite, while inclusive institutions distribute participation broadly. Overlay the church and watch the arrows. Toggle between the two designs.</p>
+<div class="panel">
+<div class="seg" role="group" aria-label="Choose a church design">
+<button class="segbtn on-ext" id="btnExt">Extractive church</button>
+<button class="segbtn" id="btnInc">Inclusive church</button>
+</div>
+<svg id="flowSvg" viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram of ministry flowing inward or outward"></svg>
+<div class="verdict v-ext" id="flowVerdict">
+<span class="tag" id="flowTag">Extractive</span>
+<div id="flowText">Attendance, giving, and volunteer labor flow inward to a professional core. It can look healthy and even grow fast, but it produces reliable attenders and tired volunteers.</div>
+</div>
+<p class="note">Conceptual diagram of the essay's argument, not measured data.</p>
+</div>
+</section>
+
+<section class="mod" id="m2">
+<div class="kicker">The engine, in one verse</div>
+<h2>Four links in one chain</h2>
+<p class="intro">Paul made the mechanism explicit: what you have heard from me, entrust to faithful people who will be able to teach others (2 Timothy 2:2). Tap each link. The chain only works if every link passes the work down rather than hoarding it.</p>
+<div class="panel">
+<svg id="chainSvg" viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" aria-label="The four links of 2 Timothy 2:2"></svg>
+<div class="detail" id="chainDetail">Tap or click each link in the chain to see what it demands.</div>
+</div>
+</section>
+
+<section class="mod" id="m3">
+<div class="kicker">The handoff, on an ordinary Tuesday</div>
+<h2>Watch a passive attender become an operating priest</h2>
+<p class="intro">A benevolence ministry runs entirely through two paid staff, so it can never serve more families than two people can carry. Then the pastor hands the whole thing to Marcus, a forklift operator who has never led anything. Step through the Tuesdays.</p>
+<div class="panel">
+<div class="counters">
+<div class="cnt"><div class="n" id="cntWorkers">2</div><div class="l">people carrying the work</div></div>
+<div class="cnt"><div class="n" id="cntReach">1.0&times;</div><div class="l">families reached (illustrative)</div></div>
+</div>
+<svg id="handoffSvg" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" aria-label="Animated diagram of the ministry handoff"></svg>
+<div class="caption" id="handoffCap">Two paid staff coordinate every meal, visit, and relief check. It works well, and it is capped at exactly what two people can personally handle.</div>
+<div class="ctrls">
+<button class="abtn" id="btnNext">Next Tuesday &#8594;</button>
+<button class="abtn ghost" id="btnReset">Reset</button>
+</div>
+<div class="stagedots" id="stageDots"></div>
+<p class="note">Multiplier is illustrative. The essay's stated outcome: twice as many families served within a quarter.</p>
+</div>
+</section>
+
+<section class="mod" id="m4">
+<div class="kicker">The math of giving it away</div>
+<h2>What happens when each link passes it on</h2>
+<p class="intro">Extractive discipleship asks how to keep people. Inclusive discipleship asks how to equip and release them. Drag the slider to change how much ministry each generation hands to the next, and watch four generations of the 2 Timothy 2:2 chain.</p>
+<div class="panel">
+<label for="handoffRange" style="font-weight:700;font-size:.95rem">How much of the ministry gets handed down?</label>
+<input type="range" id="handoffRange" min="0" max="100" value="0" aria-label="Percentage of ministry handed down each generation">
+<div class="bars" id="genBars"></div>
+<div class="slider-read" id="sliderRead"></div>
+<p class="note">Conceptual model of the essay's argument, not measured data. Generation 1 is the paid core of two.</p>
+</div>
+</section>
+
+<section class="mod" id="m5">
+<div class="kicker">The audit</div>
+<h2>Which one are you running?</h2>
+<p class="intro">Both designs are busy and both can grow. The difference shows up in what they optimize. Answer honestly for your church or team. The progress bar fills as you go.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="quizFill"></div></div>
+<div id="quizWrap"></div>
+<div id="quizverdict"></div>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">You cannot extract from a priesthood and disciple it at the same time.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/extractive-churches-produce-passive" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a><br>
+<a class="sub" href="index.html">&#8592; All interactive essays</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+
+/* scroll progress */
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";},{passive:true});
+
+/* reveal on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.15});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+/* hero count-up */
+document.querySelectorAll(".chip .n").forEach(function(n){
+var target=parseInt(n.getAttribute("data-count"),10);
+tween(1400,function(p){n.textContent=Math.round(target*p);});
+});
+
+/* ===== Module 1: flow toggle ===== */
+(function(){
+var svg=document.getElementById("flowSvg");
+var CX=350,CY=220,R=150,N=12;
+var members=[],particles=[],ticks=[];
+var mix=0; /* 0 = extractive, 1 = inclusive */
+var sentIdx={0:1,3:1,6:1,9:1};
+var linesG=el("g",{},svg);
+for(var i=0;i<N;i++){
+var a=i/N*Math.PI*2-Math.PI/2;
+var mx=CX+Math.cos(a)*R,my=CY+Math.sin(a)*R;
+el("line",{x1:CX,y1:CY,x2:mx,y2:my,stroke:"rgba(28,26,23,.12)","stroke-width":1.5},linesG);
+var tick=el("line",{x1:mx,y1:my,x2:CX+Math.cos(a)*(R+34),y2:CY+Math.sin(a)*(R+34),stroke:"#0F7D6B","stroke-width":2.5,"stroke-dasharray":"4 4",opacity:0},svg);
+ticks.push(tick);
+var c=el("circle",{cx:mx,cy:my,r:11,fill:"#8b8378"},svg);
+members.push({c:c,a:a,sent:!!sentIdx[i]});
+var p=el("circle",{cx:mx,cy:my,r:4.5,fill:"#8C2F4F"},svg);
+particles.push({c:p,off:i/N,a:a});
+}
+var core=el("circle",{cx:CX,cy:CY,r:46,fill:"#8C2F4F"},svg);
+var coreLabel=txt(CX,CY+5,"the platform",{fill:"#fff","font-size":"13","font-weight":"700","text-anchor":"middle"},svg);
+var topLabel=txt(CX,34,"attendance, giving, and labor flow inward",{fill:"#6E665B","font-size":"14","font-weight":"600","text-anchor":"middle"},svg);
+txt(CX,420,"each dot is an ordinary member",{fill:"#6E665B","font-size":"12","text-anchor":"middle"},svg);
+function paint(){
+var coreR=46-16*mix;
+core.setAttribute("r",coreR);
+var coreFill=mix<.5?"#8C2F4F":"#0F7D6B";
+core.setAttribute("fill",coreFill);
+members.forEach(function(m){
+var dist=R+(m.sent?40*mix:0);
+var x=CX+Math.cos(m.a)*dist,y=CY+Math.sin(m.a)*dist;
+m.c.setAttribute("cx",x);m.c.setAttribute("cy",y);
+m.c.setAttribute("r",11+4*mix);
+m.c.setAttribute("fill",mix<.5?"#8b8378":(m.sent?"#0A574B":"#0F7D6B"));
+});
+ticks.forEach(function(t){t.setAttribute("opacity",mix);});
+}
+var last=null;
+function loop(ts){
+if(last===null)last=ts;
+var dt=(ts-last)/1000;last=ts;
+particles.forEach(function(pt){
+pt.off=(pt.off+dt*0.22)%1;
+var p=pt.off;
+/* extractive: particles travel member to core (t 1 to 0); inclusive: core outward to member */
+var t=mix<.5?1-p:p;
+var dist=(R-18)*t+30*(1-t)+18;
+var x=CX+Math.cos(pt.a)*dist,y=CY+Math.sin(pt.a)*dist;
+pt.c.setAttribute("cx",x);pt.c.setAttribute("cy",y);
+pt.c.setAttribute("fill",mix<.5?"#8C2F4F":"#0F7D6B");
+pt.c.setAttribute("opacity",0.35+0.65*Math.sin(p*Math.PI));
+});
+requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+paint();
+var bE=document.getElementById("btnExt"),bI=document.getElementById("btnInc");
+var verdict=document.getElementById("flowVerdict"),tag=document.getElementById("flowTag"),vt=document.getElementById("flowText");
+function setMode(inc){
+bE.classList.toggle("on-ext",!inc);bI.classList.toggle("on-inc",inc);
+var target=inc?1:0,start=mix;
+tween(600,function(p){mix=start+(target-start)*p;paint();});
+if(inc){
+verdict.className="verdict v-inc";tag.textContent="Inclusive";
+vt.textContent="Training, authority, and ministry flow outward. Members grow, some are sent past the walls, and the core gets smaller on purpose. It produces ministers and releases them.";
+coreLabel.textContent="the equippers";
+topLabel.textContent="training, authority, and ministry flow outward";
+}else{
+verdict.className="verdict v-ext";tag.textContent="Extractive";
+vt.textContent="Attendance, giving, and volunteer labor flow inward to a professional core. It can look healthy and even grow fast, but it produces reliable attenders and tired volunteers.";
+coreLabel.textContent="the platform";
+topLabel.textContent="attendance, giving, and labor flow inward";
+}
+}
+bE.addEventListener("click",function(){setMode(false);});
+bI.addEventListener("click",function(){setMode(true);});
+})();
+
+/* ===== Module 2: chain ===== */
+(function(){
+var svg=document.getElementById("chainSvg");
+var nodes=[
+{x:90,label:"Paul",sub:"heard from me",d:"<b>&ldquo;What you have heard from me.&rdquo;</b> The chain starts with a leader who treats ministry as something to hand down, not something to hold. Link one is a decision about hoarding."},
+{x:263,label:"Timothy",sub:"entrust",d:"<b>&ldquo;Entrust.&rdquo;</b> Not lend, not delegate with a leash. The work actually changes hands, and the risk goes with it. This is the move most extractive systems never make."},
+{x:437,label:"Faithful people",sub:"who will be able",d:"<b>&ldquo;Who will be able.&rdquo;</b> Ability shows up after the handoff, not before it. Faithfulness is the entry requirement. Waiting for proven competence caps the chain at link two."},
+{x:610,label:"Others also",sub:"teach others",d:"<b>&ldquo;To teach others also.&rdquo;</b> The link that proves the chain. If ministry stops moving here, you built an audience, not a priesthood. Four links, one verse, and it only works if each one passes the work down."}
+];
+var Y=78,R=34;
+var links=[];
+for(var i=0;i<3;i++){
+var l=el("line",{x1:nodes[i].x+R,y1:Y,x2:nodes[i+1].x-R,y2:Y,stroke:"#8C2F4F","stroke-width":4,"stroke-linecap":"round"},svg);
+var len=(nodes[i+1].x-R)-(nodes[i].x+R);
+l.setAttribute("stroke-dasharray",len);l.setAttribute("stroke-dashoffset",len);
+links.push({l:l,len:len});
+}
+var detail=document.getElementById("chainDetail");
+var groups=[];
+nodes.forEach(function(n,idx){
+var g=el("g",{"class":"chain-node",tabindex:0,role:"button","aria-label":n.label},svg);
+n.circle=el("circle",{cx:n.x,cy:Y,r:R,fill:"#F3EFE6",stroke:"#8C2F4F","stroke-width":2.5},g);
+txt(n.x,Y+6,String(idx+1),{fill:"#1C1A17","font-size":"20","font-weight":"800","text-anchor":"middle","pointer-events":"none"},g);
+txt(n.x,Y+R+26,n.label,{fill:"#1C1A17","font-size":"14","font-weight":"700","text-anchor":"middle","pointer-events":"none"},g);
+txt(n.x,Y+R+44,n.sub,{fill:"#6E665B","font-size":"11","font-style":"italic","text-anchor":"middle","pointer-events":"none"},g);
+function pick(){
+nodes.forEach(function(o){o.circle.setAttribute("fill","#F3EFE6");});
+n.circle.setAttribute("fill","#F2B8CC");
+detail.innerHTML=n.d;
+}
+g.addEventListener("click",pick);onKey(g,pick);
+groups.push(g);
+});
+var io2=new IntersectionObserver(function(es){
+es.forEach(function(en){
+if(!en.isIntersecting)return;
+io2.unobserve(en.target);
+links.forEach(function(lk,i){
+setTimeout(function(){tween(500,function(p){lk.l.setAttribute("stroke-dashoffset",lk.len*(1-p));});},i*380);
+});
+});
+},{threshold:.4});
+io2.observe(svg);
+})();
+
+/* ===== Module 3: handoff stepper ===== */
+(function(){
+var svg=document.getElementById("handoffSvg");
+el("circle",{cx:350,cy:190,r:52,fill:"#F3EFE6",stroke:"rgba(28,26,23,.25)","stroke-width":2,"stroke-dasharray":"6 5"},svg);
+txt(350,184,"benevolence",{fill:"#6E665B","font-size":"12","font-weight":"700","text-anchor":"middle"},svg);
+txt(350,200,"ministry",{fill:"#6E665B","font-size":"12","font-weight":"700","text-anchor":"middle"},svg);
+var linkG=el("g",{},svg);
+function mkActor(label,color){
+var g=el("g",{},svg);
+var c=el("circle",{cx:0,cy:0,r:17,fill:color},g);
+var t=txt(0,32,label,{fill:"#1C1A17","font-size":"12","font-weight":"700","text-anchor":"middle"},g);
+return {g:g,c:c,t:t,x:0,y:0,o:1,set:function(x,y,o,r,color2){
+this.x=x;this.y=y;this.o=o;
+c.setAttribute("cx",x);c.setAttribute("cy",y);t.setAttribute("x",x);t.setAttribute("y",y+32);
+g.setAttribute("opacity",o);if(r)c.setAttribute("r",r);if(color2)c.setAttribute("fill",color2);
+}};
+}
+var pastor=mkActor("pastor","#8C2F4F");
+var s1=mkActor("staff","#8C2F4F");
+var s2=mkActor("staff","#8C2F4F");
+var marcus=mkActor("Marcus","#8b8378");
+var recs=[mkActor("recruit","#0F7D6B"),mkActor("recruit","#0F7D6B"),mkActor("recruit","#0F7D6B"),mkActor("recruit","#0F7D6B")];
+/* stage layouts: [x,y,opacity,r,color] keyed by actor */
+var stages=[
+{cap:"Two paid staff coordinate every meal, visit, and relief check. It works well, and it is capped at exactly what two people can personally handle.",
+ workers:2,reach:1.0,
+ pastor:[620,70,.35,14,"#8C2F4F"],s1:[300,110,1,17,"#8C2F4F"],s2:[400,110,1,17,"#8C2F4F"],marcus:[85,330,.5,13,"#8b8378"],
+ recs:[[200,470,0],[280,470,0],[420,470,0],[500,470,0]]},
+{cap:"The handoff begins. No seminary, no title: for six Tuesdays the pastor takes Marcus along. Hospital visits, meals, bedside prayer, together. With-ness first.",
+ workers:2,reach:1.0,
+ pastor:[300,255,1,17,"#8C2F4F"],s1:[320,85,.35,12,"#8C2F4F"],s2:[380,85,.35,12,"#8C2F4F"],marcus:[400,255,1,17,"#C05A2E"],
+ recs:[[200,470,0],[280,470,0],[420,470,0],[500,470,0]]},
+{cap:"Then the pastor stops coming. Marcus makes the calls himself. The staff lost a task. The church is about to gain a leader who reproduces.",
+ workers:1,reach:1.0,
+ pastor:[620,70,.35,14,"#8C2F4F"],s1:[320,85,.25,12,"#8C2F4F"],s2:[380,85,.25,12,"#8C2F4F"],marcus:[350,262,1,19,"#0F7D6B"],
+ recs:[[200,470,0],[280,470,0],[420,470,0],[500,470,0]]},
+{cap:"Marcus recruits four others and trains them the way he was trained. Nobody wrote a curriculum. He passes down what was handed to him.",
+ workers:5,reach:1.3,
+ pastor:[620,70,.35,14,"#8C2F4F"],s1:[320,85,.25,12,"#8C2F4F"],s2:[380,85,.25,12,"#8C2F4F"],marcus:[350,262,1,19,"#0F7D6B"],
+ recs:[[195,315,1],[275,350,1],[425,350,1],[505,315,1]]},
+{cap:"Within a quarter the ministry serves twice as many families as the staff ever reached, and the four are starting to carry out visits on their own.",
+ workers:5,reach:2.0,
+ pastor:[620,70,.35,14,"#8C2F4F"],s1:[320,85,.25,12,"#8C2F4F"],s2:[380,85,.25,12,"#8C2F4F"],marcus:[350,262,1,19,"#0F7D6B"],
+ recs:[[160,300,1],[255,360,1],[445,360,1],[540,300,1]]}
+];
+var cur=0;
+var cap=document.getElementById("handoffCap");
+var cw=document.getElementById("cntWorkers"),cr=document.getElementById("cntReach");
+var dotsWrap=document.getElementById("stageDots");
+stages.forEach(function(){dotsWrap.appendChild(Object.assign(document.createElement("div"),{className:"sdot"}));});
+var sdots=dotsWrap.children;
+function drawLinks(stage){
+while(linkG.firstChild)linkG.removeChild(linkG.firstChild);
+if(stage>=3){
+var st=stages[stage];
+st.recs.forEach(function(r){
+if(r[2]>0)el("line",{x1:st.marcus[0],y1:st.marcus[1],x2:r[0],y2:r[1],stroke:"#0F7D6B","stroke-width":2,opacity:.5},linkG);
+});
+}
+if(stage===1)el("line",{x1:300,y1:255,x2:400,y2:255,stroke:"#8C2F4F","stroke-width":2,"stroke-dasharray":"5 4",opacity:.7},linkG);
+}
+function apply(stage,animate){
+var st=stages[stage];
+cap.textContent=st.cap;
+for(var i=0;i<sdots.length;i++)sdots[i].classList.toggle("on",i<=stage);
+var acts=[[pastor,st.pastor],[s1,st.s1],[s2,st.s2],[marcus,st.marcus]];
+recs.forEach(function(r,i){acts.push([r,[st.recs[i][0],st.recs[i][1],st.recs[i][2],15,"#0F7D6B"]]);});
+acts.forEach(function(pair){
+var a=pair[0],tgt=pair[1];
+var fx=a.x||tgt[0],fy=a.y||tgt[1],fo=a.o;
+if(!animate){a.set(tgt[0],tgt[1],tgt[2],tgt[3],tgt[4]);return;}
+tween(650,function(p){a.set(fx+(tgt[0]-fx)*p,fy+(tgt[1]-fy)*p,fo+(tgt[2]-fo)*p,tgt[3],tgt[4]);});
+});
+var w0=parseInt(cw.textContent,10)||2,r0=parseFloat(cr.textContent)||1;
+tween(650,function(p){
+cw.textContent=Math.round(w0+(st.workers-w0)*p);
+cr.innerHTML=(r0+(st.reach-r0)*p).toFixed(1)+"&times;";
+});
+setTimeout(function(){drawLinks(stage);},animate?400:0);
+document.getElementById("btnNext").disabled=(stage===stages.length-1);
+}
+apply(0,false);
+document.getElementById("btnNext").addEventListener("click",function(){if(cur<stages.length-1){cur++;apply(cur,true);}});
+document.getElementById("btnReset").addEventListener("click",function(){cur=0;apply(0,true);});
+})();
+
+/* ===== Module 4: slider ===== */
+(function(){
+var wrap=document.getElementById("genBars");
+var labels=["Gen 1: the paid core","Gen 2: entrusted","Gen 3: able to teach","Gen 4: others also"];
+var cols=[];
+labels.forEach(function(l){
+var col=document.createElement("div");col.className="barcol";
+var v=document.createElement("div");v.className="barval";
+var b=document.createElement("div");b.className="bar";
+var lb=document.createElement("div");lb.className="barlab";lb.textContent=l;
+col.appendChild(v);col.appendChild(b);col.appendChild(lb);wrap.appendChild(col);
+cols.push({v:v,b:b});
+});
+var range=document.getElementById("handoffRange");
+var read=document.getElementById("sliderRead");
+function update(){
+var v=parseInt(range.value,10);
+var m=1+4*(v/100);
+var total=0;
+for(var k=0;k<4;k++){
+var c=Math.round(2*Math.pow(m,k));
+total+=c;
+cols[k].v.textContent=c;
+cols[k].b.style.height=(12+178*Math.sqrt(c/250))+"px";
+}
+var msg;
+if(v<15)msg="<b>"+total+" people ministering.</b> The professionals do it all. The ceiling is two calendars, and the chain never gets past link one.";
+else if(v<55)msg="<b>"+total+" people ministering.</b> Some handoff, some growth. Better, but each generation keeps most of the work, so the chain thins out fast.";
+else msg="<b>"+total+" people ministering.</b> Each link passes the work down, and the fourth generation dwarfs the first. This is 2 Timothy 2:2 as a growth curve.";
+read.innerHTML=msg;
+}
+range.addEventListener("input",update);
+update();
+var io3=new IntersectionObserver(function(es){
+es.forEach(function(en){
+if(!en.isIntersecting)return;io3.unobserve(en.target);
+var steps=[0,20,45,70,45,20,0],i=0;
+var t=setInterval(function(){if(i>=steps.length){clearInterval(t);return;}range.value=steps[i++];update();},260);
+});
+},{threshold:.5});
+io3.observe(wrap);
+})();
+
+/* ===== Module 5: audit quiz ===== */
+(function(){
+var qs=[
+{q:"What does your scoreboard actually measure?",e:"Attendance and giving",i:"People developed and sent"},
+{q:"Who holds the ministry?",e:"The gifted and the paid",i:"Handed to ordinary members, on purpose"},
+{q:"What is the member to the institution?",e:"A resource for the institution's programs",i:"The institution is a resource for their formation"},
+{q:"What does success look like?",e:"A full room",i:"A room that keeps emptying, because it keeps sending"}
+];
+var wrap=document.getElementById("quizWrap");
+var fill=document.getElementById("quizFill");
+var verdict=document.getElementById("quizverdict");
+var answers=[];
+qs.forEach(function(item,idx){
+var box=document.createElement("div");box.className="qz"+(idx===0?" open":"");
+var head=document.createElement("button");head.className="qhead";
+head.innerHTML="<span>"+(idx+1)+". "+item.q+"</span><span class='st' id='st"+idx+"'>open</span>";
+var body=document.createElement("div");body.className="qbody";
+var inner=document.createElement("div");inner.className="qinner";
+var oe=document.createElement("button");oe.className="opt";oe.textContent=item.e;
+var oi=document.createElement("button");oi.className="opt";oi.textContent=item.i;
+inner.appendChild(oe);inner.appendChild(oi);body.appendChild(inner);
+box.appendChild(head);box.appendChild(body);wrap.appendChild(box);
+head.addEventListener("click",function(){box.classList.toggle("open");});
+function answer(kind){
+answers[idx]=kind;
+oe.className="opt"+(kind==="e"?" pick-e":"");
+oi.className="opt"+(kind==="i"?" pick-i":"");
+document.getElementById("st"+idx).textContent=kind==="e"?"extractive":"inclusive";
+var done=answers.filter(Boolean).length;
+fill.style.width=(done/qs.length*100)+"%";
+box.classList.remove("open");
+var next=wrap.children[idx+1];
+if(next&&!answers[idx+1])next.classList.add("open");
+if(done===qs.length)showVerdict();
+}
+oe.addEventListener("click",function(){answer("e");});
+oi.addEventListener("click",function(){answer("i");});
+});
+function showVerdict(){
+var eN=answers.filter(function(a){return a==="e";}).length;
+var html,bg;
+if(eN>=3){bg="rgba(140,47,79,.09)";html="<b>Extractive lean ("+eN+" of 4).</b> The system is optimized to gather, not to develop. Systems produce what they are designed to produce: reliable attenders and tired volunteers. The fix is not a program. It is a handoff, and counting the giving away as the win.";}
+else if(eN>=2){bg="rgba(110,102,91,.12)";html="<b>Mixed design ("+eN+" of 4 extractive).</b> Some ministry is moving outward, some is still pooling at the platform. Name one ministry currently held by the paid, and pick the untrained member you could start walking through it next Tuesday.";}
+else{bg="rgba(15,125,107,.09)";html="<b>Inclusive design ("+eN+" of 4 extractive).</b> The room keeps emptying because it keeps sending. One caution from the essay: inclusive is not leaderless. It is strong leadership aimed at release, and it still trains, still holds accountable, still leads.";}
+verdict.style.display="block";verdict.style.background=bg;verdict.innerHTML=html;
+}
+})();
+})();
+</script>
+</body>
+</html>

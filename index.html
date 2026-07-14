@@ -56,6 +56,11 @@ header.hero::after{content:"";position:absolute;inset:0;pointer-events:none;back
 .card .body{padding:1.5rem 1.6rem 1.7rem;display:flex;flex-direction:column;flex:1}
 .card .blurb{font-size:1rem;color:#39342d;flex:1}
 .card .go{margin-top:1.3rem;font-weight:700;font-size:.95rem}
+.qlabel{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:1.3rem}
+.qsec{margin-bottom:3.4rem}
+.allbar{text-align:center;margin:0 0 3.2rem}
+.allbtn{font-family:inherit;font-size:1rem;font-weight:700;background:var(--ink);color:#fff;border:none;border-radius:50px;padding:.9rem 2.3rem;cursor:pointer;transition:transform .15s,filter .2s}
+.allbtn:hover{filter:brightness(1.25);transform:translateY(-2px)}
 .cta-band{background:#0B1F33;color:#F6F4EE;padding:9vh 0;text-align:center;margin-top:5vh}
 .cta-band h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.8rem,4.6vw,2.8rem);margin-bottom:1.8rem;color:#fff;max-width:20ch;margin-left:auto;margin-right:auto}
 .cta-btn{display:inline-block;background:var(--gold);color:#0B1F33;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
@@ -114,7 +119,8 @@ footer small{display:block;color:var(--mute);margin-top:.8rem}
 <div class="eyebrow">Clarity for the Nations</div>
 <div class="carousel" id="car">
 <div class="cwrap">
-<a class="slide active" href="everyone-is-already-ordained.html"><span class="mark">&ldquo;</span><p class="q">The priesthood is not understaffed. It is asleep at its post.</p><span class="src">Everyone Is Already Ordained <span class="ar">&#8594;</span></span></a>
+<a class="slide active" href="extractive-churches-produce-passive.html"><span class="mark">&ldquo;</span><p class="q">Extractive churches consume priests. Inclusive churches export them.</p><span class="src">Extractive Churches Produce Passive Priests <span class="ar">&#8594;</span></span></a>
+<a class="slide" href="everyone-is-already-ordained.html"><span class="mark">&ldquo;</span><p class="q">The priesthood is not understaffed. It is asleep at its post.</p><span class="src">Everyone Is Already Ordained <span class="ar">&#8594;</span></span></a>
 <a class="slide" href="three-doors-one-gospel.html"><span class="mark">&ldquo;</span><p class="q">The argument was not wrong. It was aimed at the wrong door.</p><span class="src">Three Doors, One Gospel <span class="ar">&#8594;</span></span></a>
 <a class="slide" href="japan-unreached.html"><span class="mark">&ldquo;</span><p class="q">There are more Christians in Japan than in all 3,200 frontier people groups on earth, combined.</p><span class="src">The Japan Paradox <span class="ar">&#8594;</span></span></a>
 <a class="slide" href="alevi-invisible-millions.html"><span class="mark">&ldquo;</span><p class="q">We have spent decades trying to convert millions of people away from a religion they do not even practice.</p><span class="src">The Invisible Millions <span class="ar">&#8594;</span></span></a>
@@ -127,7 +133,7 @@ footer small{display:block;color:var(--mute);margin-top:.8rem}
 </div>
 <div class="controls">
 <button class="navbtn" id="prev" aria-label="Previous">&#8249;</button>
-<div class="dots" id="dots"><button class="dot active" aria-label="quote 1"></button><button class="dot" aria-label="quote 2"></button><button class="dot" aria-label="quote 3"></button><button class="dot" aria-label="quote 4"></button><button class="dot" aria-label="quote 5"></button><button class="dot" aria-label="quote 6"></button><button class="dot" aria-label="quote 7"></button><button class="dot" aria-label="quote 8"></button><button class="dot" aria-label="quote 9"></button><button class="dot" aria-label="quote 10"></button></div>
+<div class="dots" id="dots"><button class="dot active" aria-label="quote 1"></button><button class="dot" aria-label="quote 2"></button><button class="dot" aria-label="quote 3"></button><button class="dot" aria-label="quote 4"></button><button class="dot" aria-label="quote 5"></button><button class="dot" aria-label="quote 6"></button><button class="dot" aria-label="quote 7"></button><button class="dot" aria-label="quote 8"></button><button class="dot" aria-label="quote 9"></button><button class="dot" aria-label="quote 10"></button><button class="dot" aria-label="quote 11"></button></div>
 <button class="navbtn" id="next" aria-label="Next">&#8250;</button>
 </div>
 </div>
@@ -138,11 +144,22 @@ footer small{display:block;color:var(--mute);margin-top:.8rem}
 <section class="explore">
 <div class="wrap">
 <h2 class="big-head">Start Here</h2>
-<p class="sub">Filter by what you care about, or browse all 33 pieces.</p>
+<p class="sub">The newest pieces and the most read, or browse the full archive below.</p>
+
+<div id="quickview">
+<div class="qsec"><div class="qlabel">Most Recent</div><div class="grid" id="recentGrid"></div></div>
+<div class="qsec"><div class="qlabel">Most Popular</div><div class="grid" id="popularGrid"></div></div>
+</div>
+
+<div class="allbar"><button class="allbtn" id="allBtn">Browse all 35 pieces &#8595;</button></div>
+
+<div id="allview" hidden>
 <div class="filters" id="filters"><button class="fpill active" data-cat="all">All</button><button class="fpill" data-cat="data">Data &amp; Metrics</button><button class="fpill" data-cat="strategy">Strategy &amp; Training</button><button class="fpill" data-cat="migration">Migration &amp; Cities</button><button class="fpill" data-cat="bible">Bible &amp; Theology</button><button class="fpill" data-cat="frontier">Frontier Peoples</button><button class="fpill" data-cat="culture">Church &amp; Culture</button></div>
 <div class="grid" id="grid">
+<a class="card" data-cats="culture strategy" href="extractive-churches-produce-passive.html"><div class="band" style="background:linear-gradient(135deg,#8C2F4F,#5E1F35)"><h3 class="ctitle">Extractive Churches Produce Passive Priests</h3></div><div class="body"><p class="blurb">More discipleship material than ever, and still few disciples. The weakness is the design, not the content.</p><span class="go" style="color:#8C2F4F">View &#8594;</span></div></a>
 <a class="card" data-cats="bible strategy" href="everyone-is-already-ordained.html"><div class="band" style="background:linear-gradient(135deg,#A86A16,#6E430C)"><h3 class="ctitle">Everyone Is Already Ordained</h3></div><div class="body"><p class="blurb">The frontier is not short on workers. It is short on believers who know they were ordained to reach it.</p><span class="go" style="color:#A86A16">View &#8594;</span></div></a>
 <a class="card" data-cats="bible strategy culture" href="three-doors-one-gospel.html"><div class="band" style="background:linear-gradient(135deg,#6B4FA0,#463275)"><h3 class="ctitle">Three Doors, One Gospel</h3></div><div class="body"><p class="blurb">The same gospel needs a different door in every worldview: power, truth, or love.</p><span class="go" style="color:#6B4FA0">View &#8594;</span></div></a>
+<a class="card" data-cats="bible strategy" href="even-jesus-had-a-capernaum.html"><div class="band" style="background:linear-gradient(135deg,#C05A2E,#8a3d1d)"><h3 class="ctitle">Even Jesus Had a Capernaum</h3></div><div class="body"><p class="blurb">Capernaum saw more of the Kingdom than any town on earth, and repented least. The most resourced field was the least responsive.</p><span class="go" style="color:#C05A2E">View &#8594;</span></div></a>
 <a class="card" data-cats="frontier migration strategy" href="uzbekistan-opening.html"><div class="band" style="background:linear-gradient(135deg,#0F6E56,#085041)"><h3 class="ctitle">Uzbekistan Is Opening</h3></div><div class="body"><p class="blurb">An $8.2 billion remittance flow is really a network map for reaching a frontier people.</p><span class="go" style="color:#0F6E56">View &#8594;</span></div></a>
 <a class="card" data-cats="strategy culture" href="operators-not-graduates.html"><div class="band" style="background:linear-gradient(135deg,#0B1F33,#0E2A45)"><h3 class="ctitle">Operators, Not Graduates</h3></div><div class="body"><p class="blurb">Missions trains students when it needs to forge operators. What Top Gun understood.</p><span class="go" style="color:#0B1F33">View &#8594;</span></div></a>
 <a class="card" data-cats="data frontier strategy" href="japan-unreached.html"><div class="band" style="background:linear-gradient(135deg,#2E4374,#243456)"><h3 class="ctitle">The Japan Paradox</h3></div><div class="body"><p class="blurb">More Christians than all 3,200 frontier groups combined. Japan needs oxygen, not a spark.</p><span class="go" style="color:#2E4374">View &#8594;</span></div></a>
@@ -174,6 +191,7 @@ footer small{display:block;color:var(--mute);margin-top:.8rem}
 <a class="card" data-cats="strategy frontier migration" href="geography-still-governs.html"><div class="band" style="background:linear-gradient(135deg,#7A5A3A,#57401f)"><h3 class="ctitle">Why Geography Still Governs</h3></div><div class="body"><p class="blurb">Terrain shaped who is unreached. Now the hardware is failing, and people are moving.</p><span class="go" style="color:#7A5A3A">View &#8594;</span></div></a>
 <a class="card" data-cats="migration strategy" href="migration-to-mobility.html"><div class="band" style="background:linear-gradient(135deg,#3A4E8C,#2a3a6a)"><h3 class="ctitle">From Migration to Mobility</h3></div><div class="body"><p class="blurb">Stop asking only where people live. Ask where they pass through, and stand at the hub.</p><span class="go" style="color:#3A4E8C">View &#8594;</span></div></a>
 <a class="card" data-cats="strategy bible" href="vision-for-vibes.html"><div class="band" style="background:linear-gradient(135deg,#6E4B7A,#4f3459)"><h3 class="ctitle">Have We Traded Vision for Vibes?</h3></div><div class="body"><p class="blurb">Vague hope is not a strategy. Pick one people group and do whatever it takes.</p><span class="go" style="color:#6E4B7A">View &#8594;</span></div></a>
+</div>
 </div>
 </div>
 </section>
@@ -246,5 +264,34 @@ pills.forEach(p=>p.onclick=()=>{const c=p.dataset.cat;if(c==='all'){active.clear
 applyF();
 </script>
 <script>(function(){var dd=document.querySelector(".nav-dd");if(!dd)return;var b=dd.querySelector(".nav-ddbtn");b.addEventListener("click",function(e){e.stopPropagation();var o=dd.classList.toggle("open");b.setAttribute("aria-expanded",o);});document.addEventListener("click",function(){dd.classList.remove("open");b.setAttribute("aria-expanded","false");});})();</script>
+<script>
+(function(){
+var recentList=["extractive-churches-produce-passive.html","everyone-is-already-ordained.html","three-doors-one-gospel.html","even-jesus-had-a-capernaum.html","learn-to-exit.html"];
+var popularList=["with-therefore-sent.html","the-activity-trap.html","counting-what-counts.html","operators-not-graduates.html","labor-shortage.html"];
+function fillRow(id,list){
+var g=document.getElementById(id);
+list.forEach(function(h){
+var c=document.querySelector('#grid .card[href="'+h+'"]');
+if(c)g.appendChild(c.cloneNode(true));
+});
+}
+fillRow("recentGrid",recentList);
+fillRow("popularGrid",popularList);
+var btn=document.getElementById("allBtn");
+var quick=document.getElementById("quickview");
+var all=document.getElementById("allview");
+var total=document.querySelectorAll("#grid .card").length;
+var expanded=false;
+btn.textContent="Browse all "+total+" pieces ↓";
+btn.addEventListener("click",function(){
+expanded=!expanded;
+all.hidden=!expanded;
+quick.hidden=expanded;
+btn.textContent=expanded?"Show the latest and most popular ↑":"Browse all "+total+" pieces ↓";
+if(expanded)all.scrollIntoView({behavior:"smooth",block:"start"});
+else quick.scrollIntoView({behavior:"smooth",block:"start"});
+});
+})();
+</script>
 </body>
 </html>
