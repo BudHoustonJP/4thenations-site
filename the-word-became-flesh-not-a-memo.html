@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Word Became Flesh, Not a Memo &middot; Clarity for the Nations</title>
+<meta name="description" content="God wrapped the ultimate new thing in the ultimate familiar form. Our strategy should too. Kernel and shell, skeuomorphism, and the contextualization audit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#9C5B21;--deep:#6B3D13;
+--kernel:#0F7D6B;--kerneldeep:#0A574B;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+header.hero{background:linear-gradient(160deg,#241305 0%,var(--deep) 55%,#3A2410 100%);color:#F6F4EE;padding:12vh 0 9vh;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.1}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#F0C08A;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:22ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.78);max-width:56ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#F5CE9B}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.75);margin-top:.35rem}
+.qband{background:var(--accent);color:#FBF6F0;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:34ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#F2D9BD}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+input[type=range]{width:100%;accent-color:var(--accent);height:34px;cursor:pointer}
+.slider-read{margin-top:1.2rem;font-size:1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem;min-height:4.6rem}
+.slider-read b{color:var(--accent)}
+.slider-read .ph{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;background:var(--accent);margin-bottom:.45rem}
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.2rem}
+.segbtn{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem 1.3rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.verdict{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem;transition:background .3s}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem}
+.v-shell{background:rgba(156,91,33,.08)} .v-shell .tag{background:var(--accent)}
+.v-kernel{background:rgba(15,125,107,.08)} .v-kernel .tag{background:var(--kernel)}
+.v-danger{background:rgba(140,32,32,.07)} .v-danger .tag{background:#8C2020}
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:0 0 1.2rem}
+.pbar .fill{height:100%;width:0;background:var(--kernel);transition:width .4s ease}
+.sortrow{border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;margin-bottom:12px;transition:background .3s,border-color .3s}
+.sortrow .stmt{font-weight:700;font-size:1rem;margin-bottom:.7rem}
+.sortrow .btns{display:flex;gap:8px;flex-wrap:wrap}
+.sortbtn{font:inherit;font-weight:700;font-size:.9rem;padding:.5rem 1.2rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;transition:all .15s}
+.sortbtn:hover{border-color:var(--ink)}
+.sortbtn.pick-k{background:var(--kernel);border-color:var(--kernel);color:#fff}
+.sortbtn.pick-s{background:var(--accent);border-color:var(--accent);color:#fff}
+.sortbtn[disabled]{cursor:default;opacity:.55}
+.sortbtn.pick-k[disabled],.sortbtn.pick-s[disabled]{opacity:1}
+.sortrow .expl{font-size:.92rem;color:#39342d;margin-top:.7rem;display:none}
+.sortrow.done.right{background:rgba(15,125,107,.06);border-color:rgba(15,125,107,.4)}
+.sortrow.done.wrong{background:rgba(140,32,32,.05);border-color:rgba(140,32,32,.35)}
+.sortrow .mark{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:.6rem;display:none}
+.sortrow.done .mark,.sortrow.done .expl{display:block}
+.sortrow.right .mark{color:var(--kernel)}
+.sortrow.wrong .mark{color:#8C2020}
+#sortVerdict{display:none;border-radius:12px;padding:1.1rem 1.2rem;font-size:1rem;margin-top:.4rem;background:rgba(15,125,107,.08)}
+.acc{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
+.acc .ahead{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.2rem;background:none;border:none;font:inherit;font-weight:700;font-size:1rem;text-align:left;cursor:pointer}
+.acc .ahead .atag{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;padding:.25rem .7rem;border-radius:50px;color:#fff}
+.atag.flex{background:var(--accent)} .atag.fixed{background:var(--kernel)}
+.acc .abody{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc.open .abody{max-height:380px}
+.acc .ainner{padding:0 1.2rem 1.2rem;font-size:.96rem;color:#39342d}
+.acc .ainner b{color:var(--accent)}
+.roadzone{cursor:pointer}
+.roadzone:focus{outline:none}
+.roadzone:focus rect{stroke:var(--ink);stroke-width:3}
+.detail{margin-top:1.2rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;font-size:.98rem;min-height:4.4rem}
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:24ch;margin:0 auto 2rem}
+.cta-btn{display:inline-block;background:#F5CE9B;color:var(--deep);text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Bible &amp; Strategy</div>
+<h1>God wrapped the most advanced claim in the universe in the most familiar form available.</h1>
+<p class="sub">The first iPhone dressed new technology in fake leather so your thumb would trust a sheet of glass. Designers call it skeuomorphism. It is also the oldest pattern in the mission of God, and most church planting strategies get it backward.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="1">0</div><div class="l">kernel that never changes</div></div>
+<div class="chip"><div class="n" data-count="2">0</div><div class="l">ways to wreck it</div></div>
+<div class="chip"><div class="n" data-count="4">0</div><div class="l">audit questions for your team</div></div>
+</div>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;A native gospel inside a foreign church is still a foreign religion.&rdquo;</p>
+<p class="q">&ldquo;Christ set the terms of entry. We keep adding conditions he never made.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<section class="mod" id="m1">
+<div class="kicker">Skeuomorphism, or how new things get adopted</div>
+<h2>Strip the costume and watch what stays</h2>
+<p class="intro">Apple shipped the first iPhone calendar with fake leather stitching. None of it did anything. It was there so your thumb would trust a sheet of glass. Once people trusted the glass, the stitching came off. Raymond Loewy called the rule MAYA: Most Advanced Yet Acceptable. Drag the slider to remove the familiar wrapper and see what was structure and what was scaffolding.</p>
+<div class="panel">
+<label for="skeuRange" style="font-weight:700;font-size:.95rem">How much trust has the new thing earned?</label>
+<input type="range" id="skeuRange" min="0" max="100" value="0" aria-label="Trust earned, from full costume to flat glass">
+<svg id="skeuSvg" viewBox="0 0 700 430" xmlns="http://www.w3.org/2000/svg" aria-label="A phone app losing its leather costume as trust grows"></svg>
+<div class="slider-read" id="skeuRead"></div>
+<p class="note">Conceptual illustration of the essay's argument, not measured data.</p>
+</div>
+</section>
+
+<section class="mod" id="m2">
+<div class="kicker">Kernel and shell</div>
+<h2>Same kernel, three native shells</h2>
+<p class="intro">Borrow the language from computing. The kernel is the core that does not change: the Lordship of Christ, his death and resurrection, repentance and faith, a gathered body baptized and breaking bread (Acts 2:42). The shell is the form that carries it: where the church gathers, who leads, what it sings. Switch shells and watch the kernel hold.</p>
+<div class="panel">
+<div class="seg" role="group" aria-label="Choose a church shell">
+<button class="segbtn on" id="shellA">Steepled sanctuary</button>
+<button class="segbtn" id="shellB">Rented city hall</button>
+<button class="segbtn" id="shellC">Village courtyard</button>
+</div>
+<svg id="shellSvg" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" aria-label="A constant kernel surrounded by changing cultural shell elements"></svg>
+<div class="verdict v-kernel" id="shellVerdict">
+<span class="tag">Kernel intact</span>
+<div id="shellText">Pipe organ, pews, a robed clergyman, Sunday at 11. Every one of these is negotiable shell. The kernel at the center has not moved.</div>
+</div>
+<p class="note">The kernel list comes from the essay. The shells are illustrative settings.</p>
+</div>
+</section>
+
+<section class="mod" id="m3">
+<div class="kicker">The test, made playable</div>
+<h2>Kernel or shell? Make the call</h2>
+<p class="intro">The essay's test: if a form traces to the New Testament church, it is probably kernel. If it came in the missionary's luggage, treat it as shell. Classify each of these eight. The bar fills as you go.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="sortFill"></div></div>
+<div id="sortWrap"></div>
+<div id="sortVerdict"></div>
+</div>
+</section>
+
+<section class="mod" id="m4">
+<div class="kicker">The precedent</div>
+<h2>Paul's playbook: what flexed and what never did</h2>
+<p class="intro">Paul spent his life on this principle, and the early church fought its first serious controversy over it. Open each case and see which layer was being handled.</p>
+<div class="panel">
+<div class="acc" id="acc1">
+<button class="ahead" aria-expanded="false"><span>He circumcised Timothy (Acts 16)</span><span class="atag flex">Shell flexed</span></button>
+<div class="abody"><div class="ainner">Timothy would work among Jews, so Paul removed a barrier of foreignness before it could block the message. <b>The form bent to the audience.</b> Nothing in the gospel changed.</div></div>
+</div>
+<div class="acc" id="acc2">
+<button class="ahead" aria-expanded="false"><span>He refused to circumcise Titus (Galatians 2)</span><span class="atag fixed">Kernel guarded</span></button>
+<div class="abody"><div class="ainner">When the same act was demanded as a condition of belonging, Paul refused. A shell requirement was trying to attach itself to the kernel, <b>and he would not let the wrapper become the price of Christ.</b></div></div>
+</div>
+<div class="acc" id="acc3">
+<button class="ahead" aria-expanded="false"><span>He quoted pagan poets in Athens (Acts 17)</span><span class="atag flex">Shell flexed</span></button>
+<div class="abody"><div class="ainner">At the Areopagus Paul carried the message in the hearers' own literature and categories. He became all things to all people to save some (1 Cor 9:22). <b>The wrapper was theirs. The claim was his.</b></div></div>
+</div>
+<div class="acc" id="acc4">
+<button class="ahead" aria-expanded="false"><span>The Jerusalem Council (Acts 15)</span><span class="atag fixed">Kernel guarded</span></button>
+<div class="abody"><div class="ainner">Did Gentiles need the Jewish wrapper, circumcision and food laws, to receive the Jewish Messiah? Peter asked why anyone would lay on the disciples a yoke that neither they nor their ancestors could bear (Acts 15:10). <b>Keep the kernel, drop the shell,</b> and do not make it harder for those turning to God (Acts 15:19).</div></div>
+</div>
+<div class="acc" id="acc5">
+<button class="ahead" aria-expanded="false"><span>Christ crucified (1 Cor 1:23)</span><span class="atag fixed">Kernel guarded</span></button>
+<div class="abody"><div class="ainner">Everything flexed except one thing. Paul would not soften Christ crucified, even knowing it was a stumbling block. <b>The offense of the cross is required. The offense of foreignness is one we invented.</b></div></div>
+</div>
+<p class="note">Open all five cases to see the full pattern.</p>
+</div>
+</section>
+
+<section class="mod" id="m5">
+<div class="kicker">Two ways to wreck it</div>
+<h2>The road and the two ditches</h2>
+<p class="intro">This cuts both ways. Make the shell foreign and people reject the wrapper thinking they rejected Christ. Make the shell so accommodating the kernel disappears, and Christ is added to the old system rather than seated above it. Tap each zone of the road.</p>
+<div class="panel">
+<svg id="roadSvg" viewBox="0 0 700 330" xmlns="http://www.w3.org/2000/svg" aria-label="A road with a ditch on each side: extractionism, faithful contextualization, syncretism"></svg>
+<div class="detail" id="roadDetail">Tap or click the left ditch, the road, or the right ditch.</div>
+<p class="note">The argument, not measured data. Both ditches come from not knowing which layer you are handling.</p>
+</div>
+</section>
+
+<section class="mod" id="m6">
+<div class="kicker">The contextualization audit</div>
+<h2>Run it with your team, out loud</h2>
+<p class="intro">Four questions, form by form. Check each one off as your team actually answers it, not as you read it.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="auditFill"></div></div>
+<div class="acc audit" id="aud1">
+<button class="ahead" aria-expanded="false"><span>1. Kernel or shell, and can you defend the call?</span><span class="atag fixed">Ask it</span></button>
+<div class="abody"><div class="ainner">For each requirement in your current strategy, can you name whether it is kernel or shell, and defend the call from Scripture rather than habit?</div></div>
+</div>
+<div class="acc audit" id="aud2">
+<button class="ahead" aria-expanded="false"><span>2. What are you importing?</span><span class="atag fixed">Ask it</span></button>
+<div class="abody"><div class="ainner">What are you asking your people group to adopt, in gospel and in church form, that came from your culture rather than the New Testament?</div></div>
+</div>
+<div class="acc audit" id="aud3">
+<button class="ahead" aria-expanded="false"><span>3. Who is your shell filtering out?</span><span class="atag fixed">Ask it</span></button>
+<div class="abody"><div class="ainner">Where is your church shell filtering out the people most open to the kernel: the non-literate, the poor, the household head who cannot come out alone? A text-first shell filters out an oral culture. An individual-decision shell breaks the household pattern (Acts 16:31-34).</div></div>
+</div>
+<div class="acc audit" id="aud4">
+<button class="ahead" aria-expanded="false"><span>4. What is your exit plan for the scaffolding?</span><span class="atag fixed">Ask it</span></button>
+<div class="abody"><div class="ainner">What is your plan to remove your shell so the church can reproduce in its own? A healthy indigenous church is one where the missionary's shell is gone and the people's own shell carries the unchanging kernel, reproducibly, without us.</div></div>
+</div>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">The Word did not send a memo. He moved into the neighborhood.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/the-word-became-flesh-not-a-memo" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a><br>
+<a class="sub" href="index.html">&#8592; All interactive essays</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+function lerp(a,b,t){return a+(b-a)*t;}
+function hexMix(h1,h2,t){
+function p(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+var a=p(h1),b=p(h2);
+return "rgb("+Math.round(lerp(a[0],b[0],t))+","+Math.round(lerp(a[1],b[1],t))+","+Math.round(lerp(a[2],b[2],t))+")";
+}
+
+/* scroll progress */
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";},{passive:true});
+
+/* reveal on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.15});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+/* hero count-up */
+document.querySelectorAll(".chip .n").forEach(function(n){
+var target=parseInt(n.getAttribute("data-count"),10);
+tween(1400,function(p){n.textContent=Math.round(target*p);});
+});
+
+/* ===== Module 1: skeuomorph slider ===== */
+(function(){
+var svg=document.getElementById("skeuSvg");
+var read=document.getElementById("skeuRead");
+var range=document.getElementById("skeuRange");
+/* phone frame */
+el("rect",{x:215,y:14,width:270,height:402,rx:34,fill:"#2A2A2E"},svg);
+el("rect",{x:227,y:26,width:246,height:378,rx:24,fill:"#F7F4EC"},svg);
+var screen={x:227,y:26,w:246,h:378};
+/* header band (the costume) */
+var header=el("rect",{x:screen.x,y:screen.y,width:screen.w,height:78,rx:24,fill:"#7A4A1F"},svg);
+el("rect",{x:screen.x,y:screen.y+40,width:screen.w,height:38,fill:"#7A4A1F",id:"hdrsq"},svg);
+var hdrsq=svg.lastChild;
+/* leather grain lines */
+var grain=el("g",{opacity:1},svg);
+for(var g=0;g<6;g++){
+el("path",{d:"M"+(screen.x+8)+" "+(screen.y+14+g*11)+" q60 "+(g%2?5:-5)+" 118 0 t120 0",stroke:"rgba(0,0,0,.18)","stroke-width":1.2,fill:"none"},grain);
+}
+/* stitching */
+var stitches=el("g",{opacity:1},svg);
+el("line",{x1:screen.x+10,y1:screen.y+10,x2:screen.x+screen.w-10,y2:screen.y+10,stroke:"#F0DDBB","stroke-width":2,"stroke-dasharray":"7 6","stroke-linecap":"round"},stitches);
+el("line",{x1:screen.x+10,y1:screen.y+68,x2:screen.x+screen.w-10,y2:screen.y+68,stroke:"#F0DDBB","stroke-width":2,"stroke-dasharray":"7 6","stroke-linecap":"round"},stitches);
+var hdrLabel=txt(350,screen.y+47,"Calendar",{fill:"#fff","font-size":"20","font-weight":"700","text-anchor":"middle","font-family":"Fraunces,serif"},svg);
+/* torn paper edge (skeuomorph) */
+var torn=el("g",{opacity:1},svg);
+var tornPath="M"+screen.x+" "+(screen.y+104);
+for(var tp=0;tp<=12;tp++){tornPath+=" L"+(screen.x+tp*(screen.w/12))+" "+(screen.y+104+(tp%2?5:0));}
+el("path",{d:tornPath,stroke:"rgba(122,74,31,.5)","stroke-width":2,fill:"none"},torn);
+/* content lines (function: always there) */
+var rows=el("g",{},svg);
+for(var r=0;r<5;r++){
+var ry=screen.y+130+r*52;
+el("rect",{x:screen.x+16,y:ry,width:screen.w-32,height:38,rx:8,fill:r===1?"rgba(156,91,33,.16)":"rgba(28,26,23,.05)"},rows);
+el("rect",{x:screen.x+26,y:ry+12,width:110+((r*37)%70),height:8,rx:4,fill:"rgba(28,26,23,.35)"},rows);
+el("circle",{cx:screen.x+screen.w-38,cy:ry+19,r:6,fill:r===1?"#9C5B21":"rgba(28,26,23,.2)"},rows);
+}
+txt(110,80,"the costume",{fill:"#9C5B21","font-size":"14","font-weight":"700"},svg);
+txt(110,100,"fake leather, stitches",{fill:"#6E665B","font-size":"12"},svg);
+el("path",{d:"M195 76 L222 60",stroke:"#9C5B21","stroke-width":2,fill:"none"},svg);
+txt(110,300,"the function",{fill:"#0F7D6B","font-size":"14","font-weight":"700"},svg);
+txt(110,320,"it never changes",{fill:"#6E665B","font-size":"12"},svg);
+el("path",{d:"M195 300 L222 290",stroke:"#0F7D6B","stroke-width":2,fill:"none"},svg);
+var phases=[
+{max:29,tag:"Full costume",body:"<b>The wrapper is doing its job.</b> The calendar wears leather so a brand-new thing feels like an old friend. Loewy's MAYA rule: most advanced yet acceptable. Push past what people will accept and the best design on the market gets rejected."},
+{max:69,tag:"Scaffolding coming down",body:"<b>Trust is winning.</b> The stitching fades because it was never structure, only scaffolding. Rogers found compatibility, how consistent the new feels with the known, is one of the strongest predictors of adoption."},
+{max:100,tag:"Trusted glass",body:"<b>The costume is gone. The function never moved.</b> This is the pattern: the innovation stays radical, the wrapper makes it acceptable, and the wrapper comes off. Hold that thought against the Word becoming flesh."}
+];
+function paint(){
+var v=range.value/100;
+var leather=hexMix("#7A4A1F","#0F7D6B",v);
+header.setAttribute("fill",leather);
+hdrsq.setAttribute("fill",leather);
+grain.setAttribute("opacity",String(1-v));
+stitches.setAttribute("opacity",String(Math.max(0,1-v*1.4)));
+torn.setAttribute("opacity",String(Math.max(0,1-v*1.4)));
+var ph=phases[0];
+for(var i=0;i<phases.length;i++){if(range.value<=phases[i].max){ph=phases[i];break;}}
+read.innerHTML='<span class="ph">'+ph.tag+'</span><div>'+ph.body+'</div>';
+}
+range.addEventListener("input",paint);
+paint();
+})();
+
+/* ===== Module 2: shell toggle ===== */
+(function(){
+var svg=document.getElementById("shellSvg");
+var CX=350,CY=210;
+/* shell item slots around the kernel */
+var slots=[
+{x:350,y:52,anchor:"middle"},
+{x:96,y:150,anchor:"middle"},
+{x:604,y:150,anchor:"middle"},
+{x:96,y:300,anchor:"middle"},
+{x:604,y:300,anchor:"middle"}
+];
+var shells=[
+{name:"Steepled sanctuary",items:["Building with a steeple","Pipe organ and hymnal","Robed clergy","Sunday, 11 a.m.","Printed program"],text:"Pipe organ, pews, a robed clergyman, Sunday at 11. Every one of these is negotiable shell. The kernel at the center has not moved."},
+{name:"Rented city hall",items:["Rented hall, folding chairs","Guitar and screen","Bi-vocational leader","Saturday evening","Group chat announcements"],text:"Swap the organ for a guitar and the steeple for a lease. Different shell, same kernel. Neither of these forms is more biblical than the other."},
+{name:"Village courtyard",items:["Mats in a courtyard","Grandmothers' melody","Elder raised from among them","Market-day rhythm","Stories told aloud"],text:"Nothing here came from a shipping container. One believer retells the prodigal son in the community's own cadence, bread and cup pass hand to hand, and it can reproduce next month without a single foreign dollar."}
+];
+var slotEls=[];
+slots.forEach(function(s){
+var g=el("g",{opacity:1},svg);
+var rect=el("rect",{x:s.x-88,y:s.y-24,width:176,height:48,rx:12,fill:"#FDF9F1",stroke:"rgba(156,91,33,.45)","stroke-width":1.5,"stroke-dasharray":"6 5"},g);
+var t1=txt(s.x,s.y-2,"",{fill:"#6B3D13","font-size":"12.5","font-weight":"700","text-anchor":"middle"},g);
+var t2=txt(s.x,s.y+14,"",{fill:"#9C5B21","font-size":"10.5","text-anchor":"middle"},g);
+slotEls.push({g:g,t1:t1,t2:t2});
+el("line",{x1:s.x,y1:s.y+(s.y<CY?26:-26),x2:CX+(s.x-CX)*.28,y2:CY+(s.y-CY)*.32,stroke:"rgba(156,91,33,.3)","stroke-width":1.5,"stroke-dasharray":"3 5"},svg);
+});
+/* kernel core */
+var pulse=el("circle",{cx:CX,cy:CY,r:74,fill:"rgba(15,125,107,.15)"},svg);
+el("circle",{cx:CX,cy:CY,r:64,fill:"#0F7D6B"},svg);
+txt(CX,CY-22,"THE KERNEL",{fill:"rgba(255,255,255,.85)","font-size":"10","font-weight":"700","text-anchor":"middle","letter-spacing":"2"},svg);
+txt(CX,CY-4,"Christ's Lordship",{fill:"#fff","font-size":"12.5","font-weight":"700","text-anchor":"middle"},svg);
+txt(CX,CY+13,"death and resurrection",{fill:"#fff","font-size":"11","text-anchor":"middle"},svg);
+txt(CX,CY+29,"repentance, baptism, the table",{fill:"#fff","font-size":"11","text-anchor":"middle"},svg);
+txt(CX,CY+46,"a gathered body (Acts 2:42)",{fill:"rgba(255,255,255,.85)","font-size":"10.5","text-anchor":"middle"},svg);
+txt(CX,388,"dashed boxes are shell: negotiable, and supposed to be native",{fill:"#6E665B","font-size":"12","text-anchor":"middle"},svg);
+/* kernel pulse */
+var pt=0;
+(function loop(ts){pt+=0.02;pulse.setAttribute("r",74+4*Math.sin(pt));requestAnimationFrame(loop);})();
+var labels=["WHERE","MUSIC","LEADER","RHYTHM","MEDIUM"];
+var order=[0,1,2,3,4];
+function setShell(idx,animate){
+var sh=shells[idx];
+function fill(){
+slotEls.forEach(function(se,i){
+se.t1.textContent=labels[i];
+se.t2.textContent=sh.items[i];
+});
+}
+if(animate){
+tween(260,function(p){slotEls.forEach(function(se){se.g.setAttribute("opacity",String(1-p));});},function(){
+fill();
+tween(320,function(p){slotEls.forEach(function(se){se.g.setAttribute("opacity",String(p));});});
+});
+}else fill();
+document.getElementById("shellText").textContent=sh.text;
+["shellA","shellB","shellC"].forEach(function(id,i){document.getElementById(id).classList.toggle("on",i===idx);});
+}
+["shellA","shellB","shellC"].forEach(function(id,i){
+document.getElementById(id).addEventListener("click",function(){setShell(i,true);});
+});
+setShell(0,false);
+})();
+
+/* ===== Module 3: kernel or shell sorter ===== */
+(function(){
+var items=[
+{s:"Baptism",k:true,e:"Kernel. The church itself is part of the core: a gathered body, baptized, under Christ's Lordship (Acts 2:42)."},
+{s:"A dedicated church building",k:false,e:"Shell. Where the church gathers, in a building, a home, or under a tree, is form. It arrived in the missionary's luggage."},
+{s:"The Lord's table: bread and cup",k:true,e:"Kernel. Breaking bread at the Lord's table traces straight to the New Testament church (Acts 2:42)."},
+{s:"Sunday at 11 a.m.",k:false,e:"Shell. Meeting rhythm is negotiable, and it is supposed to be native to the community's own life."},
+{s:"Repentance and faith in Christ",k:true,e:"Kernel. The exclusive Lordship of Christ, his death and resurrection, repentance and faith. This is the part that never flexes."},
+{s:"Pews, pulpit, and a printed program",k:false,e:"Shell. Setting and furniture are wrapper. Require them and you export a costume."},
+{s:"Seminary-stamped leadership titles",k:false,e:"Shell. Leadership titles are form. The courtyard elder was raised from among the people, not flown in."},
+{s:"A body devoted to one another under Christ",k:true,e:"Kernel. That a church exists, gathered and devoted to one another under his Lordship, is core, not culture."}
+];
+var wrap=document.getElementById("sortWrap");
+var fill=document.getElementById("sortFill");
+var verdict=document.getElementById("sortVerdict");
+var done=0,score=0;
+items.forEach(function(it){
+var row=document.createElement("div");
+row.className="sortrow";
+row.innerHTML='<div class="stmt">'+it.s+'</div><div class="btns"></div><div class="mark"></div><div class="expl"></div>';
+var btns=row.querySelector(".btns");
+var bk=document.createElement("button");bk.className="sortbtn";bk.textContent="Kernel";
+var bs=document.createElement("button");bs.className="sortbtn";bs.textContent="Shell";
+btns.appendChild(bk);btns.appendChild(bs);
+function answer(saidKernel){
+if(row.classList.contains("done"))return;
+row.classList.add("done");
+var right=saidKernel===it.k;
+row.classList.add(right?"right":"wrong");
+(saidKernel?bk:bs).classList.add(it.k?"pick-k":"pick-s");
+bk.disabled=true;bs.disabled=true;
+row.querySelector(".mark").textContent=right?"Right call":"Look again";
+row.querySelector(".expl").textContent=it.e;
+done++;if(right)score++;
+fill.style.width=(done/items.length*100)+"%";
+if(done===items.length){
+verdict.style.display="block";
+verdict.innerHTML="<b>"+score+" of "+items.length+".</b> "+(score>=7?"You are separating the layers cleanly. The harder version of this quiz is your own strategy document.":score>=5?"Close. The confusions you missed are the exact ones that ship foreign shells to the field.":"This is the point of the essay: most of us inherited a strategy that cannot tell these layers apart. Run the audit below with your team.");
+}
+}
+bk.addEventListener("click",function(){answer(true);});
+bs.addEventListener("click",function(){answer(false);});
+wrap.appendChild(row);
+});
+})();
+
+/* ===== Modules 4 and 6: accordions ===== */
+(function(){
+function wire(sel,fillId){
+var accs=Array.prototype.slice.call(document.querySelectorAll(sel));
+var opened={};
+var fill=fillId?document.getElementById(fillId):null;
+accs.forEach(function(a,i){
+var head=a.querySelector(".ahead");
+head.addEventListener("click",function(){
+var open=a.classList.toggle("open");
+head.setAttribute("aria-expanded",open?"true":"false");
+if(open&&!opened[i]){opened[i]=true;
+if(fill)fill.style.width=(Object.keys(opened).length/accs.length*100)+"%";}
+});
+});
+}
+wire("#m4 .acc",null);
+wire("#m6 .acc","auditFill");
+})();
+
+/* ===== Module 5: road and ditches ===== */
+(function(){
+var svg=document.getElementById("roadSvg");
+var detail=document.getElementById("roadDetail");
+/* ditches */
+el("path",{d:"M0 210 Q60 260 130 268 L130 330 L0 330 Z",fill:"rgba(156,91,33,.22)"},svg);
+el("path",{d:"M700 210 Q640 260 570 268 L570 330 L700 330 Z",fill:"rgba(90,90,96,.25)"},svg);
+/* road */
+el("path",{d:"M130 268 Q350 232 570 268 L570 330 L130 330 Z",fill:"#3E3A34"},svg);
+el("path",{d:"M150 300 Q350 268 550 300",stroke:"#F0DDBB","stroke-width":3,"stroke-dasharray":"18 14",fill:"none"},svg);
+txt(64,300,"the foreign shell",{fill:"#6B3D13","font-size":"12","font-weight":"700","text-anchor":"middle"},svg);
+txt(64,316,"extractionism",{fill:"#6B3D13","font-size":"11","text-anchor":"middle"},svg);
+txt(636,300,"the empty shell",{fill:"#44424A","font-size":"12","font-weight":"700","text-anchor":"middle"},svg);
+txt(636,316,"syncretism",{fill:"#44424A","font-size":"11","text-anchor":"middle"},svg);
+txt(350,322,"native shell, intact kernel",{fill:"#F3EFE6","font-size":"12","font-weight":"700","text-anchor":"middle"},svg);
+/* marker: a small church of dots (kernel + shell ring) */
+var marker=el("g",{},svg);
+var mShell=el("circle",{cx:0,cy:0,r:22,fill:"none",stroke:"#9C5B21","stroke-width":4},marker);
+var mKernel=el("circle",{cx:0,cy:0,r:11,fill:"#0F7D6B"},marker);
+var mx=350,my=196;
+function setMarker(x,y){marker.setAttribute("transform","translate("+x+" "+y+")");}
+setMarker(mx,my);
+var states={
+left:{x:100,y:170,name:"Extractionism",cls:"v-danger",
+body:"<b>Come out, look like us, worship in our forms, and we will call you a Christian.</b> The shell ring turns thick and foreign. It produces converts exiled from their own people and a church that looks like an import, because it is one. People reject the wrapper and believe they have rejected Christ.",
+shellStroke:"#8C2020",shellR:30,shellW:9,kernelR:8,kernelFill:"#0F7D6B"},
+mid:{x:350,y:196,name:"Faithful contextualization",cls:"v-kernel",
+body:"<b>The kernel is intact and the shell is theirs.</b> The unchanging core travels inside a native form that can reproduce without outside resourcing. This judgment is made in contact, over time, not from a distance.",
+shellStroke:"#9C5B21",shellR:22,shellW:4,kernelR:11,kernelFill:"#0F7D6B"},
+right:{x:600,y:170,name:"Syncretism",cls:"v-shell",
+body:"<b>The forms are perfectly local, and the Lordship is gone.</b> The shell becomes so accommodating that the kernel disappears. Christ is added to the existing system rather than seated above it. You exported nothing.",
+shellStroke:"#44424A",shellR:26,shellW:4,kernelR:2,kernelFill:"rgba(15,125,107,.25)"}
+};
+function go(key){
+var st=states[key];
+var x0=mx,y0=my;
+var r0=parseFloat(mShell.getAttribute("r")),w0=parseFloat(mShell.getAttribute("stroke-width")),k0=parseFloat(mKernel.getAttribute("r"));
+tween(550,function(p){
+setMarker(lerp(x0,st.x,p),lerp(y0,st.y,p));
+mShell.setAttribute("r",lerp(r0,st.shellR,p));
+mShell.setAttribute("stroke-width",lerp(w0,st.shellW,p));
+mKernel.setAttribute("r",lerp(k0,st.kernelR,p));
+});
+mx=st.x;my=st.y;
+mShell.setAttribute("stroke",st.shellStroke);
+mKernel.setAttribute("fill",st.kernelFill);
+detail.innerHTML='<b>'+st.name+'.</b> '+st.body;
+}
+/* clickable zones */
+var zones=[
+{key:"left",x:0,w:135},
+{key:"mid",x:135,w:430},
+{key:"right",x:565,w:135}
+];
+zones.forEach(function(z){
+var g=el("g",{"class":"roadzone",tabindex:"0",role:"button","aria-label":z.key==="mid"?"the road: faithful contextualization":z.key==="left"?"left ditch: extractionism":"right ditch: syncretism"},svg);
+el("rect",{x:z.x,y:110,width:z.w,height:220,fill:"transparent",stroke:"none"},g);
+function act(){go(z.key);}
+g.addEventListener("click",act);
+g.addEventListener("mouseenter",function(){g.firstChild.setAttribute("fill","rgba(255,255,255,.06)");});
+g.addEventListener("mouseleave",function(){g.firstChild.setAttribute("fill","transparent");});
+onKey(g,act);
+});
+go("mid");
+})();
+
+})();
+</script>
+</body>
+</html>
