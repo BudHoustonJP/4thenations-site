@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Five Functions in the Expansion of the Kingdom &middot; Clarity for the Nations</title>
+<meta name="description" content="An apple, a tree, an orchard, and why levels is the wrong word. A reframe of the five roles a movement needs to grow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#3F7D4B;--deep:#274E30;
+--seed:#C6802E;--seeddeep:#96601D;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+header.hero{background:linear-gradient(160deg,#12331C 0%,var(--deep) 55%,#1B3F24 100%);color:#F6F4EE;padding:12vh 0 9vh;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.1}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#A7D3B0;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:20ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.8);max-width:58ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#B7E0C0}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.78);margin-top:.35rem}
+.qband{background:var(--accent);color:#FBFDF9;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:34ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#D6EBD9}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+
+/* Module 1: function accordion */
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:0 0 1.4rem}
+.pbar .fill{height:100%;width:0;background:var(--accent);transition:width .4s ease}
+.fn{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
+.fn .fhead{width:100%;display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:none;border:none;font:inherit;text-align:left;cursor:pointer}
+.fn .fnum{flex:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.fn .fnum svg{width:26px;height:26px}
+.fn .ftitle{font-weight:700;font-size:1.06rem;flex:1}
+.fn .ftitle .stage{display:block;font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.15rem}
+.fn .fchev{flex:none;font-size:.8rem;color:var(--mute);transition:transform .3s}
+.fn.open .fchev{transform:rotate(180deg)}
+.fn .fbody{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.fn.open .fbody{max-height:420px}
+.fn .finner{padding:0 1.2rem 1.3rem 1.2rem}
+.fn .finner p{font-size:.98rem;color:#39342d;margin-bottom:.9rem}
+.fn .release{background:var(--paper);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:.7rem .95rem;font-size:.95rem}
+.fn .release .rl{display:block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.25rem}
+.fn .scr{margin-top:.7rem;font-size:.82rem;font-style:italic;color:var(--mute)}
+
+/* Module 2: slider */
+input[type=range]{width:100%;accent-color:var(--accent);height:34px;cursor:pointer}
+.slabels{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--mute);margin-top:.3rem}
+.slabels span{flex:1;text-align:center}
+.dualbars{display:flex;gap:28px;margin-top:1.6rem}
+.dualcol{flex:1}
+.dualcol .cap{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem}
+.dualcol .track{height:26px;background:rgba(28,26,23,.08);border-radius:14px;overflow:hidden}
+.dualcol .meter{height:100%;width:10%;border-radius:14px;transition:width .3s ease}
+.m-ctrl{background:linear-gradient(90deg,var(--seed),var(--seeddeep))}
+.m-reach{background:linear-gradient(90deg,var(--accent),var(--deep))}
+.dualcol .pct{font-weight:800;font-size:1.2rem;margin-top:.35rem;font-family:'Fraunces',serif}
+.slider-read{margin-top:1.4rem;font-size:1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.95rem 1.1rem;min-height:5.2rem}
+.slider-read .fnname{display:block;font-weight:800;color:var(--accent);font-size:1.05rem;margin-bottom:.3rem}
+
+/* Module 3: multiplication stepper */
+.counters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1.2rem}
+.cnt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.7rem 1.1rem}
+.cnt .n{font-family:'Fraunces',serif;font-weight:900;font-size:1.6rem;line-height:1;color:var(--accent)}
+.cnt .l{font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.25rem}
+.caption{margin-top:1.1rem;font-size:.98rem;color:#39342d;min-height:3.4rem}
+.ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:1.2rem}
+.abtn{font:inherit;font-weight:700;font-size:.95rem;padding:.65rem 1.4rem;border-radius:50px;border:none;background:var(--accent);color:#fff;cursor:pointer;transition:filter .2s,opacity .2s}
+.abtn:hover{filter:brightness(1.1)}
+.abtn[disabled]{opacity:.4;cursor:default}
+.abtn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line)}
+.stagedots{display:flex;gap:7px;margin-top:.9rem}
+.sdot{width:9px;height:9px;border-radius:50%;background:rgba(28,26,23,.18)}
+.sdot.on{background:var(--accent)}
+
+/* Module 4: toggle compare */
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.2rem}
+.segbtn{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem 1.3rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn.on-grip{background:var(--seed);border-color:var(--seed);color:#fff}
+.segbtn.on-open{background:var(--accent);border-color:var(--accent);color:#fff}
+.verdict{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem;transition:background .3s}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem}
+.v-grip{background:rgba(198,128,46,.1)} .v-grip .tag{background:var(--seed)}
+.v-open{background:rgba(63,125,75,.1)} .v-open .tag{background:var(--accent)}
+
+/* Module 5: diagnostic */
+.diag{display:flex;flex-direction:column;gap:10px}
+.drow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:.75rem 1rem;background:#fff}
+.drow .dname{flex:1;min-width:150px;font-weight:700;font-size:.98rem}
+.drow .dname .ds{display:block;font-size:.76rem;font-weight:600;color:var(--mute)}
+.dbtns{display:flex;gap:8px}
+.dbtn{font:inherit;font-weight:700;font-size:.85rem;padding:.45rem 1rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .15s}
+.dbtn:hover{border-color:var(--ink)}
+.dbtn.on-live{background:var(--accent);border-color:var(--accent);color:#fff}
+.dbtn.on-vac{background:var(--seed);border-color:var(--seed);color:#fff}
+#diagRead{display:none;margin-top:1.3rem;border-radius:12px;padding:1.1rem 1.2rem;font-size:1rem;background:var(--paper);border:1px solid var(--line)}
+#diagRead b{color:var(--accent)}
+
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:24ch;margin:0 auto 2rem}
+.cta-btn{display:inline-block;background:#B7E0C0;color:var(--deep);text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Strategy &amp; Training</div>
+<h1>These are not five levels to climb. They are five functions to fill.</h1>
+<p class="sub">Over a decade ago Nathan Shank named five levels of movement leadership. The framework has held up, but one word needs changing. A level is something you climb past and leave below you. A function is a role the body needs filled, all five at once, and every one of them advances the same way: by letting go.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="5">0</div><div class="l">functions the body must fill</div></div>
+<div class="chip"><div class="n" data-count="4">0</div><div class="l">generations in one verse (2 Tim 2:2)</div></div>
+<div class="chip"><div class="n" data-count="2">0</div><div class="l">years in the hall of Tyrannus, until all Asia heard</div></div>
+</div>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;The seed that stays in your hand stays a seed.&rdquo;</p>
+<p class="q">&ldquo;No function is a rank. Every function is a stewardship.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<section class="mod" id="m1">
+<div class="kicker">One apple, and then the orchard</div>
+<h2>The five functions, told through the fruit</h2>
+<p class="intro">Hand someone an apple and you have already handed them the seed. Whether it stays a single piece of fruit or becomes an orchard depends on one thing: whether they know the seed is there, and what it is for. Open each function to see the fruit it works with, and the thing it has to release to reach the next.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="fnFill"></div></div>
+<div id="fnWrap"></div>
+<p class="note">Framework adapted from Nathan Shank, 5 Levels of Movement Leadership (Mission Frontiers, 2016). One word changed: functions, not levels.</p>
+</div>
+</section>
+
+<section class="mod" id="m2">
+<div class="kicker">Every function advances by letting go</div>
+<h2>Notice what marks the move from one to the next</h2>
+<p class="intro">It is not more control. It is less. Drag from the seed sower to the strategy coordinator and watch the grip loosen while the reach widens. This is why levels misleads: it suggests you gain authority as you rise, when in fact you release it.</p>
+<div class="panel">
+<label for="fnRange" style="font-weight:700;font-size:.95rem">Move across the five functions</label>
+<input type="range" id="fnRange" min="0" max="4" step="1" value="0" aria-label="Move across the five functions">
+<div class="slabels"><span>Sower</span><span>Planter</span><span>Multiplier</span><span>Catalyst</span><span>Coordinator</span></div>
+<div class="dualbars">
+<div class="dualcol">
+<div class="cap" style="color:var(--seed)">Control held</div>
+<div class="track"><div class="meter m-ctrl" id="ctrlMeter"></div></div>
+<div class="pct" id="ctrlPct" style="color:var(--seed)">95%</div>
+</div>
+<div class="dualcol">
+<div class="cap" style="color:var(--accent)">Reach opened</div>
+<div class="track"><div class="meter m-reach" id="reachMeter"></div></div>
+<div class="pct" id="reachPct" style="color:var(--accent)">5%</div>
+</div>
+</div>
+<div class="slider-read" id="fnRead"></div>
+<p class="note">Conceptual illustration of the essay's argument, not measured data.</p>
+</div>
+</section>
+
+<section class="mod" id="m3">
+<div class="kicker">The grain of wheat that falls</div>
+<h2>One apple, released, becomes an orchard</h2>
+<p class="intro">Unless a grain of wheat falls into the ground and dies, it remains alone, but if it dies it bears much fruit (John 12:24). Release the seed and step through the generations. The multiplier's defining mark shows up here: he does not own the fruit.</p>
+<div class="panel">
+<div class="counters">
+<div class="cnt"><div class="n" id="cntGen">0</div><div class="l">generations deep</div></div>
+<div class="cnt"><div class="n" id="cntChurch">0</div><div class="l">churches in the field (illustrative)</div></div>
+</div>
+<svg id="multSvg" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" aria-label="Animated diagram of a seed multiplying across four generations"></svg>
+<div class="caption" id="multCap">One seed. Everything the orchard will ever be is already inside it. Whether it stays a single fruit depends on one thing: whether it gets released.</div>
+<div class="ctrls">
+<button class="abtn" id="btnGrow">Release to the next generation &#8594;</button>
+<button class="abtn ghost" id="btnResetM">Reset</button>
+</div>
+<div class="stagedots" id="multDots"></div>
+<p class="note">Generation counts are illustrative of multiplication. The essay's stated pattern: a second generation, a third, and a fourth (2 Tim 2:2).</p>
+</div>
+</section>
+
+<section class="mod" id="m4">
+<div class="kicker">What actually stalls a movement</div>
+<h2>The grip, and the open hand</h2>
+<p class="intro">What stalls a movement is rarely a missing function. It is a function gripped too tightly. Toggle between the two, and watch what happens to the field.</p>
+<div class="panel">
+<div class="seg" role="group" aria-label="Choose how the function is held">
+<button class="segbtn on-grip" id="btnGrip">Gripped tight</button>
+<button class="segbtn" id="btnOpen">Held open</button>
+</div>
+<svg id="gripSvg" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" aria-label="Trees clustered under a closed boundary, or released across an open field"></svg>
+<div class="verdict v-grip" id="gripVerdict">
+<span class="tag" id="gripTag">Gripped tight</span>
+<div id="gripText">The planter clutches his single tree, kept and subsidized and in charge, and it never becomes an orchard. The problem is not the planter. It is the refusal to release. The cost is a frontier left unseeded.</div>
+</div>
+<p class="note">Conceptual diagram of the essay's argument, not measured data.</p>
+</div>
+</section>
+
+<section class="mod" id="m5">
+<div class="kicker">The map needs stewards</div>
+<h2>Map your own network against the five</h2>
+<p class="intro">What stalls you is usually not a shortage of people. It is a function nobody is filling. Mark each one live or vacant, and see where the chain is likely to break.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="diagFill"></div></div>
+<div class="diag" id="diagWrap"></div>
+<div id="diagRead"></div>
+<p class="note">A diagnostic prompt drawn from the essay's questions for your team, not a measured assessment.</p>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">The map exists. The question is who will steward it.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/the-five-functions-in-the-expansion" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a><br>
+<a class="sub" href="index.html">&#8592; All interactive essays</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+
+/* scroll progress */
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";},{passive:true});
+
+/* reveal on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.15});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+/* hero count-up */
+document.querySelectorAll(".chip .n").forEach(function(n){
+var target=parseInt(n.getAttribute("data-count"),10);
+tween(1400,function(p){n.textContent=Math.round(target*p);});
+});
+
+/* small stage icons for module 1 */
+function iconSeed(p){el("circle",{cx:13,cy:16,r:6,fill:"#fff"},p);el("path",{d:"M13 10 q4 3 0 6 q-4 -3 0 -6 z",fill:"currentColor"},p);}
+function iconTree(p){el("rect",{x:11.5,y:15,width:3,height:8,fill:"#fff"},p);el("circle",{cx:13,cy:11,r:7,fill:"#fff"},p);}
+function iconOrchard(p){[6,13,20].forEach(function(x){el("circle",{cx:x,cy:11,r:4,fill:"#fff"},p);el("rect",{x:x-1,y:14,width:2,height:6,fill:"#fff"},p);});}
+function iconOrchards(p){[4,11,18,25].forEach(function(x,i){el("circle",{cx:x,cy:8+(i%2)*7,r:3.4,fill:"#fff"},p);});}
+function iconMap(p){el("path",{d:"M4 6 L10 4 L16 6 L22 4 L22 20 L16 22 L10 20 L4 22 Z",fill:"none",stroke:"#fff","stroke-width":1.6,"stroke-linejoin":"round"},p);el("circle",{cx:15,cy:12,r:2.4,fill:"#fff"},p);}
+
+/* ===== Module 1: five functions accordion ===== */
+(function(){
+var fns=[
+{t:"The Seed Sower",stage:"One apple, seed inside",icon:iconSeed,
+ p:"Has tasted and seen that the Lord is good (Ps 34:8) and cannot keep it to himself. Think of the man freed from the legion, sent home to tell his own people how much the Lord had done (Mark 5:19-20). He carries the seed into his own relational world. Every believer holds this function. The output is not yet a harvest. It is obedience, and it is potential.",
+ rel:"Holds nothing back. He carries the seed to people only he can reach.",scr:"Mark 5:19-20; Psalm 34:8"},
+{t:"The Church Planter",stage:"A single tree",icon:iconTree,
+ p:"Has watched a sown seed germinate. A tree now stands where there was bare ground. Epaphras carried the gospel to Colossae and a church took root under his care (Col 1:7). A tree bears real fruit and gathers a body. But a single tree has a ceiling, a bushel in a good year and no more. The planter who stops here has grown something good and finite.",
+ rel:"Graduates by releasing the fruit to local leaders, not by pastoring one tree forever.",scr:"Colossians 1:7"},
+{t:"The Church Planting Multiplier",stage:"An orchard",icon:iconOrchard,
+ p:"Looks at that tree and sees what it is missing. The answer is not a bigger tree. It is an orchard. So he releases authority to faithful leaders who will teach others also, a second generation, and a third, and a fourth (2 Tim 2:2). This is the grain of wheat that has to fall into the ground and die before it multiplies (John 12:24).",
+ rel:"His defining mark is that he does not own the fruit.",scr:"2 Timothy 2:2; John 12:24"},
+{t:"The Movement Catalyst",stage:"Orchards he did not plant",icon:iconOrchards,
+ p:"Has an orchard mature enough to run largely without him. Paul reasoned daily in the hall of Tyrannus for two years until all who lived in Asia had heard the word (Acts 19:9-10). From that hall went planters like Epaphras, back to the Lycus valley. The catalyst helps start orchards he did not plant and will never control.",
+ rel:"Carries no claim on the harvest, only the knowledge of how orchards reproduce, and he gives it away.",scr:"Acts 19:9-10"},
+{t:"The Strategy Coordinator",stage:"The whole map",icon:iconMap,
+ p:"Zooms all the way out. Paul refused to build on another man's foundation and set his ambition on preaching where Christ had never been named, which is why, with no more room in the east, he turned toward Spain (Rom 15:20-24). This function reads the whole map and asks which peoples have never tasted the apple at all, then works so reproducing orchards get planted there. Not more orchards where orchards already grow. Orchards where there are none.",
+ rel:"Not a rank you earn. A stewardship you serve: hold the whole field in view, and give the work away.",scr:"Romans 15:20-24"}
+];
+var wrap=document.getElementById("fnWrap");
+var fill=document.getElementById("fnFill");
+var opened={};
+fns.forEach(function(f,idx){
+var box=document.createElement("div");box.className="fn";
+var head=document.createElement("button");head.className="fhead";head.setAttribute("aria-expanded","false");
+var num=document.createElement("span");num.className="fnum";num.style.background=idx<2?"var(--seed)":"var(--accent)";
+var sv=document.createElementNS(NS,"svg");sv.setAttribute("viewBox","0 0 26 26");sv.style.color="#fff";
+var g=el("g",{fill:"#fff"},sv);f.icon(g);num.appendChild(sv);
+var title=document.createElement("span");title.className="ftitle";
+title.innerHTML=(idx+1)+". "+f.t+"<span class='stage'>"+f.stage+"</span>";
+var chev=document.createElement("span");chev.className="fchev";chev.innerHTML="&#9662;";
+head.appendChild(num);head.appendChild(title);head.appendChild(chev);
+var body=document.createElement("div");body.className="fbody";
+var inner=document.createElement("div");inner.className="finner";
+inner.innerHTML="<p>"+f.p+"</p><div class='release'><span class='rl'>What it releases</span>"+f.rel+"</div><div class='scr'>"+f.scr+"</div>";
+body.appendChild(inner);box.appendChild(head);box.appendChild(body);wrap.appendChild(box);
+head.addEventListener("click",function(){
+var willOpen=!box.classList.contains("open");
+box.classList.toggle("open",willOpen);
+head.setAttribute("aria-expanded",willOpen?"true":"false");
+if(willOpen){opened[idx]=true;fill.style.width=(Object.keys(opened).length/fns.length*100)+"%";}
+});
+});
+})();
+
+/* ===== Module 2: control-down reach-up slider ===== */
+(function(){
+var data=[
+{name:"1. The Seed Sower",ctrl:95,reach:8,
+ t:"You hold one relationship's worth of seed, and you hold nothing back. The reach is your own world: obedience, and potential."},
+{name:"2. The Church Planter",ctrl:74,reach:26,
+ t:"You hold one tree. Release the fruit to local leaders and it can grow. Keep it, and it stays a single tree with a bushel ceiling."},
+{name:"3. The Multiplier",ctrl:48,reach:52,
+ t:"You release whole churches to reproduce without you. The grain of wheat falls and dies. Your defining mark: you stop owning the fruit."},
+{name:"4. The Movement Catalyst",ctrl:24,reach:80,
+ t:"You serve orchards you did not plant and will never control. You carry no claim on the harvest, only the knowledge of how it reproduces."},
+{name:"5. The Strategy Coordinator",ctrl:8,reach:100,
+ t:"You hold only the map, and give the work away. The widest reach and the loosest grip. Not a rank you earn, a stewardship you serve."}
+];
+var range=document.getElementById("fnRange");
+var cm=document.getElementById("ctrlMeter"),rm=document.getElementById("reachMeter");
+var cp=document.getElementById("ctrlPct"),rp=document.getElementById("reachPct");
+var read=document.getElementById("fnRead");
+function update(){
+var d=data[parseInt(range.value,10)];
+cm.style.width=d.ctrl+"%";rm.style.width=d.reach+"%";
+cp.textContent=d.ctrl+"%";rp.textContent=d.reach+"%";
+read.innerHTML="<span class='fnname'>"+d.name+"</span>"+d.t;
+}
+range.addEventListener("input",update);
+update();
+var io2=new IntersectionObserver(function(es){es.forEach(function(en){
+if(!en.isIntersecting)return;io2.unobserve(en.target);
+var seq=[0,1,2,3,4],i=0;var t=setInterval(function(){if(i>=seq.length){clearInterval(t);range.value=0;update();return;}range.value=seq[i++];update();},420);
+});},{threshold:.5});
+io2.observe(document.getElementById("m2"));
+})();
+
+/* ===== Module 3: multiplication stepper ===== */
+(function(){
+var svg=document.getElementById("multSvg");
+/* generation node layouts: gen 0 seed to gen 4 */
+var gens=[
+[[350,44]],
+[[350,120]],
+[[250,196],[450,196]],
+[[175,272],[300,272],[400,272],[525,272]],
+[[110,352],[190,352],[270,352],[350,352],[430,352],[510,352],[590,352],[640,352]]
+];
+var churchTotals=[0,1,3,7,15];
+var caps=[
+"One seed. Everything the orchard will ever be is already inside it. Whether it stays a single fruit depends on one thing: whether it gets released.",
+"The grain of wheat falls into the ground and dies (John 12:24). One church takes root. A planter could stop here, and many do.",
+"The multiplier does not own the fruit. He entrusts it to faithful leaders who will teach others also (2 Tim 2:2). A second generation begins.",
+"The catalyst starts orchards he did not plant and will never control. A third generation, reproducing past the reach of any one hand.",
+"A fourth generation, growing without the one who sowed the first seed. The seed that had stayed in his hand would still be one seed."
+];
+var linkG=el("g",{},svg);
+var nodeG=el("g",{},svg);
+var nodesByGen=[];
+gens.forEach(function(gen,gi){
+var arr=[];
+gen.forEach(function(pos){
+var isSeed=gi===0;
+var c=el("circle",{cx:pos[0],cy:pos[1],r:isSeed?15:(gi>=4?7:12-gi),
+ fill:isSeed?"#C6802E":"#3F7D4B",opacity:0},nodeG);
+arr.push({c:c,x:pos[0],y:pos[1],r:isSeed?15:(gi>=4?7:12-gi)});
+});
+nodesByGen.push(arr);
+});
+txt(350,392,"each dot is a church; lines are who entrusted whom",{fill:"#6E665B","font-size":"11","text-anchor":"middle"},svg);
+/* seed always visible */
+nodesByGen[0][0].c.setAttribute("opacity",1);
+var cur=0;
+var cap=document.getElementById("multCap");
+var cGen=document.getElementById("cntGen"),cCh=document.getElementById("cntChurch");
+var dotsWrap=document.getElementById("multDots");
+gens.forEach(function(){dotsWrap.appendChild(Object.assign(document.createElement("div"),{className:"sdot"}));});
+var sdots=dotsWrap.children;
+function parentOf(gi,idx){
+if(gi<=1)return nodesByGen[0][0];
+var parents=nodesByGen[gi-1];
+var pIdx=Math.floor(idx/(nodesByGen[gi].length/parents.length));
+return parents[Math.min(pIdx,parents.length-1)];
+}
+function showGen(gi,animate){
+sdots[gi]&&sdots[gi].classList;
+for(var s=0;s<sdots.length;s++)sdots[s].classList.toggle("on",s<=gi);
+if(gi>=1){
+nodesByGen[gi].forEach(function(n,idx){
+var p=parentOf(gi,idx);
+var line=el("line",{x1:p.x,y1:p.y,x2:p.x,y2:p.y,stroke:"#3F7D4B","stroke-width":1.6,opacity:.45},linkG);
+if(animate){tween(500,function(pr){line.setAttribute("x2",p.x+(n.x-p.x)*pr);line.setAttribute("y2",p.y+(n.y-p.y)*pr);});
+tween(560,function(pr){n.c.setAttribute("opacity",pr);n.c.setAttribute("r",n.r*(0.4+0.6*pr));});}
+else{line.setAttribute("x2",n.x);line.setAttribute("y2",n.y);n.c.setAttribute("opacity",1);}
+});
+}
+cap.textContent=caps[gi];
+var g0=parseInt(cGen.textContent,10)||0,c0=parseInt(cCh.textContent,10)||0;
+tween(560,function(pr){cGen.textContent=Math.round(g0+(gi-g0)*pr);cCh.textContent=Math.round(c0+(churchTotals[gi]-c0)*pr);});
+document.getElementById("btnGrow").disabled=(gi===gens.length-1);
+}
+showGen(0,false);
+document.getElementById("btnGrow").addEventListener("click",function(){if(cur<gens.length-1){cur++;showGen(cur,true);}});
+document.getElementById("btnResetM").addEventListener("click",function(){
+cur=0;while(linkG.firstChild)linkG.removeChild(linkG.firstChild);
+nodesByGen.forEach(function(arr,gi){arr.forEach(function(n){n.c.setAttribute("opacity",gi===0?1:0);n.c.setAttribute("r",n.r);});});
+cGen.textContent="0";cCh.textContent="0";showGen(0,false);
+});
+})();
+
+/* ===== Module 4: grip vs open toggle ===== */
+(function(){
+var svg=document.getElementById("gripSvg");
+var boundary=el("path",{d:"",fill:"none",stroke:"#C6802E","stroke-width":3,opacity:.9},svg);
+var trees=[];
+for(var i=0;i<9;i++){
+var g=el("g",{},svg);
+var trunk=el("rect",{x:-2,y:0,width:4,height:14,fill:"#7a5a3a"},g);
+var crown=el("circle",{cx:0,cy:-4,r:11,fill:"#3F7D4B"},g);
+trees.push({g:g,crown:crown});
+}
+var caption=txt(350,286,"",{fill:"#6E665B","font-size":"12","text-anchor":"middle"},svg);
+/* clustered (grip) positions: all bunched center under closed arc */
+var gripPos=[[330,150],[350,150],[370,150],[335,168],[355,168],[345,132],[360,150],[340,150],[350,132]];
+/* open positions: spread across a wide field */
+var openPos=[[90,175],[175,150],[260,178],[345,150],[430,176],[515,150],[600,178],[210,120],[480,120]];
+function place(positions,animate){
+trees.forEach(function(t,i){
+var pos=positions[i];
+var cur=t.g.getAttribute("transform");
+var m=cur&&cur.match(/translate\(([-\d.]+)[ ,]+([-\d.]+)\)/);
+var fx=m?parseFloat(m[1]):pos[0],fy=m?parseFloat(m[2]):pos[1];
+if(!animate){t.g.setAttribute("transform","translate("+pos[0]+","+pos[1]+")");return;}
+tween(650,function(p){t.g.setAttribute("transform","translate("+(fx+(pos[0]-fx)*p)+","+(fy+(pos[1]-fy)*p)+")");});
+});
+}
+function setMode(open){
+bGrip.classList.toggle("on-grip",!open);bOpen.classList.toggle("on-open",open);
+if(open){
+boundary.setAttribute("d","M60 250 Q350 250 640 250");
+boundary.setAttribute("stroke","#3F7D4B");boundary.setAttribute("opacity",.55);
+caption.textContent="one open field, orchards reproducing outward";
+trees.forEach(function(t){t.crown.setAttribute("fill","#3F7D4B");});
+place(openPos,true);
+verdict.className="verdict v-open";tag.textContent="Held open";
+vt.textContent="Each threshold is crossed by opening the hand, not closing it. The planter releases the fruit, the multiplier releases whole churches, the catalyst serves networks he will never own. Leaders are given to equip the saints for the work of ministry, not to keep the work for themselves (Eph 4:11-12).";
+}else{
+boundary.setAttribute("d","M250 60 Q450 60 450 150 Q450 240 350 240 Q250 240 250 150 Q250 90 250 60");
+boundary.setAttribute("stroke","#C6802E");boundary.setAttribute("opacity",.9);
+caption.textContent="one tree, kept and fenced, capped at a bushel a year";
+trees.forEach(function(t,i){t.crown.setAttribute("fill",i===0?"#3F7D4B":"#B7C3AE");});
+place(gripPos,true);
+verdict.className="verdict v-grip";tag.textContent="Gripped tight";
+vt.textContent="The planter clutches his single tree, kept and subsidized and in charge, and it never becomes an orchard. The problem is not the planter. It is the refusal to release. The cost is a frontier left unseeded.";
+}
+}
+var bGrip=document.getElementById("btnGrip"),bOpen=document.getElementById("btnOpen");
+var verdict=document.getElementById("gripVerdict"),tag=document.getElementById("gripTag"),vt=document.getElementById("gripText");
+bGrip.addEventListener("click",function(){setMode(false);});
+bOpen.addEventListener("click",function(){setMode(true);});
+place(gripPos,false);setMode(false);
+})();
+
+/* ===== Module 5: network diagnostic ===== */
+(function(){
+var rows=[
+{n:"Seed Sower",s:"every believer carries seed"},
+{n:"Church Planter",s:"a tree takes root"},
+{n:"Multiplier",s:"the tree becomes an orchard"},
+{n:"Movement Catalyst",s:"orchards he will never control"},
+{n:"Strategy Coordinator",s:"reads the whole map"}
+];
+var wrap=document.getElementById("diagWrap");
+var fill=document.getElementById("diagFill");
+var read=document.getElementById("diagRead");
+var state=[];
+rows.forEach(function(r,idx){
+var row=document.createElement("div");row.className="drow";
+var name=document.createElement("div");name.className="dname";
+name.innerHTML=r.n+"<span class='ds'>"+r.s+"</span>";
+var btns=document.createElement("div");btns.className="dbtns";
+var live=document.createElement("button");live.className="dbtn";live.textContent="Live";
+var vac=document.createElement("button");vac.className="dbtn";vac.textContent="Vacant";
+btns.appendChild(live);btns.appendChild(vac);
+row.appendChild(name);row.appendChild(btns);wrap.appendChild(row);
+function set(v){
+state[idx]=v;
+live.classList.toggle("on-live",v==="live");
+vac.classList.toggle("on-vac",v==="vac");
+var done=state.filter(Boolean).length;
+fill.style.width=(done/rows.length*100)+"%";
+if(done===rows.length)render();
+}
+live.addEventListener("click",function(){set("live");});
+vac.addEventListener("click",function(){set("vac");});
+});
+function render(){
+var vac=[];
+state.forEach(function(v,i){if(v==="vac")vac.push(i);});
+var html;
+if(vac.length===0){
+html="<b>All five functions are filled.</b> The question shifts from who is missing to whether each one is gripping or releasing. Ask instead where your people are capped: planters kept pastoring one tree, or a coordinator seat treated as a rank rather than a stewardship.";
+}else{
+var first=vac[0];
+var msgs=[
+"No seed sowers means no new seed entering the network. The whole chain has no input, and everything downstream starves.",
+"You have seed but no planter. There is obedience and potential, but nothing takes root and gathers into a church.",
+"You have planters but no multiplier. You will grow good, finite trees, a bushel each, and never an orchard. This is where most networks quietly cap.",
+"You have orchards but no catalyst to start ones you will never control. Growth stays inside what your own hands can hold.",
+"No one is holding the wide view. Reproduction clusters where the gospel already grows, because that is where the willing hands are, while whole segments never receive a first seed."
+];
+html="<b>First constraint: the "+rows[first].n+" function.</b> "+msgs[first];
+if(vac.indexOf(4)>-1&&first!==4){
+html+="<br><br><b>And the frontier cost:</b> with the strategy coordinator seat vacant, orchards keep landing where orchards already grow, and the unreached stay unseeded.";
+}
+}
+read.style.display="block";read.innerHTML=html;
+}
+})();
+})();
+</script>
+</body>
+</html>
