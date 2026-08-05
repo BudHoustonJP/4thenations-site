@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every Phase Has a Different Bottleneck | Clarity for the Nations</title>
+<meta name="description" content="One constraint governs breakthrough at every phase of engagement. An interactive take on Bud Houston's essay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+  --accent:#4B3FA8;--deep:#2F2670;
+  --sig:#D97706;--sigdeep:#9A5407;--gold:#E8A33D;
+  --line:rgba(28,26,23,.12);--darkbg:#151129;--card:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+.narrow{max-width:760px}
+
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--accent),var(--sig));z-index:60;transition:width .08s linear}
+
+.topnav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.4rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.9rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+
+.hero{position:relative;background:var(--darkbg);color:#F6F4EE;overflow:hidden;padding:12vh 0 9vh}
+.hero .bg{position:absolute;inset:0;opacity:.5;background:
+  radial-gradient(60% 50% at 18% 0%,rgba(75,63,168,.55),transparent 62%),
+  radial-gradient(50% 45% at 88% 20%,rgba(217,119,6,.30),transparent 66%);}
+.hero .wrap{position:relative;z-index:2}
+.hero .eyebrow{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:1.6rem}
+.hook{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.5rem);line-height:1.05;letter-spacing:-.01em;max-width:19ch;color:#fff}
+.lede{margin-top:1.5rem;max-width:56ch;color:rgba(246,244,238,.78);font-size:1.06rem}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.6rem}
+.chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:1rem 1.3rem;min-width:150px}
+.chip .num{font-family:'Fraunces',serif;font-weight:900;font-size:2.2rem;line-height:1;color:var(--gold);display:block}
+.chip .lab{display:block;margin-top:.55rem;font-size:.83rem;line-height:1.35;color:rgba(246,244,238,.72)}
+
+.mod{padding:8vh 0 1vh}
+.mod .kicker{font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.9rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.6rem,4.2vw,2.5rem);line-height:1.1;margin-bottom:.9rem;max-width:22ch}
+.mod .intro{color:#3a352e;max-width:62ch;font-size:1.05rem;margin-bottom:2rem}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.viz{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.6rem 1.4rem 1.7rem;box-shadow:0 10px 34px rgba(0,0,0,.05)}
+.hint{font-size:.86rem;color:var(--mute);margin-top:1rem}
+.caption{font-size:.78rem;color:var(--mute);margin-top:.9rem;font-style:italic}
+.btn{font-family:inherit;font-size:.92rem;font-weight:700;border-radius:50px;padding:.62rem 1.3rem;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);transition:all .16s}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.12)}
+.btn.ghost{background:transparent}
+
+/* module 1: report audit */
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.ritem{text-align:left;font:inherit;background:#FBFAF7;border:1px solid var(--line);border-radius:13px;padding:.95rem 1rem;cursor:pointer;transition:all .18s}
+.ritem:hover,.ritem:focus-visible{border-color:var(--accent);transform:translateY(-2px)}
+.ritem .rt{font-weight:600;font-size:.97rem;display:block}
+.ritem .rtag{display:inline-block;margin-top:.7rem;font-size:.73rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .65rem;border-radius:50px;background:rgba(75,63,168,.12);color:var(--deep);opacity:0;transform:translateY(5px);transition:opacity .3s,transform .3s}
+.ritem .rnote{display:block;font-size:.86rem;color:var(--mute);margin-top:.55rem;max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .3s}
+.ritem.open .rtag{opacity:1;transform:none}
+.ritem.open .rnote{max-height:260px;opacity:1}
+.ritem.block{border-color:var(--sig);background:#FFF8EE}
+.ritem.block .rtag{background:rgba(217,119,6,.16);color:var(--sigdeep)}
+.tally{margin-top:1.5rem;display:grid;gap:.7rem}
+.trow{display:grid;grid-template-columns:minmax(150px,auto) 1fr auto;gap:.8rem;align-items:center;font-size:.9rem}
+.tbar{height:12px;background:rgba(28,26,23,.07);border-radius:50px;overflow:hidden}
+.tbar span{display:block;height:100%;width:0;background:var(--accent);border-radius:50px;transition:width .5s ease}
+.trow.block .tbar span{background:var(--sig)}
+.tnum{font-weight:700;font-variant-numeric:tabular-nums;min-width:2.2ch;text-align:right}
+
+/* module 2: line */
+.lineviz svg{width:100%;height:auto;display:block}
+.stationrow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:.9rem}
+.sbtn{font:inherit;font-size:.78rem;font-weight:600;line-height:1.2;padding:.6rem .4rem;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;transition:all .16s}
+.sbtn:hover,.sbtn:focus-visible{border-color:var(--accent)}
+.sbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.readout{display:flex;flex-wrap:wrap;gap:1.6rem;align-items:baseline;margin-bottom:1.2rem}
+.readout .big{font-family:'Fraunces',serif;font-weight:900;font-size:2.6rem;line-height:1;color:var(--ink)}
+.readout .rl{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute);display:block;margin-bottom:.3rem}
+.verdict{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.35rem .85rem;border-radius:50px;background:rgba(28,26,23,.07);color:var(--mute)}
+.verdict.good{background:rgba(75,63,168,.14);color:var(--deep)}
+.verdict.bad{background:rgba(217,119,6,.16);color:var(--sigdeep)}
+
+/* module 3: phases accordion */
+.phases{display:grid;gap:10px}
+.pcard{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#FBFAF7}
+.pcard .head{display:flex;align-items:center;gap:.9rem;width:100%;text-align:left;font:inherit;background:none;border:none;padding:1rem 1.1rem;cursor:pointer}
+.pcard .pn{flex:none;width:74px;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:50px;padding:.3rem .1rem;text-align:center;white-space:nowrap}
+.pcard .pt{font-weight:600;font-size:1rem;flex:1}
+.pcard .chev{transition:transform .25s;color:var(--mute);flex:none}
+.pcard.open .chev{transform:rotate(180deg)}
+.pcard .body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 1.1rem}
+.pcard.open .body{max-height:700px;padding-bottom:1.1rem}
+.pcard .clab{font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--sigdeep);display:block;margin-bottom:.25rem}
+.pcard .cval{font-weight:700;margin-bottom:.7rem}
+.pcard .cdesc{font-size:.94rem;color:#3a352e}
+.audit-progress{margin-top:1.4rem}
+.track{height:10px;background:rgba(28,26,23,.08);border-radius:50px;overflow:hidden}
+.track .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--sig));border-radius:50px;transition:width .45s ease}
+.pl{font-size:.85rem;color:var(--mute);margin-top:.55rem}
+
+/* module 4: sliders */
+.segwrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.4rem}
+.seg{font:inherit;font-size:.85rem;font-weight:600;padding:.5rem 1rem;border-radius:50px;border:1px solid var(--line);background:#fff;cursor:pointer;transition:all .16s}
+.seg:hover{border-color:var(--accent)}
+.seg.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.slider{margin-bottom:1.15rem}
+.slider .sl{display:flex;justify-content:space-between;font-size:.92rem;font-weight:600;margin-bottom:.4rem;gap:1rem}
+.slider .sv{font-variant-numeric:tabular-nums;color:var(--mute);font-weight:700}
+.slider input[type=range]{width:100%;accent-color:var(--accent);height:26px}
+.slider.target .sl{color:var(--sigdeep)}
+.slider.target input[type=range]{accent-color:var(--sig)}
+.stack{display:flex;height:26px;border-radius:8px;overflow:hidden;margin:1.3rem 0 1rem;background:rgba(28,26,23,.07)}
+.stack div{transition:width .3s ease}
+
+/* module 5: toggle morph */
+.morph svg{width:100%;height:auto;display:block}
+.mstate{margin-top:1.1rem;font-size:.96rem;color:#3a352e;min-height:3.4em}
+
+/* module 6: team audit */
+.audit{display:grid;gap:10px}
+.qcard{border:1px solid var(--line);border-radius:13px;background:#FBFAF7;overflow:hidden}
+.qcard .head{display:flex;align-items:flex-start;gap:.9rem;width:100%;text-align:left;font:inherit;background:none;border:none;padding:1rem 1.1rem;cursor:pointer}
+.qcard .qn{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--accent);color:var(--accent);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qcard.reviewed .qn{background:var(--accent);color:#fff}
+.qcard .qt{flex:1;font-size:.99rem;font-weight:500}
+.qcard.reviewed .qt{color:var(--mute)}
+
+.quoteband{background:var(--accent);color:#fff;padding:7vh 0;margin-top:8vh}
+.quoteband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.6vw,2.1rem);line-height:1.2;max-width:24ch}
+.quoteband .q + .q{margin-top:2.2rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.25)}
+.quoteband .mk{font-family:'Fraunces',serif;font-size:3rem;line-height:.4;opacity:.5;display:block;margin-bottom:.9rem}
+
+.closing{background:var(--ink);color:#F6F4EE;padding:11vh 0;margin-top:9vh;text-align:center}
+.closing h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.6rem);line-height:1.14;max-width:22ch;margin:0 auto 1.3rem;color:#fff}
+.closing p{color:rgba(246,244,238,.72);max-width:52ch;margin:0 auto 2.2rem}
+.cta{display:inline-block;background:var(--gold);color:#1C1A17;text-decoration:none;font-weight:700;font-size:1.02rem;padding:.95rem 2.2rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta:hover{filter:brightness(1.07);transform:translateY(-2px)}
+
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.15rem}
+footer .sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.7rem}
+@media(max-width:560px){
+  .stationrow{grid-template-columns:repeat(2,1fr)}
+  .trow{grid-template-columns:1fr;gap:.3rem}
+  .trow .tnum{text-align:left}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="bg"></div>
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations</div>
+<h1 class="hook">Every system is blocked in exactly one place, and it is rarely where you are working.</h1>
+<p class="lede">Twelve short-term teams. A translation project. The Jesus Film in four hundred villages. Giving up year over year. A few dozen believers, no church, nothing that reproduces. The activity is real. The progress is not.</p>
+<div class="chips">
+<div class="chip"><span class="num" data-count="12">0</span><span class="lab">short-term teams in three years</span></div>
+<div class="chip"><span class="num" data-count="400">0</span><span class="lab">villages shown the Jesus Film</span></div>
+<div class="chip"><span class="num" data-count="1">0</span><span class="lab">constraint that actually governs the outcome</span></div>
+</div>
+</div>
+</header>
+
+<section class="quoteband">
+<div class="wrap narrow">
+<p class="q"><span class="mk">&ldquo;</span>Doing more good things is not the same as making progress.</p>
+<p class="q"><span class="mk">&ldquo;</span>The bottleneck moves. Your budget and calendar usually does not.</p>
+</div>
+</section>
+
+<section class="mod reveal" id="m1">
+<div class="wrap narrow">
+<div class="kicker">The activity report</div>
+<h2>Audit the line items, and see where they land</h2>
+<p class="intro">Every item below is real work, faithfully done. Tap each one to see which phase of engagement it actually feeds. Then look at what is left over.</p>
+<div class="viz">
+<div class="rgrid" id="rgrid"></div>
+<div class="tally" id="tally">
+<div class="trow"><span>Phase 1 and 2 work</span><div class="tbar"><span data-k="p12"></span></div><span class="tnum" data-n="p12">0</span></div>
+<div class="trow block"><span>Phase 3 and 4 work</span><div class="tbar"><span data-k="p34"></span></div><span class="tnum" data-n="p34">0</span></div>
+<div class="trow"><span>Aimed at no phase</span><div class="tbar"><span data-k="none"></span></div><span class="tnum" data-n="none">0</span></div>
+</div>
+<div style="margin-top:1.3rem;display:flex;gap:10px;flex-wrap:wrap">
+<button class="btn primary" id="revealAll" type="button">Reveal every item</button>
+<button class="btn ghost" id="resetAudit" type="button">Reset</button>
+</div>
+<p class="hint" id="auditVerdict">Six line items. Tap to classify them.</p>
+</div>
+<p class="caption">The report is the one described in the essay. The phase labels are the argument, not measured data.</p>
+</div>
+</section>
+
+<section class="mod reveal" id="m2">
+<div class="wrap narrow">
+<div class="kicker">Theory of constraints</div>
+<h2>One worker, three times the output</h2>
+<p class="intro">Eliyahu Goldratt made his name on a factory floor by moving a single worker from a fast station to the slowest one. No new people, no new machines, no new hours, and the whole line tripled. You have one spare worker. Place them.</p>
+<div class="viz lineviz">
+<div class="readout">
+<div><span class="rl">Line throughput</span><span class="big" id="thruVal">12</span></div>
+<div><span class="rl">Versus baseline</span><span class="big" id="multVal">1.0x</span></div>
+<div><span class="verdict bad" id="lineVerdict">Blocked at discipleship</span></div>
+</div>
+<svg id="lineSvg" viewBox="0 0 700 260" role="img" aria-label="Five workstations on a line with capacity bars"></svg>
+<div class="stationrow" id="stationRow"></div>
+<p class="hint">Click a station to move the spare worker there, or use Tab and Enter. Throughput is set by the slowest station, so only one placement changes anything.</p>
+<div style="margin-top:1rem"><button class="btn ghost" id="resetLine" type="button">Take the worker back</button></div>
+</div>
+<p class="caption">Illustrative capacities. This is the argument, not measured data.</p>
+</div>
+</section>
+
+<section class="mod reveal" id="m3">
+<div class="wrap narrow">
+<div class="kicker">Phases of engagement</div>
+<h2>The constraint moves as the group moves</h2>
+<p class="intro">A people group is a system moving, we pray, toward a reproducing church. Each phase is governed by a different constraint, and the one that mattered last phase is almost never the one that matters now. Open each phase to see what actually blocks it.</p>
+<div class="viz">
+<div class="phases" id="phases"></div>
+<div class="audit-progress">
+<div class="track"><div class="fill" id="phaseFill"></div></div>
+<p class="pl" id="phaseLabel">0 of 6 phases opened</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="mod reveal" id="m4">
+<div class="wrap narrow">
+<div class="kicker">Aim your effort</div>
+<h2>Where is your budget and your calendar actually pointed?</h2>
+<p class="intro">Pick the constraint your priority group is sitting on right now. Then move the sliders to match how your effort is really distributed. In a constrained system, work applied anywhere except the bottleneck produces no additional output at all.</p>
+<div class="viz">
+<div class="segwrap" id="constraintSeg"></div>
+<div id="sliders"></div>
+<div class="stack" id="stack"></div>
+<div class="readout" style="margin-bottom:0">
+<div><span class="rl">Effort on the constraint</span><span class="big" id="aimPct">0%</span></div>
+<div><span class="verdict" id="aimVerdict">Set your allocation</span></div>
+</div>
+<p class="hint" id="aimNote"></p>
+</div>
+<p class="caption">A thinking tool, not a measurement. The constraint you select drives the score.</p>
+</div>
+</section>
+
+<section class="mod reveal" id="m5">
+<div class="wrap narrow">
+<div class="kicker">Two ways to run a system</div>
+<h2>General Magic had everything except a constraint</h2>
+<p class="intro">In 1990 some of the most talented engineers who had ever left Apple set out to build the smartphone, two decades early, backed by Sony, Motorola, and AT&amp;T. Toggle between the two ways to run a system and watch what reaches the finish line.</p>
+<div class="viz morph">
+<div class="segwrap" id="morphSeg">
+<button class="seg on" type="button" data-m="0">Unlimited scope</button>
+<button class="seg" type="button" data-m="1">One constraint</button>
+</div>
+<svg id="morphSvg" viewBox="0 0 700 300" role="img" aria-label="Effort spreading across many paths versus concentrated on one"></svg>
+<p class="mstate" id="morphState"></p>
+</div>
+<p class="caption">Conceptual illustration of the argument, not measured data.</p>
+</div>
+</section>
+
+<section class="mod reveal" id="m6">
+<div class="wrap narrow">
+<div class="kicker">For your team</div>
+<h2>Four questions before your next strategy meeting</h2>
+<p class="intro">Mark each one as you work through it. Argue until you can name one constraint, not a list.</p>
+<div class="viz">
+<div class="audit" id="teamAudit"></div>
+<div class="audit-progress">
+<div class="track"><div class="fill" id="teamFill"></div></div>
+<p class="pl" id="teamLabel">0 of 4 reviewed</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="closing">
+<div class="wrap narrow">
+<h2>Faithfulness is not the question.</h2>
+<p>The question is whether you have found the one place the system is blocked, and whether you have the discipline to aim there and nowhere else until it gives. Naming a bottleneck is a diagnostic act, not a claim of control. Paul planted, Apollos watered, and God gave the growth.</p>
+<a class="cta" href="https://clarity4thenations.substack.com/p/the-bottleneck-decides" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+<small>Sources: David Epstein, <em>Inside the Box</em> (Riverhead, 2026). Eliyahu Goldratt, <em>The Goal</em> (1984).</small>
+</div>
+<div style="display:flex;gap:1.4rem;flex-wrap:wrap">
+<a class="sub" href="index.html">All interactive pieces</a>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read on Substack &#8594;</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs){var e=document.createElementNS(NS,tag);for(var k in attrs){e.setAttribute(k,attrs[k]);}return e;}
+function ease(t){return t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
+function tween(dur,step,done){var t0=null;function fr(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);step(ease(p));if(p<1){requestAnimationFrame(fr);}else if(done){done();}}requestAnimationFrame(fr);}
+
+/* scroll progress */
+var prog=document.getElementById("prog");
+function onScroll(){var h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(h>0?(window.scrollY/h)*100:0)+"%";}
+window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+/* reveal on scroll */
+var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");ro.unobserve(e.target);}});},{threshold:0.12});
+document.querySelectorAll(".reveal").forEach(function(n){ro.observe(n);});
+
+/* hero count ups */
+document.querySelectorAll(".chip .num").forEach(function(n){
+  var target=parseInt(n.getAttribute("data-count"),10);
+  tween(1400,function(p){n.textContent=Math.round(target*p).toLocaleString();});
+});
+
+/* ---------- module 1: report audit ---------- */
+var items=[
+ {t:"Twelve short-term teams in three years",k:"p12",tag:"Phase 1 and 2",n:"Presence and broad seed sowing. Real work, already flowing freely."},
+ {t:"An Old Testament translation project",k:"p12",tag:"Phase 1 and 2",n:"Comprehension in the heart language. A constraint that has largely given way."},
+ {t:"The Jesus Film shown in 400 villages",k:"p12",tag:"Phase 1 and 2",n:"More seed sowing by outsiders, at the step that is no longer blocking."},
+ {t:"A prayer network across a dozen countries",k:"none",tag:"Aimed everywhere",n:"Essential, and not concentrated on any single constraint."},
+ {t:"Ministry giving up year over year",k:"none",tag:"An input, not a phase",n:"More fuel poured into a line that is choked somewhere else."},
+ {t:"A few dozen believers, discipleship thin, no church",k:"p34",tag:"The actual block",n:"Phase 3 and 4. This is where the system is choking, and almost nothing is aimed here."}
+];
+var rgrid=document.getElementById("rgrid");
+items.forEach(function(it,i){
+  var b=document.createElement("button");
+  b.type="button";b.className="ritem"+(it.k==="p34"?" block":"");
+  b.setAttribute("data-k",it.k);b.setAttribute("aria-expanded","false");
+  b.innerHTML='<span class="rt">'+it.t+'</span><span class="rtag">'+it.tag+'</span><span class="rnote">'+it.n+'</span>';
+  b.addEventListener("click",function(){toggleItem(b);});
+  rgrid.appendChild(b);
+});
+function toggleItem(b){
+  b.classList.toggle("open");
+  b.setAttribute("aria-expanded",b.classList.contains("open")?"true":"false");
+  updateTally();
+}
+function updateTally(){
+  var counts={p12:0,p34:0,none:0};
+  var opened=0;
+  rgrid.querySelectorAll(".ritem.open").forEach(function(b){counts[b.getAttribute("data-k")]++;opened++;});
+  var maxes={p12:3,p34:1,none:2};
+  var tal=document.getElementById("tally");
+  ["p12","p34","none"].forEach(function(k){
+    tal.querySelector('[data-k="'+k+'"]').style.width=(counts[k]/maxes[k]*100)+"%";
+    tal.querySelector('[data-n="'+k+'"]').textContent=counts[k]+" of "+maxes[k];
+  });
+  var v=document.getElementById("auditVerdict");
+  if(opened===0){v.textContent="Six line items. Tap to classify them.";}
+  else if(opened<6){v.textContent=opened+" of 6 classified. Keep going.";}
+  else{v.textContent="Three of six items feed a phase that is already moving freely. One names the block, and nothing in the report is aimed at it.";}
+}
+document.getElementById("revealAll").addEventListener("click",function(){
+  rgrid.querySelectorAll(".ritem").forEach(function(b,i){
+    setTimeout(function(){if(!b.classList.contains("open")){b.classList.add("open");b.setAttribute("aria-expanded","true");updateTally();}},i*90);
+  });
+});
+document.getElementById("resetAudit").addEventListener("click",function(){
+  rgrid.querySelectorAll(".ritem").forEach(function(b){b.classList.remove("open");b.setAttribute("aria-expanded","false");});
+  updateTally();
+});
+updateTally();
+
+/* ---------- module 2: the line ---------- */
+var BASE=[{n:"Access",c:40},{n:"Seed sowing",c:38},{n:"Discipleship",c:12},{n:"Leader release",c:40},{n:"Sending",c:40}];
+var BONUS=24, placed=-1;
+var svg=document.getElementById("lineSvg");
+var bars=[],caps=[],labels=[],shown=BASE.map(function(s){return s.c;});
+(function buildLine(){
+  var W=700,H=260,pad=44,bw=76,gap=(W-pad*2-bw*5)/4,floor=200,scale=2.6;
+  svg.appendChild(el("line",{x1:pad-14,y1:floor+.5,x2:W-pad+14,y2:floor+.5,stroke:"#1C1A17","stroke-opacity":".2","stroke-width":"2"}));
+  BASE.forEach(function(s,i){
+    var x=pad+i*(bw+gap);
+    var g=el("g",{});
+    var track=el("rect",{x:x,y:floor-64*scale,width:bw,height:64*scale,rx:8,fill:"#1C1A17","fill-opacity":".045"});
+    var bar=el("rect",{x:x,y:floor-s.c*scale,width:bw,height:s.c*scale,rx:8,fill:"#4B3FA8","fill-opacity":".85"});
+    var cap=el("text",{x:x+bw/2,y:floor-s.c*scale-10,"text-anchor":"middle","font-size":"15","font-weight":"700",fill:"#1C1A17","font-family":"Inter,sans-serif"});
+    cap.textContent=s.c;
+    var lab=el("text",{x:x+bw/2,y:floor+22,"text-anchor":"middle","font-size":"12",fill:"#6E665B","font-family":"Inter,sans-serif"});
+    lab.textContent=s.n;
+    g.appendChild(track);g.appendChild(bar);g.appendChild(cap);g.appendChild(lab);
+    svg.appendChild(g);
+    bars.push(bar);caps.push(cap);labels.push(lab);
+  });
+  var lvl=el("line",{id:"thruLine",x1:pad-14,y1:floor-12*scale,x2:W-pad+14,y2:floor-12*scale,stroke:"#D97706","stroke-width":"2","stroke-dasharray":"7 6"});
+  svg.appendChild(lvl);
+  var lt=el("text",{id:"thruText",x:W-pad+10,y:floor-12*scale-9,"text-anchor":"end","font-size":"12","font-weight":"700",fill:"#9A5407","font-family":"Inter,sans-serif"});
+  lt.textContent="throughput 12";
+  svg.appendChild(lt);
+  var wk=el("g",{id:"workerG",opacity:"0"});
+  wk.appendChild(el("circle",{cx:0,cy:0,r:13,fill:"#D97706"}));
+  var wt=el("text",{x:0,y:5,"text-anchor":"middle","font-size":"13","font-weight":"700",fill:"#fff","font-family":"Inter,sans-serif"});
+  wt.textContent="+";
+  wk.appendChild(wt);
+  svg.appendChild(wk);
+  svg.__geo={pad:pad,bw:bw,gap:gap,floor:floor,scale:scale,W:W};
+})();
+function paintLine(vals){
+  var g=svg.__geo;
+  for(var k=0;k<5;k++){
+    var v=vals[k];
+    bars[k].setAttribute("y",g.floor-v*g.scale);
+    bars[k].setAttribute("height",Math.max(0,v*g.scale));
+    caps[k].setAttribute("y",g.floor-v*g.scale-10);
+    caps[k].textContent=Math.round(v);
+  }
+}
+var lo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+  var target=BASE.map(function(s){return s.c;});
+  tween(950,function(p){paintLine(target.map(function(v){return v*p;}));});
+  lo.unobserve(e.target);}});},{threshold:0.25});
+paintLine([0,0,0,0,0]);
+lo.observe(svg);
+
+var srow=document.getElementById("stationRow");
+BASE.forEach(function(s,i){
+  var b=document.createElement("button");
+  b.type="button";b.className="sbtn";b.textContent="Send to "+s.n;
+  b.addEventListener("click",function(){place(i);});
+  srow.appendChild(b);
+});
+function currentCaps(){return BASE.map(function(s,i){return s.c+(i===placed?BONUS:0);});}
+function place(i){
+  placed=(placed===i)?-1:i;
+  var target=currentCaps();
+  var from=shown.slice();
+  var g=svg.__geo;
+  tween(650,function(p){
+    for(var k=0;k<5;k++){
+      var v=from[k]+(target[k]-from[k])*p;
+      shown[k]=v;
+      bars[k].setAttribute("y",g.floor-v*g.scale);
+      bars[k].setAttribute("height",v*g.scale);
+      bars[k].setAttribute("fill",(k===placed)?"#D97706":"#4B3FA8");
+      caps[k].setAttribute("y",g.floor-v*g.scale-10);
+      caps[k].textContent=Math.round(v);
+    }
+    var thru=Math.min.apply(null,shown);
+    var ln=document.getElementById("thruLine"),tx=document.getElementById("thruText");
+    ln.setAttribute("y1",g.floor-thru*g.scale);ln.setAttribute("y2",g.floor-thru*g.scale);
+    tx.setAttribute("y",g.floor-thru*g.scale-9);
+    tx.textContent="throughput "+Math.round(thru);
+    document.getElementById("thruVal").textContent=Math.round(thru);
+    document.getElementById("multVal").textContent=(thru/12).toFixed(1)+"x";
+  });
+  var wk=document.getElementById("workerG");
+  if(placed<0){wk.setAttribute("opacity","0");}
+  else{
+    var x=g.pad+placed*(g.bw+g.gap)+g.bw/2;
+    wk.setAttribute("opacity","1");
+    var cur=wk.__x||x, y=g.floor+46;
+    tween(450,function(p){var nx=cur+(x-cur)*p;wk.setAttribute("transform","translate("+nx+","+y+")");});
+    wk.__x=x;
+  }
+  srow.querySelectorAll(".sbtn").forEach(function(b,k){b.classList.toggle("on",k===placed);});
+  var v=document.getElementById("lineVerdict");
+  var thruNow=Math.min.apply(null,currentCaps());
+  if(placed<0){v.className="verdict bad";v.textContent="Blocked at discipleship";}
+  else if(thruNow>12){v.className="verdict good";v.textContent="You widened the constraint";}
+  else{v.className="verdict bad";v.textContent="No change: that station was never the block";}
+}
+
+/* ---------- module 3: phases ---------- */
+var phases=[
+ {n:"Phase 0",t:"No engagement at all",c:"Presence",d:"No amount of research, mobilization, or strategy refinement substitutes for a worker on the ground or in a diaspora node. Create access and the system moves."},
+ {n:"Phase 1-2",t:"The gospel gets in",c:"Demonstration and comprehension",d:"A gospel that reaches the people and can be grasped in the heart language and the cultural frame, spoken to their worldview. Broad seed sowing belongs here."},
+ {n:"Phase 3-4",t:"A church forms",c:"A durable community, then indigenous leaders",d:"Not more outside activity but a different hand doing the work: local believers carrying what only they can carry, and the outsider moving off the front line to disciple and entrust them."},
+ {n:"Phase 5",t:"Leaders carry it",c:"Released authority",d:"Leadership development of new believers, and the release of authority to start things without you."},
+ {n:"Phase 6",t:"It reproduces",c:"Generational depth",d:"One reproducing fellowship is still fragile. The question is whether leadership development flows down generationally and authority is released at each level for churches to operate in their priesthood."},
+ {n:"Phase 7",t:"It sends",c:"Outward vision",d:"A mature, self-sustaining movement faces its last bottleneck: whether it will look past itself and begin sending to other unreached peoples, becoming a base rather than a destination."}
+];
+var pwrap=document.getElementById("phases");
+phases.forEach(function(p,i){
+  var d=document.createElement("div");
+  d.className="pcard";
+  d.innerHTML='<button class="head" type="button" aria-expanded="false"><span class="pn">'+p.n+'</span><span class="pt">'+p.t+'</span><span class="chev">&#9662;</span></button>'+
+   '<div class="body"><span class="clab">The constraint</span><div class="cval">'+p.c+'</div><p class="cdesc">'+p.d+'</p></div>';
+  var btn=d.querySelector(".head");
+  btn.addEventListener("click",function(){
+    var open=d.classList.toggle("open");
+    btn.setAttribute("aria-expanded",open?"true":"false");
+    d.setAttribute("data-seen","1");
+    updatePhaseProgress();
+  });
+  pwrap.appendChild(d);
+});
+function updatePhaseProgress(){
+  var seen=pwrap.querySelectorAll('[data-seen="1"]').length;
+  document.getElementById("phaseFill").style.width=(seen/phases.length*100)+"%";
+  document.getElementById("phaseLabel").textContent=seen+" of "+phases.length+" phases opened"+(seen===phases.length?". Six phases, six different constraints.":"");
+}
+
+/* ---------- module 4: allocation ---------- */
+var work=[
+ {k:"access",t:"Access and presence",v:20},
+ {k:"sowing",t:"Seed sowing, media, translation",v:45},
+ {k:"disciple",t:"Discipleship and church formation",v:20},
+ {k:"release",t:"Leadership development and release",v:15}
+];
+var constraints=[
+ {k:"access",t:"Phase 0: presence"},
+ {k:"sowing",t:"Phase 1-2: comprehension"},
+ {k:"disciple",t:"Phase 3-4: church formation"},
+ {k:"release",t:"Phase 5-7: release and sending"}
+];
+var chosen="disciple";
+var cseg=document.getElementById("constraintSeg");
+constraints.forEach(function(c){
+  var b=document.createElement("button");
+  b.type="button";b.className="seg"+(c.k===chosen?" on":"");b.textContent=c.t;
+  b.addEventListener("click",function(){
+    chosen=c.k;
+    cseg.querySelectorAll(".seg").forEach(function(x){x.classList.remove("on");});
+    b.classList.add("on");
+    scoreAim();
+  });
+  cseg.appendChild(b);
+});
+var COLORS={access:"#6E665B",sowing:"#8C86C9",disciple:"#4B3FA8",release:"#D97706"};
+var sw=document.getElementById("sliders"), stack=document.getElementById("stack");
+work.forEach(function(w){
+  var d=document.createElement("div");
+  d.className="slider";
+  d.innerHTML='<div class="sl"><span>'+w.t+'</span><span class="sv" id="sv-'+w.k+'">'+w.v+'</span></div>'+
+    '<input type="range" min="0" max="100" value="'+w.v+'" aria-label="'+w.t+'">';
+  var inp=d.querySelector("input");
+  inp.addEventListener("input",function(){w.v=parseInt(inp.value,10);scoreAim();});
+  w.el=d;w.input=inp;
+  sw.appendChild(d);
+  var s=document.createElement("div");
+  s.style.background=COLORS[w.k];w.seg=s;stack.appendChild(s);
+});
+function scoreAim(){
+  var total=work.reduce(function(a,w){return a+w.v;},0)||1;
+  work.forEach(function(w){
+    document.getElementById("sv-"+w.k).textContent=Math.round(w.v/total*100)+"%";
+    w.seg.style.width=(w.v/total*100)+"%";
+    w.el.classList.toggle("target",w.k===chosen);
+  });
+  var pct=Math.round((work.filter(function(w){return w.k===chosen;})[0].v)/total*100);
+  document.getElementById("aimPct").textContent=pct+"%";
+  var v=document.getElementById("aimVerdict"), note=document.getElementById("aimNote");
+  if(pct<20){v.className="verdict bad";v.textContent="Piling up in front of the block";
+    note.textContent="Almost all of this effort is landing on steps that are already moving freely. In a constrained system that produces no additional output, and it piles unfinished work in front of the block.";}
+  else if(pct<50){v.className="verdict";v.textContent="Some pressure on the constraint";
+    note.textContent="The constraint is getting attention, and most of the effort is still spread across the rest of the system. Narrowing further is the whole discipline.";}
+  else{v.className="verdict good";v.textContent="Aimed at the constraint";
+    note.textContent="Concentrated where the system is actually choking. Watch for the moment it breaks, because the constraint will move and this allocation will be wrong again.";}
+}
+scoreAim();
+
+/* ---------- module 5: morph ---------- */
+var msvg=document.getElementById("morphSvg");
+var paths=[],finish;
+(function buildMorph(){
+  var W=700,H=300,x0=70,x1=610;
+  msvg.appendChild(el("line",{x1:x1,y1:30,x2:x1,y2:270,stroke:"#1C1A17","stroke-opacity":".25","stroke-width":"2","stroke-dasharray":"6 6"}));
+  var ft=el("text",{x:x1-8,y:24,"text-anchor":"end","font-size":"12","font-weight":"700",fill:"#6E665B","font-family":"Inter,sans-serif"});
+  ft.textContent="ships";
+  msvg.appendChild(ft);
+  var st=el("text",{x:x0-14,y:24,"font-size":"12","font-weight":"700",fill:"#6E665B","font-family":"Inter,sans-serif"});
+  st.textContent="effort in";
+  msvg.appendChild(st);
+  msvg.appendChild(el("circle",{cx:x0,cy:150,r:9,fill:"#1C1A17","fill-opacity":".55"}));
+  for(var i=0;i<9;i++){
+    var p=el("path",{d:"",stroke:"#4B3FA8","stroke-width":"3",fill:"none","stroke-linecap":"round","stroke-opacity":".55"});
+    msvg.appendChild(p);paths.push(p);
+  }
+  msvg.__geo={x0:x0,x1:x1};
+})();
+var mstate=0, mScale=0;
+function drawMorph(t){
+  var g=msvg.__geo, x0=g.x0, x1=g.x1, span=(x1-x0)*mScale;
+  paths.forEach(function(p,i){
+    var spread=(i-4)*30;
+    var scatterY=150+spread;
+    var scatterLen=span*(0.30+((i*37)%11)/40);
+    var focusY=150+(i-4)*3;
+    var focusLen=(i===4)?span:span*0.06;
+    var y=scatterY+(focusY-scatterY)*t;
+    var len=scatterLen+(focusLen-scatterLen)*t;
+    var midY=150+(y-150)*0.55;
+    p.setAttribute("d","M "+x0+" 150 Q "+(x0+len*0.45)+" "+midY+" "+(x0+len)+" "+y);
+    p.setAttribute("stroke",(i===4&&t>0.5)?"#D97706":"#4B3FA8");
+    p.setAttribute("stroke-width",(i===4)?(3+5*t):(3-1.4*t));
+    p.setAttribute("stroke-opacity",(i===4)?(0.55+0.4*t):(0.55-0.32*t));
+  });
+}
+var COPY=[
+ "No deadline, no ceiling, and no one forcing a choice. One engineer demonstrated a calendar that ran two hundred years into the future, and his bosses asked whether he could start it at the beginning of the universe instead. The talent was staggering. Nothing shipped.",
+ "One worker moved from a fast station to the slowest one. No new people, no new machines, no new hours, and the whole line tripled. Effort stopped going where it was not needed and went where the system was actually blocked."
+];
+function setMorph(n){
+  var from=mstate, to=n; mstate=n; mScale=1;
+  document.getElementById("morphState").textContent=COPY[n];
+  tween(700,function(p){drawMorph(from+(to-from)*p);});
+  document.querySelectorAll("#morphSeg .seg").forEach(function(b){b.classList.toggle("on",parseInt(b.getAttribute("data-m"),10)===n);});
+}
+document.querySelectorAll("#morphSeg .seg").forEach(function(b){
+  b.addEventListener("click",function(){setMorph(parseInt(b.getAttribute("data-m"),10));});
+});
+drawMorph(0);document.getElementById("morphState").textContent=COPY[0];
+var mo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+  tween(900,function(p){mScale=p;drawMorph(mstate);});
+  mo.unobserve(e.target);}});},{threshold:0.25});
+mo.observe(msvg);
+
+/* ---------- module 6: team audit ---------- */
+var qs=[
+ "For your priority group, name the single constraint standing between it and the next phase of engagement. Not a list. Argue until you can name one.",
+ "What share of your budget and personnel for that group is aimed at that constraint, and what share is tied up in steps that are already moving freely?",
+ "Which of your activities there are good, defensible, and reportable, yet produce no movement toward the next phase?",
+ "When the constraint breaks and the bottleneck moves, who is watching for the new one, and how fast can you redeploy?"
+];
+var ta=document.getElementById("teamAudit");
+qs.forEach(function(q,i){
+  var d=document.createElement("div");
+  d.className="qcard";
+  d.innerHTML='<button class="head" type="button" aria-pressed="false"><span class="qn">'+(i+1)+'</span><span class="qt">'+q+'</span></button>';
+  var btn=d.querySelector(".head");
+  btn.addEventListener("click",function(){
+    var on=d.classList.toggle("reviewed");
+    btn.setAttribute("aria-pressed",on?"true":"false");
+    var n=ta.querySelectorAll(".qcard.reviewed").length;
+    document.getElementById("teamFill").style.width=(n/qs.length*100)+"%";
+    document.getElementById("teamLabel").textContent=n+" of "+qs.length+" reviewed"+(n===qs.length?". Now name the one constraint.":"");
+  });
+  ta.appendChild(d);
+});
+})();
+</script>
+</body>
+</html>
