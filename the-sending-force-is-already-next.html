@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sending Force Is Already Next Door &middot; Clarity for the Nations</title>
+<meta name="description" content="5,413 workers needed for Africa's frontier peoples. 123 million evangelicals in four nearby countries. Why the African church is positioned to close the gap within a decade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#B7410E;--deep:#6E2708;
+--teal:#0E7365;--tealdeep:#08483E;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+header.hero{background:linear-gradient(160deg,#261005 0%,var(--deep) 55%,#8A3510 100%);color:#F6F4EE;padding:12vh 0 9vh;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.1}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#F2B48A;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:22ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.8);max-width:58ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#FFC9A4}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.78);margin-top:.35rem;max-width:22ch}
+.qband{background:var(--accent);color:#FDF8F4;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:34ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#F6D3BC}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+
+.counters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1.2rem}
+.cnt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.7rem 1.1rem}
+.cnt .n{font-family:'Fraunces',serif;font-weight:900;font-size:1.6rem;line-height:1;color:var(--accent)}
+.cnt .n.t{color:var(--teal)}
+.cnt .l{font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.25rem}
+
+/* Module 1: chart + slider */
+.chartbox{position:relative;height:320px}
+.ratio{margin-top:1.4rem;font-size:1.02rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.95rem 1.1rem}
+.ratio b{color:var(--accent)}
+.simwrap{margin-top:1.8rem;border-top:1px dashed var(--line);padding-top:1.5rem}
+.simwrap .simtitle{font-weight:800;font-size:1.02rem;margin-bottom:.3rem}
+.simwrap .simsub{font-size:.9rem;color:var(--mute);margin-bottom:1rem}
+input[type=range]{width:100%;accent-color:var(--accent);height:34px;cursor:pointer}
+.slabels{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--mute);margin-top:.3rem}
+.simstats{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.1rem}
+.track{height:28px;background:rgba(28,26,23,.08);border-radius:14px;overflow:hidden;position:relative;margin-top:1.1rem}
+.track .meter{height:100%;width:0%;border-radius:14px;background:linear-gradient(90deg,var(--teal),var(--tealdeep));transition:width .25s ease}
+.track .goal{position:absolute;top:-6px;bottom:-6px;width:3px;background:var(--accent)}
+.goalcap{display:flex;justify-content:flex-end;font-size:.72rem;font-weight:700;color:var(--accent);margin-top:.35rem}
+.simread{margin-top:1.1rem;border-radius:12px;padding:.9rem 1.1rem;font-size:1rem;min-height:3.6rem;background:rgba(14,115,101,.08);border:1px solid var(--line)}
+.simread b{color:var(--tealdeep)}
+.simread.gap{background:rgba(183,65,14,.08)}
+.simread.gap b{color:var(--deep)}
+
+/* Module 2: belt explorer */
+.belt-station{cursor:pointer}
+.belt-station circle.hit{fill:transparent}
+.belt-station circle.dotc{fill:var(--accent);transition:r .25s ease,fill .2s}
+.belt-station.sel circle.dotc{fill:var(--deep)}
+.belt-station:focus{outline:none}
+.belt-station:focus circle.dotc{stroke:var(--ink);stroke-width:2.5}
+.belt-station text{font-family:'Inter',sans-serif;font-size:15px;font-weight:600;fill:var(--ink)}
+.belt-station .sub{font-size:12.5px;font-weight:600;fill:var(--mute)}
+#beltRead{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:1rem;background:var(--paper);border:1px solid var(--line);min-height:5rem}
+#beltRead .where{display:block;font-weight:800;color:var(--accent);margin-bottom:.3rem}
+
+/* Module 3: gap bar */
+.gapseg{cursor:pointer}
+.gapseg rect{transition:opacity .2s}
+.gapseg:hover rect,.gapseg.sel rect{opacity:.85}
+.gapseg:focus{outline:none}
+.gapseg:focus rect{stroke:var(--ink);stroke-width:2.5}
+.gapseg text{font-family:'Inter',sans-serif;font-weight:700;fill:#fff;pointer-events:none}
+#gapRead{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:1rem;background:var(--paper);border:1px solid var(--line);min-height:4.6rem}
+#gapRead b{color:var(--accent)}
+.onecard{margin-top:1.4rem;display:flex;align-items:center;gap:18px;background:rgba(14,115,101,.08);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;flex-wrap:wrap}
+.onecard .big1{font-family:'Fraunces',serif;font-weight:900;font-size:2.6rem;line-height:1;color:var(--teal)}
+.onecard p{flex:1;min-width:220px;font-size:.98rem;color:#39342d}
+
+/* Module 4: toggle compare */
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.2rem}
+.segbtn{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem 1.3rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn.on-g{background:var(--accent);border-color:var(--accent);color:#fff}
+.segbtn.on-s{background:var(--teal);border-color:var(--teal);color:#fff}
+.xfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.xfact{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;font-size:.95rem;color:#39342d}
+.xfact b{display:block;font-family:'Fraunces',serif;font-size:1.35rem;margin-bottom:.2rem}
+.verdict{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem;transition:background .3s}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem}
+.v-g{background:rgba(183,65,14,.1)} .v-g .tag{background:var(--accent)} .v-g .xfact b{color:var(--accent)}
+.v-s{background:rgba(14,115,101,.1)} .v-s .tag{background:var(--teal)} .v-s .xfact b{color:var(--teal)}
+
+/* Module 5: bridges */
+.bnode{cursor:pointer}
+.bnode rect{transition:stroke .2s}
+.bnode:hover rect{stroke:var(--ink)}
+.bnode:focus{outline:none}
+.bnode:focus rect{stroke:var(--ink);stroke-width:2.5}
+.bnode text{font-family:'Inter',sans-serif;pointer-events:none}
+.arc{fill:none;stroke:rgba(28,26,23,.18);stroke-width:3;transition:stroke .25s,stroke-width .25s}
+.arc.on{stroke:var(--teal);stroke-width:5}
+#bridgeRead{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:1rem;background:var(--paper);border:1px solid var(--line);min-height:5rem}
+#bridgeRead .lang{display:block;font-weight:800;color:var(--teal);margin-bottom:.3rem}
+
+/* Module 6: accordion */
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:0 0 1.4rem}
+.pbar .fill{height:100%;width:0;background:var(--teal);transition:width .4s ease}
+.pcap{font-size:.8rem;font-weight:600;color:var(--mute);margin-bottom:1rem}
+.fn{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
+.fn .fhead{width:100%;display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:none;border:none;font:inherit;text-align:left;cursor:pointer}
+.fn .fnum{flex:none;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+.fn.done .fnum{background:var(--teal)}
+.fn .ftitle{font-weight:700;font-size:1.02rem;flex:1}
+.fn .fchev{flex:none;font-size:.8rem;color:var(--mute);transition:transform .3s}
+.fn.open .fchev{transform:rotate(180deg)}
+.fn .fbody{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.fn.open .fbody{max-height:320px}
+.fn .finner{padding:0 1.2rem 1.3rem 1.2rem}
+.fn .finner p{font-size:.96rem;color:#39342d}
+
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:26ch;margin:0 auto 1.4rem}
+.closing .small{color:rgba(246,244,238,.75);max-width:56ch;margin:0 auto 2.2rem;font-size:1.05rem}
+.cta-btn{display:inline-block;background:#FFC9A4;color:var(--deep);text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Frontier Peoples &amp; Strategy</div>
+<h1>The workers Africa's frontier needs are already a bus ride away.</h1>
+<p class="sub">A fresh Joshua Project analysis of Africa's Frontier People Groups, and why the African church is positioned to reach its own frontier within a decade.</p>
+<div class="chips">
+<div class="chip"><div class="n" id="chip1">0</div><div class="l">cross-cultural workers needed for Africa's frontier</div></div>
+<div class="chip"><div class="n"><span id="chip2">0</span> million</div><div class="l">evangelical believers in just four nearby countries</div></div>
+<div class="chip"><div class="n" id="chip3">0</div><div class="l">frontier groups that need exactly one worker</div></div>
+</div>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;What a Western worker spends years acquiring, a near-culture African worker often carries from birth.&rdquo;</p>
+<p class="q">&ldquo;A single family, prepared and sent, closes the engagement gap for an entire people.&rdquo;</p>
+</div>
+</section>
+
+<main>
+
+<!-- MODULE 1: two numbers, chart + slider -->
+<section class="mod" id="m1">
+<div class="wrap">
+<div class="kicker">Two numbers</div>
+<h2>5,413 workers needed. 123 million believers next door.</h2>
+<p class="intro">Joshua Project estimates 5,413 cross-cultural workers are needed to reach every frontier people group on the continent. Now count the evangelical believers already living in just four countries.</p>
+<div class="panel">
+<div class="chartbox"><canvas id="evanChart"></canvas></div>
+<div class="ratio">Set the two numbers side by side and it comes to roughly <b>one worker for every 23,000 African evangelicals</b>. Africa does not lack people. It lacks awareness, mobilization, and equipping at scale.</div>
+<div class="simwrap">
+<div class="simtitle">Try the math yourself</div>
+<div class="simsub">Drag the slider: out of every 100,000 of those 123 million believers, how many are equipped and sent?</div>
+<input type="range" id="simSlider" min="0" max="8" step="0.2" value="0" aria-label="Workers sent per 100,000 evangelicals">
+<div class="slabels"><span>0 per 100,000</span><span>4 per 100,000</span><span>8 per 100,000</span></div>
+<div class="track"><div class="meter" id="simMeter"></div><div class="goal" style="left:55%"></div></div>
+<div class="goalcap">&#9650; goal: 5,413 workers</div>
+<div class="simstats">
+<div class="cnt"><div class="n t" id="simSent">0</div><div class="l">workers sent</div></div>
+<div class="cnt"><div class="n" id="simGap">5,413</div><div class="l" id="simGapLbl">still needed</div></div>
+</div>
+<div class="simread gap" id="simRead"><b>No one sent yet.</b> The frontier stays where it is.</div>
+</div>
+<p class="note">Evangelical estimates from Joshua Project country data (chart). The slider is a what-if illustration of the essay's argument, not measured data.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 2: the belt -->
+<section class="mod" id="m2">
+<div class="wrap">
+<div class="kicker">The frontier</div>
+<h2>One contiguous belt, from the Atlantic to the Horn</h2>
+<p class="intro">Frontier peoples are the hardest edge of the unreached: 0.1% or fewer Christian adherents and no known movement to Jesus. In Africa they form a single belt. Tap each stop to explore it.</p>
+<div class="panel">
+<div class="counters">
+<div class="cnt"><div class="n" id="cntGroups">0</div><div class="l">people groups (counted per country)</div></div>
+<div class="cnt"><div class="n" id="cntCountries">0</div><div class="l">countries</div></div>
+<div class="cnt"><div class="n"><span id="cntPop">0</span>M</div><div class="l">people in frontier groups</div></div>
+<div class="cnt"><div class="n"><span id="cntMuslim">0</span>%</div><div class="l">of these groups are Muslim</div></div>
+</div>
+<svg id="beltSvg" viewBox="0 0 900 250" role="group" aria-label="Stylized map of Africa's frontier belt with five clickable stops">
+<path d="M60 150 C 200 100, 320 170, 460 140 S 720 90, 850 130" fill="none" stroke="rgba(183,65,14,.22)" stroke-width="30" stroke-linecap="round"/>
+<path id="beltLine" d="M60 150 C 200 100, 320 170, 460 140 S 720 90, 850 130" fill="none" stroke="#B7410E" stroke-width="4" stroke-linecap="round"/>
+</svg>
+<div id="beltRead"><span class="where">Tap a stop on the belt</span>The belt runs from the Atlantic coast, across the Sahel and Sahara, up the Nile River Valley, and into the Horn of Africa.</div>
+<p class="note">Stylized corridor, not a measured map. Figures from the Joshua Project African Frontier People Groups brief, 31 July 2026.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 3: engagement gap -->
+<section class="mod" id="m3">
+<div class="wrap">
+<div class="kicker">The engagement gap</div>
+<h2>Two-thirds of the belt has no known worker</h2>
+<p class="intro">Counted as distinct peoples rather than country by country, the belt holds 300 frontier groups. Tap each segment of the bar.</p>
+<div class="panel">
+<svg id="gapSvg" viewBox="0 0 900 150" role="group" aria-label="Bar showing 194 of 300 distinct frontier peoples at Engagement Phase 0">
+<text x="10" y="30" style="font-family:Inter,sans-serif;font-size:15px;font-weight:600;fill:#6E665B">300 distinct frontier peoples in the belt</text>
+<g class="gapseg" id="seg0" tabindex="0" role="button" aria-label="194 groups at Engagement Phase 0">
+<rect x="10" y="48" width="0" height="56" rx="10" fill="#B7410E"/>
+<text id="seg0t" x="30" y="83" font-size="18" opacity="0">194 &middot; Engagement Phase 0</text>
+</g>
+<g class="gapseg" id="seg1" tabindex="0" role="button" aria-label="106 groups with some known engagement">
+<rect x="10" y="48" width="0" height="56" rx="10" fill="#0E7365"/>
+<text id="seg1t" x="0" y="83" font-size="18" opacity="0">106</text>
+</g>
+<text x="10" y="132" style="font-family:Inter,sans-serif;font-size:13px;font-weight:600;fill:#6E665B">Phase 0: no known ongoing gospel engagement</text>
+</svg>
+<div id="gapRead"><b>194 of 300 peoples sit at Engagement Phase 0.</b> For roughly two-thirds of these peoples, no cross-cultural worker is known to be focused on establishing self-sustaining churches.</div>
+<div class="onecard">
+<div class="big1" id="oneCnt">143</div>
+<p>For 143 of these people groups, the need is exactly <b>one</b> cross-cultural worker. A single family, prepared and sent, closes the engagement gap for an entire people.</p>
+</div>
+<p class="note">Partly a gap in activity, partly a gap in our knowledge: engagement already championed by African believers has not all reached Joshua Project yet.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 4: two extremes -->
+<section class="mod" id="m4">
+<div class="wrap">
+<div class="kicker">Two extremes</div>
+<h2>The giants and the small</h2>
+<p class="intro">Return to the full count of 493 groups. The challenge splits into two very different problems. Toggle between them.</p>
+<div class="panel">
+<div class="seg">
+<button class="segbtn on-g" id="btnG">5 giant peoples (10M+)</button>
+<button class="segbtn" id="btnS">320 small peoples (&lt;100K)</button>
+</div>
+<div id="xpane">
+<div class="xfacts" id="xfacts"></div>
+<div class="verdict v-g" id="verdict"><span class="tag" id="vTag">Resources without openness</span><div id="vText"></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MODULE 5: bridges -->
+<section class="mod" id="m5">
+<div class="wrap">
+<div class="kicker">Bridges already standing</div>
+<h2>The languages are already shared</h2>
+<p class="intro">Proximity is not only geographic. It is cultural and linguistic, and the data shows the bridges already built. Tap a sending community on the left.</p>
+<div class="panel">
+<svg id="bridgeSvg" viewBox="0 0 900 400" role="group" aria-label="Three language bridges connecting believing communities to frontier peoples">
+<text x="40" y="34" style="font-family:Inter,sans-serif;font-size:14px;font-weight:700;fill:#0E7365;letter-spacing:.08em">BELIEVING COMMUNITIES</text>
+<text x="860" y="34" text-anchor="end" style="font-family:Inter,sans-serif;font-size:14px;font-weight:700;fill:#B7410E;letter-spacing:.08em">FRONTIER PEOPLES</text>
+</svg>
+<div id="bridgeRead"><span class="lang">Tap a bridge</span>No new translation is required to send near-culture workers across these lines.</div>
+<p class="note">Language figures from the essay: primary-language counts among frontier people groups.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 6: four questions -->
+<section class="mod" id="m6">
+<div class="wrap">
+<div class="kicker">Before your team mobilizes to Africa</div>
+<h2>Four questions to put on the table</h2>
+<p class="intro">The bottleneck is training, not people. Proximity buys a head start on language and climate. It does not buy readiness for a religious stronghold. Open all four.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="qFill"></div></div>
+<div class="pcap" id="qCap">0 of 4 opened</div>
+<div id="qList"></div>
+</div>
+</div>
+</section>
+
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">Build the framework, hand over the keys, and measure success by what keeps going after you leave.</p>
+<p class="small">The Great Commission in Africa does not need to wait for outside resources. They already sit in the pews of Lagos, Kinshasa, Nairobi, Accra, Abidjan, and a thousand cities in between.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/the-sending-force-is-already-next" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a>
+<small><a href="index.html" style="text-decoration:none">&#8592; Back to all interactive essays</a></small>
+</div>
+</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);if(attrs)for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function fmt(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");}
+function tween(dur,step,done){var t0=null;function f(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/dur);var e=1-Math.pow(1-p,3);step(e);if(p<1)requestAnimationFrame(f);else if(done)done();}requestAnimationFrame(f);}
+function countUp(node,target,dur,decimals){tween(dur||1400,function(e){var v=target*e;node.textContent=decimals?v.toFixed(decimals):fmt(v);});}
+function onKey(node,fn){node.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();fn();}});}
+
+/* progress bar */
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){
+var h=document.documentElement;
+var p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+prog.style.width=(p*100)+"%";
+},{passive:true});
+
+/* hero count-ups */
+countUp(document.getElementById("chip1"),5413,1500);
+countUp(document.getElementById("chip2"),123,1500);
+countUp(document.getElementById("chip3"),143,1500);
+
+/* module reveal */
+var fired={};
+var io=new IntersectionObserver(function(entries){
+entries.forEach(function(en){
+if(!en.isIntersecting)return;
+en.target.classList.add("in");
+var id=en.target.id;
+if(fired[id])return;fired[id]=true;
+if(id==="m1")initChart();
+if(id==="m2"){countUp(document.getElementById("cntGroups"),493,1400);countUp(document.getElementById("cntCountries"),49,1400);countUp(document.getElementById("cntPop"),222,1400);countUp(document.getElementById("cntMuslim"),97,1400);}
+if(id==="m3")animGap();
+});
+},{threshold:.25});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+/* MODULE 1: chart */
+function initChart(){
+if(typeof Chart==="undefined")return;
+var ctx=document.getElementById("evanChart").getContext("2d");
+new Chart(ctx,{
+type:"bar",
+data:{
+labels:["Nigeria","Kenya","DR Congo","Ghana"],
+datasets:[{label:"Evangelical believers (est., millions)",data:[65,27,22,9],backgroundColor:["#0E7365","#139383","#2AA893","#5FBFA9"],borderRadius:8}]
+},
+options:{
+indexAxis:"y",responsive:true,maintainAspectRatio:false,
+plugins:{legend:{display:false},title:{display:true,text:"Evangelical believers in four countries (est., millions)",color:"#1C1A17",font:{family:"Inter",size:14,weight:"600"}},tooltip:{callbacks:{label:function(c){return "~"+c.parsed.x+" million evangelical believers";}}}},
+scales:{x:{ticks:{color:"#6E665B",callback:function(v){return v+"M";}},grid:{color:"rgba(28,26,23,.08)"}},y:{ticks:{color:"#1C1A17",font:{weight:"600"}},grid:{display:false}}},
+animation:{duration:1200}
+}
+});
+}
+
+/* MODULE 1: slider */
+var NEED=5413,POOL=123000000;
+var slider=document.getElementById("simSlider");
+var sSent=document.getElementById("simSent"),sGap=document.getElementById("simGap"),sGapLbl=document.getElementById("simGapLbl");
+var sMeter=document.getElementById("simMeter"),sRead=document.getElementById("simRead");
+function sim(){
+var rate=parseFloat(slider.value);
+var sent=Math.round(POOL*rate/100000);
+sSent.textContent=fmt(sent);
+var goalFrac=.55; /* goal line position on track */
+var w=Math.min(1,(sent/NEED)*goalFrac);
+if(sent>NEED)w=Math.min(.98,goalFrac+ (sent-NEED)/NEED*goalFrac*.5);
+sMeter.style.width=(w*100)+"%";
+if(sent===0){
+sGap.textContent=fmt(NEED);sGapLbl.textContent="still needed";
+sRead.className="simread gap";sRead.innerHTML="<b>No one sent yet.</b> The frontier stays where it is.";
+}else if(sent<NEED){
+sGap.textContent=fmt(NEED-sent);sGapLbl.textContent="still needed";
+sRead.className="simread gap";sRead.innerHTML="<b>"+fmt(sent)+" workers</b> from a rate of "+rate+" per 100,000. The gap remains, but it is shrinking fast.";
+}else{
+sGap.textContent=fmt(sent-NEED);sGapLbl.textContent="workers to spare";
+sRead.className="simread";sRead.innerHTML="<b>Gap closed.</b> At about "+rate+" per 100,000, the African church alone covers every frontier people group on the continent, with "+fmt(sent-NEED)+" workers to spare.";
+}
+}
+slider.addEventListener("input",sim);
+sim();
+
+/* MODULE 2: belt stations */
+var beltSvg=document.getElementById("beltSvg");
+var beltRead=document.getElementById("beltRead");
+var stations=[
+{x:60,y:150,r:13,name:"Atlantic Coast",sub:"West Africa",txt:"The belt begins where the Sahel meets the sea. From here it runs unbroken across the continent's north."},
+{x:250,y:118,r:15,name:"The Sahel",sub:"the spine",txt:"The frontier's spine. Growing evangelical communities in Burkina Faso, Côte d'Ivoire, Benin, Togo, and Cameroon sit within a two-day bus ride of it."},
+{x:460,y:140,r:21,name:"Sudan & Chad",sub:"the epicenter",txt:"Sudan alone holds 122 of the 493 groups. Sudan and Chad together account for more than a third of the continental total. Sudan also ranks in the global top ten for persecution."},
+{x:660,y:110,r:15,name:"Nile Valley",sub:"the corridor",txt:"The belt turns north and runs up the Nile River Valley, linking the Sahara's peoples to Egypt and the Red Sea."},
+{x:850,y:130,r:15,name:"Horn of Africa",sub:"the far edge",txt:"The belt ends in the Horn. Somalia ranks in the global top ten for persecution: where the gospel is received, believers are expelled from every relationship they have."}
+];
+var selStation=null;
+stations.forEach(function(s,idx){
+var g=el("g",{"class":"belt-station",tabindex:"0",role:"button","aria-label":s.name},beltSvg);
+el("circle",{cx:s.x,cy:s.y,r:30,"class":"hit"},g);
+var dot=el("circle",{cx:s.x,cy:s.y,r:0,"class":"dotc"},g);
+var t1=el("text",{x:s.x,y:s.y+52,"text-anchor":idx===0?"start":(idx===stations.length-1?"end":"middle")},g);
+t1.textContent=s.name;
+var t2=el("text",{x:s.x,y:s.y+70,"text-anchor":idx===0?"start":(idx===stations.length-1?"end":"middle"),"class":"sub"},g);
+t2.textContent=s.sub;
+setTimeout(function(){tween(500,function(e){dot.setAttribute("r",s.r*e);});},300+idx*180);
+function pick(){
+if(selStation)selStation.classList.remove("sel");
+selStation=g;g.classList.add("sel");
+beltRead.innerHTML='<span class="where">'+s.name+' &middot; '+s.sub+'</span>'+s.txt;
+}
+g.addEventListener("click",pick);
+onKey(g,pick);
+});
+
+/* MODULE 3: gap bar */
+var gapRead=document.getElementById("gapRead");
+var GW=880,GX=10;
+var w0=Math.round((194/300)*GW),w1=GW-w0;
+function animGap(){
+var r0=document.querySelector("#seg0 rect"),r1=document.querySelector("#seg1 rect");
+var t0=document.getElementById("seg0t"),t1=document.getElementById("seg1t");
+tween(1300,function(e){
+r0.setAttribute("width",Math.round(w0*e));
+r1.setAttribute("x",GX+Math.round(w0*e)+4);
+r1.setAttribute("width",Math.max(0,Math.round(w1*e)-4));
+},function(){
+t0.setAttribute("opacity","1");
+t1.setAttribute("x",GX+w0+4+Math.round(w1/2));t1.setAttribute("text-anchor","middle");t1.setAttribute("opacity","1");
+});
+countUp(document.getElementById("oneCnt"),143,1300);
+}
+var gapNotes=[
+"<b>194 peoples: Engagement Phase 0.</b> No known ongoing gospel engagement. For roughly two-thirds of the belt, we are not aware of any cross-cultural worker focused on establishing self-sustaining churches.",
+"<b>106 peoples: some known engagement.</b> And the real number may be higher: engagement already championed by African believers has not all made its way to Joshua Project yet."
+];
+[0,1].forEach(function(i){
+var g=document.getElementById("seg"+i);
+function pick(){
+document.querySelectorAll(".gapseg").forEach(function(x){x.classList.remove("sel");});
+g.classList.add("sel");gapRead.innerHTML=gapNotes[i];
+}
+g.addEventListener("click",pick);onKey(g,pick);
+});
+
+/* MODULE 4: toggle */
+var btnG=document.getElementById("btnG"),btnS=document.getElementById("btnS");
+var xfacts=document.getElementById("xfacts"),verdict=document.getElementById("verdict"),vTag=document.getElementById("vTag"),vText=document.getElementById("vText");
+var X={
+g:{facts:[["5","peoples above ten million each"],["50%+","of the frontier population, in just these five"],["Yes","Scripture and media already translated"],["Top 10","Somalia, Sudan, Libya rank among the world's worst for persecution"]],
+tag:"Resources without openness",cls:"v-g",
+txt:"Physical access is only the first wall. These populations live inside religious strongholds where Islam is the fabric of family, law, economy, and identity. Government, community, and household stand together against anyone who turns to Christ. Available Scripture does not mean a reached people: response is slow, costly, and hidden."},
+s:{facts:[["320","peoples under 100,000 each"],["~50%","of the smallest have no translated Scripture at all"],["Severe","resource shortage across the board"],["1 worker","is the entire ask for many of them"]],
+tag:"No resources to gauge receptivity",cls:"v-s",
+txt:"On the other end of the scale, hundreds of small peoples face a severe resource shortage. The giants have resources without openness. The small have no resources to gauge their receptivity. Nobody has gotten close enough to find out."}
+};
+function setX(which){
+btnG.className="segbtn"+(which==="g"?" on-g":"");
+btnS.className="segbtn"+(which==="s"?" on-s":"");
+var d=X[which];
+xfacts.innerHTML=d.facts.map(function(f){return '<div class="xfact"><b>'+f[0]+'</b>'+f[1]+'</div>';}).join("");
+verdict.className="verdict "+d.cls;
+vTag.textContent=d.tag;vText.textContent=d.txt;
+}
+btnG.addEventListener("click",function(){setX("g");});
+btnS.addEventListener("click",function(){setX("s");});
+setX("g");
+
+/* MODULE 5: bridges */
+var bSvg=document.getElementById("bridgeSvg");
+var bRead=document.getElementById("bridgeRead");
+var bridges=[
+{y:110,left:"Hausa-speaking believers",lsub:"presence across 16 countries",right:"9 frontier peoples",rsub:"Hausa is their primary language",
+txt:"Nigerian believers share markets, borders, and a trade language with frontier peoples in Niger and Chad. The wider Hausa-speaking world already holds a real evangelical presence across 16 countries."},
+{y:225,left:"Swahili-speaking believers",lsub:"Kenya & DR Congo",right:"16 frontier peoples",rsub:"Swahili is their primary language",
+txt:"The broader Swahili-speaking community is well evangelized. Kenyan and Congolese believers already share the language of frontier populations along the East African coast. No new translation is required to send them."},
+{y:340,left:"Chadian & Sudanese Arabic believers",lsub:"small but genuine communities",right:"Largest frontier blocks",rsub:"the belt's biggest language groups",
+txt:"Chadian and Sudanese Arabic carry small but genuine believing communities that sit closer to the largest frontier language blocks than any Western sender ever will."}
+];
+var NW=300,NH=64;
+bridges.forEach(function(b,i){
+b.arc=el("path",{"class":"arc",d:"M "+(40+NW)+" "+b.y+" C 480 "+(b.y-58)+", 480 "+(b.y-58)+", "+(860-NW)+" "+b.y},bSvg);
+});
+bridges.forEach(function(b,i){
+var gL=el("g",{"class":"bnode",tabindex:"0",role:"button","aria-label":b.left},bSvg);
+el("rect",{x:40,y:b.y-NH/2,width:NW,height:NH,rx:12,fill:"rgba(14,115,101,.1)",stroke:"#0E7365","stroke-width":"2"},gL);
+var tl=el("text",{x:40+NW/2,y:b.y-6,"text-anchor":"middle","font-size":"15","font-weight":"700",fill:"#08483E"},gL);tl.textContent=b.left;
+var tls=el("text",{x:40+NW/2,y:b.y+16,"text-anchor":"middle","font-size":"12.5","font-weight":"600",fill:"#6E665B"},gL);tls.textContent=b.lsub;
+var gR=el("g",{"class":"bnode",tabindex:"0",role:"button","aria-label":b.right},bSvg);
+el("rect",{x:860-NW,y:b.y-NH/2,width:NW,height:NH,rx:12,fill:"rgba(183,65,14,.1)",stroke:"#B7410E","stroke-width":"2"},gR);
+var tr=el("text",{x:860-NW/2,y:b.y-6,"text-anchor":"middle","font-size":"15","font-weight":"700",fill:"#6E2708"},gR);tr.textContent=b.right;
+var trs=el("text",{x:860-NW/2,y:b.y+16,"text-anchor":"middle","font-size":"12.5","font-weight":"600",fill:"#6E665B"},gR);trs.textContent=b.rsub;
+function pick(){
+bridges.forEach(function(x){x.arc.classList.remove("on");});
+b.arc.classList.add("on");
+var L=b.arc.getTotalLength();
+b.arc.style.strokeDasharray=L;b.arc.style.strokeDashoffset=L;
+tween(700,function(e){b.arc.style.strokeDashoffset=L*(1-e);});
+bRead.innerHTML='<span class="lang">'+b.left+' &#8594; '+b.right+'</span>'+b.txt;
+}
+gL.addEventListener("click",pick);onKey(gL,pick);
+gR.addEventListener("click",pick);onKey(gR,pick);
+});
+
+/* MODULE 6: accordion */
+var qs=[
+{q:"What share of your frontier focus is worked by near-culture African workers?",
+a:"What percentage of your network, organization, or team's frontier people group focus in Africa is being worked by near-culture African workers versus Western workers? If you do not know the split, that is the first finding."},
+{q:"Do you have a formal pathway for African near-culture senders?",
+a:"Does your team have a formal pathway for receiving and equipping African near-culture senders? If not, what will it take to build one? Sending near-culture workers without cross-cultural training only moves the failure point closer to the field."},
+{q:"Which of your frontier groups sit within reach of a language bridge?",
+a:"Which frontier groups in your current focus sit within reach of an established Hausa, Swahili, or Chadian Arabic-speaking evangelical community? The bridges are already standing. Map your portfolio against them."},
+{q:"Are you equipping for effectiveness, or creating dependence?",
+a:"How are you equipping and partnering with the African missions sending force for effectiveness and not dependence? Build the framework, hand over the keys, and measure success by what keeps going after you leave."}
+];
+var qList=document.getElementById("qList"),qFill=document.getElementById("qFill"),qCap=document.getElementById("qCap");
+var opened={};
+qs.forEach(function(item,i){
+var d=document.createElement("div");d.className="fn";
+d.innerHTML='<button class="fhead" aria-expanded="false"><span class="fnum">'+(i+1)+'</span><span class="ftitle">'+item.q+'</span><span class="fchev">&#9660;</span></button><div class="fbody"><div class="finner"><p>'+item.a+'</p></div></div>';
+qList.appendChild(d);
+var head=d.querySelector(".fhead");
+head.addEventListener("click",function(){
+var isOpen=d.classList.toggle("open");
+head.setAttribute("aria-expanded",isOpen?"true":"false");
+if(isOpen&&!opened[i]){opened[i]=true;d.classList.add("done");
+var n=Object.keys(opened).length;
+qFill.style.width=(n/qs.length*100)+"%";
+qCap.textContent=n+" of 4 opened"+(n===qs.length?" · now put them on the agenda":"");
+}
+});
+});
+})();
+</script>
+</body>
+</html>
