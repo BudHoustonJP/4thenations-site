@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Missions Data Gets Wrong &middot; Clarity for the Nations</title>
+<meta name="description" content="Missions information is never neutral. It is shaped by ignorance, money, culture, and cognitive bias. An interactive look at the hidden side of missions data, and what to do about it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#7A1F3D;--deep:#54142A;
+--true:#0F7A6B;--truedeep:#0B564C;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+header.hero{background:linear-gradient(160deg,#2B0C18 0%,var(--deep) 58%,#6B1B36 100%);color:#F6F4EE;padding:12vh 0 9vh;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.1}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#E8AFC0;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:22ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.8);max-width:58ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px;flex:1 1 190px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#F2BFCD}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.78);margin-top:.35rem}
+.qband{background:var(--accent);color:#FDF7F9;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:34ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#EFC9D5}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+.ctrllabel{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+
+/* Module 1: precision slider */
+input[type=range]{width:100%;accent-color:var(--accent);height:34px;cursor:pointer;display:block}
+.slabels{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--mute);margin-top:.1rem}
+.slabels span{flex:1;text-align:center}
+.bigread{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:1.3rem}
+.bigread .box{flex:1 1 160px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem}
+.bigread .box .lab{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.bigread .box .val{font-family:'Fraunces',serif;font-weight:900;font-size:1.9rem;line-height:1.1;margin-top:.25rem}
+.bigread .box.rep .val{color:var(--accent)}
+.bigread .box.hon .val{color:var(--true)}
+.conftag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .8rem;border-radius:50px;color:#fff;margin-top:.4rem;background:var(--mute)}
+.conf-strong{background:var(--true)} .conf-mod{background:#B07A1E} .conf-low{background:var(--accent)}
+.slider-read{margin-top:1.3rem;font-size:1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.95rem 1.1rem;min-height:5.4rem}
+.slider-read b{color:var(--accent)}
+
+/* Module 2: toggle compare */
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.3rem}
+.segbtn{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem 1.3rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn.on-down{background:#B07A1E;border-color:#B07A1E;color:#fff}
+.segbtn.on-up{background:var(--accent);border-color:var(--accent);color:#fff}
+.crows{display:flex;flex-direction:column;gap:10px}
+.crow{display:flex;gap:14px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}
+.crow .ck{flex:0 0 130px;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding-top:.15rem}
+.crow .cv{flex:1;min-width:200px;font-size:.98rem}
+.verdict{margin-top:1.3rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem}
+.v-down{background:rgba(176,122,30,.1)} .v-down .tag{background:#B07A1E}
+.v-up{background:rgba(122,31,61,.09)} .v-up .tag{background:var(--accent)}
+
+/* Module 3: stepper */
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:0 0 1.3rem}
+.pbar .fill{height:100%;width:0;background:var(--accent);transition:width .4s ease}
+.counters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1.2rem}
+.cnt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.7rem 1.1rem;flex:1 1 140px}
+.cnt .n{font-family:'Fraunces',serif;font-weight:900;font-size:1.6rem;line-height:1;color:var(--accent)}
+.cnt .l{font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.25rem}
+.dialog{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:7.4rem}
+.dialog .who{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--true);margin-bottom:.3rem}
+.dialog .who.res{color:var(--accent)}
+.dialog .line{font-size:1.02rem}
+.ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:1.2rem}
+.abtn{font:inherit;font-weight:700;font-size:.95rem;padding:.65rem 1.4rem;border-radius:50px;border:none;background:var(--accent);color:#fff;cursor:pointer;transition:filter .2s,opacity .2s}
+.abtn:hover{filter:brightness(1.12)}
+.abtn[disabled]{opacity:.4;cursor:default}
+.abtn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line)}
+.stagedots{display:flex;gap:7px;margin-top:.9rem}
+.sdot{width:9px;height:9px;border-radius:50%;background:rgba(28,26,23,.18);transition:background .3s}
+.sdot.on{background:var(--accent)}
+
+/* Module 4: bias accordion */
+.bi{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
+.bi .bhead{width:100%;display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:none;border:none;font:inherit;text-align:left;cursor:pointer}
+.bi .bnum{flex:none;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem}
+.bi .btitle{font-weight:700;font-size:1.06rem;flex:1}
+.bi .btitle .bs{display:block;font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.15rem}
+.bi .bchev{flex:none;font-size:.8rem;color:var(--mute);transition:transform .3s}
+.bi.open .bchev{transform:rotate(180deg)}
+.bi .bbody{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.bi.open .bbody{max-height:340px}
+.bi .binner{padding:0 1.2rem 1.3rem 1.2rem}
+.bi .binner p{font-size:.98rem;color:#39342d}
+.bi .cost{margin-top:.8rem;background:var(--paper);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:.7rem .95rem;font-size:.94rem}
+.bi .cost .cl{display:block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.25rem}
+.biasclose{margin-top:1.1rem;font-size:.98rem;font-weight:600;color:var(--ink);display:none}
+
+/* Module 5: cycle */
+.cyclewrap{position:relative}
+.driftbar{height:14px;background:rgba(28,26,23,.09);border-radius:8px;overflow:hidden;margin-top:1.1rem}
+.driftbar .dfill{height:100%;width:0;background:linear-gradient(90deg,#B07A1E,var(--accent));transition:width .5s ease}
+.driftlab{display:flex;justify-content:space-between;font-size:.75rem;font-weight:600;color:var(--mute);margin-top:.3rem}
+.cyclecap{margin-top:1rem;font-size:.98rem;color:#39342d;min-height:3.2rem}
+
+/* Module 6: phase track */
+.phaseread{margin-top:1.2rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:6rem}
+.phaseread .pn{display:block;font-family:'Fraunces',serif;font-weight:900;font-size:1.25rem;color:var(--true);margin-bottom:.3rem}
+.practices{margin-top:1.6rem;border-top:1px solid var(--line);padding-top:1.3rem}
+.practices h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.15rem;margin-bottom:.9rem}
+.practices ol{list-style:none;counter-reset:p}
+.practices li{counter-increment:p;position:relative;padding-left:2.2rem;margin-bottom:.85rem;font-size:.98rem}
+.practices li::before{content:counter(p);position:absolute;left:0;top:.05rem;width:24px;height:24px;border-radius:50%;background:var(--true);color:#fff;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.practices li b{color:var(--ink)}
+.practices .st{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(15,122,107,.12);color:var(--truedeep);padding:.15rem .55rem;border-radius:50px;margin-left:.4rem;vertical-align:1px}
+
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:26ch;margin:0 auto 2rem}
+.cta-btn{display:inline-block;background:#F2BFCD;color:var(--deep);text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+@media (max-width:560px){
+.crow .ck{flex:1 1 100%}
+.bigread .box .val{font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Data &amp; Metrics</div>
+<h1>Missions data rarely fails because someone lied. It fails because the system rewards a precision we do not have.</h1>
+<p class="sub">Graphs, lists, and maps suggest we can measure exactly where the gospel has gone. The reality is messier. Every number passes through ignorance, money, culture, and human bias before it reaches you. Here is the hidden side of missions data, and the practices that make it honest.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="142">0</div><div class="l">believers reported: a figure of what we know, not what is true</div></div>
+<div class="chip"><div class="n" data-count="5">0</div><div class="l">forces bending the number before it reaches a budget</div></div>
+<div class="chip"><div class="n" data-count="8">0</div><div class="l">phases of engagement, Phase 0 to Phase 7, tracking process instead of one percentage</div></div>
+</div>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;Missions information is never neutral.&rdquo;</p>
+<p class="q">&ldquo;We base massive financial decisions on the very thing we hesitate to fund effectively.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<section class="mod" id="m1">
+<div class="kicker">We don&rsquo;t know what we don&rsquo;t know</div>
+<h2>The precision that was never there</h2>
+<p class="intro">Say a report gives you 142 believers among a people group. That figure reflects what we know, not necessarily what is true. Remote groups, urban underground movements, and refugee populations often live beyond the reach of any surveyor. Drag the slider to change how much of the field is actually observable, and watch the single confident number turn into the honest range it always was.</p>
+<div class="panel">
+<div class="bigread">
+<div class="box rep"><div class="lab">Reported figure</div><div class="val">142</div></div>
+<div class="box hon"><div class="lab">Honest range</div><div class="val" id="rangeVal">142 to 142</div><span class="conftag conf-strong" id="confTag">Strong confidence</span></div>
+</div>
+<svg id="bandSvg" viewBox="0 0 860 190" role="img" aria-label="A number line showing a single reported figure and the uncertainty band around it"></svg>
+<div class="ctrllabel" style="margin-top:1rem">How much of this people group can researchers actually observe?</div>
+<input type="range" id="obsSlider" min="5" max="100" step="1" value="100" aria-label="Share of the people group that researchers can actually observe">
+<div class="slabels"><span>Almost none</span><span>Some access</span><span>Good access</span><span>Full visibility</span></div>
+<div class="slider-read" id="obsRead"></div>
+<p class="note">Illustrative. The figure of 142 is the example used in the essay. The band shows the argument about uncertainty, not measured data. As the essay puts it, quoting 1 Corinthians 13:12, &ldquo;now we see in a mirror dimly.&rdquo;</p>
+</div>
+</section>
+
+<section class="mod" id="m2">
+<div class="kicker">The influence of money</div>
+<h2>Funding bends the number in both directions</h2>
+<p class="intro">Missions funding follows need, and it also follows fruit. That single fact pulls reporting two opposite ways at once, which is why you cannot correct for it with a simple adjustment. Switch between the two pressures to see who feels each one and what the donor ends up seeing.</p>
+<div class="panel">
+<div class="seg" id="moneySeg" role="tablist" aria-label="Two directions of reporting distortion">
+<button class="segbtn on-down" data-side="down" role="tab" aria-selected="true">Underreporting</button>
+<button class="segbtn" data-side="up" role="tab" aria-selected="false">Overreporting</button>
+</div>
+<div class="crows" id="moneyRows"></div>
+<div class="verdict v-down" id="moneyVerdict"></div>
+<p class="note">Outside accountability is rare. The essay notes reports of entire provinces or nations coming to Christ at scale that are never opened to security-conscious third-party validation, leaving us celebrating claims we cannot check.</p>
+</div>
+</section>
+
+<section class="mod" id="m3">
+<div class="kicker">Cultural dynamics around numbers</div>
+<h2>The number that came from the question</h2>
+<p class="intro">Western entities often demand numerical precision. In many oral cultures, numbers do not work that way. Step through the exchange below and watch where the figure in the database actually comes from. Nobody in this conversation is lying.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="stepFill"></div></div>
+<div class="counters">
+<div class="cnt"><div class="n" id="dbNum">?</div><div class="l">number entered in the database</div></div>
+<div class="cnt"><div class="n" id="liesNum">0</div><div class="l">people in this exchange being dishonest</div></div>
+</div>
+<div class="dialog" id="dlg">
+<div class="who res" id="dlgWho">Press begin</div>
+<div class="line" id="dlgLine">Four turns of a conversation, and one figure that will outlive it.</div>
+</div>
+<div class="ctrls">
+<button class="abtn" id="stepNext">Begin the exchange</button>
+<button class="abtn ghost" id="stepReset">Reset</button>
+</div>
+<div class="stagedots" id="stepDots" aria-hidden="true"></div>
+<p class="note">Dialogue adapted from the essay. Reports can be inflated not from dishonesty, but from a clash between cultural understandings of numbers.</p>
+</div>
+</section>
+
+<section class="mod" id="m4">
+<div class="kicker">Cognitive bias and statistical blind spots</div>
+<h2>Four biases that survive better data</h2>
+<p class="intro">Suppose every structural problem above were solved. One challenge would remain: humans are psychologically wired to struggle with numbers. Open each bias to see how it shows up in a missions decision. The bar fills as you work through all four.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="biasFill"></div></div>
+<div id="biasList"></div>
+<p class="biasclose" id="biasClose">These are not moral failings. They are human defaults. Which means good intentions are not enough: the fix is third-party verification, data transparency, and communal accountability.</p>
+<p class="note">Bias descriptions summarized from the essay&rsquo;s section on cognitive bias.</p>
+</div>
+</section>
+
+<section class="mod" id="m5">
+<div class="kicker">The funding paradox</div>
+<h2>Billions decided on pennies of data</h2>
+<p class="intro">Data shapes where the money goes. Money shapes what gets reported. And almost nothing funds the infrastructure that would keep the data honest. Run the cycle and watch the drift accumulate, because a loop like this does not settle. It compounds.</p>
+<div class="panel">
+<div class="cyclewrap">
+<svg id="cycleSvg" viewBox="0 0 860 380" role="img" aria-label="A three node loop showing data shaping money, money shaping reporting pressure, and pressure shaping data"></svg>
+</div>
+<div class="ctrls">
+<button class="abtn" id="cycleRun">Run the cycle</button>
+<button class="abtn ghost" id="cycleReset">Reset</button>
+</div>
+<div class="driftbar"><div class="dfill" id="driftFill"></div></div>
+<div class="driftlab"><span>True heading</span><span id="driftTxt">0 loops, no drift yet</span></div>
+<p class="cyclecap" id="cycleCap">Press run to send one report around the loop.</p>
+<p class="note">Conceptual. This is the argument of the essay, not measured data. In its words, it is like navigating the ocean with a broken compass, only to wonder why the ship drifts off course.</p>
+</div>
+</section>
+
+<section class="mod" id="m6">
+<div class="kicker">Moving toward more honest reporting</div>
+<h2>Phases, not percentages</h2>
+<p class="intro">We cannot abandon measurement. Without reporting we would have no sense of where need remains. But a percentage flattens a process into a single digit. The Phases of Engagement are an eight-step continuum, Phase 0 through Phase 7, that tracks where a people group stands in gospel progress, from Waiting to Sustained Gospel Presence. Each phase describes a milestone that is not always reflected well by Christian or evangelical percentage alone. Click any phase to read its definition.</p>
+<div class="panel">
+<svg id="phaseSvg" viewBox="0 0 860 210" role="img" aria-label="The eight Phases of Engagement, Phase 0 through Phase 7, on a track. Select a phase to read its definition."></svg>
+<div class="phaseread" id="phaseRead"><span class="pn">Select a phase</span>Use the track above, or tab to a phase and press Enter.</div>
+<div class="practices">
+<h3>The five practices the essay proposes</h3>
+<ol>
+<li><b>Report ranges, not exact numbers.</b> Instead of &ldquo;0.085 percent Christian,&rdquo; say &ldquo;less than 0.1 percent Christian.&rdquo; <span class="st">Joshua Project has started</span></li>
+<li><b>Track phases of engagement.</b> Highlight process, not just outcomes. See the <a href="https://media.joshuaproject.net/public/assets/media/articles/Engagement-Phases-Toolkit.pdf" target="_blank" rel="noopener" style="color:#0B564C;font-weight:700">Phases of Engagement Toolkit</a>. <span class="st">Data being collected now</span></li>
+<li><b>Use confidence scores.</b> Add strong, moderate, or low alongside key data points, so users see how much weight a figure should carry. <span class="st">Work in progress</span></li>
+<li><b>Encourage third-party validation.</b> When extraordinary breakthroughs are claimed, welcome outside verification.</li>
+<li><b>Decouple money from numbers.</b> Support based on vision, faithfulness, and long-term commitment, not unverified reports.</li>
+</ol>
+</div>
+<p class="note">Phase names and definitions are quoted from the <a href="https://media.joshuaproject.net/public/assets/media/articles/Engagement-Phases-Toolkit.pdf" target="_blank" rel="noopener">Phases of Engagement Toolkit</a>, a collaboration between Frontiers, IMB, Joshua Project, Engage Network, Vision 5:9, and Accelerate. Licensed CC BY-NC-SA 4.0.</p>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">The systems are imperfect. The information is messy. These are not defects, but challenges that can be overcome.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/the-dark-side-of-missions-data" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a><br>
+<a class="sub" href="index.html">&#8592; All interactive essays</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+var ACC="#7A1F3D",DEEP="#54142A",TRUE="#0F7A6B",AMB="#B07A1E",MUTE="#6E665B",PAPER="#F3EFE6";
+
+/* scroll progress */
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";},{passive:true});
+
+/* reveal on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.12});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+/* hero count-up */
+document.querySelectorAll(".chip .n").forEach(function(n){
+var target=parseInt(n.getAttribute("data-count"),10);
+tween(1500,function(p){n.textContent=Math.round(target*p);});
+});
+
+/* ---------- Module 1: uncertainty band ---------- */
+var bs=document.getElementById("bandSvg");
+var BX0=70,BX1=790,BY=104;
+el("line",{x1:BX0,y1:BY,x2:BX1,y2:BY,stroke:"rgba(28,26,23,.18)","stroke-width":3},bs);
+var band=el("rect",{x:BX0,y:BY-26,width:0,height:52,rx:10,fill:"rgba(15,122,107,.16)",stroke:TRUE,"stroke-width":1.5},bs);
+var lowTick=el("line",{x1:BX0,y1:BY-30,x2:BX0,y2:BY+30,stroke:TRUE,"stroke-width":2.5},bs);
+var highTick=el("line",{x1:BX0,y1:BY-30,x2:BX0,y2:BY+30,stroke:TRUE,"stroke-width":2.5},bs);
+var lowLab=txt(BX0,BY+52,"",{fill:TRUE,"font-size":"15","font-weight":"700","text-anchor":"middle"},bs);
+var highLab=txt(BX0,BY+52,"",{fill:TRUE,"font-size":"15","font-weight":"700","text-anchor":"middle"},bs);
+var dot=el("circle",{cx:BX0,cy:BY,r:11,fill:ACC},bs);
+var dotLab=txt(BX0,BY-44,"142 reported",{fill:ACC,"font-size":"16","font-weight":"800","text-anchor":"middle"},bs);
+txt(BX0,BY+82,"0",{fill:MUTE,"font-size":"12","text-anchor":"middle"},bs);
+var axMaxLab=txt(BX1,BY+82,"600",{fill:MUTE,"font-size":"12","text-anchor":"middle"},bs);
+txt(430,26,"WHERE THE TRUE NUMBER COULD ACTUALLY SIT",{fill:MUTE,"font-size":"12","font-weight":"700","letter-spacing":"2","text-anchor":"middle"},bs);
+var AXMAX=600;
+function xOf(v){return BX0+Math.min(1,v/AXMAX)*(BX1-BX0);}
+var slider=document.getElementById("obsSlider"),rangeVal=document.getElementById("rangeVal"),confTag=document.getElementById("confTag"),obsRead=document.getElementById("obsRead");
+function drawBand(){
+var obs=parseInt(slider.value,10);
+var f=(100-obs)/100;
+var low=Math.max(0,Math.round(142*(1-0.78*f)));
+var high=Math.round(142*(1+3.2*f));
+var xl=xOf(low),xh=xOf(high),xd=xOf(142);
+band.setAttribute("x",xl);band.setAttribute("width",Math.max(2,xh-xl));
+lowTick.setAttribute("x1",xl);lowTick.setAttribute("x2",xl);
+highTick.setAttribute("x1",xh);highTick.setAttribute("x2",xh);
+lowLab.setAttribute("x",xl);lowLab.textContent=low;
+highLab.setAttribute("x",xh);highLab.textContent=high;
+dot.setAttribute("cx",xd);dotLab.setAttribute("x",xd);
+rangeVal.textContent=low+" to "+high;
+var cls,label,line;
+if(obs>=80){cls="conf-strong";label="Strong confidence";line="With this much visibility, the reported figure is worth quoting closely. This is the rare case, not the normal one.";}
+else if(obs>=45){cls="conf-mod";label="Moderate confidence";line="The number is still useful for prioritizing, but quoting it to three decimal places would claim more than you know.";}
+else{cls="conf-low";label="Low confidence";line="At this level of access, <b>142</b> is a placeholder wearing the costume of a measurement. The honest report is the range and the caveat.";}
+confTag.className="conftag "+cls;confTag.textContent=label;
+obsRead.innerHTML="<b>"+obs+" percent</b> of the group is observable. "+line+" The gospel may be quietly advancing in ways nobody has recorded, or reports may overstate its spread. Either way the data is only ever partial.";
+}
+slider.addEventListener("input",drawBand);
+drawBand();
+
+/* ---------- Module 2: money toggle ---------- */
+var MONEY={
+down:{
+rows:[
+["Who feels it","A worker among a group that is close to crossing the line out of &ldquo;unreached.&rdquo;"],
+["The fear","If the group is officially recognized as no longer unreached, donors conclude &ldquo;mission accomplished&rdquo; and redirect funds elsewhere."],
+["The mechanism","Reports are quietly adjusted downward, or simply not filed at all."],
+["What the donor sees","A group that stays in the unreached category longer than reality may warrant."]
+],
+verdict:["Distortion downward","Progress is real but invisible, so the field that is closest to breakthrough looks like it has not moved. Prayer and workers keep flowing to a need that has partly been met, while genuinely untouched groups wait."],
+cls:"v-down"
+},
+up:{
+rows:[
+["Who feels it","A network competing for investment in an environment that rewards visible fruit."],
+["The fear","Without demonstrable results, the funding goes to whoever can show a steeper curve."],
+["The mechanism","Rapid multiplication is reported: thousands of baptisms, hundreds of churches. The temptation to exaggerate is strong, even when unintentional."],
+["What the donor sees","A breakthrough story with no security-conscious third party able to confirm it."]
+],
+verdict:["Distortion upward","Money follows the most confident storyteller rather than the most faithful work. Strategies and budgets get built on a curve that was never verified, and when the claim quietly deflates, nobody adjusts the plan."],
+cls:"v-up"
+}
+};
+var moneyRows=document.getElementById("moneyRows"),moneyVerdict=document.getElementById("moneyVerdict");
+function renderMoney(side){
+var d=MONEY[side];
+moneyRows.innerHTML=d.rows.map(function(r){return '<div class="crow"><div class="ck">'+r[0]+'</div><div class="cv">'+r[1]+'</div></div>';}).join("");
+moneyVerdict.className="verdict "+d.cls;
+moneyVerdict.innerHTML='<span class="tag">'+d.verdict[0]+'</span><div>'+d.verdict[1]+'</div>';
+[].forEach.call(document.querySelectorAll("#moneySeg .segbtn"),function(b){
+var on=b.getAttribute("data-side")===side;
+b.className="segbtn"+(on?(side==="down"?" on-down":" on-up"):"");
+b.setAttribute("aria-selected",on?"true":"false");
+});
+}
+[].forEach.call(document.querySelectorAll("#moneySeg .segbtn"),function(b){
+b.addEventListener("click",function(){renderMoney(b.getAttribute("data-side"));});
+});
+renderMoney("down");
+
+/* ---------- Module 3: oral culture stepper ---------- */
+var STEPS=[
+["res","The researcher","How many people among your community have come to Christ?"],
+["field","The field believer","A lot. Many households now follow Jesus."],
+["res","The researcher","I need a number for the report. How many is &ldquo;a lot&rdquo;?"],
+["field","The field believer","What number do you think represents &ldquo;a lot&rdquo;?"],
+["res","The researcher","Well, 5,000 would sound impressive."],
+["field","The field believer","Then 5,000. Not to deceive, but to say &ldquo;many&rdquo; inside the framework you handed me."]
+];
+var stepIdx=-1;
+var dlgWho=document.getElementById("dlgWho"),dlgLine=document.getElementById("dlgLine"),dbNum=document.getElementById("dbNum"),stepFill=document.getElementById("stepFill"),stepDots=document.getElementById("stepDots"),stepNext=document.getElementById("stepNext"),stepReset=document.getElementById("stepReset");
+STEPS.forEach(function(){var d=document.createElement("span");d.className="sdot";stepDots.appendChild(d);});
+var dots=[].slice.call(stepDots.children);
+function renderStep(){
+if(stepIdx<0){
+dlgWho.className="who res";dlgWho.textContent="Press begin";
+dlgLine.innerHTML="Four turns of a conversation, and one figure that will outlive it.";
+dbNum.innerHTML="?";stepFill.style.width="0%";
+dots.forEach(function(d){d.className="sdot";});
+stepNext.disabled=false;stepNext.textContent="Begin the exchange";
+return;
+}
+var s=STEPS[stepIdx];
+dlgWho.className="who"+(s[0]==="res"?" res":"");
+dlgWho.textContent=s[1];
+dlgLine.innerHTML="&ldquo;"+s[2]+"&rdquo;";
+dots.forEach(function(d,k){d.className="sdot"+(k<=stepIdx?" on":"");});
+stepFill.style.width=Math.round((stepIdx+1)/STEPS.length*100)+"%";
+if(stepIdx>=4){
+var t=5000;
+tween(900,function(p){dbNum.textContent=Math.round(t*p).toLocaleString();});
+}
+stepNext.textContent=stepIdx>=STEPS.length-1?"End of the exchange":"Next turn";
+stepNext.disabled=stepIdx>=STEPS.length-1;
+}
+stepNext.addEventListener("click",function(){if(stepIdx<STEPS.length-1){stepIdx++;renderStep();}});
+stepReset.addEventListener("click",function(){stepIdx=-1;renderStep();});
+renderStep();
+
+/* ---------- Module 4: bias accordion ---------- */
+var BIAS=[
+["Availability Heuristic","We judge by what comes to mind fastest","People estimate likelihood based on how easily examples come to mind.","A leader just heard a story of a huge movement among an unreached people group, so they unconsciously assume similar results are likely elsewhere, even when the data says otherwise."],
+["Scope Insensitivity","Our feelings do not scale with the numbers","People&rsquo;s emotional responses do not scale with numbers.","Told 200 are unreached or told 20,000 are unreached, the urgency we feel is about the same. Massive needs get overlooked because our brains cannot emotionally grasp the scale."],
+["Confirmation Bias","We keep the data that agrees with us","We notice and accept data that confirms what we already believe, while dismissing contradictory evidence.","Networks selectively amplify the reports that fit the narrative they are already telling, and the contrary report never makes the slide deck."],
+["Overconfidence Bias","We trust our own estimates too much","We consistently overestimate the accuracy of our judgments and our data.","An uncertain figure gets presented with unwarranted certainty, and by the third retelling the caveat has fallen off entirely."]
+];
+var biasList=document.getElementById("biasList"),biasFill=document.getElementById("biasFill"),biasClose=document.getElementById("biasClose");
+var opened={};
+BIAS.forEach(function(b,i){
+var wrap=document.createElement("div");
+wrap.className="bi";
+wrap.innerHTML='<button class="bhead" aria-expanded="false"><span class="bnum">'+(i+1)+'</span><span class="btitle">'+b[0]+'<span class="bs">'+b[1]+'</span></span><span class="bchev">&#9662;</span></button><div class="bbody"><div class="binner"><p>'+b[2]+'</p><div class="cost"><span class="cl">How it shows up</span>'+b[3]+'</div></div></div>';
+biasList.appendChild(wrap);
+var head=wrap.querySelector(".bhead");
+function toggle(){
+var isOpen=wrap.classList.toggle("open");
+head.setAttribute("aria-expanded",isOpen?"true":"false");
+if(isOpen){opened[i]=true;}
+var n=Object.keys(opened).length;
+biasFill.style.width=Math.round(n/BIAS.length*100)+"%";
+if(n===BIAS.length){biasClose.style.display="block";}
+}
+head.addEventListener("click",toggle);
+});
+
+/* ---------- Module 5: funding cycle ---------- */
+var cs=document.getElementById("cycleSvg");
+var CN=[
+{x:430,y:70,t1:"DATA",t2:"shapes where money goes"},
+{x:720,y:280,t1:"MONEY",t2:"creates reporting pressure"},
+{x:140,y:280,t1:"PRESSURE",t2:"shapes what gets reported"}
+];
+function arcPath(a,b){
+var mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+var dx=b.x-a.x,dy=b.y-a.y;
+var cx=mx-dy*0.16,cy=my+dx*0.16;
+return "M"+a.x+" "+a.y+" Q"+cx+" "+cy+" "+b.x+" "+b.y;
+}
+var arcs=[];
+for(var ci=0;ci<3;ci++){
+var a=CN[ci],b=CN[(ci+1)%3];
+var p=el("path",{d:arcPath(a,b),fill:"none",stroke:"rgba(28,26,23,.16)","stroke-width":3},cs);
+arcs.push(p);
+}
+var pulse=el("circle",{cx:CN[0].x,cy:CN[0].y,r:0,fill:AMB,opacity:.95},cs);
+CN.forEach(function(n,i){
+el("circle",{cx:n.x,cy:n.y,r:56,fill:i===0?ACC:(i===1?DEEP:AMB)},cs);
+txt(n.x,n.y-2,n.t1,{fill:"#fff","font-size":"16","font-weight":"800","text-anchor":"middle"},cs);
+var words=n.t2.split(" ");
+var l1=words.slice(0,2).join(" "),l2=words.slice(2).join(" ");
+txt(n.x,n.y+74,l1,{fill:MUTE,"font-size":"13","font-weight":"700","text-anchor":"middle"},cs);
+txt(n.x,n.y+92,l2,{fill:MUTE,"font-size":"13","font-weight":"700","text-anchor":"middle"},cs);
+});
+txt(430,196,"AND ALMOST NOTHING FUNDS THE DATA ITSELF",{fill:MUTE,"font-size":"12","font-weight":"700","letter-spacing":"1.6","text-anchor":"middle"},cs);
+var loops=0,running=false;
+var driftFill=document.getElementById("driftFill"),driftTxt=document.getElementById("driftTxt"),cycleCap=document.getElementById("cycleCap"),cycleRun=document.getElementById("cycleRun"),cycleReset=document.getElementById("cycleReset");
+var CAPS=[
+"One pass. A multimillion dollar decision now rests on a picture that money helped shape.",
+"Two passes. The reported figure and the funded figure are now quoting each other.",
+"Three passes. Nobody in the chain is lying, and nobody can point to the original measurement.",
+"Four passes. This is the broken compass. The ship is still moving confidently, just not toward the coast you named."
+];
+function segPoint(path,t){var L=path.getTotalLength();return path.getPointAtLength(L*t);}
+function runLeg(i,done){
+var path=arcs[i];
+tween(760,function(p){
+var pt=segPoint(path,p);
+pulse.setAttribute("cx",pt.x);pulse.setAttribute("cy",pt.y);
+pulse.setAttribute("r",9);
+arcs[i].setAttribute("stroke",ACC);
+arcs[i].setAttribute("stroke-width",4);
+},done);
+}
+function runCycle(){
+if(running)return;
+running=true;cycleRun.disabled=true;
+arcs.forEach(function(a){a.setAttribute("stroke","rgba(28,26,23,.16)");a.setAttribute("stroke-width",3);});
+runLeg(0,function(){runLeg(1,function(){runLeg(2,function(){
+loops++;
+pulse.setAttribute("r",0);
+var pct=Math.min(100,loops*24);
+driftFill.style.width=pct+"%";
+driftTxt.textContent=loops+(loops===1?" loop, drift building":" loops, drift compounding");
+cycleCap.textContent=CAPS[Math.min(loops-1,CAPS.length-1)];
+running=false;cycleRun.disabled=false;
+cycleRun.textContent="Run it again";
+});});});
+}
+cycleRun.addEventListener("click",runCycle);
+cycleReset.addEventListener("click",function(){
+loops=0;driftFill.style.width="0%";driftTxt.textContent="0 loops, no drift yet";
+cycleCap.textContent="Press run to send one report around the loop.";
+cycleRun.textContent="Run the cycle";pulse.setAttribute("r",0);
+arcs.forEach(function(a){a.setAttribute("stroke","rgba(28,26,23,.16)");a.setAttribute("stroke-width",3);});
+});
+
+/* ---------- Module 6: phase track ---------- */
+var PHASES=[
+["Waiting","There is no known reported engagement to establish self-sustaining churches. Where previous efforts have not resulted in ongoing activity, or have not been updated in three years, the group is tagged 0-R to mark that a restart is needed."],
+["Entry","Workers or near-culture believers gain access to the people group and begin laying relational foundations to share Christ and plant churches. The focus is on connecting, learning, and building bridges."],
+["Evangelism","Regular, culturally relevant gospel engagement is taking place, with the intention of planting self-sustaining churches."],
+["Discipleship","Individuals or small clusters respond in repentance and faith. Early discipleship stresses obedience to Scripture, laying foundations for self-sustaining churches consistent with evangelical faith and practice."],
+["Local Church","Believers from the people group gather regularly, functioning as a local church that is consistent with evangelical faith and practice. Leaders from the people group are emerging among these churches."],
+["Reproducing Church","Churches from the people group are sending out evangelists or church planters to plant new churches among their own people. Second-generation groups and churches are forming."],
+["Multiplying Church","Generational church streams spread across the people group, reaching 4th generation or beyond of both churches and leaders. Church network structures empower local oversight."],
+["Sustained Gospel Presence","The people group has either 10 percent or more following Christ and worshipping in churches, or several multiplying church planting networks led by believers from the people group, who are sending workers to other people groups while continuing to mature at home."]
+];
+var ps=document.getElementById("phaseSvg"),phaseRead=document.getElementById("phaseRead");
+var PX0=58,PX1=802,PY=78,GAP=(PX1-PX0)/(PHASES.length-1);
+el("line",{x1:PX0,y1:PY,x2:PX1,y2:PY,stroke:"rgba(28,26,23,.16)","stroke-width":4},ps);
+var litRail=el("line",{x1:PX0,y1:PY,x2:PX0,y2:PY,stroke:TRUE,"stroke-width":4},ps);
+var nodes=[];
+PHASES.forEach(function(ph,i){
+var cx=PX0+GAP*i;
+var g=el("g",{tabindex:"0",role:"button","aria-label":"Phase "+i+", "+ph[0],style:"cursor:pointer"},ps);
+el("circle",{cx:cx,cy:PY,r:26,fill:"transparent"},g);
+var c=el("circle",{cx:cx,cy:PY,r:13,fill:"#fff",stroke:"rgba(28,26,23,.28)","stroke-width":3},g);
+var num=txt(cx,PY+5,String(i),{fill:MUTE,"font-size":"13","font-weight":"800","text-anchor":"middle"},g);
+var words=ph[0].split(" ");
+txt(cx,PY+44,words[0],{fill:MUTE,"font-size":"12.5","font-weight":"700","text-anchor":"middle"},g);
+if(words[1])txt(cx,PY+61,words.slice(1).join(" "),{fill:MUTE,"font-size":"12.5","font-weight":"700","text-anchor":"middle"},g);
+function pick(){select(i);}
+g.addEventListener("click",pick);
+g.addEventListener("mouseenter",pick);
+onKey(g,pick);
+nodes.push({c:c,num:num,cx:cx});
+});
+txt(430,192,"ONE PERCENTAGE CANNOT TELL YOU WHICH OF THESE EIGHT YOU ARE IN",{fill:MUTE,"font-size":"12","font-weight":"700","letter-spacing":"1.4","text-anchor":"middle"},ps);
+var cur=-1;
+function select(i){
+if(cur===i)return;
+var from=cur<0?PX0:nodes[cur].cx,to=nodes[i].cx;
+cur=i;
+nodes.forEach(function(n,k){
+var on=k===i;
+n.c.setAttribute("fill",on?TRUE:"#fff");
+n.c.setAttribute("stroke",on?TRUE:"rgba(28,26,23,.28)");
+n.c.setAttribute("r",on?15:13);
+n.num.setAttribute("fill",on?"#fff":MUTE);
+});
+tween(420,function(p){litRail.setAttribute("x2",from+(to-from)*p);});
+phaseRead.innerHTML='<span class="pn">Phase '+i+": "+PHASES[i][0]+'</span>'+PHASES[i][1];
+}
+})();
+</script>
+</body>
+</html>
