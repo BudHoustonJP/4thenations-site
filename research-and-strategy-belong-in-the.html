@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research and Strategy Belong in the Same Room &middot; Clarity for the Nations</title>
+<meta name="description" content="A report from the Abuja urban missions research and strategy workshop. Mark every guess with a G, ban the shortcut words, split the segment where it fails, and build a strategy on your own research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#0F6E7D;--deep:#094C58;
+--warm:#B8621B;--warmdeep:#8A4712;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+header.hero{background:linear-gradient(160deg,#04262C 0%,var(--deep) 58%,#12808F 100%);color:#F6F4EE;padding:12vh 0 9vh;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.1}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#8FD6DF;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:23ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.82);max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px;flex:1 1 190px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#A9E3EA}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.78);margin-top:.35rem}
+.qband{background:var(--accent);color:#F2FBFC;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:36ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#BEE9EE}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+.ctrllabel{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:0 0 1.3rem}
+.pbar .fill{height:100%;width:0;background:var(--accent);transition:width .4s ease}
+.counters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1.2rem}
+.cnt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.7rem 1.1rem;flex:1 1 140px}
+.cnt .n{font-family:'Fraunces',serif;font-weight:900;font-size:1.6rem;line-height:1;color:var(--accent)}
+.cnt .n.g{color:var(--warm)}
+.cnt .l{font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.25rem}
+.abtn{font:inherit;font-weight:700;font-size:.95rem;padding:.65rem 1.4rem;border-radius:50px;border:none;background:var(--accent);color:#fff;cursor:pointer;transition:filter .2s,opacity .2s}
+.abtn:hover{filter:brightness(1.12)}
+.abtn[disabled]{opacity:.4;cursor:default}
+.abtn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line)}
+.ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:1.2rem}
+
+/* Module 1: profile rows */
+.prow{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;margin-bottom:10px;cursor:pointer;transition:border-color .2s,background .2s}
+.prow:hover{border-color:var(--ink)}
+.prow:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.prow .pq{flex:1;min-width:220px;font-size:.98rem;font-weight:600}
+.prow .pmark{flex:none;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;background:rgba(28,26,23,.07);color:var(--mute);transition:all .2s}
+.prow.known{background:rgba(15,110,125,.06);border-color:var(--accent)}
+.prow.known .pmark{background:var(--accent);color:#fff}
+.prow.guess{background:rgba(184,98,27,.07);border-color:var(--warm)}
+.prow.guess .pmark{background:var(--warm);color:#fff}
+.prow .pfb{flex:1 1 100%;font-size:.85rem;color:var(--mute);margin-top:.1rem}
+.gclose{margin-top:1.1rem;font-size:1rem;font-weight:600;display:none;background:var(--paper);border-left:3px solid var(--warm);border-radius:0 10px 10px 0;padding:.8rem 1rem}
+
+/* Module 2: banned words */
+.words{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1.2rem}
+.wchip{font:inherit;font-weight:700;font-size:.98rem;padding:.55rem 1.15rem;border-radius:50px;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:all .2s}
+.wchip:hover{border-color:var(--ink)}
+.wchip.banned{background:rgba(28,26,23,.06);border-color:transparent;color:rgba(28,26,23,.35);text-decoration:line-through}
+.wread{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.95rem 1.1rem;min-height:6rem;font-size:1rem}
+.wread b{color:var(--accent)}
+
+/* Module 3: split */
+.splitread{margin-top:1.1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.95rem 1.1rem;min-height:5.4rem;font-size:1rem}
+
+/* Module 4: accordion */
+.ti{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
+.ti .thead{width:100%;display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:none;border:none;font:inherit;text-align:left;cursor:pointer}
+.ti .tletter{flex:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-family:'Fraunces',serif;font-weight:900;font-size:1.15rem}
+.ti .ttitle{font-weight:700;font-size:1.06rem;flex:1}
+.ti .ttitle .tsub{display:block;font-size:.82rem;font-weight:600;color:var(--mute);margin-top:.15rem;font-style:italic}
+.ti .tchev{flex:none;font-size:.8rem;color:var(--mute);transition:transform .3s}
+.ti.open .tchev{transform:rotate(180deg)}
+.ti .tbody{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.ti.open .tbody{max-height:420px}
+.ti .tinner{padding:0 1.2rem 1.3rem 1.2rem}
+.ti .tinner p{font-size:.98rem;color:#39342d}
+.ti .pull{margin-top:.8rem;background:var(--paper);border-left:3px solid var(--warm);border-radius:0 10px 10px 0;padding:.7rem .95rem;font-size:.95rem;font-weight:600}
+.taccclose{margin-top:1.1rem;font-size:1rem;font-weight:600;display:none}
+
+/* Module 5: bridge */
+.bridgeread{margin-top:1.1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:6.4rem}
+.bridgeread .bn{display:block;font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;color:var(--warm);margin-bottom:.3rem}
+
+/* Module 6: compare */
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.3rem}
+.segbtn{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem 1.3rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn.on-a{background:var(--warm);border-color:var(--warm);color:#fff}
+.segbtn.on-b{background:var(--accent);border-color:var(--accent);color:#fff}
+.crows{display:flex;flex-direction:column;gap:10px}
+.crow{display:flex;gap:14px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}
+.crow .ck{flex:0 0 150px;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding-top:.15rem}
+.crow .cv{flex:1;min-width:200px;font-size:.98rem}
+.verdict{margin-top:1.3rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem}
+.v-a{background:rgba(184,98,27,.1)} .v-a .tag{background:var(--warm)}
+.v-b{background:rgba(15,110,125,.09)} .v-b .tag{background:var(--accent)}
+.practices{margin-top:1.6rem;border-top:1px solid var(--line);padding-top:1.3rem}
+.practices h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.15rem;margin-bottom:.9rem}
+.practices ol{list-style:none;counter-reset:p}
+.practices li{counter-increment:p;position:relative;padding-left:2.2rem;margin-bottom:.85rem;font-size:.98rem}
+.practices li::before{content:counter(p);position:absolute;left:0;top:.05rem;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:26ch;margin:0 auto 2rem}
+.cta-btn{display:inline-block;background:#A9E3EA;color:var(--deep);text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+@media (max-width:560px){
+.crow .ck{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Field Report, Abuja</div>
+<h1>The person documenting the mission may also be the reason the missionary lived through it.</h1>
+<p class="sub">A report from the departure hall in Abuja, after three days with 50 Nigerian leaders in an urban missions research and strategy workshop. What if Luke had never joined Paul? No Acts. No third Gospel. And a man who was stoned at Lystra, shipwrecked, and beaten repeatedly, traveling without the physician who happened to be on his team.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="50">0</div><div class="l">Nigerian leaders in the room, wrestling with the material rather than observing it</div></div>
+<div class="chip"><div class="n" data-count="3">0</div><div class="l">days, run jointly by Joshua Project and the Nigeria Evangelical Missions Association</div></div>
+<div class="chip"><div class="n" data-count="10">0</div><div class="l">words banned for thirty minutes, so the shortcuts could not do the work</div></div>
+</div>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;Research is not a delay in the work. It is part of the work.&rdquo;</p>
+<p class="q">&ldquo;Babel scattered the peoples. The city gathers them again.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<section class="mod" id="m1">
+<div class="kicker">The one rule the workshop runs on</div>
+<h2>Write what you know, and mark every guess with a G</h2>
+<p class="intro">Participants spent most of Tuesday building an honest profile of one segment they steward. The rule is simple: write what you know, and mark every guess with a G. Every G becomes a research question, because the blanks are findings rather than failures. Work the prompts below on a group you are responsible for. Tap once for known, twice for a guess.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="pFill"></div></div>
+<div class="counters">
+<div class="cnt"><div class="n" id="pKnown">0</div><div class="l">prompts you can actually answer</div></div>
+<div class="cnt"><div class="n g" id="pGuess">0</div><div class="l">research questions you just generated</div></div>
+</div>
+<div id="pList"></div>
+<p class="gclose" id="pClose"></p>
+<p class="note">Prompts taken from the workshop session described in the essay. Where there were knowledge gaps, the workshop introduced ethnographic interviewing. Joshua Project keeps the best available picture of the peoples of the earth and hands it back to the whole body for free. It is a conduit, not a sending agency, and the record about the peoples of a given city ought to be written by the people who live and work among them.</p>
+</div>
+</section>
+
+<section class="mod" id="m2">
+<div class="kicker">Unlearning before contextualizing</div>
+<h2>Ten words, banned for thirty minutes</h2>
+<p class="intro">Monday afternoon the room asked the six worldview questions from Scripture itself. Then they had to articulate a biblical worldview clearly and succinctly with ten words removed. The concepts are not banned. The shortcuts are. Tap each word to ban it and watch what is left to work with.</p>
+<div class="panel">
+<div class="ctrllabel">Tap a word to ban it. Tap again to allow it.</div>
+<div class="words" id="wordList"></div>
+<div class="pbar"><div class="fill" id="wFill"></div></div>
+<div class="wread" id="wRead"></div>
+<p class="note">The point is to get the cultural wrapping off the gospel and off the church before carrying either one into a new context. On Tuesday, the same six questions get asked of a people group, and the distance between the two sets of answers is where contextualization starts. What the essay did not anticipate was how many missionaries named their own need for unlearning.</p>
+</div>
+</section>
+
+<section class="mod" id="m3">
+<div class="kicker">Mapping the city</div>
+<h2>Split it where it fails, then test the pieces again</h2>
+<p class="intro">Abuja is one of the fastest-growing cities in Africa, and much of that growth is in-migration, much of it from the north. So the room mapped it. Name every distinct people in the city, including the ones nobody notices. Test each name against the barriers of understanding and acceptance, split it where it fails, then test the pieces again. Run the test and watch one name become several strategies.</p>
+<div class="panel">
+<svg id="splitSvg" viewBox="0 0 860 330" role="img" aria-label="One named city segment splitting into smaller segments as it is tested against barriers of understanding and acceptance"></svg>
+<div class="ctrls">
+<button class="abtn" id="splitBtn">Test against the barriers</button>
+<button class="abtn ghost" id="splitReset">Reset</button>
+</div>
+<div class="counters" style="margin-top:1.2rem;margin-bottom:0">
+<div class="cnt"><div class="n" id="segCount">1</div><div class="l">segments on the map</div></div>
+<div class="cnt"><div class="n" id="stratCount">1</div><div class="l">strategies this city now requires</div></div>
+</div>
+<div class="splitread" id="splitRead">One name on a list. Press the button to test it.</div>
+<p class="note">Conceptual: this is the method the workshop taught, not a measured census of Abuja. Where a segment carries its own barrier it needs its own strategy, whatever any database happens to call it.</p>
+</div>
+</section>
+
+<section class="mod" id="m4">
+<div class="kicker">Day three: the plan</div>
+<h2>Five parts, and who before what</h2>
+<p class="intro">Day three turned it all into a strategy plan, starting with the question every team has to answer before anything else is worth discussing: where does this work actually stand? The Phases of Engagement give the whole body one shared language for that answer. From there, the plan runs on five parts, and the rule underneath all of them is who before what. Every T after Target begins with a person, not an activity.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="tFill"></div></div>
+<div id="tList"></div>
+<p class="taccclose" id="tClose">Every T after Target begins with a person, not an activity. That is the whole rule.</p>
+<p class="note">The Phases of Engagement are a collaboration between Frontiers, IMB, Joshua Project, Engage Network, Vision 5:9, and Accelerate. See the <a href="https://media.joshuaproject.net/public/assets/media/articles/Engagement-Phases-Toolkit.pdf" target="_blank" rel="noopener">Phases of Engagement Toolkit</a>.</p>
+</div>
+</section>
+
+<section class="mod" id="m5">
+<div class="kicker">The line back home</div>
+<h2>The city is not a detour from frontier work</h2>
+<p class="intro">The frontier has already moved in. But the thing the room refused to give up was the line back home. A believer in the city still has a village network that no urban worker can reach alone, and the traffic runs both directions. Urban ministry and rural ministry among the same people are one work. Tap a node to trace a line.</p>
+<div class="panel">
+<svg id="bridgeSvg" viewBox="0 0 860 400" role="group" aria-label="Northern origin communities on the left connected by arcs to city segments in Abuja on the right. Select a node to trace its line."></svg>
+<div class="bridgeread" id="bridgeRead"><span class="bn">Select a node</span>Tap either side above, or tab to a node and press Enter.</div>
+<p class="note">Conceptual: the argument of the essay, not a measured migration dataset. One conversation the essay did not see coming came out of this exercise. Teams working among prisoners and among women in prostitution started talking with people-group-focused teams, on the straightforward observation that there are people groups inside those populations. Those two rooms had not been introduced before.</p>
+</div>
+</section>
+
+<section class="mod" id="m6">
+<div class="kicker">What continues after the room</div>
+<h2>Three days of training is not the deliverable</h2>
+<p class="intro">What happens in the months after it is. The workshop launched monthly coaching and peer learning with everyone who was there. Each call asks what has moved since the last one, and everyone brings the strategy, because those sheets are meant to be revised rather than filed. Switch between the two ways a training can end.</p>
+<div class="panel">
+<div class="seg" id="aftSeg" role="group" aria-label="Two ways a training can end">
+<button class="segbtn on-a" type="button" data-k="event" aria-pressed="true">Training as an event</button>
+<button class="segbtn" type="button" data-k="system" aria-pressed="false">Training as a system</button>
+</div>
+<div class="crows" id="aftRows"></div>
+<div class="verdict v-a" id="aftVerdict"></div>
+<div class="practices">
+<h3>For your team</h3>
+<ol>
+<li>Would a combined research and strategy workshop serve your network, or are those still two tracks, two audiences, and two budgets?</li>
+<li>For the peoples you are responsible for, is your local strategy built on your own research, or on somebody else&rsquo;s? Do you know what you don&rsquo;t know?</li>
+<li>If you work among a people with both an urban and a rural population, is that one work or two?</li>
+</ol>
+</div>
+<p class="note">The training is built in modules on purpose, so it can be adapted and contextualized to a new setting instead of transplanted. Over the next 6 to 9 months the goal is to run this with national partners in East Africa, Francophone West Africa, and Central Asia. Each carries a different constraint, and the nuance of the workshop will need to change, but the same framework remains.</p>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">Do not build a local strategy from a website.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/research-and-strategy-belong-in-the" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a><br>
+<a class="sub" href="index.html">&#8592; All interactive essays</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+var ACC="#0F6E7D",DEEP="#094C58",WARM="#B8621B",MUTE="#6E665B",INK="#1C1A17";
+
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";},{passive:true});
+
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.12});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+document.querySelectorAll(".chip .n").forEach(function(n){
+var target=parseFloat(n.getAttribute("data-count"));
+tween(1500,function(p){n.textContent=Math.round(target*p).toLocaleString("en-US");});
+});
+
+/* ============ Module 1: the G rule ============ */
+(function(){
+var PROMPTS=[
+{q:"Where do these people gather naturally?",fb:"Not where you have arranged to meet them. Where they already go."},
+{q:"What language do they use at home, and what language do they use in the marketplace?",fb:"Two different answers, and the second one is often the one a stranger hears first."},
+{q:"How are decisions made in this community?",fb:"If you cannot name who decides, you cannot name who needs to hear it."},
+{q:"Were they pushed or pulled into the city?",fb:"Pushed and pulled produce very different postures toward anything new."},
+{q:"How long have they been in the city?",fb:"First generation, second generation, and newly arrived are three different peoples in practice."},
+{q:"Who is it acceptable to marry?",fb:"The clearest single test of where a group draws its own boundary."},
+{q:"What does a family do when a child is sick at two in the morning, after the hospital and the mosque have both failed?",fb:"This is the prompt we are consistently worst at, and it is usually where the real religion is."}
+];
+var list=document.getElementById("pList"),fill=document.getElementById("pFill"),kn=document.getElementById("pKnown"),gs=document.getElementById("pGuess"),closeP=document.getElementById("pClose");
+var state=PROMPTS.map(function(){return null;});
+function update(){
+var k=0,g=0,done=0;
+state.forEach(function(s){if(s){done++;if(s==="known")k++;else g++;}});
+kn.textContent=k;gs.textContent=g;
+fill.style.width=Math.round(done/PROMPTS.length*100)+"%";
+if(done===PROMPTS.length){
+closeP.style.display="block";
+if(g===0)closeP.innerHTML="Seven for seven with no G. That is either a segment you have genuinely lived among, or a profile that has stopped asking. Take the hardest prompt back to a local believer and see whether the answer survives.";
+else closeP.innerHTML="You just generated <b>"+g+" research question"+(g===1?"":"s")+"</b>. The blanks are findings rather than failures. Every G is now something to go and find out, and that list is the actual research agenda for this segment.";
+}else closeP.style.display="none";
+}
+PROMPTS.forEach(function(p,i){
+var d=document.createElement("div");
+d.className="prow";
+d.setAttribute("tabindex","0");
+d.setAttribute("role","button");
+d.setAttribute("aria-label",p.q+" Press Enter to mark known, again to mark as a guess.");
+d.innerHTML='<div class="pmark">?</div><div class="pq">'+p.q+'</div><div class="pfb"></div>';
+function cycle(){
+state[i]=state[i]===null?"known":(state[i]==="known"?"guess":null);
+d.classList.remove("known","guess");
+var mark=d.querySelector(".pmark"),fb=d.querySelector(".pfb");
+if(state[i]===null){mark.textContent="?";fb.textContent="";}
+else if(state[i]==="known"){d.classList.add("known");mark.textContent="✓";fb.textContent="Known. Write it down with the source.";}
+else{d.classList.add("guess");mark.textContent="G";fb.textContent="Marked G. "+p.fb;}
+update();
+}
+d.addEventListener("click",cycle);
+onKey(d,cycle);
+list.appendChild(d);
+});
+update();
+})();
+
+/* ============ Module 2: banned words ============ */
+(function(){
+var WORDS=["sin","salvation","saved","grace","redemption","faith","gospel","blessed","sanctified","righteousness"];
+var host=document.getElementById("wordList"),fill=document.getElementById("wFill"),read=document.getElementById("wRead");
+var banned={};
+function update(){
+var n=Object.keys(banned).filter(function(k){return banned[k];}).length;
+fill.style.width=Math.round(n/WORDS.length*100)+"%";
+var line;
+if(n===0)line="Nothing banned yet. Right now you could explain the whole of Scripture in about four words and never find out whether the person in front of you understood any of them.";
+else if(n<4)line="A few shortcuts gone. Notice what happens to the sentences: they get longer, and they start describing something rather than naming it.";
+else if(n<8)line="Most of the vocabulary is gone. This is the point in the exercise where people stop reciting and start explaining. The concepts are not banned. The shortcuts are.";
+else if(n<10)line="Almost there. Two words left to lean on, and you will lean on them.";
+else line="All ten gone. Now articulate a biblical worldview, clearly and succinctly, for thirty minutes. What is left is the thing itself, with the cultural wrapping off. <b>The distance between how you answer and how a people group answers is where contextualization starts.</b>";
+read.innerHTML="<b>"+n+" of 10</b> banned. "+line;
+}
+WORDS.forEach(function(w){
+var b=document.createElement("button");
+b.className="wchip";
+b.type="button";
+b.textContent=w;
+b.setAttribute("aria-pressed","false");
+b.addEventListener("click",function(){
+banned[w]=!banned[w];
+b.classList.toggle("banned",!!banned[w]);
+b.setAttribute("aria-pressed",banned[w]?"true":"false");
+update();
+});
+host.appendChild(b);
+});
+update();
+})();
+
+/* ============ Module 3: splitting a segment ============ */
+(function(){
+var svg=document.getElementById("splitSvg");
+var CX=430,CY=70;
+var STAGES=[
+{segs:[{n:"One named people in the city",x:430,y:70,w:250}],
+read:"One name on a list. It looks like one people, one plan, one team."},
+{segs:[
+{n:"Long-settled, city-born",x:196,y:180,w:200},
+{n:"Recent northern arrivals",x:430,y:180,w:204},
+{n:"Seasonal traders",x:668,y:180,w:180}
+],
+read:"Tested against the barrier of understanding. Home language, marketplace language, and how long they have been here do not line up. The name failed. Split it."},
+{segs:[
+{n:"Mixed marriage",x:118,y:270,w:140},
+{n:"Endogamous",x:273,y:270,w:140},
+{n:"Pushed in",x:428,y:270,w:140},
+{n:"Pulled in",x:583,y:270,w:140},
+{n:"Seasonal traders",x:738,y:270,w:140}
+],
+read:"Tested again, this time against the barrier of acceptance. Who it is acceptable to marry, and whether they were pushed or pulled, split the pieces further. Each of these carries its own barrier, so each needs its own strategy, whatever any database happens to call it."}
+];
+var layer=el("g",{},svg);
+txt(20,26,"ONE NAME, TESTED AGAINST THE BARRIERS OF UNDERSTANDING AND ACCEPTANCE",{fill:MUTE,"font-size":"11.5","font-weight":"700","letter-spacing":"1.5"},svg);
+txt(20,318,"Conceptual. The method the workshop taught, not a measured census of Abuja.",{fill:MUTE,"font-size":"11.5","font-weight":"600"},svg);
+var btn=document.getElementById("splitBtn"),reset=document.getElementById("splitReset");
+var segCount=document.getElementById("segCount"),stratCount=document.getElementById("stratCount"),read=document.getElementById("splitRead");
+var stage=0;
+function drawStage(idx,animate){
+var st=STAGES[idx];
+var g=el("g",{opacity:animate?0:1},layer);
+if(idx>0){
+STAGES[idx-1].segs.forEach(function(p){
+st.segs.forEach(function(c){
+el("path",{d:"M"+p.x+" "+(p.y+18)+" C"+p.x+" "+(p.y+56)+" "+c.x+" "+(c.y-56)+" "+c.x+" "+(c.y-20),fill:"none",stroke:"rgba(28,26,23,.16)","stroke-width":1.6},g);
+});
+});
+}
+st.segs.forEach(function(s){
+var col=idx===0?ACC:(idx===1?"#12808F":WARM);
+el("rect",{x:s.x-s.w/2,y:s.y-19,width:s.w,height:38,rx:12,fill:"#fff",stroke:col,"stroke-width":2.5},g);
+txt(s.x,s.y+5,s.n,{fill:INK,"font-size":"13.5","font-weight":"700","text-anchor":"middle"},g);
+});
+if(animate)tween(600,function(p){g.setAttribute("opacity",p);});
+return g;
+}
+var drawn=[drawStage(0,false)];
+function advance(){
+if(stage>=STAGES.length-1)return;
+stage++;
+drawn.push(drawStage(stage,true));
+var n=STAGES[stage].segs.length;
+segCount.textContent=n;stratCount.textContent=n;
+read.textContent=STAGES[stage].read;
+btn.textContent=stage>=STAGES.length-1?"No further split needed":"Test the pieces again";
+btn.disabled=stage>=STAGES.length-1;
+}
+btn.addEventListener("click",advance);
+reset.addEventListener("click",function(){
+while(layer.firstChild)layer.removeChild(layer.firstChild);
+stage=0;drawn=[drawStage(0,false)];
+segCount.textContent="1";stratCount.textContent="1";
+read.textContent=STAGES[0].read;
+btn.textContent="Test against the barriers";btn.disabled=false;
+});
+read.textContent=STAGES[0].read;
+})();
+
+/* ============ Module 4: the five T's ============ */
+(function(){
+var TS=[
+{l:"T",n:"Target",q:"What is success?",b:"One people group, or one segment inside it, with the brutal facts. Not a region, not a city, not a category. The thing you can actually name and describe.",p:"Start here, because every other T depends on the answer."},
+{l:"T",n:"Teaming",q:"Who do we trust?",b:"Names, never categories. What only that person can do, who asks them, and by when. A plan that says the church will do it has not named anyone, which means nobody has agreed to anything.",p:"Who before what."},
+{l:"T",n:"Tools",q:"What do we do?",b:"What exists in the heart language, what has to be made, what can be adapted, and what we are using now that should stop. That last one is the question teams skip.",p:"A tool nobody can use without you is not a tool. It is a bottleneck with your name on it."},
+{l:"T",n:"Training",q:"How do we reproduce?",b:"What each person on the Teaming list must be able to do that they cannot do today, and who trains the trainer after that. If the answer stops with you, the plan stops with you.",p:"Reproduction is a named gap on a named person, not a hope."},
+{l:"T",n:"Tracking",q:"How are we doing?",b:"Three things, chosen because they move the work out of its current phase rather than because they are easy to count. Most tracking measures activity, which is why most tracking never changes a decision.",p:"Chosen for phase movement, not for convenience."}
+];
+var host=document.getElementById("tList"),fill=document.getElementById("tFill"),closeP=document.getElementById("tClose");
+var opened={};
+TS.forEach(function(t,i){
+var d=document.createElement("div");
+d.className="ti";
+d.innerHTML='<button class="thead" type="button" aria-expanded="false"><span class="tletter">'+t.l+'</span>'+
+'<span class="ttitle">'+t.n+'<span class="tsub">'+t.q+'</span></span>'+
+'<span class="tchev">&#9662;</span></button>'+
+'<div class="tbody"><div class="tinner"><p>'+t.b+'</p><div class="pull">'+t.p+'</div></div></div>';
+var head=d.querySelector(".thead");
+head.addEventListener("click",function(){
+var open=d.classList.toggle("open");
+head.setAttribute("aria-expanded",open?"true":"false");
+if(open)opened[i]=true;
+var n=Object.keys(opened).length;
+fill.style.width=Math.round(n/TS.length*100)+"%";
+closeP.style.display=(n===TS.length)?"block":"none";
+});
+host.appendChild(d);
+});
+})();
+
+/* ============ Module 5: the line back home ============ */
+(function(){
+var svg=document.getElementById("bridgeSvg");
+var LX=178,RX=682,TOP=78,GAP=62;
+var LEFT=[
+{n:"Northern village, origin",d:"The believer in the city came from here, and the network here is still live. No urban worker can reach it alone."},
+{n:"Rural extended family",d:"Decisions about a new thing are still made partly here, hundreds of kilometres from the city church that thinks it is discipling one individual."},
+{n:"Seasonal migration route",d:"People move both ways along it. So does anything they carry, including a message."},
+{n:"Home language community",d:"The language used at home in the city is the language of this place, not the language of the marketplace."}
+];
+var RIGHT=[
+{n:"Abuja city segment",d:"Abuja is one of the fastest-growing cities in Africa, and much of that growth is in-migration, much of it from the north. The frontier has already moved in."},
+{n:"Urban believer",d:"A believer in the city still has a village network that no urban worker can reach alone, and the traffic runs both directions."},
+{n:"City congregation",d:"If it treats the urban member as a solo convert, it has thrown away the one bridge it was handed."},
+{n:"Prison and vulnerable",d:"Teams working among prisoners and among women in prostitution started talking with people-group-focused teams, on the observation that there are people groups inside those populations. Those two rooms had not been introduced before."}
+];
+txt(20,32,"BABEL SCATTERED THE PEOPLES. THE CITY GATHERS THEM AGAIN.",{fill:MUTE,"font-size":"11.5","font-weight":"700","letter-spacing":"1.5"},svg);
+txt(LX,56,"ORIGIN",{fill:WARM,"font-size":"12","font-weight":"800","letter-spacing":"1.6","text-anchor":"middle"},svg);
+txt(RX,56,"CITY",{fill:ACC,"font-size":"12","font-weight":"800","letter-spacing":"1.6","text-anchor":"middle"},svg);
+txt(20,376,"Conceptual. The argument of the essay, not a measured migration dataset.",{fill:MUTE,"font-size":"11.5","font-weight":"600"},svg);
+var arcLayer=el("g",{},svg);
+var arcs=[];
+LEFT.forEach(function(l,i){
+RIGHT.forEach(function(r,j){
+var y1=TOP+i*GAP,y2=TOP+j*GAP;
+var a=el("path",{d:"M"+(LX+96)+" "+y1+" C"+(LX+230)+" "+y1+" "+(RX-230)+" "+y2+" "+(RX-96)+" "+y2,fill:"none",stroke:"rgba(28,26,23,.1)","stroke-width":1.4},arcLayer);
+arcs.push({a:a,i:i,j:j});
+});
+});
+var read=document.getElementById("bridgeRead");
+var nodes=[];
+function node(side,item,idx){
+var x=side==="L"?LX:RX;
+var y=TOP+idx*GAP;
+var col=side==="L"?WARM:ACC;
+var g=el("g",{tabindex:"0",role:"button",style:"cursor:pointer","aria-label":item.n+". Press Enter to trace its lines."},svg);
+el("rect",{x:x-96,y:y-19,width:192,height:38,rx:12,fill:"transparent"},g);
+var box=el("rect",{x:x-96,y:y-19,width:192,height:38,rx:12,fill:"#fff",stroke:col,"stroke-width":2,opacity:0},g);
+var t=txt(x,y+5,item.n,{fill:INK,"font-size":"12.5","font-weight":"700","text-anchor":"middle",opacity:0},g);
+var rec={g:g,box:box,t:t,side:side,idx:idx,item:item,col:col};
+nodes.push(rec);
+function show(){
+nodes.forEach(function(n){n.box.setAttribute("stroke-width",n===rec?3.5:2);});
+arcs.forEach(function(o){
+var hit=(side==="L")?(o.i===idx):(o.j===idx);
+o.a.setAttribute("stroke",hit?col:"rgba(28,26,23,.08)");
+o.a.setAttribute("stroke-width",hit?2.6:1.2);
+});
+read.innerHTML='<span class="bn">'+item.n+'</span><div>'+item.d+'</div>';
+}
+g.addEventListener("click",show);
+g.addEventListener("mouseenter",show);
+onKey(g,show);
+}
+LEFT.forEach(function(l,i){node("L",l,i);});
+RIGHT.forEach(function(r,j){node("R",r,j);});
+var did=false;
+var io5=new IntersectionObserver(function(es){es.forEach(function(en){
+if(en.isIntersecting&&!did){did=true;
+nodes.forEach(function(n,i){
+setTimeout(function(){tween(480,function(p){n.box.setAttribute("opacity",p);n.t.setAttribute("opacity",p);});},i*90);
+});
+io5.unobserve(en.target);}
+});},{threshold:.22});
+io5.observe(document.getElementById("m5"));
+})();
+
+/* ============ Module 6: event vs system ============ */
+(function(){
+var AFT={
+event:{
+rows:[
+["What is delivered","Three days of content, a binder, and a good closing session."],
+["What happens next","The sheets get filed. The energy decays on a schedule nobody tracks."],
+["Who owns the material","The trainer, because it was designed to be transplanted rather than adapted."],
+["What multiplies","Attendance at the next event."]
+],
+verdict:["Training as an event","Three days of training is not the deliverable. If nothing is built to catch what happens in the months after it, the room was the whole product."],
+cls:"v-a"
+},
+system:{
+rows:[
+["What is delivered","The same three days, plus monthly coaching and peer learning with everyone who was there."],
+["What happens next","Each call asks what has moved since the last one, and everyone brings the strategy, because those sheets are meant to be revised rather than filed."],
+["Who owns the material","The participants. It is built in modules on purpose, so it can be adapted and contextualized to a new setting instead of transplanted."],
+["What multiplies","The training itself. On the last day, a leader in the national missions movement committed to seeing it multiply across every zone in Nigeria. He had been in the room the whole three days, wrestling with the material rather than observing it."]
+],
+verdict:["Training as a system","What works in Abuja alone cannot serve other contexts effectively. Over the next 6 to 9 months the goal is to run this with national partners in East Africa, Francophone West Africa, and Central Asia. Each carries a different constraint, and the nuance will change, but the same framework remains."],
+cls:"v-b"
+}
+};
+var seg=document.getElementById("aftSeg"),rows=document.getElementById("aftRows"),verdict=document.getElementById("aftVerdict");
+function render(k){
+var d=AFT[k];
+rows.innerHTML=d.rows.map(function(r){return '<div class="crow"><div class="ck">'+r[0]+'</div><div class="cv">'+r[1]+'</div></div>';}).join("");
+verdict.className="verdict "+d.cls;
+verdict.innerHTML='<span class="tag">'+d.verdict[0]+'</span><div>'+d.verdict[1]+'</div>';
+}
+seg.querySelectorAll(".segbtn").forEach(function(b){
+b.addEventListener("click",function(){
+seg.querySelectorAll(".segbtn").forEach(function(x){x.classList.remove("on-a","on-b");x.setAttribute("aria-pressed","false");});
+var k=b.getAttribute("data-k");
+b.classList.add(k==="event"?"on-a":"on-b");
+b.setAttribute("aria-pressed","true");
+render(k);
+});
+});
+render("event");
+})();
+
+})();
+</script>
+</body>
+</html>

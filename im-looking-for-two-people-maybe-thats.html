@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I&rsquo;m Looking for Two People &middot; Clarity for the Nations</title>
+<meta name="description" content="Two support-raised leadership roles on the Joshua Project People Group Data team: Research Operations Coordinator, and Director of Field Research and Partnerships. Explore both roles and check your own fit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#1E5AA8;--deep:#123C74;
+--warm:#C2761A;--warmdeep:#8F5410;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--accent);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+header.hero{background:linear-gradient(160deg,#07203F 0%,var(--deep) 58%,#2669BE 100%);color:#F6F4EE;padding:12vh 0 9vh;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.1}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#9CC4F0;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:23ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.82);max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px;flex:1 1 190px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#B9D6F7}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.78);margin-top:.35rem}
+.qband{background:var(--accent);color:#F5F9FF;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:36ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#C9DDF7}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+.ctrllabel{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+input[type=range]{width:100%;accent-color:var(--accent);height:34px;cursor:pointer;display:block}
+.slabels{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--mute);margin-top:.1rem}
+.slabels span{flex:1;text-align:center}
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:0 0 1.3rem}
+.pbar .fill{height:100%;width:0;background:var(--accent);transition:width .4s ease}
+.counters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1.2rem}
+.cnt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.7rem 1.1rem;flex:1 1 140px}
+.cnt .n{font-family:'Fraunces',serif;font-weight:900;font-size:1.6rem;line-height:1;color:var(--accent)}
+.cnt .l{font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.25rem}
+.abtn{font:inherit;font-weight:700;font-size:.95rem;padding:.65rem 1.4rem;border-radius:50px;border:none;background:var(--accent);color:#fff;cursor:pointer;transition:filter .2s,opacity .2s}
+.abtn:hover{filter:brightness(1.12)}
+.abtn[disabled]{opacity:.4;cursor:default}
+.abtn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line)}
+.ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:1.2rem}
+
+/* segmented role explorer */
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.3rem}
+.segbtn{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem 1.3rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s;text-align:left}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn.on-a{background:var(--accent);border-color:var(--accent);color:#fff}
+.segbtn.on-b{background:var(--warm);border-color:var(--warm);color:#fff}
+.crows{display:flex;flex-direction:column;gap:10px}
+.crow{display:flex;gap:14px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}
+.crow .ck{flex:0 0 160px;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding-top:.15rem}
+.crow .cv{flex:1;min-width:200px;font-size:.98rem}
+.crow .cv ul{margin:.2rem 0 0 1.1rem}
+.crow .cv li{margin-bottom:.3rem}
+.verdict{margin-top:1.3rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem}
+.v-a{background:rgba(30,90,168,.09)} .v-a .tag{background:var(--accent)}
+.v-b{background:rgba(194,118,26,.1)} .v-b .tag{background:var(--warm)}
+.support{margin-top:1.1rem;background:var(--paper);border-left:3px solid var(--warm);border-radius:0 10px 10px 0;padding:.8rem 1rem;font-size:.95rem;font-weight:600}
+
+/* fit check */
+.fit{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;margin-bottom:10px;cursor:pointer;transition:border-color .2s,background .2s}
+.fit:hover{border-color:var(--ink)}
+.fit:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.fit .fbox{flex:none;width:26px;height:26px;border-radius:8px;border:2px solid rgba(28,26,23,.25);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;color:transparent;transition:all .2s;margin-top:.15rem}
+.fit .ft{flex:1;min-width:200px;font-size:.98rem;font-weight:600}
+.fit .ft small{display:block;font-weight:500;color:var(--mute);font-size:.85rem;margin-top:.15rem}
+.fit.on{background:rgba(30,90,168,.06);border-color:var(--accent)}
+.fit.on .fbox{background:var(--accent);border-color:var(--accent);color:#fff}
+.fitverdict{margin-top:1.1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:5.6rem;font-size:1rem}
+.fitverdict b{color:var(--accent)}
+
+/* network */
+.netread{margin-top:1.1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:6rem}
+.netread .nn{display:block;font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem;color:var(--accent);margin-bottom:.3rem}
+
+/* slider balance */
+.balread{margin-top:1.3rem;font-size:1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.95rem 1.1rem;min-height:6rem}
+.balread b{color:var(--accent)}
+.baltag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .75rem;border-radius:50px;color:#fff;margin-bottom:.5rem;background:var(--mute)}
+.bt-info{background:var(--warm)} .bt-enth{background:#8E3B2E} .bt-tissue{background:var(--accent)}
+
+/* queue */
+.dialog{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:6.6rem}
+.dialog .who{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.dialog .line{font-size:1.02rem}
+.stagedots{display:flex;gap:7px;margin-top:.9rem}
+.sdot{width:9px;height:9px;border-radius:50%;background:rgba(28,26,23,.18);transition:background .3s}
+.sdot.on{background:var(--accent)}
+
+.cta-block{margin-top:1.6rem;border-top:1px solid var(--line);padding-top:1.3rem}
+.cta-block h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.15rem;margin-bottom:.7rem}
+.cta-block p{font-size:.98rem;margin-bottom:.7rem}
+.cta-block a.inline{font-weight:700;color:var(--accent)}
+
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:28ch;margin:0 auto 2rem}
+.cta-btn{display:inline-block;background:#B9D6F7;color:var(--deep);text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s;margin:.4rem}
+.cta-btn.alt{background:transparent;color:#B9D6F7;border:2px solid rgba(185,214,247,.5)}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+@media (max-width:560px){
+.crow .ck{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Joshua Project Research Team</div>
+<h1>I need two people. I am not going to bury this at the end of a long article.</h1>
+<p class="sub">The People Group Data team at Joshua Project is not the same team it was two years ago. National and regional representatives across five continents. A growing network of local nationals, researchers, and mobilizers doing the kind of embedded, relational work no remote database team can do alone. The infrastructure to sustain it is still catching up.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="16000">0</div><div class="l">people groups currently tracked, and we are asking harder questions about all of them</div></div>
+<div class="chip"><div class="n" data-count="5">0</div><div class="l">continents where representatives are already active</div></div>
+<div class="chip"><div class="n" data-count="2">0</div><div class="l">people needed, both support-raised, both leadership roles</div></div>
+</div>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;Research that does not mobilize is just information. Mobilization without research is just enthusiasm.&rdquo;</p>
+<p class="q">&ldquo;Neither role is for someone looking for a safe corner of the organization.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<section class="mod" id="m1">
+<div class="kicker">The two roles</div>
+<h2>One keeps the machine running. One builds the network that feeds it.</h2>
+<p class="intro">These are counterparts, not duplicates. Switch between them to see what each one owns, what it is not, and what success looks like. Both are support-raised ministry roles rather than salaried positions.</p>
+<div class="panel">
+<div class="seg" id="roleSeg" role="group" aria-label="The two open roles">
+<button class="segbtn on-a" type="button" data-k="ops" aria-pressed="true">Research Operations Coordinator</button>
+<button class="segbtn" type="button" data-k="field" aria-pressed="false">Director of Field Research and Partnerships</button>
+</div>
+<div class="crows" id="roleRows"></div>
+<div class="verdict v-a" id="roleVerdict"></div>
+<div class="support" id="roleSupport"></div>
+<p class="note">Role descriptions summarized from the announcement. Full job descriptions are available from Joshua Project. Both are strategic, and both are opportunistic in the best sense of the word: the infrastructure for sustained, trusted engagement with frontier peoples is being built in real time, and these roles are part of that build.</p>
+</div>
+</section>
+
+<section class="mod" id="m2">
+<div class="kicker">The connective tissue</div>
+<h2>Neither half works alone</h2>
+<p class="intro">Joshua Project exists to help the global Church find the gaps and close them. Slide toward either extreme and watch what the work degrades into. The two open roles exist to hold the middle.</p>
+<div class="panel">
+<svg id="balSvg" viewBox="0 0 860 250" role="img" aria-label="A balance between pure research and pure mobilization, with the connective tissue in the middle"></svg>
+<div class="ctrllabel" style="margin-top:1rem">Slide between pure research and pure mobilization</div>
+<input type="range" id="balSlider" min="0" max="100" step="1" value="50" aria-label="Balance between research only and mobilization only">
+<div class="slabels"><span>Research only</span><span>Leaning research</span><span>Connective tissue</span><span>Leaning mobilization</span><span>Mobilization only</span></div>
+<div class="balread" id="balRead"></div>
+<p class="note">Conceptual: the argument of the announcement, not a measured index. God&rsquo;s endgame is not information. It is worshippers: a great multitude that no one could number, from every nation, from all tribes and peoples and languages, standing before the throne and before the Lamb (Revelation 7:9).</p>
+</div>
+</section>
+
+<section class="mod" id="m3">
+<div class="kicker">The field-facing role</div>
+<h2>A network across five world regions</h2>
+<p class="intro">The Director of Field Research and Partnerships oversees the representative network across North America, South America, Europe, Africa, and West and Central Asia. It is a global supervisory position, worked through Regional Coordinators and alongside national reps. Tap a region to see what the role does there.</p>
+<div class="panel">
+<svg id="netSvg" viewBox="0 0 860 400" role="group" aria-label="A hub connected to five world regions. Select a region to read what the role does there."></svg>
+<div class="ctrls">
+<button class="abtn" id="netDeploy">Fan out the network</button>
+<button class="abtn ghost" id="netReset">Reset</button>
+</div>
+<div class="netread" id="netRead"><span class="nn">Select a region</span>Fan out the network, then tap a region, or tab to one and press Enter.</div>
+<p class="note">Regions are the five the announcement names. Recruiting happens where the network is thin. Fluency in English is required, and additional language ability is a strong advantage given the regions served. This role may be based anywhere in the world.</p>
+</div>
+</section>
+
+<section class="mod" id="m4">
+<div class="kicker">The internal role</div>
+<h2>Intake to decision, with nothing falling through</h2>
+<p class="intro">The Research Operations Coordinator owns the intake-to-decision workflow for incoming field submissions and change requests. This is not a purely administrative role. Every accepted change needs a source citation, and the team&rsquo;s work has to be defensible and transferable. Step a submission through the workflow.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="qFill"></div></div>
+<div class="counters">
+<div class="cnt"><div class="n" id="qStage">0</div><div class="l">of 6 workflow stages</div></div>
+<div class="cnt"><div class="n" id="qCite">0</div><div class="l">source citations attached before a change is accepted</div></div>
+</div>
+<div class="dialog" id="qDlg">
+<div class="who" id="qWho">Press begin</div>
+<div class="line" id="qLine">A field submission arrives from a national representative. Follow it to a decision.</div>
+</div>
+<div class="ctrls">
+<button class="abtn" id="qNext">Begin the workflow</button>
+<button class="abtn ghost" id="qReset">Reset</button>
+</div>
+<div class="stagedots" id="qDots" aria-hidden="true"></div>
+<p class="note">Workflow stages illustrate the responsibilities named in the announcement: the research queue with clear status, owner, and due date for every active item, documentation standards, naming conventions, version control, evidence quality, and monthly reporting to the Director of People Group Data.</p>
+</div>
+</section>
+
+<section class="mod" id="m5">
+<div class="kicker">Who should apply</div>
+<h2>Check the baseline honestly</h2>
+<p class="intro">Both positions share a common baseline. Tap each item you can say yes to. Then keep going into the role-specific items, because the two roles diverge sharply after the baseline.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="fitFill"></div></div>
+<div id="fitList"></div>
+<div class="fitverdict" id="fitVerdict"></div>
+<div class="cta-block">
+<h3>If this is you, or if you know someone</h3>
+<p>Full job descriptions for both roles are available from Joshua Project. Reach out directly at <a class="inline" href="mailto:bud@joshuaproject.net">bud@joshuaproject.net</a>, or visit <a class="inline" href="https://joshuaproject.net" target="_blank" rel="noopener">joshuaproject.net</a> to learn more about the team and mission.</p>
+<p>Both positions are support-raised. Not a salary, but a support-raised ministry role. Joshua Project may assist with travel and ministry expenses, but the worker funds their own position through donors and supporting churches.</p>
+</div>
+<p class="note">Baseline and role-specific criteria taken from the announcement. This self-check is a reading aid, not an application.</p>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">The global Church does not need more inspiration. It needs more skilled, Spirit-led people.</p>
+<a class="cta-btn" href="mailto:bud@joshuaproject.net">Email Bud directly &#8594;</a>
+<a class="cta-btn alt" href="https://clarity4thenations.substack.com/p/im-looking-for-two-people-maybe-thats" target="_blank" rel="noopener">Read the full post &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a><br>
+<a class="sub" href="index.html">&#8592; All interactive essays</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+var ACC="#1E5AA8",DEEP="#123C74",WARM="#C2761A",MUTE="#6E665B",INK="#1C1A17";
+
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";},{passive:true});
+
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.12});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+document.querySelectorAll(".chip .n").forEach(function(n){
+var target=parseFloat(n.getAttribute("data-count"));
+tween(1600,function(p){n.textContent=Math.round(target*p).toLocaleString("en-US");});
+});
+
+/* ============ Module 1: role explorer ============ */
+(function(){
+var ROLES={
+ops:{
+rows:[
+["What it is","An internal leadership role. The Coordinator sits at the center of the People Group Data team&rsquo;s workflow and makes sure research actually moves."],
+["What it owns","Day-to-day supervision of Research Associates, the intake-to-decision workflow for field submissions and change requests, documentation standards, evidence quality, and the quarterly research priority agenda."],
+["What it is not","Not a purely administrative role. The Coordinator needs to understand people group concepts, evaluate source reliability, and coach researchers in ethnographic reasoning and cross-cultural correspondence."],
+["Key responsibilities","<ul><li>Supervise Research Associates: assign work, hold one-on-ones, conduct performance reviews</li><li>Own the research queue with clear status, owner, and due date for every active item</li><li>Maintain documentation standards, naming conventions, and version control</li><li>Systematically audit the database for gaps, stale records, and missing profiles</li><li>Set and publish quarterly priorities for proactive data gathering</li><li>Report monthly to the Director of People Group Data</li></ul>"],
+["Who it is for","Someone with supervisory or team-lead experience, strong organizational instincts, and the ability to hold a complex workflow together across a geographically distributed team."]
+],
+verdict:["Research Operations Coordinator","This person is the one who makes sure nothing falls through the cracks, that every accepted change has a source citation, and that the team&rsquo;s work is defensible and transferable. It is a leadership role for someone who has both operational instincts and genuine missions conviction."],
+cls:"v-a",
+support:"This position is support-raised. It is not a salaried position. The person who fills this role will need to build a donor base to fund their work."
+},
+field:{
+rows:[
+["What it is","The field-facing counterpart. If the Coordinator keeps the machine running, this role builds and sustains the network that feeds it."],
+["What it owns","The representative network across North America, South America, Europe, Africa, and West and Central Asia. A global supervisory position, worked through Regional Coordinators and alongside national reps."],
+["What success looks like","A growing, well-trained, well-supported rep network whose field evidence is trusted, whose national relationships are durable, and whose work moves the global Church from awareness to engagement among unreached and frontier peoples."],
+["Key responsibilities","<ul><li>Recruit Regional Coordinators and national representatives to fill priority gaps</li><li>Equip reps in people group research, missions networking, and local church mobilization</li><li>Supervise Regional Coordinators and coach them in developing their own national reps</li><li>Establish and enforce the monthly reporting rhythm across the network</li><li>Set field research priorities by region in coordination with the Director of People Group Data</li><li>Travel internationally as needed to visit representatives and attend regional gatherings</li></ul>"],
+["Who it is for","Someone who has already done cross-cultural missions work, is respected in the missions community, and has the relational range to work credibly across multiple cultures and world regions. Fluency in English required, additional languages a strong advantage. May be based anywhere in the world."]
+],
+verdict:["Director of Field Research and Partnerships","Recruiting where the network is thin, equipping reps in their three core responsibilities (research, networking, and mobilization), and coaching them toward measurable outcomes in their assigned countries."],
+cls:"v-b",
+support:"This position is also support-raised. Same deal: not a salary, but a support-raised ministry role. Joshua Project may assist with travel and ministry expenses, but the worker funds their own position through donors and supporting churches."
+}
+};
+var seg=document.getElementById("roleSeg"),rows=document.getElementById("roleRows"),verdict=document.getElementById("roleVerdict"),support=document.getElementById("roleSupport");
+function render(k){
+var d=ROLES[k];
+rows.innerHTML=d.rows.map(function(r){return '<div class="crow"><div class="ck">'+r[0]+'</div><div class="cv">'+r[1]+'</div></div>';}).join("");
+verdict.className="verdict "+d.cls;
+verdict.innerHTML='<span class="tag">'+d.verdict[0]+'</span><div>'+d.verdict[1]+'</div>';
+support.textContent=d.support;
+}
+seg.querySelectorAll(".segbtn").forEach(function(b){
+b.addEventListener("click",function(){
+seg.querySelectorAll(".segbtn").forEach(function(x){x.classList.remove("on-a","on-b");x.setAttribute("aria-pressed","false");});
+var k=b.getAttribute("data-k");
+b.classList.add(k==="ops"?"on-a":"on-b");
+b.setAttribute("aria-pressed","true");
+render(k);
+});
+});
+render("ops");
+})();
+
+/* ============ Module 2: balance slider ============ */
+(function(){
+var svg=document.getElementById("balSvg");
+var X0=90,X1=770,BY=118;
+el("line",{x1:X0,y1:BY,x2:X1,y2:BY,stroke:"rgba(28,26,23,.14)","stroke-width":6,"stroke-linecap":"round"},svg);
+var mid=(X0+X1)/2;
+el("rect",{x:mid-92,y:BY-40,width:184,height:80,rx:14,fill:"rgba(30,90,168,.1)",stroke:ACC,"stroke-width":1.5,"stroke-dasharray":"7 5"},svg);
+txt(mid,BY-52,"THE CONNECTIVE TISSUE",{fill:DEEP,"font-size":"12","font-weight":"800","letter-spacing":"1.6","text-anchor":"middle"},svg);
+txt(X0,BY+62,"RESEARCH ONLY",{fill:WARM,"font-size":"12","font-weight":"800","letter-spacing":"1.4","text-anchor":"start"},svg);
+txt(X1,BY+62,"MOBILIZATION ONLY",{fill:"#8E3B2E","font-size":"12","font-weight":"800","letter-spacing":"1.4","text-anchor":"end"},svg);
+txt(X0,34,"WHAT THE WORK DEGRADES INTO AT EITHER EXTREME",{fill:MUTE,"font-size":"11.5","font-weight":"700","letter-spacing":"1.5"},svg);
+var beamL=el("rect",{x:X0,y:BY-11,width:0,height:22,rx:8,fill:WARM,opacity:.6},svg);
+var beamR=el("rect",{x:mid,y:BY-11,width:0,height:22,rx:8,fill:"#8E3B2E",opacity:.6},svg);
+var knob=el("circle",{cx:mid,cy:BY,r:17,fill:ACC,stroke:"#fff","stroke-width":4},svg);
+var kLab=txt(mid,BY-30,"balanced",{fill:DEEP,"font-size":"13","font-weight":"800","text-anchor":"middle"},svg);
+txt(X0,222,"Conceptual. The argument of the announcement, not a measured index.",{fill:MUTE,"font-size":"11.5","font-weight":"600"},svg);
+var slider=document.getElementById("balSlider"),read=document.getElementById("balRead");
+function draw(){
+var v=parseInt(slider.value,10);
+var x=X0+(v/100)*(X1-X0);
+knob.setAttribute("cx",x);
+var lx=Math.max(X0+40,Math.min(X1-40,x));
+kLab.setAttribute("x",lx);
+if(x<mid){beamL.setAttribute("x",x);beamL.setAttribute("width",mid-x);beamR.setAttribute("width",0);}
+else{beamR.setAttribute("x",mid);beamR.setAttribute("width",x-mid);beamL.setAttribute("width",0);}
+var tag,cls,line,lab;
+if(v<20){lab="research only";cls="bt-info";tag="Just information";line="A database nobody acts on. Every data point, every field submission, every verified update is meant to be a small act of stewardship in service of worshippers from every people group. Detached from mobilization it is a well-cited archive.";}
+else if(v<42){lab="leaning research";cls="bt-info";tag="Careful, and slow to move";line="The evidence is strong and the queue is clean, and the global Church is still duplicating effort because nobody carried the findings to the people who would act on them.";}
+else if(v<=58){lab="balanced";cls="bt-tissue";tag="The connective tissue";line="<b>This is what the two roles are for.</b> Research that mobilizes, and mobilization that is built on evidence someone can defend. Joshua Project exists to help the global Church find the gaps and close them, at a global scale.";}
+else if(v<=80){lab="leaning mobilization";cls="bt-enth";tag="Fast, and thinly sourced";line="Plenty of movement, and the field evidence underneath it is stale or unverified. Teams end up working groups that are already engaged while genuinely untouched ones wait.";}
+else{lab="mobilization only";cls="bt-enth";tag="Just enthusiasm";line="Real conviction, aimed by nothing. This is the failure mode that feels the best from inside, which is exactly why it needs the other half.";}
+kLab.textContent=lab;
+read.innerHTML='<span class="baltag '+cls+'">'+tag+'</span><div>'+line+'</div>';
+}
+slider.addEventListener("input",draw);
+draw();
+})();
+
+/* ============ Module 3: network fan-out ============ */
+(function(){
+var svg=document.getElementById("netSvg");
+var CX=430,CY=196,R=138;
+var REGIONS=[
+{n:"North America",a:-150,d:"Home to much of the historic sending base and much of the duplicated effort. Recruiting here means finding reps who will do research rather than repackage it."},
+{n:"South America",a:-74,d:"A growing sending force with deep cross-cultural range. The role recruits Regional Coordinators and national reps to fill priority gaps like this one."},
+{n:"Europe",a:-42,d:"Diaspora communities from nearly every unreached people on earth. The reps here work groups that no longer require a visa to reach."},
+{n:"Africa",a:12,d:"Where the network is densest and the frontier is closest. Reps are equipped in their three core responsibilities: research, networking, and local church mobilization."},
+{n:"West and Central Asia",a:66,d:"The hardest access and the thinnest coverage. Field evidence from here has to be trusted, and building that trust is relational work done in person."}
+];
+txt(20,32,"ONE HUB, FIVE WORLD REGIONS, WORKED THROUGH REGIONAL COORDINATORS",{fill:MUTE,"font-size":"11.5","font-weight":"700","letter-spacing":"1.5"},svg);
+txt(20,382,"Regions as named in the announcement. Placement is schematic, not geographic.",{fill:MUTE,"font-size":"11.5","font-weight":"600"},svg);
+var lines=[],nodes=[];
+REGIONS.forEach(function(r){
+var rad=r.a*Math.PI/180;
+r.tx=CX+Math.cos(rad)*R;
+r.ty=CY+Math.sin(rad)*R;
+var ln=el("line",{x1:CX,y1:CY,x2:CX,y2:CY,stroke:"rgba(30,90,168,.32)","stroke-width":2.4},svg);
+lines.push(ln);
+});
+el("circle",{cx:CX,cy:CY,r:52,fill:ACC},svg);
+txt(CX,CY-4,"Joshua",{fill:"#fff","font-size":"14","font-weight":"800","text-anchor":"middle"},svg);
+txt(CX,CY+15,"Project",{fill:"#fff","font-size":"14","font-weight":"800","text-anchor":"middle"},svg);
+var read=document.getElementById("netRead");
+REGIONS.forEach(function(r,i){
+var g=el("g",{tabindex:"0",role:"button",style:"cursor:pointer","aria-label":r.n+". Press Enter to read."},svg);
+var hit=el("circle",{cx:CX,cy:CY,r:26,fill:"transparent"},g);
+var c=el("circle",{cx:CX,cy:CY,r:0,fill:"#fff",stroke:WARM,"stroke-width":3.5},g);
+var anch=r.tx<CX-20?"end":(r.tx>CX+20?"start":"middle");
+var t=txt(CX,CY,r.n,{fill:INK,"font-size":"13.5","font-weight":"800","text-anchor":anch,opacity:0},g);
+nodes.push({g:g,c:c,t:t,hit:hit,r:r});
+function show(){
+nodes.forEach(function(n){n.c.setAttribute("stroke-width",n.r===r?6:3.5);});
+lines.forEach(function(l,j){l.setAttribute("stroke",REGIONS[j]===r?WARM:"rgba(30,90,168,.32)");l.setAttribute("stroke-width",REGIONS[j]===r?4:2.4);});
+read.innerHTML='<span class="nn">'+r.n+'</span><div>'+r.d+'</div>';
+}
+g.addEventListener("click",show);
+g.addEventListener("mouseenter",show);
+onKey(g,show);
+});
+var deployed=false;
+function place(prog){
+nodes.forEach(function(n,i){
+n.g.setAttribute("pointer-events",prog>0?"auto":"none");
+var r=n.r;
+var x=CX+(r.tx-CX)*prog, y=CY+(r.ty-CY)*prog;
+n.c.setAttribute("cx",x);n.c.setAttribute("cy",y);
+n.hit.setAttribute("cx",x);n.hit.setAttribute("cy",y);
+n.c.setAttribute("r",16*prog);
+var ox=r.tx<CX-20?-26:(r.tx>CX+20?26:0);
+var oy=r.tx>=CX-20&&r.tx<=CX+20?-30:5;
+n.t.setAttribute("x",x+ox*prog);n.t.setAttribute("y",y+oy*prog);
+n.t.setAttribute("opacity",prog);
+lines[i].setAttribute("x2",x);lines[i].setAttribute("y2",y);
+});
+}
+function deploy(){
+if(deployed)return;
+deployed=true;
+document.getElementById("netDeploy").disabled=true;
+nodes.forEach(function(n){n.g.setAttribute("pointer-events","auto");});
+nodes.forEach(function(n,i){
+setTimeout(function(){
+tween(760,function(p){
+var r=n.r;
+var x=CX+(r.tx-CX)*p, y=CY+(r.ty-CY)*p;
+n.c.setAttribute("cx",x);n.c.setAttribute("cy",y);
+n.hit.setAttribute("cx",x);n.hit.setAttribute("cy",y);
+n.c.setAttribute("r",16*p);
+var ox=r.tx<CX-20?-26:(r.tx>CX+20?26:0);
+var oy=r.tx>=CX-20&&r.tx<=CX+20?-30:5;
+n.t.setAttribute("x",x+ox*p);n.t.setAttribute("y",y+oy*p);
+n.t.setAttribute("opacity",p);
+lines[i].setAttribute("x2",x);lines[i].setAttribute("y2",y);
+});
+},i*150);
+});
+}
+document.getElementById("netDeploy").addEventListener("click",deploy);
+document.getElementById("netReset").addEventListener("click",function(){
+deployed=false;
+document.getElementById("netDeploy").disabled=false;
+place(0);
+read.innerHTML='<span class="nn">Select a region</span>Fan out the network, then tap a region, or tab to one and press Enter.';
+});
+place(0);
+var did=false;
+var io3=new IntersectionObserver(function(es){es.forEach(function(en){
+if(en.isIntersecting&&!did){did=true;setTimeout(deploy,420);io3.unobserve(en.target);}
+});},{threshold:.3});
+io3.observe(document.getElementById("m3"));
+})();
+
+/* ============ Module 4: intake to decision ============ */
+(function(){
+var STAGES=[
+{who:"Intake",line:"A national representative submits a change: a people group in a major city should be split, because home language and marketplace language do not line up.",cite:0},
+{who:"Queue",line:"The item enters the research queue with a clear status, an owner, and a due date. Nothing sits in an inbox. Nothing falls through the cracks.",cite:0},
+{who:"Evidence review",line:"Source reliability gets evaluated. Is this an ethnographic observation from someone living among them, or a repackaged website entry? The Coordinator has to be able to tell the difference.",cite:0},
+{who:"Citation attached",line:"Every accepted change has a source citation. This is the step that makes the team&rsquo;s work defensible and transferable rather than dependent on whoever happened to be in the room.",cite:1},
+{who:"Decision and documentation",line:"The change is accepted, applied under the team&rsquo;s naming conventions, and version controlled. A researcher who joins next year can reconstruct why.",cite:1},
+{who:"Monthly report",line:"Progress reports up to the Director of People Group Data, alongside the quarterly priority agenda for proactive data gathering. Then the next submission arrives.",cite:1}
+];
+var fill=document.getElementById("qFill"),stageN=document.getElementById("qStage"),citeN=document.getElementById("qCite"),
+who=document.getElementById("qWho"),line=document.getElementById("qLine"),
+next=document.getElementById("qNext"),reset=document.getElementById("qReset"),dots=document.getElementById("qDots");
+STAGES.forEach(function(){var d=document.createElement("div");d.className="sdot";dots.appendChild(d);});
+var i=-1;
+function paint(){
+var dl=dots.querySelectorAll(".sdot");
+dl.forEach(function(d,j){d.classList.toggle("on",j<=i);});
+stageN.textContent=Math.max(0,i+1);
+fill.style.width=Math.round((i+1)/STAGES.length*100)+"%";
+citeN.textContent=i>=0?STAGES[i].cite:0;
+}
+next.addEventListener("click",function(){
+if(i>=STAGES.length-1)return;
+i++;
+who.textContent=STAGES[i].who;
+line.innerHTML=STAGES[i].line;
+next.textContent=i>=STAGES.length-1?"Workflow complete":"Next stage";
+next.disabled=i>=STAGES.length-1;
+paint();
+});
+reset.addEventListener("click",function(){
+i=-1;
+who.textContent="Press begin";
+line.textContent="A field submission arrives from a national representative. Follow it to a decision.";
+next.textContent="Begin the workflow";next.disabled=false;
+paint();
+});
+paint();
+})();
+
+/* ============ Module 5: fit check ============ */
+(function(){
+var ITEMS=[
+{t:"I am a committed follower of Christ.",s:"Shared baseline for both roles.",g:"base"},
+{t:"I can demonstrate God&rsquo;s calling to the Great Commission among unreached peoples.",s:"Not just a professional interest in missions data. Shared baseline.",g:"base"},
+{t:"I align with Joshua Project&rsquo;s core values.",s:"Shared baseline.",g:"base"},
+{t:"I am in a healthy relationship with a local evangelical church.",s:"Shared baseline.",g:"base"},
+{t:"I am willing and able to raise my own financial support.",s:"Both roles are support-raised. Not a salary. This is the item people skip.",g:"base"},
+{t:"I have supervisory or team-lead experience and strong organizational instincts.",s:"Points toward the Research Operations Coordinator.",g:"ops"},
+{t:"I can hold a complex workflow together across a geographically distributed team.",s:"Points toward the Research Operations Coordinator.",g:"ops"},
+{t:"I have already done cross-cultural missions work and am respected in the missions community.",s:"Points toward the Director of Field Research and Partnerships.",g:"field"},
+{t:"I have the relational range to work credibly across multiple cultures and world regions.",s:"Points toward the Director of Field Research and Partnerships.",g:"field"}
+];
+var list=document.getElementById("fitList"),fill=document.getElementById("fitFill"),verdict=document.getElementById("fitVerdict");
+var on=ITEMS.map(function(){return false;});
+function update(){
+var base=0,ops=0,field=0,total=0;
+ITEMS.forEach(function(it,i){if(on[i]){total++;if(it.g==="base")base++;if(it.g==="ops")ops++;if(it.g==="field")field++;}});
+fill.style.width=Math.round(total/ITEMS.length*100)+"%";
+var msg;
+if(total===0)msg="Work down the list. The baseline items are the gate. The four below them are what separates the two roles.";
+else if(base<5)msg="<b>"+base+" of 5 baseline items.</b> The baseline is a gate rather than a preference, and the support-raising item is the one most people would rather skip past. Keep going, then read both role descriptions above.";
+else if(ops>field)msg="<b>Baseline clear</b>, and you are leaning toward the <b>Research Operations Coordinator</b>. That role needs someone who understands people group concepts, evaluates source reliability, and coaches researchers in ethnographic reasoning, not just someone who can run a queue.";
+else if(field>ops)msg="<b>Baseline clear</b>, and you are leaning toward the <b>Director of Field Research and Partnerships</b>. That role is a global supervisory position: recruiting where the network is thin, equipping reps, and traveling internationally as needed.";
+else if(ops===0&&field===0)msg="<b>Baseline clear.</b> Now the harder question: which half of the work is yours? Keep tapping the four role-specific items above.";
+else msg="<b>Baseline clear</b>, and you read as a fit for both. Email directly and say so. Neither role is for someone looking for a safe corner of the organization.";
+verdict.innerHTML=msg;
+}
+ITEMS.forEach(function(it,i){
+var d=document.createElement("div");
+d.className="fit";
+d.setAttribute("tabindex","0");
+d.setAttribute("role","checkbox");
+d.setAttribute("aria-checked","false");
+d.innerHTML='<div class="fbox">&#10003;</div><div class="ft">'+it.t+'<small>'+it.s+'</small></div>';
+function toggle(){
+on[i]=!on[i];
+d.classList.toggle("on",on[i]);
+d.setAttribute("aria-checked",on[i]?"true":"false");
+update();
+}
+d.addEventListener("click",toggle);
+onKey(d,toggle);
+list.appendChild(d);
+});
+update();
+})();
+
+})();
+</script>
+</body>
+</html>
