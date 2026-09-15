@@ -95,6 +95,20 @@ footer small{display:block;color:var(--mute);margin-top:.8rem}
 .tbody{padding:1.4rem 1.6rem 1.6rem;display:flex;flex-direction:column;flex:1}
 .tbody p{font-size:1rem;color:#39342d;flex:1}
 .tbody .go{margin-top:1.2rem;font-weight:700;font-size:.95rem;color:#1F3864}
+.topnav .links a.navgame{color:#15603a;font-weight:700}
+.topnav .links a.navgame:hover{color:#0f4a2c}
+.gameband{background:#0b120e;background-image:radial-gradient(900px 420px at 18% 0%,rgba(94,240,138,.16),transparent 62%);color:#d9e6dd;padding:7vh 0;border-bottom:1px solid #2a4a3b}
+.gb-inner{display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;align-items:center}
+@media(min-width:860px){.gb-inner{grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:3rem}}
+.gb-art{width:100%;max-width:420px;margin:0 auto;border:2px solid #2a4a3b;border-radius:6px;overflow:hidden;line-height:0;background:#0f1a13}
+.gb-art svg{display:block;width:100%;height:auto;image-rendering:pixelated}
+.gb-tag{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#0b120e;background:#5ef08a;padding:.35rem .7rem;border-radius:3px;margin-bottom:1.1rem}
+.gb-head{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.2vw,2.7rem);line-height:1.06;color:#fff;margin:0 0 .9rem;max-width:20ch}
+.gb-sub{color:rgba(217,230,221,.8);font-size:1.05rem;max-width:56ch;margin:0 0 1.7rem}
+.gb-btn{display:inline-block;background:#5ef08a;color:#06140c;text-decoration:none;font-weight:800;font-size:1.02rem;padding:.95rem 2.1rem;border-radius:4px;box-shadow:0 4px 0 #1a5a35;transition:transform .12s,filter .2s}
+.gb-btn:hover{filter:brightness(1.06);transform:translateY(-2px);box-shadow:0 6px 0 #1a5a35}
+.gb-btn:active{transform:translateY(2px);box-shadow:0 2px 0 #1a5a35}
+.gb-note{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem;color:#8fb39f;margin-top:1.1rem}
 </style>
 </head>
 <body>
@@ -110,6 +124,7 @@ footer small{display:block;color:var(--mute);margin-top:.8rem}
 <a href="brutal-facts-calculator-segments.html">People Segment Brutal Facts</a>
 </div>
 </div>
+<a class="navgame" href="frontier-trail.html">&#9654; Play Frontier Trail</a>
 <a href="about.html">About</a>
 </div>
 </nav>
@@ -147,6 +162,37 @@ footer small{display:block;color:var(--mute);margin-top:.8rem}
 <p class="tag">Interactive takes on missions, data, and the unreached. Adapted from the essays by Bud Houston.</p>
 </div>
 </header>
+
+<section class="gameband">
+<div class="wrap">
+<div class="gb-inner">
+<div class="gb-art">
+<svg viewBox="0 0 160 64" shape-rendering="crispEdges" aria-hidden="true">
+<rect x="0" y="0" width="160" height="64" fill="#0f1a13"/>
+<rect x="50" y="5" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="68" y="12" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="84" y="4" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="110" y="8" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="146" y="6" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="60" y="18" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="152" y="16" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="96" y="6" width="1" height="1" fill="#5ef08a" opacity=".7"/>
+<rect x="20" y="8" width="10" height="10" fill="#f2b632"/><rect x="22" y="6" width="6" height="14" fill="#f2b632"/><rect x="18" y="10" width="14" height="6" fill="#f2b632"/>
+<rect x="98" y="16" width="5" height="5" fill="#1a3325"/><rect x="94" y="21" width="13" height="5" fill="#1a3325"/><rect x="90" y="26" width="21" height="5" fill="#1a3325"/><rect x="86" y="31" width="29" height="5" fill="#1a3325"/><rect x="82" y="36" width="37" height="5" fill="#1a3325"/><rect x="78" y="41" width="45" height="5" fill="#1a3325"/><rect x="74" y="46" width="53" height="4" fill="#1a3325"/>
+<rect x="99" y="16" width="3" height="1" fill="#d9e6dd"/><rect x="98" y="17" width="5" height="1" fill="#d9e6dd"/><rect x="97" y="18" width="7" height="1" fill="#d9e6dd" opacity=".6"/>
+<rect x="138" y="26" width="5" height="4" fill="#1e3a2a"/><rect x="135" y="30" width="11" height="4" fill="#1e3a2a"/><rect x="132" y="34" width="17" height="4" fill="#1e3a2a"/><rect x="129" y="38" width="23" height="4" fill="#1e3a2a"/><rect x="126" y="42" width="29" height="4" fill="#1e3a2a"/><rect x="123" y="46" width="35" height="4" fill="#1e3a2a"/>
+<rect x="40" y="22" width="5" height="4" fill="#1e3a2a"/><rect x="37" y="26" width="11" height="4" fill="#1e3a2a"/><rect x="34" y="30" width="17" height="4" fill="#1e3a2a"/><rect x="31" y="34" width="23" height="4" fill="#1e3a2a"/><rect x="28" y="38" width="29" height="4" fill="#1e3a2a"/><rect x="25" y="42" width="35" height="4" fill="#1e3a2a"/><rect x="22" y="46" width="41" height="4" fill="#1e3a2a"/>
+<rect x="41" y="23" width="3" height="1" fill="#d9e6dd"/><rect x="40" y="24" width="5" height="1" fill="#d9e6dd" opacity=".6"/>
+<rect x="104" y="46" width="4" height="3" fill="#b89a5a"/><rect x="105" y="45" width="2" height="1" fill="#8b5a2b"/><rect x="112" y="45" width="4" height="3" fill="#b89a5a"/><rect x="113" y="44" width="2" height="1" fill="#8b5a2b"/><rect x="120" y="47" width="4" height="3" fill="#b89a5a"/><rect x="121" y="46" width="2" height="1" fill="#8b5a2b"/>
+<rect x="0" y="50" width="160" height="14" fill="#2a4a3b"/><rect x="0" y="50" width="160" height="1" fill="#3b6a52"/>
+<rect x="2" y="56" width="3" height="1" fill="#b89a5a"/><rect x="8" y="57" width="3" height="1" fill="#b89a5a"/><rect x="14" y="57" width="3" height="1" fill="#b89a5a"/><rect x="20" y="58" width="3" height="1" fill="#b89a5a"/><rect x="26" y="58" width="3" height="1" fill="#b89a5a"/><rect x="32" y="58" width="3" height="1" fill="#b89a5a"/><rect x="38" y="57" width="3" height="1" fill="#b89a5a"/><rect x="44" y="57" width="3" height="1" fill="#b89a5a"/><rect x="50" y="56" width="3" height="1" fill="#b89a5a"/><rect x="56" y="55" width="3" height="1" fill="#b89a5a"/><rect x="62" y="54" width="3" height="1" fill="#b89a5a"/><rect x="68" y="54" width="3" height="1" fill="#b89a5a"/><rect x="74" y="54" width="3" height="1" fill="#b89a5a"/><rect x="80" y="55" width="3" height="1" fill="#b89a5a"/><rect x="86" y="56" width="3" height="1" fill="#b89a5a"/><rect x="92" y="57" width="3" height="1" fill="#b89a5a"/><rect x="98" y="58" width="3" height="1" fill="#b89a5a"/><rect x="104" y="58" width="3" height="1" fill="#b89a5a"/><rect x="110" y="58" width="3" height="1" fill="#b89a5a"/><rect x="116" y="57" width="3" height="1" fill="#b89a5a"/><rect x="122" y="56" width="3" height="1" fill="#b89a5a"/><rect x="128" y="55" width="3" height="1" fill="#b89a5a"/><rect x="134" y="54" width="3" height="1" fill="#b89a5a"/><rect x="140" y="54" width="3" height="1" fill="#b89a5a"/><rect x="146" y="54" width="3" height="1" fill="#b89a5a"/><rect x="152" y="55" width="3" height="1" fill="#b89a5a"/>
+<rect x="46" y="40" width="2" height="12" fill="#8b5a2b"/><rect x="40" y="40" width="14" height="5" fill="#b89a5a"/><rect x="42" y="42" width="10" height="1" fill="#3b3021"/>
+<rect x="70" y="44" width="2" height="2" fill="#f4ecd8"/><rect x="69" y="46" width="4" height="4" fill="#6fb7ff"/><rect x="69" y="50" width="1" height="2" fill="#3b3021"/><rect x="72" y="50" width="1" height="2" fill="#3b3021"/>
+</svg>
+</div>
+<div class="gb-copy">
+<div class="gb-tag">New &middot; Interactive game</div>
+<h2 class="gb-head">Try the New Frontier Trail Mission Game</h2>
+<p class="gb-sub">A journey game for the Great Commission. Choose a path, make the calls, face the barriers. The destination is not survival: it is multiplying churches among a people who have never had one.</p>
+<a class="gb-btn" href="frontier-trail.html">&#9654; Play Frontier Trail</a>
+<p class="gb-note">30 to 60 minutes &middot; one player or one room &middot; no sign up</p>
+</div>
+</div>
+</div>
+</section>
 
 <section class="explore">
 <div class="wrap">
