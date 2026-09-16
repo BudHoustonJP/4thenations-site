@@ -428,6 +428,28 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
 .rv-accrow{display:block;font-size:.9em;color:#6b5a2e}
 @media print{ .commit-box{border:1px solid #999;background:#fff} .fitline{background:#fff;border-left:3px solid #999} }
 
+/* ---------- v6: coached mode ---------- */
+.stakes{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;background:#f1e8d0;border-left:4px solid #b89a5a;padding:10px 14px;margin:16px 0 4px;font-size:.95em}
+.stakes .st-l{font-family:var(--pix);font-size:.5rem;text-transform:uppercase;letter-spacing:.5px;padding:4px 7px;border-radius:3px;background:#3b3021;color:var(--cream);white-space:nowrap}
+.stakes.sHigh{border-color:#c8452f;background:#fbe8e2}
+.stakes.sHigh .st-l{background:#a8362a}
+.stakes.sModerate{border-color:#e0b64a;background:#fdf3d8}
+.stakes.sModerate .st-l{background:#8a6a1a}
+.stakes.sLow{border-color:#8fb39f;background:#eaf2ec}
+.stakes.sLow .st-l{background:#2a4a3b}
+.stakes .st-i{flex:1;min-width:200px}
+.stakes .muted{color:var(--ink2)}
+.scene.accstop .stakes{background:#fff0d0}
+
+.verdict{border:2px solid #2fbf67;background:#e4f6ea;border-radius:4px;padding:12px 14px;margin:0 0 14px}
+.verdict.miss{border-color:#e0b64a;background:#fdf3d8}
+.v-head{font-family:var(--pix);font-size:.62rem;color:#1b6b3a;line-height:1.6}
+.verdict.miss .v-head{color:#8a6a1a}
+.v-best{margin-top:8px;font-weight:600}
+.v-why{margin-top:6px;color:var(--ink2);font-size:.95em}
+.outcome .row{margin-top:4px}
+@media print{ .stakes,.verdict{background:#fff;border:1px solid #999} }
+
 @media print{
   body{background:#fff;color:#000}
   .screen{display:none!important}
@@ -477,7 +499,9 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
     <h3>Choose a path</h3>
     <p>Missionary, Mobilizer, Pastor, or Organization Leader. Each starts in a different place and faces different pressures. All four are aiming at the same destination.</p>
     <h3>Choose a setting</h3>
-    <p><b>Guided</b> for first-time players and church groups. <b>Trail</b> for the standard journey. <b>Frontier</b> for staff and candidates: more barriers, no hints, no take-backs, and trust that erodes when you neglect it.</p>
+    <p><b>Guided</b> is coached. Before each decision it tells you what is at issue and how much the decision matters, and after you choose it says at once whether a stronger option was available and why. You can take any decision back and try another. <b>Trail</b> gives no verdict until the end, so the consequences do the teaching. <b>Frontier</b> adds more barriers, withholds the hints, and lets nothing be taken back.</p>
+    <h3>What the game will not do</h3>
+    <p>There is no single right answer to every scene, on any setting. Several options are defensible and the game rewards a pattern of thinking rather than a lookup table. Guided shows you that pattern as you go. Trail and Frontier show it at the end.</p>
     <h3>Choose a people</h3>
     <p>Five fictional frontier peoples, each with a profile card and a link to a real people with a similar story. Read the card. It tells you what kind of trail you are on.</p>
     <h3>Watch five meters</h3>
@@ -497,7 +521,7 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
     <h3>Checkpoints and prayer stops</h3>
     <p>Three times on the trail a <b>checkpoint</b> asks a real question about the unreached world. Right answers help you. Twice you will be asked to stop and pray for a real people through Joshua Project’s Unreached of the Day. That one is worth the most.</p>
     <h3>The review at the end</h3>
-    <p>Nothing is graded during play. At the end, every decision is listed with the option that most served the whole people and one line on why.</p>
+    <p>On Trail and Frontier nothing is graded during play. At the end, every decision is listed with the option that most served the whole people and one line on why. Guided gives you that same verdict immediately, decision by decision.</p>
     <div class="term"><b>Frontier people group:</b> an unreached group with virtually no followers of Jesus and no known movement to Jesus, still needing pioneer cross-cultural workers. Joshua Project approximates this as 0.1% or fewer Christian adherents, fewer than 1 in 1,000. Roughly a quarter of the world lives in such groups.</div>
     <p class="small">Keyboard: press <b>1 to 6</b> to choose, <b>Enter</b> to continue.</p>
     <p class="center" style="margin-top:16px"><button class="btn" onclick="closeModals()">Got it</button></p>
@@ -517,7 +541,8 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
     <h3>The toolkit underneath</h3>
     <p>Phases 0 to 7, Engagement Strength, and the twelve accelerators follow the <a href="https://media.joshuaproject.net/public/assets/media/articles/Engagement-Phases-Toolkit.pdf" target="_blank" rel="noopener">Phases of Engagement Toolkit</a>. Players learn its vocabulary by using it. If your group works with real people group data, the same phase numbers apply there.</p>
     <h3>Which setting to run</h3>
-    <p><b>Guided</b> for a Sunday class or a youth group: five barriers at most, accelerator hints on, take-backs allowed. <b>Trail</b> for mission committees, small groups, and candidates. <b>Frontier</b> for staff, coaches, and pre-field workers: up to ten barriers, hints withheld until the report, no take-backs, harsher costs, and a 1.3× score. Run the same people on two settings to show a group how much of the outcome was their own decisions.</p>
+    <p><b>Guided</b> is a coached tutorial: a stakes line before each decision naming what is at issue, an immediate verdict after it, and take-backs so a group can test two options and compare. Use it for a Sunday class, a youth group, or anyone who wants to learn the pattern rather than discover it. It reveals the reasoning as you play, which means the debrief lands as confirmation rather than revelation: run <b>Trail</b> instead when you want the discovery effect. Guided caps barriers at five. <b>Trail</b> for mission committees, small groups, and candidates. <b>Frontier</b> for staff, coaches, and pre-field workers: up to ten barriers, hints withheld until the report, no take-backs, harsher costs, and a 1.3× score. Run the same people on two settings to show a group how much of the outcome was their own decisions. A good pattern for a long session: play stops 1 to 4 on Guided so everyone learns to read a decision, then restart on Trail with the same people and play it through.</p>
+    <p>Decisions taken back are counted on the Trail Report, so you can see how much a group explored.</p>
     <h3>Facilitator view (hidden scoring)</h3>
     <p>The live scoring panel is behind a passphrase so players cannot stumble into it. To open the prompt, type the word <b>signpost</b> anywhere on the page, or tap the FRONTIER TRAIL wordmark in the top left five times. The default passphrase is <b>romans1520</b>.</p>
     <p>Change it by replacing the <code>FAC_HASH</code> value near the top of the script with a new SHA-256 hash. To generate one, open the browser console on this page and run <code>ftHash('your new passphrase').then(console.log)</code>. This is a speed bump, not a lock: anyone who reads the file can remove the check. For a group where that matters, hand out a copy with the facilitator block deleted.</p>
@@ -798,12 +823,12 @@ const TOOLKIT_URL='https://media.joshuaproject.net/public/assets/media/articles/
    ===================================================================== */
 
 const DIFF = {
-  guided:  { name:'Guided',   desc:'Fewer barriers. Accelerator hints during play. Take-backs allowed. For first-time players and church groups.',
-             prob:0.5, cap:5, force:false, chips:true, takeback:true, decay:0, fxMul:1, scoreMul:0.85 },
-  trail:   { name:'Trail',    desc:'The standard journey. Barriers at most stops. Hints during play. Take-backs allowed.',
-             prob:0.75, cap:8, force:true, chips:true, takeback:true, decay:0, fxMul:1, scoreMul:1 },
-  frontier:{ name:'Frontier', desc:'Barriers nearly every stop. No accelerator hints until the report. No take-backs. Trust erodes when neglected. For staff and candidates.',
-             prob:0.95, cap:10, force:true, chips:false, takeback:false, decay:4, fxMul:1.25, scoreMul:1.3 },
+  guided:  { name:'Guided',   desc:'Coached. Before each decision you see what is at issue and how much it matters. After you choose, the game tells you at once whether a stronger option was available, and you may take the decision back and try another. Fewer barriers. For first-time players and church groups.',
+             prob:0.5, cap:5, force:false, chips:true, takeback:true, coach:true, stakes:true, retry:true, decay:0, fxMul:1, scoreMul:0.85 },
+  trail:   { name:'Trail',    desc:'The standard journey. No verdict on a decision until the Trail Report, so the consequences do the teaching. Accelerator hints during play. Barriers at most stops.',
+             prob:0.75, cap:8, force:true, chips:true, takeback:false, coach:false, stakes:false, retry:false, decay:0, fxMul:1, scoreMul:1 },
+  frontier:{ name:'Frontier', desc:'Barriers nearly every stop. No hints, no verdicts, no take-backs. Harsher costs, and trust erodes when you neglect it. For staff and candidates.',
+             prob:0.95, cap:10, force:true, chips:false, takeback:false, coach:false, stakes:false, retry:false, decay:4, fxMul:1.25, scoreMul:1.3 },
 };
 
 /* Real Joshua Project profiles each composite resembles. status: frontier | unreached */
@@ -945,6 +970,17 @@ const WHY = {
   crisis_su:'Platform income keeps you beside the people; a year at home costs the relationships.',
   crisis_pr:'A retreat that lets the work wait restores the one thing the work cannot run without.',
   crisis_tr:'Trust is rebuilt through the friends who still have it, slowly, in place.',
+};
+
+/* Plain-language framing of each hidden principle, shown before a decision on the Guided setting.
+   Names the lens at issue without naming the framework or the answer. */
+const AT_ISSUE = {
+  EV:'how much of the whole people you keep in view',
+  WB:'whether you do this alone or with everyone else God is using',
+  RP:'whether what you build can be copied by {People} believers',
+  LL:'who ends up leading, and how soon',
+  AP:'whether a closed door stops you or redirects you',
+  PD:'how openly the work depends on God',
 };
 
 const UOTD = {
@@ -2675,7 +2711,7 @@ function openAcc(k){
 function newGame(){
   G={ role:null, people:null, name:'', diff:DIFF_SEL, meters:{}, p:{}, pMax:{}, pMin:{}, months:0, stage:0, stageEnded:false,
       flags:{}, mv:{believers:0,churches:0,gens:0,leaders:0}, fired:[], barriers:0, log:[], crisisSeen:{}, queue:[], start:Date.now(), decisions:0,
-      phase:0, phaseHist:[], lit:0, acc:{}, accPicks:[], cp:[], cpUsed:[], uotd:0, trGain:false, commit:null };
+      phase:0, phaseHist:[], lit:0, acc:{}, accPicks:[], cp:[], cpUsed:[], uotd:0, trGain:false, commit:null, retries:0 };
   P_KEYS.forEach(k=>{G.p[k]=0;G.pMax[k]=0;G.pMin[k]=0;});
   LASTMV=null; SNAP=null; CUR=null;
 }
@@ -2721,6 +2757,15 @@ function trackDecision(opts,chosen){
   P_KEYS.forEach(k=>{ const vals=opts.map(o=>(o.p&&o.p[k])||0); G.pMax[k]+=Math.max(...vals); G.pMin[k]+=Math.min(...vals); G.p[k]+=(chosen.p&&chosen.p[k])||0; });
 }
 function pSum(o){ let s=0; if(o.p) for(const k in o.p) s+=o.p[k]; if(o.quit) s-=100; return s; }
+function stakesOf(opts){
+  const sums=opts.map(pSum).filter(v=>v>-50);
+  const spread=Math.max(...sums)-Math.min(...sums);
+  const tot={}; P_KEYS.forEach(k=>{ tot[k]=opts.reduce((a,o)=>a+Math.abs((o.p&&o.p[k])||0),0); });
+  const lens=P_KEYS.reduce((a,b)=>tot[b]>tot[a]?b:a,'EV');
+  const level = spread>=6?'High' : spread>=3?'Moderate' : 'Low';
+  const note = level==='High'?'this one shapes the decade' : level==='Moderate'?'this one leaves a mark' : 'this one is mostly a matter of taste';
+  return { level, note, lens, spread, issue:AT_ISSUE[lens] };
+}
 function pScores(){ const o={}; P_KEYS.forEach(k=>{ const den=G.pMax[k]-G.pMin[k]; o[k]=den>0?Math.round((G.p[k]-G.pMin[k])/den*100):50; }); return o; }
 function strategyIndex(){ const sc=pScores(); let s=0,w=0; P_KEYS.forEach(k=>{s+=sc[k]*P_W[k];w+=P_W[k];}); return Math.round(s/w); }
 function effectiveS(){ const low=METERS.filter(([k])=>G.meters[k]<20).length; return clamp(strategyIndex()-4*low,0,100); }
@@ -2831,16 +2876,18 @@ function showLandmark(n){
   $('main').innerHTML=`<div class="scene landmark"><div class="kind">${n===1?'The journey begins':'You have reached'}</div>${iconSVG(LANDMARK_ICONS[n],'lm-icon')}<h2>${stopName(n)}</h2><div class="flavor">${stopFlavor(n)}</div><div class="date">Year ${yearOf(G.months)}, ${season(G.months)} &middot; Stop ${n} of 12</div><button class="btn cont" onclick="nextStep()">Continue &#9654;</button></div>`;
   window.scrollTo(0,0);
 }
-function showScene(sc,kind){
-  const opts=shuffle((sc.optsFn?sc.optsFn(G):sc.opts).filter(o=>!o.roles||o.roles.includes(G.role.id)));
+function showScene(sc,kind,fixedOpts){
+  const opts=fixedOpts||shuffle((sc.optsFn?sc.optsFn(G):sc.opts).filter(o=>!o.roles||o.roles.includes(G.role.id)));
   const title=sc.titleFn?sc.titleFn(G):sc.title;
   const text=sc.textFn?sc.textFn(G):sc.text;
   if(sc.id&&ON_SHOW[sc.id]){ ON_SHOW[sc.id](G); renderHUD(); }
   CUR={sc,kind,opts,title};
   const label= kind==='barrier'?'&#9888; Barrier' : kind==='crisis'?'&#9888; Crisis' : `Stop ${G.stage} of 12 &middot; ${stopName(G.stage)}`;
   const icon=(kind==='barrier'||kind==='crisis')? iconSVG(BARRIER_ICONS[BARRIER_ICON_KEY[sc.id]],'sc-icon') : '';
+  const st=D().stakes?stakesOf(opts):null;
+  const stakesHTML=st?`<div class="stakes s${st.level}"><span class="st-l">Stakes: ${st.level}</span><span class="st-i">At issue: ${T(st.issue)}. <span class="muted">Of the options here, ${st.note}.</span></span></div>`:'';
   $('main').innerHTML=`<div class="scene ${kind}"><div class="kind">${label}</div><div class="sc-head">${icon}<h2>${T(title)}</h2></div><div class="text">${linkTerms(T(text))}</div>
-    <div class="opts" id="opts">${opts.map((o,i)=>`<button class="opt" onclick="choose(${i})"><span class="k">${i+1}</span><span>${T(o.t)}</span></button>`).join('')}</div>
+    ${stakesHTML}<div class="opts" id="opts">${opts.map((o,i)=>`<button class="opt" onclick="choose(${i})"><span class="k">${i+1}</span><span>${T(o.t)}</span></button>`).join('')}</div>
     <div id="outcome"></div></div>`;
   window.scrollTo(0,0);
 }
@@ -2869,7 +2916,9 @@ function choose(i){
   const accList=o.acc||[];
   const chips=d.chips?accList.map(k=>{ const a=accOf(k); const isNew=accCount()>beforeAcc && G.acc[k]===1; return `<span class="chip" role="button" tabindex="0" title="${accTitle(k)}" onclick="openAcc('${k}')" onkeydown="cardKey(event,()=>openAcc('${k}'))">${iconSVG(ACC_ICONS[k],'chip-ic')}${a.name}${isNew?' <em>new</em>':''}</span>`; }).join(''):'';
   const whys=d.chips?accList.map(k=>`<div class="accwhy"><b>${accOf(k).name}:</b> ${T(accWhy(CUR.sc.id,k))}</div>`).join(''):'';
-  $('outcome').innerHTML=`<div class="outcome"><div class="fb">${fb}</div><div class="deltas">${dl||'<span class="delta tm">No immediate change. Some costs arrive later.</span>'}</div>${chips?`<div class="chips"><span class="chips-l">Accelerator${(accList.length>1)?'s':''} used:</span>${chips}</div>${whys}`:''}<button class="btn cont" id="contBtn" onclick="nextStep()">Continue &#9654;</button></div>`;
+  const verdict=d.coach?`<div class="verdict ${wasBest?'ok':'miss'}"><div class="v-head">${wasBest?'&#10003; Strongest option available.':'&#8594; There was a stronger option.'}</div>${wasBest?'':`<div class="v-best">${T(best.t)}</div>`}${WHY[CUR.sc.id]?`<div class="v-why">${T(WHY[CUR.sc.id])}</div>`:''}</div>`:'';
+  const retry=(d.retry&&SNAP)?`<button class="btn warn" id="retryBtn" onclick="retryDecision()">Take it back and try another</button>`:'';
+  $('outcome').innerHTML=`<div class="outcome">${verdict}<div class="fb">${fb}</div><div class="deltas">${dl||'<span class="delta tm">No immediate change. Some costs arrive later.</span>'}</div>${chips?`<div class="chips"><span class="chips-l">Accelerator${(accList.length>1)?'s':''} used:</span>${chips}</div>${whys}`:''}<div class="row">${retry}<button class="btn cont" id="contBtn" onclick="nextStep()">Continue &#9654;</button></div></div>`;
   $('contBtn').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function showTrailEnd(fb){
@@ -2877,6 +2926,14 @@ function showTrailEnd(fb){
   $('main').innerHTML=`<div class="trailend"><h2>THE TRAIL ENDS</h2><p>${fb}</p><p class="muted small">Quitting is the one choice on this trail that cannot be recovered from. Everything else can.${D().takeback?'':' On the Frontier setting it stands.'}</p>
     <div class="row">${tb}<button class="btn ghost" onclick="endGame(true)">See the Trail Report</button><button class="btn ghost" onclick="restart()">Start over</button></div></div>`;
   window.scrollTo(0,0);
+}
+function retryDecision(){
+  if(!SNAP||!D().retry||!CUR||!CUR.sc) return;
+  const sc=CUR.sc, kind=CUR.kind, opts=CUR.opts, was=G.retries||0;
+  G=SNAP; SNAP=null; G.retries=was+1;
+  renderHUD();
+  if(kind==='acc') showAccStop(CUR.stop,opts); else showScene(sc,kind,opts);
+  toast('Decision taken back. The clock and the meters are back where they were.');
 }
 function takeBack(){ if(!SNAP||!D().takeback) return; G=SNAP; SNAP=null; renderHUD(); showScene(CUR.sc,CUR.kind); }
 
@@ -2895,13 +2952,14 @@ function uotdDone(did){
   if(did){ G.uotd++; G.meters.pr=clamp(G.meters.pr+10,0,100); G.acc.prayer=(G.acc.prayer||0)+1; G.log.push({yr:yearOf(G.months),kind:'prayer',title:'Unreached of the Day',choice:'Prayed for today’s people',acc:['prayer'],wasBest:true,best:'',why:'A daily habit of praying for real peoples by name is the cheapest accelerator there is, and the one most often skipped.'}); }
   renderHUD(); nextStep();
 }
-function showAccStop(n){
+function showAccStop(n,fixedOpts){
   const a=ACC_STOPS[n]; if(!a) return nextStep();
-  const opts=shuffle(a.opts);
+  const opts=fixedOpts||shuffle(a.opts);
   CUR={kind:'acc',stop:n,opts,title:a.title};
   $('main').innerHTML=`<div class="scene accstop"><div class="kind">Accelerator Decision &middot; Stop ${G.stage} of 12</div>
     <div class="sc-head">${iconSVG(ACC_ICONS.multiply,'sc-icon acc-amber')}<h2>${a.title}</h2></div>
     <div class="text">${linkTerms(T(a.text))}</div>
+    ${D().stakes?`<div class="stakes sHigh"><span class="st-l">Stakes: High</span><span class="st-i">At issue: whether the habit you build is the one this phase actually requires. <span class="muted">Each option is a real accelerator. Only some of them move a people at Phase ${a.phase}.</span></span></div>`:''}
     <div class="opts" id="opts">${opts.map((o,i)=>{ const ac=accOf(o.k); return `<button class="opt accopt" onclick="chooseAcc(${i})"><span class="k">${i+1}</span><span class="accopt-body"><span class="accopt-h">${iconSVG(ACC_ICONS[o.k],'accopt-ic')}<b>${ac.name}</b></span><span class="accopt-t">${T(o.t)}</span><span class="accopt-q">Ask: ${ac.q}</span></span></button>`; }).join('')}</div>
     <div id="outcome"></div></div>`;
   window.scrollTo(0,0);
@@ -2926,9 +2984,10 @@ function chooseAcc(i){
   document.querySelectorAll('#opts .opt').forEach((b,j)=>{ b.disabled=true; b.style.opacity=(j===i)?'1':'.45'; if(j===i){ b.style.borderColor='#5ef08a'; } });
   let dl='';
   METERS.forEach(([k,l])=>{ const df=G.meters[k]-before[k]; if(df) dl+=`<span class="delta ${df>0?'up':'dn'}">${l} ${df>0?'+':''}${df}</span>`; });
+  const retryA=(d.retry&&SNAP)?`<button class="btn warn" onclick="retryDecision()">Take it back and try another</button>`:'';
   $('outcome').innerHTML=`<div class="outcome"><div class="fb">${T(o.out)}</div><div class="fitline fit${o.fit}">${fitMsg}</div><div class="deltas">${dl||'<span class="delta tm">Nothing visible this year. Habits pay later.</span>'}</div>
     <div class="chips"><span class="chips-l">Habit built:</span><span class="chip" role="button" tabindex="0" title="${accTitle(o.k)}" onclick="openAcc('${o.k}')" onkeydown="cardKey(event,()=>openAcc('${o.k}'))">${iconSVG(ACC_ICONS[o.k],'chip-ic')}${ac.name} <em>+2</em></span></div>
-    <button class="btn cont" id="contBtn" onclick="nextStep()">Continue &#9654;</button></div>`;
+    <div class="row">${retryA}<button class="btn cont" id="contBtn" onclick="nextStep()">Continue &#9654;</button></div></div>`;
   $('contBtn').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
@@ -3068,6 +3127,7 @@ function endGame(quit){
         <tr><td>Field knowledge</td><td>${cpRight()} of ${G.cp.length} checkpoints</td></tr>
         <tr><td>Unreached of the Day</td><td>${G.uotd?`Prayed ${G.uotd}× (+${G.uotd*UOTD.bonus})`:'Skipped'}</td></tr>
         <tr><td>Barriers faced</td><td>${G.barriers}</td></tr>
+        ${G.retries?`<tr><td>Decisions taken back</td><td>${G.retries}</td></tr>`:''}
         <tr><td>Time at the table</td><td>${mins} min</td></tr>
         <tr class="total"><td>Score${d.scoreMul!==1?` (×${d.scoreMul} ${d.name})`:''}</td><td>${fmtN(pts)}</td></tr>
       </table>
