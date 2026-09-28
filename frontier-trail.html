@@ -461,6 +461,24 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
   .prin .track i{background:#000}
   details{display:none}
 }
+
+/* resume panel, save control, code boxes, trail events */
+.resume{border:2px solid var(--gold,#b89a5a);background:rgba(184,154,90,.10);border-radius:10px;padding:14px 16px;margin:0 auto 18px;max-width:620px;text-align:left}
+.resume.hidden{display:none}
+.resume .rs-h{font-family:var(--pix,inherit);letter-spacing:.06em;text-transform:uppercase;font-size:.78rem;color:var(--gold,#b89a5a);margin-bottom:6px}
+.resume p{margin:0 0 10px;font-size:.94rem}
+.resume .row{display:flex;gap:10px;flex-wrap:wrap}
+.hud-save{margin-left:auto;background:transparent;border:1px solid rgba(244,236,216,.35);color:inherit;font:inherit;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:6px;cursor:pointer}
+.hud-save:hover{border-color:#5ef08a;color:#5ef08a}
+.codebox{width:100%;box-sizing:border-box;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;line-height:1.35;padding:8px;border-radius:8px;border:1px solid rgba(29,26,21,.3);background:#fffaf0;color:#2b2419;resize:vertical;word-break:break-all}
+#saveBody h3{margin:18px 0 6px}
+#saveBody .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.scene.event .kind{color:#e0a34a}
+.scene.event.good .kind{color:#5ef08a}
+.scene.voice.vet blockquote{border-left-color:#b89a5a}
+.review li.ev{border-left-color:#b89a5a}
+.rv-tag.ev{background:#b89a5a;color:#1d1a15}
+@media print{.hud-save,.resume{display:none}}
 </style>
 </head>
 <body>
@@ -471,6 +489,7 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
   <h1 class="pix title-h">FRONTIER TRAIL</h1>
   <p class="title-sub">The Road to Every People</p>
   <p class="title-blurb">A journey game for the Great Commission. Choose a path. Make the calls. Face the barriers. The destination is not survival: it is multiplying churches among a people who have never had one.</p>
+  <div class="resume hidden" id="resumeBox"></div>
   <div class="diffbox">
     <h4>Choose a setting</h4>
     <div class="diffrow">
@@ -484,6 +503,7 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
     <button class="btn big" onclick="goRole()">&#9654; Begin the Journey</button>
     <button class="btn ghost" onclick="openModal('howto')">How to Play</button>
     <button class="btn ghost" onclick="openGloss('all')">Glossary</button>
+    <button class="btn ghost" onclick="openSave()">Progress Code</button>
     <button class="btn ghost" onclick="openModal('facil')">For Facilitators</button>
   </div>
   <p class="vt muted blink">30 to 60 minutes &middot; one player or one room</p>
@@ -491,6 +511,14 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
 </section>
 
 <!-- ================= MODALS ================= -->
+<div class="modal-bg" id="modal-save" onclick="if(event.target===this)closeModals()">
+  <div class="modal">
+    <button class="close" onclick="closeModals()" aria-label="Close">&times;</button>
+    <h2>Saving and Progress Codes</h2>
+    <div id="saveBody"></div>
+    <p class="center" style="margin-top:16px"><button class="btn" onclick="closeModals()">Close</button></p>
+  </div>
+</div>
 <div class="modal-bg" id="modal-howto" onclick="if(event.target===this)closeModals()">
   <div class="modal">
     <button class="close" onclick="closeModals()" aria-label="Close">&times;</button>
@@ -520,6 +548,10 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
     <p>Terms with a dotted underline open a definition. Most come straight from Joshua Project; the rest are marked. The full glossary is on the title screen and printed with your report.</p>
     <h3>Checkpoints and prayer stops</h3>
     <p>Three times on the trail a <b>checkpoint</b> asks a real question about the unreached world. Right answers help you. Twice you will be asked to stop and pray for a real people through Joshua Project’s Unreached of the Day. That one is worth the most.</p>
+    <h3>Leaving and coming back</h3>
+    <p>The journey saves itself in this browser after every step. Close the tab and the title screen will offer to continue where you stopped. To carry a journey to a different device or browser, open <b>Save</b> and copy the progress code.</p>
+    <h3>The trail provides</h3>
+    <p>Some years bring something nobody planned: a fever, a failed harvest, a search of the house, a dream in a stranger’s head. They are keyed to your people and their country, they fall more often on Trail and Frontier than on Guided, and a few of them can end a journey. That is not a bug. It is the job.</p>
     <h3>The review at the end</h3>
     <p>On Trail and Frontier nothing is graded during play. At the end, every decision is listed with the option that most served the whole people and one line on why. Guided gives you that same verdict immediately, decision by decision.</p>
     <div class="term"><b>Frontier people group:</b> an unreached group with virtually no followers of Jesus and no known movement to Jesus, still needing pioneer cross-cultural workers. Joshua Project approximates this as 0.1% or fewer Christian adherents, fewer than 1 in 1,000. Roughly a quarter of the world lives in such groups.</div>
@@ -598,6 +630,7 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
     <div class="brand" onclick="brandTap()" title="Frontier Trail">FRONTIER TRAIL</div>
     <div class="who" id="hudWho"></div>
     <div class="date" id="hudDate"></div>
+    <button class="hud-save" onclick="openSave()" title="Saving and progress codes">&#9634; Save</button>
   </div>
   <div class="trail">
     <div class="trail-line"></div>
@@ -871,6 +904,14 @@ const VOICES = {
   ],
 };
 
+/* The veteran. Fires once, mid-trail, for every people and every path.
+   The one place the game says out loud that it is scoring a pattern and not
+   a formula, and that God is not confined to either. */
+const VET_VOICE = {
+  who:'A worker who has been at this thirty years, met in a guesthouse',
+  text:'Let me say the thing your training will not. I did most of this in the wrong order. I learned the language badly for four years. I started in the wrong {village} because a bus broke down there and I had nowhere else to sleep. The first man who believed was a drunk nobody had ever prayed for by name, and he brought his whole extended family, and none of it was on my plan. God made Gideon\u2019s army smaller until winning could not be explained. He pulled Philip out of a revival and sent him down a desert road for one man in a chariot. He has never once needed our strategy. So why bother? Because most of us waste years for no reason at all, and a good pattern stops that. Learn the pattern. Hold it loosely. Then go where He says, even when it is not on your map, and do not let anyone, including a game, tell you that obedience which looks inefficient is disobedience.',
+};
+
 /* Glossary. src: 'jp' = Joshua Project definition (joshuaproject.net/help/definitions), 'toolkit' = Phases of Engagement Toolkit, 'working' = working definition pending Joshua Project review */
 const GLOSSARY = [
   { id:'peoplegroup', term:'people group', match:/\bpeople groups?\b/i, src:'jp', def:'“A significantly large group of individuals who perceive themselves to have a common affinity for one another because of their shared language, religion, ethnicity, residence, class or caste, situation, etc.”' },
@@ -1024,11 +1065,11 @@ SCENES.s1_pastor = { title:'The Call',
     { t:'Add the {People} as a fifteenth partner with a modest monthly gift, a bulletin feature, and a prayer slot in the service.',
       p:{EV:-1}, out:'Fifteen partners, one bulletin note. Six months later nobody in the congregation can name the {People}.' },
     { t:'Make the {People} the church’s one primary people for ten years, and realign other partnerships over time.',
-      fx:{pr:10,su:-5,tm:-5}, p:{EV:3,PD:1,WB:1}, flag:'adopted', out:'Two partners are hurt. Three elders are nervous. And for the first time the whole church can name a people group and pray for them by name.' },
+      fx:{pr:10,su:-5,tm:-5}, p:{EV:3,PD:1,WB:1}, flag:'adopted', out:'Two partners are hurt. Three elders are nervous, and two of them have given to the same missionary for eighteen years. You will spend the next two years absorbing that, because a church is not a speedboat. And for the first time the whole congregation can name a people group and pray for them by name. Both of those things are true, and the second one is why it was worth it.' },
     { t:'Take the elders and key leaders to pray on site among the {People} before deciding anything.',
-      fx:{pr:10,su:-5}, p:{EV:1,PD:2,WB:1}, m:3, flag:'visiontrip', out:'Nine leaders come home wrecked in the good way. The decision to adopt gets made on the plane.' },
+      fx:{pr:10,su:-5}, p:{EV:1,PD:2,WB:1}, m:3, flag:'visiontrip', out:'Nine leaders come home wrecked in the good way. The decision to adopt gets made on the plane, by the people who will have to defend it later, which is often the only way a church actually turns. Slower on paper. Sometimes faster in the end.' },
     { t:'Ask the missions committee to study the {People}, weigh them against current partners, and bring a recommendation to the elders.',
-      m:3, out:'The committee returns in six months with a three-page report and no recommendation. Committees rarely make sacrifices. Churches led by pastors sometimes do.' },
+      m:3, out:'The committee returns in six months with a three-page report and no recommendation. Committees rarely make sacrifices on their own. They can carry one a pastor has already made, and in a church with long-standing partners that may be the only route that holds.' },
   ]};
 
 SCENES.s1_mobilizer = { title:'The Call',
@@ -1206,7 +1247,7 @@ SCENES.s5_year1 = { title:'Learning the People',
   text:`{roleIntro}<p>Eight months in. The language is brutal. The team is tired of being laughed at. Someone suggests it is time to “start ministry.”</p><p>What should year one be?</p>`,
   opts:[
     { t:'Full-time language and culture, living among the {People}. Ministry through relationships only.',
-      fx:{tr:15,he:-5}, p:{RP:1,LL:1}, out:'Slow. Then one day an elder corrects your grammar and invites you to his son’s wedding in the same breath. You are now a person.' },
+      fx:{tr:15,he:-5}, p:{RP:1,LL:1}, out:'Slow. Then one day an elder corrects your grammar and invites you to his son’s wedding in the same breath. You are now a person, which is worth more than any map. What you do not have is a picture of the whole people, so the empty {districts} stay invisible a while longer. Many good teams start here on purpose.' },
     { t:'Begin activities now in the trade language: a community center, English classes, a weekly gathering.',
       fx:{tr:-10}, p:{RP:-2}, out:'The activities attract people who speak the trade language: outsiders and the already curious. The {People} elders are not among them.' },
     { t:'Language plus research: map every {district}, count believers and workers, list dialects and Scripture status.',
@@ -1455,10 +1496,10 @@ const ACC_STOPS = {
         { k:'scripture', fit:2, t:'Scripture access: get God’s word into {language} in the form they actually use, with them testing it.',
           p:{RP:2,WB:2}, fx:{tr:5},
           out:'Audio on phones, or stories memorized, or a revision they helped test. The believers stop quoting {team} and start quoting Scripture, which is the moment the work stops depending on you.' },
-        { k:'context', fit:2, t:'Contextualization: sit with them in Scripture over {practice}, and let them decide what must change.',
+        { k:'context', fit:2, t:'Contextualization: open the Scriptures with them on the question of {practice}, and let them decide what has to change.',
           p:{RP:2,LL:2},
           out:'Long evenings, two arguments, one decision {team} would not have made. It holds, because they made it. The next family that believes will be taught by them, not by you.' },
-        { k:'multiply', fit:2, t:'Multiplying habits: every believer passes on what they received within a month, from the first week.',
+        { k:'multiply', fit:2, t:'Multiplying habits: whatever a believer learns, they pass on to someone else within a month of learning it.',
           p:{RP:3,LL:1},
           out:'It feels reckless. By year’s end there are believers two steps removed from {team}, in a {district} you have never visited, using the same six stories.' },
         { k:'prayer', fit:1, t:'Prayer: teach the new believers to pray out loud for their own families, and keep the home team praying.',
@@ -1518,6 +1559,199 @@ const COMMIT = [
     said:'You committed to put the data in front of decision-makers.',
     next:'Pull the frontier list for one region. Put it on one page beside where your church or agency actually sends people. Take that page to the next meeting.' },
 ];
+/* =====================================================================
+   The trail provides: unpredictable events keyed to people and geography.
+   kind: 'decision' (options) | 'setback' (read and continue)
+   gentle: true = may also fire on the Guided setting
+   end:true on an option ends the run (the trail-end screen, with a take-back
+   on the settings that allow one). Nothing ends the trail without a choice:
+   the expulsion is unavoidable, but what you do about it is not, and only one
+   of those answers is the end. `p` on a setback event is ignored by the
+   engine: nothing that happens to you without a choice moves the score.
+   ===================================================================== */
+const EVENTS = [
+
+/* ---------------- health ---------------- */
+{ id:'ev_fever', title:'Fever', icon:'candle', weight:4, gentle:true, stages:[5,11],
+  peoples:['tegheri','rennathi','pemsa','nahrani'], kind:'decision',
+  why:'Illness is terrain, not interruption. The option that keeps you present and lets the people care for you buys a relationship you cannot manufacture any other way.',
+  text:`<p>It starts as a headache on a Tuesday. By Friday {LeaderCap} cannot stand up without the room moving. The clinic in town has a microscope and a technician who is sure it is malaria, and a stack of paperwork that says the last three tests were wrong.</p>`,
+  opts:[
+    { t:'Treat it locally, rest three weeks, and let the {People} neighbors bring food and look after the house.',
+      fx:{he:-10,tr:10}, p:{AP:1,RP:1},
+      out:'Three weeks flat on a mattress in a borrowed room. Two neighbors take turns. When it passes, {team} is weaker and has been cared for by the {People}, which changes something that no amount of language study would have.' },
+    { t:'Fly to the regional hospital, get it treated properly, and come back when the bloodwork is clean.',
+      fx:{he:5,su:-10}, m:2,
+      out:'Good medicine, two lost months, and a bill. The neighbors are told the foreigner went where foreigners go when they are sick, which is what they expected.' },
+    { t:'Work through it. Paracetamol, early nights, and do not tell the team at home.',
+      fx:{he:-25,tm:-5}, p:{PD:-1},
+      out:'It lifts after ten days and comes back in the cold season, and again the year after. Untreated things do not leave; they wait.' },
+  ]},
+
+{ id:'ev_evac', title:'The Doctor Says Go', icon:'candle', weight:3, stages:[7,11],
+  cond:g=>g.meters.he<45, kind:'decision',
+  why:'A body that has stopped working is telling the truth. Going home to recover only costs the work if the work was built to need you.',
+  text:`<p>{LeaderCap} {hasHave} been ill for four months. The visiting doctor is not asking any more. She says the word evacuation and then says it again, slowly, the way people do when they think you did not hear.</p>`,
+  opts:[
+    { t:'Go home for proper treatment, hand everything to the {People} believers and teammates, and plan to return.',
+      fx:{he:45,tr:-5}, m:10, p:{LL:2,AP:1},
+      out:'Ten months of hospitals and slow recovery. The work does not stop, because it was never only yours. You come back lighter, and not in charge of as much.' },
+    { t:'Stay. There is nobody else here and the work is at its most fragile point.',
+      fx:{he:-20}, p:{AP:-1,LL:-2},
+      out:'Two more months, and then a night in the regional hospital that nobody wants to describe afterwards. The believers spend that night in the corridor. They have now watched a foreigner nearly die for refusing to rest, which is not the lesson anyone meant to teach.' },
+    { t:'Go home for good. The body has made the decision.',
+      end:true, p:{AP:-2},
+      out:'You recover. You do not go back. Somebody else will start where you started, some years from now.' },
+  ]},
+
+{ id:'ev_family', title:'A Call at Three in the Morning', icon:'phone', weight:3, gentle:true, stages:[6,11], kind:'decision',
+  why:'Your family is not a rival to the mission. Teams that treat it as one usually lose both, in that order.',
+  text:`<p>Your youngest is in hospital at home. Nobody is saying the frightening words yet. The flight is eleven hours and the next one is in two days.</p>`,
+  opts:[
+    { t:'Go now. Whatever it costs, and whatever it delays.',
+      fx:{he:-5,su:-10}, m:3, p:{PD:1},
+      out:'Three months at home. The child recovers. The {People} neighbors, who bury their own children more often than you do, understand this better than the supporters who ask when you are going back.' },
+    { t:'Wait a week for news and a cheaper flight.',
+      fx:{he:-15,tm:-5},
+      out:'The news is good in the end. The week of waiting is the longest of your life, and your spouse remembers who was not on the plane.' },
+  ]},
+
+/* ---------------- place and weather ---------------- */
+{ id:'ev_drought', title:'The Rains Fail', icon:'tent', weight:5, gentle:true, stages:[5,11],
+  peoples:['tegheri'], kind:'decision',
+  why:'What you do about a people’s crisis is what they will conclude about your God. Presence in a disaster buys nothing and opens everything.',
+  text:`<p>The rains come three weeks late and stop after nine days. By the end of the season the wells in two {districts} are down to mud, and the clans are moving early and far. Herds are dying, which here means families are ending.</p>`,
+  opts:[
+    { t:'Put everything into water and animals for a year: the project, the money, the whole calendar.',
+      fx:{tr:20,su:-10,he:-10}, m:6, p:{AP:2,RP:1},
+      out:'A hard, filthy, unglamorous year. No gospel conversations to report and one clan alive that would not have been. Nobody in the camps forgets who came with water.' },
+    { t:'Keep to the plan and help where you can without letting the drought take the year.',
+      fx:{tr:-10},
+      out:'The plan survives the year intact. So does a quiet judgment: when it mattered, the foreigners kept to their schedule.' },
+    { t:'Bring in a relief agency and let them run it while {team} keeps working.',
+      fx:{tr:5}, p:{WB:2},
+      out:'The right partner, doing it better than {team} could. A few families ask why the foreigners with water and the foreigners with the stories are not the same people.' },
+  ]},
+
+{ id:'ev_flood', title:'The River Comes Up', icon:'tent', weight:5, gentle:true, stages:[5,11],
+  peoples:['rennathi'], kind:'setback', fx:{tr:5,su:-5,he:-5}, m:3, p:{AP:1},
+  text:`<p>The river takes the low fields in a night and the road for a month. Two of the {districts} {team} was working are under brown water, and the families there lose a harvest and a year.</p><p>{Team} spends three months carrying sacks, sharing a roof, and being useless in every way that used to feel important. Afterwards, houses that never opened are open.</p>` },
+
+{ id:'ev_landslide', title:'The Road Is Gone', icon:'tent', weight:5, gentle:true, stages:[5,11],
+  peoples:['pemsa','kharun'], kind:'setback', fx:{su:-5,he:-5}, m:4, p:{AP:1},
+  text:`<p>A slope lets go after a week of rain and takes six hundred meters of road with it. The {districts} beyond it are cut off for four months: no bus, no supplies, no visits.</p><p>{Team} walks in twice, eleven hours each way, carrying what fits. The second time, somebody says out loud that no other outsider has ever come here on foot.</p>` },
+
+{ id:'ev_inflation', title:'The Money Goes Strange', icon:'coin', weight:4, gentle:true, stages:[5,11],
+  peoples:['nahrani','rennathi','tegheri'], kind:'setback', fx:{su:-15,tr:5},
+  text:`<p>The currency slides by a third in six weeks. Bread doubles. Every family {team} knows is doing arithmetic at the table at night, and the young men are talking about leaving for work abroad.</p><p>{Team}’s own budget, sent from abroad, is suddenly worth more here than it was. That fact sits uncomfortably in every conversation, and cannot be hidden.</p>` },
+
+/* ---------------- pressure and security ---------------- */
+{ id:'ev_arrest', title:'A Believer Is Taken', icon:'chain', weight:5, stages:[7,11],
+  cond:g=>g.mv.believers>0, kind:'decision',
+  why:'Foreign involvement converts a local problem into a foreign one, and foreign ones take longer, cost more, and follow the believer for years.',
+  text:`<p>{Name} is picked up at a checkpoint with a phone full of recordings. Nobody says a charge. The family hears nothing for nine days.</p>`,
+  opts:[
+    { t:'Stay out of sight and let the {People} family and the local believers work every relationship they have.',
+      fx:{tr:10,pr:10}, p:{LL:3,AP:2,PD:1},
+      out:'An uncle knows a man. Nine days become eleven, and {Name} comes home thinner and famous. A foreigner at the police station would have made it a foreign case, and foreign cases take months.' },
+    { t:'Go to the police station yourself and ask what the charge is.',
+      fx:{tr:-15,he:-5}, p:{AP:-1,LL:-1},
+      out:'Now there is a foreigner in the file. {Name} is released after five weeks, and the word attached to {his} name for the next three years is not believer but agent.' },
+    { t:'Call the embassy and an advocacy group.',
+      fx:{tr:-20}, p:{AP:-1,LL:-2},
+      out:'{Name} is out in a month, and the government has a story about foreign interference that it repeats every time a {People} person believes.' },
+  ]},
+
+{ id:'ev_search', title:'They Came While You Were Out', icon:'door', weight:4, stages:[5,11], kind:'decision',
+  why:'Security is a discipline, not a mood. The cost of taking it seriously is tedium. The cost of not is somebody else’s family.',
+  text:`<p>The house has been searched. Nothing is broken and nothing is missing, which is the point: someone wanted {team} to know. The laptop was opened. The notebook with names in it was on the desk.</p>`,
+  opts:[
+    { t:'Change everything: no names on paper, no lists, warn everyone in person, and assume the phone is not private.',
+      fx:{he:-5,tr:5}, p:{AP:2,PD:1}, m:1,
+      out:'A week of dull, tedious work and some hard conversations. Eleven months later a worker two towns over loses a laptop with a list on it, and the difference between the two situations is measured in families.' },
+    { t:'Carry on. Fear is its own prison and the work is not illegal.',
+      fx:{he:-10}, p:{AP:-1},
+      out:'Nothing happens for a year. Then a name from that notebook is read back to a believer in an interview room, and he knows exactly where it came from.' },
+  ]},
+
+{ id:'ev_expelled', title:'Stamped and Refused', icon:'passport', weight:3, stages:[7,11], hard:true,
+  cond:g=>(g.flags.illegal||g.flags.tourist)&&!g.flags.border, kind:'decision',
+  why:'A platform that works because nobody is looking closely works until somebody does. What matters on the day it fails is whether the work was built to survive your absence, and whether you ever found a second way in.',
+  text:`<p>The re-entry is refused at the airport counter. No hearing and no appeal: a stamp in the passport, a night in a plastic chair, and a flight out in the morning. The officer is almost apologetic. The ninety-day pattern was noticed years ago and somebody has finally acted on the file.</p><p>{Team} is out. No handover, no goodbye, and a phone that will not be safe to use for months. Whatever happens among the {People} now happens without {team} in the room.</p>`,
+  opts:[
+    { t:'Set up across the border and keep working through the diaspora, the traders, the phone tree, and {People} who can travel out to you.',
+      fx:{tr:-5,su:-10}, m:6, p:{AP:3,WB:2,LL:2}, flag:'border',
+      out:'Six months of scrambling, then a different shape of work: shorter, cheaper, carried by {People} who cross that border anyway. Some of what was built inside goes quiet. The part that was already local does not.' },
+    { t:'Hand everything to the {People} believers by phone, and find a national organization willing to stand behind them.',
+      fx:{tm:-10,tr:5}, m:4, p:{LL:3,WB:3,RP:1},
+      out:'Weeks of humbling calls. Two groups fold inside a year. The rest find out that they were never dependent on a foreigner for anything except confidence, and they get that somewhere else.' },
+    { t:'Fight it. A different passport, a different visa category, a lawyer, and however long it takes.',
+      fx:{su:-15,he:-10}, m:18, p:{AP:1,LL:-1},
+      out:'Eighteen months of forms and airports and consulate waiting rooms. The final answer is no. The believers spent those months waiting for {team} to come back instead of learning to lead.' },
+    { t:'That is the end of it. Go home and tell the sending church what happened.',
+      end:true, p:{AP:-2,LL:-1},
+      out:'An honest ending, and a common one. What continues among the {People} is exactly the part that was already theirs. That was always the only real measure of what {team} built.' },
+  ]},
+
+{ id:'ev_ambush', title:'The Road South', icon:'chain', weight:4, stages:[6,11],
+  peoples:['tegheri'], kind:'decision',
+  why:'Danger is information about how to work, not usually a signal to stop. The question is what changes about the pattern, not whether you stay.',
+  text:`<p>Armed men stop the vehicle two hours out. They take the cash, the spare tires, and the satellite phone, and they argue for a while about whether to take {team}. Then they let the vehicle go.</p>`,
+  opts:[
+    { t:'Keep working, with a changed pattern: local vehicles, local drivers, and nothing that looks like an NGO convoy.',
+      fx:{he:-10,tr:10}, p:{AP:3},
+      out:'It costs speed and comfort. It also means {team} travels the way the {People} travel, which is both safer and slower, and puts {team} in the same trucks as the people {team} came for.' },
+    { t:'Move the base to the regional capital and travel out only with escorts.',
+      fx:{he:5,tr:-15}, p:{EV:-1,AP:-1},
+      out:'Safer, and now {team} arrives in armored comfort, stays four hours, and leaves. The camps notice which foreigners sleep where they eat.' },
+    { t:'This is beyond what the family signed up for. Leave the region.',
+      end:true, p:{AP:-2,EV:-2},
+      out:'A defensible decision that many good people have made. The {People} remain, with nobody among them again.' },
+  ]},
+
+/* ---------------- reputation ---------------- */
+{ id:'ev_rumor', title:'The Rumor', icon:'chain', weight:4, gentle:true, stages:[6,11], kind:'decision',
+  why:'Accusations about money are answered by a pattern over time, and answered best by local believers rather than by you.',
+  text:`<p>The story going around the market is that {team} pays people to change religion. The figure quoted is oddly specific. Two families who were open last month will not meet {team}’s eyes.</p>`,
+  opts:[
+    { t:'Live it down: keep the pattern of no money for faith, and let the {People} believers answer for {team} in their own words.',
+      fx:{tr:15}, p:{RP:2,LL:2}, m:2,
+      out:'Two slow months. Then {Name} answers it in a courtyard full of relatives, in {language}, better than {team} ever could have, and it dies.' },
+    { t:'Address it publicly and directly: call the elders together and deny it.',
+      fx:{tr:-5}, p:{AP:-1},
+      out:'A formal meeting in which a foreigner explains that he does not pay people. Half the room concludes there was something in it after all.' },
+    { t:'Prove it by giving generously and openly to the whole {village}, believers or not.',
+      fx:{su:-10,tr:5}, p:{RP:-2},
+      out:'Generous, well meant, and now the foreigner is a source of money. The rumor mutates instead of dying.' },
+  ]},
+
+{ id:'ev_teammate', title:'A Teammate Goes Home', icon:'split', weight:4, gentle:true, stages:[5,11], kind:'setback',
+  fx:{tm:-15,he:-5},
+  text:`<p>The couple who came with {team} are leaving. It is not a scandal and not a fight: her mother is dying, their second child has a condition the clinic cannot manage, and they have been quietly out of margin for a year.</p><p>They go in six weeks. The good part is that they are honest about it. The hard part is that {team} is now smaller, and the neighbors ask, again, why the foreigners leave.</p>` },
+
+/* ---------------- unexpected gifts ---------------- */
+{ id:'ev_dream', good:true, title:'A Dream', icon:'candle', weight:4, gentle:true, stages:[6,11],
+  peoples:['kharun','tegheri','nahrani'], kind:'setback', fx:{pr:15,tr:10}, p:{PD:2},
+  text:`<p>A man {team} has met twice comes to the house before dawn, agitated. He has dreamed three nights running of a figure in white who told him to find the people who tell the stories, and he wants to know what the stories are.</p><p>Nobody planned this. Nobody can take credit for it. It is, for the record, the single most common way people in this part of the world say they first turned toward Jesus.</p>` },
+
+{ id:'ev_elder', good:true, title:'An Unexpected Welcome', icon:'scroll', weight:3, gentle:true, stages:[5,11], kind:'setback',
+  fx:{tr:15}, p:{AP:1},
+  text:`<p>An elder {team} barely knows stands up in a gathering and vouches for {team}, unprompted, for reasons that never become clear. He mentions a kindness from two years ago that {team} does not remember doing.</p><p>Three {villages} that were closed are now open, on the word of one old man, because of something {team} did without noticing.</p>` },
+
+{ id:'ev_returnee', good:true, title:'Someone Comes Home', icon:'phone', weight:3, stages:[6,11], kind:'setback',
+  fx:{tr:10,tm:5}, p:{WB:2,LL:1},
+  text:`<p>A {People} man comes back after eleven years abroad. He met Jesus in a shared flat in another country, has been reading alone ever since, and assumed he was the only one.</p><p>He has been home three weeks and has already told four relatives. He did not need a visa, a platform, or language training, and nobody sent him.</p>` },
+];
+
+/* How often the trail provides, by setting. Guided sees only the gentle half
+   and never a run-ender. `p` values on setback events are ignored by the
+   engine on purpose: nothing that happens to you without a choice moves the
+   hidden score. Only what you do about it does. */
+const EVENT_RULES = {
+  guided:   { prob:0.20, cap:2, gentleOnly:true  },
+  trail:    { prob:0.34, cap:3, gentleOnly:false },
+  frontier: { prob:0.48, cap:4, gentleOnly:false },
+};
 /* =====================================================================
    Barrier deck. Each: id, title, stages [min,max], weight, mustBy (stage at
    which it is forced if eligible and not yet fired), cond(G), roles, text, opts.
@@ -2658,7 +2892,7 @@ function vars(){
     yr:yearOf(G.months), churches:G.mv.churches, believers:G.mv.believers, gens:G.mv.gens, leaders:G.mv.leaders,
     churchesWord: G.mv.churches>=2 ? `${G.mv.churches} small churches` : (G.mv.churches===1 ? 'one small church and a scattering of seekers' : 'a handful of believers and no church yet'),
     restPop:rest,
-    discoveryTiming:(G.flags.mapped||G.flags.partnered||G.flags.convened||G.flags.prepared||G.flags.profile)?'Because {team} went looking, it took eight months to learn this.':'It took nearly three years to learn this, because nobody asked.',
+    discoveryTiming:(G.flags.mapped||G.flags.convened||G.flags.prepared||G.flags.profile)?'Because {team} had been mapping the {People} on purpose, it surfaced in eight months.':'It surfaced by accident in the third year, in a conversation nobody planned. Nothing was wrong with how {team} spent those years. They were simply not spent looking for this.',
     donorText:r.id==='pastor'?'A wealthy member of your congregation offers $50,000 for a church building for the {People} believers. He would like to see it built, and he would like to see his name on it.':'A foreign donor who heard the story offers $50,000 for a church building for the {People} believers.',
     handoffAsk:{missionary:'What is your role now?',pastor:'Daniel asks whether his family should come home. What do you tell him?',mobilizer:'The coalition asks what the team should do next.',orgleader:'The field director asks whether to reassign the team.'}[r.id],
     partnerThing:G.flags.scripture?'Scripture recording':'the northern districts',
@@ -2711,12 +2945,12 @@ function openAcc(k){
 function newGame(){
   G={ role:null, people:null, name:'', diff:DIFF_SEL, meters:{}, p:{}, pMax:{}, pMin:{}, months:0, stage:0, stageEnded:false,
       flags:{}, mv:{believers:0,churches:0,gens:0,leaders:0}, fired:[], barriers:0, log:[], crisisSeen:{}, queue:[], start:Date.now(), decisions:0,
-      phase:0, phaseHist:[], lit:0, acc:{}, accPicks:[], cp:[], cpUsed:[], uotd:0, trGain:false, commit:null, retries:0 };
+      phase:0, phaseHist:[], lit:0, acc:{}, accPicks:[], cp:[], cpUsed:[], uotd:0, trGain:false, commit:null, retries:0, evFired:[] };
   P_KEYS.forEach(k=>{G.p[k]=0;G.pMax[k]=0;G.pMin[k]=0;});
   LASTMV=null; SNAP=null; CUR=null;
 }
 function goRole(){ newGame(); renderRoleCards(); show('role'); }
-function restart(){ show('title'); }
+function restart(){ show('title'); renderResume(); }
 function pickRole(id){ G.role=structuredClone(ROLES.find(r=>r.id===id)); G.meters={...G.role.meters}; renderPeopleCards(); show('people'); }
 function pickPeople(id){
   G.people=structuredClone(PEOPLES.find(p=>p.id===id));
@@ -2851,14 +3085,18 @@ function buildQueue(n){
   const q=[]; if(n===3||n===9) q.push('uotd');
   q.push(...stageScenes(n,G.role.id));
   if(ACC_STOPS[n]) q.push('acc:'+n);
+  if(n===6) q.push('vet');
   if((VOICES[G.people.id]||[]).some(v=>v.stop===n)) q.push('voice:'+n);
   if(CHECKPOINT_STOPS.includes(n)) q.push('cp');
   if(n===12) q.push('commission');
+  const ev=pickEvent(n);
+  if(ev){ G.evFired.push(ev.id); const at=Math.min(q.length,(q[0]==='uotd'?2:1)); q.splice(at,0,'event:'+ev.id); }
   return q;
 }
 function nextStep(){
+  saveState();
   for(const [k] of METERS){ if(G.meters[k]<=0 && !G.crisisSeen[k]){ G.crisisSeen[k]=true; showScene(CRISES[k],'crisis'); return; } }
-  if(G.queue.length){ const id=G.queue.shift(); if(id==='uotd') return showUOTD(); if(id==='cp') return showCheckpoint(); if(id==='commission') return showCommission(); if(id.startsWith('voice:')) return showVoice(parseInt(id.slice(6),10)); if(id.startsWith('acc:')) return showAccStop(parseInt(id.slice(4),10)); showScene(SCENES[id],'scene'); return; }
+  if(G.queue.length){ const id=G.queue.shift(); if(id==='uotd') return showUOTD(); if(id==='cp') return showCheckpoint(); if(id==='commission') return showCommission(); if(id==='vet') return showVet(); if(id.startsWith('event:')) return showEvent(id.slice(6)); if(id.startsWith('voice:')) return showVoice(parseInt(id.slice(6),10)); if(id.startsWith('acc:')) return showAccStop(parseInt(id.slice(4),10)); showScene(SCENES[id],'scene'); return; }
   if(G.stage>=1 && !G.stageEnded){
     G.stageEnded=true;
     if(D().decay && G.stage>=4 && !G.trGain){ G.meters.tr=clamp(G.meters.tr-D().decay,0,100); }
@@ -2882,8 +3120,8 @@ function showScene(sc,kind,fixedOpts){
   const text=sc.textFn?sc.textFn(G):sc.text;
   if(sc.id&&ON_SHOW[sc.id]){ ON_SHOW[sc.id](G); renderHUD(); }
   CUR={sc,kind,opts,title};
-  const label= kind==='barrier'?'&#9888; Barrier' : kind==='crisis'?'&#9888; Crisis' : `Stop ${G.stage} of 12 &middot; ${stopName(G.stage)}`;
-  const icon=(kind==='barrier'||kind==='crisis')? iconSVG(BARRIER_ICONS[BARRIER_ICON_KEY[sc.id]],'sc-icon') : '';
+  const label= kind==='barrier'?'&#9888; Barrier' : kind==='crisis'?'&#9888; Crisis' : kind==='event'?`${sc.good?'&#9733;':'&#9888;'} The Trail Provides &middot; Stop ${G.stage} of 12` : `Stop ${G.stage} of 12 &middot; ${stopName(G.stage)}`;
+  const icon=(kind==='barrier'||kind==='crisis')? iconSVG(BARRIER_ICONS[BARRIER_ICON_KEY[sc.id]],'sc-icon') : kind==='event'? iconSVG(BARRIER_ICONS[sc.icon],'sc-icon') : '';
   const st=D().stakes?stakesOf(opts):null;
   const stakesHTML=st?`<div class="stakes s${st.level}"><span class="st-l">Stakes: ${st.level}</span><span class="st-i">At issue: ${T(st.issue)}. <span class="muted">Of the options here, ${st.note}.</span></span></div>`:'';
   $('main').innerHTML=`<div class="scene ${kind}"><div class="kind">${label}</div><div class="sc-head">${icon}<h2>${T(title)}</h2></div><div class="text">${linkTerms(T(text))}</div>
@@ -2905,10 +3143,11 @@ function choose(i){
   const sc=pScores();
   const fb=T(o.outFn?o.outFn(G,sc):((o.outBy&&o.outBy[G.people.id])||o.out||''));
   const bestSum=Math.max(...CUR.opts.map(pSum)); const best=CUR.opts.find(x=>pSum(x)===bestSum); const wasBest=pSum(o)>=bestSum;
-  G.log.push({yr:yearOf(beforeMonths),kind:CUR.kind,title:T(CUR.title),choice:T(o.t),acc:o.acc||[],accWhy:(o.acc||[]).map(k=>({k,name:accOf(k).name,why:T(accWhy(CUR.sc.id,k))})),wasBest,best:wasBest?'':T(best.t),why:T(WHY[CUR.sc.id]||'')});
+  G.log.push({yr:yearOf(beforeMonths),kind:CUR.kind,title:T(CUR.title),choice:T(o.t),acc:o.acc||[],accWhy:(o.acc||[]).map(k=>({k,name:accOf(k).name,why:T(accWhy(CUR.sc.id,k))})),wasBest,best:wasBest?'':T(best.t),why:T(WHY[CUR.sc.id]||CUR.sc.why||'')});
   if(o.next) G.queue.unshift(o.next);
   renderHUD();
   if(o.quit){ showTrailEnd(fb); return; }
+  if(o.end){ showRunEnd(fb); return; }
   document.querySelectorAll('#opts .opt').forEach((b,j)=>{ b.disabled=true; b.style.opacity=(j===i)?'1':'.45'; if(j===i){ b.style.background='#1a2a21'; b.style.color='#f4ecd8'; b.style.borderColor='#5ef08a'; } });
   let dl='';
   METERS.forEach(([k,l])=>{ const df=G.meters[k]-before[k]; if(df) dl+=`<span class="delta ${df>0?'up':'dn'}">${l} ${df>0?'+':''}${df}</span>`; });
@@ -2920,6 +3159,7 @@ function choose(i){
   const retry=(d.retry&&SNAP)?`<button class="btn warn" id="retryBtn" onclick="retryDecision()">Take it back and try another</button>`:'';
   $('outcome').innerHTML=`<div class="outcome">${verdict}<div class="fb">${fb}</div><div class="deltas">${dl||'<span class="delta tm">No immediate change. Some costs arrive later.</span>'}</div>${chips?`<div class="chips"><span class="chips-l">Accelerator${(accList.length>1)?'s':''} used:</span>${chips}</div>${whys}`:''}<div class="row">${retry}<button class="btn cont" id="contBtn" onclick="nextStep()">Continue &#9654;</button></div></div>`;
   $('contBtn').scrollIntoView({behavior:'smooth',block:'nearest'});
+  saveState();
 }
 function showTrailEnd(fb){
   const tb=D().takeback?`<button class="btn warn" onclick="takeBack()">Take it back</button>`:'';
@@ -2928,11 +3168,12 @@ function showTrailEnd(fb){
   window.scrollTo(0,0);
 }
 function retryDecision(){
-  if(!SNAP||!D().retry||!CUR||!CUR.sc) return;
-  const sc=CUR.sc, kind=CUR.kind, opts=CUR.opts, was=G.retries||0;
+  if(!SNAP||!D().retry||!CUR) return;
+  if(CUR.kind!=='acc'&&!CUR.sc) return;
+  const sc=CUR.sc, kind=CUR.kind, opts=CUR.opts, stop=CUR.stop, was=G.retries||0;
   G=SNAP; SNAP=null; G.retries=was+1;
   renderHUD();
-  if(kind==='acc') showAccStop(CUR.stop,opts); else showScene(sc,kind,opts);
+  if(kind==='acc') showAccStop(stop,opts); else showScene(sc,kind,opts);
   toast('Decision taken back. The clock and the meters are back where they were.');
 }
 function takeBack(){ if(!SNAP||!D().takeback) return; G=SNAP; SNAP=null; renderHUD(); showScene(CUR.sc,CUR.kind); }
@@ -2989,6 +3230,7 @@ function chooseAcc(i){
     <div class="chips"><span class="chips-l">Habit built:</span><span class="chip" role="button" tabindex="0" title="${accTitle(o.k)}" onclick="openAcc('${o.k}')" onkeydown="cardKey(event,()=>openAcc('${o.k}'))">${iconSVG(ACC_ICONS[o.k],'chip-ic')}${ac.name} <em>+2</em></span></div>
     <div class="row">${retryA}<button class="btn cont" id="contBtn" onclick="nextStep()">Continue &#9654;</button></div></div>`;
   $('contBtn').scrollIntoView({behavior:'smooth',block:'nearest'});
+  saveState();
 }
 
 function showCommission(){
@@ -3007,7 +3249,7 @@ function showCommission(){
     <div id="outcome"></div></div>`;
   window.scrollTo(0,0);
 }
-function commit(i){
+function commit(i){ /* saves at the end */
   if(!CUR||CUR.kind!=='commission'||CUR.done) return;
   const o=COMMIT[i]; if(!o) return; CUR.done=true; G.commit=o;
   document.querySelectorAll('#opts .opt').forEach((b,j)=>{ b.disabled=true; b.style.opacity=(j===i)?'1':'.4'; if(j===i){ b.style.background='#1a2a21'; b.style.color='#f4ecd8'; b.style.borderColor='#5ef08a'; } });
@@ -3015,8 +3257,74 @@ function commit(i){
     <p class="row" style="gap:10px"><a class="btn" href="${o.url}" target="_blank" rel="noopener">${o.link} &#8599;</a></p>
     <button class="btn cont" id="contBtn" onclick="nextStep()">See the Trail Report &#9654;</button></div>`;
   $('contBtn').scrollIntoView({behavior:'smooth',block:'nearest'});
+  saveState();
 }
 
+function eventPool(stage){
+  const r=EVENT_RULES[(G&&G.diff)||DIFF_SEL]||EVENT_RULES.trail;
+  return EVENTS.filter(e=>{
+    if(G.evFired.includes(e.id)) return false;
+    if(r.gentleOnly&&!e.gentle) return false;
+    if(stage<e.stages[0]||stage>e.stages[1]) return false;
+    if(e.peoples&&!e.peoples.includes(G.people.id)) return false;
+    if(e.cond&&!e.cond(G)) return false;
+    return true;
+  });
+}
+function pickEvent(stage){
+  if(!G||!G.evFired) return null;
+  const r=EVENT_RULES[(G&&G.diff)||DIFF_SEL]||EVENT_RULES.trail;
+  if(G.evFired.length>=r.cap) return null;
+  const pool=eventPool(stage); if(!pool.length) return null;
+  const forced=pool.filter(e=>e.hard);
+  if(forced.length&&Math.random()<0.4) return forced[0];
+  const soft=pool.filter(e=>!e.hard);
+  if(!soft.length||Math.random()>=r.prob) return null;
+  let tot=soft.reduce((a,e)=>a+(e.weight||1),0), x=Math.random()*tot;
+  for(const e of soft){ x-=(e.weight||1); if(x<=0) return e; }
+  return soft[soft.length-1];
+}
+function showEvent(eid){
+  const ev=EVENTS.find(e=>e.id===eid); if(!ev) return nextStep();
+  if(ev.kind==='decision'){ showScene({id:ev.id,title:ev.title,text:ev.text,opts:ev.opts,why:ev.why,icon:ev.icon,good:ev.good},'event'); return; }
+  showEventSetback(ev);
+}
+function showEventSetback(ev){
+  const before={...G.meters}, bm=G.months, d=D();
+  if(ev.fx) for(const k in ev.fx){ let v=ev.fx[k]; if(v<0) v=Math.round(v*d.fxMul); G.meters[k]=clamp(G.meters[k]+v,0,100); if(k==='tr'&&v>0) G.trGain=true; }
+  if(ev.m) G.months+=ev.m;
+  CUR={kind:'event',sc:ev,done:true};
+  G.log.push({yr:yearOf(bm),kind:'trail',title:T(ev.title),choice:'Nothing to decide. This one simply arrived.',acc:[],accWhy:[],wasBest:true,best:'',
+    why:T(ev.why||'Some of the trail is weather. What it costs is real. What you build afterwards is the only part you choose.')});
+  renderHUD();
+  let dl='';
+  METERS.forEach(([k,l])=>{ const df=G.meters[k]-before[k]; if(df) dl+=`<span class="delta ${df>0?'up':'dn'}">${l} ${df>0?'+':''}${df}</span>`; });
+  const dm=G.months-bm; if(dm) dl+=`<span class="delta tm">+${dm} month${dm===1?'':'s'}</span>`;
+  const btn=ev.endRun
+    ? `<button class="btn ghost" id="contBtn" onclick="endGame(true)">See the Trail Report</button>`
+    : `<button class="btn cont" id="contBtn" onclick="nextStep()">Continue &#9654;</button>`;
+  const tail=ev.endRun?`<p class="muted small">Nothing about this was a failure of strategy at the last step. It was decided years earlier, by how you got in. That is usually how it works.</p>`:'';
+  $('main').innerHTML=`<div class="scene event${ev.good?' good':''}"><div class="kind">${ev.good?'&#9733;':'&#9888;'} The Trail Provides &middot; Stop ${G.stage} of 12</div>
+    <div class="sc-head">${iconSVG(BARRIER_ICONS[ev.icon],'sc-icon')}<h2>${T(ev.title)}</h2></div>
+    <div class="text">${linkTerms(T(ev.text))}</div>${tail}
+    <div class="outcome"><div class="deltas">${dl||'<span class="delta tm">No immediate change. Some costs arrive later.</span>'}</div><div class="row">${btn}</div></div></div>`;
+  window.scrollTo(0,0);
+  saveState();
+}
+function showRunEnd(fb){
+  const tb=(D().takeback&&SNAP)?`<button class="btn warn" onclick="takeBack()">Take it back</button>`:'';
+  $('main').innerHTML=`<div class="trailend"><h2>THE TRAIL ENDS HERE</h2><p>${fb}</p>
+    <p class="muted small">This is not the same as quitting. Journeys end this way all the time, and the people remain either way. What the report measures is the pattern you were building while you had the chance.</p>
+    <div class="row">${tb}<button class="btn ghost" onclick="endGame(false)">See the Trail Report</button><button class="btn ghost" onclick="restart()">Start over</button></div></div>`;
+  window.scrollTo(0,0);
+}
+function showVet(){
+  CUR={kind:'voice'};
+  $('main').innerHTML=`<div class="scene voice vet"><div class="kind">A voice from the road</div><div class="who">${T(VET_VOICE.who)}</div><blockquote>${T(VET_VOICE.text)}</blockquote>
+    <p class="small vsrc">He is right, and this game agrees with him. It scores a pattern, not a formula. A pattern is worth learning because it saves years that are otherwise wasted. It has never once been what God was limited to.</p>
+    <button class="btn cont" onclick="nextStep()">Continue &#9654;</button></div>`;
+  window.scrollTo(0,0);
+}
 function showVoice(stop){
   const v=(VOICES[G.people.id]||[]).find(x=>x.stop===stop); if(!v) return nextStep();
   CUR={kind:'voice'}; const link=JP_LINKS[G.people.id][0];
@@ -3041,7 +3349,7 @@ function answerCp(oi){
   document.querySelectorAll('#opts .opt').forEach(b=>{ b.disabled=true; });
   const buttons=[...document.querySelectorAll('#opts .opt')]; CUR.order.forEach((o,i)=>{ if(o===c.a){ buttons[i].style.background='#1a2a21'; buttons[i].style.color='#f4ecd8'; buttons[i].style.borderColor='#5ef08a'; } else if(o===oi){ buttons[i].style.borderColor='#ef5a44'; buttons[i].style.opacity='.7'; } else buttons[i].style.opacity='.45'; });
   $('outcome').innerHTML=`<div class="outcome"><div class="fb"><b>${ok?'Right.':'Not quite.'}</b> ${c.note} <a href="${c.src}" target="_blank" rel="noopener" class="small">Source</a></div><div class="deltas">${ok?'<span class="delta up">Prayer +5</span><span class="delta up">Support +5</span><span class="delta tm">+150 points</span>':'<span class="delta tm">No penalty. Now you know.</span>'}</div><button class="btn cont" id="contBtn" onclick="nextStep()">Continue &#9654;</button></div>`;
-  renderHUD();
+  renderHUD(); saveState();
 }
 /* keyboard number keys for checkpoints */
 function cpKey(n){ if(CUR&&CUR.kind==='cp'&&!CUR.done&&CUR.order[n-1]!==undefined) answerCp(CUR.order[n-1]); }
@@ -3076,6 +3384,111 @@ function renderHUD(){
 }
 
 /* ---------- facilitator gate ---------- */
+/* ---------- saving: this browser, plus a portable code ---------- */
+const SAVE_KEY='frontierTrail.save.v1';
+function saveState(){
+  try{
+    if(!G||!G.role||!G.people||!G.stage) return;
+    localStorage.setItem(SAVE_KEY,JSON.stringify({v:1,t:Date.now(),e:Date.now()-G.start,g:G}));
+  }catch(err){}
+}
+function readSave(){
+  try{
+    const raw=localStorage.getItem(SAVE_KEY); if(!raw) return null;
+    const p=JSON.parse(raw);
+    if(!p||p.v!==1||!p.g||!p.g.role||!p.g.people||!p.g.stage) return null;
+    return p;
+  }catch(err){ return null; }
+}
+function clearSave(){ try{ localStorage.removeItem(SAVE_KEY); }catch(err){} }
+function ago(t){
+  const m=Math.round((Date.now()-t)/60000);
+  if(m<2) return 'just now'; if(m<60) return m+' minutes ago';
+  const h=Math.round(m/60); if(h<24) return h===1?'an hour ago':h+' hours ago';
+  const d=Math.round(h/24); return d===1?'yesterday':d+' days ago';
+}
+function renderResume(){
+  const box=$('resumeBox'); if(!box) return;
+  const p=readSave();
+  if(!p){ box.classList.add('hidden'); box.innerHTML=''; return; }
+  const g=p.g, st=clamp(g.stage,1,12);
+  box.classList.remove('hidden');
+  box.innerHTML=`<div class="rs-h">A journey is waiting</div>
+    <p>${escapeHtml(g.name||'Traveler')}, ${g.role.name.toLowerCase()}, among the ${g.people.name}. Stop ${st} of 12, Year ${Math.floor(g.months/12)+1}, on the ${(DIFF[g.diff]||DIFF.trail).name} setting. Saved ${ago(p.t)}.</p>
+    <div class="row"><button class="btn" onclick="doResume()">Continue this journey</button><button class="btn ghost" onclick="discardSave()">Start a new one</button></div>`;
+}
+function doResume(){ const p=readSave(); if(!p){ renderResume(); return; } startFrom(p.g,p.e); }
+function startFrom(g,elapsed){
+  G=g; SNAP=null; CUR=null; LASTMV=null;
+  if(!Array.isArray(G.queue)) G.queue=[];
+  if(!Array.isArray(G.evFired)) G.evFired=[];
+  if(!G.crisisSeen) G.crisisSeen={};
+  G.start=Date.now()-(elapsed||0);
+  DIFF_SEL=DIFF[G.diff]?G.diff:'trail'; G.diff=DIFF_SEL; setDiff(DIFF_SEL);
+  show('game'); renderHUD(); nextStep();
+  toast('Journey resumed at Stop '+clamp(G.stage,1,12)+' of 12.');
+}
+function b64enc(u8){ let s=''; for(let i=0;i<u8.length;i+=0x8000) s+=String.fromCharCode.apply(null,u8.subarray(i,i+0x8000)); return btoa(s); }
+function b64dec(str){ const bin=atob(str); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return u; }
+async function makeCode(){
+  const json=JSON.stringify({v:1,e:Date.now()-G.start,g:G});
+  const bytes=new TextEncoder().encode(json);
+  try{
+    if(typeof CompressionStream==='function'){
+      const cs=new CompressionStream('gzip'); const w=cs.writable.getWriter();
+      w.write(bytes); w.close();
+      const out=new Uint8Array(await new Response(cs.readable).arrayBuffer());
+      return 'FT2'+b64enc(out);
+    }
+  }catch(err){}
+  return 'FT1'+b64enc(bytes);
+}
+async function readCode(code){
+  const c=String(code||'').replace(/\s+/g,'');
+  const tag=c.slice(0,3), body=c.slice(3);
+  if(tag!=='FT1'&&tag!=='FT2') throw new Error('bad tag');
+  let bytes=b64dec(body);
+  if(tag==='FT2'){
+    const ds=new DecompressionStream('gzip'); const w=ds.writable.getWriter();
+    w.write(bytes); w.close();
+    bytes=new Uint8Array(await new Response(ds.readable).arrayBuffer());
+  }
+  const o=JSON.parse(new TextDecoder().decode(bytes));
+  if(!o||!o.g||!o.g.role||!o.g.people||!o.g.stage) throw new Error('bad payload');
+  return o;
+}
+function openSave(){
+  const inGame=$('game').classList.contains('on')&&G&&G.people;
+  const hasSave=!!readSave();
+  $('saveBody').innerHTML=`<p>${inGame
+    ? 'This journey saves itself in this browser after every step. Close the tab and it will be here when you come back, on this device, in this browser.'
+    : 'A journey saves itself in this browser as you play, and the title screen offers to continue it. To move one to another device or browser, use a progress code.'}</p>
+    ${inGame?`<h3>Progress code</h3><p class="small">A long string that carries the whole journey: the decisions, the meters, the people, the years. Keep it somewhere you can paste from.</p>
+      <textarea id="codeOut" class="codebox" readonly rows="4">Building the code...</textarea>
+      <div class="row"><button class="btn" onclick="copyCode()">Copy the code</button></div>`:''}
+    <h3>Continue from a code</h3>
+    <textarea id="codeIn" class="codebox" rows="4" placeholder="Paste a progress code here"></textarea>
+    <div class="row"><button class="btn" onclick="useCode()">Load it</button>${hasSave?`<button class="btn warn" onclick="discardSave()">Delete the journey saved in this browser</button>`:''}</div>
+    <p class="small" id="codeMsg"></p>`;
+  openModal('save');
+  if(inGame) makeCode().then(c=>{ const t=$('codeOut'); if(t) t.value=c; }).catch(()=>{ const t=$('codeOut'); if(t) t.value='This browser could not build a code.'; });
+}
+function copyCode(){
+  const t=$('codeOut'); if(!t) return;
+  t.select(); t.setSelectionRange(0,t.value.length);
+  let done=false;
+  try{ done=document.execCommand('copy'); }catch(err){}
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t.value).then(()=>toast('Progress code copied.')).catch(()=>{ if(!done) toast('Select the text and copy it by hand.'); }); }
+  else toast(done?'Progress code copied.':'Select the text and copy it by hand.');
+}
+function useCode(){
+  const v=($('codeIn').value||'').trim();
+  if(!v){ $('codeMsg').textContent='Paste a code first.'; return; }
+  readCode(v).then(o=>{ closeModals(); startFrom(o.g,o.e); saveState(); })
+    .catch(()=>{ $('codeMsg').textContent='That code could not be read. Copy the whole string, including the three letters at the start.'; });
+}
+function discardSave(){ clearSave(); renderResume(); closeModals(); toast('Saved journey deleted.'); }
+
 function askFacilitator(){ $('facPass').value=''; $('facMsg').textContent=''; openModal('fac'); setTimeout(()=>$('facPass').focus(),50); }
 async function tryFacilitator(){
   const v=$('facPass').value; const h=await ftHash(v);
@@ -3087,6 +3500,7 @@ function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('on'
 
 /* ---------- ending ---------- */
 function endGame(quit){
+  clearSave();
   const sc=pScores(), S=strategyIndex(), mv=G.mv, tier=quit?'quit':endingTier(), d=D();
   if(!quit && tier==='movement' && (G.flags.nextpeople||G.flags.theirvision)) setPhase(7);
   if(!quit){ updateDistricts(11); }
@@ -3101,8 +3515,10 @@ function endGame(quit){
   const ph=PHASES[G.phase], str=STRENGTHS[strengthLevel()];
   const timeline=G.phaseHist.map(h=>`<div class="tl"><span class="tl-y">Y${h.yr}</span><span class="tl-p">${h.phase} &middot; ${PHASES[h.phase].name}</span></div>`).join('<span class="tl-arrow">&#9654;</span>');
   const unused=ACCELERATORS.filter(a=>!G.acc[a.k]), strong=ACCELERATORS.filter(a=>(G.acc[a.k]||0)>=3), touched=ACCELERATORS.filter(a=>{const n=G.acc[a.k]||0; return n>=1&&n<3;});
-  const decisions=G.log.filter(e=>e.kind!=='prayer'); const bestCount=decisions.filter(e=>e.wasBest).length;
-  const review=G.log.map(e=>`<li class="${e.wasBest?'ok':'miss'}"><div class="rv-head"><b>Y${e.yr}</b> ${e.kind==='barrier'?'&#9888; ':e.kind==='crisis'?'&#10071; ':e.kind==='prayer'?'&#128591; ':e.kind==='acc'?'&#9889; ':''}${e.title}</div><div class="rv-choice">${e.wasBest?'<span class="rv-tag ok">Strongest option</span>':'<span class="rv-tag miss">Stronger option available</span>'} You chose: ${e.choice}</div>${e.wasBest?'':`<div class="rv-best">Stronger: ${e.best}</div>`}${e.why?`<div class="rv-why">${e.why}</div>`:''}${(e.accWhy&&e.accWhy.length)?`<div class="rv-acc">${e.accWhy.map(a=>`<span class="rv-accrow"><b>${a.name}:</b> ${a.why}</span>`).join('')}</div>`:''}</li>`).join('');
+  const decisions=G.log.filter(e=>e.kind!=='prayer'&&e.kind!=='trail'); const bestCount=decisions.filter(e=>e.wasBest).length;
+  const review=G.log.map(e=>e.kind==='trail'
+    ? `<li class="ev"><div class="rv-head"><b>Y${e.yr}</b> &#9888; ${e.title}</div><div class="rv-choice"><span class="rv-tag ev">Not your call</span> ${e.choice}</div>${e.why?`<div class="rv-why">${e.why}</div>`:''}</li>`
+    : `<li class="${e.wasBest?'ok':'miss'}"><div class="rv-head"><b>Y${e.yr}</b> ${e.kind==='barrier'?'&#9888; ':e.kind==='crisis'?'&#10071; ':e.kind==='prayer'?'&#128591; ':e.kind==='acc'?'&#9889; ':''}${e.title}</div><div class="rv-choice">${e.wasBest?'<span class="rv-tag ok">Strongest option</span>':'<span class="rv-tag miss">Stronger option available</span>'} You chose: ${e.choice}</div>${e.wasBest?'':`<div class="rv-best">Stronger: ${e.best}</div>`}${e.why?`<div class="rv-why">${e.why}</div>`:''}${(e.accWhy&&e.accWhy.length)?`<div class="rv-acc">${e.accWhy.map(a=>`<span class="rv-accrow"><b>${a.name}:</b> ${a.why}</span>`).join('')}</div>`:''}</li>`).join('');
   const cpHtml=G.cp.length?`<div class="cp-list">${G.cp.map(c=>`<div class="cp-row ${c.ok?'ok':'miss'}"><span class="rv-tag ${c.ok?'ok':'miss'}">${c.ok?'Right':'Missed'}</span> ${c.q} <span class="muted">Answer: ${c.ans}</span></div>`).join('')}</div>`:'';
   const links=JP_LINKS[G.people.id];
   const roleCta={missionary:'Choose a real frontier people and take responsibility for the whole of them, on paper, this month: every district, every worker, every believer you can find.',mobilizer:'Build a coalition around one real frontier people. Joshua Project’s adoption pathway is built for exactly this.',pastor:'Lead your church to adopt one frontier people for ten years. Not a line item. A people.',orgleader:'Put a team against one of the frontier gaps on Joshua Project’s list, and tell the board why.'}[G.role.id];
@@ -3186,7 +3602,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Enter'){ const c=$('contBtn'); if(c){ c.click(); return; } const b=document.querySelector('#main .btn.cont'); if(b&&(CUR.kind==='landmark'||CUR.kind==='voice')) b.click(); return; }
   const n=parseInt(e.key,10); if(n>=1&&n<=6){ if(CUR.kind==='cp') cpKey(n); else if(CUR.kind==='acc'&&!CUR.done) chooseAcc(n-1); else if(CUR.kind==='commission'&&!CUR.done) commit(n-1); else if(CUR.opts&&!CUR.done) choose(n-1); }
 });
-drawTitleArt(); setDiff('trail');
+drawTitleArt(); setDiff('trail'); renderResume();
 </script>
 </body>
 </html>
