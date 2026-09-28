@@ -462,6 +462,8 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
   details{display:none}
 }
 
+.scene.uotd.light{background:#eef4ff}
+.scene.uotd.light .kind{color:#2a4a7a}
 /* resume panel, save control, code boxes, trail events */
 .resume{border:2px solid var(--gold,#b89a5a);background:rgba(184,154,90,.10);border-radius:10px;padding:14px 16px;margin:0 auto 18px;max-width:620px;text-align:left}
 .resume.hidden{display:none}
@@ -547,7 +549,7 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
     <h3>Underlined words</h3>
     <p>Terms with a dotted underline open a definition. Most come straight from Joshua Project; the rest are marked. The full glossary is on the title screen and printed with your report.</p>
     <h3>Checkpoints and prayer stops</h3>
-    <p>Three times on the trail a <b>checkpoint</b> asks a real question about the unreached world. Right answers help you. Twice you will be asked to stop and pray for a real people through Joshua Project’s Unreached of the Day. That one is worth the most.</p>
+    <p>Three times on the trail a <b>checkpoint</b> asks a real question about the unreached world. Right answers help you. Twice the game stops and asks you to pray for real people: early on through Joshua Project’s <b>Unreached of the Day</b>, and later on the <b>Light the Nations</b> prayer map, for a people group in the same part of the world as the one you chose. Those two are worth the most points in the game, which is not an accident.</p>
     <h3>Leaving and coming back</h3>
     <p>The journey saves itself in this browser after every step. Close the tab and the title screen will offer to continue where you stopped. To carry a journey to a different device or browser, open <b>Save</b> and copy the progress code.</p>
     <h3>The trail provides</h3>
@@ -699,7 +701,7 @@ const PEOPLES = [
     district:'district', districts:'districts', Districts:'Districts', stop4:'The Border', stop4flavor:'Access is the first barrier. It is never the last.',
     farChurch:'A national church three hundred kilometers away, in the lowland city,', farAway:'six hours away by bus',
     strategicbase:'a trading town of 40,000 with roads to six districts', remotebase:'a high village where no outsider has ever lived', nearbase:'the capital neighborhood where the other foreign workers live',
-    name:'Kharun', language:'Kharuni', region:'Central Asian highlands',
+    name:'Kharun', language:'Kharuni', region:'Central Asian highlands', prayRegion:'Central Asia',
     country:'a highland republic that quietly refuses religious workers',
     pop:'1.4 million', popN:1400000, religion:'Islam (Sunni, with folk practice)', pct:'0.01%',
     scriptureCode:'portions', scripture:'Gospel of Luke only, in a stilted translation; New Testament “in progress”',
@@ -715,7 +717,7 @@ const PEOPLES = [
     district:'district', districts:'districts', Districts:'Districts', stop4:'The Paperwork', stop4flavor:'Getting in is easy here. Staying is the hard part.',
     farChurch:'A national church two districts downriver', farAway:'a day\u2019s travel downriver',
     strategicbase:'a market town at the center of the delta, with buses to six districts', remotebase:'a river village no outsider has lived in', nearbase:'the district town where the other foreign workers live',
-    name:'Rennathi', language:'Rennathi', region:'South Asian river delta',
+    name:'Rennathi', language:'Rennathi', region:'South Asian river delta', prayRegion:'South Asia',
     country:'a state with anti-conversion laws and easy tourist visas',
     pop:'3.2 million', popN:3200000, religion:'Hinduism (caste-based, with a regional goddess cult)', pct:'0.02%',
     scriptureCode:'nt-unused', scripture:'New Testament (1934) exists: archaic language, the wrong word for God, almost never read',
@@ -731,7 +733,7 @@ const PEOPLES = [
     district:'grazing zone', districts:'grazing zones', Districts:'Grazing zones', stop4:'The Last Road', stop4flavor:'The road ends. The people keep moving.',
     farChurch:'A small church in the regional capital, two days out,', farAway:'three days out with the herds',
     strategicbase:'the market town every clan passes through in the dry season', remotebase:'a camp deep in the pasture, moving with the rains', nearbase:'the regional capital compound where the NGOs live',
-    name:'Tegheri', language:'Tegheri', region:'Sahel',
+    name:'Tegheri', language:'Tegheri', region:'Sahel', prayRegion:'West Africa and the Sahel',
     country:'a Sahel region under travel advisories, where NGOs work with armed escorts',
     pop:'850,000', popN:850000, religion:'Islam (Sufi brotherhoods, with animist practice)', pct:'0.005%',
     scriptureCode:'none', scripture:'None. Not a verse. The language has no standardized script.',
@@ -747,7 +749,7 @@ const PEOPLES = [
     district:'valley', districts:'valleys', Districts:'Valleys', stop4:'The Long Road In', stop4flavor:'Eight hours of dirt road is its own kind of border.',
     farChurch:'A church in the lowland city, eight hours by road,', farAway:'two valleys over',
     strategicbase:'the valley town with the market and the road to six valleys', remotebase:'a ridge village at the end of the road', nearbase:'the provincial town where the other foreign workers live',
-    name:'Pemsa', language:'Pemsa', region:'Mainland Southeast Asian mountains',
+    name:'Pemsa', language:'Pemsa', region:'Mainland Southeast Asian mountains', prayRegion:'Southeast Asia',
     country:'a one-party state that welcomes teachers and NGOs but bans proselytizing',
     pop:'620,000', popN:620000, religion:'Theravada Buddhism with spirit veneration', pct:'0.03%',
     scriptureCode:'nt-related', scripture:'New Testament in a related dialect (about 60% understood); no audio; nothing in Pemsa itself',
@@ -763,7 +765,7 @@ const PEOPLES = [
     district:'quarter', districts:'quarters', Districts:'Quarters', stop4:'Getting In, Staying Unnoticed', stop4flavor:'In a city this size, nobody stops you. Everybody notices you.',
     farChurch:'An old established church on the other side of the city', farAway:'an hour across the city',
     strategicbase:'a dense Nahrani quarter with a metro line and work nearby', remotebase:'an outer quarter of unfinished buildings nobody has worked', nearbase:'the expatriate district of compounds and international schools',
-    name:'Nahrani', language:'Nahrani Arabic', region:'Middle Eastern megacity',
+    name:'Nahrani', language:'Nahrani Arabic', region:'Middle Eastern megacity', prayRegion:'North Africa and the Middle East',
     country:'a coastal republic whose capital holds twelve million people',
     pop:'2.1 million', popN:2100000, religion:'Islam (Sunni), with a secular, online-first strand among the young', pct:'0.02%',
     scriptureCode:'full-literary', scripture:'Full Bible in the literary standard language; nothing in the dialect anyone speaks at home; no audio',
@@ -1029,6 +1031,7 @@ const UOTD = {
   app:'https://joshuaproject.net/pray/unreachedoftheday/app',
   email:'https://joshuaproject.net/pray/unreachedoftheday/email',
   cards:'https://joshuaproject.net/pray/unreachedoftheday/cards',
+  light:'https://light.joshuaproject.net',
   adopt:'https://joshuaproject.net/peoplegroupadoption',
   frontier:'https://joshuaproject.net/frontier',
   bonus:200,
@@ -2879,7 +2882,7 @@ function vars(){
   const p=G.people, r=G.role, m=p.gender==='m';
   const rest=fmtN(Math.round(p.popN*0.3/10000)*10000);
   return {
-    People:p.name, language:p.language, country:p.country, region:p.region, pop:p.pop, pct:p.pct,
+    People:p.name, language:p.language, country:p.country, region:p.region, prayRegion:p.prayRegion, pop:p.pop, pct:p.pct,
     scripture:p.scripture, accessText:p.accessText, workers:p.workers, platform:p.platform, practice:p.practice,
     diaspora:p.diaspora, persecutionExtra:p.persecutionExtra, Name:p.name1,
     village:p.village, villages:p.villages, courtyard:p.courtyard, courtyards:p.courtyards, Courtyards:cap(p.courtyards), baptism:p.baptism,
@@ -3082,7 +3085,7 @@ function pickBarrier(){
 
 /* ---------- flow ---------- */
 function buildQueue(n){
-  const q=[]; if(n===3||n===9) q.push('uotd');
+  const q=[]; if(n===3) q.push('uotd'); if(n===9) q.push('light');
   q.push(...stageScenes(n,G.role.id));
   if(ACC_STOPS[n]) q.push('acc:'+n);
   if(n===6) q.push('vet');
@@ -3090,13 +3093,13 @@ function buildQueue(n){
   if(CHECKPOINT_STOPS.includes(n)) q.push('cp');
   if(n===12) q.push('commission');
   const ev=pickEvent(n);
-  if(ev){ G.evFired.push(ev.id); const at=Math.min(q.length,(q[0]==='uotd'?2:1)); q.splice(at,0,'event:'+ev.id); }
+  if(ev){ G.evFired.push(ev.id); const at=Math.min(q.length,((q[0]==='uotd'||q[0]==='light')?2:1)); q.splice(at,0,'event:'+ev.id); }
   return q;
 }
 function nextStep(){
   saveState();
   for(const [k] of METERS){ if(G.meters[k]<=0 && !G.crisisSeen[k]){ G.crisisSeen[k]=true; showScene(CRISES[k],'crisis'); return; } }
-  if(G.queue.length){ const id=G.queue.shift(); if(id==='uotd') return showUOTD(); if(id==='cp') return showCheckpoint(); if(id==='commission') return showCommission(); if(id==='vet') return showVet(); if(id.startsWith('event:')) return showEvent(id.slice(6)); if(id.startsWith('voice:')) return showVoice(parseInt(id.slice(6),10)); if(id.startsWith('acc:')) return showAccStop(parseInt(id.slice(4),10)); showScene(SCENES[id],'scene'); return; }
+  if(G.queue.length){ const id=G.queue.shift(); if(id==='uotd') return showUOTD('uotd'); if(id==='light') return showUOTD('light'); if(id==='cp') return showCheckpoint(); if(id==='commission') return showCommission(); if(id==='vet') return showVet(); if(id.startsWith('event:')) return showEvent(id.slice(6)); if(id.startsWith('voice:')) return showVoice(parseInt(id.slice(6),10)); if(id.startsWith('acc:')) return showAccStop(parseInt(id.slice(4),10)); showScene(SCENES[id],'scene'); return; }
   if(G.stage>=1 && !G.stageEnded){
     G.stageEnded=true;
     if(D().decay && G.stage>=4 && !G.trGain){ G.meters.tr=clamp(G.meters.tr-D().decay,0,100); }
@@ -3179,18 +3182,34 @@ function retryDecision(){
 function takeBack(){ if(!SNAP||!D().takeback) return; G=SNAP; SNAP=null; renderHUD(); showScene(CUR.sc,CUR.kind); }
 
 /* ---------- special stops ---------- */
-function showUOTD(){
-  CUR={kind:'uotd'}; const n=G.uotd;
-  const copy = n===0
-    ? `<p>Joshua Project publishes one unreached people to pray for every day: a name, a place, a picture, and a few lines about them. Before ${G.role.id==='missionary'?'you go':'the team goes'} any further, pray for a real people today.</p><p>Open today’s people in a new tab, pray for them by name, then come back.</p>`
-    : `<p>Years into the trail, the habit is the thing. One people a day, by name. Open today’s people, pray for them, and come back.</p>`;
-  $('main').innerHTML=`<div class="scene uotd"><div class="kind">A Prayer Stop &middot; Unreached of the Day</div><div class="sc-head">${iconSVG(ACC_ICONS.prayer,'sc-icon acc-amber')}<h2>Pray for a real people today</h2></div><div class="text">${copy}</div>
-    <div class="row uotd-row"><a class="btn" href="${UOTD.url}" target="_blank" rel="noopener">Open today’s people &#8599;</a><button class="btn cont" onclick="uotdDone(true)">I prayed for them</button><button class="btn ghost" onclick="uotdDone(false)">Not right now</button></div>
+function showUOTD(m){
+  const mode=(m==='light')?'light':'uotd';
+  CUR={kind:'uotd',mode};
+  const reg=T('{prayRegion}');
+  const head = mode==='light'
+    ? `A Prayer Stop &middot; Light the Nations`
+    : `A Prayer Stop &middot; Unreached of the Day`;
+  const h2 = mode==='light'
+    ? `Light one people in ${reg}`
+    : `Pray for a real people today`;
+  const copy = mode==='light'
+    ? `<p>The {People} are fictional. The peoples of ${reg} are not, and they are waiting on somebody real.</p><p>Joshua Project’s <b>Light the Nations</b> prayer map shows the unreached of the world as points of light: every prayer lights a people group. Open the map, find <b>${reg}</b>, and pick one people group there. Read their page. Pray for them by name, the way you have been praying for the {People} for ${yearOf(G.months)} years.</p>`
+    : `<p>Joshua Project publishes one unreached people to pray for every day: a name, a place, a picture, and a few lines about them. Before ${G.role.id==='missionary'?'you go':'the team goes'} any further, pray for a real people today.</p><p>Open today’s people in a new tab, pray for them by name, then come back.</p>`;
+  const link = mode==='light' ? UOTD.light : UOTD.url;
+  const linkLabel = mode==='light' ? `Open the prayer map &#8599;` : `Open today’s people &#8599;`;
+  $('main').innerHTML=`<div class="scene uotd${mode==='light'?' light':''}"><div class="kind">${head}</div><div class="sc-head">${iconSVG(ACC_ICONS.prayer,'sc-icon acc-amber')}<h2>${h2}</h2></div><div class="text">${T(copy)}</div>
+    <div class="row uotd-row"><a class="btn" href="${link}" target="_blank" rel="noopener">${linkLabel}</a><button class="btn cont" onclick="uotdDone(true)">I prayed for them</button><button class="btn ghost" onclick="uotdDone(false)">Not right now</button></div>
     <p class="small muted" style="margin:14px 0 0">Honor system. Nobody is checking. Prayer +10 and a bonus on the Trail Report if you did.</p></div>`;
   window.scrollTo(0,0);
 }
 function uotdDone(did){
-  if(did){ G.uotd++; G.meters.pr=clamp(G.meters.pr+10,0,100); G.acc.prayer=(G.acc.prayer||0)+1; G.log.push({yr:yearOf(G.months),kind:'prayer',title:'Unreached of the Day',choice:'Prayed for today’s people',acc:['prayer'],wasBest:true,best:'',why:'A daily habit of praying for real peoples by name is the cheapest accelerator there is, and the one most often skipped.'}); }
+  const light=CUR&&CUR.mode==='light';
+  if(did){ G.uotd++; G.meters.pr=clamp(G.meters.pr+10,0,100); G.acc.prayer=(G.acc.prayer||0)+1;
+    G.log.push({yr:yearOf(G.months),kind:'prayer',
+      title: light?'Light the Nations prayer map':'Unreached of the Day',
+      choice: light?T('Prayed for a real people group in {prayRegion}'):'Prayed for today’s people',
+      acc:['prayer'],wasBest:true,best:'',
+      why: light?T('The {People} are one people in a region full of them. Praying for a neighbor people you will never work among is the habit that keeps a worker aimed at the whole task instead of their own patch of it.'):'A daily habit of praying for real peoples by name is the cheapest accelerator there is, and the one most often skipped.'}); }
   renderHUD(); nextStep();
 }
 function showAccStop(n,fixedOpts){
@@ -3541,7 +3560,7 @@ function endGame(quit){
         <tr><td>Accelerators used</td><td>${accCount()} of 12</td></tr>
         <tr><td>Strongest option chosen</td><td>${bestCount} of ${decisions.length}</td></tr>
         <tr><td>Field knowledge</td><td>${cpRight()} of ${G.cp.length} checkpoints</td></tr>
-        <tr><td>Unreached of the Day</td><td>${G.uotd?`Prayed ${G.uotd}× (+${G.uotd*UOTD.bonus})`:'Skipped'}</td></tr>
+        <tr><td>Prayer stops</td><td>${G.uotd?`Prayed at ${G.uotd} of 2 (+${G.uotd*UOTD.bonus})`:'Skipped both'}</td></tr>
         <tr><td>Barriers faced</td><td>${G.barriers}</td></tr>
         ${G.retries?`<tr><td>Decisions taken back</td><td>${G.retries}</td></tr>`:''}
         <tr><td>Time at the table</td><td>${mins} min</td></tr>
@@ -3580,6 +3599,7 @@ function endGame(quit){
         <a class="cta-card" href="${UOTD.url}" target="_blank" rel="noopener"><b>Pray for one people every day</b><span>Unreached of the Day: one people, one page, every morning. Also an app, an email, and a podcast.</span></a>
         <a class="cta-card" href="${links[0].print}" target="_blank" rel="noopener"><b>Print a profile</b><span>A printable Joshua Project profile of the ${links[0].label}, the real people the ${G.people.name} most resemble.</span></a>
         <a class="cta-card" href="${UOTD.cards}" target="_blank" rel="noopener"><b>Prayer cards</b><span>Printable Unreached of the Day cards for a table, a wall, or a small group.</span></a>
+        <a class="cta-card" style="grid-column:1/-1" href="${UOTD.light}" target="_blank" rel="noopener"><b>Light the Nations prayer map</b><span>Every prayer lights a people group. Find ${T('{prayRegion}')} on the map and keep praying for the peoples around the one you just spent ${yearOf(G.months)} years with.</span></a>
       </div>
       <p class="small" style="color:var(--ink2);margin-top:12px">Unreached of the Day by <a href="${UOTD.app}" target="_blank" rel="noopener">app</a>, <a href="${UOTD.email}" target="_blank" rel="noopener">email</a>, or <a href="${UOTD.cards}" target="_blank" rel="noopener">printed cards</a>. Real peoples the ${G.people.name} resemble: ${links.map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a> (${l.status==='frontier'?'frontier':'unreached, not frontier'})`).join('; ')}. Browse all <a href="${UOTD.frontier}" target="_blank" rel="noopener">frontier people groups</a>.</p>
     </div>
