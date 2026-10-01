@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counting What Counts in Oral-Reliant Contexts &middot; Clarity for the Nations</title>
+<meta name="description" content="Counting in missions is a native oral practice, and Scripture models it. An interactive look at what God's people counted, why they tracked, and how a phase assessment travels as a sentence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#7A3E8E;--deep:#4F2560;
+--gold:#C98A1B;--golddeep:#8C5F10;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--gold);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+.topnav .links a.navgame{color:#15603a;font-weight:700;opacity:1}
+.topnav .links a.navgame:hover{color:#0f4a2c}
+.nav-dd{position:relative}
+.nav-ddbtn{background:none;border:none;font:inherit;font-weight:600;font-size:.92rem;cursor:pointer;color:var(--ink);opacity:.85;display:flex;align-items:center;gap:.3rem;padding:0}
+.nav-ddbtn:hover{opacity:1;color:var(--accent)}
+.nav-dd .caret{font-size:.7em;transition:transform .2s}
+.nav-dd.open .caret{transform:rotate(180deg)}
+.nav-ddmenu{position:absolute;top:160%;right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,.14);min-width:240px;display:none;flex-direction:column;padding:6px;z-index:40}
+.nav-dd.open .nav-ddmenu{display:flex}
+.nav-ddmenu a{padding:.6rem .8rem;border-radius:8px;font-size:.92rem;font-weight:600;color:var(--ink);text-decoration:none;opacity:1}
+.nav-ddmenu a:hover{background:var(--paper)}
+header.hero{background:linear-gradient(160deg,#1E0B26 0%,var(--deep) 55%,#8E5A9E 100%);color:#F6F4EE;padding:12vh 0 9vh;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.1}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#EEC977;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.06;max-width:20ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.82);max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px;flex:1 1 190px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#EEC977}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.78);margin-top:.35rem}
+.qband{background:var(--accent);color:#FBF5FC;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:36ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#F3DDA6}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.2rem}
+.segbtn{font:inherit;font-weight:700;font-size:.92rem;padding:.55rem 1.15rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn[aria-pressed="true"],.segbtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.segbtn.yes{border-color:var(--accent);color:var(--accent)}
+.segbtn.yes:hover{background:var(--accent);color:#fff}
+.segbtn:disabled{opacity:.45;cursor:default}
+.segbtn:focus-visible,.acc-h:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.readout{margin-top:1.2rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:5rem;font-size:1rem}
+.readout b{color:var(--accent)}
+.readout .rn{display:block;font-family:'Fraunces',serif;font-weight:900;font-size:1.25rem;margin-bottom:.3rem;color:var(--ink)}
+/* conversation */
+.convo{display:flex;flex-direction:column;gap:.6rem}
+.bub{max-width:82%;padding:.7rem 1rem;border-radius:16px;font-size:1rem;animation:pop .35s ease}
+.bub.me{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+.bub.him{align-self:flex-start;background:var(--paper);border:1px solid var(--line);border-bottom-left-radius:4px}
+.bub small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:.15rem}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.meterwrap{margin-top:1.2rem}
+.meter{height:14px;background:rgba(28,26,23,.09);border-radius:8px;overflow:hidden}
+.meter .mfill{height:100%;width:0;background:var(--accent);transition:width .6s ease}
+.meterlab{display:flex;justify-content:space-between;font-size:.75rem;font-weight:600;color:var(--mute);margin-top:.3rem}
+.verdict{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem;background:rgba(122,62,142,.08)}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem;background:var(--accent)}
+.verdict.warn{background:rgba(201,138,27,.1)}
+.verdict.warn .tag{background:var(--golddeep)}
+/* metric chips */
+.mchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
+.mchip{font-size:.78rem;font-weight:700;padding:.3rem .75rem;border-radius:50px;background:rgba(28,26,23,.07);color:var(--mute);transition:all .3s}
+.mchip.on{background:var(--accent);color:#fff}
+.mchip.gone{background:transparent;border:1px dashed rgba(28,26,23,.3);text-decoration:line-through}
+/* ladder */
+.ladder{display:flex;flex-direction:column-reverse;gap:5px;margin-bottom:1.2rem}
+.rung{display:flex;align-items:center;gap:.8rem;border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;font-size:.92rem;transition:all .35s;background:#fff}
+.rung .num{flex:none;width:28px;height:28px;border-radius:50%;background:rgba(28,26,23,.08);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;transition:all .35s}
+.rung b{font-weight:800}
+.rung span.d{color:var(--mute);font-size:.84rem}
+.rung.pass{border-color:rgba(122,62,142,.35);background:rgba(122,62,142,.05)}
+.rung.pass .num{background:rgba(122,62,142,.25);color:var(--deep)}
+.rung.here{border-color:var(--accent);background:rgba(122,62,142,.12);box-shadow:0 0 0 2px var(--accent)}
+.rung.here .num{background:var(--accent);color:#fff}
+.qcard{border:2px solid var(--accent);border-radius:14px;padding:1.1rem 1.2rem}
+.qcard .qn{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--accent)}
+.qcard .qt{font-family:'Fraunces',serif;font-weight:900;font-size:1.25rem;line-height:1.25;margin:.3rem 0 1rem}
+.sentence{margin-top:1.2rem;font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;line-height:1.45;background:var(--paper);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:1rem 1.1rem;min-height:3.5rem}
+.sentence small{display:block;font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--golddeep);margin-bottom:.3rem}
+.ctrllabel{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+input[type=range]{width:100%;accent-color:var(--accent);height:34px;cursor:pointer;display:block}
+.slabels{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--mute);margin-top:.1rem}
+.slabels span{flex:1;text-align:center}
+.slabels span:first-child{text-align:left}.slabels span:last-child{text-align:right}
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:0 0 1.3rem}
+.pbar .fill{height:100%;width:0;background:var(--gold);transition:width .4s ease}
+.acc{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden;background:#fff}
+.acc-h{display:flex;justify-content:space-between;align-items:center;gap:1rem;width:100%;font:inherit;text-align:left;background:none;border:none;padding:.9rem 1.1rem;cursor:pointer;color:var(--ink)}
+.acc-h .t{font-weight:700;font-size:1rem}
+.acc-h .t small{display:block;font-weight:600;color:var(--mute);font-size:.8rem;margin-top:.1rem}
+.acc-h .pm{font-family:'Fraunces',serif;font-weight:900;font-size:1.4rem;color:var(--accent);flex:none;transition:transform .3s}
+.acc.open .acc-h .pm{transform:rotate(45deg)}
+.acc.seen{border-color:var(--gold)}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-b div{padding:0 1.1rem 1rem;font-size:.97rem;color:#39342d}
+.acc-b em{display:block;margin-top:.5rem;font-style:normal;font-size:.88rem;color:var(--golddeep);font-weight:600}
+.audit{display:flex;flex-direction:column;gap:12px}
+.aq{border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem}
+.aq p{font-weight:600;margin-bottom:.6rem}
+.aq .btnrow{margin:0}
+.aq .segbtn{padding:.4rem 1rem;font-size:.85rem}
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:28ch;margin:0 auto 1.2rem}
+.closing .small{color:rgba(246,244,238,.75);max-width:52ch;margin:0 auto 2rem;font-size:1.05rem}
+.cta-btn{display:inline-block;background:#EEC977;color:#3a2604;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+@media (max-width:560px){.rung span.d{display:none}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<div class="nav-dd">
+<button class="nav-ddbtn" aria-expanded="false">Brutal Facts Calculator <span class="caret">&#9662;</span></button>
+<div class="nav-ddmenu">
+<a href="brutal-facts-calculator-cities.html">City Brutal Facts</a>
+<a href="brutal-facts-calculator-segments.html">People Segment Brutal Facts</a>
+</div>
+</div>
+<a class="navgame" href="frontier-trail.html">&#9654; Play Frontier Trail</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Data &amp; Bible</div>
+<h1>One million was not a lie. It was a translation.</h1>
+<p class="sub">Counting in missions is not a Western imposition on oral peoples. It is a native oral practice, and Scripture models, formats, and regulates it. What breaks down is not the impulse to count. It is the instrument we use and the paradigm we carry.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="2">0</div><div class="l">precise headcounts in Acts (2:41 and 4:4) before Luke changes what he tracks</div></div>
+<div class="chip"><div class="n" data-count="4">0</div><div class="l">oral data formats Scripture already models, none of which needs paper</div></div>
+<div class="chip"><div class="n" data-count="8">0</div><div class="l">Phases of Engagement, numbered 0 through 7, reportable as a conversation</div></div>
+</div>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;Some measurement is vanity.&rdquo;</p>
+<p class="q">&ldquo;A phase assessment can travel as a sentence. A headcount cannot.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<section class="mod" id="m1">
+<div class="kicker">What is a big number to Bud?</div>
+<h2>The question you ask decides the answer you get</h2>
+<p class="intro">Bud asked a brother in Africa how many believers there were among his focus people group. Replay the conversation three ways and watch what each question can actually tell you.</p>
+<div class="panel">
+<div class="btnrow" id="askSeg" role="group" aria-label="Choose how to ask">
+<button class="segbtn" type="button" aria-pressed="true" data-k="ask">Ask for a count</button>
+<button class="segbtn" type="button" aria-pressed="false" data-k="press">Press for precision</button>
+<button class="segbtn" type="button" aria-pressed="false" data-k="walk">Walk the phase questions</button>
+</div>
+<div class="convo" id="convo" aria-live="polite"></div>
+<div class="meterwrap">
+<div class="meter"><div class="mfill" id="askFill"></div></div>
+<div class="meterlab"><span>What you can confirm with two or three witnesses</span><span id="askLab">&nbsp;</span></div>
+</div>
+<div class="verdict" id="askV"></div>
+<p class="note">The first two exchanges are the conversation Bud describes in the essay. The third uses the essay&rsquo;s own example of a spoken phase assessment. Meter positions reflect the argument, not a measured index.</p>
+</div>
+</section>
+
+<section class="mod" id="m2">
+<div class="kicker">What the church counted, and when it stopped</div>
+<h2>From headcount to health</h2>
+<p class="intro">Watch what Luke does across Acts. The tracking changes from headcount to health, progress, churches, leaders, geography, and reach. Tap each stop on the timeline, or walk through it, and watch which metrics light up.</p>
+<div class="panel">
+<svg id="actsSvg" viewBox="0 0 860 170" role="group" aria-label="Timeline of eight passages in Acts. Select one to read what Luke tracked."></svg>
+<div class="mchips" id="mchips"></div>
+<div class="readout" id="actsRead"><span class="rn">Select a passage</span>Tap a stop above, or tab to it and press Enter.</div>
+<div class="btnrow" style="margin:1rem 0 0"><button class="segbtn on" type="button" id="actsPlay">Walk through Acts</button></div>
+<p class="note">Passages and descriptions are the ones the essay lists. The metric tags summarize what each passage reports.</p>
+</div>
+</section>
+
+<section class="mod" id="m3">
+<div class="kicker">Phases of Engagement</div>
+<h2>Walk the questions in order</h2>
+<p class="intro">The scoring rule is simple enough to hold in your head: walk the questions in order, and the first time the answer is no, the group is in the phase before that. Pick a group you know and answer honestly. Your answers assemble into a spoken report.</p>
+<div class="panel">
+<div class="ladder" id="ladder"></div>
+<div class="qcard" id="qcard" aria-live="polite"></div>
+<div class="sentence" id="sentence"><small>Your phase assessment, as a sentence</small><span id="sentTxt">Nothing reported yet.</span></div>
+<p class="note">Phase names and questions follow the essay. The sentence fragments are a plain-language rendering of each yes, in the spirit of the essay&rsquo;s example: &ldquo;We have workers, they speak the language, three believing families are meeting as church.&rdquo;</p>
+</div>
+</section>
+
+<section class="mod" id="m4">
+<div class="kicker">The right metric for the scale</div>
+<h2>Precise counts belong in small rooms</h2>
+<p class="intro">A precise count of believers is the right metric when there are 120 in one room. It is the wrong metric when the question is whether a province has heard. Drag the scale and watch the right question change.</p>
+<div class="panel">
+<svg id="scaleSvg" viewBox="0 0 860 260" role="img" aria-label="A field of dots that grows denser as the scale increases"></svg>
+<div class="ctrllabel" style="margin-top:1rem">Scale of the question</div>
+<input type="range" id="scaleSl" min="0" max="4" step="1" value="0" aria-label="Scale, from one room to a people of 67 million">
+<div class="slabels"><span>One room</span><span>Pentecost</span><span>12,000</span><span>A province</span><span>67 million</span></div>
+<div class="verdict" id="scaleV"></div>
+<p class="note">Dot density is drawn on a compressed scale for legibility; it is not proportional. The 12,000 and 67 million (across 38 countries) figures are the essay&rsquo;s own examples for Phase 7&rsquo;s two doors.</p>
+</div>
+</section>
+
+<section class="mod" id="m5">
+<div class="kicker">Oral peoples already have the formats</div>
+<h2>Four ways to report without paper</h2>
+<p class="intro">If the objection is that oral-reliant peoples cannot report, Scripture answered it four different ways. Each is a working data format. Open all four.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="accFill"></div></div>
+<div id="accList"></div>
+<p class="note">Formats and passages are the essay&rsquo;s. The &ldquo;in the field&rdquo; lines are suggested applications, not reported practice.</p>
+</div>
+</section>
+
+<section class="mod" id="m6">
+<div class="kicker">Audit your instruments</div>
+<h2>Do your reports ask for something your sources can give?</h2>
+<p class="intro">Building a better instrument is the missions information worker&rsquo;s job, not the reporter&rsquo;s. Answer the essay&rsquo;s four team questions and see where your instruments stand.</p>
+<div class="panel">
+<div class="audit" id="audit"></div>
+<div class="meterwrap">
+<div class="meter"><div class="mfill" id="audFill" style="background:var(--gold)"></div></div>
+<div class="meterlab"><span id="audCount">0 of 4 answered</span><span id="audScore">&nbsp;</span></div>
+</div>
+<div class="verdict" id="audV" style="display:none"></div>
+<p class="note">A self-assessment for your team, not a scored benchmark.</p>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">We know anything at all about the acts of God because people took the trouble to tell.</p>
+<p class="small">The only question is whether we will build instruments worthy of what they have to say.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/counting-what-counts-in-oral-reliant" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a><br>
+<a class="sub" href="index.html">&#8592; All interactive essays</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+function whenSeen(id,fn,th){var done=false;var o=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!done){done=true;fn();o.disconnect();}});},{threshold:th||.25});o.observe(document.getElementById(id));}
+var ACC="#7A3E8E",DEEP="#4F2560",GOLD="#C98A1B",MUTE="#6E665B",INK="#1C1A17";
+
+(function(){var dd=document.querySelector(".nav-dd");if(!dd)return;var b=dd.querySelector(".nav-ddbtn");b.addEventListener("click",function(e){e.stopPropagation();var o=dd.classList.toggle("open");b.setAttribute("aria-expanded",o);});document.addEventListener("click",function(){dd.classList.remove("open");b.setAttribute("aria-expanded","false");});})();
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";},{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.1});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+document.querySelectorAll(".chip .n").forEach(function(n){var target=parseFloat(n.getAttribute("data-count"));tween(1400,function(p){n.textContent=Math.round(target*p);});});
+
+/* ===== M1: conversation ===== */
+(function(){
+var C={
+ask:{lines:[["me","Bud","How many believers are there among your people group?"],["him","Brother in Africa","Oh, brother, there&rsquo;s a lot."]],fill:30,lab:"Honest, not countable",tag:"I should have taken that as the answer",warn:false,v:"An honest answer in his own frame, and a doxology. It does not give you a number, but it is true. The failure starts with what happens next."},
+press:{lines:[["me","Bud","How many, though? Give me a number."],["him","Brother in Africa","One million."],["me","Bud, thinking","I do not believe that."]],fill:8,lab:"Precise, and unconfirmable",tag:"A translation, not a lie",warn:true,v:"He wanted to give God lots of glory, so he asked himself a question Bud never heard him ask: <b>what is a big number to Bud?</b> He had been handed a framework that was not his. The failure was the instrument, not the reporter."},
+walk:{lines:[["me","Bud","Do you know anyone working in the name of Jesus among them? Do they share in the heart language? Are believers meeting as church?"],["him","Brother in Africa","We have workers, they speak the language, three believing families are meeting as church."]],fill:88,lab:"Spoken, specific, confirmable",tag:"A complete phase assessment",warn:false,v:"Spoken, with no form involved and no literacy required, and confirmable by two or three witnesses, as Scripture already prescribes. It also tells you <b>what kind of work and what kind of worker that group needs next</b>."}
+};
+var convo=document.getElementById("convo"),fill=document.getElementById("askFill"),lab=document.getElementById("askLab"),v=document.getElementById("askV");
+var timers=[];
+function show(k){
+timers.forEach(clearTimeout);timers=[];
+var d=C[k];convo.innerHTML="";fill.style.width="0";
+d.lines.forEach(function(L,i){timers.push(setTimeout(function(){var b=document.createElement("div");b.className="bub "+L[0];b.innerHTML="<small>"+L[1]+"</small>"+L[2];convo.appendChild(b);},i*650));});
+timers.push(setTimeout(function(){fill.style.width=d.fill+"%";lab.textContent=d.lab;v.className="verdict"+(d.warn?" warn":"");v.innerHTML='<span class="tag">'+d.tag+'</span><div>'+d.v+'</div>';},d.lines.length*650));
+}
+var btns=document.querySelectorAll("#askSeg .segbtn");
+btns.forEach(function(b){b.addEventListener("click",function(){btns.forEach(function(x){x.setAttribute("aria-pressed","false");});b.setAttribute("aria-pressed","true");show(b.getAttribute("data-k"));});});
+v.innerHTML='<span class="tag">Scroll in</span><div>The conversation plays when this section comes into view.</div>';
+whenSeen("m1",function(){show("ask");},.35);
+})();
+
+/* ===== M2: Acts timeline ===== */
+(function(){
+var METRICS=["Headcount","Resistant segment","Geography","Health","Churches","Leaders sent","Teaching","New people engaged","Reach by hearing"];
+var STOPS=[
+{r:"2:41",m:[0],t:"About three thousand baptized. A precise headcount."},
+{r:"4:4",m:[0],t:"About five thousand. And then the headcounts stop."},
+{r:"6:7",m:[1],t:"Disciples multiplied greatly, and &ldquo;a great many of the priests became obedient to the faith.&rdquo; A resistant segment penetrated."},
+{r:"9:31",m:[2,3],t:"The church across Judea, Galilee, and Samaria at peace, being built up, multiplying. Geography, health, and growth together."},
+{r:"11:19-26",m:[2,1,4,5,6],t:"Geography, people group, believers, churches, leaders sent, and a full year of teaching. <b>The richest metric set in the book.</b>"},
+{r:"14:27",m:[7],t:"&ldquo;How he had opened a door of faith to the Gentiles.&rdquo; A new people engaged."},
+{r:"16:5",m:[3,4],t:"Churches &ldquo;strengthened in the faith, and they increased in numbers daily.&rdquo; Strength and size, together."},
+{r:"19:8-10",m:[6,8],t:"Two years of daily teaching until &ldquo;all the residents of Asia heard the word of the Lord.&rdquo; Access measured by hearing."}
+];
+var svg=document.getElementById("actsSvg"),read=document.getElementById("actsRead"),chipsBox=document.getElementById("mchips");
+var chips=METRICS.map(function(m){var s=document.createElement("span");s.className="mchip";s.textContent=m;chipsBox.appendChild(s);return s;});
+var X0=60,X1=800,Y=78;
+el("line",{x1:X0,y1:Y,x2:X1,y2:Y,stroke:"rgba(28,26,23,.14)","stroke-width":6,"stroke-linecap":"round"},svg);
+var prog=el("line",{x1:X0,y1:Y,x2:X0,y2:Y,stroke:ACC,"stroke-width":6,"stroke-linecap":"round"},svg);
+txt(X0,24,"ACTS",{fill:MUTE,"font-size":"11.5","font-weight":"800","letter-spacing":"1.6"},svg);
+var hx=X0+(X1-X0)*(1.5/7);
+el("line",{x1:hx,y1:Y-34,x2:hx,y2:Y+28,stroke:GOLD,"stroke-width":2,"stroke-dasharray":"4 4"},svg);
+txt(hx+6,Y-24,"headcounts stop",{fill:"#8C5F10","font-size":"11.5","font-weight":"800"},svg);
+var marks=[];
+STOPS.forEach(function(s,i){
+var cx=X0+(X1-X0)*(i/(STOPS.length-1));
+var g=el("g",{tabindex:"0",role:"button",style:"cursor:pointer","aria-label":"Acts "+s.r+". Select to read."},svg);
+el("circle",{cx:cx,cy:Y,r:22,fill:"transparent"},g);
+var c=el("circle",{cx:cx,cy:Y,r:0,fill:i<2?GOLD:ACC,stroke:"#fff","stroke-width":3},g);
+txt(cx,Y+44,s.r,{fill:INK,"font-size":"13.5","font-weight":"800","text-anchor":"middle"},g);
+marks.push({c:c,cx:cx});
+function f(){pick(i);}
+g.addEventListener("click",f);g.addEventListener("mouseenter",f);onKey(g,f);
+});
+function pick(i){
+var s=STOPS[i];
+read.innerHTML='<span class="rn">Acts '+s.r+'</span>'+s.t;
+marks.forEach(function(m,j){m.c.setAttribute("r",j===i?15:10);});
+prog.setAttribute("x2",marks[i].cx);
+chips.forEach(function(c,k){c.classList.toggle("on",s.m.indexOf(k)>=0);c.classList.toggle("gone",k===0&&i>=2);});
+}
+var playing=false;
+document.getElementById("actsPlay").addEventListener("click",function(){if(playing)return;playing=true;var i=0;(function step(){pick(i);i++;if(i<STOPS.length)setTimeout(step,1300);else playing=false;})();});
+whenSeen("m2",function(){marks.forEach(function(m,i){setTimeout(function(){tween(420,function(p){m.c.setAttribute("r",10*p);});},i*100);});},.3);
+})();
+
+/* ===== M3: phase walker ===== */
+(function(){
+var PH=[
+{n:0,name:"Waiting",d:"No one known to be working in the name of Jesus"},
+{n:1,name:"Entry",d:"Someone present doing ministry of any kind"},
+{n:2,name:"Evangelism",d:"Gospel shared in a culturally relevant way"},
+{n:3,name:"Discipleship",d:"People responding in repentance and faith"},
+{n:4,name:"Church",d:"Local churches among this community"},
+{n:5,name:"Reproducing Church",d:"Churches sending their own and forming new ones"},
+{n:6,name:"Multiplying Church",d:"Four generations deep"},
+{n:7,name:"Sustained Gospel Presence",d:"10 percent in churches, or multiple multiplying streams"}
+];
+var Q=[
+{q:"Do you know anyone working in the name of Jesus among this community?",s:"we know workers among them",hint:"If not, stop here."},
+{q:"Are they sharing the gospel in a culturally relevant way?",s:"they share the gospel in a way that fits, often stories in the heart language",hint:"The local person defines culturally relevant, not us."},
+{q:"Have people responded in repentance and faith?",s:"people have believed",hint:""},
+{q:"Are there local churches among this community?",s:"believers are meeting as church",hint:""},
+{q:"Have those churches sent out planters and evangelists from their own people, and formed new churches?",s:"those churches have sent their own and started new ones",hint:""},
+{q:"How many generations deep has that gone? Has it reached four?",s:"it has gone four generations deep",hint:"Four generations lands here."},
+{q:"Are ten percent of the community worshiping in churches, or are there multiple streams of multiplying churches?",s:"there is sustained gospel presence",hint:"Phase 7 has two doors on purpose."}
+];
+var ladder=document.getElementById("ladder"),card=document.getElementById("qcard"),sent=document.getElementById("sentTxt");
+var rungs=PH.map(function(p){var r=document.createElement("div");r.className="rung";r.innerHTML='<span class="num">'+p.n+'</span><div><b>'+p.name+'</b> <span class="d">'+p.d+'</span></div>';ladder.appendChild(r);return r;});
+var step=0,yes=[];
+function paint(phase,done){
+rungs.forEach(function(r,i){r.classList.toggle("pass",i<phase);r.classList.toggle("here",done&&i===phase);});
+}
+function sentence(){
+if(!yes.length){sent.textContent=step===0?"Nothing reported yet.":"We do not know anyone working among them yet.";return;}
+var s=yes.map(function(i){return Q[i].s;});s[0]=s[0].charAt(0).toUpperCase()+s[0].slice(1);sent.textContent="“"+s.join(", ")+".”";
+}
+function render(){
+if(step>=Q.length||step<0){
+var phase=step<0?-step-1:7;
+paint(phase,true);
+var p=PH[phase];
+card.innerHTML='<div class="qn">Result</div><div class="qt">Phase '+p.n+': '+p.name+'</div><p style="margin-bottom:1rem">'+p.d+'. '+(phase<7?'The next question, the one this group answered no to, names the work it needs next.':'Reached through either door: ten percent worshiping, or multiple streams of multiplying churches.')+'</p><div class="btnrow" style="margin:0"><button class="segbtn on" type="button" id="qRestart">Assess another group</button></div>';
+document.getElementById("qRestart").addEventListener("click",function(){step=0;yes=[];render();});
+sentence();return;
+}
+paint(step,false);rungs[step].classList.add("here");
+var q=Q[step];
+card.innerHTML='<div class="qn">Question '+(step+1)+' of 7</div><div class="qt">'+q.q+'</div>'+(q.hint?'<p class="note" style="margin:-.4rem 0 .9rem">'+q.hint+'</p>':'')+'<div class="btnrow" style="margin:0"><button class="segbtn yes" type="button" id="qYes">Yes</button><button class="segbtn" type="button" id="qNo">No</button></div>';
+document.getElementById("qYes").addEventListener("click",function(){yes.push(step);step++;render();});
+document.getElementById("qNo").addEventListener("click",function(){step=-(step)-1;render();});
+sentence();
+}
+render();
+whenSeen("m3",function(){rungs.forEach(function(r,i){r.style.opacity=0;setTimeout(function(){tween(400,function(p){r.style.opacity=p;});},i*80);});},.2);
+})();
+
+/* ===== M4: scale slider ===== */
+(function(){
+var svg=document.getElementById("scaleSvg"),sl=document.getElementById("scaleSl"),v=document.getElementById("scaleV");
+var S=[
+{n:"120",lab:"One room",dots:24,tag:"Count heads",good:true,t:"A precise count of believers is the right metric when there are 120 in one room. Everyone can be named, and every name confirmed."},
+{n:"3,000",lab:"Acts 2:41",dots:110,tag:"Still countable",good:true,t:"About three thousand baptized, a precise headcount. Luke counts once more at five thousand (Acts 4:4), and then the headcounts stop."},
+{n:"12,000",lab:"A group of twelve thousand",dots:260,tag:"Phase 7, door one",good:true,t:"A group of twelve thousand will more plausibly reach <b>ten percent of the community worshiping in churches</b>. A percentage works here, carried by testimony and confirmed by witnesses."},
+{n:"Province",lab:"All the residents of Asia",dots:520,tag:"Measure hearing",good:false,t:"The question is no longer how many, but whether the province has heard. Two years of daily teaching until &ldquo;all the residents of Asia heard&rdquo; (Acts 19:10). Access measured by hearing."},
+{n:"67 million",lab:"Turks, across 38 countries",dots:900,tag:"Phase 7, door two",good:false,t:"For the Turks, nearly sixty-seven million people across thirty-eight countries, <b>multiple streams of multiplying churches</b> is the realistic shape of the same reality. A headcount cannot travel this far. A phase assessment can."}
+];
+var W=860,H=200,pts=[];var seed=11;function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
+for(var i=0;i<900;i++)pts.push({x:20+rnd()*(W-40),y:20+rnd()*(H-30)});
+var dots=pts.map(function(p,i){return el("circle",{cx:p.x,cy:p.y,r:0,fill:i<24?GOLD:ACC,opacity:.75},svg);});
+var bigT=txt(W-20,236,"",{fill:DEEP,"font-size":"28","font-weight":"900","text-anchor":"end","font-family":"Fraunces,serif"},svg);
+var subT=txt(20,236,"",{fill:MUTE,"font-size":"13","font-weight":"700"},svg);
+var shown=0;
+function draw(animate){
+var s=S[+sl.value];var target=s.dots,from=shown;
+bigT.textContent=s.n;subT.textContent=s.lab;
+var rr=+sl.value>2?3:(+sl.value>0?4:6);
+if(animate){tween(600,function(p){var n=Math.round(from+(target-from)*p);dots.forEach(function(d,i){d.setAttribute("r",i<n?rr:0);});});}
+else dots.forEach(function(d,i){d.setAttribute("r",i<target?rr:0);});
+shown=target;
+v.className="verdict"+(s.good?"":" warn");v.innerHTML='<span class="tag">'+s.tag+'</span><div>'+s.t+'</div>';
+}
+sl.addEventListener("input",function(){draw(true);});
+draw(false);dots.forEach(function(d){d.setAttribute("r",0);});shown=0;
+whenSeen("m4",function(){draw(true);},.35);
+})();
+
+/* ===== M5: oral formats accordion ===== */
+(function(){
+var A=[
+{t:"Song",s:"Exodus 15; Deuteronomy 31:19-22; Judges 5",b:"&ldquo;Put it in their mouths.&rdquo; Portable, tamper-resistant storage. A song carries the record from village to village and resists quiet editing.",f:"In the field: a song that names what God has done among a people and where, sung at every gathering."},
+{t:"A marker prompts a question",s:"Joshua 4:6-7",b:"A stone triggers &ldquo;What do these stones mean?&rdquo; and the answer carries the record. Joshua stacked twelve stones so that a child would ask a question years later.",f:"In the field: a visible marker at a baptism site that invites the retelling."},
+{t:"Public recitation",s:"Nehemiah 8:1-8",b:"Reporting is a gathering. The Law is read aloud and they &ldquo;gave the sense.&rdquo; Data delivery is a spoken event with interpretation attached. Reporting as worship.",f:"In the field: a regional gathering where each group reports its phase aloud, and the room responds in praise and prayer."},
+{t:"Story handed on",s:"1 Corinthians 11:23; 2 Timothy 2:2",b:"Paul counts four generations of handoff in a single verse. The story itself is the generational record.",f:"In the field: asking who told you, and who told them, traces generations without a single form."}
+];
+var list=document.getElementById("accList"),fill=document.getElementById("accFill"),seen=0;
+A.forEach(function(a){
+var w=document.createElement("div");w.className="acc";
+w.innerHTML='<button class="acc-h" type="button" aria-expanded="false"><span class="t">'+a.t+'<small>'+a.s+'</small></span><span class="pm">+</span></button><div class="acc-b"><div>'+a.b+'<em>'+a.f+'</em></div></div>';
+var h=w.querySelector(".acc-h"),b=w.querySelector(".acc-b");
+h.addEventListener("click",function(){var o=w.classList.toggle("open");h.setAttribute("aria-expanded",o);b.style.maxHeight=o?b.scrollHeight+"px":"0";if(o&&!w.classList.contains("seen")){w.classList.add("seen");seen++;fill.style.width=Math.round(seen/A.length*100)+"%";}});
+list.appendChild(w);
+});
+})();
+
+/* ===== M6: audit ===== */
+(function(){
+var QS=["Do your current reporting instruments ask for something your sources can actually give you?","Reviewing your last six months of field reports, could you separate the estimates from the verified counts?","Does most of your frontier portfolio carry a phase assessment?","If one of your engaged groups quietly became unengaged this year, would you find out?"];
+var box=document.getElementById("audit"),fill=document.getElementById("audFill"),cnt=document.getElementById("audCount"),sc=document.getElementById("audScore"),v=document.getElementById("audV");
+var ans=QS.map(function(){return null;});
+QS.forEach(function(q,i){
+var d=document.createElement("div");d.className="aq";
+d.innerHTML='<p>'+q+'</p><div class="btnrow" role="group" aria-label="Answer"><button class="segbtn" type="button" aria-pressed="false" data-v="2">Yes</button><button class="segbtn" type="button" aria-pressed="false" data-v="1">Partly</button><button class="segbtn" type="button" aria-pressed="false" data-v="0">No</button></div>';
+var bs=d.querySelectorAll(".segbtn");
+bs.forEach(function(b){b.addEventListener("click",function(){bs.forEach(function(x){x.setAttribute("aria-pressed","false");});b.setAttribute("aria-pressed","true");ans[i]=+b.getAttribute("data-v");upd();});});
+box.appendChild(d);
+});
+function upd(){
+var n=0,s=0;ans.forEach(function(a){if(a!==null){n++;s+=a;}});
+cnt.textContent=n+" of 4 answered";fill.style.width=(s/8*100)+"%";sc.textContent=n?s+" of 8":"";
+if(n<4){v.style.display="none";return;}
+v.style.display="block";
+var tag,msg,warn=true;
+if(s<=3){tag="Instruments that ask too much";msg="Your reports are likely asking oral-reliant sources for a precision their framing never carried, and getting translations back. Start with one change: ask the phase questions in order, and mark every estimate as an estimate.";}
+else if(s<=6){tag="Partly built";msg="Some of your instruments travel. Close the gaps: confidence ratings on every figure, two or three witnesses for every phase, and a way to notice when a group quietly becomes unengaged.";}
+else{tag="Worthy of what they have to say";msg="Your instruments ask for what sources can give and keep estimates honest. Keep the humility: a database is our best current understanding, not reality itself.";warn=false;}
+v.className="verdict"+(warn?" warn":"");v.innerHTML='<span class="tag">'+tag+'</span><div>'+msg+'</div>';
+}
+})();
+
+})();
+</script>
+</body>
+</html>
