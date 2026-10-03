@@ -463,6 +463,13 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
 }
 
 .scene.uotd.light{background:#eef4ff}
+.mapwrap{position:relative;width:100%;height:min(600px,85vh);min-height:400px;border:2px solid #4a6fa8;border-radius:8px;overflow:hidden;margin:18px 0 6px;background:#dce6f5}
+.mapwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.mapfall{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:26px;background:#dce6f5;color:#2a4a7a}
+.mapwrap iframe{z-index:1;background:transparent}
+.mapfall span{font-size:.92em;max-width:420px}
+.map-cap{font-size:.82em;color:#2a4a7a;margin:0 0 4px}
+@media print{.mapwrap,.map-cap{display:none}}
 .scene.uotd.light .kind{color:#2a4a7a}
 /* resume panel, save control, code boxes, trail events */
 .resume{border:2px solid var(--gold,#b89a5a);background:rgba(184,154,90,.10);border-radius:10px;padding:14px 16px;margin:0 auto 18px;max-width:620px;text-align:left}
@@ -549,7 +556,7 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
     <h3>Underlined words</h3>
     <p>Terms with a dotted underline open a definition. Most come straight from Joshua Project; the rest are marked. The full glossary is on the title screen and printed with your report.</p>
     <h3>Checkpoints and prayer stops</h3>
-    <p>Three times on the trail a <b>checkpoint</b> asks a real question about the unreached world. Right answers help you. Twice the game stops and asks you to pray for real people: early on through Joshua Project’s <b>Unreached of the Day</b>, and later on the <b>Light the Nations</b> prayer map, for a people group in the same part of the world as the one you chose. Those two are worth the most points in the game, which is not an accident.</p>
+    <p>Three times on the trail a <b>checkpoint</b> asks a real question about the unreached world. Right answers help you. Twice the game stops and asks you to pray for real people: early on through Joshua Project’s <b>Unreached of the Day</b>, and later on the <b>Light the Nations</b> prayer map, which opens inside the game on the same part of the world as the people you chose. Those two are worth the most points in the game, which is not an accident.</p>
     <h3>Leaving and coming back</h3>
     <p>The journey saves itself in this browser after every step. Close the tab and the title screen will offer to continue where you stopped. To carry a journey to a different device or browser, open <b>Save</b> and copy the progress code.</p>
     <h3>The trail provides</h3>
@@ -701,7 +708,7 @@ const PEOPLES = [
     district:'district', districts:'districts', Districts:'Districts', stop4:'The Border', stop4flavor:'Access is the first barrier. It is never the last.',
     farChurch:'A national church three hundred kilometers away, in the lowland city,', farAway:'six hours away by bus',
     strategicbase:'a trading town of 40,000 with roads to six districts', remotebase:'a high village where no outsider has ever lived', nearbase:'the capital neighborhood where the other foreign workers live',
-    name:'Kharun', language:'Kharuni', region:'Central Asian highlands', prayRegion:'Central Asia',
+    name:'Kharun', language:'Kharuni', region:'Central Asian highlands', prayRegion:'Central Asia', jpRegion:'Asia, Central', jpRegionCode:5,
     country:'a highland republic that quietly refuses religious workers',
     pop:'1.4 million', popN:1400000, religion:'Islam (Sunni, with folk practice)', pct:'0.01%',
     scriptureCode:'portions', scripture:'Gospel of Luke only, in a stilted translation; New Testament “in progress”',
@@ -717,7 +724,7 @@ const PEOPLES = [
     district:'district', districts:'districts', Districts:'Districts', stop4:'The Paperwork', stop4flavor:'Getting in is easy here. Staying is the hard part.',
     farChurch:'A national church two districts downriver', farAway:'a day\u2019s travel downriver',
     strategicbase:'a market town at the center of the delta, with buses to six districts', remotebase:'a river village no outsider has lived in', nearbase:'the district town where the other foreign workers live',
-    name:'Rennathi', language:'Rennathi', region:'South Asian river delta', prayRegion:'South Asia',
+    name:'Rennathi', language:'Rennathi', region:'South Asian river delta', prayRegion:'South Asia', jpRegion:'Asia, South', jpRegionCode:4,
     country:'a state with anti-conversion laws and easy tourist visas',
     pop:'3.2 million', popN:3200000, religion:'Hinduism (caste-based, with a regional goddess cult)', pct:'0.02%',
     scriptureCode:'nt-unused', scripture:'New Testament (1934) exists: archaic language, the wrong word for God, almost never read',
@@ -733,7 +740,7 @@ const PEOPLES = [
     district:'grazing zone', districts:'grazing zones', Districts:'Grazing zones', stop4:'The Last Road', stop4flavor:'The road ends. The people keep moving.',
     farChurch:'A small church in the regional capital, two days out,', farAway:'three days out with the herds',
     strategicbase:'the market town every clan passes through in the dry season', remotebase:'a camp deep in the pasture, moving with the rains', nearbase:'the regional capital compound where the NGOs live',
-    name:'Tegheri', language:'Tegheri', region:'Sahel', prayRegion:'West Africa and the Sahel',
+    name:'Tegheri', language:'Tegheri', region:'Sahel', prayRegion:'West Africa and the Sahel', jpRegion:'Africa, West and Central', jpRegionCode:8,
     country:'a Sahel region under travel advisories, where NGOs work with armed escorts',
     pop:'850,000', popN:850000, religion:'Islam (Sufi brotherhoods, with animist practice)', pct:'0.005%',
     scriptureCode:'none', scripture:'None. Not a verse. The language has no standardized script.',
@@ -749,7 +756,7 @@ const PEOPLES = [
     district:'valley', districts:'valleys', Districts:'Valleys', stop4:'The Long Road In', stop4flavor:'Eight hours of dirt road is its own kind of border.',
     farChurch:'A church in the lowland city, eight hours by road,', farAway:'two valleys over',
     strategicbase:'the valley town with the market and the road to six valleys', remotebase:'a ridge village at the end of the road', nearbase:'the provincial town where the other foreign workers live',
-    name:'Pemsa', language:'Pemsa', region:'Mainland Southeast Asian mountains', prayRegion:'Southeast Asia',
+    name:'Pemsa', language:'Pemsa', region:'Mainland Southeast Asian mountains', prayRegion:'Southeast Asia', jpRegion:'Asia, Southeast', jpRegionCode:2,
     country:'a one-party state that welcomes teachers and NGOs but bans proselytizing',
     pop:'620,000', popN:620000, religion:'Theravada Buddhism with spirit veneration', pct:'0.03%',
     scriptureCode:'nt-related', scripture:'New Testament in a related dialect (about 60% understood); no audio; nothing in Pemsa itself',
@@ -765,7 +772,7 @@ const PEOPLES = [
     district:'quarter', districts:'quarters', Districts:'Quarters', stop4:'Getting In, Staying Unnoticed', stop4flavor:'In a city this size, nobody stops you. Everybody notices you.',
     farChurch:'An old established church on the other side of the city', farAway:'an hour across the city',
     strategicbase:'a dense Nahrani quarter with a metro line and work nearby', remotebase:'an outer quarter of unfinished buildings nobody has worked', nearbase:'the expatriate district of compounds and international schools',
-    name:'Nahrani', language:'Nahrani Arabic', region:'Middle Eastern megacity', prayRegion:'North Africa and the Middle East',
+    name:'Nahrani', language:'Nahrani Arabic', region:'Middle Eastern megacity', prayRegion:'North Africa and the Middle East', jpRegion:'Africa, North and Middle East', jpRegionCode:6,
     country:'a coastal republic whose capital holds twelve million people',
     pop:'2.1 million', popN:2100000, religion:'Islam (Sunni), with a secular, online-first strand among the young', pct:'0.02%',
     scriptureCode:'full-literary', scripture:'Full Bible in the literary standard language; nothing in the dialect anyone speaks at home; no audio',
@@ -1039,6 +1046,23 @@ const UOTD = {
 
 /* Facilitator gate: SHA-256 of the passphrase. Change the passphrase by replacing this hash.
    In the browser console, ftHash('new passphrase').then(console.log) prints the value to paste here. */
+/* Light the Nations prayer map, embedded and filtered.
+   Embed guide: prayermap.joshuaproject.net/embed-guide
+   filter=fpg shows frontier people groups only, which is the whole point of
+   this trail. region is the numeric Joshua Project region code, carried on
+   each people group as jpRegionCode (2 Asia Southeast, 4 Asia South,
+   5 Asia Central, 6 Africa North and Middle East, 8 Africa West and Central).
+   If framing is blocked wherever the game is served, the stop shows a panel
+   with a button that opens the full map instead. */
+const LIGHT = {
+  embed:'https://light.joshuaproject.net/embed',
+  query:'modal=true&filter=fpg',
+  regionParam:'region',
+  useCode:true,
+  open:'https://light.joshuaproject.net',
+  guide:'https://prayermap.joshuaproject.net/embed-guide',
+};
+
 const FAC_HASH='425043355083c873eb5ab4b7b430383a05a49c2320df39f1da4aed8da170d457';
 const FAC_TRIGGER='signpost';
 /* =====================================================================
@@ -3182,6 +3206,12 @@ function retryDecision(){
 function takeBack(){ if(!SNAP||!D().takeback) return; G=SNAP; SNAP=null; renderHUD(); showScene(CUR.sc,CUR.kind); }
 
 /* ---------- special stops ---------- */
+function lightURL(){
+  const p=G.people, q=[LIGHT.query];
+  const v=LIGHT.useCode?p.jpRegionCode:p.jpRegion;
+  if(LIGHT.regionParam&&v!==undefined&&v!==null) q.push(LIGHT.regionParam+'='+encodeURIComponent(v));
+  return LIGHT.embed+'?'+q.join('&');
+}
 function showUOTD(m){
   const mode=(m==='light')?'light':'uotd';
   CUR={kind:'uotd',mode};
@@ -3193,12 +3223,23 @@ function showUOTD(m){
     ? `Light one people in ${reg}`
     : `Pray for a real people today`;
   const copy = mode==='light'
-    ? `<p>The {People} are fictional. The peoples of ${reg} are not, and they are waiting on somebody real.</p><p>Joshua Project’s <b>Light the Nations</b> prayer map shows the unreached of the world as points of light: every prayer lights a people group. Open the map, find <b>${reg}</b>, and pick one people group there. Read their page. Pray for them by name, the way you have been praying for the {People} for ${yearOf(G.months)} years.</p>`
+    ? `<p>The {People} are fictional. The peoples of ${reg} are not, and they are waiting on somebody real.</p><p>Joshua Project’s <b>Light the Nations</b> prayer map is below, showing every <span class="gl" role="button" tabindex="0" onclick="openGloss('frontier')" onkeydown="cardKey(event,()=>openGloss('frontier'))">frontier people group</span> in <b>${reg}</b>. Every prayer lights one. Pick a point of light, read who they are, and pray for them by name, the way you have been praying for the {People} for ${yearOf(G.months)} years.</p>`
     : `<p>Joshua Project publishes one unreached people to pray for every day: a name, a place, a picture, and a few lines about them. Before ${G.role.id==='missionary'?'you go':'the team goes'} any further, pray for a real people today.</p><p>Open today’s people in a new tab, pray for them by name, then come back.</p>`;
-  const link = mode==='light' ? UOTD.light : UOTD.url;
-  const linkLabel = mode==='light' ? `Open the prayer map &#8599;` : `Open today’s people &#8599;`;
+  const mapHTML = mode!=='light' ? '' : `
+    <div class="mapwrap">
+      <div class="mapfall">
+        <b>Loading the prayer map…</b>
+        <span>If it does not appear, this page is being served somewhere that blocks embedded maps. The map itself is fine, and the button below opens it.</span>
+        <a class="btn" href="${LIGHT.open}" target="_blank" rel="noopener">Open the prayer map &#8599;</a>
+      </div>
+      <iframe id="prayFrame" src="${lightURL()}" title="Joshua Project Light the Nations prayer map: frontier people groups in ${reg}" allowfullscreen loading="eager"></iframe>
+    </div>
+    <p class="map-cap">Light the Nations prayer map by <a href="https://joshuaproject.net" target="_blank" rel="noopener">Joshua Project</a>. Frontier people groups in ${reg}. Drag, zoom, and tap a light to read one. Not showing? <a href="${LIGHT.open}" target="_blank" rel="noopener">Open it full screen &#8599;</a></p>`;
+  const row = mode==='light'
+    ? `<div class="row uotd-row"><button class="btn cont" onclick="uotdDone(true)">I prayed for them</button><button class="btn ghost" onclick="uotdDone(false)">Not right now</button></div>`
+    : `<div class="row uotd-row"><a class="btn" href="${UOTD.url}" target="_blank" rel="noopener">Open today’s people &#8599;</a><button class="btn cont" onclick="uotdDone(true)">I prayed for them</button><button class="btn ghost" onclick="uotdDone(false)">Not right now</button></div>`;
   $('main').innerHTML=`<div class="scene uotd${mode==='light'?' light':''}"><div class="kind">${head}</div><div class="sc-head">${iconSVG(ACC_ICONS.prayer,'sc-icon acc-amber')}<h2>${h2}</h2></div><div class="text">${T(copy)}</div>
-    <div class="row uotd-row"><a class="btn" href="${link}" target="_blank" rel="noopener">${linkLabel}</a><button class="btn cont" onclick="uotdDone(true)">I prayed for them</button><button class="btn ghost" onclick="uotdDone(false)">Not right now</button></div>
+    ${mapHTML}${row}
     <p class="small muted" style="margin:14px 0 0">Honor system. Nobody is checking. Prayer +10 and a bonus on the Trail Report if you did.</p></div>`;
   window.scrollTo(0,0);
 }
