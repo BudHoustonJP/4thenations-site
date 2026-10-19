@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountains Don&rsquo;t Make People Unreached &middot; Clarity for the Nations</title>
+<meta name="description" content="We tested the idea that rugged terrain keeps people from the gospel. It failed. An interactive look at Tyrol, 10,959 people groups, fortress and refuge mountains, and the geography that does matter: movement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#2E5E4E;--deep:#1B3B30;
+--ochre:#C8742A;--ochredeep:#8E4F17;
+--stone:#5A6270;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--ochre);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+.topnav .links a.navgame{color:#15603a;font-weight:700;opacity:1}
+.topnav .links a.navgame:hover{color:#0f4a2c}
+.topnav .links a.navapp{color:#1E5AA8;font-weight:700;opacity:1}
+.topnav .links a.navapp:hover{color:#123C74}
+.nav-dd{position:relative}
+.nav-ddbtn{background:none;border:none;font:inherit;font-weight:600;font-size:.92rem;cursor:pointer;color:var(--ink);opacity:.85;display:flex;align-items:center;gap:.3rem;padding:0}
+.nav-ddbtn:hover{opacity:1;color:var(--accent)}
+.nav-dd .caret{font-size:.7em;transition:transform .2s}
+.nav-dd.open .caret{transform:rotate(180deg)}
+.nav-ddmenu{position:absolute;top:160%;right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,.14);min-width:240px;display:none;flex-direction:column;padding:6px;z-index:40}
+.nav-dd.open .nav-ddmenu{display:flex}
+.nav-ddmenu a{padding:.6rem .8rem;border-radius:8px;font-size:.92rem;font-weight:600;color:var(--ink);text-decoration:none;opacity:1}
+.nav-ddmenu a:hover{background:var(--paper)}
+
+/* hero */
+header.hero{background:linear-gradient(172deg,#0b1a15 0%,var(--deep) 52%,#3d6e5d 100%);color:#F6F4EE;padding:12vh 0 190px;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52'%3E%3Ccircle cx='4' cy='4' r='1.2' fill='%23ffffff'/%3E%3C/svg%3E");background-size:52px 52px;opacity:.12}
+.hero .wrap{position:relative;z-index:3}
+.ridges{position:absolute;left:0;right:0;bottom:0;height:200px;z-index:1;pointer-events:none}
+.ridges svg{position:absolute;left:0;bottom:0;width:100%;height:100%;will-change:transform}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#F0B872;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:22ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.84);max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px;flex:1 1 190px;backdrop-filter:blur(2px)}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#F0B872}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.8);margin-top:.35rem}
+
+.qband{background:var(--accent);color:#F6F8F4;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:36ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#F6D6A8}
+
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.panel + .panel{margin-top:1.2rem}
+.panel h3.ph{font-family:'Fraunces',serif;font-weight:900;font-size:1.15rem;margin-bottom:.4rem}
+.panel p.pi{font-size:.95rem;color:#39342d;margin-bottom:1rem;max-width:62ch}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.2rem}
+.segbtn{font:inherit;font-weight:700;font-size:.92rem;padding:.55rem 1.15rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.segbtn.ochre[aria-pressed="true"]{background:var(--ochre);border-color:var(--ochre)}
+.segbtn.stone[aria-pressed="true"]{background:var(--stone);border-color:var(--stone)}
+.segbtn:disabled{opacity:.45;cursor:default}
+.segbtn:focus-visible,.stepc:focus-visible,.acc-h:focus-visible,[role="button"]:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.readout{margin-top:1.2rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:5rem;font-size:1rem}
+.readout b{color:var(--accent)}
+.readout .rn{display:block;font-family:'Fraunces',serif;font-weight:900;font-size:1.22rem;margin-bottom:.3rem;color:var(--ink)}
+.tag{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;padding:.35rem .75rem;border-radius:50px;background:var(--accent);color:#fff;margin-bottom:1rem;transition:background .3s}
+.tag.stone{background:var(--stone)}
+.tag.ochre{background:var(--ochre)}
+
+/* M1 timeline */
+.yearbox{display:flex;flex-wrap:wrap;align-items:flex-end;gap:.4rem 1.6rem;margin-bottom:1rem}
+.bigyr{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(3.2rem,11vw,5.4rem);line-height:.9;color:var(--accent);font-variant-numeric:tabular-nums}
+.yrmeta{font-size:.95rem;color:#39342d;padding-bottom:.4rem}
+.yrmeta b{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ochredeep)}
+.status{display:inline-block;margin-top:.3rem;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;border-radius:6px;background:rgba(90,98,112,.14);color:var(--stone)}
+.status.open{background:var(--accent);color:#fff}
+.rangewrap{margin:1rem 0 .4rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+input[type=range]{flex:1 1 260px;accent-color:var(--accent);height:28px;cursor:pointer}
+.evchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:.8rem}
+.evchip{font:inherit;font-size:.8rem;font-weight:700;padding:.35rem .7rem;border-radius:8px;border:1.5px solid var(--line);background:#fff;cursor:pointer;color:var(--mute);transition:all .25s}
+.evchip.hit{border-color:var(--ochre);color:var(--ochredeep);background:rgba(200,116,42,.08)}
+.evchip:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+
+/* M3 steps */
+.steps{display:flex;flex-direction:column;gap:8px}
+.stepc{font:inherit;text-align:left;display:flex;gap:.9rem;align-items:flex-start;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:.8rem 1rem;cursor:pointer;color:var(--ink);transition:border-color .25s,background .25s}
+.stepc .num{flex:none;width:28px;height:28px;border-radius:50%;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;transition:all .25s}
+.stepc h4{font-family:'Fraunces',serif;font-weight:900;font-size:1.02rem;line-height:1.25}
+.stepc .sb{display:none;font-size:.92rem;color:#39342d;margin-top:.3rem}
+.stepc.done{border-color:var(--accent);background:rgba(46,94,78,.06)}
+.stepc.done .num{background:var(--accent);border-color:var(--accent);color:#fff}
+.stepc.done .sb{display:block}
+.pbar{height:10px;background:rgba(28,26,23,.08);border-radius:10px;overflow:hidden;margin:1rem 0 .3rem}
+.pbar i{display:block;height:100%;width:0;background:var(--accent);border-radius:10px;transition:width .5s ease}
+.plab{font-size:.8rem;font-weight:700;color:var(--mute)}
+.predict{margin-top:1.4rem;border-top:1px solid var(--line);padding-top:1.2rem}
+.predict p.q{font-weight:600;margin-bottom:.8rem}
+.chartbox{position:relative;height:320px;margin-top:1.2rem}
+
+/* M4 compare bars */
+.cmp{display:flex;flex-direction:column;gap:14px;margin-top:.4rem}
+.cmp .lab{font-size:.85rem;font-weight:700;color:var(--mute);margin-bottom:.3rem;display:flex;justify-content:space-between}
+.cmp .lab b{font-family:'Fraunces',serif;font-size:1.25rem;color:var(--ink)}
+.track{height:30px;background:rgba(28,26,23,.06);border-radius:8px;overflow:hidden}
+.track i{display:block;height:100%;width:0;border-radius:8px;transition:width .9s cubic-bezier(.3,.7,.2,1)}
+.track i.flat{background:#B9BDB2}
+.track i.rug{background:var(--accent)}
+.track i.set{background:#B9BDB2}
+.track i.nom{background:var(--ochre)}
+#peaks{display:none}
+
+/* M5 */
+.duo{display:flex;flex-direction:column;gap:6px;margin-top:1rem}
+.duo div{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:.6rem .9rem}
+.duo span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--mute)}
+.duo p{font-size:.97rem}
+.house{transition:fill .7s}
+.qpt{cursor:pointer}
+.qpt circle{transition:r .25s,opacity .3s}
+.qpt text{transition:opacity .3s}
+
+/* M7 accordion */
+.acc{display:flex;flex-direction:column;gap:10px}
+.acc-i{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);transition:border-color .3s}
+.acc-i.done{border-color:var(--accent)}
+.acc-h{font:inherit;width:100%;text-align:left;background:none;border:none;cursor:pointer;display:flex;gap:.9rem;align-items:center;padding:1rem 1.1rem;color:var(--ink)}
+.acc-h .num{flex:none;width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;transition:all .25s}
+.acc-i.done .acc-h .num{background:var(--accent);border-color:var(--accent);color:#fff}
+.acc-h h4{font-family:'Fraunces',serif;font-weight:900;font-size:1.08rem;flex:1}
+.acc-h .pm{font-weight:800;font-size:1.2rem;color:var(--mute);transition:transform .25s}
+.acc-i.open .acc-h .pm{transform:rotate(45deg)}
+.acc-b{display:none;padding:0 1.1rem 1.1rem 3.9rem}
+.acc-i.open .acc-b{display:block}
+.acc-b p{font-size:.97rem;color:#39342d;margin-bottom:.7rem}
+.acc-b .tq{background:#fff;border-left:4px solid var(--ochre);border-radius:0 8px 8px 0;padding:.6rem .8rem;font-weight:600;font-size:.95rem;margin-bottom:.8rem}
+
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.6rem,4.2vw,2.6rem);line-height:1.15;max-width:30ch;margin:0 auto 1.2rem}
+.closing .small{color:rgba(246,244,238,.75);max-width:52ch;margin:0 auto 2rem;font-size:1.05rem}
+.cta-btn{display:inline-block;background:#F0B872;color:#2a1c02;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+@media (max-width:560px){.panel{padding:1.1rem}.acc-b{padding-left:1.1rem}}
+@media (prefers-reduced-motion: reduce){.mod{transition:none}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<div class="nav-dd">
+<button class="nav-ddbtn" aria-expanded="false">Brutal Facts Calculator <span class="caret">&#9662;</span></button>
+<div class="nav-ddmenu">
+<a href="brutal-facts-calculator-cities.html">City Brutal Facts</a>
+<a href="brutal-facts-calculator-segments.html">People Segment Brutal Facts</a>
+</div>
+</div>
+<a class="navapp" href="https://4thenations.com/Mobilization_Matrix_App">Mobilization Matrix App</a>
+<a class="navgame" href="frontier-trail.html">&#9654; Play Frontier Trail</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Data &amp; Frontier Peoples</div>
+<h1>We blamed the mountains. The data says the barrier was never the altitude.</h1>
+<p class="sub">Innsbruck waited nearly four centuries for its first Protestant church, and the Alps seemed like the obvious reason. They were not. A test across thousands of people groups shows what terrain actually does: it protects whatever people already hold.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="10959">0</div><div class="l">indigenous people groups tested against the terrain they live on</div></div>
+<div class="chip"><div class="n" data-count="119">0</div><div class="l">countries, with every group compared only to its own neighbors</div></div>
+<div class="chip"><div class="n" data-count="603">0</div><div class="l">large-group profiles read by hand to check the map points</div></div>
+</div>
+</div>
+<div class="ridges" aria-hidden="true">
+<svg id="r1" viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 200 L0 120 L90 70 L170 105 L260 40 L350 95 L430 60 L520 110 L610 30 L700 90 L790 55 L880 100 L980 45 L1070 95 L1200 60 L1200 200 Z" fill="#4f7f6d" opacity=".45"/></svg>
+<svg id="r2" viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 200 L0 150 L110 105 L200 140 L300 90 L400 135 L480 110 L580 150 L680 95 L780 140 L870 115 L960 150 L1060 100 L1200 135 L1200 200 Z" fill="#2a5143" opacity=".8"/></svg>
+<svg id="r3" viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 200 L0 175 L140 150 L240 172 L360 140 L470 170 L590 150 L700 178 L820 148 L930 172 L1060 152 L1200 170 L1200 200 Z" fill="#F3EFE6"/></svg>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;The mountains did not keep the gospel out. They protected whatever people already held.&rdquo;</p>
+<p class="q">&ldquo;The barrier is not the road. It is the identity on the other end of it.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<!-- M1 -->
+<section class="mod" id="m1">
+<div class="kicker">The church that came late</div>
+<h2>389 years between Wittenberg and Innsbruck&rsquo;s first Protestant church</h2>
+<p class="intro">Drag through the centuries, or press play. Watch where Reformation faith shows up in the valleys of Tyrol and Salzburg, what happens to it, and when Innsbruck finally gets a Protestant church.</p>
+<div class="panel">
+<div class="yearbox">
+<div class="bigyr" id="yrBig">1517</div>
+<div class="yrmeta"><b id="yrSince">0</b> years after Wittenberg<br><span class="status" id="yrStatus">Protestant church in Innsbruck: none</span></div>
+</div>
+<svg id="tl" viewBox="0 0 760 330" role="img" aria-label="Map of the Tyrol and Salzburg valleys with dots for Protestant families that appear, are driven underground, or are expelled as the year changes"></svg>
+<div class="rangewrap">
+<button class="segbtn" type="button" id="tlPlay" aria-pressed="false">&#9654; Play</button>
+<input type="range" id="yr" min="1517" max="1906" step="1" value="1517" aria-label="Year, 1517 to 1906">
+</div>
+<div class="evchips" id="evchips" role="group" aria-label="Jump to an event"></div>
+<div class="readout" id="tlRead" aria-live="polite"></div>
+<p class="note">Dots are illustrative and not to scale. Years, places, and counts are as stated in the essay. Sources: Evangelische Pfarrgemeinde Innsbruck-Christuskirche; Tiroler Landesarchiv; Hutterian Brethren.</p>
+</div>
+</section>
+
+<!-- M2 -->
+<section class="mod" id="m2">
+<div class="kicker">Rocks or rulers?</div>
+<h2>The tidy theory says the Alps kept it out. Tyrol says otherwise.</h2>
+<p class="intro">Switch between the theory and the history. In the history view, tap each place to see how the Reformation actually arrived, what stopped it, and where it hid.</p>
+<div class="panel">
+<div class="btnrow" id="m2seg" role="group" aria-label="Choose a view">
+<button class="segbtn stone" type="button" aria-pressed="true" data-k="theory">The tidy theory</button>
+<button class="segbtn" type="button" aria-pressed="false" data-k="history">What actually happened</button>
+</div>
+<span class="tag stone" id="m2tag">Verdict: the mountains kept it out</span>
+<svg id="alps" viewBox="0 0 760 390" role="group" aria-label="Schematic of Germany, the Alps with the Inn Valley and Brenner Pass, and Italy"></svg>
+<div class="readout" id="m2read" aria-live="polite"></div>
+<p class="note">Schematic, not to scale. Moving dots illustrate the flow the essay describes, not measured traffic.</p>
+</div>
+</section>
+
+<!-- M3 -->
+<section class="mod" id="m3">
+<div class="kicker">Testing it today</div>
+<h2>Build the test, then call the result</h2>
+<p class="intro">Does terrain still separate people from the gospel? Tap each step to assemble the test the way it was actually run. Then make your prediction before the data shows its hand.</p>
+<div class="panel">
+<div class="steps" id="steps"></div>
+<div class="pbar"><i id="stepBar"></i></div>
+<div class="plab" id="stepLab">0 of 5 steps assembled</div>
+<div class="predict">
+<p class="q">If mountains keep people unreached, the most rugged fifth of groups in each country should hold <em>more</em> Frontier peoples. What do you predict?</p>
+<div class="btnrow" id="predBtns" role="group" aria-label="Your prediction">
+<button class="segbtn" type="button" aria-pressed="false" data-k="more">More Frontier in the mountains</button>
+<button class="segbtn" type="button" aria-pressed="false" data-k="same">About the same</button>
+<button class="segbtn" type="button" aria-pressed="false" data-k="fewer">Fewer Frontier in the mountains</button>
+</div>
+</div>
+<div class="chartbox"><canvas id="frChart" role="img" aria-label="Bar chart of the share of people groups that are Frontier, by within-country terrain fifth: 38.9 percent flattest, 35.9, 33.0, 33.0, and 30.7 percent most rugged"></canvas></div>
+<div class="readout" id="predRead" aria-live="polite"><span class="rn">The bars are waiting on you</span>Pick a prediction above to reveal the result.</div>
+<p class="note">Share of people groups that are Frontier, by within-country terrain fifth. Fifths are ranked within each country, so every country contributes to every bar. This counts people groups, not people: weighted by population there is no clear pattern either way, and the drop comes almost entirely from South Asia, where hill tribes are less often Frontier than the plains caste groups around them. Source: Joshua Project people group file (AllPeoplesInCountry), 10,959 indigenous groups in 119 countries, terrain from ETOPO1.</p>
+</div>
+</section>
+
+<!-- M4 -->
+<section class="mod" id="m4">
+<div class="kicker">Every other measure</div>
+<h2>The most rugged groups are slightly more reached, not less</h2>
+<p class="intro">Frontier status is one lens. Switch through the others, then compare between countries. The mountain penalty does not show up anywhere.</p>
+<div class="panel">
+<div class="btnrow" id="m4seg" role="group" aria-label="Choose a measure">
+<button class="segbtn" type="button" aria-pressed="true" data-k="evang">Evangelical share</button>
+<button class="segbtn" type="button" aria-pressed="false" data-k="jp1">JPScale 1</button>
+<button class="segbtn" type="button" aria-pressed="false" data-k="scr">No Scripture</button>
+<button class="segbtn" type="button" aria-pressed="false" data-k="btw">Between countries</button>
+</div>
+<span class="tag" id="m4tag">Rugged groups slightly more reached</span>
+<div class="cmp" id="cmpBars">
+<div><div class="lab"><span>Flattest fifth</span><b id="vFlat">0</b></div><div class="track"><i class="flat" id="bFlat"></i></div></div>
+<div><div class="lab"><span>Most rugged fifth</span><b id="vRug">0</b></div><div class="track"><i class="rug" id="bRug"></i></div></div>
+</div>
+<svg id="peaks" viewBox="0 0 760 250" role="img" aria-label="Three equally rugged regions with opposite outcomes: the Andes with high evangelical share, Nepal and Tajikistan with low"></svg>
+<div class="readout" id="m4read" aria-live="polite"></div>
+<p class="note">Flattest vs. most rugged fifth of people groups, ranked within each country. Source: Joshua Project people group file, 10,959 indigenous groups in 119 countries, terrain from ETOPO1. The between-country view is the essay&rsquo;s comparison, drawn conceptually.</p>
+</div>
+</section>
+
+<!-- M5 -->
+<section class="mod" id="m5">
+<div class="kicker">Two kinds of mountain</div>
+<h2>The global average hides two opposite stories</h2>
+<p class="intro">On some mountains the high ground holds the region&rsquo;s dominant religion. On others it shelters a minority that fled or stood apart. Switch between them, then explore where real peoples sit.</p>
+<div class="panel">
+<div class="btnrow" id="m5seg" role="group" aria-label="Choose a mountain type">
+<button class="segbtn stone" type="button" aria-pressed="true" data-k="fortress">The fortress mountain</button>
+<button class="segbtn ochre" type="button" aria-pressed="false" data-k="refuge">The refuge mountain</button>
+</div>
+<svg id="scene" viewBox="0 0 760 250" role="img" aria-label="A mountain above a lowland town, showing whether the summit village shares the lowland faith or stands apart from it"></svg>
+<div class="duo" id="duo" aria-live="polite"></div>
+</div>
+<div class="panel">
+<h3 class="ph">Where the peoples sit</h3>
+<p class="pi">Tap any point. Filter by mountain type to see how one terrain produces opposite outcomes.</p>
+<div class="btnrow" id="qFilter" role="group" aria-label="Filter points">
+<button class="segbtn" type="button" aria-pressed="true" data-k="all">All</button>
+<button class="segbtn stone" type="button" aria-pressed="false" data-k="f">Fortress</button>
+<button class="segbtn ochre" type="button" aria-pressed="false" data-k="r">Refuge</button>
+</div>
+<svg id="quad" viewBox="0 0 760 470" role="group" aria-label="Quadrant map: who holds the high ground on the horizontal axis, gospel vitality today on the vertical axis"></svg>
+<div class="readout" id="qRead" aria-live="polite"></div>
+<p class="note">Point placement is conceptual: the argument, not measured coordinates. Percentages are as stated in the essay. Regional patterns come from within-country models on Joshua Project data. James C. Scott, <em>The Art of Not Being Governed</em> (Yale, 2009).</p>
+</div>
+</section>
+
+<!-- M6 -->
+<section class="mod" id="m6">
+<div class="kicker">The geography that does matter</div>
+<h2>Not how high a people live. Whether they stay put.</h2>
+<p class="intro">A church plant assumes a place to gather. Drag the slider to change how long a people stays in one place, and watch whether a gathering can take root.</p>
+<div class="panel">
+<div class="rangewrap" style="margin-top:0">
+<input type="range" id="stay" min="0" max="6" step="1" value="0" aria-label="How long the group stays in one place">
+</div>
+<div class="plab" style="font-size:.95rem;color:var(--ink)">Stays in one place: <b id="stayLab" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--ochredeep)">1 week</b></div>
+<span class="tag ochre" id="stayTag" style="margin-top:.8rem">No gathering forms</span>
+<svg id="camp" viewBox="0 0 760 270" role="img" aria-label="People moving across a field; with longer stays they gather in a circle and a church takes root"></svg>
+<p class="note">Illustrative: the argument, not measured data.</p>
+</div>
+<div class="panel">
+<h3 class="ph">139 nomadic groups, measured</h3>
+<p class="pi">Compared with settled groups in the same country and of the same religion, nomadic groups are far less reached (p = 0.003).</p>
+<div class="btnrow" id="nomSeg" role="group" aria-label="Choose a measure">
+<button class="segbtn" type="button" aria-pressed="true" data-k="ev">Average % evangelical</button>
+<button class="segbtn" type="button" aria-pressed="false" data-k="jp">JPScale 1 (least reached)</button>
+</div>
+<div class="cmp" id="nomCmp">
+<div><div class="lab"><span>Settled groups</span><b id="vSet">0</b></div><div class="track"><i class="set" id="bSet"></i></div></div>
+<div><div class="lab"><span>Nomadic groups</span><b id="vNom">0</b></div><div class="track"><i class="nom" id="bNom"></i></div></div>
+</div>
+<p class="note">Source: Joshua Project people group file, 139 groups flagged nomadic, same-country and same-religion comparison.</p>
+</div>
+<div class="panel">
+<h3 class="ph">Which geographic factors passed the test?</h3>
+<p class="pi">Each row is one test from the study. Dots left of the line are strong evidence of a real effect. Dots right of it cannot be told apart from no effect. Tap a row.</p>
+<svg id="evid" viewBox="0 0 760 290" role="group" aria-label="Evidence strip showing p-values for five geographic tests on a log scale"></svg>
+<div class="readout" id="evRead" aria-live="polite"></div>
+<p class="note">p-values as stated in the essay. Models compared groups within the same country, controlled for primary religion, population, and nomadism, with errors clustered by country. The polygon check used 13,575 Joshua Project people group polygons covering 7,238 of the study&rsquo;s groups.</p>
+</div>
+</section>
+
+<!-- M7 -->
+<section class="mod" id="m7">
+<div class="kicker">So what</div>
+<h2>Four shifts for anyone who says &ldquo;remote&rdquo; when they mean &ldquo;unreached&rdquo;</h2>
+<p class="intro">Open each shift, talk through the question with your team, and mark it discussed.</p>
+<div class="panel">
+<div class="pbar" style="margin-top:0"><i id="accBar"></i></div>
+<div class="plab" id="accLab" style="margin-bottom:1rem">0 of 4 shifts discussed</div>
+<div class="acc" id="acc"></div>
+<p class="note">Shifts are from the essay. Team questions are prompts written for this page.</p>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">Our task is to learn which mountains shelter resistance and which shelter people waiting to be found.</p>
+<p class="small">The Protestants of the Zillertal kept their faith hidden for generations, then chose exile over giving it up. The mountains did not stop their faith. They sheltered it.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/mountains-dont-make-people-unreached" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a><br>
+<a class="sub" href="index.html">&#8592; All interactive essays</a>
+</div>
+</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function $(id){return document.getElementById(id);}
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+function whenSeen(id,fn,th){var done=false;var o=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!done){done=true;fn();o.disconnect();}});},{threshold:th||.25});o.observe($(id));}
+function visFlag(id,cb){var o=new IntersectionObserver(function(es){es.forEach(function(en){cb(en.isIntersecting);});},{threshold:0});o.observe($(id));}
+function seg(groupId,fn){var bs=document.querySelectorAll("#"+groupId+" .segbtn");bs.forEach(function(b){b.addEventListener("click",function(){bs.forEach(function(x){x.setAttribute("aria-pressed","false");});b.setAttribute("aria-pressed","true");fn(b.getAttribute("data-k"));});});}
+var seed=11;function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
+var ACC="#2E5E4E",DEEP="#1B3B30",OCH="#C8742A",OCHD="#8E4F17",STONE="#5A6270",MUTE="#6E665B",INK="#1C1A17",PAPER="#F3EFE6";
+
+/* nav dropdown */
+(function(){var dd=document.querySelector(".nav-dd");if(!dd)return;var b=dd.querySelector(".nav-ddbtn");b.addEventListener("click",function(e){e.stopPropagation();var o=dd.classList.toggle("open");b.setAttribute("aria-expanded",o);});document.addEventListener("click",function(){dd.classList.remove("open");b.setAttribute("aria-expanded","false");});})();
+
+/* progress + hero parallax */
+var prog=$("prog"),r1=$("r1"),r2=$("r2"),ticking=false;
+function onScroll(){var h=document.documentElement;var y=h.scrollTop;var p=y/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";
+if(y<900){r1.style.transform="translateY("+(y*.22)+"px)";r2.style.transform="translateY("+(y*.1)+"px)";}ticking=false;}
+window.addEventListener("scroll",function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+
+/* reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.08});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+/* count-up */
+document.querySelectorAll(".chip .n").forEach(function(n){
+var target=parseFloat(n.getAttribute("data-count"));
+tween(1800,function(p){n.textContent=Math.round(target*p).toLocaleString("en-US");});
+});
+
+/* ===== M1: Tyrol timeline ===== */
+(function(){
+var svg=$("tl"),slider=$("yr"),big=$("yrBig"),since=$("yrSince"),status=$("yrStatus"),read=$("tlRead"),playBtn=$("tlPlay"),chipsBox=$("evchips");
+var X0=40,X1=720,Y0=1517,Y1=1906;
+function yx(y){return X0+(y-Y0)/(Y1-Y0)*(X1-X0);}
+/* terrain */
+el("path",{d:"M0 160 L50 112 L105 140 L165 78 L225 128 L290 66 L350 118 L420 58 L480 112 L545 72 L610 122 L668 96 L760 128 L760 210 L0 210 Z",fill:"#d6ddd8"},svg);
+el("path",{d:"M0 182 L80 146 L150 170 L212 132 L282 166 L360 124 L430 162 L500 132 L580 166 L650 140 L760 170 L760 210 L0 210 Z",fill:"#aebfb7"},svg);
+[[165,78],[290,66],[420,58],[545,72]].forEach(function(p){el("path",{d:"M"+(p[0]-14)+" "+(p[1]+14)+" L"+p[0]+" "+p[1]+" L"+(p[0]+14)+" "+(p[1]+14)+" Z",fill:"#fff",opacity:.85},svg);});
+el("rect",{x:0,y:204,width:760,height:16,fill:"#e9e3d4"},svg);
+el("path",{d:"M0 212 C150 207 300 216 450 209 S650 214 760 208",stroke:"#8fb3c9","stroke-width":3,fill:"none"},svg);
+/* exile box */
+el("rect",{x:604,y:8,width:148,height:84,rx:10,fill:"rgba(200,116,42,.08)",stroke:OCH,"stroke-dasharray":"4 4"},svg);
+txt(612,26,"EXPELLED",{fill:OCHD,"font-size":"11","font-weight":"800","letter-spacing":"1.2"},svg);
+var exCount=txt(744,26,"0",{fill:OCHD,"font-size":"12","font-weight":"800","text-anchor":"end"},svg);
+/* places */
+var PL=[["Innsbruck",110,true],["Schwaz",210],["Zillertal",320],["Defereggen",450],["Salzburg",600]];
+PL.forEach(function(p){el("circle",{cx:p[1],cy:212,r:4,fill:INK},svg);txt(p[1],238,p[0],{fill:p[2]?INK:MUTE,"font-size":p[2]?"13":"12","font-weight":p[2]?"800":"700","text-anchor":"middle"},svg);});
+/* church */
+var church=el("g",{style:"transition:opacity .7s",opacity:0},svg);
+el("rect",{x:98,y:182,width:24,height:20,fill:ACC},church);
+el("path",{d:"M95 184 L110 170 L125 184 Z",fill:DEEP},church);
+el("rect",{x:107,y:158,width:6,height:14,fill:DEEP},church);
+el("path",{d:"M110 146 L110 158 M105 151 L115 151",stroke:DEEP,"stroke-width":2.5},church);
+/* timeline axis */
+el("line",{x1:X0,y1:292,x2:X1,y2:292,stroke:"rgba(28,26,23,.2)","stroke-width":4,"stroke-linecap":"round"},svg);
+var progLine=el("line",{x1:X0,y1:292,x2:X0,y2:292,stroke:ACC,"stroke-width":4,"stroke-linecap":"round"},svg);
+var EV=[
+{y:1517,s:"Wittenberg",t:"Luther posts his theses in Wittenberg. The Reformation catches fire in Germany and Switzerland, on the far side of the Alps from Innsbruck."},
+{y:1520,s:"Reaches Tyrol",t:"Reformation ideas and writings reach Tyrol around 1520, <b>within three years of Wittenberg</b>. They came by road over the Brenner Pass and through the silver mines of Schwaz."},
+{y:1536,s:"Hutter",t:"February 25, 1536: Jakob Hutter, a Tyrolean and founder of the Hutterites, is burned at the stake in Innsbruck on orders of King Ferdinand. Dissent is executed, expelled, or driven underground."},
+{y:1684,s:"Defereggen",t:"1684 and 1685: the Archbishop of Salzburg expels <b>more than 600</b> Protestants from the Defereggen Valley in the middle of winter. Their children under 15 are kept behind to be raised Catholic."},
+{y:1731,s:"Salzburg",t:"His successor expels <b>more than 20,000</b> Protestants from Salzburg itself. Hidden faith had survived in the valleys for generations."},
+{y:1837,s:"Zillertal",t:"<b>427</b> Protestants are forced out of the Zillertal. Most resettle at Erdmannsdorf in Prussian Silesia. They chose exile over giving up their faith."},
+{y:1906,s:"Christuskirche",t:"May 1906: the Christuskirche opens, <b>Innsbruck&rsquo;s first Protestant church</b>. Nearly four centuries after Wittenberg. The mountains did not delay it. Rulers did."}
+];
+var evMarks=EV.map(function(e,i){
+var x=yx(e.y);var c=el("circle",{cx:x,cy:292,r:i===1?4:6,fill:"#fff",stroke:"rgba(28,26,23,.35)","stroke-width":2},svg);
+if(i!==1)txt(x,316,String(e.y),{fill:MUTE,"font-size":"11","font-weight":"700","text-anchor":i===0?"start":(i===6?"end":"middle")},svg);
+return c;
+});
+txt(yx(1520)+4,278,"1520",{fill:MUTE,"font-size":"11","font-weight":"700"},svg);
+/* chips */
+var chips=EV.map(function(e){var b=document.createElement("button");b.type="button";b.className="evchip";b.textContent=e.y+" · "+e.s;b.addEventListener("click",function(){stopPlay();setYear(e.y);});chipsBox.appendChild(b);return b;});
+/* believer dots */
+var G=[{x:210,n:8,on:1521,dim:1536},{x:450,n:12,on:1525,out:1684},{x:600,n:22,on:1525,out:1731},{x:320,n:10,on:1530,out:1837}];
+var dots=[],exI=0;
+G.forEach(function(g){for(var i=0;i<g.n;i++){
+var hx=g.x+(rnd()-.5)*76,hy=150+rnd()*46;var d={hx:hx,hy:hy,x:hx,y:hy,o:0,tx:hx,ty:hy,to:0,g:g};
+if(g.out){d.ex=616+(exI%14)*9.4;d.ey=42+Math.floor(exI/14)*12;exI++;}
+d.c=el("circle",{cx:hx,cy:hy,r:3.6,fill:OCH,opacity:0},svg);dots.push(d);}});
+var raf=null;
+function loop(){var moving=false;
+dots.forEach(function(d){d.x+=(d.tx-d.x)*.07;d.y+=(d.ty-d.y)*.07;d.o+=(d.to-d.o)*.1;
+if(Math.abs(d.tx-d.x)>.3||Math.abs(d.ty-d.y)>.3||Math.abs(d.to-d.o)>.01)moving=true;
+d.c.setAttribute("cx",d.x.toFixed(1));d.c.setAttribute("cy",d.y.toFixed(1));d.c.setAttribute("opacity",d.o.toFixed(2));});
+raf=moving?requestAnimationFrame(loop):null;}
+function kick(){if(!raf)raf=requestAnimationFrame(loop);}
+var EXN={1684:600,1731:20000,1837:427};
+function setYear(y){
+y=Math.round(y);slider.value=y;big.textContent=y;since.textContent=y-1517;
+progLine.setAttribute("x2",yx(y));
+var cur=0;EV.forEach(function(e,i){var hit=y>=e.y;if(hit)cur=i;evMarks[i].setAttribute("fill",hit?OCH:"#fff");evMarks[i].setAttribute("stroke",hit?OCHD:"rgba(28,26,23,.35)");chips[i].classList.toggle("hit",hit);});
+read.innerHTML='<span class="rn">'+EV[cur].y+'</span>'+EV[cur].t;
+var open=y>=1906;church.setAttribute("opacity",open?1:0);
+status.textContent=open?"Protestant church in Innsbruck: open":"Protestant church in Innsbruck: none";status.classList.toggle("open",open);
+var ex=0;Object.keys(EXN).forEach(function(k){if(y>=+k)ex+=EXN[k];});exCount.textContent=ex?ex.toLocaleString("en-US")+"+":"0";
+dots.forEach(function(d){var g=d.g;
+if(y<g.on){d.tx=d.hx;d.ty=d.hy;d.to=0;}
+else if(g.out&&y>=g.out){d.tx=d.ex;d.ty=d.ey;d.to=1;}
+else if(g.dim&&y>=g.dim){d.tx=d.hx;d.ty=d.hy;d.to=.25;}
+else{d.tx=d.hx;d.ty=d.hy;d.to=1;}});
+kick();
+}
+var playing=false,pr=null;
+function stopPlay(){playing=false;if(pr)cancelAnimationFrame(pr);pr=null;playBtn.innerHTML="&#9654; Play";playBtn.setAttribute("aria-pressed","false");}
+function play(){
+var start=+slider.value;if(start>=1906)start=1517;playing=true;playBtn.innerHTML="&#10074;&#10074; Pause";playBtn.setAttribute("aria-pressed","true");
+var t0=null,dur=11000*(1906-start)/389;
+function step(ts){if(!playing)return;if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);setYear(start+(1906-start)*p);if(p<1)pr=requestAnimationFrame(step);else stopPlay();}
+pr=requestAnimationFrame(step);
+}
+playBtn.addEventListener("click",function(){playing?stopPlay():play();});
+slider.addEventListener("input",function(){stopPlay();setYear(+slider.value);});
+setYear(1517);
+whenSeen("m1",function(){setTimeout(play,500);},.3);
+})();
+
+/* ===== M2: theory vs history ===== */
+(function(){
+var svg=$("alps"),read=$("m2read"),tag=$("m2tag");
+function ridge(base,peak,gapX,sd){var s=sd,pts=["0,"+base];for(var i=0,x=0;x<=760;i++,x+=38){s=(s*9301+49297)%233280;var h=(i%2?peak+34:peak)+(s/233280)*14;if(Math.abs(x-gapX)<26)h=base-6;pts.push(x+","+h.toFixed(0));}pts.push("760,"+base);return pts.join(" ");}
+el("rect",{x:0,y:0,width:760,height:96,fill:"#e3ebe6"},svg);
+txt(16,28,"GERMANY AND SWITZERLAND",{fill:DEEP,"font-size":"12","font-weight":"800","letter-spacing":"1.4"},svg);
+txt(16,46,"where the Reformation caught fire",{fill:MUTE,"font-size":"12","font-weight":"600"},svg);
+el("rect",{x:0,y:178,width:760,height:64,fill:"#efe9da"},svg);
+el("polygon",{points:ridge(182,112,400,5),fill:"#b7c2bd"},svg);
+el("polygon",{points:ridge(304,236,400,9),fill:"#b7c2bd"},svg);
+txt(16,212,"INN VALLEY, TYROL",{fill:MUTE,"font-size":"11","font-weight":"800","letter-spacing":"1.2"},svg);
+el("rect",{x:0,y:304,width:760,height:86,fill:"#f3e6d2"},svg);
+txt(16,352,"ITALY",{fill:OCHD,"font-size":"12","font-weight":"800","letter-spacing":"1.4"},svg);
+var roadD="M300 52 C 330 76, 396 82, 400 112 L 400 380";
+var road=el("path",{d:roadD,fill:"none",stroke:"rgba(28,26,23,.45)","stroke-width":3,"stroke-dasharray":"7 6"},svg);
+var flowPath=el("path",{d:"M300 52 C 330 76, 396 82, 400 112 L 400 206",fill:"none",stroke:"none"},svg);
+el("circle",{cx:300,cy:52,r:7,fill:DEEP},svg);
+txt(286,57,"Wittenberg",{fill:INK,"font-size":"13","font-weight":"800","text-anchor":"end"},svg);
+/* theory layer */
+var th=el("g",{},svg);
+el("path",{d:"M312 62 L372 102",stroke:STONE,"stroke-width":6,"stroke-linecap":"round"},th);
+el("path",{d:"M360 104 L378 106 L370 90",fill:"none",stroke:STONE,"stroke-width":6,"stroke-linejoin":"round","stroke-linecap":"round"},th);
+el("path",{d:"M386 112 L414 140 M414 112 L386 140",stroke:"#B22234","stroke-width":6,"stroke-linecap":"round"},th);
+txt(430,124,"The wall?",{fill:"#B22234","font-size":"16","font-weight":"900","font-family":"Fraunces,serif"},th);
+/* history layer */
+var hi=el("g",{opacity:0,style:"transition:opacity .5s"},svg);
+var valleyG=el("g",{},hi);
+var flowG=el("g",{},hi);
+var NODES=[
+{k:"road",x:400,y:272,lab:"Brenner Pass",dx:16,anchor:"start",col:DEEP,t:'<span class="rn">It came by road</span>Tyrol sits on the Brenner Pass, the main trade route between Germany and Italy. Merchants, printed pamphlets, and preachers moved through it constantly. Ideas reached Tyrol around 1520, <b>within three years of Wittenberg</b>.'},
+{k:"mine",x:500,y:208,lab:"Schwaz mines",dx:16,anchor:"start",col:OCH,t:'<span class="rn">It came by mine</span>The silver miners of Schwaz, just down the Inn Valley from Innsbruck, embraced Lutheran and Anabaptist teaching early. Jakob Hutter, founder of the Hutterites, was a Tyrolean.'},
+{k:"ruler",x:400,y:208,lab:"Innsbruck",dx:-16,anchor:"end",col:"#B22234",t:'<span class="rn">It was stopped by rulers, not rocks</span>Tyrol&rsquo;s Habsburg rulers were Catholic. Under the principle that a ruler&rsquo;s religion set his territory&rsquo;s religion, dissent was executed, expelled, or driven underground. Hutter was burned at the stake in Innsbruck in 1536.'},
+{k:"valley",x:650,y:208,lab:"Remote valleys",dx:0,anchor:"middle",col:OCHD,t:'<span class="rn">Then the mountains hid the believers</span>Protestant families survived in remote valleys for generations. The mountains did not keep the gospel out. <b>They protected whatever people already held.</b> For the state, that was Catholic unity. For the hidden families in the high valleys, it was their Protestant faith.'}
+];
+var nodeEls={};
+NODES.forEach(function(n){
+var g=el("g",{tabindex:"0",role:"button",style:"cursor:pointer","aria-label":n.lab},hi);
+el("circle",{cx:n.x,cy:n.y,r:22,fill:"transparent"},g);
+var c=el("circle",{cx:n.x,cy:n.y,r:10,fill:n.col,stroke:"#fff","stroke-width":3},g);
+var ty=n.k==="valley"?n.y+30:n.y+5;
+txt(n.x+n.dx,ty,n.lab,{fill:INK,"font-size":"13","font-weight":"800","text-anchor":n.anchor,stroke:"#fff","stroke-width":"3","paint-order":"stroke"},g);
+function pick(){Object.keys(nodeEls).forEach(function(k){nodeEls[k].setAttribute("r",k===n.k?14:10);});read.innerHTML=n.t;}
+g.addEventListener("click",pick);g.addEventListener("mouseenter",pick);onKey(g,pick);
+nodeEls[n.k]=c;
+});
+/* ruler barrier */
+el("path",{d:"M384 226 L416 226",stroke:"#B22234","stroke-width":5,"stroke-linecap":"round"},hi);
+/* flow animation */
+var L=flowPath.getTotalLength(),parts=[],kept=[],mode="theory",vis=false,raf=null,last=0,spawnT=0,idx=0;
+var DEST=[{x:500,y:208,f:"mine"},{x:400,y:208,f:"stop"},{x:650,y:182,f:"hide"},{x:400,y:380,f:"south"}];
+function spawn(){var c=el("circle",{r:4.5,fill:OCH},flowG);parts.push({c:c,t:0,ph:0,d:DEST[idx%4],k:0});idx++;}
+function frame(ts){
+if(!last)last=ts;var dt=Math.min(50,ts-last);last=ts;spawnT+=dt;
+if(spawnT>650){spawnT=0;spawn();}
+parts=parts.filter(function(p){
+if(p.ph===0){p.t+=dt/2400;var pt=flowPath.getPointAtLength(Math.min(1,p.t)*L);p.c.setAttribute("cx",pt.x);p.c.setAttribute("cy",pt.y);if(p.t>=1){p.ph=1;p.sx=pt.x;p.sy=pt.y;}return true;}
+p.k+=dt/(p.d.f==="south"?1600:1000);var q=Math.min(1,p.k);var e=1-Math.pow(1-q,3);
+var dx=p.d.x;
+p.c.setAttribute("cx",p.sx+(dx-p.sx)*e);p.c.setAttribute("cy",p.sy+(p.d.y-p.sy)*e);
+if(p.d.f==="stop"){p.c.setAttribute("fill","#B22234");p.c.setAttribute("opacity",(1-q).toFixed(2));}
+if(p.d.f==="mine"&&q>.6){p.c.setAttribute("opacity",(1-(q-.6)/.4*.75).toFixed(2));}
+if(p.d.f==="south"&&q>.7){p.c.setAttribute("opacity",(1-(q-.7)/.3).toFixed(2));}
+if(q>=1){
+if(p.d.f==="hide"){if(kept.length>=18){var old=kept.shift();old.remove();}var k=kept.length;var hc=el("circle",{cx:612+(k%6)*15,cy:160+Math.floor(k/6)*13,r:4.5,fill:OCH},valleyG);kept.push(hc);}
+p.c.remove();return false;}
+return true;});
+raf=(mode==="history"&&vis)?requestAnimationFrame(frame):null;
+}
+function run(){if(!raf&&mode==="history"&&vis){last=0;raf=requestAnimationFrame(frame);}}
+visFlag("m2",function(v){vis=v;run();});
+function setMode(m){
+mode=m;var h=m==="history";
+th.setAttribute("opacity",h?0:1);hi.setAttribute("opacity",h?1:0);
+hi.style.pointerEvents=h?"auto":"none";
+tag.textContent=h?"Verdict: stopped by rulers, not rocks":"Verdict: the mountains kept it out";
+tag.className="tag"+(h?"":" stone");
+read.innerHTML=h?'<span class="rn">Tap a place</span>Watch the dots: some reach the Schwaz miners, some are stopped at Innsbruck, some continue south toward Italy, and some vanish into the high valleys and stay.':'<span class="rn">A tidy theory</span>Look up from any street in Innsbruck and you see the Alps. Germany and Switzerland, where the Reformation caught fire, sit on the other side of those peaks. The mountains kept it out. <b>It is a tidy theory. It is also wrong.</b>';
+if(!h){parts.forEach(function(p){p.c.remove();});parts=[];}
+run();
+}
+seg("m2seg",setMode);
+hi.style.pointerEvents="none";
+setMode("theory");
+})();
+
+/* ===== M3: build the test + Chart.js ===== */
+(function(){
+var STEPS=[
+["Pick the groups","10,959 indigenous people groups in 119 countries, from the current Joshua Project people group file. Diaspora groups, Deaf communities, and groups listed as scattered are left out, since a single point tells little about where they live."],
+["Measure the terrain","A global elevation model (ETOPO1) measures how rugged the land is within about 130 km of each group&rsquo;s mapped location."],
+["Compare within each country","Groups are compared only with other groups in the same country. That holds laws, persecution, colonial history, and national church strength constant. A Nepali group is measured against other Nepali groups, not against Brazil."],
+["Hold the rest constant","Controls for each group&rsquo;s main religion, its population size, and whether Joshua Project lists it as nomadic."],
+["Check the map points","For all 603 groups of 1 million or more, the profile text was read and coded. Where it describes terrain (237 groups), the mountain groups sit on terrain more than three times as rugged as the lowland groups. The map points and the profiles agree."]
+];
+var box=$("steps"),bar=$("stepBar"),lab=$("stepLab"),done=0;
+STEPS.forEach(function(s,i){
+var b=document.createElement("button");b.type="button";b.className="stepc";b.setAttribute("aria-expanded","false");
+b.innerHTML='<span class="num">'+(i+1)+'</span><span><h4>'+s[0]+'</h4><span class="sb">'+s[1]+'</span></span>';
+b.addEventListener("click",function(){var on=!b.classList.contains("done");b.classList.toggle("done",on);b.setAttribute("aria-expanded",on?"true":"false");done+=on?1:-1;bar.style.width=(done/STEPS.length*100)+"%";lab.textContent=done===STEPS.length?"Test assembled. Now make your call.":done+" of "+STEPS.length+" steps assembled";});
+box.appendChild(b);
+});
+var DATA=[38.9,35.9,33.0,33.0,30.7],chart=null,revealed=false;
+var valPlugin={id:"vals",afterDatasetsDraw:function(c){if(!revealed)return;var ctx=c.ctx;var meta=c.getDatasetMeta(0);ctx.save();ctx.font="700 13px Inter,system-ui,sans-serif";ctx.fillStyle="#1C1A17";ctx.textAlign="center";meta.data.forEach(function(bar,i){var v=c.data.datasets[0].data[i];if(v>0)ctx.fillText(v.toFixed(1)+"%",bar.x,bar.y-8);});ctx.restore();}};
+function make(){
+if(chart||typeof Chart==="undefined")return;
+chart=new Chart($("frChart").getContext("2d"),{type:"bar",plugins:[valPlugin],
+data:{labels:["Flattest fifth","Second","Middle","Fourth","Most rugged fifth"],datasets:[{data:[0,0,0,0,0],backgroundColor:[ACC,"#C4C6BB","#C4C6BB","#C4C6BB",ACC],borderRadius:6,maxBarThickness:90}]},
+options:{responsive:true,maintainAspectRatio:false,animation:{duration:1300,easing:"easeOutCubic"},
+plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y.toFixed(1)+"% of groups are Frontier";}}}},
+scales:{y:{min:0,max:45,ticks:{callback:function(v){return v+"%";},color:"#6E665B",font:{family:"Inter",weight:"600"}},grid:{color:"rgba(28,26,23,.08)"}},x:{grid:{display:false},ticks:{color:"#1C1A17",font:{family:"Inter",weight:"700"}}}}}});
+}
+whenSeen("m3",make,.2);
+var MSG={
+more:'<span class="rn">The data disagrees with you, and that is the point</span>The most rugged groups are <b>less</b> likely to be Frontier peoples: <b>30.7%</b> in the most rugged fifth versus <b>38.9%</b> in the flattest. Most people share your intuition. The test is what breaks it.',
+same:'<span class="rn">Close, but the bars lean the other way</span>Frontier share actually falls as terrain gets rougher: from <b>38.9%</b> in the flattest fifth to <b>30.7%</b> in the most rugged. If anything, the mountains run slightly more reached.',
+fewer:'<span class="rn">You called it</span>Frontier share falls from <b>38.9%</b> in the flattest fifth to <b>30.7%</b> in the most rugged. Mountains made no difference, and if anything the most rugged groups are slightly more reached than their flatter neighbors.'
+};
+seg("predBtns",function(k){make();if(!chart){$("predRead").innerHTML=MSG[k];return;}revealed=true;chart.data.datasets[0].data=DATA.slice();chart.update();$("predRead").innerHTML=MSG[k];});
+})();
+
+/* ===== M4: other measures ===== */
+(function(){
+var D={
+evang:{f:6.2,r:7.5,max:10,u:"%",tag:"Rugged groups slightly more reached",cls:"",t:'<span class="rn">Average % evangelical</span>Flattest fifth <b>6.2%</b>, most rugged fifth <b>7.5%</b>. With religion, population, and nomadism held constant, the effect of terrain on evangelical share is statistically zero (<b>p = 0.20</b>). The confidence interval is narrow, so a meaningful mountain penalty can be ruled out.'},
+jp1:{f:50,r:41,max:60,u:"%",tag:"Fewer least-reached groups in the mountains",cls:"",t:'<span class="rn">JPScale 1, least reached</span>Half of the flattest fifth sits at JPScale 1 (<b>50%</b>). In the most rugged fifth it is <b>41%</b>.'},
+scr:{f:10.6,r:9.1,max:14,u:"%",tag:"Scripture access no worse up high",cls:"",t:'<span class="rn">No Scripture in their language</span>Flattest fifth <b>10.6%</b>, most rugged fifth <b>9.1%</b>. Rugged terrain does not leave groups further from Scripture.'},
+btw:{tag:"Same ruggedness, opposite outcomes",cls:"ochre",t:'<span class="rn">Between countries</span>The pattern holds across borders too. The Andes are among the most rugged regions on earth and have some of the highest evangelical shares. Nepal and Tajikistan are just as rugged and have some of the lowest. Altitude does not predict the outcome.'}
+};
+var bars=$("cmpBars"),peaks=$("peaks"),tag=$("m4tag"),read=$("m4read"),bF=$("bFlat"),bR=$("bRug"),vF=$("vFlat"),vR=$("vRug"),cur={f:0,r:0};
+/* peaks svg */
+var PK=[{x:130,lab:"Andes",sub:"some of the highest evangelical shares",hi:true},{x:380,lab:"Nepal",sub:"some of the lowest",hi:false},{x:630,lab:"Tajikistan",sub:"some of the lowest",hi:false}];
+var pkFill=[];
+PK.forEach(function(p){
+var g=el("g",{},peaks);
+var poly=el("path",{d:"M"+(p.x-110)+" 190 L"+(p.x-40)+" 90 L"+(p.x-15)+" 115 L"+p.x+" 50 L"+(p.x+30)+" 100 L"+(p.x+55)+" 80 L"+(p.x+110)+" 190 Z",fill:p.hi?ACC:STONE,opacity:.9},g);
+el("path",{d:"M"+(p.x-14)+" 76 L"+p.x+" 50 L"+(p.x+14)+" 76 Z",fill:"#fff",opacity:.9},g);
+txt(p.x,214,p.lab,{fill:INK,"font-size":"15","font-weight":"800","text-anchor":"middle"},g);
+txt(p.x,234,p.sub,{fill:p.hi?ACC:STONE,"font-size":"12","font-weight":"700","text-anchor":"middle"},g);
+pkFill.push(g);
+});
+el("line",{x1:20,y1:50,x2:740,y2:50,stroke:"rgba(28,26,23,.25)","stroke-dasharray":"5 6"},peaks);
+txt(740,40,"equally rugged",{fill:MUTE,"font-size":"11","font-weight":"700","text-anchor":"end"},peaks);
+function show(k){
+var d=D[k];tag.textContent=d.tag;tag.className="tag"+(d.cls?" "+d.cls:"");read.innerHTML=d.t;
+if(k==="btw"){bars.style.display="none";peaks.style.display="block";
+pkFill.forEach(function(g,i){g.setAttribute("opacity",0);setTimeout(function(){tween(500,function(p){g.setAttribute("opacity",p);});},i*180);});return;}
+bars.style.display="";peaks.style.display="none";
+bF.style.width=(d.f/d.max*100)+"%";bR.style.width=(d.r/d.max*100)+"%";
+var f0=cur.f,r0=cur.r;tween(900,function(p){vF.textContent=(f0+(d.f-f0)*p).toFixed(d.f%1?1:0)+d.u;vR.textContent=(r0+(d.r-r0)*p).toFixed(d.r%1?1:0)+d.u;});
+cur={f:d.f,r:d.r};
+}
+seg("m4seg",show);
+read.innerHTML='<span class="rn">Scroll in</span>The bars fill when this section comes into view.';
+whenSeen("m4",function(){show("evang");},.3);
+})();
+
+/* ===== M5: fortress vs refuge ===== */
+(function(){
+var svg=$("scene"),duo=$("duo");
+el("rect",{x:0,y:206,width:760,height:44,fill:"#e9e3d4"},svg);
+var arrows=el("g",{opacity:0,style:"transition:opacity .6s"},svg);
+el("path",{d:"M180 200 C 250 180, 300 150, 340 100",fill:"none",stroke:OCH,"stroke-width":3,"stroke-dasharray":"6 6"},arrows);
+el("path",{d:"M332 98 L342 98 L340 110",fill:"none",stroke:OCH,"stroke-width":3},arrows);
+txt(230,152,"fled or stood apart",{fill:OCHD,"font-size":"12","font-weight":"700","text-anchor":"end"},arrows);
+el("path",{d:"M230 206 L380 40 L530 206 Z",fill:"#bfc9c3"},svg);
+el("path",{d:"M352 70 L380 40 L408 70 L394 64 L380 72 L366 64 Z",fill:"#fff"},svg);
+var wall=el("g",{opacity:1,style:"transition:opacity .6s"},svg);
+el("path",{d:"M334 112 L334 96 L342 96 L342 102 L350 102 L350 96 L358 96 L358 102 L366 102 L366 96 L374 96 L374 102 L382 102 L382 96 L390 96 L390 102 L398 102 L398 96 L406 96 L406 102 L414 102 L414 96 L422 96 L422 112 Z",fill:STONE},wall);
+var hiHouses=[],loHouses=[];
+function house(x,y,arr){var g=el("g",{},svg);var b=el("rect",{x:x,y:y,width:16,height:12,class:"house",fill:STONE},g);var r=el("path",{d:"M"+(x-2)+" "+y+" L"+(x+8)+" "+(y-8)+" L"+(x+18)+" "+y+" Z",class:"house",fill:STONE},g);arr.push(b,r);}
+[[352,118],[372,114],[392,118]].forEach(function(p){house(p[0],p[1],hiHouses);});
+[[60,212],[84,216],[108,212],[132,216],[600,212],[624,216],[648,212],[672,216]].forEach(function(p){house(p[0],p[1],loHouses);});
+txt(20,246,"Lowland: the region’s dominant faith",{fill:STONE,"font-size":"12","font-weight":"700"},svg);
+var hiLab=txt(540,100,"Summit: same faith, walled in",{fill:STONE,"font-size":"13","font-weight":"800"},svg);
+el("line",{x1:428,y1:110,x2:534,y2:98,stroke:"rgba(28,26,23,.3)","stroke-width":1.5},svg);
+var ROWS={
+fortress:[["Who holds the high ground","The dominant religion of the region"],["What the terrain protects","Inherited majority identity"],["Effect on gospel response","Slows it"],["In the data","Eastern Europe and Eurasia, including the Caucasus: rugged groups are less evangelical. Northeast Asia, including Tibetan areas: same direction. In Eurasia the penalty disappears once religion is taken into account. The mountains did not create the resistance. They preserved the religion that holds it."],["Historical example","Catholic Tyrol"]],
+refuge:[["Who holds the high ground","A minority that fled or stood apart from the lowland power"],["What the terrain protects","A distinct minority identity, whatever it is"],["Effect on gospel response","Depends on what the minority holds"],["In the data","Papua New Guinea, Southeast Asia, Latin America: rugged groups lean more evangelical. Peoples who stood apart from the lowland faith had less to lose by embracing a new one."],["Historical examples","The hidden Protestants of the Zillertal; Maronites and Assyrians; the Naga"]]
+};
+function show(k){
+var ref=k==="refuge";
+hiHouses.forEach(function(h){h.setAttribute("fill",ref?OCH:STONE);});
+wall.setAttribute("opacity",ref?0:1);arrows.setAttribute("opacity",ref?1:0);
+hiLab.textContent=ref?"Summit: a distinct minority":"Summit: same faith, walled in";hiLab.setAttribute("fill",ref?OCHD:STONE);
+duo.innerHTML=ROWS[k].map(function(r){return "<div><span>"+r[0]+"</span><p>"+r[1]+"</p></div>";}).join("");
+}
+seg("m5seg",show);show("fortress");
+})();
+
+/* ===== M5b: quadrant ===== */
+(function(){
+var svg=$("quad"),read=$("qRead");
+var PX0=90,PX1=730,PY0=40,PY1=400;
+function px(x){return PX0+x*(PX1-PX0);}function py(y){return PY1-y*(PY1-PY0);}
+el("rect",{x:PX0,y:PY0,width:(PX1-PX0)/2,height:PY1-PY0,fill:"rgba(90,98,112,.07)"},svg);
+el("rect",{x:(PX0+PX1)/2,y:PY0,width:(PX1-PX0)/2,height:PY1-PY0,fill:"rgba(200,116,42,.07)"},svg);
+txt(PX0+12,PY0+20,"FORTRESS",{fill:STONE,"font-size":"12","font-weight":"800","letter-spacing":"1.6"},svg);
+txt(PX1-12,PY0+20,"REFUGE",{fill:OCHD,"font-size":"12","font-weight":"800","letter-spacing":"1.6","text-anchor":"end"},svg);
+el("line",{x1:PX0,y1:PY1,x2:PX1,y2:PY1,stroke:"rgba(28,26,23,.35)","stroke-width":2},svg);
+el("line",{x1:PX0,y1:PY0,x2:PX0,y2:PY1,stroke:"rgba(28,26,23,.35)","stroke-width":2},svg);
+el("line",{x1:(PX0+PX1)/2,y1:PY0,x2:(PX0+PX1)/2,y2:PY1,stroke:"rgba(28,26,23,.15)","stroke-dasharray":"5 6"},svg);
+txt(PX0,PY1+22,"Regional majority",{fill:MUTE,"font-size":"12","font-weight":"700"},svg);
+txt(PX1,PY1+22,"Distinct minority",{fill:MUTE,"font-size":"12","font-weight":"700","text-anchor":"end"},svg);
+txt((PX0+PX1)/2,PY1+50,"WHO HOLDS THE HIGH GROUND",{fill:INK,"font-size":"11.5","font-weight":"800","letter-spacing":"1.4","text-anchor":"middle"},svg);
+var yl=txt(0,0,"GOSPEL VITALITY TODAY",{fill:INK,"font-size":"11.5","font-weight":"800","letter-spacing":"1.4","text-anchor":"middle",transform:"translate(30 "+((PY0+PY1)/2)+") rotate(-90)"},svg);
+txt(PX0-8,PY0+10,"High",{fill:MUTE,"font-size":"12","font-weight":"700","text-anchor":"end"},svg);
+txt(PX0-8,PY1-2,"Low",{fill:MUTE,"font-size":"12","font-weight":"700","text-anchor":"end"},svg);
+var P=[
+{t:"f",x:.1,y:.22,n:"Catholic Tyrol",a:"start",d:"The fortress mountain. Tyrol&rsquo;s Habsburg rulers held the high ground for the region&rsquo;s faith, and the terrain protected Catholic unity. Innsbruck&rsquo;s first Protestant church did not open until 1906."},
+{t:"f",x:.2,y:.38,n:"Eastern Europe and the Caucasus",a:"start",d:"In the data, rugged groups here are less evangelical. But in Eurasia the mountain penalty disappears once a group&rsquo;s religion is taken into account. <b>The mountains did not create the resistance. They preserved the religion that holds it.</b>"},
+{t:"f",x:.3,y:.12,n:"Northeast Asia, Tibetan areas",a:"start",d:"Same direction as Eurasia: the high ground holds the region&rsquo;s dominant religion, and rugged groups run less evangelical."},
+{t:"r",x:.72,y:.76,n:"PNG, Southeast Asia, Latin America",a:"end",d:"In the data, rugged groups here lean <b>more</b> evangelical. James C. Scott described how highland peoples kept themselves apart from lowland states and their religions. Peoples who stood apart from the lowland faith had less to lose by embracing a new one. Many of them did."},
+{t:"r",x:.88,y:.92,n:"Naga hills",a:"end",d:"American Baptist missionaries reached the Naga in the 1870s and founded the first Naga church in 1872. By the 2011 census Nagaland was <b>88% Christian</b> and more than 75% Baptist. Joshua Project lists the Naga Tangkhul at <b>98% Christian</b>. Their separateness made the gospel a way to stay distinct rather than a threat to who they were."},
+{t:"r",x:.66,y:.6,n:"Zillertal Protestants",a:"end",d:"Hidden Protestant families kept their faith in the valley for generations. In 1837, <b>427</b> were forced out rather than give it up. The mountains did not stop their faith. They sheltered it."},
+{t:"r",x:.8,y:.3,n:"Maronites",a:"start",d:"Maronite monks left the Orontes Valley for Lebanon&rsquo;s mountains in the 7th century. Lebanese Christians on that terrain are <b>96% Christian</b>. But Joshua Project lists these refuge churches&rsquo; evangelical share at <b>about 1%</b>. A refuge protects a heritage. It does not by itself produce renewal."},
+{t:"r",x:.7,y:.22,n:"Assyrians of Hakkari",a:"end",d:"Until 1915 the Hakkari mountains of southeastern Turkey held most members of the Church of the East, and the patriarch lived there. World War I drove them out. No Christian population remains."},
+{t:"r",x:.9,y:.06,n:"Lebanese Druze",a:"end",d:"Same rugged terrain as Lebanese Christians, and <b>0% Christian</b>. The same mountains sheltered the Alawites and the Yazidis. <b>The mountain keeps whatever identity runs to it. It does not choose.</b>"}
+];
+var pts=[];
+P.forEach(function(p,i){
+var x=px(p.x),y=py(p.y);
+var g=el("g",{class:"qpt",tabindex:"0",role:"button","aria-label":p.n,opacity:0},svg);
+el("circle",{cx:x,cy:y,r:20,fill:"transparent"},g);
+var c=el("circle",{cx:x,cy:y,r:9,fill:p.t==="f"?STONE:OCH,stroke:"#fff","stroke-width":3},g);
+var lx=p.a==="start"?x+15:x-15;
+var lb=txt(lx,y+4,p.n,{fill:INK,"font-size":"12.5","font-weight":"700","text-anchor":p.a,stroke:"#fff","stroke-width":"3","paint-order":"stroke"},g);
+function pick(){pts.forEach(function(o){o.c.setAttribute("r",o===pt?13:9);});read.innerHTML='<span class="rn">'+p.n+'</span>'+p.d;}
+g.addEventListener("click",pick);g.addEventListener("mouseenter",pick);onKey(g,pick);
+var pt={g:g,c:c,p:p};pts.push(pt);
+});
+read.innerHTML='<span class="rn">Same terrain, opposite answers</span>Tap Maronites and then Lebanese Druze. They sit on the same rugged ground in Lebanon.';
+var filt="all";
+function applyF(){pts.forEach(function(o){var on=filt==="all"||o.p.t===filt;o.g.setAttribute("opacity",on?1:.15);});}
+seg("qFilter",function(k){filt=k;applyF();});
+whenSeen("m5",function(){pts.forEach(function(o,i){setTimeout(function(){tween(450,function(p){var on=filt==="all"||o.p.t===filt;o.g.setAttribute("opacity",(on?1:.15)*p);});},300+i*110);});},.2);
+})();
+
+/* ===== M6a: movement slider ===== */
+(function(){
+var svg=$("camp"),slider=$("stay"),lab=$("stayLab"),tag=$("stayTag");
+var STOPS=["1 week","1 month","3 months","6 months","1 year","3 years","10 years"];
+el("rect",{x:0,y:0,width:760,height:270,rx:12,fill:"#f6f2e8"},svg);
+el("path",{d:"M0 230 C 200 220, 560 238, 760 226 L760 270 L0 270 Z",fill:"#e6dfcd"},svg);
+var CX=380,CY=140;
+var ring=el("circle",{cx:CX,cy:CY,r:72,fill:"none",stroke:ACC,"stroke-width":2,"stroke-dasharray":"4 6",opacity:0},svg);
+var roots=el("g",{opacity:0},svg);
+var rootPaths=[];
+[[-40,90],[-15,110],[10,120],[35,96],[60,80],[-62,74]].forEach(function(r){rootPaths.push(el("path",{d:"M"+CX+" "+(CY+24)+" Q "+(CX+r[0]*.5)+" "+(CY+24+r[1]*.5)+" "+(CX+r[0])+" "+(CY+24+r[1]),fill:"none",stroke:"#8E6B3A","stroke-width":2.5,"stroke-linecap":"round"},roots));});
+var church=el("g",{opacity:0},svg);
+el("rect",{x:CX-16,y:CY-6,width:32,height:26,fill:ACC},church);
+el("path",{d:"M"+(CX-21)+" "+(CY-4)+" L"+CX+" "+(CY-24)+" L"+(CX+21)+" "+(CY-4)+" Z",fill:DEEP},church);
+el("path",{d:"M"+CX+" "+(CY-38)+" L"+CX+" "+(CY-24)+" M"+(CX-6)+" "+(CY-32)+" L"+(CX+6)+" "+(CY-32),stroke:DEEP,"stroke-width":3},church);
+var P=[];
+for(var i=0;i<18;i++){var a=i/18*Math.PI*2;P.push({ang:rnd()*6.28,sp:.004+rnd()*.006,cx:80+rnd()*600,cy:40+rnd()*170,rx:60+rnd()*90,ry:30+rnd()*40,rA:a,x:0,y:0,c:el("circle",{r:6.5,fill:OCH,stroke:"#fff","stroke-width":2},svg)});}
+var coh=0,cohT=0,vis=false,raf=null;
+var STATES=[[0,"No gathering forms"],[1,"No gathering forms"],[2,"A gathering forms, then scatters"],[3,"A gathering forms, then scatters"],[4,"A church can take root"],[5,"A church can take root"],[6,"A church can take root"]];
+function set(v){lab.textContent=STOPS[v];cohT=v/6;tag.textContent=STATES[v][1];tag.className="tag"+(v>=4?"":" ochre");}
+function frame(){
+coh+=(cohT-coh)*.05;
+var drift=1-coh;
+P.forEach(function(p){
+p.ang+=p.sp*(.4+drift*1.6);p.cx+=Math.cos(p.ang*.7)*drift*.9;if(p.cx<60)p.cx=60;if(p.cx>700)p.cx=700;
+var wx=p.cx+Math.cos(p.ang)*p.rx*drift*.6,wy=p.cy+Math.sin(p.ang*1.3)*p.ry*drift*.6;
+wx=Math.max(14,Math.min(746,wx));wy=Math.max(14,Math.min(222,wy));
+var tx=CX+Math.cos(p.rA)*72,ty=CY+Math.sin(p.rA)*72;
+var k=Math.min(1,Math.max(0,(coh-.15)/.6));
+p.x=wx+(tx-wx)*k;p.y=wy+(ty-wy)*k;
+p.c.setAttribute("cx",p.x.toFixed(1));p.c.setAttribute("cy",p.y.toFixed(1));});
+ring.setAttribute("opacity",Math.max(0,Math.min(1,(coh-.3)/.3)).toFixed(2));
+church.setAttribute("opacity",Math.max(0,Math.min(1,(coh-.6)/.1)).toFixed(2));
+roots.setAttribute("opacity",Math.max(0,Math.min(1,(coh-.62)/.38)).toFixed(2));
+var rl=Math.max(0,Math.min(1,(coh-.62)/.38));rootPaths.forEach(function(r){var L=r.getTotalLength();r.setAttribute("stroke-dasharray",L);r.setAttribute("stroke-dashoffset",(L*(1-rl)).toFixed(1));});
+raf=vis?requestAnimationFrame(frame):null;
+}
+visFlag("m6",function(v){vis=v;if(v&&!raf)raf=requestAnimationFrame(frame);});
+slider.addEventListener("input",function(){set(+slider.value);});
+set(0);
+})();
+
+/* ===== M6b: settled vs nomadic ===== */
+(function(){
+var D={ev:{s:6.9,n:2.2,max:9},jp:{s:46,n:82,max:100}};
+var bS=$("bSet"),bN=$("bNom"),vS=$("vSet"),vN=$("vNom"),cur={s:0,n:0};
+function show(k){var d=D[k];bS.style.width=(d.s/d.max*100)+"%";bN.style.width=(d.n/d.max*100)+"%";
+var s0=cur.s,n0=cur.n;tween(900,function(p){vS.textContent=(s0+(d.s-s0)*p).toFixed(k==="ev"?1:0)+"%";vN.textContent=(n0+(d.n-n0)*p).toFixed(k==="ev"?1:0)+"%";});cur={s:d.s,n:d.n};}
+seg("nomSeg",show);
+whenSeen("nomCmp",function(){show("ev");},.5);
+})();
+
+/* ===== M6c: evidence strip ===== */
+(function(){
+var svg=$("evid"),read=$("evRead");
+var AX0=270,AX1=740;function xp(p){return AX0+(Math.log10(p)+3)/3*(AX1-AX0);}
+var R=[
+{n:"Terrain vs evangelical share",p:.20,t:'<span class="rn">Mountains: no effect (p = 0.20)</span>With religion, population, and nomadism held constant, terrain&rsquo;s effect on evangelical share is statistically zero. The confidence interval is narrow, so a meaningful mountain penalty is ruled out.'},
+{n:"Terrain, polygon re-check",p:.10,t:'<span class="rn">Still no mountain penalty (p = 0.10)</span>The test was rerun on 13,575 Joshua Project people group polygons, averaging terrain across each group&rsquo;s whole area. Point and polygon ruggedness agree closely (rank correlation 0.94). Same result, with the same fortress pattern in Eurasia.'},
+{n:"Distance from city vs Frontier",p:.02,t:'<span class="rn">A real effect, but backwards (p = 0.02)</span>Groups far from a city are <b>less</b> likely to be Frontier peoples, not more. Many of the least reached live within a city&rsquo;s reach. <b>The barrier is not the road. It is the identity on the other end of it.</b>'},
+{n:"Distance from city vs Scripture",p:.12,t:'<span class="rn">A lean, not a finding (p = 0.12)</span>Groups far from cities lean toward weaker access to Scripture, but the result is not firm.'},
+{n:"Nomadic vs settled",p:.003,t:'<span class="rn">The strongest geographic signal (p = 0.003)</span>139 nomadic groups, mostly herders and traveling traders, are far less reached than settled groups of the same country and religion. Today the barrier is not how high a people live. It is whether they stay put.'}
+];
+var thr=xp(.05);
+el("rect",{x:AX0,y:20,width:thr-AX0,height:226,fill:"rgba(46,94,78,.07)"},svg);
+el("line",{x1:thr,y1:14,x2:thr,y2:248,stroke:ACC,"stroke-width":2,"stroke-dasharray":"5 5"},svg);
+txt(thr-6,14,"strong evidence",{fill:ACC,"font-size":"11","font-weight":"800","text-anchor":"end"},svg);
+txt(thr+6,14,"no clear effect",{fill:MUTE,"font-size":"11","font-weight":"800"},svg);
+el("line",{x1:AX0,y1:250,x2:AX1,y2:250,stroke:"rgba(28,26,23,.35)","stroke-width":1.5},svg);
+[[.001,"0.001"],[.01,"0.01"],[.05,"0.05"],[.1,"0.1"],[1,"1"]].forEach(function(t){var x=xp(t[0]);el("line",{x1:x,y1:250,x2:x,y2:256,stroke:"rgba(28,26,23,.35)"},svg);txt(x,272,t[1],{fill:MUTE,"font-size":"11","font-weight":"700","text-anchor":"middle"},svg);});
+txt(AX0,288,"p-value (log scale)",{fill:MUTE,"font-size":"11","font-weight":"700"},svg);
+var rows=[];
+R.forEach(function(r,i){
+var y=46+i*44;var sig=r.p<.05;
+var g=el("g",{tabindex:"0",role:"button",style:"cursor:pointer","aria-label":r.n+", p = "+r.p},svg);
+var bg=el("rect",{x:0,y:y-20,width:760,height:40,rx:8,fill:"transparent"},g);
+txt(8,y+5,r.n,{fill:INK,"font-size":"13","font-weight":"700"},g);
+el("line",{x1:AX0,y1:y,x2:AX1,y2:y,stroke:"rgba(28,26,23,.08)"},g);
+var c=el("circle",{cx:xp(1),cy:y,r:9,fill:sig?ACC:"#fff",stroke:sig?ACC:STONE,"stroke-width":3},g);
+var pl=txt(xp(1),y-14,"p = "+r.p,{fill:sig?ACC:STONE,"font-size":"11","font-weight":"800","text-anchor":"middle",opacity:0},g);
+function pick(){rows.forEach(function(o){o.bg.setAttribute("fill",o===row?"rgba(200,116,42,.1)":"transparent");});read.innerHTML=r.t;}
+g.addEventListener("click",pick);g.addEventListener("mouseenter",pick);onKey(g,pick);
+var row={g:g,bg:bg,c:c,pl:pl,r:r};rows.push(row);
+});
+read.innerHTML='<span class="rn">Five tests</span>Tap a row to see what each one found.';
+whenSeen("evid",function(){rows.forEach(function(o,i){setTimeout(function(){var x1=xp(o.r.p),x0=xp(1);tween(1100,function(p){var x=x0+(x1-x0)*p;o.c.setAttribute("cx",x);o.pl.setAttribute("x",x);o.pl.setAttribute("opacity",p);});},i*160);});},.4);
+})();
+
+/* ===== M7: four shifts ===== */
+(function(){
+var S=[
+["Ask what the high ground protects","Before treating isolation as the barrier, ask what identity a people guard and what they guard it from. A fortress identity calls for a different strategy than a refuge identity.","For the group you serve, does the high ground hold the region&rsquo;s majority faith, or a minority that stands apart from it?"],
+["Look for the refuge peoples","Groups that stand apart from their region&rsquo;s dominant religion may be more open than their isolation suggests. Distance is a cost, not a wall.","Which groups in your region stand apart from the lowland faith, and has anyone asked whether that separateness is an opening?"],
+["Follow the people who move","Nomadic peoples are the clearest geographic gap in the data. They need forms of church that travel with them.","What would a gathering look like that packs up and moves with the herd, the market circuit, or the trade route?"],
+["Do not overlook the near frontier","Many Frontier peoples live near cities, in plain sight. Access is not the problem there. Identity is.","Which Frontier peoples live within reach of a city where your team or partners already work?"]
+];
+var box=$("acc"),bar=$("accBar"),lab=$("accLab"),n=0;
+S.forEach(function(s,i){
+var it=document.createElement("div");it.className="acc-i";
+it.innerHTML='<button class="acc-h" type="button" aria-expanded="false"><span class="num">'+(i+1)+'</span><h4>'+s[0]+'</h4><span class="pm">+</span></button><div class="acc-b"><p>'+s[1]+'</p><div class="tq">'+s[2]+'</div><button class="segbtn" type="button" aria-pressed="false">Mark as discussed</button></div>';
+var h=it.querySelector(".acc-h"),mk=it.querySelector(".acc-b .segbtn");
+h.addEventListener("click",function(){var o=it.classList.toggle("open");h.setAttribute("aria-expanded",o?"true":"false");});
+mk.addEventListener("click",function(){var d=it.classList.toggle("done");mk.setAttribute("aria-pressed",d?"true":"false");mk.textContent=d?"Discussed ✓":"Mark as discussed";n+=d?1:-1;bar.style.width=(n/S.length*100)+"%";lab.textContent=n===S.length?"All four shifts discussed. Now pick one to act on this quarter.":n+" of "+S.length+" shifts discussed";});
+box.appendChild(it);
+});
+})();
+
+})();
+</script>
+</body>
+</html>
