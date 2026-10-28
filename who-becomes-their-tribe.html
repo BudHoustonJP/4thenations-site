@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Becomes Their Tribe? &middot; Clarity for the Nations</title>
+<meta name="description" content="Why new believers in Frontier People Groups go back, and why church formation has to start the week the first person believes. An interactive look at belonging, cost, and isolation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#C4462D;--deep:#7F2A1A;
+--alone:#5F6B73;--hearth:#E0A23A;--hearthdeep:#9A6716;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--hearth);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+header.hero{background:radial-gradient(ellipse at 78% 110%,rgba(224,162,58,.45) 0%,rgba(224,162,58,0) 45%),linear-gradient(160deg,#1E0D08 0%,var(--deep) 60%,var(--accent) 100%);color:#F6F4EE;padding:12vh 0 9vh;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52'%3E%3Ccircle cx='4' cy='4' r='1.6' fill='%23F3C77A'/%3E%3C/svg%3E");background-size:52px 52px;opacity:.12}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#F3C77A;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:22ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.84);max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px;flex:1 1 190px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#F6CF86}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.8);margin-top:.35rem}
+.qband{background:var(--accent);color:#FFF8F2;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:36ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#FBD9B8}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:1rem}
+.act{font:inherit;font-weight:700;font-size:.95rem;padding:.65rem 1.4rem;border-radius:50px;border:0;background:var(--accent);color:#fff;cursor:pointer}
+.act:hover{background:var(--deep)}
+.act.ghost{background:#fff;color:var(--ink);border:2px solid var(--line)}
+.act.ghost:hover{border-color:var(--ink)}
+.act.hearth{background:var(--hearthdeep)}
+.act.hearth:hover{background:#7A510F}
+.act[disabled]{opacity:.45;cursor:default}
+.counters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1.2rem}
+.cnt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.7rem 1.1rem;flex:1 1 160px}
+.cnt .n{font-family:'Fraunces',serif;font-weight:900;font-size:1.7rem;line-height:1;color:var(--accent)}
+.cnt .n.slate{color:var(--alone)}
+.cnt .n.hearthc{color:var(--hearthdeep)}
+.cnt .l{font-size:.78rem;font-weight:600;color:var(--mute);margin-top:.25rem}
+.readout{margin-top:1.1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:5.6rem;font-size:.98rem}
+.readout b{color:var(--deep)}
+/* accordion */
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:0 0 .5rem}
+.pbar .fill{height:100%;width:0;background:var(--accent);transition:width .45s ease}
+.plab{font-size:.78rem;font-weight:700;color:var(--mute);margin-bottom:1.1rem}
+.q3{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden;background:#fff}
+.q3 .qh{display:flex;align-items:center;gap:14px;padding:1rem;cursor:pointer;width:100%;background:none;border:0;font:inherit;text-align:left;color:var(--ink)}
+.q3 .qh:hover{background:rgba(196,70,45,.05)}
+.q3 .qh:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.q3 .qn{flex:0 0 34px;height:34px;border-radius:50%;background:rgba(28,26,23,.08);color:var(--mute);font-weight:800;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s}
+.q3.seen .qn{background:var(--accent);color:#fff}
+.q3 .qt{flex:1;font-family:'Fraunces',serif;font-weight:900;font-size:1.15rem}
+.q3 .chev{font-weight:800;color:var(--mute);transition:transform .25s}
+.q3.open .chev{transform:rotate(90deg)}
+.q3 .qb{display:none;padding:0 1rem 1.1rem}
+.q3.open .qb{display:block}
+.ba{display:flex;flex-wrap:wrap;gap:10px}
+.ba .col{flex:1 1 220px;border-radius:10px;padding:.8rem .95rem;font-size:.95rem}
+.ba .col .h{font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem}
+.ba .bef{background:rgba(224,162,58,.12)} .ba .bef .h{color:var(--hearthdeep)}
+.ba .aft{background:rgba(95,107,115,.12)} .ba .aft .h{color:var(--alone)}
+.tribeclose{display:none;margin-top:1.1rem;background:var(--paper);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:1rem 1.1rem}
+.tribeclose.show{display:block}
+.tribeclose p + p{margin-top:.6rem}
+/* slider */
+.ctrllabel{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+input[type=range]{width:100%;accent-color:var(--accent);height:34px;cursor:pointer;display:block}
+.slabels{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--mute);margin-top:.1rem}
+.stag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem;background:var(--alone)}
+/* cost buttons */
+.costrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem}
+.costbtn{font:inherit;font-size:.85rem;font-weight:700;padding:.5rem .95rem;border-radius:50px;border:1.5px solid rgba(196,70,45,.45);background:#fff;color:var(--deep);cursor:pointer}
+.costbtn:hover{background:rgba(196,70,45,.06)}
+.costbtn.used{background:var(--alone);border-color:var(--alone);color:#fff;cursor:default}
+/* segmented */
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.3rem}
+.segbtn{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem 1.2rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.segbtn.on.slateon{background:var(--alone);border-color:var(--alone)}
+.segbtn.on.hearthon{background:var(--hearthdeep);border-color:var(--hearthdeep)}
+.crows{display:flex;flex-direction:column;gap:10px}
+.crow{display:flex;gap:14px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}
+.crow .ck{flex:0 0 150px;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding-top:.15rem}
+.crow .cv{flex:1;min-width:200px;font-size:.98rem}
+.meters{margin-top:1.2rem;display:flex;flex-direction:column;gap:.8rem}
+.meter .ml{display:flex;justify-content:space-between;font-size:.8rem;font-weight:700;color:var(--mute);margin-bottom:.25rem}
+.meter .mt{height:14px;background:rgba(28,26,23,.08);border-radius:8px;overflow:hidden}
+.meter .mf{height:100%;width:0;border-radius:8px;transition:width .55s ease}
+.verdict{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem;background:rgba(196,70,45,.08)}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem;background:var(--accent)}
+.verdict.slatev{background:rgba(95,107,115,.1)} .verdict.slatev .tag{background:var(--alone)}
+.verdict.hearthv{background:rgba(224,162,58,.14)} .verdict.hearthv .tag{background:var(--hearthdeep)}
+/* stepper */
+.stepnav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:1rem}
+.stepnav .pos{font-size:.85rem;font-weight:700;color:var(--mute)}
+.capm{margin-top:1rem}
+.diag{display:none;margin-top:1.2rem;border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem}
+.diag.show{display:block}
+.diag .dq{font-weight:700;margin-bottom:.6rem}
+.diag .dans{margin-top:.8rem;font-size:.98rem;min-height:1.5rem}
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:28ch;margin:0 auto 2rem}
+.cta-btn{display:inline-block;background:#F6CF86;color:#4A1C10;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+@media (max-width:560px){
+.crow .ck{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Frontier Peoples &amp; the Church</div>
+<h1>People go where they belong, so when following Jesus costs a new believer their community, something has to take its place.</h1>
+<p class="sub">Decades before the American Revolution, Benjamin Franklin noticed English settlers kept leaving to live with Native American tribes, while Native Americans who lived among the colonists almost never chose to stay. Sebastian Junger&rsquo;s answer in <i>Tribe</i>: comfort and safety lose to a community that shares danger and needs you. Frontier missions should read that as a warning.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="0.1" data-dec="1">0</div><div class="l">percent Christian or less: what makes a Frontier People Group</div></div>
+<div class="chip"><div class="n" data-count="2">0</div><div class="l">ditches new believers fall into: extraction in the city, isolation in the village</div></div>
+<div class="chip"><div class="n" data-count="5">0</div><div class="l">years or more that the believers in a Bangalore study had followed Christ despite family opposition</div></div>
+</div>
+</div>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;People carry loads together that crush them alone.&rdquo;</p>
+<p class="q">&ldquo;We read the stall as spiritual weakness. Much of it is isolation.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<section class="mod" id="m1">
+<div class="kicker">Franklin&rsquo;s puzzle</div>
+<h2>Why did they keep walking the same direction?</h2>
+<p class="intro">Settlers left for the tribes. Captives who were ransomed home often slipped away to rejoin them. Native Americans who lived among the colonists almost never chose to stay. Press play and watch where everyone ends up.</p>
+<div class="panel">
+<div class="counters">
+<div class="cnt"><div class="n" id="frTribe">0</div><div class="l">movers who ended up with the tribe</div></div>
+<div class="cnt"><div class="n slate" id="frColony">0</div><div class="l">movers who chose to stay in the colony</div></div>
+</div>
+<svg id="frSvg" viewBox="0 0 860 380" role="img" aria-label="Animation of people moving between a colonial settlement and a Native American tribe. Settlers leave for the tribe, ransomed captives return and then slip back, and Native Americans who visit the colony return to the tribe."></svg>
+<div class="btnrow">
+<button class="act" type="button" id="frPlay">Play Franklin&rsquo;s puzzle</button>
+<button class="act ghost" type="button" id="frReset">Reset</button>
+</div>
+<div class="readout" id="frRead">Watch who moves, and where they end up.</div>
+<p class="note">Illustrative motion based on Franklin&rsquo;s observation as the essay reports it. The number of dots is not a historical count.</p>
+</div>
+</section>
+
+<section class="mod" id="m2">
+<div class="kicker">What Junger means by tribe</div>
+<h2>Not an ethnic group. The people who show up.</h2>
+<p class="intro">Missions already uses &ldquo;tribe&rdquo; for ethnic groups. Junger means something smaller. Open each of his three tests and see what changes for a new believer in a Frontier People Group, where religion and family are bound together.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="qFill"></div></div>
+<div class="plab" id="qLab">0 of 3 tests opened</div>
+<div id="qList">
+<div class="q3"><button class="qh" type="button" aria-expanded="false"><span class="qn">1</span><span class="qt">Who shows up when you are sick?</span><span class="chev">&#8250;</span></button><div class="qb"><div class="ba">
+<div class="col bef"><div class="h">Before she follows Jesus</div>Her family and relatives, inside a people where religion and family are bound together.</div>
+<div class="col aft"><div class="h">After</div>Relatives often read a decision to follow Jesus as betrayal of the family. The community that gave her belonging often closes its doors.</div>
+</div></div></div>
+<div class="q3"><button class="qh" type="button" aria-expanded="false"><span class="qn">2</span><span class="qt">Who expects you at the meal?</span><span class="chev">&#8250;</span></button><div class="qb"><div class="ba">
+<div class="col bef"><div class="h">Before she follows Jesus</div>The religious community that defined belonging within her own people.</div>
+<div class="col aft"><div class="h">After</div>Disinheritance. A spouse taken away or a marriage forced. Lost work. The cost lands immediately, and it lands socially.</div>
+</div></div></div>
+<div class="q3"><button class="qh" type="button" aria-expanded="false"><span class="qn">3</span><span class="qt">Who would take a risk for you?</span><span class="chev">&#8250;</span></button><div class="qb"><div class="ba">
+<div class="col bef"><div class="h">Before she follows Jesus</div>Kin and neighbors who would stand with her.</div>
+<div class="col aft"><div class="h">After</div>Relatives, neighbors, or the state surveil her instead. The worker who shared the gospel may be the only Christian she knows.</div>
+</div></div></div>
+</div>
+<div class="tribeclose" id="tribeClose">
+<p><b>A new disciple should not leave their people group.</b> Pulling believers out of their language and kinship network is a failure in itself, and it removes the gospel from the people who most need to see it lived.</p>
+<p>What a new disciple usually loses is narrower and more painful: the religious community that defined belonging within their own people. Something has to form in its place, inside that same people group. That something is the church.</p>
+</div>
+</div>
+</section>
+
+<section class="mod" id="m3">
+<div class="kicker">Hardship shared is hardship survived</div>
+<h2>Add people under the load</h2>
+<p class="intro">Junger spent years as a war correspondent and noticed many soldiers struggle more after coming home than they did in combat. In the platoon, every man depended on every other man. At home, private lives and thin ties. Drag to change how many people carry the same weight.</p>
+<div class="panel">
+<div class="counters">
+<div class="cnt"><div class="n" id="ldN">1</div><div class="l">people carrying it</div></div>
+<div class="cnt"><div class="n slate" id="ldShare">100%</div><div class="l">of the load on each one</div></div>
+</div>
+<svg id="ldSvg" viewBox="0 0 860 330" role="img" aria-label="A load resting on a beam held up by people. With one person the beam sags and the person is crushed. As more people are added the beam straightens and each person stands taller."></svg>
+<div class="ctrllabel" style="margin-top:.8rem">How many carry it</div>
+<input type="range" id="ldSlider" min="1" max="12" step="1" value="1" aria-label="Number of people carrying the load, 1 to 12">
+<div class="slabels"><span>1, alone</span><span>12, together</span></div>
+<div class="readout" id="ldRead"></div>
+<p class="note">Conceptual: the simple arithmetic of a shared load, illustrating Junger&rsquo;s observation. Not measured data.</p>
+</div>
+</section>
+
+<section class="mod" id="m4">
+<div class="kicker">What following Jesus can cost</div>
+<h2>Watch the ties go, one cost at a time</h2>
+<p class="intro">Frontier People Groups are 0.1 percent Christian or less, and nearly all of them live where another religion defines family, ethnicity, and civic life. For a Pashtun, a Bengali Muslim, a high-caste Hindu, or a Tibetan Buddhist, the cost of following Jesus lands immediately, and it lands socially. Apply each cost below.</p>
+<div class="panel">
+<div class="counters">
+<div class="cnt"><div class="n" id="nwHold">7</div><div class="l">of 7 ties still holding</div></div>
+<div class="cnt"><div class="n hearthc" id="nwNew">0</div><div class="l">new ties inside her own people group</div></div>
+</div>
+<svg id="nwSvg" viewBox="0 0 860 470" role="img" aria-label="A new believer at the center of a network of seven ties: parents, relatives, spouse, friends, work, neighbors, and community. Costs cut or turn ties, and the church forms new ties inside her own people group."></svg>
+<div class="costrow" id="costRow"></div>
+<div class="btnrow">
+<button class="act hearth" type="button" id="nwChurch">Form the church inside her people group</button>
+<button class="act ghost" type="button" id="nwReset">Reset</button>
+</div>
+<div class="readout" id="nwRead">Choose a cost above to see what it does to her network.</div>
+<p class="note">The costs and the Bangalore finding are as stated in the essay. The network is an illustration, not a measured map of any one believer.</p>
+</div>
+</section>
+
+<section class="mod" id="m5">
+<div class="kicker">Two ditches</div>
+<h2>Extraction, isolation, or a church inside the people</h2>
+<p class="intro">New believers fall into two ditches. In a city or diaspora setting, the temptation is extraction. In the village, it is usually plain isolation. Switch between them, then see what the road between the ditches looks like.</p>
+<div class="panel">
+<div class="seg" id="dSeg" role="group" aria-label="Choose a path">
+<button class="segbtn on" type="button" data-k="ext" aria-pressed="true">Ditch 1: Extraction</button>
+<button class="segbtn" type="button" data-k="iso" aria-pressed="false">Ditch 2: Isolation</button>
+<button class="segbtn" type="button" data-k="church" aria-pressed="false">The road: a church inside her people</button>
+</div>
+<div class="crows" id="dRows"></div>
+<div class="meters">
+<div class="meter"><div class="ml"><span>Stays inside her own people group</span><span id="m1v"></span></div><div class="mt"><div class="mf" id="m1f" style="background:var(--alone)"></div></div></div>
+<div class="meter"><div class="ml"><span>Has a community that shares the load</span><span id="m2v"></span></div><div class="mt"><div class="mf" id="m2f" style="background:var(--hearth)"></div></div></div>
+</div>
+<div class="verdict" id="dVerdict"></div>
+<p class="note">Meter positions reflect the essay&rsquo;s argument, not a measured index.</p>
+</div>
+</section>
+
+<section class="mod" id="m6">
+<div class="kicker">When the old community is the only community</div>
+<h2>The village sequence, step by step</h2>
+<p class="intro">Anyone who has served in the village knows this sequence. Walk it one step at a time and watch what happens to her capacity for formation. Scripture, obedience, and witness all require attention and stability.</p>
+<div class="panel">
+<svg id="vsSvg" viewBox="0 0 860 210" role="group" aria-label="Five steps of the village sequence. Select a step to read it."></svg>
+<div class="stepnav">
+<button class="act ghost" type="button" id="vsBack">&#8592; Back</button>
+<button class="act" type="button" id="vsNext">Next step &#8594;</button>
+<span class="pos" id="vsPos">Step 1 of 5</span>
+</div>
+<div class="meter capm"><div class="ml"><span>Capacity left for formation</span><span id="capV"></span></div><div class="mt"><div class="mf" id="capF" style="background:var(--accent)"></div></div></div>
+<div class="readout" id="vsRead"></div>
+<div class="diag" id="vsDiag">
+<div class="dq">She has stalled. What is wrong?</div>
+<div class="btnrow" style="margin-top:0">
+<button class="act ghost" type="button" data-d="weak">Spiritual weakness</button>
+<button class="act ghost" type="button" data-d="iso">Isolation</button>
+</div>
+<div class="dans" id="vsAns" aria-live="polite"></div>
+</div>
+<p class="note">The sequence is as described in the essay. The capacity meter is conceptual: the essay says chronic fear consumes attention and stability, not that it is measured this way.</p>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">If nothing takes the old community&rsquo;s place, the pull back is strong. Church formation has to start the week the first person believes.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/who-becomes-their-tribe" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<footer>
+<div class="wrap row">
+<div>
+<div class="name">Clarity for the Nations</div>
+<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
+</div>
+<div>
+<a class="sub" href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Read the essays on Substack &#8594;</a><br>
+<a class="sub" href="index.html">&#8592; All interactive essays</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+var ACC="#C4462D",DEEP="#7F2A1A",ALONE="#5F6B73",HEARTH="#E0A23A",HEARTHD="#9A6716",MUTE="#6E665B",INK="#1C1A17";
+var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function lerpColor(a,b,t){var pa=parseInt(a.slice(1),16),pb=parseInt(b.slice(1),16);var r=Math.round(((pa>>16)&255)+(((pb>>16)&255)-((pa>>16)&255))*t),g=Math.round(((pa>>8)&255)+(((pb>>8)&255)-((pa>>8)&255))*t),bl=Math.round((pa&255)+((pb&255)-(pa&255))*t);return "rgb("+r+","+g+","+bl+")";}
+
+/* scroll progress */
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/Math.max(1,(h.scrollHeight-h.clientHeight));prog.style.width=(p*100)+"%";},{passive:true});
+
+/* reveal on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.12});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+/* hero count-up */
+document.querySelectorAll(".chip .n").forEach(function(n){
+var target=parseFloat(n.getAttribute("data-count"));
+var dec=parseInt(n.getAttribute("data-dec")||"0",10);
+tween(1600,function(p){var v=target*p;n.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString("en-US");});
+});
+
+/* ================= Module 1: Franklin's puzzle ================= */
+(function(){
+var svg=document.getElementById("frSvg");
+var CL=[190,210],TR=[670,210];
+el("rect",{x:0,y:0,width:860,height:380,fill:"#FBF8F3"},svg);
+/* camps */
+el("circle",{cx:CL[0],cy:CL[1],r:92,fill:"rgba(95,107,115,.08)",stroke:"rgba(95,107,115,.35)","stroke-width":2,"stroke-dasharray":"6 5"},svg);
+el("circle",{cx:TR[0],cy:TR[1],r:92,fill:"rgba(196,70,45,.07)",stroke:"rgba(196,70,45,.35)","stroke-width":2,"stroke-dasharray":"6 5"},svg);
+txt(CL[0],92,"COLONIAL SETTLEMENT",{fill:ALONE,"font-size":"12.5","font-weight":"800","letter-spacing":"1.4","text-anchor":"middle"},svg);
+txt(TR[0],92,"NATIVE AMERICAN TRIBE",{fill:DEEP,"font-size":"12.5","font-weight":"800","letter-spacing":"1.4","text-anchor":"middle"},svg);
+/* houses */
+[[150,180],[205,170],[245,200],[160,240],[220,250]].forEach(function(h){
+el("path",{d:"M"+(h[0]-10)+" "+(h[1]+8)+" L"+(h[0]-10)+" "+(h[1]-4)+" L"+h[0]+" "+(h[1]-13)+" L"+(h[0]+10)+" "+(h[1]-4)+" L"+(h[0]+10)+" "+(h[1]+8)+" Z",fill:"rgba(95,107,115,.22)"},svg);
+});
+/* hearth */
+var glow=el("circle",{cx:TR[0],cy:TR[1],r:26,fill:"rgba(224,162,58,.28)"},svg);
+el("circle",{cx:TR[0],cy:TR[1],r:11,fill:HEARTH},svg);
+/* paths */
+var ARCS={top:[430,40],mid:[430,196],bot:[430,372]};
+function arcD(a,b,c){return "M"+a[0]+" "+a[1]+" Q"+c[0]+" "+c[1]+" "+b[0]+" "+b[1];}
+el("path",{d:arcD([CL[0]+60,CL[1]-40],[TR[0]-60,TR[1]-40],ARCS.top),fill:"none",stroke:"rgba(28,26,23,.12)","stroke-width":2,"stroke-dasharray":"4 6"},svg);
+el("path",{d:arcD([CL[0]+70,CL[1]],[TR[0]-70,TR[1]],ARCS.mid),fill:"none",stroke:"rgba(28,26,23,.12)","stroke-width":2,"stroke-dasharray":"4 6"},svg);
+el("path",{d:arcD([CL[0]+60,CL[1]+40],[TR[0]-60,TR[1]+40],ARCS.bot),fill:"none",stroke:"rgba(28,26,23,.12)","stroke-width":2,"stroke-dasharray":"4 6"},svg);
+txt(430,64,"settlers leave",{fill:MUTE,"font-size":"12","font-weight":"700","text-anchor":"middle"},svg);
+txt(430,186,"captives ransomed home, then slip away",{fill:MUTE,"font-size":"12","font-weight":"700","text-anchor":"middle"},svg);
+txt(430,350,"visitors to the colony return",{fill:MUTE,"font-size":"12","font-weight":"700","text-anchor":"middle"},svg);
+/* spots */
+function ring(c,n,r0,off){var a=[];for(var i=0;i<n;i++){var ang=off+i*(Math.PI*2/n);a.push([c[0]+Math.cos(ang)*r0,c[1]+Math.sin(ang)*r0]);}return a;}
+var tribeHome=ring(TR,12,48,0.2);
+var tribeNew=ring(TR,18,72,0.05);
+var colSpots=ring(CL,10,64,0.4);
+var colVisit=ring(CL,8,36,0.1);
+/* resident tribe members (static) */
+tribeHome.forEach(function(p){el("circle",{cx:p[0],cy:p[1],r:5.5,fill:ACC,opacity:.55},svg);});
+var layer=el("g",{},svg);
+var movers=[];
+function bez(a,c,b,t){var u=1-t;return [u*u*a[0]+2*u*t*c[0]+t*t*b[0],u*u*a[1]+2*u*t*c[1]+t*t*b[1]];}
+function build(){
+layer.innerHTML="";movers=[];
+var k=0;
+for(var i=0;i<10;i++){movers.push({start:colSpots[i],col0:ALONE,legs:[{to:tribeNew[k++],c:ARCS.top,dur:1900}],delay:i*260});}
+for(var j=0;j<4;j++){var s=tribeNew[k++];movers.push({start:s,col0:ACC,legs:[{to:colVisit[j],c:ARCS.mid,dur:1500,pause:900},{to:s,c:[430,226],dur:1500}],delay:500+j*420,captive:true});}
+for(var m=0;m<4;m++){var s2=ring(TR,4,30,1)[m];movers.push({start:s2,col0:ACC,legs:[{to:colVisit[4+m],c:ARCS.bot,dur:1700,pause:1100},{to:s2,c:[430,350],dur:1700}],delay:300+m*480});}
+movers.forEach(function(mv){mv.c=el("circle",{cx:mv.start[0],cy:mv.start[1],r:6,fill:mv.col0,stroke:"#fff","stroke-width":1.5},layer);mv.done=false;});
+}
+var tribeN=document.getElementById("frTribe"),colN=document.getElementById("frColony"),rd=document.getElementById("frRead");
+var playing=false,t0=null,arrived=0;
+function frame(ts){
+if(!playing)return;
+if(t0===null)t0=ts;
+var t=(ts-t0)*(reduce?4:1);
+var all=true;
+movers.forEach(function(mv){
+if(mv.done)return;
+all=false;
+var tt=t-mv.delay;if(tt<0)return;
+var from=mv.start,pos=from,finished=true;
+for(var i=0;i<mv.legs.length;i++){
+var L=mv.legs[i];
+if(tt<L.dur){pos=bez(from,L.c,L.to,1-Math.pow(1-tt/L.dur,2));finished=false;
+if(mv.col0===ALONE)mv.c.setAttribute("fill",lerpColor(ALONE,ACC,tt/L.dur));
+break;}
+tt-=L.dur;pos=L.to;
+if(L.pause){if(tt<L.pause){finished=false;break;}tt-=L.pause;}
+from=L.to;
+}
+mv.c.setAttribute("cx",pos[0].toFixed(1));mv.c.setAttribute("cy",pos[1].toFixed(1));
+if(finished){mv.done=true;mv.c.setAttribute("fill",ACC);arrived++;tribeN.textContent=arrived;
+glow.setAttribute("r",26+arrived*0.9);
+}
+});
+if(all){playing=false;
+rd.innerHTML="<b>Every mover ended up with the tribe, and none chose the colony.</b> Junger&rsquo;s answer to Franklin&rsquo;s puzzle: people go where they belong. Comfort and safety lose to a community that shares danger and needs you.";
+document.getElementById("frPlay").disabled=false;
+return;}
+requestAnimationFrame(frame);
+}
+function play(){
+build();arrived=0;tribeN.textContent="0";colN.textContent="0";glow.setAttribute("r",26);
+rd.innerHTML="Settlers head for the tribe. Ransomed captives are brought home to the colony, then slip away. Visitors to the colony return.";
+playing=true;t0=null;document.getElementById("frPlay").disabled=true;
+requestAnimationFrame(frame);
+}
+function reset(){playing=false;build();arrived=0;tribeN.textContent="0";colN.textContent="0";glow.setAttribute("r",26);rd.innerHTML="Watch who moves, and where they end up.";document.getElementById("frPlay").disabled=false;}
+document.getElementById("frPlay").addEventListener("click",play);
+document.getElementById("frReset").addEventListener("click",reset);
+build();
+var did=false;
+var io1=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!did){did=true;io1.unobserve(en.target);setTimeout(play,500);}});},{threshold:.4});
+io1.observe(svg);
+})();
+
+/* ================= Module 2: tribe tests accordion ================= */
+(function(){
+var cards=[].slice.call(document.querySelectorAll("#qList .q3"));
+var seen=cards.map(function(){return false;});
+var fill=document.getElementById("qFill"),lab=document.getElementById("qLab"),close=document.getElementById("tribeClose");
+function upd(){var n=seen.filter(Boolean).length;fill.style.width=(n/cards.length*100)+"%";lab.textContent=n+" of "+cards.length+" tests opened";if(n===cards.length&&!close.classList.contains("show")){close.classList.add("show");close.style.opacity=0;tween(reduce?1:500,function(p){close.style.opacity=p;});}}
+cards.forEach(function(c,i){
+var b=c.querySelector(".qh");
+b.addEventListener("click",function(){
+var open=!c.classList.contains("open");
+c.classList.toggle("open",open);b.setAttribute("aria-expanded",open?"true":"false");
+if(open){seen[i]=true;c.classList.add("seen");upd();}
+});
+});
+upd();
+})();
+
+/* ================= Module 3: shared load slider ================= */
+(function(){
+var svg=document.getElementById("ldSvg");
+var X0=150,X1=710,BASE=132,GROUND=300,MAXN=12;
+el("rect",{x:0,y:0,width:860,height:330,fill:"#FBF8F3"},svg);
+el("line",{x1:60,y1:GROUND,x2:800,y2:GROUND,stroke:"rgba(28,26,23,.25)","stroke-width":2},svg);
+var load=el("g",{},svg);
+var loadRect=el("rect",{x:330,y:60,width:200,height:56,rx:10,fill:DEEP},load);
+var loadTx=txt(430,94,"THE LOAD",{fill:"#FBE3CF","font-size":"14","font-weight":"800","letter-spacing":"2","text-anchor":"middle"},load);
+var beam=el("path",{d:"",fill:"none",stroke:INK,"stroke-width":8,"stroke-linecap":"round"},svg);
+var figs=[];
+for(var i=0;i<MAXN;i++){
+var g=el("g",{opacity:0},svg);
+var head=el("circle",{cx:0,cy:0,r:10,fill:ALONE},g);
+var body=el("rect",{x:0,y:0,width:22,height:40,rx:9,fill:ALONE},g);
+figs.push({g:g,head:head,body:body,op:0});
+}
+var slider=document.getElementById("ldSlider"),nN=document.getElementById("ldN"),sh=document.getElementById("ldShare"),rd=document.getElementById("ldRead");
+function beamY(x,sag){var t=(x-X0)/(X1-X0);return BASE+4*t*(1-t)*sag;}
+var cur=1,shown=1;
+function draw(nf){
+var sag=110/nf;
+beam.setAttribute("d","M"+X0+" "+BASE+" Q430 "+(BASE+2*sag)+" "+X1+" "+BASE);
+var cy=beamY(430,sag);
+loadRect.setAttribute("y",cy-62);loadTx.setAttribute("y",cy-28);
+var n=Math.round(nf);
+var t=(n-1)/(MAXN-1);
+var col=lerpColor(ALONE,ACC,t);
+beam.setAttribute("stroke",n===1?ACC:INK);
+figs.forEach(function(f,i){
+var on=i<n;
+var x=n===1?430:X0+20+(i*(X1-X0-40)/(n-1));
+if(!on){f.g.setAttribute("opacity",0);return;}
+var by=beamY(x,sag);
+var hy=by+14;
+f.head.setAttribute("cx",x);f.head.setAttribute("cy",hy);f.head.setAttribute("fill",col);
+var top=hy+12;
+f.body.setAttribute("x",x-11);f.body.setAttribute("y",top);f.body.setAttribute("height",Math.max(8,GROUND-top));f.body.setAttribute("fill",col);
+f.g.setAttribute("opacity",1);
+});
+}
+function read(n){
+var tag,body;
+if(n===1){tag="Alone";body="One person, the whole load. Junger noticed many soldiers struggle more after coming home than they did in combat. At home they reentered a culture of private lives and thin ties, and losing that shared purpose did as much damage as the fighting.";}
+else if(n<=4){tag="Thin ties";body="A few ties help, and the load is still heavy for each one. In the village sequence the essay describes, the worker who shared the gospel is the only Christian she knows.";}
+else if(n<=8){tag="Carried";body="In the platoon, every man depended on every other man. The weight did not shrink. What changed is how many shoulders it rested on.";}
+else{tag="Carried together";body="Junger reports the same pattern among civilians in World War II: when the Blitz began, admissions to London psychiatric wards went down. Critics argue he romanticizes the Blitz, and some of that criticism lands. The core observation survives it.";}
+rd.innerHTML='<span class="stag" style="background:'+(n===1?ACC:(n<=4?ALONE:HEARTHD))+'">'+tag+'</span><div>'+body+'</div>';
+}
+function set(n){
+var from=cur;cur=n;nN.textContent=n;sh.textContent=Math.round(100/n)+"%";read(n);
+if(reduce){draw(n);return;}
+tween(380,function(p){draw(from+(n-from)*p);});
+}
+slider.addEventListener("input",function(){set(parseInt(slider.value,10));});
+draw(1);read(1);
+})();
+
+/* ================= Module 4: cost network ================= */
+(function(){
+var svg=document.getElementById("nwSvg");
+var C=[430,232],R=150,RI=86;
+el("rect",{x:0,y:0,width:860,height:470,fill:"#FBF8F3"},svg);
+var linesG=el("g",{},svg),newLinesG=el("g",{},svg),nodesG=el("g",{},svg),newNodesG=el("g",{},svg);
+var NAMES=["Parents","Relatives","Spouse","Friends","Work","Neighbors","Community"];
+var nodes=NAMES.map(function(n,i){
+var a=-Math.PI/2+i*(Math.PI*2/NAMES.length);
+var o={name:n,a:a,r:R,state:"hold",op:1};
+o.line=el("line",{x1:C[0],y1:C[1],x2:0,y2:0,stroke:"rgba(28,26,23,.35)","stroke-width":3},linesG);
+o.g=el("g",{},nodesG);
+o.c=el("circle",{cx:0,cy:0,r:13,fill:HEARTH,stroke:"#fff","stroke-width":3},o.g);
+var cs=Math.cos(a);
+o.t=el("text",{x:0,y:0,"font-family":"Inter,system-ui,sans-serif","font-size":"14","font-weight":"800",fill:INK,"text-anchor":Math.abs(cs)<0.3?"middle":(cs>0?"start":"end")},o.g);
+o.t.textContent=n;
+return o;
+});
+function place(o){
+var x=C[0]+Math.cos(o.a)*o.r,y=C[1]+Math.sin(o.a)*o.r;
+o.c.setAttribute("cx",x.toFixed(1));o.c.setAttribute("cy",y.toFixed(1));
+var cs=Math.cos(o.a),sn=Math.sin(o.a);
+var lx=x+cs*24,ly=y+sn*24+5;
+if(Math.abs(cs)<0.3)ly=y+(sn<0?-22:32);
+o.t.setAttribute("x",lx.toFixed(1));o.t.setAttribute("y",ly.toFixed(1));
+o.line.setAttribute("x2",x.toFixed(1));o.line.setAttribute("y2",y.toFixed(1));
+o.g.setAttribute("opacity",o.op.toFixed(2));
+}
+nodes.forEach(place);
+/* center */
+el("circle",{cx:C[0],cy:C[1],r:34,fill:"rgba(196,70,45,.14)"},svg);
+el("circle",{cx:C[0],cy:C[1],r:22,fill:ACC,stroke:"#fff","stroke-width":3},svg);
+txt(C[0],C[1]+56,"New believer",{fill:DEEP,"font-size":"14","font-weight":"800","text-anchor":"middle","paint-order":"stroke",stroke:"#FBF8F3","stroke-width":4},svg);
+var hold=document.getElementById("nwHold"),nw=document.getElementById("nwNew"),rd=document.getElementById("nwRead");
+function count(){hold.textContent=nodes.filter(function(o){return o.state==="hold";}).length;}
+function cut(names){
+names.forEach(function(nm){
+var o=nodes.filter(function(x){return x.name===nm;})[0];
+if(!o||o.state==="cut")return;
+var r0=o.r,op0=o.op;o.state="cut";o.t.textContent=o.name;
+o.line.setAttribute("stroke-dasharray","0");
+tween(reduce?1:700,function(p){o.r=r0+(188-r0)*p;o.op=op0+(0.3-op0)*p;o.line.setAttribute("opacity",(1-p).toFixed(2));place(o);});
+o.c.setAttribute("fill",ALONE);
+});
+count();
+}
+function watch(names){
+names.forEach(function(nm){
+var o=nodes.filter(function(x){return x.name===nm;})[0];
+if(!o||o.state!=="hold")return;
+o.state="watch";
+o.c.setAttribute("fill",ACC);
+o.line.setAttribute("stroke",ACC);o.line.setAttribute("stroke-dasharray","6 6");
+o.t.textContent=o.name+" (watching)";
+});
+count();
+}
+var COSTS=[
+{k:"Disinheritance",f:function(){cut(["Parents"]);},t:"<b>Disinheritance.</b> Religion and family are bound together, so relatives often read a decision to follow Jesus as betrayal of the family."},
+{k:"A spouse taken away or a marriage forced",f:function(){cut(["Spouse"]);},t:"<b>A spouse taken away or a marriage forced.</b> The cost reaches the closest tie she has."},
+{k:"Lost work",f:function(){cut(["Work"]);},t:"<b>Lost work.</b> The cost lands immediately, and it lands socially."},
+{k:"Surveillance",f:function(){watch(["Relatives","Neighbors"]);},t:"<b>Relatives, neighbors, or the state surveil you.</b> Some ties do not break. They turn. The people who once would have taken a risk for her now watch her."},
+{k:"Five years on",f:function(){cut(["Relatives","Friends","Community","Neighbors"]);},t:"<b>Five years on.</b> A study of believers in Bangalore who had followed Christ for at least five years despite family opposition found their deepest distress came from ruptured relationships with parents, relatives, friends, and community. Those are exactly the relationships Junger&rsquo;s book is about."}
+];
+var row=document.getElementById("costRow");
+COSTS.forEach(function(c){
+var b=document.createElement("button");b.type="button";b.className="costbtn";b.textContent=c.k;b.setAttribute("aria-pressed","false");
+b.addEventListener("click",function(){if(b.classList.contains("used"))return;b.classList.add("used");b.setAttribute("aria-pressed","true");c.f();rd.innerHTML=c.t;});
+row.appendChild(b);
+});
+var built=false;
+document.getElementById("nwChurch").addEventListener("click",function(){
+if(built)return;built=true;
+this.disabled=true;
+var N=5;
+for(var i=0;i<N;i++){
+(function(i){
+var a=-Math.PI/2+Math.PI/N+i*(Math.PI*2/N);
+var x=C[0]+Math.cos(a)*RI,y=C[1]+Math.sin(a)*RI;
+var ln=el("line",{x1:C[0],y1:C[1],x2:C[0],y2:C[1],stroke:HEARTHD,"stroke-width":4,"stroke-linecap":"round"},newLinesG);
+var cc=el("circle",{cx:C[0],cy:C[1],r:0,fill:HEARTH,stroke:"#fff","stroke-width":2.5},newNodesG);
+setTimeout(function(){
+tween(reduce?1:650,function(p){
+var px=C[0]+(x-C[0])*p,py=C[1]+(y-C[1])*p;
+ln.setAttribute("x2",px.toFixed(1));ln.setAttribute("y2",py.toFixed(1));
+cc.setAttribute("cx",px.toFixed(1));cc.setAttribute("cy",py.toFixed(1));cc.setAttribute("r",(10*p).toFixed(1));
+},function(){nw.textContent=i+1;});
+},reduce?0:i*220);
+})(i);
+}
+rd.innerHTML="<b>Something has to form in its place, inside that same people group. That something is the church.</b> Not a pull out of her language and kinship network, but new ties within it: people who show up when she is sick, expect her at the meal, and would take a risk for her. Church formation has to start the week the first person believes.";
+});
+document.getElementById("nwReset").addEventListener("click",function(){
+nodes.forEach(function(o){o.state="hold";o.r=R;o.op=1;o.c.setAttribute("fill",HEARTH);o.line.setAttribute("stroke","rgba(28,26,23,.35)");o.line.removeAttribute("stroke-dasharray");o.line.setAttribute("opacity",1);o.t.textContent=o.name;place(o);});
+newLinesG.innerHTML="";newNodesG.innerHTML="";built=false;document.getElementById("nwChurch").disabled=false;nw.textContent="0";
+row.querySelectorAll(".costbtn").forEach(function(b){b.classList.remove("used");b.setAttribute("aria-pressed","false");});
+count();rd.innerHTML="Choose a cost above to see what it does to her network.";
+});
+/* entrance */
+var did=false;
+var io4=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!did){did=true;io4.unobserve(en.target);
+nodes.forEach(function(o,i){var r1=o.r;o.r=0;o.op=0;place(o);setTimeout(function(){tween(reduce?1:600,function(p){o.r=r1*p;o.op=p;place(o);});},i*90);});
+}});},{threshold:.3});
+io4.observe(svg);
+count();
+})();
+
+/* ================= Module 5: two ditches ================= */
+(function(){
+var D={
+ext:{rows:[["Where","In a city or diaspora setting."],["What happens","The new believer is pulled out of their language and kinship network into someone else&rsquo;s community."],["What it costs","Extraction is a failure in itself, and it removes the gospel from the people who most need to see it lived."]],m1:15,m2:55,cls:"",seg:"",tag:"Ditch 1: Extraction",v:"She may find belonging, but she finds it outside her people. The gospel leaves with her."},
+iso:{rows:[["Where","In the village, usually."],["What happens","The worker who shared the gospel is the only Christian she knows. No one near her has walked the same road."],["What it costs","Fear and grief settle in and stay. She has little capacity left for formation."]],m1:90,m2:8,cls:"slatev",seg:"slateon",tag:"Ditch 2: Isolation",v:"She stays among her people, and she carries the whole load alone. We read the stall as spiritual weakness. Much of it is isolation."},
+church:{rows:[["Where","Inside the same people group, in the same language and kinship network."],["What happens","Something forms in place of the religious community that defined belonging within her own people."],["When","The week the first person believes."]],m1:90,m2:88,cls:"hearthv",seg:"hearthon",tag:"The road between the ditches",v:"A new disciple should not leave their people group, and should not be left alone in it. Something has to form in place of what was lost, inside that same people group. That something is the church."}
+};
+var seg=document.getElementById("dSeg"),rows=document.getElementById("dRows"),ver=document.getElementById("dVerdict");
+var f1=document.getElementById("m1f"),f2=document.getElementById("m2f"),v1=document.getElementById("m1v"),v2=document.getElementById("m2v");
+function lvl(x){return x>=75?"high":(x>=40?"partial":"low");}
+function render(k){
+var d=D[k];
+rows.innerHTML=d.rows.map(function(r){return '<div class="crow"><div class="ck">'+r[0]+'</div><div class="cv">'+r[1]+'</div></div>';}).join("");
+f1.style.width=d.m1+"%";f2.style.width=d.m2+"%";v1.textContent=lvl(d.m1);v2.textContent=lvl(d.m2);
+ver.className="verdict "+d.cls;
+ver.innerHTML='<span class="tag">'+d.tag+'</span><div>'+d.v+'</div>';
+}
+seg.querySelectorAll(".segbtn").forEach(function(b){
+b.addEventListener("click",function(){
+seg.querySelectorAll(".segbtn").forEach(function(x){x.classList.remove("on","slateon","hearthon");x.setAttribute("aria-pressed","false");});
+var k=b.getAttribute("data-k");
+b.classList.add("on");if(D[k].seg)b.classList.add(D[k].seg);b.setAttribute("aria-pressed","true");
+render(k);
+});
+});
+/* render meters only once visible so the bars animate in */
+rows.innerHTML="";
+var did=false;
+var io5=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!did){did=true;io5.unobserve(en.target);setTimeout(function(){render(seg.querySelector(".segbtn.on").getAttribute("data-k"));},200);}});},{threshold:.25});
+io5.observe(document.getElementById("m5"));
+})();
+
+/* ================= Module 6: village sequence ================= */
+(function(){
+var svg=document.getElementById("vsSvg");
+var S=[
+{t:"A woman begins following Jesus.",cap:100},
+{t:"Family pressure starts.",cap:80},
+{t:"The worker who shared the gospel is the only Christian she knows.",cap:60},
+{t:"No one near her has walked the same road.",cap:38},
+{t:"Fear and grief settle in and stay.",cap:16}
+];
+var X0=90,X1=770,Y=96;
+function xOf(i){return X0+i*(X1-X0)/(S.length-1);}
+el("rect",{x:0,y:0,width:860,height:210,fill:"#FBF8F3"},svg);
+el("line",{x1:X0,y1:Y,x2:X1,y2:Y,stroke:"rgba(28,26,23,.14)","stroke-width":6,"stroke-linecap":"round"},svg);
+var fog=el("circle",{cx:xOf(0),cy:Y,r:0,fill:"rgba(95,107,115,.18)"},svg);
+var stations=[];
+S.forEach(function(s,i){
+var g=el("g",{tabindex:"0",role:"button",style:"cursor:pointer","aria-label":"Step "+(i+1)+": "+s.t},svg);
+el("circle",{cx:xOf(i),cy:Y,r:22,fill:"transparent"},g);
+var c=el("circle",{cx:xOf(i),cy:Y,r:12,fill:"#fff",stroke:"rgba(28,26,23,.3)","stroke-width":2.5},g);
+txt(xOf(i),Y+5,String(i+1),{fill:MUTE,"font-size":"12","font-weight":"800","text-anchor":"middle","pointer-events":"none"},g);
+var short=["Believes","Pressure","Only one Christian","No one has walked it","Fear and grief"][i];
+txt(xOf(i),Y+44,short,{fill:INK,"font-size":"12.5","font-weight":"700","text-anchor":"middle"},g);
+stations.push(c);
+g.addEventListener("click",function(){go(i);});
+onKey(g,function(){go(i);});
+});
+var fig=el("circle",{cx:xOf(0),cy:Y-30,r:11,fill:ACC,stroke:"#fff","stroke-width":2.5},svg);
+var worker=el("circle",{cx:xOf(2)+26,cy:Y-30,r:8,fill:HEARTH,opacity:0},svg);
+var wlab=txt(xOf(2)+40,Y-26,"the worker",{fill:HEARTHD,"font-size":"11.5","font-weight":"700",opacity:0},svg);
+txt(X0-10,30,"HER CAPACITY SHRINKS AS ISOLATION GROWS (CONCEPTUAL)",{fill:MUTE,"font-size":"11","font-weight":"700","letter-spacing":"1.4"},svg);
+var idx=0,fx=xOf(0),fr=0;
+var rd=document.getElementById("vsRead"),pos=document.getElementById("vsPos"),capF=document.getElementById("capF"),capV=document.getElementById("capV"),diag=document.getElementById("vsDiag");
+var back=document.getElementById("vsBack"),next=document.getElementById("vsNext");
+function go(i){
+var x0=fx,x1=xOf(i),r0=fr,r1=i*14;
+idx=i;
+tween(reduce?1:600,function(p){fx=x0+(x1-x0)*p;fr=r0+(r1-r0)*p;fig.setAttribute("cx",fx.toFixed(1));fog.setAttribute("cx",fx.toFixed(1));fog.setAttribute("r",fr.toFixed(1));});
+stations.forEach(function(c,k){c.setAttribute("fill",k<=i?(k===i?ACC:"rgba(196,70,45,.25)"):"#fff");c.setAttribute("stroke",k<=i?ACC:"rgba(28,26,23,.3)");});
+worker.setAttribute("opacity",i===2?1:(i>2?.35:0));wlab.setAttribute("opacity",i===2?1:0);
+pos.textContent="Step "+(i+1)+" of "+S.length;
+capF.style.width=S[i].cap+"%";capV.textContent=S[i].cap>=70?"steady":(S[i].cap>=40?"thinning":"little left");
+rd.innerHTML="<b>Step "+(i+1)+".</b> "+S[i].t+(i===S.length-1?" She has little capacity left for formation. Scripture, obedience, and witness all require attention and stability, and chronic fear consumes both.":"");
+back.disabled=i===0;next.disabled=i===S.length-1;
+if(i===S.length-1&&!diag.classList.contains("show")){diag.classList.add("show");}
+}
+back.addEventListener("click",function(){if(idx>0)go(idx-1);});
+next.addEventListener("click",function(){if(idx<S.length-1)go(idx+1);});
+var ans=document.getElementById("vsAns");
+diag.querySelectorAll("button").forEach(function(b){
+b.addEventListener("click",function(){
+diag.querySelectorAll("button").forEach(function(x){x.classList.add("ghost");});
+b.classList.remove("ghost");
+ans.innerHTML=b.getAttribute("data-d")==="weak"?"That is how we usually read it. <b>We read the stall as spiritual weakness. Much of it is isolation.</b>":"<b>Much of it is isolation.</b> Chronic fear consumes the attention and stability that formation requires. That is why church formation cannot wait until later.";
+});
+});
+go(0);
+})();
+
+})();
+</script>
+</body>
+</html>
