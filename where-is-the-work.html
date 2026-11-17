@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where Is the Work? | Clarity for the Nations</title>
+<meta name="description" content="A short guide to see where the work stands among one people, what part you play, and what to do next. Based on the Phases of Engagement and the five functions of movement leadership.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<!--
+  WHERE IS THE WORK?  Phase and part finder for 4thenations.com
+
+  HOW TO TRANSLATE
+  1. Find "const LANGS" in the script below. All words shown on the page live there.
+  2. Copy the whole "en: { ... }" block. Paste it after it, add a comma, and change "en" to the
+     language code (for example "fr", "ar", "hi", "pt").
+  3. Translate only the text inside quotes. Keep anything in {curly braces} exactly as it is.
+  4. Set dir: "rtl" for Arabic, Persian, Urdu, and Hebrew.
+  5. A language menu appears by itself when there is more than one language.
+     Link straight to a language with ?lang=fr at the end of the page address.
+
+  LINKS (report form, coaching email) are in "const LINKS" just below the words.
+  Nothing is saved or sent by this page. All answers stay in the visitor's browser
+  until the visitor chooses to report or email.
+-->
+<style>
+  :root { --paper:#F3EFE6; --ink:#1C1A17; --mute:#6E665B; --red:#B22234; --red-2:#8f1b2a; --gold:#E8A33D;
+          --gold-soft:#f6e3c2; --line:rgba(28,26,23,.12); --card:#fffdf8; --green:#2f6f4a; --green-soft:#e2efe6; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:72px; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+         line-height:1.6; font-size:17px; }
+
+  /* Site nav (matches 4thenations.com) */
+  .topnav { position:sticky; top:0; z-index:30; display:flex; justify-content:space-between; align-items:center; gap:1rem 1.6rem;
+            padding:13px 24px; background:rgba(243,239,230,.93); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+            border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .topnav .brand { font-family:Fraunces, Georgia, serif; font-weight:900; font-size:1.05rem; text-decoration:none; color:var(--ink); }
+  .topnav .links { display:flex; gap:1.5rem; flex-wrap:wrap; align-items:center; }
+  .topnav .links a { text-decoration:none; font-weight:600; font-size:.92rem; color:var(--ink); opacity:.85; }
+  .topnav .links a:hover, .topnav .links a[aria-current=page] { opacity:1; color:var(--red); }
+  .nav-dd { position:relative; }
+  .nav-ddbtn { background:none; border:0; font:inherit; font-weight:600; font-size:.92rem; cursor:pointer; color:var(--ink); opacity:.85;
+               display:flex; align-items:center; gap:.3rem; padding:0; }
+  .nav-ddbtn:hover { opacity:1; color:var(--red); }
+  .nav-ddmenu { display:none; position:absolute; top:calc(100% + 8px); left:0; min-width:230px; background:var(--card); border:1px solid var(--line);
+                border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.08); padding:6px; z-index:40; }
+  .nav-ddmenu a { display:block; padding:8px 10px; border-radius:6px; }
+  .nav-ddmenu a:hover { background:var(--paper); }
+  .nav-dd.open .nav-ddmenu, .nav-dd:focus-within .nav-ddmenu { display:block; }
+  @media (hover:hover) { .nav-dd:hover .nav-ddmenu { display:block; } }
+  @media (max-width:620px) { .topnav { position:static; padding:12px 16px; } .topnav .links { gap:.4rem 1.1rem; } }
+
+  footer.site { max-width:880px; margin:2vh auto 0; border-top:1px solid var(--line); padding:5vh 20px 7vh; }
+  footer.site .row { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:center; }
+  footer.site .name { font-family:Fraunces, Georgia, serif; font-weight:900; font-size:1.2rem; }
+  footer.site a.sub { text-decoration:none; font-weight:700; color:var(--red); }
+  footer.site small { display:block; color:var(--mute); margin-top:.8rem; font-size:14px; }
+  footer.site small a { color:var(--ink); }
+
+  .wiw { max-width:880px; margin:0 auto; padding:28px 20px 12px; }
+  .wiw h1, .wiw h2, .wiw h3 { font-family:Fraunces, Georgia, serif; color:var(--ink); line-height:1.2; }
+  .wiw h1 { font-size:44px; font-weight:900; margin:0 0 10px; }
+  .wiw h2 { font-size:28px; font-weight:900; margin:0 0 8px; }
+  .wiw h3 { font-size:19px; font-weight:600; margin:22px 0 6px; }
+  .wiw p { margin:0 0 12px; }
+  .wiw .lead { font-size:19px; color:var(--mute); margin-bottom:20px; }
+  .wiw .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:28px; margin:0 0 20px; }
+  .wiw .lang { display:flex; justify-content:flex-end; margin-bottom:8px; }
+  .wiw .lang select { font:inherit; font-size:15px; padding:6px 8px; border-radius:8px; border:1px solid var(--line); background:#fff; }
+  .wiw .steps-intro { list-style:none; padding:0; margin:0 0 20px; }
+  .wiw .steps-intro li { padding:10px 0 10px 44px; position:relative; border-bottom:1px solid var(--line); }
+  .wiw .steps-intro li:last-child { border-bottom:0; }
+  .wiw .steps-intro li span { position:absolute; left:0; top:9px; width:30px; height:30px; border-radius:50%;
+                              background:var(--gold-soft); color:var(--ink); font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .wiw label { display:block; font-weight:600; margin:14px 0 6px; }
+  .wiw input[type=text] { width:100%; font:inherit; font-size:17px; padding:12px 14px; border:1px solid rgba(28,26,23,.25); border-radius:10px; background:#fff; }
+  .wiw input[type=text]:focus { outline:3px solid var(--gold-soft); border-color:var(--gold); }
+  .wiw .row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:620px){ .wiw .row { grid-template-columns:1fr; } .wiw h1 { font-size:34px; } .wiw .card { padding:20px; } }
+
+  .wiw .btn { appearance:none; border:0; cursor:pointer; font:inherit; font-size:17px; font-weight:700; border-radius:10px; padding:14px 22px;
+              text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+  .wiw .btn-primary { background:var(--ink); color:#fff; }
+  .wiw .btn-primary:hover { background:#3a352e; }
+  .wiw .btn-red { background:var(--red); color:#fff; }
+  .wiw .btn-red:hover { background:var(--red-2); }
+  .wiw .btn-ghost { background:transparent; color:var(--ink); border:1px solid rgba(28,26,23,.25); }
+  .wiw .btn-ghost:hover { background:var(--paper); }
+  .wiw .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
+
+  .wiw .part { font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--red); margin-bottom:6px; }
+  .wiw .progress { height:6px; background:#e6dfd0; border-radius:6px; overflow:hidden; margin:0 0 22px; }
+  .wiw .progress > div { height:100%; background:var(--gold); transition:width .25s; }
+  .wiw .q { font-family:Fraunces, Georgia, serif; font-weight:600; font-size:26px; color:var(--ink); line-height:1.35; margin:0 0 12px; }
+  .wiw .help { color:var(--mute); margin:0 0 6px; }
+  .wiw .help-list { margin:6px 0 10px 0; padding-left:22px; font-size:18px; }
+  .wiw .help-list li { margin:4px 0; }
+  .wiw .ref { font-size:14px; color:var(--mute); margin-top:10px; }
+  .wiw .answers { display:grid; gap:10px; margin-top:22px; }
+  .wiw .answer { text-align:left; background:#fff; border:2px solid var(--line); border-radius:12px; padding:16px 18px; font:inherit; font-size:18px; font-weight:600; color:var(--ink); cursor:pointer; }
+  .wiw .answer:hover, .wiw .answer:focus { border-color:var(--gold); background:#fff8ec; outline:none; }
+  .wiw .back { margin-top:18px; background:none; border:0; color:var(--mute); font:inherit; font-size:15px; cursor:pointer; padding:6px 0; }
+  .wiw .back:hover { color:var(--red); text-decoration:underline; }
+
+  .wiw .summary { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media (max-width:720px){ .wiw .summary { grid-template-columns:1fr; } }
+  .wiw .summary > div { min-width:0; }
+  .wiw .label { font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--mute); margin:0 0 6px; }
+  .wiw .ladder { display:grid; grid-template-columns:repeat(8,1fr); gap:4px; margin:6px 0 12px; }
+  .wiw .rung { text-align:center; border-radius:6px; padding:7px 0 6px; background:#e9e2d4; color:#9a9285; font-weight:700; font-size:15px; white-space:nowrap; }
+  .wiw .rung.done { background:#ddd3c0; color:var(--ink); }
+  .wiw .rung.now { background:var(--red); color:#fff; }
+  .wiw .big { font-family:Fraunces, Georgia, serif; font-weight:900; font-size:30px; line-height:1.1; margin:2px 0 6px; }
+  .wiw .big small { display:block; font-family:Inter, system-ui, sans-serif; font-size:14px; font-weight:700; color:var(--red); letter-spacing:.04em; text-transform:uppercase; margin-bottom:2px; }
+  .wiw .picture { border-left:4px solid var(--gold); background:#fbf1de; padding:10px 14px; border-radius:0 10px 10px 0; margin:10px 0 0; font-size:16px; }
+  .wiw .note { background:#fff3dc; border:1px solid #efd3a0; border-radius:10px; padding:12px 16px; margin:16px 0 0; }
+  .wiw .fns { display:grid; grid-template-columns:1fr; gap:5px; margin:6px 0 10px; }
+  .wiw .fn { display:flex; align-items:center; gap:10px; border:1.5px dashed rgba(28,26,23,.22); border-radius:8px; padding:5px 10px; color:#9a9285; font-size:15px; font-weight:600; background:#fff; }
+  .wiw .fn svg { width:22px; height:22px; flex:none; }
+  .wiw .fn.on { border-style:solid; border-color:var(--green); color:var(--green); background:var(--green-soft); }
+  .wiw .fn.main { border-color:var(--red); color:var(--ink); background:#f9e6e6; }
+
+  .wiw .fit { font-size:19px; font-family:Fraunces, Georgia, serif; font-weight:600; line-height:1.4; border-left:4px solid var(--red); padding:4px 0 4px 16px; margin:4px 0 18px; }
+  .wiw .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:620px){ .wiw .grid2 { grid-template-columns:1fr; } }
+  .wiw .box { border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:#fff; }
+  .wiw .box p { margin:0; }
+  .wiw ol.do { margin:8px 0 0; padding-left:24px; }
+  .wiw ol.do li { margin:10px 0; }
+  .wiw .tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; border-radius:999px; padding:2px 8px; margin-right:6px; vertical-align:2px; }
+  .wiw .tag.work { background:#ece4d3; color:var(--ink); }
+  .wiw .tag.you { background:#f9e6e6; color:var(--red); }
+  .wiw .quote { font-style:italic; }
+  .wiw .small { font-size:14px; color:var(--mute); }
+  .wiw .cta { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:6px; }
+  @media (max-width:620px){ .wiw .cta { grid-template-columns:1fr; } }
+  .wiw .cta .box { display:flex; flex-direction:column; gap:12px; justify-content:space-between; }
+  .wiw .sr { position:absolute; left:-9999px; }
+
+  [dir=rtl] .wiw .steps-intro li { padding:10px 44px 10px 0; }
+  [dir=rtl] .wiw .steps-intro li span { left:auto; right:0; }
+  [dir=rtl] .wiw .answer { text-align:right; }
+  [dir=rtl] .wiw .picture { border-left:0; border-right:4px solid var(--gold); border-radius:10px 0 0 10px; }
+  [dir=rtl] .wiw .fit { border-left:0; border-right:4px solid var(--red); padding:4px 16px 4px 0; }
+  [dir=rtl] .wiw ol.do, [dir=rtl] .wiw .help-list { padding-left:0; padding-right:24px; }
+  [dir=rtl] .wiw .tag { margin-right:0; margin-left:6px; }
+
+  @media print {
+    .topnav, footer.site, .wiw .actions, .wiw .lang, .wiw .back, .wiw .cta-card { display:none !important; }
+    body { background:#fff; font-size:13px; }
+    .wiw .card { break-inside:avoid; border-color:#ccc; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+<a class="brand" href="index.html">Clarity for the Nations</a>
+<div class="links">
+<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
+<a href="index.html#pray">Pray for the Unreached</a>
+<div class="nav-dd">
+<button class="nav-ddbtn" aria-expanded="false">Brutal Facts Calculator <span class="caret">&#9662;</span></button>
+<div class="nav-ddmenu">
+<a href="brutal-facts-calculator-cities.html">City Brutal Facts</a>
+<a href="brutal-facts-calculator-segments.html">People Segment Brutal Facts</a>
+</div>
+</div>
+<a href="where-is-the-work.html" aria-current="page">Where Is the Work?</a>
+<a class="navgame" href="frontier-trail.html">&#9654; Play Frontier Trail</a>
+<a href="about.html">About</a>
+</div>
+</nav>
+
+<main id="wiw" class="wiw"></main>
+
+<footer class="site">
+  <div class="row">
+    <span class="name">Clarity for the Nations</span>
+    <a class="sub" href="https://clarity4thenations.substack.com/subscribe" target="_blank" rel="noopener">Subscribe &rarr;</a>
+  </div>
+  <small id="wiw-footer"></small>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* Nav dropdown (tap to open on phones) */
+  document.querySelectorAll(".nav-dd").forEach(function (dd) {
+    const btn = dd.querySelector(".nav-ddbtn");
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const open = dd.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click", function () { dd.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); });
+  });
+
+  /* ================================================================
+     ALL WORDS ON THE PAGE. Translate here. Keep {tokens} unchanged.
+     ================================================================ */
+  const LANGS = {
+    en: {
+      langName: "English",
+      dir: "ltr",
+      ui: {
+        title: "Where Is the Work?",
+        subtitle: "A short guide to see where the work stands among one people, what part you play, and what to do next.",
+        introSteps: [
+          "Part 1 asks a few questions about one people in one place. It shows the phase of the work.",
+          "Part 2 asks five questions about you. It shows the part you fill as churches multiply.",
+          "Then you get next steps for prayer and action."
+        ],
+        peopleLabel: "Which people? (optional)",
+        peoplePlaceholder: "For example: Bedouin Arabs",
+        placeLabel: "Where? Country or city (optional)",
+        placePlaceholder: "For example: Jordan",
+        privacy: "Your answers stay on this page. Nothing is sent or saved.",
+        start: "Begin",
+        part1: "Part 1 of 2: Where is the work?",
+        part2: "Part 2 of 2: What is your part?",
+        part1Intro: "Think of one people in one place. Answer for what is true now, not what you hope.",
+        part2Intro: "Now think about yourself. Answer for what you do now, not your title.",
+        yes: "Yes",
+        no: "No",
+        notSure: "Not sure",
+        notYet: "Not yet",
+        back: "Back",
+        read: "Read",
+        resultsTitle: "Your results",
+        forPeoplePlace: "{people} in {place}",
+        phaseHeading: "Where the work is",
+        phaseLabel: "Phase {n}",
+        holding: "What holds the work back now",
+        next: "Next milestone",
+        pray: "Pray",
+        doSteps: "Do (choose one or two)",
+        ask: "Ask your team",
+        unsureNote: "You were not sure about this question: \"{q}\" Find out. If the answer is yes, the work may be at Phase {n}.",
+        oldUnsureNote: "You were not sure your news is from the last 3 years. Check that it is current.",
+        oldNewsReason: "Your news is more than 3 years old. Work with no news for 3 years is marked Restart until someone confirms what remains.",
+        fnHeading: "Your part",
+        fnNote: "These are not five levels to climb. They are five functions to fill. Each next step comes by releasing control, not gaining it.",
+        mainFn: "Your main part",
+        picture: "Picture",
+        threshold: "Next step to release",
+        watch: "Watch for",
+        steps: "Steps",
+        gapsTitle: "Parts not yet filled by you",
+        gapsAsk: "Who fills these parts for this people? A part no one fills can stall the work.",
+        scGap: "Ask also: who is watching over this whole people, so that no place is left without the good news?",
+        fitHeading: "How your part fits this phase",
+        useTitle: "How to use these steps",
+        useBody: "Choose one or two steps. Make each small, with a name and a date. Watch for signs of change: new baptisms, new groups, new leaders. Answer again in 3 to 6 months. We plant and water, but God gives the growth (1 Corinthians 3:6-7).",
+        print: "Print or save",
+        copy: "Copy results",
+        copied: "Copied",
+        again: "Start again",
+        planTitle: "Your next steps",
+        focus: "Focus now",
+        tagWork: "For the work",
+        tagYou: "For you",
+        grow: "Your growth step",
+        ctaTitle: "Take the next step",
+        reportBtn: "Report your phase",
+        reportText: "Tell Joshua Project what you know about this people. Your report helps prayer and sending use current information.",
+        coachBtn: "Find Coaching",
+        coachText: "Want someone to walk with you through these steps? Ask for a coaching conversation.",
+        mailSubject: "Coaching request: {phase}, {fn}",
+        mailIntro: "I used Where Is the Work? and would like coaching.",
+        mailName: "My name:",
+        mailContact: "Best way to reach me:",
+        mailPeople: "People and place:",
+        mailPhase: "Phase:",
+        mailFn: "My main part:",
+        mailFit: "How my part fits:",
+        notGiven: "(not given)",
+        footer: "Based on the Joshua Project {toolkit} and {functions}. Phases tell you what is happening. Strength tells you how well.",
+        toolkitLink: "Phases of Engagement Toolkit",
+        functionsLink: "the five functions of movement leadership",
+        moreLink: "Read more: Every Phase Has a Different Bottleneck"
+      },
+
+      fit: {
+        match: "This phase needs someone in the {need} part, and that is your main part. Put your effort on what holds the work back.",
+        below: "This phase needs someone in the {need} part. Your main part now is {main}. Your next step: {threshold} Until then, work alongside someone who fills the {need} part.",
+        above: "This phase needs more people in the {need} part. Do not do that work for them. Raise them up from inside this people and release them.",
+        zeroMatch: "This people needs a Seed Sower who is present among them. Ask God if He is sending you, or whom you can help send (Isaiah 6:8).",
+        zeroAbove: "This people needs someone present. Your best gift may be to send workers, or to bring believers from a nearby people, rather than carry it alone.",
+        none: "This phase needs someone in the {need} part. Begin as a Seed Sower: the steps marked For you show how.",
+        unknown: "First find out where the work is. Then you can see how your part fits."
+      },
+
+      /* Part 1 questions. ref = Bible reference shown under the question. */
+      phaseQs: {
+        A:   { q: "Is your news about this people from the last 3 years?",
+               help: "This can be what you have seen yourself, or a report you trust.", ref: "Acts 15:36" },
+        "1": { q: "Has someone been sent to this people? They live among them or visit them often, hoping to see churches begin.",
+               help: "They may come from far away, or from a nearby people or culture.", ref: "Romans 10:14-15" },
+        "1b":{ q: "Was there gospel work among this people before that has now stopped?",
+               help: "", ref: "Acts 15:36" },
+        "2": { q: "Is the good news shared with this people often, in their own language and in a way they understand?",
+               help: "", ref: "Mark 4:3, 14; Acts 2:8" },
+        "3": { q: "Have some people from this people turned from sin and put their trust in Jesus?",
+               help: "", ref: "Mark 1:15" },
+        "4": { q: "Do these believers meet often as a church, with some of their own people starting to lead?",
+               help: "A church: they worship, study God's Word, pray, and share the Lord's Supper together.", ref: "Acts 2:42; Acts 14:23" },
+        "5": { q: "Has one of these churches sent its own people out, so that a new church started from it?",
+               help: "", ref: "1 Thessalonians 1:8" },
+        "6": { q: "Are the churches four generations deep?",
+               help: "A church started a church, which started a church, which started a church.", ref: "2 Timothy 2:2" },
+        "7": { q: "Is one of these true?",
+               list: ["About 1 in 10 people follow Jesus and worship in churches.",
+                      "Several church networks, led by their own people, send workers to other peoples."],
+               help: "", ref: "Acts 13:2-3; Romans 15:23" }
+      },
+
+      /* Part 2 questions, in order: Seed Sower to Strategy Coordinator. */
+      fnQs: [
+        { q: "Do you tell people around you what Jesus has done for you, and share the good news with them?", ref: "Psalm 34:8; Mark 5:19-20" },
+        { q: "Has God used you to see people come to faith and gather as a new church?", ref: "Colossians 1:7" },
+        { q: "Have churches you helped start gone on to start new churches, led by leaders you trained and released?", ref: "2 Timothy 2:2; John 12:24" },
+        { q: "Do you train and strengthen church networks that you did not start and do not lead, so they multiply?", ref: "Acts 19:9-10" },
+        { q: "Has God given you the task of watching over a whole people or area, finding places where no one has heard, and working to bring the good news there?", ref: "Romans 15:20-24" }
+      ],
+
+      /* Phase results. Names match the Phases of Engagement Toolkit. */
+      phases: {
+        unknown: {
+          label: "Unknown", name: "We do not know yet",
+          meaning: "There is not enough information to place this work in a phase.",
+          picture: "God is always at work. Ask Him to show you where.", ref: "John 5:17",
+          holding: "Information. Plans built on guesses send workers to the wrong places.",
+          next: "Learn enough to answer the first question.",
+          pray: "Ask God to show you where He is already at work.",
+          do: ["Ask workers, churches, and agencies near this people what they see.",
+               "Look up this people on Joshua Project and note what is reported.",
+               "Answer again when you have news from the last 3 years."],
+          ask: "Who has been there in the last 3 years?"
+        },
+        "0": {
+          label: "0", name: "Waiting",
+          meaning: "No one is known to be working to start churches among this people.",
+          picture: "How will they hear unless someone is sent?", ref: "Romans 10:14-15",
+          holding: "Presence. No one is there yet. Research, plans, and mobilizing cannot replace someone among the people, in their homeland or where they live abroad.",
+          next: "Phase 1. Someone is sent and finds a way in.",
+          pray: "Ask the Lord of the harvest to send workers to this people by name (Luke 10:2).",
+          do: ["Find who is closest: believers from a nearby people, and churches near where this people lives abroad.",
+               "Share this people's name with your church and ask, \"Whom shall I send?\" (Isaiah 6:8).",
+               "Learn the basics: where they live, their language, what they believe, what blocks access."],
+          ask: "Who could go first, and what stands in the way?"
+        },
+        "0R": {
+          label: "0-R", name: "Waiting (Restart)",
+          meaning: "Work among this people has stopped, or there is no news from the last 3 years.",
+          picture: "Let us go back and see how they are.", ref: "Acts 15:36",
+          holding: "Presence was lost, or the news is old.",
+          next: "Know what remains, then restore a sent presence (Phase 1).",
+          pray: "For any believers who remain, and that the word sown will not return empty (Isaiah 55:11).",
+          do: ["Contact past workers and partners. Learn what remains: believers, groups, Scripture, recordings.",
+               "Learn why the work stopped before starting again.",
+               "Share what you learn so prayer and sending use current information."],
+          ask: "What must change this time?"
+        },
+        "1": {
+          label: "1", name: "Entry",
+          meaning: "Workers, or believers from a nearby people, have found a way in. They are connecting, learning, and building bridges.",
+          picture: "Look for the person of peace and stay in that home.", ref: "Luke 10:5-7",
+          holding: "The good news is not yet shared in a way people understand, in their language and way of thinking.",
+          next: "Phase 2. The good news is shared often, in a way they understand.",
+          pray: "By name for persons of peace and their households.",
+          do: ["Learn the language and how people see the world: honor and shame, power and fear, guilt and innocence.",
+               "Build an honest, useful role in the community, such as teacher, health worker, or trader.",
+               "Meet needs the community asks for, in ways that do no harm, and watch for open homes."],
+          ask: "Which places or families are most open? Who could be a bridge: relatives abroad, or believers nearby?"
+        },
+        "2": {
+          label: "2", name: "Evangelism",
+          meaning: "The good news is shared often, in a way people understand, with the aim of seeing churches begin.",
+          picture: "The sower sows the word.", ref: "Mark 4:14",
+          holding: "Wide sowing that people understand, in their heart language and culture.",
+          next: "Phase 3. People turn from sin and trust Jesus.",
+          pray: "For interested people by name, and for homes before you visit.",
+          do: ["Make Scripture available in more than one form: spoken, audio, printed, on phones.",
+               "Use stories from their culture that point to Jesus. Find which religious words help and which confuse.",
+               "Equip nearby believers and local churches to sow too. Note who responds and where."],
+          ask: "Where is no one sowing yet: villages, cities, online, relatives abroad?"
+        },
+        "3": {
+          label: "3", name: "Discipleship",
+          meaning: "Some have turned from sin and trusted Jesus. They are learning to obey God's Word.",
+          picture: "Teach them to obey everything Jesus commanded.", ref: "Matthew 28:20",
+          holding: "A lasting community of believers. The common mistake is adding more outside outreach. Outside workers should move from wide sowing to discipling.",
+          next: "Phase 4. Believers meet as a church, with leaders from their own people.",
+          pray: "That new believers pray for their families. For leaders God is raising up.",
+          do: ["Disciple families and groups together, focused on obeying what Jesus commanded.",
+               "Train new believers to tell their story, lead a simple Bible discussion, and baptize others in a way that fits their culture.",
+               "Prepare believers to stand firm under pressure."],
+          ask: "Do we have enough disciplers? Are new believers sharing with their own families?"
+        },
+        "4": {
+          label: "4", name: "Local Church",
+          meaning: "Believers from this people meet often as a church. Leaders from their own people are rising.",
+          picture: "They gave themselves to the teaching, to fellowship, to breaking bread, and to prayer.", ref: "Acts 2:42",
+          holding: "Leaders from their own people who can carry the work without the outsider.",
+          next: "Phase 5. The church sends its own people and a new church starts from it.",
+          pray: "Together, with fasting. For the leaders God is raising. For the church to send.",
+          do: ["Appoint and train leaders from among them, using Titus 1:5-9 and 1 Timothy 3:1-7.",
+               "Use the heart language when the church gathers. Make sure every church has Scripture in print or audio.",
+               "Help the church see nearby communities with no church."],
+          ask: "Who leads when the outsider is away? Are churches forming in only one kind of place?"
+        },
+        "5": {
+          label: "5", name: "Reproducing Church",
+          meaning: "Churches send out their own people. Second-generation churches are forming.",
+          picture: "The word of the Lord rang out from you.", ref: "1 Thessalonians 1:8",
+          holding: "Releasing new leaders to start churches without the outsider.",
+          next: "Phase 6. Churches four generations deep (2 Timothy 2:2).",
+          pray: "For humility among leaders. For fourth-generation churches to begin.",
+          do: ["Release authority. Let new leaders start churches without waiting for outside permission.",
+               "Build simple paths to train and send church planters. Let trainers train trainers.",
+               "Lower dependence on outside money."],
+          ask: "What makes it hard for us to release authority? Which parts of this people are not yet responding?"
+        },
+        "6": {
+          label: "6", name: "Multiplying Church",
+          meaning: "Churches have multiplied to the fourth generation or beyond, with leaders from this people giving oversight.",
+          picture: "Entrust it to faithful people who will teach others also.", ref: "2 Timothy 2:2",
+          holding: "Leaders raised in every generation. One strong church or stream is fragile.",
+          next: "Phase 7. A lasting gospel presence that sends to other peoples.",
+          pray: "For leaders to stay faithful to God's Word. For teams going to other peoples.",
+          do: ["Check that each generation of churches raises its own leaders.",
+               "Train pastors and leaders of leaders, and let networks learn from each other.",
+               "Work toward the full New Testament in their language, and teach sound doctrine to guard against drift (1 Timothy 1:3)."],
+          ask: "What do local leaders say is next? Which parts of this people have no church yet?"
+        },
+        "7": {
+          label: "7", name: "Sustained Gospel Presence",
+          meaning: "About 1 in 10 or more follow Christ and worship in churches, or several church networks led by this people send workers to other peoples.",
+          picture: "Set apart for me Barnabas and Saul. Then they sent them off.", ref: "Acts 13:2-3",
+          holding: "Looking outward. Will this church become a base for sending, not only a place others come to?",
+          next: "Send to peoples still waiting. Outside workers leave and entrust the work to God (Acts 20:32).",
+          pray: "For unreached peoples beyond this one. That prayer does not become routine.",
+          do: ["Send workers from this people to peoples with no church, and care for those sent.",
+               "Outside workers: plan your exit and entrust the work to God and His Word.",
+               "Keep listening. Youth, migration, and new pressures open new gaps."],
+          ask: "Is our sending producing workers, or has it stalled?"
+        }
+      },
+
+      /* The five functions, in order. */
+      functions: [
+        { name: "Seed Sower", ref: "Psalm 34:8; Mark 5:19-20",
+          picture: "The apple. You have tasted that the Lord is good, and you cannot keep it to yourself.",
+          threshold: "Do not stop at sharing. Gather those who respond, with their family and friends, to study and obey God's Word together.",
+          watch: "",
+          steps: ["Pray daily for five people by name, and share with them.",
+                  "When someone responds, start a simple Bible discussion in their home, with their household.",
+                  "Learn simple ways to lead that group, baptize, and gather as a church (Acts 2:37-47)."] },
+        { name: "Church Planter", ref: "Colossians 1:7",
+          picture: "The tree. A seed you sowed took root and grew into a church.",
+          threshold: "Release the fruit. Let local leaders lead so the church reproduces without you.",
+          watch: "Stopping at one tree. One church has a ceiling.",
+          steps: ["Name leaders using Titus 1:5-9 and let them lead now, not later.",
+                  "Show them multiplication in Scripture (Acts 19:10; 1 Thessalonians 1:8) and in other fields.",
+                  "Count new groups and generations, not only people in your group."] },
+        { name: "Church Planting Multiplier", ref: "2 Timothy 2:2; John 12:24",
+          picture: "The orchard. Churches reproduce through generations, and you do not own the fruit.",
+          threshold: "Serve networks you did not start and will never own.",
+          watch: "Holding the fruit as yours.",
+          steps: ["Ask, \"What will it take to reach this whole people?\" Let the answer stretch you.",
+                  "Visit other fruitful fields. Learn from and help other multipliers.",
+                  "Train trainers who will train others."] },
+        { name: "Movement Catalyst", ref: "Acts 19:9-10",
+          picture: "An orchard that grows without you. You teach others how orchards grow.",
+          threshold: "Lift your eyes to the whole map, especially peoples with no seed at all.",
+          watch: "",
+          steps: ["Study \"all nations\" in Scripture (Matthew 28:19; Revelation 7:9).",
+                  "List the peoples near your networks with no church. Pray for them by name.",
+                  "Help the networks you serve send workers to them."] },
+        { name: "Strategy Coordinator", ref: "Romans 15:20-24",
+          picture: "The whole map. You ask which peoples and places have never tasted the fruit.",
+          threshold: "",
+          watch: "Losing focus among many needs, and plans driven by outside money.",
+          steps: ["Raise strategy coordinators from inside the movement.",
+                  "Plan your exit from your current focus and entrust it to local leaders (Acts 20:32).",
+                  "Find your next \"Spain\": a people where your current approach will not work and new groundwork is needed (Romans 15:24)."] }
+      ],
+
+      noFunction: {
+        name: "Begin as a Seed Sower", ref: "Mark 5:19",
+        picture: "Every believer is given this part. Go home to your people and tell them what the Lord has done for you.",
+        steps: ["Write the names of five people who do not follow Jesus. Pray for them each day.",
+                "Tell one of them this week what Jesus has done for you.",
+                "Ask someone who shares often to let you go with them."]
+      }
+    }
+  };
+
+
+  /* ================================================================
+     LINKS. Change these if the form or email changes.
+     ================================================================ */
+  const LINKS = {
+    report: "https://ee.kobotoolbox.org/x/58GyeIQF",
+    coachUser: "bud.houstonba2011",
+    coachDomain: "gmail.com",
+    toolkit: "https://media.joshuaproject.net/public/assets/media/articles/Engagement-Phases-Toolkit.pdf",
+    functions: "https://clarity4thenations.substack.com/p/the-five-functions-in-the-expansion",
+    bottleneck: "https://clarity4thenations.substack.com/p/the-bottleneck-decides"
+  };
+
+  /* ================================================================
+     LOGIC. No words below this line.
+     ================================================================ */
+  const LADDER = ["0", "1", "2", "3", "4", "5", "6", "7"];
+  /* Function most needed at each phase (index into functions). */
+  const NEED = { "0": 0, "0R": 0, "1": 0, "2": 0, "3": 1, "4": 1, "5": 2, "6": 3, "7": 4 };
+  const FN_IDS = ["F1", "F2", "F3", "F4", "F5"];
+
+  const root = document.getElementById("wiw");
+  const footer = document.getElementById("wiw-footer");
+
+  function pickLang() {
+    const keys = Object.keys(LANGS);
+    let want = "";
+    try { want = new URLSearchParams(window.location.search).get("lang") || ""; } catch (e) {}
+    if (want && LANGS[want]) return want;
+    const nav = (navigator.language || "en").toLowerCase().split("-")[0];
+    if (LANGS[nav]) return nav;
+    return keys[0];
+  }
+
+  let lang = pickLang();
+  let T = LANGS[lang];
+  const state = { people: "", place: "", answers: {}, history: [], step: "intro" };
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function fill(tpl, vals) {
+    return String(tpl).replace(/\{(\w+)\}/g, function (m, k) { return vals[k] != null ? vals[k] : m; });
+  }
+  function li(items) { return items.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join(""); }
+
+  /* ---------- flow ---------- */
+  function nextStep(id, ans) {
+    if (id === "A") return ans === "no" ? "F1" : "1";
+    if (id === "1") return ans === "yes" ? "2" : ans === "no" ? "1b" : "F1";
+    if (id === "1b") return "F1";
+    if (/^[2-6]$/.test(id)) return ans === "yes" ? String(Number(id) + 1) : "F1";
+    if (id === "7") return "F1";
+    const i = FN_IDS.indexOf(id);
+    if (i > -1) return i < FN_IDS.length - 1 ? FN_IDS[i + 1] : "result";
+    return "result";
+  }
+
+  function computePhase(a) {
+    if (a.A === "no") return { key: "0R", old: true };
+    const oldUnsure = a.A === "notsure";
+    if (a["1"] === "notsure") return { key: "unknown", oldUnsure: oldUnsure };
+    if (a["1"] === "no") return { key: a["1b"] === "yes" ? "0R" : "0", oldUnsure: oldUnsure };
+    let p = 1, unsureAt = null;
+    for (let n = 2; n <= 7; n++) {
+      const v = a[String(n)];
+      if (v === "yes") { p = n; continue; }
+      if (v === "notsure") unsureAt = n;
+      break;
+    }
+    return { key: String(p), unsureAt: unsureAt, oldUnsure: oldUnsure };
+  }
+
+  function computeFunctions(a) {
+    const on = FN_IDS.map(function (id) { return a[id] === "yes"; });
+    let main = -1;
+    on.forEach(function (v, i) { if (v) main = i; });
+    return { on: on, main: main };
+  }
+
+  function fitMessage(phaseKey, fn) {
+    const f = T.fit;
+    if (phaseKey === "unknown") return f.unknown;
+    const needI = NEED[phaseKey];
+    const need = T.functions[needI].name;
+    const m = fn.main;
+    if (m < 0) return fill(f.none, { need: need });
+    if (phaseKey === "0" || phaseKey === "0R") return m === 0 ? f.zeroMatch : f.zeroAbove;
+    if (m === needI) return fill(f.match, { need: need });
+    if (m < needI) return fill(f.below, { need: need, main: T.functions[m].name, threshold: T.functions[m].threshold });
+    return fill(f.above, { need: need });
+  }
+
+  /* One merged plan built from the phase and the worker's part. */
+  function buildPlan() {
+    const u = T.ui;
+    const ph = computePhase(state.answers);
+    const fn = computeFunctions(state.answers);
+    const P = T.phases[ph.key];
+    const F = fn.main >= 0 ? T.functions[fn.main] : T.noFunction;
+    const who = state.people && state.place ? fill(u.forPeoplePlace, { people: state.people, place: state.place })
+              : (state.people || state.place || "");
+    const badge = ph.key === "unknown" ? P.label : fill(u.phaseLabel, { n: P.label });
+    const notes = [];
+    if (ph.old) notes.push(u.oldNewsReason);
+    if (ph.oldUnsure) notes.push(u.oldUnsureNote);
+    if (ph.unsureAt) {
+      const qq = T.phaseQs[String(ph.unsureAt)];
+      notes.push(fill(u.unsureNote, { q: qq.q + (qq.list ? " " + qq.list.join(" / ") : ""), n: ph.unsureAt }));
+    }
+    const doWork = P.do.slice(0, 3);
+    const doYou = F.steps.slice(0, 2);
+    const gaps = T.functions.filter(function (f, i) { return !fn.on[i]; }).map(function (f) { return f.name; });
+    return { ph: ph, fn: fn, P: P, F: F, who: who, badge: badge, notes: notes, doWork: doWork, doYou: doYou,
+             fit: fitMessage(ph.key, fn), gaps: gaps,
+             grow: fn.main >= 0 ? F.threshold : "", watch: fn.main >= 0 ? F.watch : "" };
+  }
+
+  function answer(val) {
+    const id = state.step;
+    state.answers[id] = val;
+    state.history.push(id);
+    state.step = nextStep(id, val);
+    render(true);
+  }
+  function goBack() {
+    if (!state.history.length) { state.step = "intro"; render(true); return; }
+    const prev = state.history.pop();
+    delete state.answers[prev];
+    state.step = prev;
+    render(true);
+  }
+  function restart() { state.answers = {}; state.history = []; state.step = "intro"; render(true); }
+
+  /* ---------- views ---------- */
+  function langPicker() {
+    const keys = Object.keys(LANGS);
+    if (keys.length < 2) return "";
+    return '<div class="lang"><label class="sr" for="wiw-lang">Language</label><select id="wiw-lang">' +
+      keys.map(function (k) {
+        return '<option value="' + k + '"' + (k === lang ? " selected" : "") + ">" + esc(LANGS[k].langName) + "</option>";
+      }).join("") + "</select></div>";
+  }
+
+  function viewIntro() {
+    const u = T.ui;
+    return langPicker() +
+      '<div class="card">' +
+      "<h1>" + esc(u.title) + "</h1>" +
+      '<p class="lead">' + esc(u.subtitle) + "</p>" +
+      '<ol class="steps-intro">' + u.introSteps.map(function (s, i) {
+        return "<li><span>" + (i + 1) + "</span>" + esc(s) + "</li>";
+      }).join("") + "</ol>" +
+      '<div class="row"><div><label for="wiw-people">' + esc(u.peopleLabel) + '</label>' +
+      '<input type="text" id="wiw-people" autocomplete="off" placeholder="' + esc(u.peoplePlaceholder) + '" value="' + esc(state.people) + '"></div>' +
+      '<div><label for="wiw-place">' + esc(u.placeLabel) + '</label>' +
+      '<input type="text" id="wiw-place" autocomplete="off" placeholder="' + esc(u.placePlaceholder) + '" value="' + esc(state.place) + '"></div></div>' +
+      '<div class="actions"><button class="btn btn-red" id="wiw-start">' + esc(u.start) + "</button></div>" +
+      '<p class="small" style="margin-top:14px">' + esc(u.privacy) + "</p>" +
+      "</div>";
+  }
+
+  function viewQuestion() {
+    const u = T.ui, id = state.step;
+    const isFn = FN_IDS.indexOf(id) > -1;
+    const qObj = isFn ? T.fnQs[FN_IDS.indexOf(id)] : T.phaseQs[id];
+    const pct = isFn ? 55 + (FN_IDS.indexOf(id) / FN_IDS.length) * 45 : Math.min(50, (state.history.length / 9) * 50);
+    const firstOfPart = (!isFn && id === "A") || id === "F1";
+    const opts = isFn ? [["yes", u.yes], ["no", u.notYet]] : [["yes", u.yes], ["no", u.no], ["notsure", u.notSure]];
+
+    let html = '<div class="card">' +
+      '<div class="part">' + esc(isFn ? u.part2 : u.part1) + "</div>" +
+      '<div class="progress" aria-hidden="true"><div style="width:' + pct.toFixed(0) + '%"></div></div>';
+    if (firstOfPart) html += '<p class="help">' + esc(isFn ? u.part2Intro : u.part1Intro) + "</p>";
+    html += '<p class="q" id="wiw-q" tabindex="-1">' + esc(qObj.q) + "</p>";
+    if (qObj.list) html += '<ul class="help-list">' + li(qObj.list) + "</ul>";
+    if (qObj.help) html += '<p class="help">' + esc(qObj.help) + "</p>";
+    if (qObj.ref) html += '<p class="ref">' + esc(u.read) + ": " + esc(qObj.ref) + "</p>";
+    html += '<div class="answers" role="group" aria-labelledby="wiw-q">' +
+      opts.map(function (o) { return '<button class="answer" data-a="' + o[0] + '">' + esc(o[1]) + "</button>"; }).join("") +
+      "</div>" +
+      '<button class="back" id="wiw-back">&larr; ' + esc(u.back) + "</button>" +
+      "</div>";
+    return html;
+  }
+
+  function ladderHtml(key) {
+    if (key === "unknown") return "";
+    const cur = key === "0R" ? "0" : key;
+    const ci = LADDER.indexOf(cur);
+    return '<div class="ladder" aria-hidden="true">' + LADDER.map(function (k, i) {
+      const cls = i < ci ? "done" : i === ci ? "now" : "";
+      const lab = (k === "0" && key === "0R") ? "0-R" : k;
+      return '<div class="rung ' + cls + '" title="' + esc(T.phases[k].name) + '">' + esc(lab) + "</div>";
+    }).join("") + "</div>";
+  }
+
+  const ICONS = [
+    '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 12c-6-4-14 0-12 10 1.5 7 7 11 12 9 5 2 10.5-2 12-9 2-10-6-14-12-10z"/><path d="M20 12c0-4 2-6 5-7"/></svg>',
+    '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="20" cy="15" r="9"/><path d="M20 24v11M14 35h12"/></svg>',
+    '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10" cy="17" r="6"/><circle cx="30" cy="17" r="6"/><circle cx="20" cy="12" r="6"/><path d="M10 23v10M30 23v10M20 18v15"/></svg>',
+    '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="20" r="6"/><path d="M12 26v9"/><path d="M22 14h12M30 10l4 4-4 4M22 26h12M30 22l4 4-4 4"/></svg>',
+    '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 9l10-4 12 4 10-4v26l-10 4-12-4-10 4z"/><path d="M14 5v26M26 9v26"/><circle cx="30" cy="17" r="2" fill="currentColor"/></svg>'
+  ];
+
+  function coachHref(pl) {
+    const u = T.ui;
+    const to = LINKS.coachUser + "@" + LINKS.coachDomain;
+    const fnName = pl.fn.main >= 0 ? pl.F.name : T.noFunction.name;
+    const subject = fill(u.mailSubject, { phase: pl.badge + " " + pl.P.name, fn: fnName });
+    const body = [
+      u.mailIntro, "",
+      u.mailName + " ", u.mailContact + " ", "",
+      u.mailPeople + " " + (pl.who || u.notGiven),
+      u.mailPhase + " " + pl.badge + ", " + pl.P.name,
+      u.mailFn + " " + fnName,
+      u.mailFit + " " + pl.fit
+    ].join("\n");
+    return "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  }
+
+  function viewResult() {
+    const u = T.ui;
+    const pl = buildPlan();
+    const P = pl.P, F = pl.F;
+
+    /* Card 1: where the work is + your part */
+    let html = langPicker() +
+      '<div class="card">' +
+      '<div class="part">' + esc(u.resultsTitle) + (pl.who ? ": " + esc(pl.who) : "") + "</div>" +
+      '<div class="summary">' +
+        "<div>" +
+          '<p class="label">' + esc(u.phaseHeading) + "</p>" +
+          ladderHtml(pl.ph.key) +
+          '<div class="big"><small>' + esc(pl.badge) + "</small>" + esc(P.name) + "</div>" +
+          "<p>" + esc(P.meaning) + "</p>" +
+          '<div class="picture"><b>' + esc(P.ref) + ".</b> " + esc(P.picture) + "</div>" +
+        "</div>" +
+        "<div>" +
+          '<p class="label">' + esc(u.fnHeading) + "</p>" +
+          '<div class="fns">' + T.functions.map(function (f, i) {
+            const cls = i === pl.fn.main ? "fn on main" : pl.fn.on[i] ? "fn on" : "fn";
+            return '<div class="' + cls + '">' + ICONS[i] + "<span>" + esc(f.name) + "</span></div>";
+          }).join("") + "</div>" +
+          '<div class="big" style="font-size:24px"><small>' + esc(u.mainFn) + "</small>" + esc(F.name) + "</div>" +
+          '<div class="picture"><b>' + esc(F.ref) + ".</b> " + esc(F.picture) + "</div>" +
+        "</div>" +
+      "</div>" +
+      pl.notes.map(function (n) { return '<div class="note">' + esc(n) + "</div>"; }).join("") +
+      "</div>";
+
+    /* Card 2: one merged plan */
+    html += '<div class="card"><h2>' + esc(u.planTitle) + "</h2>" +
+      '<p class="fit">' + esc(pl.fit) + "</p>" +
+      '<div class="grid2">' +
+        '<div class="box"><p class="label">' + esc(u.focus) + "</p><p>" + esc(P.holding) + "</p></div>" +
+        '<div class="box"><p class="label">' + esc(u.next) + "</p><p>" + esc(P.next) + "</p></div>" +
+      "</div>" +
+      "<h3>" + esc(u.pray) + "</h3><p>" + esc(P.pray) + "</p>" +
+      "<h3>" + esc(u.doSteps) + '</h3><ol class="do">' +
+        pl.doWork.map(function (d) { return '<li><span class="tag work">' + esc(u.tagWork) + "</span>" + esc(d) + "</li>"; }).join("") +
+        pl.doYou.map(function (d) { return '<li><span class="tag you">' + esc(u.tagYou) + "</span>" + esc(d) + "</li>"; }).join("") +
+      "</ol>";
+    if (pl.grow || pl.watch) {
+      html += "<h3>" + esc(u.grow) + "</h3>";
+      if (pl.grow) html += "<p>" + esc(pl.grow) + "</p>";
+      if (pl.watch) html += '<p class="small">' + esc(u.watch) + ": " + esc(pl.watch) + "</p>";
+    }
+    html += "<h3>" + esc(u.ask) + '</h3><p class="quote">' + esc(P.ask) + "</p>";
+    if (pl.gaps.length && pl.fn.main >= 0) {
+      html += "<p>" + esc(u.gapsTitle) + ": " + esc(pl.gaps.join(", ")) + ". " + esc(u.gapsAsk) + "</p>";
+      if (!pl.fn.on[4]) html += "<p>" + esc(u.scGap) + "</p>";
+    }
+    html += "<h3>" + esc(u.useTitle) + '</h3><p class="small">' + esc(u.useBody) + "</p></div>";
+
+    /* Card 3: report and coaching */
+    html += '<div class="card cta-card"><h2>' + esc(u.ctaTitle) + "</h2>" +
+      '<div class="cta">' +
+        '<div class="box"><p>' + esc(u.reportText) + "</p>" +
+          '<a class="btn btn-red" id="wiw-report" href="' + esc(LINKS.report) + '" target="_blank" rel="noopener">' + esc(u.reportBtn) + "</a></div>" +
+        '<div class="box"><p>' + esc(u.coachText) + "</p>" +
+          '<a class="btn btn-primary" id="wiw-coach" href="' + esc(coachHref(pl)) + '">' + esc(u.coachBtn) + "</a></div>" +
+      "</div>" +
+      '<div class="actions">' +
+        '<button class="btn btn-ghost" id="wiw-print">' + esc(u.print) + "</button>" +
+        '<button class="btn btn-ghost" id="wiw-copy">' + esc(u.copy) + "</button>" +
+        '<button class="btn btn-ghost" id="wiw-again">' + esc(u.again) + "</button>" +
+      "</div></div>";
+    return html;
+  }
+
+  function resultText() {
+    const u = T.ui, pl = buildPlan();
+    const L = [];
+    L.push(u.title + (pl.who ? ": " + pl.who : ""));
+    L.push("");
+    L.push(pl.badge + ": " + pl.P.name + ". " + pl.P.meaning);
+    L.push(u.mainFn + ": " + pl.F.name);
+    L.push("");
+    L.push(pl.fit);
+    L.push(u.focus + ": " + pl.P.holding);
+    L.push(u.next + ": " + pl.P.next);
+    L.push(u.pray + ": " + pl.P.pray);
+    L.push(u.doSteps + ":");
+    pl.doWork.concat(pl.doYou).forEach(function (d, i) { L.push("  " + (i + 1) + ". " + d); });
+    if (pl.grow) L.push(u.grow + ": " + pl.grow);
+    L.push(u.ask + ": " + pl.P.ask);
+    pl.notes.forEach(function (n) { L.push(n); });
+    L.push("");
+    L.push(u.reportBtn + ": " + LINKS.report);
+    L.push(window.location.href.split("?")[0]);
+    return L.join("\n");
+  }
+
+  function copyResults(btn) {
+    const text = resultText();
+    const done = function () { btn.textContent = T.ui.copied; setTimeout(function () { btn.textContent = T.ui.copy; }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+    } else { fallbackCopy(text); done(); }
+  }
+  function fallbackCopy(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "absolute"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function renderFooter() {
+    const u = T.ui;
+    footer.innerHTML = fill(esc(u.footer), {
+      toolkit: '<a href="' + LINKS.toolkit + '" target="_blank" rel="noopener">' + esc(u.toolkitLink) + "</a>",
+      functions: '<a href="' + LINKS.functions + '" target="_blank" rel="noopener">' + esc(u.functionsLink) + "</a>"
+    }) + ' <a href="' + LINKS.bottleneck + '" target="_blank" rel="noopener">' + esc(u.moreLink) + "</a>";
+  }
+
+  function render(moveFocus) {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = T.dir || "ltr";
+    let html;
+    if (state.step === "intro") html = viewIntro();
+    else if (state.step === "result") html = viewResult();
+    else html = viewQuestion();
+    root.innerHTML = html;
+    renderFooter();
+    bind();
+    if (moveFocus) {
+      const q = document.getElementById("wiw-q");
+      if (q) q.focus({ preventScroll: true });
+      const top = root.getBoundingClientRect().top + window.pageYOffset - 70;
+      if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: "smooth" });
+    }
+  }
+
+  function bind() {
+    const sel = document.getElementById("wiw-lang");
+    if (sel) sel.addEventListener("change", function () { lang = sel.value; T = LANGS[lang]; render(false); });
+    const start = document.getElementById("wiw-start");
+    if (start) start.addEventListener("click", function () {
+      state.people = document.getElementById("wiw-people").value.trim();
+      state.place = document.getElementById("wiw-place").value.trim();
+      state.answers = {}; state.history = []; state.step = "A";
+      render(true);
+    });
+    root.querySelectorAll(".answer").forEach(function (b) {
+      b.addEventListener("click", function () { answer(b.getAttribute("data-a")); });
+    });
+    const back = document.getElementById("wiw-back");
+    if (back) back.addEventListener("click", goBack);
+    const pr = document.getElementById("wiw-print");
+    if (pr) pr.addEventListener("click", function () { window.print(); });
+    const cp = document.getElementById("wiw-copy");
+    if (cp) cp.addEventListener("click", function () { copyResults(cp); });
+    const ag = document.getElementById("wiw-again");
+    if (ag) ag.addEventListener("click", restart);
+  }
+
+  /* Test hook */
+  window.WIW = {
+    computePhase: computePhase, computeFunctions: computeFunctions,
+    fitMessage: function (k, a) { return fitMessage(k, computeFunctions(a)); }, nextStep: nextStep
+  };
+
+  render(false);
+})();
+</script>
+</body>
+</html>
