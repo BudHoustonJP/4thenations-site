@@ -121,6 +121,13 @@
   .wiw .fn svg { width:22px; height:22px; flex:none; }
   .wiw .fn.on { border-style:solid; border-color:var(--green); color:var(--green); background:var(--green-soft); }
   .wiw .fn.main { border-color:var(--red); color:var(--ink); background:#f9e6e6; }
+  .wiw .fn.flagged { border:2px dashed var(--red); color:var(--red); background:#fff; }
+  .wiw .flag { margin:14px 0 0; padding:14px 16px; border-radius:10px; background:#fbe9ea; border:1px solid #e9b9be; border-left:5px solid var(--red); }
+  .wiw .flag b { display:block; font-family:Fraunces, Georgia, serif; font-size:19px; color:var(--red); margin-bottom:4px; }
+  .wiw .flag p { margin:0; font-size:16px; }
+  .wiw .flag.soft { background:#fdf3e2; border-color:#efd3a0; border-left-color:var(--gold); }
+  .wiw .flag.soft b { color:var(--ink); }
+  .wiw .tag.start { background:var(--red); color:#fff; }
 
   .wiw .fit { font-size:19px; font-family:Fraunces, Georgia, serif; font-weight:600; line-height:1.4; border-left:4px solid var(--red); padding:4px 0 4px 16px; margin:4px 0 18px; }
   .wiw .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
@@ -139,16 +146,55 @@
   .wiw .cta .box { display:flex; flex-direction:column; gap:12px; justify-content:space-between; }
   .wiw .sr { position:absolute; left:-9999px; }
 
+  /* Phase gauge */
+  .wiw .gauge { display:block; width:100%; max-width:680px; height:auto; margin:4px auto 0; }
+  .wiw .gauge .gnum { font-family:Fraunces, Georgia, serif; font-weight:900; font-size:26px; }
+  .wiw .gauge .gname { font-family:Inter, system-ui, sans-serif; font-weight:700; font-size:12.5px; letter-spacing:.04em; fill:var(--ink); }
+  @media (max-width:560px) { .wiw .gauge .gname { display:none; } .wiw .gauge .gnum { font-size:34px; } }
+  .wiw .gauge-cap { text-align:center; margin:2px 0 18px; }
+
+  /* Explore accelerators */
+  .wiw .final-step { margin-top:22px; padding:18px; border-radius:12px; background:#f4efe4; border:1px solid var(--line); }
+  .wiw .final-step h3 { margin-top:0; }
+  .wiw .area { border:1px solid var(--line); border-radius:12px; background:#fff; padding:16px 18px; margin:14px 0; }
+  .wiw .area-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .wiw .area-head h3 { margin:0; font-size:21px; }
+  .wiw details.area summary { cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px; list-style:none; font-weight:700; }
+  .wiw details.area summary::-webkit-details-marker { display:none; }
+  .wiw details.area summary .area-name::before { content:"+ "; color:var(--red); }
+  .wiw details.area[open] summary .area-name::before { content:"- "; }
+  .wiw details.area[open] summary { margin-bottom:6px; }
+  .wiw .said { font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; border-radius:999px; padding:3px 10px; background:#ece4d3; color:var(--ink); white-space:nowrap; }
+  .wiw .said.weak { background:var(--red); color:#fff; }
+  .wiw .said.notsure { background:var(--gold); color:var(--ink); }
+  .wiw .said.strong { background:var(--green-soft); color:var(--green); }
+  .wiw .accel { border-top:1px solid var(--line); margin-top:12px; padding-top:12px; }
+  .wiw .accel h4 { margin:0 0 4px; font-family:Fraunces, Georgia, serif; font-size:18px; }
+  .wiw .accel .tk { font-family:Inter, system-ui, sans-serif; font-size:12px; font-weight:600; color:var(--mute); margin-left:6px; }
+  .wiw .accel .bigq { margin:4px 0 6px; font-size:16px; }
+  .wiw .accel ul { margin:4px 0 0; padding-left:22px; }
+  .wiw .accel li { margin:5px 0; }
+  .wiw h3.more { margin-top:24px; }
+  .wiw .plan { margin-top:22px; padding:18px; border-radius:12px; border:2px solid var(--ink); background:#fff; }
+  .wiw .plan h3 { margin-top:0; }
+  .wiw select, .wiw textarea { width:100%; font:inherit; font-size:17px; padding:11px 12px; border:1px solid rgba(28,26,23,.25); border-radius:10px; background:#fff; color:var(--ink); }
+  .wiw input[type=date] { width:100%; font:inherit; font-size:17px; padding:10px 12px; border:1px solid rgba(28,26,23,.25); border-radius:10px; background:#fff; }
+  [dir=rtl] .wiw .accel ul { padding-left:0; padding-right:22px; }
+  [dir=rtl] .wiw .accel .tk { margin-left:0; margin-right:6px; }
+
   [dir=rtl] .wiw .steps-intro li { padding:10px 44px 10px 0; }
   [dir=rtl] .wiw .steps-intro li span { left:auto; right:0; }
   [dir=rtl] .wiw .answer { text-align:right; }
   [dir=rtl] .wiw .picture { border-left:0; border-right:4px solid var(--gold); border-radius:10px 0 0 10px; }
+  [dir=rtl] .wiw .flag { border-left:1px solid #e9b9be; border-right:5px solid var(--red); }
   [dir=rtl] .wiw .fit { border-left:0; border-right:4px solid var(--red); padding:4px 16px 4px 0; }
   [dir=rtl] .wiw ol.do, [dir=rtl] .wiw .help-list { padding-left:0; padding-right:24px; }
   [dir=rtl] .wiw .tag { margin-right:0; margin-left:6px; }
 
   @media print {
-    .topnav, footer.site, .wiw .actions, .wiw .lang, .wiw .back, .wiw .cta-card { display:none !important; }
+    .topnav, footer.site, .wiw .actions, .wiw .lang, .wiw .back, .wiw .cta-card, .wiw .noprint { display:none !important; }
+    .wiw details.area:not([open]) { display:none; }
+    .wiw .plan { border-width:1px; }
     body { background:#fff; font-size:13px; }
     .wiw .card { break-inside:avoid; border-color:#ccc; }
   }
@@ -238,6 +284,7 @@
         next: "Next milestone",
         pray: "Pray",
         doSteps: "Do (choose one or two)",
+        doStepsFlag: "Do (start with the first, then choose one or two more)",
         ask: "Ask your team",
         unsureNote: "You were not sure about this question: \"{q}\" Find out. If the answer is yes, the work may be at Phase {n}.",
         oldUnsureNote: "You were not sure your news is from the last 3 years. Check that it is current.",
@@ -278,6 +325,17 @@
         mailFn: "My main part:",
         mailFit: "How my part fits:",
         notGiven: "(not given)",
+        gaugeLabel: "Phase of Engagement gauge",
+        gaugeCaption: "The rings show Engagement Strength, from Unknown (inside) to Flourishing (outside). This tool finds the phase only.",
+        gaugeCredit: "Phase gauge and accelerator questions adapted from The Phases of Engagement Toolkit, \u00a9 2026 Phases of Engagement Collaborative, licensed CC BY-NC-SA 4.0.",
+        startTag: "Start here",
+        mailFlag: "Flag:",
+        flagTitle: "First things first",
+        flagText: "You said you are not sharing the good news yourself, yet you lead or train others in this work. Leaders must practice what they teach. Paul told Timothy, a leader of leaders, to do the work of an evangelist (2 Timothy 4:5). Paul kept preaching himself, so that after preaching to others he would not be disqualified (1 Corinthians 9:27).",
+        flagStep: "This week, share the good news with one person who does not know Jesus. Keep a list of lost people you pray for and share with, and ask someone to check on you each week.",
+        softTitle: "Stay close to the harvest",
+        softText: "You train or guide others, but you have not yet seen a new church gather through your own work. What we teach should come from what we practice. \"Follow my example, as I follow Christ\" (1 Corinthians 11:1).",
+        softStep: "Start or join one new group of seekers or new believers, and help it become a church. Or walk closely with a church planter for a season.",
         footer: "Based on the Joshua Project {toolkit} and {functions}. Phases tell you what is happening. Strength tells you how well.",
         toolkitLink: "Phases of Engagement Toolkit",
         functionsLink: "the five functions of movement leadership",
@@ -291,7 +349,9 @@
         zeroMatch: "This people needs a Seed Sower who is present among them. Ask God if He is sending you, or whom you can help send (Isaiah 6:8).",
         zeroAbove: "This people needs someone present. Your best gift may be to send workers, or to bring believers from a nearby people, rather than carry it alone.",
         none: "This phase needs someone in the {need} part. Begin as a Seed Sower: the steps marked For you show how.",
-        unknown: "First find out where the work is. Then you can see how your part fits."
+        unknown: "First find out where the work is. Then you can see how your part fits.",
+        softAbove: "This phase needs more people in the {need} part. Raise them up from inside this people, and keep your own hands in the harvest while you do.",
+        flagged: "This phase needs people in the {need} part. You can only raise up what you practice. Start by sharing the good news yourself, then help others do the same."
       },
 
       /* Part 1 questions. ref = Bible reference shown under the question. */
@@ -490,6 +550,323 @@
                   "Find your next \"Spain\": a people where your current approach will not work and new groundwork is needed (Romans 15:24)."] }
       ],
 
+      /* ---------- Explore accelerators (Phases 1 to 7 only) ----------
+         Accelerator questions are plain-language versions of the
+         Phase-specific Accelerator questions in The Phases of Engagement Toolkit. */
+      acc: {
+        ui: {
+          part: "Final step: Explore accelerators",
+          stepTitle: "Final step: Explore accelerators",
+          stepText: "Answer 5 quick questions to find which accelerators could help move the work toward the next phase. Then make one small plan.",
+          start: "Explore accelerators",
+          seeBelow: "See your accelerators below",
+          intro: "Think about the work among this people now. Rate each area honestly.",
+          strong: "Strong", growing: "Growing", weak: "Weak", notSure: "Not sure",
+          title: "Accelerators for Phase {n}: {name}",
+          lead: "These areas need the most attention. Read the questions, pray, and choose 1 or 2 accelerators that would most help move the work toward the next phase.",
+          allStrong: "You rated every area strong. Praise God. Open any area below and choose one to keep growing.",
+          more: "Other areas",
+          said: "You said: {r}",
+          big: "Big question",
+          planTitle: "Your mini plan",
+          planLead: "Turn one accelerator into one small, specific step.",
+          planAcc: "Accelerator",
+          planAction: "What will you do?",
+          planWho: "Who will do it?",
+          planWhen: "By when?",
+          note: "Accelerators are for your own planning and prayer, not for reporting.",
+          redo: "Change my ratings",
+          mailAcc: "Accelerators to focus on:",
+          mailPlan: "Mini plan:",
+          planLine: "{acc}: {action} (Who: {who}. By: {when})"
+        },
+
+        /* The 5 rating questions. Each covers 2 or 3 accelerators. */
+        areas: [
+          { name: "Prayer and the Word", keys: ["prayer", "scripture"],
+            q: "Is there steady, specific prayer for this people, and do they have God's Word in a form they can use?" },
+          { name: "Vision and sending", keys: ["vision", "mobilization"],
+            q: "Do local believers and partners share a clear picture of what God wants to do here, and are workers being raised up and sent?" },
+          { name: "Working together", keys: ["collab", "multinode"],
+            q: "Are churches and partners working together, and is the work reaching more than one place or group within this people?" },
+          { name: "Love and faithful fit", keys: ["compassion", "context", "marketplace"],
+            q: "Do acts of love and everyday work open doors for the gospel, and is the faith lived out in ways that are faithful and fit the culture?" },
+          { name: "Learning and multiplying", keys: ["research", "training", "multiplying"],
+            q: "Is the team learning this people well, and are disciples trained in simple ways they can pass on?" }
+        ],
+
+        /* The 12 accelerators. toolkit = name used in the toolkit. big = question for any phase. */
+        list: {
+          prayer:       { name: "Prayer", toolkit: "Prayer",
+                          big: "Who needs steady prayer for breakthrough into the next phase, and who could join you in praying?" },
+          scripture:    { name: "God's Word for them", toolkit: "Scripture/Resource Access",
+                          big: "What keeps people from engaging Scripture in their heart language and preferred form? How would removing that help?" },
+          vision:       { name: "Vision", toolkit: "Vision Casting",
+                          big: "What clear picture of gospel breakthrough could unite and inspire people toward the next phase?" },
+          multinode:    { name: "Many places and groups", toolkit: "Multi-node Engagement",
+                          big: "Which places, groups, or online spaces are untouched or most open? Could reaching them help move the work forward?" },
+          mobilization: { name: "Raising and sending workers", toolkit: "Mobilization/Sending",
+                          big: "What kind of worker does this phase need? Who needs to be found, prepared, or sent?" },
+          collab:       { name: "Working together", toolkit: "Collaborative Engagement",
+                          big: "What would you gain by partnering more closely with other workers, local believers, or nearby churches?" },
+          compassion:   { name: "Meeting needs with love", toolkit: "Meeting Needs/Compassion",
+                          big: "How can acts of love open doors and build trust, without creating dependence or an imbalance of power?" },
+          context:      { name: "Faithful and fitting", toolkit: "Critical Contextualization",
+                          big: "Where might your current forms or practices feel disconnected from the local culture or from Scripture?" },
+          research:     { name: "Learning the people", toolkit: "Research/Cultural Insights",
+                          big: "What do you not yet know about people's spiritual hunger, barriers, relationships, or open groups? Would learning it remove obstacles?" },
+          multiplying:  { name: "Multiplying", toolkit: "Multiplying Efforts",
+                          big: "What reproduces on its own, and what still needs you every time? What must multiply to reach the next phase?" },
+          training:     { name: "Training", toolkit: "Training/Equipping",
+                          big: "Who needs training in specific skills or Bible knowledge for the next breakthrough, and who should lead it?" },
+          marketplace:  { name: "Work and business", toolkit: "Marketplace Involvement",
+                          big: "How can believers' work and business connections create natural places for witness and a lasting presence?" }
+        },
+
+        /* Phase-specific questions, Phases 1 to 7. */
+        byPhase: {
+          "1": {
+            prayer: ["Are you praying by name for persons of peace and their households?",
+                     "Has the first area been prayed over, and its spiritual strongholds named?",
+                     "Have short-term teams or prayer journeys prayed deeply on site?"],
+            scripture: ["How do people here most often receive truth: print, spoken word, radio, or online?",
+                        "What resources are most needed at this phase?",
+                        "Has anyone given feedback on the translations that already exist?"],
+            vision: ["Is anyone else casting vision for this people?",
+                     "Are the needs of this community being shared with others?"],
+            multinode: ["Can you stay in this place for the long term?",
+                        "Have you ranked places by how open they are to the gospel?",
+                        "Which place or group comes next?",
+                        "Will sharing freely here affect your ability to stay?"],
+            mobilization: ["Which groups of believers are closest in language, culture, or location, and best placed to bear fruit? How can they be sent first?",
+                           "Are you sending people to share through media?",
+                           "Are believers from this people who live in other countries serving as bridges?"],
+            collab: ["Are there believers from a nearby culture who could be sent?",
+                     "Does this people want to connect with a nearby community?",
+                     "Can you point local ministries toward serving this people?"],
+            compassion: ["Are acts of help requested by local people and allowed by law?"],
+            context: ["Do outside workers know which of their actions could cause offense?",
+                      "Are you learning how to relate to the different centers of power in the community?",
+                      "Do your plans for entry use what the community already has?"],
+            research: ["Have you confirmed the main ways believers can gain access?",
+                       "Have you studied their culture and way of life in depth?",
+                       "What are the main religious and cultural centers of this people?"],
+            multiplying: ["How is prayer multiplying?",
+                          "How are places of access multiplying?",
+                          "How are projects that meet real needs multiplying?"],
+            training: ["Do you know how to learn how people see the world?",
+                       "Do you know how to learn the language?",
+                       "Do you understand how to help without hurting?"],
+            marketplace: ["Are you testing 1 or 2 honest roles (teacher, health worker, trader, tech) that let you stay?"]
+          },
+          "2": {
+            prayer: ["Are you offering to pray for people you meet?",
+                     "Are prayer networks praying during times of sharing the good news?",
+                     "Are you praying by name for those who have shown interest?",
+                     "Is prayer focused on certain households or groups, followed by a visit?"],
+            scripture: ["Are Scripture and gospel resources available in more than one form?",
+                        "Are religious words a barrier to understanding?",
+                        "Are you hearing of needs that Bible stories can speak to?"],
+            vision: ["Do believers from nearby cultures know this people needs a witness?",
+                     "Are stories of interest and response shared, without names, to keep people praying?"],
+            multinode: ["Is the gospel being shared online?",
+                        "How many places are hearing the gospel?",
+                        "How many groups within this people are being reached?",
+                        "Are you tracking where God opens doors: village, city, online, and abroad?"],
+            mobilization: ["Are you recruiting people for many ways and places of sharing?",
+                           "Is there an easy way to join a short-term trip to share the gospel?",
+                           "Are nearby believers active and mentored?"],
+            collab: ["Are you freely sharing the gospel resources you have found or made?",
+                     "Are you letting others learn from what you are learning?",
+                     "Is there a group of ministries working together for this people?"],
+            compassion: ["Do acts of love lead to group conversations, not only one-on-one?"],
+            context: ["Do people explore spiritual truth alone or together?",
+                      "Where do meaningful conversations happen?",
+                      "What is their religious starting point?"],
+            research: ["Have you found cultural bridges or stories in their culture that point to the gospel?",
+                       "Are you tracking gospel conversations and how people respond?",
+                       "Are you learning about other needs in the community?"],
+            multiplying: ["How are evangelists multiplying?",
+                          "How are places to get gospel materials multiplying?",
+                          "How is the sharing of resources and Scripture multiplying?"],
+            training: ["Does the team know how to turn conversations toward spiritual things?",
+                       "Is the team equipped to use cultural bridges and pictures when sharing the gospel?",
+                       "Does the team know how to answer objections to the gospel?",
+                       "Does the team naturally tell Bible stories in conversation?"],
+            marketplace: ["Are there workplaces where natural friendships lead to spiritual conversations?"]
+          },
+          "3": {
+            prayer: ["Are new believers praying for their friends and family to come to faith?",
+                     "Are they praying for other new believers?",
+                     "Are they praying for leaders to rise up?",
+                     "Are they praying for families to follow Jesus together?"],
+            scripture: ["What do new believers say about the Scripture and resources they have now?",
+                        "Do new believers see a need for more local resources?",
+                        "Do dialects of the main language need their own resources?"],
+            vision: ["Do new believers see why they should share with friends and family?",
+                     "Do new believers understand that disciples make disciples?",
+                     "Do new believers understand that following Jesus means surrender to Him as Lord?"],
+            multinode: ["Are new disciples helping you see which places and networks have influence?",
+                        "Are new believers sharing the gospel with their friends' and family's networks?"],
+            mobilization: ["Do you have enough workers to disciple new believers?",
+                           "Are you sending new believers to share with family and friends?",
+                           "Are nearby believers discipling alongside outside workers, so ownership passes early?"],
+            collab: ["Are you sharing testimonies of God's work with others to encourage them?",
+                     "Are you sharing what you are learning with other workers?",
+                     "Are there partners you have overlooked, such as believers abroad, nearby churches, or local aid groups?"],
+            compassion: ["Do acts of help support ongoing discipleship?"],
+            context: ["Do first discipleship lessons fit how this culture sees the world (honor and shame, power and fear, guilt and innocence)?",
+                      "Is baptism explained and done with care for cultural realities?",
+                      "Do discipleship methods feel foreign to the community?"],
+            research: ["Have you named the common worldview obstacles new believers face?",
+                       "Is there a set of Scriptures for new believers that speaks to cultural issues?",
+                       "Have local believers found the best ways to engage Scripture?"],
+            multiplying: ["How is the sharing of personal stories and God's story multiplying?",
+                          "How is confidence to lead discipleship gatherings multiplying?",
+                          "How are baptisms multiplying?"],
+            training: ["Are new disciples sharing their story with friends and family?",
+                       "Can new disciples lead others in discipleship?",
+                       "Is baptism freely given and received by those who follow Jesus?",
+                       "Are disciples ready to face persecution and spiritual opposition?"],
+            marketplace: ["Where does each new disciple have influence at work?"]
+          },
+          "4": {
+            prayer: ["Do local churches meet to pray and fast together?",
+                     "Are they praying that the community will recognize and affirm new leaders?",
+                     "Are they praying to stay bold and faithful in persecution, suffering, and hardship?",
+                     "Are they praying for God to send out new church planters?"],
+            scripture: ["Do churches prefer their local language or a trade language when they gather?",
+                        "Do leadership materials need to be translated into the local language?",
+                        "What resources in their language are needed to stay faithful to Scripture?"],
+            vision: ["Do your gatherings stress obeying Scripture?",
+                     "Does the church have a vision to send?",
+                     "Does the church have a simple way to check its health?"],
+            multinode: ["Do local churches see other places and groups and take responsibility to reach them?",
+                        "Are churches forming mainly in one kind of place or group (for example urban, young, or professional) while others are missed?"],
+            mobilization: ["Are you identifying communities that need new churches?",
+                           "Do you teach that the church is called to go and make disciples?"],
+            collab: ["Are churches starting to work together to reach new places and new kinds of ministry?",
+                     "If there are several churches, how much do they seek to work together?",
+                     "How is leadership shared between new local leaders and outside leaders?"],
+            compassion: ["Who is leading in meeting needs?"],
+            context: ["Do churches use local forms for worship and gathering?",
+                      "Have cultural practices been redeemed and used in church gatherings?",
+                      "Do meeting times or places bring shame on members' families or community?"],
+            research: ["Have churches found other places that need business, acts of help, or new churches?",
+                       "Does the way the church gathers feel open and welcoming to those who do not yet believe?",
+                       "Are churches tracking their health, in numbers and in stories?"],
+            multiplying: ["How are church leaders multiplying?",
+                          "How are church planters multiplying?",
+                          "How are church-based ministries multiplying?",
+                          "How is the release of authority growing?"],
+            training: ["Are leaders rising up?",
+                       "Is the church growing in following the New Testament in practice?",
+                       "Is the church reaching its friends and family?",
+                       "Is every believer serving as a priest before God, at every level of the church (1 Peter 2:9)?"],
+            marketplace: ["How is the church helping workers grow in their trade and be faithful witnesses?"]
+          },
+          "5": {
+            prayer: ["Are people praying for leaders to stay humble?",
+                     "How do churches share prayer needs with the wider body of Christ?",
+                     "Are churches praying for fourth-generation churches to begin?"],
+            scripture: ["Are Scriptures available locally in print or on audio devices?",
+                        "Does each church have a physical copy of the Scriptures?",
+                        "Is all the training church planters need available in their heart language?"],
+            vision: ["Is there regular vision for planting more churches by raising and releasing more leaders?",
+                     "Have leaders seen more fruitful fields to grow their vision?",
+                     "Do most people see God's call and promise to reach all peoples?"],
+            multinode: ["Are some places or groups more open to the gospel right now?",
+                        "In some places or groups, is cultural baggage keeping authority from being released to new leaders?"],
+            mobilization: ["Is there a clear path for equipping and sending?",
+                           "How are church planters being supported?",
+                           "Are there people in the church who see helping to send as their role?",
+                           "Are sending structures and paths needed now?"],
+            collab: ["Do churches have clear ways to talk with each other for encouragement, accountability, and equipping?",
+                     "Are churches working together to do more than they could alone?"],
+            compassion: ["Do ministries that meet needs depend on outside money?",
+                         "What is the plan to sustain them?"],
+            context: ["Who decided how the church meets?",
+                      "Are some parts of this people not yet responding to the gospel?",
+                      "What cultural problems are causing strife or division?"],
+            research: ["Have you named common barriers to multiplication?",
+                       "Are there similar peoples at Phase 6 or beyond you can learn from?",
+                       "Has tracking church health shown weak areas?"],
+            multiplying: ["How are leaders of leaders multiplying?",
+                          "How are trainers multiplying?",
+                          "How is a burden for unreached peoples and places multiplying?"],
+            training: ["How are new leaders chosen and equipped?",
+                       "How is training multiplying so the whole community grows together?",
+                       "Are trainers themselves planting churches?",
+                       "Does the training stress information or action?"],
+            marketplace: ["Are you helping new believers see their work and relationships as places to plant churches?"]
+          },
+          "6": {
+            prayer: ["Are churches praying for teams to be sent to plant churches in other cultures?",
+                     "Is there prayer for growing faithfulness to the Bible?",
+                     "Is there prayer for church multiplication to last?"],
+            scripture: ["Is the New Testament complete and accepted by local speakers?",
+                        "Do the churches need to work together to start a church-based translation?",
+                        "Is another translation needed for a different dialect or religious background now being reached?"],
+            vision: ["Is God still growing the network's vision?",
+                     "What do local leaders say comes next?",
+                     "Is vision coming mostly from inside, or still from outside?"],
+            multinode: ["Are there key places or groups that have not yet seen a breakthrough?",
+                        "How are different places and groups connecting to work together and encourage each other?"],
+            mobilization: ["Have you identified the places and parts of society that still need workers?",
+                           "Do experienced church planters give some of their time to model for new workers?",
+                           "Can people with many different gifts and callings take part in sending?"],
+            collab: ["Are churches pooling money so they can respond quickly to needs?",
+                     "Do church leaders meet regularly to solve problems and set vision for remaining gaps?",
+                     "Are evangelists and church planters working together to fill gaps in places and groups?",
+                     "How are you reporting progress to global mission information networks?"],
+            compassion: ["How are churches starting ministries that meet needs and reproduce without outside money?"],
+            context: ["Have churches written their own worship songs?",
+                      "Do churches gather in different ways that fit the different groups being reached?",
+                      "Are leaders trained in communities of practice that fit the culture?"],
+            research: ["Have fruitful church streams been studied and written down?",
+                       "Does outside money come with conditions that could weaken local leadership?",
+                       "How are the churches growing in maturity?"],
+            multiplying: ["How are church networks multiplying?",
+                          "How is sending to other cultures multiplying?",
+                          "How is problem solving multiplying?",
+                          "How is the training of pastors multiplying?",
+                          "How are new church streams multiplying?"],
+            training: ["Has the network gathered its best practices into a training path?",
+                       "When is a path for training shepherds needed?",
+                       "How often should leaders from different generations of churches meet to learn and solve problems together?"],
+            marketplace: ["How are churches reaching new economic and social groups that need the gospel and new churches?"]
+          },
+          "7": {
+            prayer: ["Does the church regularly pray for unreached places and urgent justice issues?",
+                     "Has prayer become a formality instead of heartfelt intercession?"],
+            scripture: ["Is Scripture access growing in print, audio, and digital, or has it stalled?",
+                        "Do local believers manage updates, distribution, and new formats?"],
+            vision: ["Does the shared vision still stretch beyond maintenance toward new peoples and places?",
+                     "Do stories celebrate fresh breakthroughs, not only church programs?"],
+            multinode: ["Are villages, cities, communities abroad, and media all active, or are some drifting?",
+                        "Do you track the health of each place: new groups, baptisms, leaders, and generations?"],
+            mobilization: ["Is the pipeline producing new workers for nearby and distant cultures, or has it stalled?",
+                           "Do sent workers receive steady coaching, care, and debriefing when they return, to prevent burnout?"],
+            collab: ["Do regional gatherings still pray, share, and learn together, or have meetings become empty?",
+                     "Are there living agreements for sharing information, helping the needy, responding to persecution, and caring in crisis?"],
+            compassion: ["Have acts of help become routine or created dependence, instead of opening new doors?",
+                         "Are they opening doors to new places and households, or keeping you in safe spaces?"],
+            context: ["Are practices reviewed for faithfulness to the Bible and fit with the culture, or have forms become rigid?",
+                      "Do many voices, including women and younger leaders, help spot drift and blind spots?"],
+            research: ["Are you still listening for changes in worldview, migration, youth culture, and pressure points?",
+                       "Do new insights change strategy, or are you coasting on old assumptions?"],
+            multiplying: ["How are sending structures multiplying?",
+                          "How is the use of spiritual gifts multiplying?",
+                          "How are renewal movements multiplying?"],
+            training: ["Are leaders multiplying, or has leadership gathered in a few hands and created bottlenecks?",
+                       "Do leaders keep growing in reconciliation, peacemaking, and healthy correction?",
+                       "Is theological education helping or hurting progress?"],
+            marketplace: ["Do work and business still open doors for credible witness and new places, or mainly provide jobs?",
+                          "How is the church promoting Christian ethics in business to reshape trade in the city or region?"]
+          }
+        }
+      },
+
       noFunction: {
         name: "Begin as a Seed Sower", ref: "Mark 5:19",
         picture: "Every believer is given this part. Go home to your people and tell them what the Lord has done for you.",
@@ -520,6 +897,19 @@
   /* Function most needed at each phase (index into functions). */
   const NEED = { "0": 0, "0R": 0, "1": 0, "2": 0, "3": 1, "4": 1, "5": 2, "6": 3, "7": 4 };
   const FN_IDS = ["F1", "F2", "F3", "F4", "F5"];
+  const ACC_IDS = ["X1", "X2", "X3", "X4", "X5"];
+  const ACC_SCORE = { weak: 3, notsure: 2, growing: 1, strong: 0 };
+  /* Gauge colors from the toolkit: Phase 0 solid, Phases 1 to 7 by strength ring (inner to outer). */
+  const GAUGE = [
+    ["#a2170d"],
+    ["#ffd8cf", "#ffb29f", "#ff8b6f", "#ff6440", "#ee4715"],
+    ["#ffe3cf", "#ffc29f", "#ffa06f", "#ff8a3d", "#f3751b"],
+    ["#fff3d6", "#ffe3a6", "#ffd174", "#ffc246", "#f2b321"],
+    ["#fef6cc", "#ffefb2", "#f9e57e", "#f3db63", "#efd348"],
+    ["#f2f8da", "#e4efb2", "#d6e48a", "#c7d865", "#b8c94e"],
+    ["#e6f3d9", "#cde8b8", "#add889", "#8bc65a", "#6ba529"],
+    ["#eaf5dd", "#b8d3ae", "#88b57a", "#4f7f3f", "#255013"]
+  ];
 
   const root = document.getElementById("wiw");
   const footer = document.getElementById("wiw-footer");
@@ -536,7 +926,8 @@
 
   let lang = pickLang();
   let T = LANGS[lang];
-  const state = { people: "", place: "", answers: {}, history: [], step: "intro" };
+  const state = { people: "", place: "", answers: {}, history: [], step: "intro",
+                  accDone: false, plan: { acc: "", action: "", who: "", when: "" }, scrollTo: "" };
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -550,6 +941,8 @@
 
   /* ---------- flow ---------- */
   function nextStep(id, ans) {
+    const xi = ACC_IDS.indexOf(id);
+    if (xi > -1) return xi < ACC_IDS.length - 1 ? ACC_IDS[xi + 1] : "result";
     if (id === "A") return ans === "no" ? "F1" : "1";
     if (id === "1") return ans === "yes" ? "2" : ans === "no" ? "1b" : "F1";
     if (id === "1b") return "F1";
@@ -579,7 +972,13 @@
     const on = FN_IDS.map(function (id) { return a[id] === "yes"; });
     let main = -1;
     on.forEach(function (v, i) { if (v) main = i; });
-    return { on: on, main: main };
+    /* Faithfulness check: leaders should practice what they train.
+       strong = not sharing the good news, yet claims a higher part.
+       soft   = shares, but trains or coordinates without having seen a church gather. */
+    let flag = null;
+    if (!on[0] && main > 0) flag = "strong";
+    else if (on[0] && !on[1] && main > 1) flag = "soft";
+    return { on: on, main: main, flag: flag };
   }
 
   function fitMessage(phaseKey, fn) {
@@ -589,10 +988,11 @@
     const need = T.functions[needI].name;
     const m = fn.main;
     if (m < 0) return fill(f.none, { need: need });
+    if (fn.flag === "strong") return fill(f.flagged, { need: need });
     if (phaseKey === "0" || phaseKey === "0R") return m === 0 ? f.zeroMatch : f.zeroAbove;
     if (m === needI) return fill(f.match, { need: need });
     if (m < needI) return fill(f.below, { need: need, main: T.functions[m].name, threshold: T.functions[m].threshold });
-    return fill(f.above, { need: need });
+    return fill(fn.flag === "soft" ? f.softAbove : f.above, { need: need });
   }
 
   /* One merged plan built from the phase and the worker's part. */
@@ -614,8 +1014,12 @@
     }
     const doWork = P.do.slice(0, 3);
     const doYou = F.steps.slice(0, 2);
+    const flag = fn.flag ? { kind: fn.flag,
+      title: fn.flag === "strong" ? u.flagTitle : u.softTitle,
+      text: fn.flag === "strong" ? u.flagText : u.softText,
+      step: fn.flag === "strong" ? u.flagStep : u.softStep } : null;
     const gaps = T.functions.filter(function (f, i) { return !fn.on[i]; }).map(function (f) { return f.name; });
-    return { ph: ph, fn: fn, P: P, F: F, who: who, badge: badge, notes: notes, doWork: doWork, doYou: doYou,
+    return { ph: ph, fn: fn, P: P, F: F, who: who, badge: badge, notes: notes, doWork: doWork, doYou: doYou, flag: flag,
              fit: fitMessage(ph.key, fn), gaps: gaps,
              grow: fn.main >= 0 ? F.threshold : "", watch: fn.main >= 0 ? F.watch : "" };
   }
@@ -625,7 +1029,30 @@
     state.answers[id] = val;
     state.history.push(id);
     state.step = nextStep(id, val);
+    if (id === "X5") { state.accDone = true; state.scrollTo = "wiw-acc"; }
     render(true);
+  }
+  function accAllowed(key) { return /^[1-7]$/.test(key); }
+  function startAcc() {
+    ACC_IDS.forEach(function (id) { delete state.answers[id]; });
+    state.accDone = false;
+    state.history.push("result");
+    state.step = "X1";
+    render(true);
+  }
+  function accSelect() {
+    const rated = T.acc.areas.map(function (a, i) { return { i: i, s: ACC_SCORE[state.answers[ACC_IDS[i]]] || 0 }; });
+    const sorted = rated.filter(function (r) { return r.s > 0; }).sort(function (a, b) { return b.s - a.s || a.i - b.i; });
+    let pick = sorted.slice(0, 3);
+    if (pick.length === 3 && pick[2].s < pick[1].s) pick = pick.slice(0, 2);
+    const ids = pick.map(function (r) { return r.i; });
+    return { pick: ids, rest: rated.map(function (r) { return r.i; }).filter(function (i) { return ids.indexOf(i) < 0; }) };
+  }
+  function accFocusNames() {
+    const sel = accSelect();
+    const names = [];
+    sel.pick.forEach(function (i) { T.acc.areas[i].keys.forEach(function (k) { names.push(T.acc.list[k].name); }); });
+    return names;
   }
   function goBack() {
     if (!state.history.length) { state.step = "intro"; render(true); return; }
@@ -634,7 +1061,11 @@
     state.step = prev;
     render(true);
   }
-  function restart() { state.answers = {}; state.history = []; state.step = "intro"; render(true); }
+  function restart() {
+    state.answers = {}; state.history = []; state.step = "intro";
+    state.accDone = false; state.plan = { acc: "", action: "", who: "", when: "" };
+    render(true);
+  }
 
   /* ---------- views ---------- */
   function langPicker() {
@@ -667,15 +1098,20 @@
   function viewQuestion() {
     const u = T.ui, id = state.step;
     const isFn = FN_IDS.indexOf(id) > -1;
-    const qObj = isFn ? T.fnQs[FN_IDS.indexOf(id)] : T.phaseQs[id];
-    const pct = isFn ? 55 + (FN_IDS.indexOf(id) / FN_IDS.length) * 45 : Math.min(50, (state.history.length / 9) * 50);
-    const firstOfPart = (!isFn && id === "A") || id === "F1";
-    const opts = isFn ? [["yes", u.yes], ["no", u.notYet]] : [["yes", u.yes], ["no", u.no], ["notsure", u.notSure]];
+    const xi = ACC_IDS.indexOf(id);
+    const isAcc = xi > -1;
+    const AU = T.acc.ui;
+    const qObj = isAcc ? T.acc.areas[xi] : isFn ? T.fnQs[FN_IDS.indexOf(id)] : T.phaseQs[id];
+    const pct = isAcc ? (xi / ACC_IDS.length) * 100 : isFn ? 55 + (FN_IDS.indexOf(id) / FN_IDS.length) * 45 : Math.min(50, (state.history.length / 9) * 50);
+    const firstOfPart = (!isFn && id === "A") || id === "F1" || id === "X1";
+    const opts = isAcc ? [["strong", AU.strong], ["growing", AU.growing], ["weak", AU.weak], ["notsure", AU.notSure]]
+               : isFn ? [["yes", u.yes], ["no", u.notYet]] : [["yes", u.yes], ["no", u.no], ["notsure", u.notSure]];
 
     let html = '<div class="card">' +
-      '<div class="part">' + esc(isFn ? u.part2 : u.part1) + "</div>" +
+      '<div class="part">' + esc(isAcc ? AU.part : isFn ? u.part2 : u.part1) + "</div>" +
       '<div class="progress" aria-hidden="true"><div style="width:' + pct.toFixed(0) + '%"></div></div>';
-    if (firstOfPart) html += '<p class="help">' + esc(isFn ? u.part2Intro : u.part1Intro) + "</p>";
+    if (firstOfPart) html += '<p class="help">' + esc(isAcc ? AU.intro : isFn ? u.part2Intro : u.part1Intro) + "</p>";
+    if (isAcc) html += '<p class="label">' + esc(qObj.name) + "</p>";
     html += '<p class="q" id="wiw-q" tabindex="-1">' + esc(qObj.q) + "</p>";
     if (qObj.list) html += '<ul class="help-list">' + li(qObj.list) + "</ul>";
     if (qObj.help) html += '<p class="help">' + esc(qObj.help) + "</p>";
@@ -707,6 +1143,100 @@
     '<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 9l10-4 12 4 10-4v26l-10 4-12-4-10 4z"/><path d="M14 5v26M26 9v26"/><circle cx="30" cy="17" r="2" fill="currentColor"/></svg>'
   ];
 
+  /* Phase gauge, redrawn from the toolkit illustration. */
+  function gaugeSvg(key) {
+    const W = 760, H = 330, cx = 380, cy = 300;
+    const RINGS = [[40, 72], [76, 108], [112, 144], [148, 180], [184, 216]];
+    const cur = key === "unknown" ? -1 : key === "0R" ? 0 : Number(key);
+    function pt(r, a) { const t = a * Math.PI / 180; return (cx + r * Math.cos(t)).toFixed(1) + " " + (cy - r * Math.sin(t)).toFixed(1); }
+    function xy(r, a) { const t = a * Math.PI / 180; return [cx + r * Math.cos(t), cy - r * Math.sin(t)]; }
+    function sector(r1, r2, a1, a2) {
+      return "M" + pt(r2, a1) + " A" + r2 + " " + r2 + " 0 0 1 " + pt(r2, a2) + " L" + pt(r1, a2) + " A" + r1 + " " + r1 + " 0 0 0 " + pt(r1, a1) + " Z";
+    }
+    function wrap(name) {
+      const words = name.toLocaleUpperCase(lang).split(/\s+/), lines = [];
+      let line = "";
+      words.forEach(function (w) { if (line && (line + " " + w).length > 16) { lines.push(line); line = w; } else { line = line ? line + " " + w : w; } });
+      if (line) lines.push(line);
+      return lines;
+    }
+    const narrow = window.innerWidth < 560;  /* phones: names hidden, crop the side margins */
+    let svg = '<svg class="gauge" viewBox="' + (narrow ? "112 26 536 290" : "0 0 " + W + " " + H) + '" role="img" aria-label="' + esc(T.ui.gaugeLabel) + '">';
+    for (let k = 0; k < 8; k++) {
+      const a1 = 180 - k * 22.5, a2 = a1 - 22.5, mid = a1 - 11.25;
+      const op = cur < 0 ? 0.45 : k <= cur ? 1 : 0.28;
+      svg += '<g opacity="' + op + '">';
+      if (k === 0) svg += '<path d="' + sector(40, 226, a1, a2) + '" fill="' + GAUGE[0][0] + '" stroke="#fffdf8" stroke-width="3"/>';
+      else RINGS.forEach(function (r, j) { svg += '<path d="' + sector(r[0], r[1], a1, a2) + '" fill="' + GAUGE[k][j] + '" stroke="#fffdf8" stroke-width="3"/>'; });
+      const col = k === 0 ? GAUGE[0][0] : GAUGE[k][4];
+      const p = xy(238, mid);
+      const anchor = mid > 95 ? "end" : mid < 85 ? "start" : "middle";
+      const up = k >= 2 && k <= 5;
+      const label = (k === 0 && key === "0R") ? "0-R" : String(k);
+      const lines = wrap(T.phases[String(k)].name);
+      svg += '<text x="' + p[0].toFixed(1) + '" y="' + p[1].toFixed(1) + '" text-anchor="' + anchor + '" class="gnum" fill="' + col + '">' + label + "</text>";
+      lines.forEach(function (ln, i) {
+        const dy = up ? -(26 + (lines.length - 1 - i) * 15) : (16 + i * 15);
+        svg += '<text x="' + p[0].toFixed(1) + '" y="' + (p[1] + dy).toFixed(1) + '" text-anchor="' + anchor + '" class="gname">' + esc(ln) + "</text>";
+      });
+      svg += "</g>";
+    }
+    if (cur >= 0) {
+      const a1 = 180 - cur * 22.5, a2 = a1 - 22.5, mid = a1 - 11.25;
+      svg += '<path d="' + sector(40, cur === 0 ? 226 : 216, a1, a2) + '" fill="none" stroke="#1C1A17" stroke-width="3.5" stroke-linejoin="round"/>';
+      const tip = xy(150, mid);
+      svg += '<line x1="' + cx + '" y1="' + cy + '" x2="' + tip[0].toFixed(1) + '" y2="' + tip[1].toFixed(1) + '" stroke="#1C1A17" stroke-width="7" stroke-linecap="round"/>';
+    }
+    svg += '<circle cx="' + cx + '" cy="' + cy + '" r="13" fill="#1C1A17"/>';
+    svg += "</svg>";
+    return svg;
+  }
+
+  function viewAcc(pl) {
+    const A = T.acc, U = A.ui, Q = A.byPhase[pl.ph.key];
+    const sel = accSelect();
+    const rName = { strong: U.strong, growing: U.growing, weak: U.weak, notsure: U.notSure };
+    function accBlock(k) {
+      const a = A.list[k];
+      return '<div class="accel"><h4>' + esc(a.name) + (a.toolkit && a.toolkit !== a.name ? ' <span class="tk">' + esc(a.toolkit) + "</span>" : "") + "</h4>" +
+        '<p class="bigq"><b>' + esc(U.big) + ":</b> " + esc(a.big) + "</p>" +
+        "<ul>" + li(Q[k]) + "</ul></div>";
+    }
+    function areaBlock(i, open) {
+      const a = A.areas[i], r = state.answers[ACC_IDS[i]] || "";
+      const badge = '<span class="said ' + r + '">' + esc(fill(U.said, { r: rName[r] || "" })) + "</span>";
+      const inner = a.keys.map(accBlock).join("");
+      return open ? '<div class="area"><div class="area-head"><h3>' + esc(a.name) + "</h3>" + badge + "</div>" + inner + "</div>"
+                  : '<details class="area"><summary><span class="area-name">' + esc(a.name) + "</span>" + badge + "</summary>" + inner + "</details>";
+    }
+    const order = [];
+    sel.pick.concat(sel.rest).forEach(function (i) { A.areas[i].keys.forEach(function (k) { order.push(k); }); });
+    if (!state.plan.acc) state.plan.acc = order[0];
+    let html = '<div class="card" id="wiw-acc"><div class="part">' + esc(U.part) + "</div>" +
+      "<h2>" + esc(fill(U.title, { n: pl.P.label, name: pl.P.name })) + "</h2>" +
+      '<p class="lead" style="font-size:17px">' + esc(sel.pick.length ? U.lead : U.allStrong) + "</p>" +
+      sel.pick.map(function (i) { return areaBlock(i, true); }).join("");
+    if (sel.rest.length) html += '<h3 class="more">' + esc(U.more) + "</h3>" + sel.rest.map(function (i) { return areaBlock(i, false); }).join("");
+    html += '<div class="plan"><h3>' + esc(U.planTitle) + '</h3><p class="small">' + esc(U.planLead) + "</p>" +
+      '<label for="wiw-plan-acc">' + esc(U.planAcc) + '</label><select id="wiw-plan-acc">' +
+        order.map(function (k) { return '<option value="' + k + '"' + (k === state.plan.acc ? " selected" : "") + ">" + esc(A.list[k].name) + "</option>"; }).join("") +
+      "</select>" +
+      '<label for="wiw-plan-action">' + esc(U.planAction) + '</label><textarea id="wiw-plan-action" rows="2">' + esc(state.plan.action) + "</textarea>" +
+      '<div class="row"><div><label for="wiw-plan-who">' + esc(U.planWho) + '</label><input type="text" id="wiw-plan-who" value="' + esc(state.plan.who) + '"></div>' +
+      '<div><label for="wiw-plan-when">' + esc(U.planWhen) + '</label><input type="date" id="wiw-plan-when" value="' + esc(state.plan.when) + '"></div></div>' +
+      "</div>" +
+      '<p class="small" style="margin-top:14px">' + esc(U.note) + "</p>" +
+      '<div class="actions noprint"><button class="btn btn-ghost" id="wiw-acc-redo">' + esc(U.redo) + "</button></div></div>";
+    return html;
+  }
+
+  function planText() {
+    const U = T.acc.ui, pln = state.plan;
+    if (!pln.action) return "";
+    return fill(U.planLine, { acc: T.acc.list[pln.acc] ? T.acc.list[pln.acc].name : "", action: pln.action,
+                              who: pln.who || T.ui.notGiven, when: pln.when || T.ui.notGiven });
+  }
+
   function coachHref(pl) {
     const u = T.ui;
     const to = LINKS.coachUser + "@" + LINKS.coachDomain;
@@ -719,7 +1249,9 @@
       u.mailPhase + " " + pl.badge + ", " + pl.P.name,
       u.mailFn + " " + fnName,
       u.mailFit + " " + pl.fit
-    ].join("\n");
+    ].concat(pl.flag ? [u.mailFlag + " " + pl.flag.title] : [])
+     .concat(state.accDone && accAllowed(pl.ph.key) ? [T.acc.ui.mailAcc + " " + (accFocusNames().join(", ") || "-")] : [])
+     .concat(planText() ? [T.acc.ui.mailPlan + " " + planText()] : []).join("\n");
     return "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
   }
 
@@ -732,10 +1264,12 @@
     let html = langPicker() +
       '<div class="card">' +
       '<div class="part">' + esc(u.resultsTitle) + (pl.who ? ": " + esc(pl.who) : "") + "</div>" +
+      gaugeSvg(pl.ph.key) +
+      '<p class="small gauge-cap">' + esc(u.gaugeCaption) + "</p>" +
       '<div class="summary">' +
         "<div>" +
           '<p class="label">' + esc(u.phaseHeading) + "</p>" +
-          ladderHtml(pl.ph.key) +
+
           '<div class="big"><small>' + esc(pl.badge) + "</small>" + esc(P.name) + "</div>" +
           "<p>" + esc(P.meaning) + "</p>" +
           '<div class="picture"><b>' + esc(P.ref) + ".</b> " + esc(P.picture) + "</div>" +
@@ -743,11 +1277,13 @@
         "<div>" +
           '<p class="label">' + esc(u.fnHeading) + "</p>" +
           '<div class="fns">' + T.functions.map(function (f, i) {
-            const cls = i === pl.fn.main ? "fn on main" : pl.fn.on[i] ? "fn on" : "fn";
+            let cls = i === pl.fn.main ? "fn on main" : pl.fn.on[i] ? "fn on" : "fn";
+            if (pl.flag && ((pl.flag.kind === "strong" && i === 0) || (pl.flag.kind === "soft" && i === 1))) cls = "fn flagged";
             return '<div class="' + cls + '">' + ICONS[i] + "<span>" + esc(f.name) + "</span></div>";
           }).join("") + "</div>" +
           '<div class="big" style="font-size:24px"><small>' + esc(u.mainFn) + "</small>" + esc(F.name) + "</div>" +
           '<div class="picture"><b>' + esc(F.ref) + ".</b> " + esc(F.picture) + "</div>" +
+          (pl.flag ? '<div class="flag ' + pl.flag.kind + '"><b>' + esc(pl.flag.title) + "</b><p>" + esc(pl.flag.text) + "</p></div>" : "") +
         "</div>" +
       "</div>" +
       pl.notes.map(function (n) { return '<div class="note">' + esc(n) + "</div>"; }).join("") +
@@ -761,7 +1297,8 @@
         '<div class="box"><p class="label">' + esc(u.next) + "</p><p>" + esc(P.next) + "</p></div>" +
       "</div>" +
       "<h3>" + esc(u.pray) + "</h3><p>" + esc(P.pray) + "</p>" +
-      "<h3>" + esc(u.doSteps) + '</h3><ol class="do">' +
+      "<h3>" + esc(pl.flag ? u.doStepsFlag : u.doSteps) + '</h3><ol class="do">' +
+        (pl.flag ? '<li><span class="tag start">' + esc(u.startTag) + "</span>" + esc(pl.flag.step) + "</li>" : "") +
         pl.doWork.map(function (d) { return '<li><span class="tag work">' + esc(u.tagWork) + "</span>" + esc(d) + "</li>"; }).join("") +
         pl.doYou.map(function (d) { return '<li><span class="tag you">' + esc(u.tagYou) + "</span>" + esc(d) + "</li>"; }).join("") +
       "</ol>";
@@ -775,7 +1312,16 @@
       html += "<p>" + esc(u.gapsTitle) + ": " + esc(pl.gaps.join(", ")) + ". " + esc(u.gapsAsk) + "</p>";
       if (!pl.fn.on[4]) html += "<p>" + esc(u.scGap) + "</p>";
     }
-    html += "<h3>" + esc(u.useTitle) + '</h3><p class="small">' + esc(u.useBody) + "</p></div>";
+    html += "<h3>" + esc(u.useTitle) + '</h3><p class="small">' + esc(u.useBody) + "</p>";
+    if (accAllowed(pl.ph.key)) {
+      const AU = T.acc.ui;
+      html += '<div class="final-step"><h3>' + esc(AU.stepTitle) + "</h3><p>" + esc(AU.stepText) + "</p>" +
+        (state.accDone ? '<a class="btn btn-ghost noprint" href="#wiw-acc">' + esc(AU.seeBelow) + " &darr;</a>"
+                       : '<button class="btn btn-primary noprint" id="wiw-acc-start">' + esc(AU.start) + "</button>") +
+        "</div>";
+    }
+    html += "</div>";
+    if (state.accDone && accAllowed(pl.ph.key)) html += viewAcc(pl);
 
     /* Card 3: report and coaching */
     html += '<div class="card cta-card"><h2>' + esc(u.ctaTitle) + "</h2>" +
@@ -805,11 +1351,17 @@
     L.push(u.focus + ": " + pl.P.holding);
     L.push(u.next + ": " + pl.P.next);
     L.push(u.pray + ": " + pl.P.pray);
+    if (pl.flag) L.push(pl.flag.title + ": " + pl.flag.text);
     L.push(u.doSteps + ":");
-    pl.doWork.concat(pl.doYou).forEach(function (d, i) { L.push("  " + (i + 1) + ". " + d); });
+    (pl.flag ? [pl.flag.step] : []).concat(pl.doWork, pl.doYou).forEach(function (d, i) { L.push("  " + (i + 1) + ". " + d); });
     if (pl.grow) L.push(u.grow + ": " + pl.grow);
     L.push(u.ask + ": " + pl.P.ask);
     pl.notes.forEach(function (n) { L.push(n); });
+    if (state.accDone && accAllowed(pl.ph.key)) {
+      L.push("");
+      L.push(T.acc.ui.mailAcc + " " + (accFocusNames().join(", ") || "-"));
+      if (planText()) L.push(T.acc.ui.mailPlan + " " + planText());
+    }
     L.push("");
     L.push(u.reportBtn + ": " + LINKS.report);
     L.push(window.location.href.split("?")[0]);
@@ -836,7 +1388,7 @@
     footer.innerHTML = fill(esc(u.footer), {
       toolkit: '<a href="' + LINKS.toolkit + '" target="_blank" rel="noopener">' + esc(u.toolkitLink) + "</a>",
       functions: '<a href="' + LINKS.functions + '" target="_blank" rel="noopener">' + esc(u.functionsLink) + "</a>"
-    }) + ' <a href="' + LINKS.bottleneck + '" target="_blank" rel="noopener">' + esc(u.moreLink) + "</a>";
+    }) + ' <a href="' + LINKS.bottleneck + '" target="_blank" rel="noopener">' + esc(u.moreLink) + "</a><br>" + esc(u.gaugeCredit);
   }
 
   function render(moveFocus) {
@@ -849,6 +1401,11 @@
     root.innerHTML = html;
     renderFooter();
     bind();
+    if (state.scrollTo) {
+      const target = document.getElementById(state.scrollTo);
+      state.scrollTo = "";
+      if (target) { setTimeout(function () { target.scrollIntoView({ behavior: "smooth", block: "start" }); }, 30); return; }
+    }
     if (moveFocus) {
       const q = document.getElementById("wiw-q");
       if (q) q.focus({ preventScroll: true });
@@ -878,12 +1435,27 @@
     if (cp) cp.addEventListener("click", function () { copyResults(cp); });
     const ag = document.getElementById("wiw-again");
     if (ag) ag.addEventListener("click", restart);
+    const as = document.getElementById("wiw-acc-start");
+    if (as) as.addEventListener("click", startAcc);
+    const ar = document.getElementById("wiw-acc-redo");
+    if (ar) ar.addEventListener("click", startAcc);
+    [["wiw-plan-acc", "acc"], ["wiw-plan-action", "action"], ["wiw-plan-who", "who"], ["wiw-plan-when", "when"]].forEach(function (f) {
+      const el = document.getElementById(f[0]);
+      if (!el) return;
+      const upd = function () {
+        state.plan[f[1]] = el.value.trim();
+        const c = document.getElementById("wiw-coach");
+        if (c) c.setAttribute("href", coachHref(buildPlan()));
+      };
+      el.addEventListener("input", upd); el.addEventListener("change", upd);
+    });
   }
 
   /* Test hook */
   window.WIW = {
     computePhase: computePhase, computeFunctions: computeFunctions,
-    fitMessage: function (k, a) { return fitMessage(k, computeFunctions(a)); }, nextStep: nextStep
+    fitMessage: function (k, a) { return fitMessage(k, computeFunctions(a)); }, nextStep: nextStep,
+    accSelect: function (a) { const keep = state.answers; state.answers = a; const r = accSelect(); state.answers = keep; return r; }
   };
 
   render(false);
