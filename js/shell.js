@@ -82,6 +82,16 @@
       '<div class="cn-wrap cn-foot-base">Clarity for the Nations</div>' +
     '</div>';
 
+  /* Browser tab icon. favicon.ico at the site root also covers any page
+     that does not load this file. */
+  if (!document.querySelector('link[rel~="icon"]')) {
+    [['icon', 'favicon.ico', { sizes: '32x32' }], ['icon', 'favicon.svg', { type: 'image/svg+xml' }], ['apple-touch-icon', 'apple-touch-icon.png', {}]].forEach(function (i) {
+      var l = document.createElement('link'); l.rel = i[0]; l.href = i[1];
+      Object.keys(i[2]).forEach(function (k) { l.setAttribute(k, i[2][k]); });
+      document.head.appendChild(l);
+    });
+  }
+
   var here = document.currentScript;
   var part = here && here.getAttribute('data-part');
   if (GIVE_LIVE) document.documentElement.classList.add('give-live');
