@@ -1,374 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Clarity for the Nations</title>
-<meta name="description" content="Interactive scroll stories on missions, data, and the unreached, by Bud Houston.">
+<meta name="description" content="Articles, tools, and a strategy game for mission leaders, built on data about the peoples and places with the least access to the gospel.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;--red:#B22234;--gold:#E8A33D;--line:rgba(28,26,23,.12)}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
-a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-.big-head{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.4vw,3.3rem);line-height:1.04;margin:0 0 .8rem}
-.eyebrow{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:1rem}
-.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
-.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
-.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
-.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
-.topnav .links a:hover{opacity:1;color:var(--red)}
-header.hero{position:relative;background:#0B1F33;color:#F6F4EE;overflow:hidden;padding:11vh 0 8vh}
-header.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");background-size:44px 44px;opacity:.13}
-header.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 55% at 50% 0%,rgba(232,163,61,.20),transparent 62%),linear-gradient(180deg,rgba(11,31,51,.05),#0B1F33 90%)}
-.hero .wrap{position:relative;z-index:2}
-.hero .eyebrow{color:var(--gold);margin-bottom:2.2rem}
-.carousel{position:relative}
-.cwrap{display:grid}
-.slide{grid-area:1/1;display:flex;flex-direction:column;justify-content:center;text-decoration:none;opacity:0;visibility:hidden;transition:opacity .7s ease;min-height:36vh}
-.slide.active{opacity:1;visibility:visible}
-.slide .mark{font-family:'Fraunces',serif;font-weight:900;font-size:3.4rem;line-height:.5;color:var(--gold);opacity:.7}
-.slide .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.9rem,4.6vw,3.5rem);line-height:1.08;letter-spacing:-.01em;max-width:24ch;margin:.6rem 0 1.3rem;color:#F6F4EE}
-.slide .src{font-weight:700;color:var(--gold);font-size:.95rem;text-transform:uppercase;letter-spacing:.1em}
-.slide .ar{display:inline-block;transition:transform .2s} .slide:hover .ar{transform:translateX(4px)}
-.controls{display:flex;align-items:center;justify-content:flex-start;gap:1.1rem;margin-top:1.8rem}
-.navbtn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);width:40px;height:40px;border-radius:50%;font-size:1.3rem;line-height:1;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;transition:background .2s}
-.navbtn:hover{background:rgba(255,255,255,.18)}
-.dots{display:flex;gap:9px}
-.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.32);border:none;cursor:pointer;padding:0;transition:all .25s}
-.dot.active{background:var(--gold);width:26px;border-radius:5px}
-.hero .tag{font-size:1.05rem;color:rgba(246,244,238,.72);margin-top:2.4rem;max-width:54ch}
-.explore{padding:8vh 0 3vh}
-.explore .sub{color:var(--mute);font-size:1.05rem;margin-bottom:2rem;max-width:60ch}
-.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:3.4rem}
-.fpill{font-family:inherit;font-size:.92rem;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:50px;padding:.55rem 1.15rem;cursor:pointer;transition:all .15s}
-.fpill:hover{border-color:var(--ink)}
-.fpill.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:38px;padding-bottom:2vh}
-.card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
-.card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.12)}
-.band{min-height:134px;display:flex;align-items:flex-end;padding:18px 20px}
-.ctitle{font-family:'Fraunces',serif;font-weight:900;font-size:1.45rem;line-height:1.12;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.3)}
-.card .body{padding:1.5rem 1.6rem 1.7rem;display:flex;flex-direction:column;flex:1}
-.card .blurb{font-size:1rem;color:#39342d;flex:1}
-.card .go{margin-top:1.3rem;font-weight:700;font-size:.95rem}
-.qlabel{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:1.3rem}
-.qsec{margin-bottom:3.4rem}
-.allbar{text-align:center;margin:0 0 3.2rem}
-.allbtn{font-family:inherit;font-size:1rem;font-weight:700;background:var(--ink);color:#fff;border:none;border-radius:50px;padding:.9rem 2.3rem;cursor:pointer;transition:transform .15s,filter .2s}
-.allbtn:hover{filter:brightness(1.25);transform:translateY(-2px)}
-.cta-band{background:#0B1F33;color:#F6F4EE;padding:9vh 0;text-align:center;margin-top:5vh}
-.cta-band h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.8rem,4.6vw,2.8rem);margin-bottom:1.8rem;color:#fff;max-width:20ch;margin-left:auto;margin-right:auto}
-.cta-btn{display:inline-block;background:var(--gold);color:#0B1F33;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
-.cta-btn:hover{filter:brightness(1.07);transform:translateY(-2px)}
-.pray{background:var(--paper);padding:9vh 0 5vh}
-.pray .big-head{margin-bottom:1.4rem}
-.pray .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin:0 0 2.6rem}
-.pstep{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;font-size:.98rem;color:#39342d}
-.pstep .n{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:.85rem;align-items:center;justify-content:center;margin-bottom:.6rem}
-footer{margin-top:2vh;border-top:1px solid var(--line);padding:5vh 0 7vh}
-footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
-footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
-footer a.sub{text-decoration:none;font-weight:700;color:var(--red)}
-footer small{display:block;color:var(--mute);margin-top:.8rem}
-.nav-dd{position:relative}
-.nav-ddbtn{background:none;border:none;font:inherit;font-weight:600;font-size:.92rem;cursor:pointer;color:var(--ink);opacity:.85;display:flex;align-items:center;gap:.3rem;padding:0}
-.nav-ddbtn:hover{opacity:1;color:var(--red)}
-.nav-dd .caret{font-size:.7em;transition:transform .2s}
-.nav-dd.open .caret{transform:rotate(180deg)}
-.nav-ddmenu{position:absolute;top:160%;right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,.14);min-width:240px;display:none;flex-direction:column;padding:6px;z-index:40}
-.nav-dd.open .nav-ddmenu{display:flex}
-.nav-ddmenu a{padding:.6rem .8rem;border-radius:8px;font-size:.92rem;font-weight:600;color:var(--ink);text-decoration:none;opacity:1}
-.nav-ddmenu a:hover{background:var(--paper)}
-.tools{padding:7vh 0 1vh}
-.tools .sub{color:var(--mute);font-size:1.05rem;margin-bottom:2rem;max-width:60ch}
-.toolgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;padding-bottom:2vh}
-.toolcard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
-.toolcard:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.12)}
-.tband{background:linear-gradient(135deg,#1F3864,#16294a);padding:18px 20px}
-.ttag{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#fff;background:rgba(255,255,255,.18);padding:5px 11px;border-radius:50px}
-.tband h3{font-family:'Fraunces',serif;font-weight:900;font-size:1.4rem;color:#fff;margin-top:12px;line-height:1.12}
-.tbody{padding:1.4rem 1.6rem 1.6rem;display:flex;flex-direction:column;flex:1}
-.tbody p{font-size:1rem;color:#39342d;flex:1}
-.tbody .go{margin-top:1.2rem;font-weight:700;font-size:.95rem;color:#1F3864}
-.topnav .links a.navgame{color:#15603a;font-weight:700}
-.topnav .links a.navgame:hover{color:#0f4a2c}
-.gameband{background:#0b120e;background-image:radial-gradient(900px 420px at 18% 0%,rgba(94,240,138,.16),transparent 62%);color:#d9e6dd;padding:7vh 0;border-bottom:1px solid #2a4a3b}
-.gb-inner{display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;align-items:center}
-@media(min-width:860px){.gb-inner{grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:3rem}}
-.gb-art{width:100%;max-width:420px;margin:0 auto;border:2px solid #2a4a3b;border-radius:6px;overflow:hidden;line-height:0;background:#0f1a13}
-.gb-art svg{display:block;width:100%;height:auto;image-rendering:pixelated}
-.gb-tag{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#0b120e;background:#5ef08a;padding:.35rem .7rem;border-radius:3px;margin-bottom:1.1rem}
-.gb-head{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.2vw,2.7rem);line-height:1.06;color:#fff;margin:0 0 .9rem;max-width:20ch}
-.gb-sub{color:rgba(217,230,221,.8);font-size:1.05rem;max-width:56ch;margin:0 0 1.7rem}
-.gb-btn{display:inline-block;background:#5ef08a;color:#06140c;text-decoration:none;font-weight:800;font-size:1.02rem;padding:.95rem 2.1rem;border-radius:4px;box-shadow:0 4px 0 #1a5a35;transition:transform .12s,filter .2s}
-.gb-btn:hover{filter:brightness(1.06);transform:translateY(-2px);box-shadow:0 6px 0 #1a5a35}
-.gb-btn:active{transform:translateY(2px);box-shadow:0 2px 0 #1a5a35}
-.gb-note{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem;color:#8fb39f;margin-top:1.1rem}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sofia+Sans+Extra+Condensed:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<nav class="topnav">
-<a class="brand" href="index.html">Clarity for the Nations</a>
-<div class="links">
-<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
-<a href="#pray">Pray for the Unreached</a>
-<div class="nav-dd">
-<button class="nav-ddbtn" aria-expanded="false">Brutal Facts Calculator <span class="caret">&#9662;</span></button>
-<div class="nav-ddmenu">
-<a href="brutal-facts-calculator-cities.html">City Brutal Facts</a>
-<a href="brutal-facts-calculator-segments.html">People Segment Brutal Facts</a>
-</div>
-</div>
-<a href="where-is-the-work.html">Where Is the Work?</a>
-<a class="navgame" href="frontier-trail.html">&#9654; Play Frontier Trail</a>
-<a href="about.html">About</a>
-</div>
-</nav>
+<script src="js/shell.js" data-part="header"></script>
 
-<header class="hero">
-<div class="wrap">
-<div class="eyebrow">Clarity for the Nations</div>
-<div class="carousel" id="car">
-<div class="cwrap">
-<a class="slide active" href="pakistan-passes-indonesia-as-most.html"><span class="mark">&ldquo;</span><p class="q">Compare countries with weighted counts, not raw people group totals.</p><span class="src">Pakistan Passes Indonesia <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="the-lost-art-of-imitation.html"><span class="mark">&ldquo;</span><p class="q">Content can be downloaded. A life has to be watched.</p><span class="src">The Lost Art of Imitation <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="who-becomes-their-tribe.html"><span class="mark">&ldquo;</span><p class="q">We read the stall as spiritual weakness. Much of it is isolation.</p><span class="src">Who Becomes Their Tribe? <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="mountains-dont-make-people-unreached.html"><span class="mark">&ldquo;</span><p class="q">It was stopped by rulers, not rocks.</p><span class="src">Mountains Don&rsquo;t Make People Unreached <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="half-the-worlds-future-leaders-are.html"><span class="mark">&ldquo;</span><p class="q">The world&rsquo;s unreached peoples have already told us who their most capable members are. They gave them plane tickets.</p><span class="src">Half the World&rsquo;s Future Leaders <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="the-most-receptive-tunisians-are.html"><span class="mark">&ldquo;</span><p class="q">Our job is to be standing at the boundary when someone crosses it.</p><span class="src">The Most Receptive Tunisians Are on the Move <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="counting-what-counts-in-oral-reliant.html"><span class="mark">&ldquo;</span><p class="q">One million was not a lie. It was a translation.</p><span class="src">Counting What Counts in Oral-Reliant Contexts <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="the-income-curve-that-built-koreas.html"><span class="mark">&ldquo;</span><p class="q">Prosperity funds the send and then quietly cancels it.</p><span class="src">The Income Curve That Built Korea&rsquo;s Missionary Force <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="research-and-strategy-belong-in-the.html"><span class="mark">&ldquo;</span><p class="q">Research is not a delay in the work. It is part of the work.</p><span class="src">Research and Strategy Belong in the Same Room <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="the-dark-side-of-missions-data.html"><span class="mark">&ldquo;</span><p class="q">Missions information is never neutral.</p><span class="src">What Missions Data Gets Wrong <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="the-sending-force-is-already-next.html"><span class="mark">&ldquo;</span><p class="q">What a Western worker spends years acquiring, a near-culture African worker often carries from birth.</p><span class="src">The Sending Force Is Already Next Door <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="the-bottleneck-decides.html"><span class="mark">&ldquo;</span><p class="q">Doing more good things is not the same as making progress.</p><span class="src">Every Phase Has a Different Bottleneck <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="the-five-functions-in-the-expansion.html"><span class="mark">&ldquo;</span><p class="q">These are not five levels to climb. They are five functions to fill.</p><span class="src">The Five Functions in the Expansion <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="the-word-became-flesh-not-a-memo.html"><span class="mark">&ldquo;</span><p class="q">A native gospel inside a foreign church is still a foreign religion.</p><span class="src">The Word Became Flesh, Not a Memo <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="extractive-churches-produce-passive.html"><span class="mark">&ldquo;</span><p class="q">Extractive churches consume priests. Inclusive churches export them.</p><span class="src">Extractive Churches Produce Passive Priests <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="everyone-is-already-ordained.html"><span class="mark">&ldquo;</span><p class="q">The priesthood is not understaffed. It is asleep at its post.</p><span class="src">Everyone Is Already Ordained <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="three-doors-one-gospel.html"><span class="mark">&ldquo;</span><p class="q">The argument was not wrong. It was aimed at the wrong door.</p><span class="src">Three Doors, One Gospel <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="japan-unreached.html"><span class="mark">&ldquo;</span><p class="q">There are more Christians in Japan than in all 3,200 frontier people groups on earth, combined.</p><span class="src">The Japan Paradox <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="alevi-invisible-millions.html"><span class="mark">&ldquo;</span><p class="q">We have spent decades trying to convert millions of people away from a religion they do not even practice.</p><span class="src">The Invisible Millions <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="gospel-of-consumption.html"><span class="mark">&ldquo;</span><p class="q">The church did not collapse from bad theology. It collapsed the decade the TV and the credit card arrived.</p><span class="src">The Gospel of Consumption <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="christmas-and-the-nations.html"><span class="mark">&ldquo;</span><p class="q">The first Gentiles to worship Jesus were Arabs.</p><span class="src">Christmas and the Nations <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="world-isnt-what-you-think.html"><span class="mark">&ldquo;</span><p class="q">The world is mostly urban, but not mostly megacity.</p><span class="src">The World Isn't What You Think <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="migration-to-mobility.html"><span class="mark">&ldquo;</span><p class="q">Lagos receives 86 migrants every hour. Maybe the closed country is just a problem we defined too narrowly.</p><span class="src">From Migration to Mobility <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="learn-to-exit.html"><span class="mark">&ldquo;</span><p class="q">We cannot finish the Great Commission until we learn to exit.</p><span class="src">Learn to Exit <span class="ar">&#8594;</span></span></a>
-<a class="slide" href="vision-for-vibes.html"><span class="mark">&ldquo;</span><p class="q">Strategy provides the momentum. The Spirit provides the steering.</p><span class="src">Have We Traded Vision for Vibes? <span class="ar">&#8594;</span></span></a>
-</div>
-<div class="controls">
-<button class="navbtn" id="prev" aria-label="Previous">&#8249;</button>
-<div class="dots" id="dots"><button class="dot active" aria-label="quote 1"></button><button class="dot" aria-label="quote 2"></button><button class="dot" aria-label="quote 3"></button><button class="dot" aria-label="quote 4"></button><button class="dot" aria-label="quote 5"></button><button class="dot" aria-label="quote 6"></button><button class="dot" aria-label="quote 7"></button><button class="dot" aria-label="quote 8"></button><button class="dot" aria-label="quote 9"></button><button class="dot" aria-label="quote 10"></button><button class="dot" aria-label="quote 11"></button><button class="dot" aria-label="quote 12"></button><button class="dot" aria-label="quote 13"></button><button class="dot" aria-label="quote 14"></button><button class="dot" aria-label="quote 15"></button><button class="dot" aria-label="quote 16"></button><button class="dot" aria-label="quote 17"></button><button class="dot" aria-label="quote 18"></button><button class="dot" aria-label="quote 19"></button><button class="dot" aria-label="quote 20"></button><button class="dot" aria-label="quote 21"></button><button class="dot" aria-label="quote 22"></button><button class="dot" aria-label="quote 23"></button><button class="dot" aria-label="quote 24"></button><button class="dot" aria-label="quote 25"></button></div>
-<button class="navbtn" id="next" aria-label="Next">&#8250;</button>
-</div>
-</div>
-<p class="tag">Interactive takes on missions, data, and the unreached. Adapted from the essays by Bud Houston.</p>
-</div>
-</header>
+<main id="main">
 
-<section class="gameband">
-<div class="wrap">
-<div class="gb-inner">
-<div class="gb-art">
-<svg viewBox="0 0 160 64" shape-rendering="crispEdges" aria-hidden="true">
-<rect x="0" y="0" width="160" height="64" fill="#0f1a13"/>
-<rect x="50" y="5" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="68" y="12" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="84" y="4" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="110" y="8" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="146" y="6" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="60" y="18" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="152" y="16" width="1" height="1" fill="#5ef08a" opacity=".7"/><rect x="96" y="6" width="1" height="1" fill="#5ef08a" opacity=".7"/>
-<rect x="20" y="8" width="10" height="10" fill="#f2b632"/><rect x="22" y="6" width="6" height="14" fill="#f2b632"/><rect x="18" y="10" width="14" height="6" fill="#f2b632"/>
-<rect x="98" y="16" width="5" height="5" fill="#1a3325"/><rect x="94" y="21" width="13" height="5" fill="#1a3325"/><rect x="90" y="26" width="21" height="5" fill="#1a3325"/><rect x="86" y="31" width="29" height="5" fill="#1a3325"/><rect x="82" y="36" width="37" height="5" fill="#1a3325"/><rect x="78" y="41" width="45" height="5" fill="#1a3325"/><rect x="74" y="46" width="53" height="4" fill="#1a3325"/>
-<rect x="99" y="16" width="3" height="1" fill="#d9e6dd"/><rect x="98" y="17" width="5" height="1" fill="#d9e6dd"/><rect x="97" y="18" width="7" height="1" fill="#d9e6dd" opacity=".6"/>
-<rect x="138" y="26" width="5" height="4" fill="#1e3a2a"/><rect x="135" y="30" width="11" height="4" fill="#1e3a2a"/><rect x="132" y="34" width="17" height="4" fill="#1e3a2a"/><rect x="129" y="38" width="23" height="4" fill="#1e3a2a"/><rect x="126" y="42" width="29" height="4" fill="#1e3a2a"/><rect x="123" y="46" width="35" height="4" fill="#1e3a2a"/>
-<rect x="40" y="22" width="5" height="4" fill="#1e3a2a"/><rect x="37" y="26" width="11" height="4" fill="#1e3a2a"/><rect x="34" y="30" width="17" height="4" fill="#1e3a2a"/><rect x="31" y="34" width="23" height="4" fill="#1e3a2a"/><rect x="28" y="38" width="29" height="4" fill="#1e3a2a"/><rect x="25" y="42" width="35" height="4" fill="#1e3a2a"/><rect x="22" y="46" width="41" height="4" fill="#1e3a2a"/>
-<rect x="41" y="23" width="3" height="1" fill="#d9e6dd"/><rect x="40" y="24" width="5" height="1" fill="#d9e6dd" opacity=".6"/>
-<rect x="104" y="46" width="4" height="3" fill="#b89a5a"/><rect x="105" y="45" width="2" height="1" fill="#8b5a2b"/><rect x="112" y="45" width="4" height="3" fill="#b89a5a"/><rect x="113" y="44" width="2" height="1" fill="#8b5a2b"/><rect x="120" y="47" width="4" height="3" fill="#b89a5a"/><rect x="121" y="46" width="2" height="1" fill="#8b5a2b"/>
-<rect x="0" y="50" width="160" height="14" fill="#2a4a3b"/><rect x="0" y="50" width="160" height="1" fill="#3b6a52"/>
-<rect x="2" y="56" width="3" height="1" fill="#b89a5a"/><rect x="8" y="57" width="3" height="1" fill="#b89a5a"/><rect x="14" y="57" width="3" height="1" fill="#b89a5a"/><rect x="20" y="58" width="3" height="1" fill="#b89a5a"/><rect x="26" y="58" width="3" height="1" fill="#b89a5a"/><rect x="32" y="58" width="3" height="1" fill="#b89a5a"/><rect x="38" y="57" width="3" height="1" fill="#b89a5a"/><rect x="44" y="57" width="3" height="1" fill="#b89a5a"/><rect x="50" y="56" width="3" height="1" fill="#b89a5a"/><rect x="56" y="55" width="3" height="1" fill="#b89a5a"/><rect x="62" y="54" width="3" height="1" fill="#b89a5a"/><rect x="68" y="54" width="3" height="1" fill="#b89a5a"/><rect x="74" y="54" width="3" height="1" fill="#b89a5a"/><rect x="80" y="55" width="3" height="1" fill="#b89a5a"/><rect x="86" y="56" width="3" height="1" fill="#b89a5a"/><rect x="92" y="57" width="3" height="1" fill="#b89a5a"/><rect x="98" y="58" width="3" height="1" fill="#b89a5a"/><rect x="104" y="58" width="3" height="1" fill="#b89a5a"/><rect x="110" y="58" width="3" height="1" fill="#b89a5a"/><rect x="116" y="57" width="3" height="1" fill="#b89a5a"/><rect x="122" y="56" width="3" height="1" fill="#b89a5a"/><rect x="128" y="55" width="3" height="1" fill="#b89a5a"/><rect x="134" y="54" width="3" height="1" fill="#b89a5a"/><rect x="140" y="54" width="3" height="1" fill="#b89a5a"/><rect x="146" y="54" width="3" height="1" fill="#b89a5a"/><rect x="152" y="55" width="3" height="1" fill="#b89a5a"/>
-<rect x="46" y="40" width="2" height="12" fill="#8b5a2b"/><rect x="40" y="40" width="14" height="5" fill="#b89a5a"/><rect x="42" y="42" width="10" height="1" fill="#3b3021"/>
-<rect x="70" y="44" width="2" height="2" fill="#f4ecd8"/><rect x="69" y="46" width="4" height="4" fill="#6fb7ff"/><rect x="69" y="50" width="1" height="2" fill="#3b3021"/><rect x="72" y="50" width="1" height="2" fill="#3b3021"/>
-</svg>
-</div>
-<div class="gb-copy">
-<div class="gb-tag">New &middot; Interactive game</div>
-<h2 class="gb-head">Try the New Frontier Trail Mission Game</h2>
-<p class="gb-sub">A journey game for the Great Commission. Choose a path, make the calls, face the barriers. The destination is not survival: it is multiplying churches among a people who have never had one.</p>
-<a class="gb-btn" href="frontier-trail.html">&#9654; Play Frontier Trail</a>
-<p class="gb-note">30 to 60 minutes &middot; one player or one room &middot; no sign up</p>
-</div>
-</div>
-</div>
+<!-- ============================== HERO ============================== -->
+<section class="hero">
+  <div class="hero-map" aria-hidden="true"><div class="map-box"><canvas id="map"></canvas></div></div>
+  <div class="wrap hero-inner">
+    <h1>Clarity that leads to <em>action.</em></h1>
+    <p class="lede">Articles, tools, and a strategy game for mission leaders, built on data about the peoples and places with the least access to the gospel.</p>
+    <div>
+      <a class="fact" href="https://joshuaproject.net">
+        <span class="fact-num">3.64B</span>
+        <span class="fact-text">people live in unreached people groups. That is 44.2% of the world.
+          <span class="fact-src">Source: Joshua Project &rarr;</span></span>
+      </a>
+    </div>
+    <p class="map-note">Each light marks frontier people groups. Source: Joshua Project.</p>
+  </div>
 </section>
 
-<section class="explore">
-<div class="wrap">
-<h2 class="big-head">Start Here</h2>
-<p class="sub">The newest pieces and the most read, or browse the full archive below.</p>
-
-<div id="quickview">
-<div class="qsec"><div class="qlabel">Most Recent</div><div class="grid" id="recentGrid"></div></div>
-<div class="qsec"><div class="qlabel">Most Popular</div><div class="grid" id="popularGrid"></div></div>
-</div>
-
-<div class="allbar"><button class="allbtn" id="allBtn">Browse all 50 pieces &#8595;</button></div>
-
-<div id="allview" hidden>
-<div class="filters" id="filters"><button class="fpill active" data-cat="all">All</button><button class="fpill" data-cat="data">Data &amp; Metrics</button><button class="fpill" data-cat="strategy">Strategy &amp; Training</button><button class="fpill" data-cat="migration">Migration &amp; Cities</button><button class="fpill" data-cat="bible">Bible &amp; Theology</button><button class="fpill" data-cat="frontier">Frontier Peoples</button><button class="fpill" data-cat="culture">Church &amp; Culture</button></div>
-<div class="grid" id="grid">
-<a class="card" data-cats="data frontier" href="pakistan-passes-indonesia-as-most.html"><div class="band" style="background:linear-gradient(135deg,#1E7A4F,#0F4A2E)"><h3 class="ctitle">Pakistan Passes Indonesia</h3></div><div class="body"><p class="blurb">A near tie in raw people group totals becomes a 15 million gap once you count who actually follows Islam.</p><span class="go" style="color:#1E7A4F">View &#8594;</span></div></a>
-<a class="card" data-cats="bible strategy" href="the-lost-art-of-imitation.html"><div class="band" style="background:linear-gradient(135deg,#A8325E,#641A37)"><h3 class="ctitle">The Lost Art of Imitation</h3></div><div class="body"><p class="blurb">The discipleship debate argues about what disciples are taught. Reproduction runs on what they have seen.</p><span class="go" style="color:#A8325E">View &#8594;</span></div></a>
-<a class="card" data-cats="frontier culture strategy" href="who-becomes-their-tribe.html"><div class="band" style="background:linear-gradient(135deg,#C4462D,#7F2A1A)"><h3 class="ctitle">Who Becomes Their Tribe?</h3></div><div class="body"><p class="blurb">People go where they belong. When following Jesus costs a new believer their community, the church has to form in its place.</p><span class="go" style="color:#C4462D">View &#8594;</span></div></a>
-<a class="card" data-cats="data frontier" href="mountains-dont-make-people-unreached.html"><div class="band" style="background:linear-gradient(135deg,#4D6A86,#2E4459)"><h3 class="ctitle">Mountains Don&rsquo;t Make People Unreached</h3></div><div class="body"><p class="blurb">The Alps did not keep the Reformation out of Tyrol. Rulers did. Then a test of terrain against 10,959 people groups.</p><span class="go" style="color:#4D6A86">View &#8594;</span></div></a>
-<a class="card" data-cats="migration strategy frontier" href="half-the-worlds-future-leaders-are.html"><div class="band" style="background:linear-gradient(135deg,#24589A,#143A6B)"><h3 class="ctitle">Half the World&rsquo;s Future Leaders</h3></div><div class="body"><p class="blurb">Selected three times before they board. Five countries host half the world&rsquo;s international students, and the sending map points at South Asia.</p><span class="go" style="color:#24589A">View &#8594;</span></div></a>
-<a class="card" data-cats="migration frontier" href="the-most-receptive-tunisians-are.html"><div class="band" style="background:linear-gradient(135deg,#B8282E,#74161A)"><h3 class="ctitle">The Most Receptive Tunisians Are on the Move</h3></div><div class="body"><p class="blurb">The Arab world&rsquo;s most secular-leaning society is losing its young to Europe. Homeland, corridor, and destination are one field.</p><span class="go" style="color:#B8282E">View &#8594;</span></div></a>
-<a class="card" data-cats="data bible" href="counting-what-counts-in-oral-reliant.html"><div class="band" style="background:linear-gradient(135deg,#7A3E8E,#4F2560)"><h3 class="ctitle">Counting What Counts in Oral-Reliant Contexts</h3></div><div class="body"><p class="blurb">One million was not a lie. It was a translation. Scripture already models how oral peoples count and report.</p><span class="go" style="color:#7A3E8E">View &#8594;</span></div></a>
-<a class="card" data-cats="data strategy" href="the-income-curve-that-built-koreas.html"><div class="band" style="background:linear-gradient(135deg,#A8761C,#7A5312)"><h3 class="ctitle">The Income Curve That Built Korea&rsquo;s Missionary Force</h3></div><div class="body"><p class="blurb">Rising income buys credentialing, mobility, and only then giving. Korea proved it runs on a schedule. Here is where the schedule is running now.</p><span class="go" style="color:#A8761C">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy migration" href="research-and-strategy-belong-in-the.html"><div class="band" style="background:linear-gradient(135deg,#0F6E7D,#094C58)"><h3 class="ctitle">Research and Strategy Belong in the Same Room</h3></div><div class="body"><p class="blurb">Three days in Abuja with 50 Nigerian leaders. Mark every guess with a G, and do not build a local strategy from a website.</p><span class="go" style="color:#0F6E7D">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy data" href="im-looking-for-two-people-maybe-thats.html"><div class="band" style="background:linear-gradient(135deg,#1E5AA8,#123C74)"><h3 class="ctitle">I&rsquo;m Looking for Two People</h3></div><div class="body"><p class="blurb">Two support-raised leadership roles on the Joshua Project research team. Explore both, and check the baseline honestly.</p><span class="go" style="color:#1E5AA8">View &#8594;</span></div></a>
-<a class="card" data-cats="data strategy" href="the-dark-side-of-missions-data.html"><div class="band" style="background:linear-gradient(135deg,#7A1F3D,#54142A)"><h3 class="ctitle">What Missions Data Gets Wrong</h3></div><div class="body"><p class="blurb">Ignorance, money, culture, and bias all bend the number before it reaches a budget. What honest reporting would look like.</p><span class="go" style="color:#7A1F3D">View &#8594;</span></div></a>
-<a class="card" data-cats="frontier strategy data" href="the-sending-force-is-already-next.html"><div class="band" style="background:linear-gradient(135deg,#B7410E,#6E2708)"><h3 class="ctitle">The Sending Force Is Already Next Door</h3></div><div class="body"><p class="blurb">5,413 workers needed. 123 million believers within a bus ride. Africa's frontier is Africa's to finish.</p><span class="go" style="color:#B7410E">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy data" href="the-bottleneck-decides.html"><div class="band" style="background:linear-gradient(135deg,#4B3FA8,#2F2670)"><h3 class="ctitle">Every Phase Has a Different Bottleneck</h3></div><div class="body"><p class="blurb">Twelve teams, four hundred villages, and a decade of no movement. One constraint governs, and it is rarely where you are working.</p><span class="go" style="color:#4B3FA8">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy bible" href="the-five-functions-in-the-expansion.html"><div class="band" style="background:linear-gradient(135deg,#3F7D4B,#274E30)"><h3 class="ctitle">The Five Functions in the Expansion</h3></div><div class="body"><p class="blurb">Not five levels to climb. Five functions to fill, and every one advances by letting go.</p><span class="go" style="color:#3F7D4B">View &#8594;</span></div></a>
-<a class="card" data-cats="bible strategy culture" href="the-word-became-flesh-not-a-memo.html"><div class="band" style="background:linear-gradient(135deg,#9C5B21,#6B3D13)"><h3 class="ctitle">The Word Became Flesh, Not a Memo</h3></div><div class="body"><p class="blurb">The kernel never changes. The shell must be native. God wrapped the ultimate new thing in the ultimate familiar form.</p><span class="go" style="color:#9C5B21">View &#8594;</span></div></a>
-<a class="card" data-cats="culture strategy" href="extractive-churches-produce-passive.html"><div class="band" style="background:linear-gradient(135deg,#8C2F4F,#5E1F35)"><h3 class="ctitle">Extractive Churches Produce Passive Priests</h3></div><div class="body"><p class="blurb">More discipleship material than ever, and still few disciples. The weakness is the design, not the content.</p><span class="go" style="color:#8C2F4F">View &#8594;</span></div></a>
-<a class="card" data-cats="bible strategy" href="everyone-is-already-ordained.html"><div class="band" style="background:linear-gradient(135deg,#A86A16,#6E430C)"><h3 class="ctitle">Everyone Is Already Ordained</h3></div><div class="body"><p class="blurb">The frontier is not short on workers. It is short on believers who know they were ordained to reach it.</p><span class="go" style="color:#A86A16">View &#8594;</span></div></a>
-<a class="card" data-cats="bible strategy culture" href="three-doors-one-gospel.html"><div class="band" style="background:linear-gradient(135deg,#6B4FA0,#463275)"><h3 class="ctitle">Three Doors, One Gospel</h3></div><div class="body"><p class="blurb">The same gospel needs a different door in every worldview: power, truth, or love.</p><span class="go" style="color:#6B4FA0">View &#8594;</span></div></a>
-<a class="card" data-cats="bible strategy" href="even-jesus-had-a-capernaum.html"><div class="band" style="background:linear-gradient(135deg,#C05A2E,#8a3d1d)"><h3 class="ctitle">Even Jesus Had a Capernaum</h3></div><div class="body"><p class="blurb">Capernaum saw more of the Kingdom than any town on earth, and repented least. The most resourced field was the least responsive.</p><span class="go" style="color:#C05A2E">View &#8594;</span></div></a>
-<a class="card" data-cats="frontier migration strategy" href="uzbekistan-opening.html"><div class="band" style="background:linear-gradient(135deg,#0F6E56,#085041)"><h3 class="ctitle">Uzbekistan Is Opening</h3></div><div class="body"><p class="blurb">An $8.2 billion remittance flow is really a network map for reaching a frontier people.</p><span class="go" style="color:#0F6E56">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy culture" href="operators-not-graduates.html"><div class="band" style="background:linear-gradient(135deg,#0B1F33,#0E2A45)"><h3 class="ctitle">Operators, Not Graduates</h3></div><div class="body"><p class="blurb">Missions trains students when it needs to forge operators. What Top Gun understood.</p><span class="go" style="color:#0B1F33">View &#8594;</span></div></a>
-<a class="card" data-cats="data frontier strategy" href="japan-unreached.html"><div class="band" style="background:linear-gradient(135deg,#2E4374,#243456)"><h3 class="ctitle">The Japan Paradox</h3></div><div class="body"><p class="blurb">More Christians than all 3,200 frontier groups combined. Japan needs oxygen, not a spark.</p><span class="go" style="color:#2E4374">View &#8594;</span></div></a>
-<a class="card" data-cats="culture strategy" href="gospel-of-consumption.html"><div class="band" style="background:linear-gradient(135deg,#9A3B2E,#6f281e)"><h3 class="ctitle">The Gospel of Consumption</h3></div><div class="body"><p class="blurb">The church did not collapse from bad theology. It collapsed with the TV and the credit card.</p><span class="go" style="color:#9A3B2E">View &#8594;</span></div></a>
-<a class="card" data-cats="data strategy" href="asking-the-wrong-question.html"><div class="band" style="background:linear-gradient(135deg,#137A6B,#0d544a)"><h3 class="ctitle">Asking the Wrong Question</h3></div><div class="body"><p class="blurb">Two peoples, same 0.5 percent, opposite realities. The metric that actually matters.</p><span class="go" style="color:#137A6B">View &#8594;</span></div></a>
-<a class="card" data-cats="bible strategy migration" href="multi-node-strategy.html"><div class="band" style="background:linear-gradient(135deg,#34507A,#26405f)"><h3 class="ctitle">Multi-Node Strategy</h3></div><div class="body"><p class="blurb">Jesus and Paul both ran a portfolio of nodes. The logic was the strategy.</p><span class="go" style="color:#34507A">View &#8594;</span></div></a>
-<a class="card" data-cats="data frontier" href="alevi-invisible-millions.html"><div class="band" style="background:linear-gradient(135deg,#B22234,#7d1623)"><h3 class="ctitle">The Invisible Millions</h3></div><div class="body"><p class="blurb">Millions of Alevis in Turkey, hidden inside one solid block of red.</p><span class="go" style="color:#B22234">View &#8594;</span></div></a>
-<a class="card" data-cats="data strategy" href="counting-what-counts.html"><div class="band" style="background:linear-gradient(135deg,#3B6D11,#27500a)"><h3 class="ctitle">Counting What Counts</h3></div><div class="body"><p class="blurb">Track the few metrics that match the phase you are actually in.</p><span class="go" style="color:#3B6D11">View &#8594;</span></div></a>
-<a class="card" data-cats="data migration" href="world-isnt-what-you-think.html"><div class="band" style="background:linear-gradient(135deg,#185FA5,#0c447c)"><h3 class="ctitle">The World Isn't What You Think</h3></div><div class="body"><p class="blurb">Mostly urban, but not mostly megacity. People groups are networks, not dots.</p><span class="go" style="color:#185FA5">View &#8594;</span></div></a>
-<a class="card" data-cats="bible frontier" href="christmas-and-the-nations.html"><div class="band" style="background:linear-gradient(135deg,#1B3A5B,#11293f)"><h3 class="ctitle">Christmas and the Nations</h3></div><div class="body"><p class="blurb">The first Gentiles to worship Jesus were Arabs. The lands that sent gold are now barely reached.</p><span class="go" style="color:#1B3A5B">View &#8594;</span></div></a>
-<a class="card" data-cats="migration strategy" href="following-the-funds.html"><div class="band" style="background:linear-gradient(135deg,#9A7B2E,#6f5820)"><h3 class="ctitle">Following the Funds</h3></div><div class="body"><p class="blurb">Migrants sent home $650 billion in 2023. That money is a roadmap for the Great Commission.</p><span class="go" style="color:#9A7B2E">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy culture" href="why-mobilization-misses.html"><div class="band" style="background:linear-gradient(135deg,#6A4FB3,#4a3792)"><h3 class="ctitle">Why Mobilization Misses</h3></div><div class="body"><p class="blurb">A passionate rookie and a comfortable veteran fail for opposite reasons. One fix cannot serve both.</p><span class="go" style="color:#6A4FB3">View &#8594;</span></div></a>
-<a class="card" data-cats="culture frontier" href="walking-through-open-doors.html"><div class="band" style="background:linear-gradient(135deg,#2F6B4F,#1f4a37)"><h3 class="ctitle">Walking Through Open Doors</h3></div><div class="body"><p class="blurb">Ramadan is not a barrier to your Muslim neighbor. It is a once-a-year open door.</p><span class="go" style="color:#2F6B4F">View &#8594;</span></div></a>
-<a class="card" data-cats="data strategy" href="why-leaders-dont-need-more-data.html"><div class="band" style="background:linear-gradient(135deg,#1C6E8C,#124f66)"><h3 class="ctitle">Why Leaders Don't Need More Data</h3></div><div class="body"><p class="blurb">His country looked over 50 percent Christian. He never heard the name of Jesus until he was 29.</p><span class="go" style="color:#1C6E8C">View &#8594;</span></div></a>
-<a class="card" data-cats="data strategy" href="why-mission-research-matters.html"><div class="band" style="background:linear-gradient(135deg,#455A9E,#33457a)"><h3 class="ctitle">Why Mission Research Matters</h3></div><div class="body"><p class="blurb">Every decision your team makes is already shaped by research. The only question is whether you do it well.</p><span class="go" style="color:#455A9E">View &#8594;</span></div></a>
-<a class="card" data-cats="frontier migration" href="when-the-homeland-is-unreachable.html"><div class="band" style="background:linear-gradient(135deg,#B5603A,#8a4527)"><h3 class="ctitle">When the Homeland Is Unreachable</h3></div><div class="body"><p class="blurb">40 million Yemenis, a homeland welded shut, and a diaspora wide open.</p><span class="go" style="color:#B5603A">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy data" href="the-activity-trap.html"><div class="band" style="background:linear-gradient(135deg,#4A5A6A,#36434f)"><h3 class="ctitle">The Activity Trap</h3></div><div class="body"><p class="blurb">The military stopped counting bombs dropped. Missions must stop counting activity and measure effect.</p><span class="go" style="color:#4A5A6A">View &#8594;</span></div></a>
-<a class="card" data-cats="data culture" href="young-americans-religion.html"><div class="band" style="background:linear-gradient(135deg,#7A4B6B,#573349)"><h3 class="ctitle">What the Data Says</h3></div><div class="body"><p class="blurb">The youth-revival story is not in the data. The freefall stopped, but that is not revival.</p><span class="go" style="color:#7A4B6B">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy" href="ego-and-logo.html"><div class="band" style="background:linear-gradient(135deg,#2C6E63,#1d4a43)"><h3 class="ctitle">Leave Your Ego and Logo</h3></div><div class="body"><p class="blurb">Same city, same people group, different logos. The Great Commission is not a competition.</p><span class="go" style="color:#2C6E63">View &#8594;</span></div></a>
-<a class="card" data-cats="bible culture" href="every-map-has-a-fault.html"><div class="band" style="background:linear-gradient(135deg,#B5852F,#8a631f)"><h3 class="ctitle">Every Map Has a Fault</h3></div><div class="body"><p class="blurb">A worldview is a map. Find where it stops matching reality, and start there.</p><span class="go" style="color:#B5852F">View &#8594;</span></div></a>
-<a class="card" data-cats="migration frontier" href="labor-shortage.html"><div class="band" style="background:linear-gradient(135deg,#5E7A3A,#45591f)"><h3 class="ctitle">The Labor Shortage</h3></div><div class="body"><p class="blurb">An aging world and a youth wave are colliding. Economics is moving the unreached into reach.</p><span class="go" style="color:#5E7A3A">View &#8594;</span></div></a>
-<a class="card" data-cats="frontier strategy" href="turkmenistan-2026.html"><div class="band" style="background:linear-gradient(135deg,#46637E,#324c63)"><h3 class="ctitle">Turkmenistan 2026</h3></div><div class="body"><p class="blurb">One of the world's most closed countries just cracked its door. A signal, not a green light.</p><span class="go" style="color:#46637E">View &#8594;</span></div></a>
-<a class="card" data-cats="migration strategy" href="city-is-the-village.html"><div class="band" style="background:linear-gradient(135deg,#4F7355,#38543d)"><h3 class="ctitle">The City Is the Village</h3></div><div class="body"><p class="blurb">A Nairobi taxi driver, fifteen years in the city, still buried in his village. Reach one, reach a village.</p><span class="go" style="color:#4F7355">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy data" href="four-questions.html"><div class="band" style="background:linear-gradient(135deg,#1F3A5F,#14283f)"><h3 class="ctitle">The Four Questions</h3></div><div class="body"><p class="blurb">Who, what, how, and how are we doing. The four questions every missionary must answer, in order.</p><span class="go" style="color:#1F3A5F">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy frontier" href="the-watched-world.html"><div class="band" style="background:linear-gradient(135deg,#5C4A6E,#423450)"><h3 class="ctitle">The Watched World</h3></div><div class="body"><p class="blurb">In a surveillance state, who can see you matters as much as who is unreached.</p><span class="go" style="color:#5C4A6E">View &#8594;</span></div></a>
-<a class="card" data-cats="bible strategy" href="learn-to-exit.html"><div class="band" style="background:linear-gradient(135deg,#3B6D55,#27503e)"><h3 class="ctitle">Learn to Exit</h3></div><div class="body"><p class="blurb">We strip the L off MAWL. We cannot finish the Great Commission until we learn to leave.</p><span class="go" style="color:#3B6D55">View &#8594;</span></div></a>
-<a class="card" data-cats="bible culture" href="with-therefore-sent.html"><div class="band" style="background:linear-gradient(135deg,#C0703A,#8a4d27)"><h3 class="ctitle">With, Therefore Sent</h3></div><div class="body"><p class="blurb">Not grow then go. With-ness produces sent-ness. Every gift, every life, every vocation.</p><span class="go" style="color:#C0703A">View &#8594;</span></div></a>
-<a class="card" data-cats="migration frontier" href="sea-of-plastic.html"><div class="band" style="background:linear-gradient(135deg,#1C7FA0,#125b73)"><h3 class="ctitle">The Sea of Plastic</h3></div><div class="body"><p class="blurb">A field of greenhouses visible from space, a migrant labor force, a gospel node hiding in plain sight.</p><span class="go" style="color:#1C7FA0">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy frontier migration" href="geography-still-governs.html"><div class="band" style="background:linear-gradient(135deg,#7A5A3A,#57401f)"><h3 class="ctitle">Why Geography Still Governs</h3></div><div class="body"><p class="blurb">Terrain shaped who is unreached. Now the hardware is failing, and people are moving.</p><span class="go" style="color:#7A5A3A">View &#8594;</span></div></a>
-<a class="card" data-cats="migration strategy" href="migration-to-mobility.html"><div class="band" style="background:linear-gradient(135deg,#3A4E8C,#2a3a6a)"><h3 class="ctitle">From Migration to Mobility</h3></div><div class="body"><p class="blurb">Stop asking only where people live. Ask where they pass through, and stand at the hub.</p><span class="go" style="color:#3A4E8C">View &#8594;</span></div></a>
-<a class="card" data-cats="strategy bible" href="vision-for-vibes.html"><div class="band" style="background:linear-gradient(135deg,#6E4B7A,#4f3459)"><h3 class="ctitle">Have We Traded Vision for Vibes?</h3></div><div class="body"><p class="blurb">Vague hope is not a strategy. Pick one people group and do whatever it takes.</p><span class="go" style="color:#6E4B7A">View &#8594;</span></div></a>
-</div>
-</div>
-</div>
+<!-- =========================== FOUR DOORS =========================== -->
+<section class="doors" aria-label="Choose a path">
+  <div class="wrap doors-grid">
+    <a class="door" href="articles.html">
+      <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="5" width="30" height="38"/><path d="M16 15h16M16 22h16"/><path class="a" d="M16 29h9"/><path d="M16 36h13"/></svg>
+      <span class="door-verb">Read</span>
+      <span class="door-desc">Articles on strategy, prioritization, and honest measures of progress.</span>
+      <span class="door-meta"><span data-article-count>50 articles</span><span aria-hidden="true">&rarr;</span></span>
+    </a>
+    <a class="door" href="tools.html">
+      <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 42h36"/><rect x="10" y="28" width="6" height="14"/><rect x="21" y="20" width="6" height="22"/><rect class="af" x="32" y="8" width="6" height="34"/></svg>
+      <span class="door-verb">Use the tools</span>
+      <span class="door-desc">Two Brutal Facts calculators and a guide to the phase of the work among one people.</span>
+      <span class="door-meta"><span>3 mission tools</span><span aria-hidden="true">&rarr;</span></span>
+    </a>
+    <a class="door" href="frontier-trail.html">
+      <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 40c8 0 8-10 16-10s8-10 16-10" stroke-dasharray="1 5"/><rect x="4" y="38" width="4" height="4"/><rect x="20" y="28" width="4" height="4"/><path d="M38 20V6"/><path class="af" d="M39 6h7v6h-7z"/></svg>
+      <span class="door-verb">Play</span>
+      <span class="door-desc">Frontier Trail, a journey game for the Great Commission. One player or one room.</span>
+      <span class="door-meta"><span>30 to 60 min</span><span aria-hidden="true">&rarr;</span></span>
+    </a>
+    <a class="door" href="pray.html">
+      <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 38h40"/><path d="M12 38a12 12 0 0 1 24 0"/><circle class="af" cx="24" cy="38" r="4"/><path class="a" d="M24 18v-8M10.5 24.5l-5-5M37.5 24.5l5-5"/></svg>
+      <span class="door-verb">Pray</span>
+      <span class="door-desc">Open the map of frontier peoples and pray for them by name.</span>
+      <span class="door-meta"><span>Frontier peoples map</span><span aria-hidden="true">&rarr;</span></span>
+    </a>
+  </div>
 </section>
 
-<section class="tools">
-<div class="wrap">
-<div class="eyebrow">Interactive tools</div>
-<h2 class="big-head">Run the numbers</h2>
-<p class="sub">Calculators that turn lostness into concrete, local figures.</p>
-<div class="toolgrid">
-<a class="toolcard" href="brutal-facts-calculator-cities.html"><div class="tband"><span class="ttag">Calculator</span><h3>City Brutal Facts</h3></div><div class="tbody"><p>Choose a North American metro and see how many people likely have no relationship with Jesus, and what that means.</p><span class="go">Open the calculator &#8594;</span></div></a>
-<a class="toolcard" href="brutal-facts-calculator-segments.html"><div class="tband"><span class="ttag">Calculator</span><h3>People Segment Brutal Facts</h3></div><div class="tbody"><p>Size the lostness of a people segment and the scale of what it would take to reach it.</p><span class="go">Open the calculator &#8594;</span></div></a>
-<a class="toolcard" href="where-is-the-work.html"><div class="tband"><span class="ttag">Questionnaire</span><h3>Where Is the Work?</h3></div><div class="tbody"><p>Answer a few questions to see the phase of the work among one people, the part you play, and your next steps.</p><span class="go">Find your phase →</span></div></a>
-</div>
-</div>
+<!-- ============================ FEATURED ============================ -->
+<!-- One slot. Swap the content when something new launches. -->
+<section class="section">
+  <div class="wrap">
+    <div class="feature">
+      <div class="feature-copy">
+        <p class="eyebrow"><b>New</b> &middot; Interactive game</p>
+        <h2>Frontier Trail</h2>
+        <p>A journey game for the Great Commission. Choose a path, make decisions, and face barriers on the way to multiplying churches among a people who have never had one.</p>
+        <ul class="specs"><li>30 to 60 minutes</li><li>One player or one room</li><li>No sign-up</li></ul>
+        <a class="btn btn-solid btn-lg" href="frontier-trail.html">&#9654; Play Frontier Trail</a>
+      </div>
+      <div class="feature-art"><svg class="trail-art" viewBox="0 0 132 80" preserveAspectRatio="xMidYMid slice" shape-rendering="crispEdges" role="img" aria-label="Pixel art trail with eight waypoints numbered 0 to 7 leading toward a rising sun"><rect x="0" y="0" width="132" height="16" fill="#0C1420"/><rect x="0" y="16" width="132" height="11" fill="#101B2C"/><rect x="0" y="27" width="132" height="9" fill="#17263B"/><rect x="0" y="36" width="132" height="7" fill="#243049"/><rect x="0" y="43" width="132" height="5" fill="#3D3550"/><rect x="0" y="48" width="132" height="6" fill="#6B4444"/><rect x="0" y="54" width="132" height="26" fill="#0D151E"/><rect x="9" y="5" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="23" y="12" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="37" y="4" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="52" y="18" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="66" y="8" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="81" y="13" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="112" y="9" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="124" y="6" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="18" y="23" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="60" y="26" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="118" y="24" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="44" y="10" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="128" y="17" width="1" height="1" fill="#EEE9DD" opacity=".55"/><rect x="91" y="21" width="10" height="1" fill="#F5B83D"/><rect x="90" y="22" width="12" height="1" fill="#F5B83D"/><rect x="88" y="23" width="16" height="1" fill="#F5B83D"/><rect x="88" y="24" width="16" height="1" fill="#F5B83D"/><rect x="87" y="25" width="18" height="1" fill="#F5B83D"/><rect x="86" y="26" width="20" height="1" fill="#F5B83D"/><rect x="86" y="27" width="20" height="1" fill="#F5B83D"/><rect x="85" y="28" width="22" height="1" fill="#F5B83D"/><rect x="85" y="29" width="22" height="1" fill="#F5B83D"/><rect x="85" y="30" width="22" height="1" fill="#F5B83D"/><rect x="85" y="31" width="22" height="1" fill="#F5B83D"/><rect x="85" y="32" width="22" height="1" fill="#F5B83D"/><rect x="85" y="33" width="22" height="1" fill="#F5B83D"/><rect x="85" y="34" width="22" height="1" fill="#F5B83D"/><rect x="86" y="35" width="20" height="1" fill="#F5B83D"/><rect x="86" y="36" width="20" height="1" fill="#F5B83D"/><rect x="87" y="37" width="18" height="1" fill="#F5B83D"/><rect x="88" y="38" width="16" height="1" fill="#F5B83D"/><rect x="88" y="39" width="16" height="1" fill="#F5B83D"/><rect x="90" y="40" width="12" height="1" fill="#F5B83D"/><rect x="91" y="41" width="10" height="1" fill="#F5B83D"/><rect x="85" y="34" width="22" height="1" fill="#17263B"/><rect x="85" y="37" width="22" height="1" fill="#243049"/><rect x="85" y="39" width="22" height="2" fill="#243049"/><rect x="0" y="40" width="2" height="16" fill="#24364B"/><rect x="2" y="38" width="2" height="18" fill="#24364B"/><rect x="4" y="36" width="2" height="20" fill="#24364B"/><rect x="6" y="34" width="2" height="22" fill="#24364B"/><rect x="8" y="34" width="2" height="22" fill="#24364B"/><rect x="10" y="34" width="2" height="22" fill="#24364B"/><rect x="12" y="36" width="2" height="20" fill="#24364B"/><rect x="14" y="36" width="2" height="20" fill="#24364B"/><rect x="16" y="38" width="2" height="18" fill="#24364B"/><rect x="18" y="40" width="2" height="16" fill="#24364B"/><rect x="20" y="42" width="2" height="14" fill="#24364B"/><rect x="22" y="44" width="2" height="12" fill="#24364B"/><rect x="24" y="46" width="2" height="10" fill="#24364B"/><rect x="26" y="46" width="2" height="10" fill="#24364B"/><rect x="28" y="48" width="2" height="8" fill="#24364B"/><rect x="30" y="46" width="2" height="10" fill="#24364B"/><rect x="32" y="46" width="2" height="10" fill="#24364B"/><rect x="34" y="46" width="2" height="10" fill="#24364B"/><rect x="36" y="46" width="2" height="10" fill="#24364B"/><rect x="38" y="46" width="2" height="10" fill="#24364B"/><rect x="40" y="46" width="2" height="10" fill="#24364B"/><rect x="42" y="46" width="2" height="10" fill="#24364B"/><rect x="44" y="48" width="2" height="8" fill="#24364B"/><rect x="46" y="48" width="2" height="8" fill="#24364B"/><rect x="48" y="50" width="2" height="6" fill="#24364B"/><rect x="50" y="52" width="2" height="4" fill="#24364B"/><rect x="52" y="54" width="2" height="2" fill="#24364B"/><rect x="54" y="54" width="2" height="2" fill="#24364B"/><rect x="56" y="56" width="2" height="0" fill="#24364B"/><rect x="58" y="56" width="2" height="0" fill="#24364B"/><rect x="60" y="54" width="2" height="2" fill="#24364B"/><rect x="62" y="54" width="2" height="2" fill="#24364B"/><rect x="64" y="52" width="2" height="4" fill="#24364B"/><rect x="66" y="50" width="2" height="6" fill="#24364B"/><rect x="68" y="48" width="2" height="8" fill="#24364B"/><rect x="70" y="44" width="2" height="12" fill="#24364B"/><rect x="72" y="44" width="2" height="12" fill="#24364B"/><rect x="74" y="42" width="2" height="14" fill="#24364B"/><rect x="76" y="40" width="2" height="16" fill="#24364B"/><rect x="78" y="40" width="2" height="16" fill="#24364B"/><rect x="80" y="40" width="2" height="16" fill="#24364B"/><rect x="82" y="42" width="2" height="14" fill="#24364B"/><rect x="84" y="42" width="2" height="14" fill="#24364B"/><rect x="86" y="42" width="2" height="14" fill="#24364B"/><rect x="88" y="44" width="2" height="12" fill="#24364B"/><rect x="90" y="42" width="2" height="14" fill="#24364B"/><rect x="92" y="42" width="2" height="14" fill="#24364B"/><rect x="94" y="42" width="2" height="14" fill="#24364B"/><rect x="96" y="40" width="2" height="16" fill="#24364B"/><rect x="98" y="38" width="2" height="18" fill="#24364B"/><rect x="100" y="38" width="2" height="18" fill="#24364B"/><rect x="102" y="36" width="2" height="20" fill="#24364B"/><rect x="104" y="36" width="2" height="20" fill="#24364B"/><rect x="106" y="36" width="2" height="20" fill="#24364B"/><rect x="108" y="36" width="2" height="20" fill="#24364B"/><rect x="110" y="36" width="2" height="20" fill="#24364B"/><rect x="112" y="38" width="2" height="18" fill="#24364B"/><rect x="114" y="40" width="2" height="16" fill="#24364B"/><rect x="116" y="44" width="2" height="12" fill="#24364B"/><rect x="118" y="46" width="2" height="10" fill="#24364B"/><rect x="120" y="48" width="2" height="8" fill="#24364B"/><rect x="122" y="50" width="2" height="6" fill="#24364B"/><rect x="124" y="50" width="2" height="6" fill="#24364B"/><rect x="126" y="52" width="2" height="4" fill="#24364B"/><rect x="128" y="52" width="2" height="4" fill="#24364B"/><rect x="130" y="52" width="2" height="4" fill="#24364B"/><rect x="0" y="52" width="2" height="28" fill="#162330"/><rect x="2" y="52" width="2" height="28" fill="#162330"/><rect x="4" y="52" width="2" height="28" fill="#162330"/><rect x="6" y="54" width="2" height="26" fill="#162330"/><rect x="8" y="56" width="2" height="24" fill="#162330"/><rect x="10" y="58" width="2" height="22" fill="#162330"/><rect x="12" y="58" width="2" height="22" fill="#162330"/><rect x="14" y="60" width="2" height="20" fill="#162330"/><rect x="16" y="62" width="2" height="18" fill="#162330"/><rect x="18" y="62" width="2" height="18" fill="#162330"/><rect x="20" y="60" width="2" height="20" fill="#162330"/><rect x="22" y="60" width="2" height="20" fill="#162330"/><rect x="24" y="58" width="2" height="22" fill="#162330"/><rect x="26" y="58" width="2" height="22" fill="#162330"/><rect x="28" y="58" width="2" height="22" fill="#162330"/><rect x="30" y="56" width="2" height="24" fill="#162330"/><rect x="32" y="58" width="2" height="22" fill="#162330"/><rect x="34" y="58" width="2" height="22" fill="#162330"/><rect x="36" y="60" width="2" height="20" fill="#162330"/><rect x="38" y="60" width="2" height="20" fill="#162330"/><rect x="40" y="62" width="2" height="18" fill="#162330"/><rect x="42" y="62" width="2" height="18" fill="#162330"/><rect x="44" y="62" width="2" height="18" fill="#162330"/><rect x="46" y="62" width="2" height="18" fill="#162330"/><rect x="48" y="60" width="2" height="20" fill="#162330"/><rect x="50" y="58" width="2" height="22" fill="#162330"/><rect x="52" y="58" width="2" height="22" fill="#162330"/><rect x="54" y="56" width="2" height="24" fill="#162330"/><rect x="56" y="54" width="2" height="26" fill="#162330"/><rect x="58" y="54" width="2" height="26" fill="#162330"/><rect x="60" y="54" width="2" height="26" fill="#162330"/><rect x="62" y="54" width="2" height="26" fill="#162330"/><rect x="64" y="56" width="2" height="24" fill="#162330"/><rect x="66" y="56" width="2" height="24" fill="#162330"/><rect x="68" y="56" width="2" height="24" fill="#162330"/><rect x="70" y="56" width="2" height="24" fill="#162330"/><rect x="72" y="56" width="2" height="24" fill="#162330"/><rect x="74" y="56" width="2" height="24" fill="#162330"/><rect x="76" y="54" width="2" height="26" fill="#162330"/><rect x="78" y="52" width="2" height="28" fill="#162330"/><rect x="80" y="50" width="2" height="30" fill="#162330"/><rect x="82" y="48" width="2" height="32" fill="#162330"/><rect x="84" y="48" width="2" height="32" fill="#162330"/><rect x="86" y="48" width="2" height="32" fill="#162330"/><rect x="88" y="48" width="2" height="32" fill="#162330"/><rect x="90" y="50" width="2" height="30" fill="#162330"/><rect x="92" y="50" width="2" height="30" fill="#162330"/><rect x="94" y="52" width="2" height="28" fill="#162330"/><rect x="96" y="52" width="2" height="28" fill="#162330"/><rect x="98" y="54" width="2" height="26" fill="#162330"/><rect x="100" y="52" width="2" height="28" fill="#162330"/><rect x="102" y="52" width="2" height="28" fill="#162330"/><rect x="104" y="50" width="2" height="30" fill="#162330"/><rect x="106" y="50" width="2" height="30" fill="#162330"/><rect x="108" y="48" width="2" height="32" fill="#162330"/><rect x="110" y="48" width="2" height="32" fill="#162330"/><rect x="112" y="48" width="2" height="32" fill="#162330"/><rect x="114" y="50" width="2" height="30" fill="#162330"/><rect x="116" y="50" width="2" height="30" fill="#162330"/><rect x="118" y="52" width="2" height="28" fill="#162330"/><rect x="120" y="54" width="2" height="26" fill="#162330"/><rect x="122" y="56" width="2" height="24" fill="#162330"/><rect x="124" y="56" width="2" height="24" fill="#162330"/><rect x="126" y="58" width="2" height="22" fill="#162330"/><rect x="128" y="58" width="2" height="22" fill="#162330"/><rect x="130" y="56" width="2" height="24" fill="#162330"/><rect x="0" y="63" width="132" height="17" fill="#0D151E"/><rect x="19" y="67" width="1" height="1" fill="#94A1AF"/><rect x="22" y="67" width="1" height="1" fill="#94A1AF"/><rect x="26" y="67" width="1" height="1" fill="#94A1AF"/><rect x="33" y="66" width="1" height="1" fill="#94A1AF"/><rect x="37" y="66" width="1" height="1" fill="#94A1AF"/><rect x="40" y="65" width="1" height="1" fill="#94A1AF"/><rect x="48" y="63" width="1" height="1" fill="#94A1AF"/><rect x="51" y="63" width="1" height="1" fill="#94A1AF"/><rect x="55" y="62" width="1" height="1" fill="#94A1AF"/><rect x="62" y="61" width="1" height="1" fill="#94A1AF"/><rect x="66" y="62" width="1" height="1" fill="#94A1AF"/><rect x="69" y="62" width="1" height="1" fill="#94A1AF"/><rect x="77" y="62" width="1" height="1" fill="#94A1AF"/><rect x="80" y="62" width="1" height="1" fill="#94A1AF"/><rect x="84" y="61" width="1" height="1" fill="#94A1AF"/><rect x="91" y="60" width="1" height="1" fill="#94A1AF"/><rect x="94" y="59" width="1" height="1" fill="#94A1AF"/><rect x="98" y="58" width="1" height="1" fill="#94A1AF"/><rect x="105" y="57" width="1" height="1" fill="#94A1AF"/><rect x="109" y="56" width="1" height="1" fill="#94A1AF"/><rect x="112" y="56" width="1" height="1" fill="#94A1AF"/><rect x="14" y="66" width="3" height="3" fill="#F5B83D"/><text x="15.5" y="73.5" text-anchor="middle" font-size="3.2" fill="#EEE9DD" font-family="IBM Plex Mono, ui-monospace, monospace">0</text><rect x="28" y="66" width="3" height="3" fill="#F5B83D"/><text x="29.5" y="73.5" text-anchor="middle" font-size="3.2" fill="#EEE9DD" font-family="IBM Plex Mono, ui-monospace, monospace">1</text><rect x="43" y="63" width="3" height="3" fill="#F5B83D"/><text x="44.5" y="70.5" text-anchor="middle" font-size="3.2" fill="#EEE9DD" font-family="IBM Plex Mono, ui-monospace, monospace">2</text><rect x="57" y="60" width="3" height="3" fill="#F5B83D"/><text x="58.5" y="67.5" text-anchor="middle" font-size="3.2" fill="#EEE9DD" font-family="IBM Plex Mono, ui-monospace, monospace">3</text><rect x="72" y="61" width="3" height="3" fill="#F5B83D"/><text x="73.5" y="68.5" text-anchor="middle" font-size="3.2" fill="#EEE9DD" font-family="IBM Plex Mono, ui-monospace, monospace">4</text><rect x="86" y="60" width="3" height="3" fill="#F5B83D"/><text x="87.5" y="67.5" text-anchor="middle" font-size="3.2" fill="#EEE9DD" font-family="IBM Plex Mono, ui-monospace, monospace">5</text><rect x="100" y="56" width="3" height="3" fill="#F5B83D"/><text x="101.5" y="63.5" text-anchor="middle" font-size="3.2" fill="#EEE9DD" font-family="IBM Plex Mono, ui-monospace, monospace">6</text><rect x="115" y="54" width="3" height="3" fill="#F5B83D"/><text x="116.5" y="61.5" text-anchor="middle" font-size="3.2" fill="#EEE9DD" font-family="IBM Plex Mono, ui-monospace, monospace">7</text><rect x="116" y="46" width="1" height="8" fill="#EEE9DD"/><rect x="117" y="46" width="4" height="3" fill="#F5B83D"/></svg></div>
+    </div>
+  </div>
 </section>
 
-<section class="cta-band">
-<div class="wrap">
-<h2>Subscribe to never miss a new article</h2>
-<a class="cta-btn" href="https://clarity4thenations.substack.com/subscribe">Subscribe to Clarity for the Nations</a>
-</div>
+<!-- ========================= LATEST ARTICLES =========================
+     The three newest. When you publish a new one, replace the oldest card here
+     and add the article to js/articles.js. -->
+<section class="section" id="articles">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">From the Substack</p><h2>Latest articles</h2></div>
+      <a class="more" href="articles.html">Browse all <span data-article-total>50</span> articles &rarr;</a>
+    </div>
+    <div class="essays">
+
+      <a class="essay" href="pakistan-passes-indonesia-as-most.html">
+        <svg class="essay-art art" viewBox="0 0 320 180" role="img" aria-label="Two rows of dots. The lower row runs six dots longer, marked about 15 million.">
+          <g fill="#2F4358"><circle cx="8" cy="70" r="4.5"/><circle cx="24" cy="70" r="4.5"/><circle cx="40" cy="70" r="4.5"/><circle cx="56" cy="70" r="4.5"/><circle cx="72" cy="70" r="4.5"/><circle cx="88" cy="70" r="4.5"/><circle cx="104" cy="70" r="4.5"/><circle cx="120" cy="70" r="4.5"/><circle cx="136" cy="70" r="4.5"/><circle cx="152" cy="70" r="4.5"/><circle cx="168" cy="70" r="4.5"/><circle cx="184" cy="70" r="4.5"/><circle cx="200" cy="70" r="4.5"/>
+          <circle cx="8" cy="112" r="4.5"/><circle cx="24" cy="112" r="4.5"/><circle cx="40" cy="112" r="4.5"/><circle cx="56" cy="112" r="4.5"/><circle cx="72" cy="112" r="4.5"/><circle cx="88" cy="112" r="4.5"/><circle cx="104" cy="112" r="4.5"/><circle cx="120" cy="112" r="4.5"/><circle cx="136" cy="112" r="4.5"/><circle cx="152" cy="112" r="4.5"/><circle cx="168" cy="112" r="4.5"/><circle cx="184" cy="112" r="4.5"/><circle cx="200" cy="112" r="4.5"/></g>
+          <g fill="#F5B83D"><circle cx="216" cy="112" r="4.5"/><circle cx="232" cy="112" r="4.5"/><circle cx="248" cy="112" r="4.5"/><circle cx="264" cy="112" r="4.5"/><circle cx="280" cy="112" r="4.5"/><circle cx="296" cy="112" r="4.5"/></g>
+          <path d="M211 126v6h90v-6" fill="none" stroke="#F5B83D" stroke-width="1.2"/>
+          <text x="256" y="150" text-anchor="middle" font-size="12" fill="#F5B83D" letter-spacing="1">ABOUT 15M</text>
+          <text x="14" y="52" font-size="10.5" fill="#94A1AF" letter-spacing="1.2">INDONESIA</text>
+          <text x="14" y="94" font-size="10.5" fill="#94A1AF" letter-spacing="1.2">PAKISTAN</text>
+        </svg>
+        <div class="essay-body">
+          <h3>Pakistan Passes Indonesia</h3>
+          <p>A near tie in raw people group totals becomes a 15 million gap once you count who actually follows Islam.</p>
+          <span class="read">Read the article &rarr;</span>
+        </div>
+      </a>
+
+      <a class="essay" href="the-lost-art-of-imitation.html">
+        <svg class="essay-art art" viewBox="0 0 320 180" role="img" aria-label="One lit point reproduces into two, then four, then eight.">
+          <g fill="none" stroke="#2F4358" stroke-width="1.4">
+            <path d="M44 90L116 56M44 90L116 124"/>
+            <path d="M116 56L190 38M116 56L190 74M116 124L190 106M116 124L190 142"/>
+            <path d="M190 38L268 28M190 38L268 46M190 74L268 64M190 74L268 82M190 106L268 98M190 106L268 116M190 142L268 134M190 142L268 152"/>
+          </g>
+          <circle cx="44" cy="90" r="16" fill="#F5B83D" opacity=".16"/><circle cx="44" cy="90" r="8" fill="#F5B83D"/>
+          <g fill="#0A1018" stroke="#EEE9DD" stroke-width="1.6"><circle cx="116" cy="56" r="7"/><circle cx="116" cy="124" r="7"/>
+          <circle cx="190" cy="38" r="5.5"/><circle cx="190" cy="74" r="5.5"/><circle cx="190" cy="106" r="5.5"/><circle cx="190" cy="142" r="5.5"/></g>
+          <g fill="#0A1018" stroke="#94A1AF" stroke-width="1.4"><circle cx="268" cy="28" r="4"/><circle cx="268" cy="46" r="4"/><circle cx="268" cy="64" r="4"/><circle cx="268" cy="82" r="4"/><circle cx="268" cy="98" r="4"/><circle cx="268" cy="116" r="4"/><circle cx="268" cy="134" r="4"/><circle cx="268" cy="152" r="4"/></g>
+        </svg>
+        <div class="essay-body">
+          <h3>The Lost Art of Imitation</h3>
+          <p>The discipleship debate argues about what disciples are taught. Reproduction runs on what they have seen.</p>
+          <span class="read">Read the article &rarr;</span>
+        </div>
+      </a>
+
+      <a class="essay" href="who-becomes-their-tribe.html">
+        <svg class="essay-art art" viewBox="0 0 320 180" role="img" aria-label="One lit point leaves a large ring of points and joins a small ring that is forming.">
+          <g fill="#2F4358"><circle cx="134" cy="90" r="5"/><circle cx="126.6" cy="118.4" r="5"/><circle cx="106.4" cy="139" r="5"/><circle cx="78.5" cy="146.6" r="5"/><circle cx="50.6" cy="139" r="5"/><circle cx="30.4" cy="118.4" r="5"/><circle cx="23" cy="90" r="5"/><circle cx="30.4" cy="61.6" r="5"/><circle cx="50.6" cy="41" r="5"/><circle cx="78.5" cy="33.4" r="5"/><circle cx="106.4" cy="41" r="5"/></g>
+          <circle cx="126.6" cy="61.6" r="5" fill="none" stroke="#94A1AF" stroke-width="1.3" stroke-dasharray="2.5 2.5"/>
+          <path d="M134 56Q170 30 208 62" fill="none" stroke="#F5B83D" stroke-width="1.3" stroke-dasharray="2 5"/>
+          <circle cx="214" cy="68" r="15" fill="#F5B83D" opacity=".16"/><circle cx="214" cy="68" r="6.5" fill="#F5B83D"/>
+          <g fill="#0A1018" stroke="#EEE9DD" stroke-width="1.6"><circle cx="246" cy="58" r="5.5"/><circle cx="274" cy="76" r="5.5"/><circle cx="276" cy="108" r="5.5"/><circle cx="250" cy="126" r="5.5"/><circle cx="220" cy="112" r="5.5"/></g>
+        </svg>
+        <div class="essay-body">
+          <h3>Who Becomes Their Tribe?</h3>
+          <p>People go where they belong. When following Jesus costs a new believer their community, the church has to form in its place.</p>
+          <span class="read">Read the article &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
 </section>
 
-<section class="pray" id="pray">
-<div class="wrap">
-<div class="eyebrow">Light the Nations</div>
-<h2 class="big-head">Pray for Frontier People Groups</h2>
-<div class="steps">
-<div class="pstep"><span class="n">1</span><div>Explore the map of frontier peoples, the groups with the least access to the gospel.</div></div>
-<div class="pstep"><span class="n">2</span><div>Select a people group to open its profile and the key facts about them.</div></div>
-<div class="pstep"><span class="n">3</span><div>Pause and pray for them by name, that they would have the chance to hear and respond.</div></div>
-<div class="pstep"><span class="n">4</span><div>Pan, zoom, and filter to discover more peoples and places to carry in prayer.</div></div>
-</div>
-<div style="width:100%;height:min(600px, 85vh);min-height:400px;position:relative;border-radius:8px;overflow:hidden;border:1px solid rgba(28,26,23,.12)"> <iframe src="https://light.joshuaproject.net/embed?modal=true&modalMinimized=true&theme=light&filter=fpg&ref=4thenations.com" width="100%" height="100%" frameborder="0" allowfullscreen style="border:0; position:absolute; inset:0;"> </iframe> </div>
-</div>
+<!-- ===================== SUBSCRIBE + PARTNER BANDS ===================== -->
+<section class="section">
+  <div class="wrap bands">
+    <div class="band band-sub">
+      <p class="eyebrow">Clarity for the Nations on Substack</p>
+      <h2>Subscribe to never miss a new article</h2>
+      <p>New articles arrive by email. Each one lands here later as an interactive piece.</p>
+      <a class="btn btn-lg" href="https://clarity4thenations.substack.com/subscribe">Subscribe &rarr;</a>
+    </div>
+    <!-- PARTNER BAND: stays hidden until GIVE_LIVE is set to true in js/shell.js. -->
+    <div class="band" id="give" data-give>
+      <p class="eyebrow">Support-raised</p>
+      <h2>Partner in the work</h2>
+      <p>Bud serves with Joshua Project as a support-raised missionary. Give once or join the monthly team.</p>
+      <a class="btn btn-line btn-lg" href="give.html">Give &rarr;</a>
+    </div>
+  </div>
 </section>
 
-<footer>
-<div class="wrap row">
-<div>
-<div class="name">Clarity for the Nations</div>
-<small>by Bud Houston &middot; Director of People Group Data, Joshua Project</small>
-</div>
-<a class="sub" href="https://clarity4thenations.substack.com">Read the essays on Substack &#8594;</a>
-</div>
-</footer>
+</main>
 <script>
-const slides=[...document.querySelectorAll('.slide')];
-const cdots=[...document.querySelectorAll('.dot')];
-let i=0,t=null;
-function show(n){i=(n+slides.length)%slides.length;slides.forEach((s,k)=>s.classList.toggle('active',k===i));cdots.forEach((d,k)=>d.classList.toggle('active',k===i));}
-function start(){t=setInterval(()=>show(i+1),5500);}
-function reset(){clearInterval(t);start();}
-document.getElementById('next').onclick=()=>{show(i+1);reset();};
-document.getElementById('prev').onclick=()=>{show(i-1);reset();};
-cdots.forEach((d,k)=>d.onclick=()=>{show(k);reset();});
-const car=document.getElementById('car');
-car.addEventListener('mouseenter',()=>clearInterval(t));
-car.addEventListener('mouseleave',start);
-start();
-const pills=[...document.querySelectorAll('.fpill')];
-const cards=[...document.querySelectorAll('#grid .card')];
-const active=new Set();
-function applyF(){
-const allOn=active.size===0;
-pills.forEach(p=>{const c=p.dataset.cat;p.classList.toggle('active',c==='all'?allOn:active.has(c));});
-cards.forEach(card=>{const cs=card.dataset.cats.split(' ');card.style.display=(allOn||cs.some(c=>active.has(c)))?'':'none';});
-}
-pills.forEach(p=>p.onclick=()=>{const c=p.dataset.cat;if(c==='all'){active.clear();}else{active.has(c)?active.delete(c):active.add(c);}applyF();});
-applyF();
-</script>
-<script>(function(){var dd=document.querySelector(".nav-dd");if(!dd)return;var b=dd.querySelector(".nav-ddbtn");b.addEventListener("click",function(e){e.stopPropagation();var o=dd.classList.toggle("open");b.setAttribute("aria-expanded",o);});document.addEventListener("click",function(){dd.classList.remove("open");b.setAttribute("aria-expanded","false");});})();</script>
-<script>
-(function(){
-var recentList=["pakistan-passes-indonesia-as-most.html","the-lost-art-of-imitation.html","who-becomes-their-tribe.html","mountains-dont-make-people-unreached.html","half-the-worlds-future-leaders-are.html"];
-var popularList=["the-sending-force-is-already-next.html","alevi-invisible-millions.html","walking-through-open-doors.html","why-mission-research-matters.html","operators-not-graduates.html"];
-function fillRow(id,list){
-var g=document.getElementById(id);
-list.forEach(function(h){
-var c=document.querySelector('#grid .card[href="'+h+'"]');
-if(c)g.appendChild(c.cloneNode(true));
-});
-}
-fillRow("recentGrid",recentList);
-fillRow("popularGrid",popularList);
-var btn=document.getElementById("allBtn");
-var quick=document.getElementById("quickview");
-var all=document.getElementById("allview");
-var total=document.querySelectorAll("#grid .card").length;
-var expanded=false;
-btn.textContent="Browse all "+total+" pieces ↓";
-btn.addEventListener("click",function(){
-expanded=!expanded;
-all.hidden=!expanded;
-quick.hidden=expanded;
-btn.textContent=expanded?"Show the latest and most popular ↑":"Browse all "+total+" pieces ↓";
-if(expanded)all.scrollIntoView({behavior:"smooth",block:"start"});
-else quick.scrollIntoView({behavior:"smooth",block:"start"});
-});
+/* Hero map. Land is a 160 x 58 grid of dots (2.25 degrees per cell, 74N to 56.5S).
+   LIT lists the cells that hold frontier people groups, from a Joshua Project
+   export: [cell, weight]. Weight 1 = one group, 2 = two to five, 3 = six or more.
+   cell = row * 160 + col, col = floor((lon + 180) / 2.25), row = floor((74 - lat) / 2.25). */
+(function () {
+  var COLS = 160, ROWS = 58, STEP = 2.25, LAT_TOP = 74;
+  var HEX = "000000f89efc01fffc00000001810fffff8000000070000fc6ff80fffc00001c00037ffffffffe0083fffff88bb1c0ffe00001ff917dfffffffffffff2ffffffffc1d0ff058003fe2fffffffffffffff007fffffff70e07c03000fbffffffffffffffffe03fffffffc07003800003f3ffffffffffffffd7800f03ffffc07900000003f1fffffffffffffd980001007ffff03f80000060e5ffffffffffffc0380010003ffffe7fc00000a007ffffffffffff00700000001fffff7fe00000bbfffffffffffffff0400000001fffffffa0000007ffffffffffffffd00000000003fffffe3000003fffffffffffffffc00000000007ffffff0000001fff97cfffffffff800000000007fffff80000009e5f839fffffffff180000000007fffff0000000f827b3cffffffffc000000000007ffffc0000000f014ffcfffffff08200000000003ffffc0000000e1a0ffefffffffcc600000000003ffffc00000007f800fffffffff89800000000000ffff00000000ffe41fffffffffc20000000000003ff300000000ffffffffffffffc00000000000005f8100000003ffffefdfffffffc00000000000003f8000000007ffffefc3ffffff80000000000000078000000007fffff7fc3fffff4000000000000007884000000ffffffffc1fe7f000000000000000039808000007fffffbf80fc3e80000000000000000f800000007fffff9f00783f040000000000000001e0000000ffffffdc00700f000000000000000000600000007fffffe000700381000000000000000023f800003ffffffe00200002000000000000000007fc00003ffffffc00100803000000000000000003ff80000f3ffffc00002418000000000000000007ff8000000ffff800001430000000000000000007ffc000000fffe000000cfa00000000000000000ffff000000fffe00000047430000000000000000ffffe000007ffc0000006101f000000000000000fffff000007ff800000000007a000000000000007ffff000003ff8000000060074000000000000007ffff000003ffc000000000000000000000000003fffe000003ffc000000000390000000000000003fffe000007ffc400000000b18000000000000000fffe000007ff8c00000003fd80000000000000007ffc000003ff0c00000003ff80000000000000007ffc000003ff180000001fffc0000000000000007ff0000003ff180000003fffe0000000000000007fc0000001fe000000003ffff000000000000000ffc0000001fc000000001ffff000000000000000ffc0000000fc000000001ffff000000000000000ff80000000f0000000001e0ff000000000000000fc0000000000000000000003e000000000000001fe0000000000000000000003e000000000000001f000000000000000000000000006000000000001e000000000000000000000004008000000000001e000000000000000000000000010000000000001c000000000000000000000000000000000000003c000000000000000000000000000000000000001800000000000000000000000000000000000000140000000000000000000000000000000000000004000000000000000000000000000";
+  var LIT = [[731,1],[1044,3],[1046,1],[1047,3],[1048,2],[1051,2],[1075,1],[1113,1],[1210,1],[1232,1],[1364,1],[1365,3],[1371,2],[1372,1],[1374,1],[1376,3],[1394,1],[1399,1],[1516,1],[1517,2],[1518,1],[1519,3],[1520,2],[1521,2],[1522,1],[1523,2],[1524,2],[1525,3],[1528,1],[1529,1],[1532,2],[1537,1],[1564,1],[1574,1],[1679,2],[1680,1],[1681,3],[1682,2],[1683,3],[1684,1],[1686,1],[1693,2],[1711,2],[1712,1],[1717,2],[1722,2],[1733,2],[1743,1],[1839,1],[1840,1],[1841,3],[1843,2],[1844,2],[1845,2],[1847,3],[1848,2],[1852,1],[1856,1],[1857,2],[1863,1],[1872,1],[1876,1],[1878,1],[1879,1],[1887,2],[1895,2],[1958,1],[1966,3],[1967,2],[1999,1],[2002,1],[2003,2],[2004,2],[2006,2],[2009,1],[2011,1],[2015,1],[2017,1],[2027,1],[2056,1],[2118,1],[2124,3],[2126,1],[2162,1],[2163,2],[2165,2],[2167,2],[2168,1],[2169,2],[2171,1],[2172,2],[2177,2],[2178,2],[2179,2],[2180,3],[2181,2],[2182,1],[2190,1],[2193,3],[2194,3],[2195,1],[2196,2],[2197,1],[2209,1],[2277,1],[2281,1],[2283,2],[2286,1],[2287,3],[2288,1],[2318,2],[2325,3],[2326,2],[2328,1],[2329,2],[2330,2],[2331,2],[2332,3],[2337,1],[2338,2],[2339,3],[2340,3],[2341,3],[2342,3],[2346,3],[2350,3],[2351,1],[2352,2],[2353,1],[2369,1],[2437,1],[2442,1],[2445,1],[2447,1],[2476,2],[2489,1],[2490,2],[2493,1],[2494,3],[2495,2],[2496,1],[2497,2],[2499,2],[2500,2],[2501,2],[2503,2],[2505,1],[2508,1],[2509,2],[2510,3],[2511,2],[2512,1],[2513,2],[2517,1],[2519,1],[2525,1],[2585,1],[2586,1],[2601,2],[2637,1],[2638,2],[2640,1],[2641,1],[2642,1],[2644,3],[2646,1],[2650,2],[2656,2],[2657,1],[2658,2],[2659,2],[2660,1],[2661,3],[2662,2],[2663,2],[2664,2],[2665,2],[2667,2],[2668,2],[2669,2],[2670,2],[2671,3],[2672,3],[2673,3],[2676,2],[2682,2],[2685,2],[2687,1],[2696,2],[2702,2],[2747,1],[2796,1],[2797,2],[2798,2],[2799,2],[2801,2],[2802,2],[2803,2],[2804,1],[2814,1],[2815,3],[2816,3],[2817,1],[2819,1],[2820,2],[2821,2],[2822,3],[2823,2],[2826,2],[2827,2],[2828,1],[2829,1],[2830,3],[2831,3],[2832,3],[2833,3],[2834,3],[2835,2],[2844,3],[2845,2],[2846,2],[2956,2],[2958,3],[2959,2],[2961,2],[2962,2],[2964,2],[2965,3],[2969,2],[2975,3],[2976,3],[2978,1],[2979,2],[2980,1],[2981,2],[2982,1],[2983,2],[2984,2],[2986,2],[2987,2],[2989,1],[2990,1],[2991,3],[2992,3],[2993,3],[2994,3],[2995,1],[3000,2],[3004,2],[3005,3],[3006,2],[3116,2],[3118,2],[3120,1],[3124,1],[3125,1],[3127,1],[3128,1],[3129,2],[3130,1],[3131,1],[3132,1],[3133,3],[3134,2],[3135,2],[3136,1],[3140,1],[3141,3],[3142,2],[3143,2],[3147,2],[3148,2],[3149,3],[3150,2],[3151,3],[3152,3],[3153,3],[3154,3],[3155,3],[3156,3],[3157,1],[3159,1],[3160,2],[3161,1],[3162,2],[3163,1],[3164,2],[3165,2],[3274,3],[3275,2],[3276,1],[3277,1],[3278,1],[3280,2],[3286,1],[3287,1],[3292,1],[3293,1],[3303,1],[3304,1],[3305,1],[3306,1],[3307,2],[3308,2],[3309,3],[3310,3],[3311,3],[3312,3],[3313,3],[3314,3],[3315,3],[3316,3],[3317,3],[3318,3],[3319,3],[3320,3],[3321,2],[3322,2],[3323,2],[3324,3],[3325,3],[3326,2],[3327,2],[3328,2],[3443,1],[3445,1],[3449,1],[3460,3],[3462,3],[3464,3],[3465,1],[3466,1],[3468,3],[3469,3],[3470,3],[3471,3],[3472,3],[3473,3],[3474,3],[3475,3],[3476,3],[3477,3],[3478,3],[3479,3],[3480,3],[3481,3],[3483,2],[3484,3],[3485,3],[3486,3],[3487,3],[3488,3],[3489,3],[3490,1],[3492,1],[3493,1],[3602,1],[3605,1],[3606,1],[3608,1],[3614,2],[3615,1],[3620,2],[3624,3],[3625,2],[3626,2],[3631,3],[3632,3],[3633,3],[3634,3],[3635,3],[3636,3],[3637,3],[3638,3],[3639,3],[3640,3],[3641,3],[3643,2],[3644,3],[3645,3],[3646,3],[3647,3],[3648,1],[3649,2],[3650,2],[3652,1],[3653,1],[3755,1],[3758,2],[3763,1],[3766,1],[3767,1],[3772,1],[3773,1],[3777,1],[3791,3],[3792,3],[3793,3],[3794,3],[3795,3],[3796,3],[3797,3],[3798,3],[3800,2],[3801,2],[3802,1],[3803,2],[3804,3],[3805,3],[3806,3],[3807,2],[3875,1],[3885,1],[3890,1],[3915,1],[3919,1],[3933,1],[3935,2],[3936,1],[3938,1],[3944,2],[3952,3],[3953,3],[3954,3],[3955,3],[3956,3],[3957,3],[3962,1],[3963,1],[3964,2],[3965,2],[3966,3],[3968,2],[4039,1],[4040,1],[4052,2],[4072,2],[4073,1],[4077,1],[4078,1],[4081,2],[4082,1],[4083,2],[4085,1],[4090,1],[4093,3],[4094,2],[4095,1],[4097,2],[4099,2],[4100,1],[4102,1],[4103,2],[4104,2],[4112,3],[4113,3],[4114,3],[4115,3],[4116,3],[4122,2],[4124,2],[4125,2],[4126,2],[4127,3],[4212,2],[4229,2],[4232,2],[4233,3],[4235,1],[4237,2],[4238,2],[4239,1],[4240,2],[4242,1],[4243,1],[4244,1],[4245,2],[4246,2],[4247,2],[4249,3],[4250,3],[4251,2],[4252,2],[4253,2],[4254,2],[4256,2],[4257,2],[4259,2],[4260,1],[4261,1],[4272,1],[4273,3],[4274,3],[4275,3],[4283,1],[4284,3],[4285,2],[4287,3],[4294,1],[4368,1],[4369,2],[4392,2],[4393,2],[4394,2],[4395,2],[4396,2],[4397,1],[4398,2],[4401,2],[4404,1],[4405,1],[4406,3],[4407,3],[4408,3],[4409,3],[4410,3],[4411,2],[4412,3],[4413,3],[4415,1],[4418,1],[4419,2],[4423,1],[4433,3],[4434,3],[4435,3],[4441,2],[4446,2],[4447,1],[4524,2],[4530,1],[4553,3],[4554,2],[4555,2],[4556,2],[4557,2],[4558,1],[4559,2],[4560,1],[4562,1],[4563,1],[4564,1],[4566,2],[4567,2],[4568,2],[4569,2],[4570,1],[4573,3],[4574,2],[4575,2],[4576,1],[4592,1],[4593,3],[4594,3],[4595,2],[4686,1],[4694,1],[4715,2],[4717,1],[4718,1],[4720,1],[4721,1],[4737,1],[4752,1],[4754,2],[4755,3],[4756,2],[4761,1],[4764,2],[4772,1],[4774,2],[4775,2],[4790,1],[4796,1],[4845,1],[4847,2],[4848,1],[4854,1],[4855,1],[4875,1],[4878,2],[4886,1],[4888,2],[4895,1],[4900,1],[4915,1],[4923,1],[4924,2],[4925,2],[4930,1],[4931,3],[4932,3],[4933,2],[5045,2],[5058,1],[5059,1],[5060,2],[5072,1],[5082,2],[5083,2],[5085,3],[5090,2],[5092,1],[5165,1],[5167,1],[5168,2],[5169,1],[5176,1],[5202,1],[5204,2],[5217,2],[5219,2],[5244,1],[5245,2],[5246,2],[5251,1],[5253,3],[5254,1],[5255,1],[5256,2],[5257,2],[5324,1],[5327,1],[5328,1],[5333,1],[5335,1],[5373,1],[5376,1],[5377,2],[5378,2],[5405,2],[5409,2],[5412,1],[5413,2],[5414,2],[5415,1],[5416,1],[5421,2],[5491,1],[5495,2],[5498,1],[5526,2],[5533,1],[5535,1],[5537,2],[5565,3],[5566,3],[5567,1],[5570,1],[5572,2],[5573,2],[5574,3],[5576,1],[5577,1],[5578,1],[5580,1],[5582,1],[5647,1],[5648,2],[5649,1],[5652,1],[5697,3],[5726,2],[5734,2],[5741,1],[5742,2],[5807,1],[5811,1],[5812,1],[5817,1],[5820,1],[5823,2],[5845,1],[5887,1],[5888,1],[5891,1],[5892,2],[5893,2],[5894,1],[5895,2],[5967,1],[5968,1],[5973,1],[5983,2],[6014,1],[6017,2],[6046,1],[6065,1],[6127,1],[6131,1],[6132,2],[6172,1],[6179,2],[6180,2],[6203,1],[6231,1],[6243,2],[6244,1],[6289,1],[6293,1],[6302,1],[6326,1],[6335,1],[6338,1],[6340,1],[6493,1],[6660,2],[6661,2],[6665,1],[6728,1],[6939,2],[7132,1],[7133,2],[7134,1],[7348,1],[7453,1],[7651,1],[7667,3],[7734,2],[7735,1],[7826,1],[7984,2],[7997,2]];
+  var canvas = document.getElementById('map'), ctx = canvas.getContext('2d');
+  var css = getComputedStyle(document.documentElement);
+  var C = { land: css.getPropertyValue('--land').trim(), line: css.getPropertyValue('--line').trim(), muted: css.getPropertyValue('--muted').trim() };
+  var land = [];
+  for (var i = 0; i < HEX.length; i++) { var n = parseInt(HEX[i], 16); land.push(n >> 3 & 1, n >> 2 & 1, n >> 1 & 1, n & 1); }
+  var lights = LIT.map(function (L, k) { return { c: L[0] % COLS, r: Math.floor(L[0] / COLS), w: L[1], p: (k * 2.399) % 6.283, s: 0.5 + (k * 0.37) % 0.6 }; });
+  var GLOW = [0, 0.16, 0.26, 0.4], REACH = [0, 1.9, 2.3, 2.8], CORE = [0, 0.26, 0.31, 0.38], sprites = [];
+  var base = document.createElement('canvas'), w = 0, h = 0, cell = 0, dpr = 1;
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function build() {
+    w = canvas.clientWidth; if (!w) return;
+    cell = w / COLS; h = Math.round(cell * ROWS); dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = base.width = Math.round(w * dpr); canvas.height = base.height = Math.round(h * dpr);
+    canvas.style.height = h + 'px';
+    var b = base.getContext('2d'); b.setTransform(dpr, 0, 0, dpr, 0, 0); b.clearRect(0, 0, w, h);
+    // parallels
+    b.font = '500 ' + Math.max(9, Math.min(11, cell * 1.3)) + 'px "IBM Plex Mono", ui-monospace, monospace';
+    b.textAlign = 'right'; b.textBaseline = 'bottom';
+    [[40, '40°N'], [10, '10°N'], [0, '0°']].forEach(function (p) {
+      var y = Math.round((LAT_TOP - p[0]) / STEP * cell) + 0.5;
+      b.strokeStyle = C.line; b.lineWidth = 1; b.beginPath(); b.moveTo(0, y); b.lineTo(w, y); b.stroke();
+      b.fillStyle = C.muted; b.fillText(p[1], w - 6, y - 3);
+    });
+    // land dots
+    b.fillStyle = C.land;
+    var rad = Math.max(0.9, cell * 0.27);
+    for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) if (land[r * COLS + c]) {
+      b.beginPath(); b.arc((c + 0.5) * cell, (r + 0.5) * cell, rad, 0, 6.283); b.fill();
+    }
+    // one soft glow image per weight, reused for every light
+    sprites = [null, 1, 2, 3].map(function (wt) {
+      if (!wt) return null;
+      var R = cell * REACH[wt], s = document.createElement('canvas'); s.width = s.height = Math.ceil(R * 2 * dpr);
+      var g = s.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var grad = g.createRadialGradient(R, R, 0, R, R, R);
+      grad.addColorStop(0, 'rgba(245,184,61,' + GLOW[wt] + ')'); grad.addColorStop(1, 'rgba(245,184,61,0)');
+      g.fillStyle = grad; g.fillRect(0, 0, R * 2, R * 2); return s;
+    });
+    frame(0);
+  }
+  function frame(t) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(base, 0, 0); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var i, L, x, y, a, R;
+    for (i = 0; i < lights.length; i++) {
+      L = lights[i]; x = (L.c + 0.5) * cell; y = (L.r + 0.5) * cell; R = cell * REACH[L.w];
+      a = still ? 0.85 : 0.7 + 0.3 * Math.sin(t / 1000 * L.s + L.p);
+      ctx.globalAlpha = a; ctx.drawImage(sprites[L.w], x - R, y - R, R * 2, R * 2);
+    }
+    ctx.globalAlpha = 1; ctx.fillStyle = 'rgba(255,214,120,.95)';
+    for (i = 0; i < lights.length; i++) {
+      L = lights[i]; ctx.beginPath(); ctx.arc((L.c + 0.5) * cell, (L.r + 0.5) * cell, Math.max(1, cell * CORE[L.w]), 0, 6.283); ctx.fill();
+    }
+  }
+  var last = 0;
+  function loop(t) { if (t - last > 60) { last = t; frame(t); } requestAnimationFrame(loop); }
+  build();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(build, 120); });
+  if (!still) requestAnimationFrame(loop);
 })();
 </script>
+<script src="js/articles.js"></script>
+<script>
+/* Article counts come from js/articles.js, so they never go stale. */
+(function () {
+  var n = (window.CN_ARTICLES || []).length; if (!n) return;
+  document.querySelectorAll('[data-article-count]').forEach(function (e) { e.textContent = n + ' articles'; });
+  document.querySelectorAll('[data-article-total]').forEach(function (e) { e.textContent = n; });
+})();
+</script>
+
+<script src="js/shell.js" data-part="footer"></script>
 </body>
 </html>

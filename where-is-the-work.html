@@ -20,10 +20,11 @@
   5. A language menu appears by itself when there is more than one language.
      Link straight to a language with ?lang=fr at the end of the page address.
 
-  LINKS (report form, coaching email) are in "const LINKS" just below the words.
+  LINKS (report form, coaching page) are in "const LINKS" just below the words.
   Nothing is saved or sent by this page. All answers stay in the visitor's browser
   until the visitor chooses to report or email.
 -->
+<link rel="stylesheet" href="css/shell.css">
 <style>
   :root { --paper:#F3EFE6; --ink:#1C1A17; --mute:#6E665B; --red:#B22234; --red-2:#8f1b2a; --gold:#E8A33D;
           --gold-soft:#f6e3c2; --line:rgba(28,26,23,.12); --card:#fffdf8; --green:#2f6f4a; --green-soft:#e2efe6; }
@@ -32,31 +33,8 @@
   body { margin:0; background:var(--paper); color:var(--ink); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
          line-height:1.6; font-size:17px; }
 
-  /* Site nav (matches 4thenations.com) */
-  .topnav { position:sticky; top:0; z-index:30; display:flex; justify-content:space-between; align-items:center; gap:1rem 1.6rem;
-            padding:13px 24px; background:rgba(243,239,230,.93); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
-            border-bottom:1px solid var(--line); flex-wrap:wrap; }
-  .topnav .brand { font-family:Fraunces, Georgia, serif; font-weight:900; font-size:1.05rem; text-decoration:none; color:var(--ink); }
-  .topnav .links { display:flex; gap:1.5rem; flex-wrap:wrap; align-items:center; }
-  .topnav .links a { text-decoration:none; font-weight:600; font-size:.92rem; color:var(--ink); opacity:.85; }
-  .topnav .links a:hover, .topnav .links a[aria-current=page] { opacity:1; color:var(--red); }
-  .nav-dd { position:relative; }
-  .nav-ddbtn { background:none; border:0; font:inherit; font-weight:600; font-size:.92rem; cursor:pointer; color:var(--ink); opacity:.85;
-               display:flex; align-items:center; gap:.3rem; padding:0; }
-  .nav-ddbtn:hover { opacity:1; color:var(--red); }
-  .nav-ddmenu { display:none; position:absolute; top:calc(100% + 8px); left:0; min-width:230px; background:var(--card); border:1px solid var(--line);
-                border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.08); padding:6px; z-index:40; }
-  .nav-ddmenu a { display:block; padding:8px 10px; border-radius:6px; }
-  .nav-ddmenu a:hover { background:var(--paper); }
-  .nav-dd.open .nav-ddmenu, .nav-dd:focus-within .nav-ddmenu { display:block; }
-  @media (hover:hover) { .nav-dd:hover .nav-ddmenu { display:block; } }
-  @media (max-width:620px) { .topnav { position:static; padding:12px 16px; } .topnav .links { gap:.4rem 1.1rem; } }
-
-  footer.site { max-width:880px; margin:2vh auto 0; border-top:1px solid var(--line); padding:5vh 20px 7vh; }
-  footer.site .row { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:center; }
-  footer.site .name { font-family:Fraunces, Georgia, serif; font-weight:900; font-size:1.2rem; }
-  footer.site a.sub { text-decoration:none; font-weight:700; color:var(--red); }
-  footer.site small { display:block; color:var(--mute); margin-top:.8rem; font-size:14px; }
+  footer.site { max-width:880px; margin:2vh auto 0; border-top:1px solid var(--line); padding:3vh 20px 0; }
+  footer.site small { display:block; color:var(--mute); margin-top:0; font-size:14px; }
   footer.site small a { color:var(--ink); }
 
   .wiw { max-width:880px; margin:0 auto; padding:28px 20px 12px; }
@@ -78,6 +56,14 @@
   .wiw input[type=text] { width:100%; font:inherit; font-size:17px; padding:12px 14px; border:1px solid rgba(28,26,23,.25); border-radius:10px; background:#fff; }
   .wiw input[type=text]:focus { outline:3px solid var(--gold-soft); border-color:var(--gold); }
   .wiw .row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  /* People group search */
+  .wiw .pg-combo { position:relative; }
+  .wiw .pg-list { position:absolute; z-index:20; left:0; right:0; top:calc(100% + 4px); margin:0; padding:6px; list-style:none; background:#fff;
+                  border:1px solid rgba(28,26,23,.25); border-radius:10px; box-shadow:0 10px 28px rgba(0,0,0,.14); max-height:330px; overflow:auto; }
+  .wiw .pg-list li { display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:9px 10px; border-radius:6px; cursor:pointer; }
+  .wiw .pg-list li:hover, .wiw .pg-list li[aria-selected=true] { background:var(--gold-soft); }
+  .wiw .pg-list .pg-c { color:var(--mute); font-size:14px; white-space:nowrap; }
+  .wiw .pg-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
   @media (max-width:620px){ .wiw .row { grid-template-columns:1fr; } .wiw h1 { font-size:34px; } .wiw .card { padding:20px; } }
 
   .wiw .btn { appearance:none; border:0; cursor:pointer; font:inherit; font-size:17px; font-weight:700; border-radius:10px; padding:14px 22px;
@@ -192,7 +178,7 @@
   [dir=rtl] .wiw .tag { margin-right:0; margin-left:6px; }
 
   @media print {
-    .topnav, footer.site, .wiw .actions, .wiw .lang, .wiw .back, .wiw .cta-card, .wiw .noprint { display:none !important; }
+    footer.site, .wiw .actions, .wiw .lang, .wiw .back, .wiw .cta-card, .wiw .noprint { display:none !important; }
     .wiw details.area:not([open]) { display:none; }
     .wiw .plan { border-width:1px; }
     body { background:#fff; font-size:13px; }
@@ -202,48 +188,19 @@
 </head>
 <body>
 
-<nav class="topnav">
-<a class="brand" href="index.html">Clarity for the Nations</a>
-<div class="links">
-<a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Missions Data</a>
-<a href="index.html#pray">Pray for the Unreached</a>
-<div class="nav-dd">
-<button class="nav-ddbtn" aria-expanded="false">Brutal Facts Calculator <span class="caret">&#9662;</span></button>
-<div class="nav-ddmenu">
-<a href="brutal-facts-calculator-cities.html">City Brutal Facts</a>
-<a href="brutal-facts-calculator-segments.html">People Segment Brutal Facts</a>
-</div>
-</div>
-<a href="where-is-the-work.html" aria-current="page">Where Is the Work?</a>
-<a class="navgame" href="frontier-trail.html">&#9654; Play Frontier Trail</a>
-<a href="about.html">About</a>
-</div>
-</nav>
+<script src="js/shell.js" data-part="header"></script>
 
 <main id="wiw" class="wiw"></main>
 
 <footer class="site">
-  <div class="row">
-    <span class="name">Clarity for the Nations</span>
-    <a class="sub" href="https://clarity4thenations.substack.com/subscribe" target="_blank" rel="noopener">Subscribe &rarr;</a>
-  </div>
   <small id="wiw-footer"></small>
 </footer>
+
+<script src="js/shell.js" data-part="footer"></script>
 
 <script>
 (function () {
   "use strict";
-
-  /* Nav dropdown (tap to open on phones) */
-  document.querySelectorAll(".nav-dd").forEach(function (dd) {
-    const btn = dd.querySelector(".nav-ddbtn");
-    btn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      const open = dd.classList.toggle("open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-    document.addEventListener("click", function () { dd.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); });
-  });
 
   /* ================================================================
      ALL WORDS ON THE PAGE. Translate here. Keep {tokens} unchanged.
@@ -264,6 +221,9 @@
         peoplePlaceholder: "For example: Bedouin Arabs",
         placeLabel: "Where? Country or city (optional)",
         placePlaceholder: "For example: Jordan",
+        peopleHint: "Start typing to search Joshua Project people groups, or enter your own.",
+        peopleCount: "{n} people groups found. Use the arrow keys to choose one.",
+        jpProfile: "See {people} on Joshua Project",
         privacy: "Your answers stay on this page. Nothing is sent or saved.",
         start: "Begin",
         part1: "Part 1 of 2: Where is the work?",
@@ -883,8 +843,9 @@
      ================================================================ */
   const LINKS = {
     report: "https://ee.kobotoolbox.org/x/58GyeIQF",
-    coachUser: "bud.houstonba2011",
-    coachDomain: "gmail.com",
+    coachPage: "work-with-me.html",
+    peopleData: "js/people-groups.js",
+    jpProfile: "https://joshuaproject.net/people_groups/{id}/{rog}",
     toolkit: "https://media.joshuaproject.net/public/assets/media/articles/Engagement-Phases-Toolkit.pdf",
     functions: "https://clarity4thenations.substack.com/p/the-five-functions-in-the-expansion",
     bottleneck: "https://clarity4thenations.substack.com/p/the-bottleneck-decides"
@@ -926,7 +887,7 @@
 
   let lang = pickLang();
   let T = LANGS[lang];
-  const state = { people: "", place: "", answers: {}, history: [], step: "intro",
+  const state = { people: "", place: "", jp: null, answers: {}, history: [], step: "intro",
                   accDone: false, plan: { acc: "", action: "", who: "", when: "" }, scrollTo: "" };
 
   function esc(s) {
@@ -1077,6 +1038,153 @@
       }).join("") + "</select></div>";
   }
 
+  /* ================================================================
+     PEOPLE GROUP SEARCH. Names come from js/people-groups.js (a Joshua
+     Project export stored on this site). The list loads only when the
+     visitor starts typing. Nothing typed here is sent anywhere.
+     Typing a name that is not on the list still works.
+     ================================================================ */
+  let PG = null, pgLoading = false, pgWaiters = [];
+  function pgNorm(s) {
+    return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+  }
+  function loadPeoples(cb) {
+    if (PG) { cb(); return; }
+    pgWaiters.push(cb);
+    if (pgLoading) return;
+    pgLoading = true;
+    const s = document.createElement("script");
+    s.src = LINKS.peopleData; s.async = true;
+    s.onload = function () {
+      const d = window.CN_PEOPLES;
+      if (!d) { pgLoading = false; pgWaiters = []; return; }
+      const ctry = d.c.map(function (x) { const a = x.split("|"); return { name: a[0], rog: a[1], n: pgNorm(a[0]) }; });
+      PG = d.p.split("\n").map(function (line) {
+        const a = line.split("|");
+        return { name: a[0], n: pgNorm(a[0]), c: ctry[+a[1]], id: a[2], w: +a[3] };
+      });
+      pgWaiters.splice(0).forEach(function (f) { f(); });
+    };
+    s.onerror = function () { pgLoading = false; pgWaiters = []; };
+    document.head.appendChild(s);
+  }
+  /* How well one typed word matches a name: start of name, start of a word, or inside a word. */
+  function pgWordScore(t, hay) {
+    if (hay.indexOf(t) === 0) return 15;
+    if ((" " + hay).indexOf(" " + t) > -1) return 10;
+    if (t.length >= 3 && hay.indexOf(t) > -1) return 4;
+    return 0;
+  }
+  /* Edit distance, stopping early once it passes max. Catches typing mistakes. */
+  function pgDist(a, b, max) {
+    if (Math.abs(a.length - b.length) > max) return max + 1;
+    let prev = [], cur = [];
+    for (let j = 0; j <= b.length; j++) prev[j] = j;
+    for (let i = 1; i <= a.length; i++) {
+      cur = [i]; let rowMin = i;
+      for (let j = 1; j <= b.length; j++) {
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1));
+        if (cur[j] < rowMin) rowMin = cur[j];
+      }
+      if (rowMin > max) return max + 1;
+      prev = cur;
+    }
+    return prev[b.length];
+  }
+  function pgTypoScore(t, hay) {
+    const max = t.length >= 7 ? 2 : t.length >= 4 ? 1 : 0;
+    if (!max) return 0;
+    let best = max + 1;
+    const words = hay.split(" ");
+    for (let i = 0; i < words.length; i++) {
+      const w = words[i];
+      const d = Math.min(pgDist(t, w.slice(0, t.length), max), pgDist(t, w.slice(0, t.length + 1), max));
+      if (d < best) best = d;
+    }
+    return best <= max ? 6 - best * 2 : 0;
+  }
+  function searchPeoples(q, place) {
+    const nq = pgNorm(q);
+    if (!PG || nq.length < 2) return [];
+    const toks = nq.split(" "), np = pgNorm(place || "");
+    function run(typos) {
+      const out = [];
+      for (let i = 0; i < PG.length; i++) {
+        const p = PG[i]; let score = 0, ok = true;
+        for (let k = 0; k < toks.length; k++) {
+          const t = toks[k];
+          let s = pgWordScore(t, p.n);
+          if (!s) s = pgWordScore(t, p.c.n) / 2;              /* a country name narrows the list */
+          if (!s && typos) s = pgTypoScore(t, p.n);
+          if (!s) { ok = false; break; }
+          score += s;
+        }
+        if (!ok) continue;
+        if (p.n === nq) score += 40; else if (p.n.indexOf(nq) === 0) score += 20;
+        if (np && (p.c.n === np || p.c.n.indexOf(np) === 0)) score += 15;
+        out.push({ p: p, s: score + p.w / 2 });                /* larger groups first when tied */
+      }
+      return out;
+    }
+    let hits = run(false);
+    if (hits.length < 8) {                                    /* add near misses, ranked below exact matches */
+      const seen = {}; hits.forEach(function (h) { seen[h.p.id + h.p.c.rog] = 1; });
+      run(true).forEach(function (h) { if (!seen[h.p.id + h.p.c.rog]) hits.push(h); });
+    }
+    hits.sort(function (a, b) { return b.s - a.s || (a.p.name < b.p.name ? -1 : 1); });
+    return hits.slice(0, 8).map(function (h) { return h.p; });
+  }
+  function setupPeopleSearch() {
+    const input = document.getElementById("wiw-people"), place = document.getElementById("wiw-place");
+    const list = document.getElementById("wiw-people-list"), status = document.getElementById("wiw-people-status");
+    if (!input || !list) return;
+    const u = T.ui, E = LANGS.en.ui;
+    let items = [], active = -1, timer = 0, autoPlace = state.jp ? state.jp.ctry : "";
+    function close() { list.hidden = true; list.innerHTML = ""; items = []; active = -1; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); }
+    function mark() {
+      list.querySelectorAll("li").forEach(function (li, i) { li.setAttribute("aria-selected", i === active ? "true" : "false"); });
+      if (active > -1) { input.setAttribute("aria-activedescendant", "wiw-pg-" + active); list.children[active].scrollIntoView({ block: "nearest" }); }
+      else input.removeAttribute("aria-activedescendant");
+    }
+    function choose(p) {
+      input.value = p.name;
+      if (!place.value.trim() || place.value.trim() === autoPlace) { place.value = p.c.name; autoPlace = p.c.name; }
+      state.jp = { id: p.id, rog: p.c.rog, name: p.name, ctry: p.c.name };
+      close();
+    }
+    function show() {
+      items = searchPeoples(input.value, place.value);
+      if (!items.length) { close(); if (status) status.textContent = ""; return; }
+      list.innerHTML = items.map(function (p, i) {
+        return '<li role="option" id="wiw-pg-' + i + '" aria-selected="false"><span>' + esc(p.name) + '</span><span class="pg-c">' + esc(p.c.name) + "</span></li>";
+      }).join("");
+      list.hidden = false; active = -1; input.setAttribute("aria-expanded", "true");
+      if (status) status.textContent = fill(u.peopleCount || E.peopleCount, { n: items.length });
+    }
+    input.addEventListener("input", function () {
+      if (state.jp && input.value.trim() !== state.jp.name) state.jp = null;
+      clearTimeout(timer);
+      if (pgNorm(input.value).length < 2) { close(); return; }
+      timer = setTimeout(function () { loadPeoples(function () { if (document.activeElement === input) show(); }); }, 90);
+    });
+    input.addEventListener("focus", function () { loadPeoples(function () {}); });
+    input.addEventListener("keydown", function (e) {
+      if (list.hidden) return;
+      if (e.key === "ArrowDown") { e.preventDefault(); active = (active + 1) % items.length; mark(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); active = active <= 0 ? items.length - 1 : active - 1; mark(); }
+      else if (e.key === "Enter" && active > -1) { e.preventDefault(); choose(items[active]); }
+      else if (e.key === "Escape") { e.preventDefault(); close(); }
+    });
+    input.addEventListener("blur", function () { setTimeout(function () { if (document.activeElement !== input) close(); }, 150); });
+    list.addEventListener("mousedown", function (e) {
+      const li = e.target.closest("li"); if (!li) return;
+      e.preventDefault(); choose(items[Array.prototype.indexOf.call(list.children, li)]);
+    });
+  }
+  function jpProfileUrl() {
+    return state.jp ? LINKS.jpProfile.replace("{id}", state.jp.id).replace("{rog}", state.jp.rog) : "";
+  }
+
   function viewIntro() {
     const u = T.ui;
     return langPicker() +
@@ -1087,9 +1195,13 @@
         return "<li><span>" + (i + 1) + "</span>" + esc(s) + "</li>";
       }).join("") + "</ol>" +
       '<div class="row"><div><label for="wiw-people">' + esc(u.peopleLabel) + '</label>' +
-      '<input type="text" id="wiw-people" autocomplete="off" placeholder="' + esc(u.peoplePlaceholder) + '" value="' + esc(state.people) + '"></div>' +
+      '<div class="pg-combo"><input type="text" id="wiw-people" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="wiw-people-list" ' +
+      'placeholder="' + esc(u.peoplePlaceholder) + '" value="' + esc(state.people) + '">' +
+      '<ul class="pg-list" id="wiw-people-list" role="listbox" hidden></ul>' +
+      '<div class="pg-sr" id="wiw-people-status" role="status" aria-live="polite"></div></div></div>' +
       '<div><label for="wiw-place">' + esc(u.placeLabel) + '</label>' +
       '<input type="text" id="wiw-place" autocomplete="off" placeholder="' + esc(u.placePlaceholder) + '" value="' + esc(state.place) + '"></div></div>' +
+      '<p class="small" style="margin-top:10px">' + esc(u.peopleHint || LANGS.en.ui.peopleHint) + "</p>" +
       '<div class="actions"><button class="btn btn-red" id="wiw-start">' + esc(u.start) + "</button></div>" +
       '<p class="small" style="margin-top:14px">' + esc(u.privacy) + "</p>" +
       "</div>";
@@ -1237,22 +1349,21 @@
                               who: pln.who || T.ui.notGiven, when: pln.when || T.ui.notGiven });
   }
 
+  /* Find Coaching opens the Work with Me form with Coaching selected and the
+     visitor's results already written into the message box. */
   function coachHref(pl) {
     const u = T.ui;
-    const to = LINKS.coachUser + "@" + LINKS.coachDomain;
     const fnName = pl.fn.main >= 0 ? pl.F.name : T.noFunction.name;
-    const subject = fill(u.mailSubject, { phase: pl.badge + " " + pl.P.name, fn: fnName });
-    const body = [
+    const note = [
       u.mailIntro, "",
-      u.mailName + " ", u.mailContact + " ", "",
-      u.mailPeople + " " + (pl.who || u.notGiven),
+      u.mailPeople + " " + (pl.who || u.notGiven) + (state.jp ? " (" + jpProfileUrl() + ")" : ""),
       u.mailPhase + " " + pl.badge + ", " + pl.P.name,
       u.mailFn + " " + fnName,
       u.mailFit + " " + pl.fit
     ].concat(pl.flag ? [u.mailFlag + " " + pl.flag.title] : [])
      .concat(state.accDone && accAllowed(pl.ph.key) ? [T.acc.ui.mailAcc + " " + (accFocusNames().join(", ") || "-")] : [])
      .concat(planText() ? [T.acc.ui.mailPlan + " " + planText()] : []).join("\n");
-    return "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    return LINKS.coachPage + "?interest=Coaching&note=" + encodeURIComponent(note) + "#inquire";
   }
 
   function viewResult() {
@@ -1264,6 +1375,8 @@
     let html = langPicker() +
       '<div class="card">' +
       '<div class="part">' + esc(u.resultsTitle) + (pl.who ? ": " + esc(pl.who) : "") + "</div>" +
+      (state.jp ? '<p class="small" style="margin:0 0 10px"><a href="' + esc(jpProfileUrl()) + '" target="_blank" rel="noopener">' +
+        esc(fill(u.jpProfile || LANGS.en.ui.jpProfile, { people: state.jp.name })) + " &rarr;</a></p>" : "") +
       gaugeSvg(pl.ph.key) +
       '<p class="small gauge-cap">' + esc(u.gaugeCaption) + "</p>" +
       '<div class="summary">' +
@@ -1343,6 +1456,7 @@
     const u = T.ui, pl = buildPlan();
     const L = [];
     L.push(u.title + (pl.who ? ": " + pl.who : ""));
+    if (state.jp) L.push(jpProfileUrl());
     L.push("");
     L.push(pl.badge + ": " + pl.P.name + ". " + pl.P.meaning);
     L.push(u.mainFn + ": " + pl.F.name);
@@ -1415,12 +1529,14 @@
   }
 
   function bind() {
+    setupPeopleSearch();
     const sel = document.getElementById("wiw-lang");
     if (sel) sel.addEventListener("change", function () { lang = sel.value; T = LANGS[lang]; render(false); });
     const start = document.getElementById("wiw-start");
     if (start) start.addEventListener("click", function () {
       state.people = document.getElementById("wiw-people").value.trim();
       state.place = document.getElementById("wiw-place").value.trim();
+      if (state.jp && state.people !== state.jp.name) state.jp = null;
       state.answers = {}; state.history = []; state.step = "A";
       render(true);
     });

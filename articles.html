@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Articles | Clarity for the Nations</title>
+<meta name="description" content="Every article from Clarity for the Nations, as an interactive piece.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sofia+Sans+Extra+Condensed:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<script src="js/shell.js" data-part="header"></script>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">From the Substack</p>
+    <h1>Articles</h1>
+    <p class="lede">Interactive versions of the articles from Clarity for the Nations. Newest first.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="mostread">
+      <p class="eyebrow"><b>Most read</b></p>
+      <ol class="mr-list" id="most-read"></ol>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter by topic">
+      <button type="button" class="fpill is-on" data-cat="all" aria-pressed="true">All</button>
+      <button type="button" class="fpill" data-cat="data" aria-pressed="false">Data &amp; Metrics</button>
+      <button type="button" class="fpill" data-cat="strategy" aria-pressed="false">Strategy &amp; Training</button>
+      <button type="button" class="fpill" data-cat="migration" aria-pressed="false">Migration &amp; Cities</button>
+      <button type="button" class="fpill" data-cat="bible" aria-pressed="false">Bible &amp; Theology</button>
+      <button type="button" class="fpill" data-cat="frontier" aria-pressed="false">Frontier Peoples</button>
+      <button type="button" class="fpill" data-cat="culture" aria-pressed="false">Church &amp; Culture</button>
+    </div>
+    <p class="arch-count" id="arch-count" role="status" aria-live="polite"></p>
+    <div class="arch" id="arch"></div>
+    <noscript><p>The article list needs JavaScript. You can also <a href="https://clarity4thenations.substack.com">read the articles on Substack</a>.</p></noscript>
+  </div>
+</section>
+
+</main>
+<script src="js/articles.js"></script>
+<script>
+(function () {
+  var NAMES = { data: 'Data & Metrics', strategy: 'Strategy & Training', migration: 'Migration & Cities', bible: 'Bible & Theology', frontier: 'Frontier Peoples', culture: 'Church & Culture' };
+  var list = window.CN_ARTICLES || [], top = window.CN_MOST_READ || [];
+  var arch = document.getElementById('arch'), count = document.getElementById('arch-count');
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  list.forEach(function (a) {
+    var card = el('a', 'arch-card'); card.href = a.href; card.setAttribute('data-cats', a.cats);
+    card.appendChild(el('span', 'arch-cats', a.cats.split(' ').map(function (c) { return NAMES[c] || c; }).join(' \u00b7 ')));
+    card.appendChild(el('h3', '', a.title));
+    card.appendChild(el('p', '', a.blurb));
+    card.appendChild(el('span', 'read', 'Read the article \u2192'));
+    arch.appendChild(card);
+  });
+
+  var mr = document.getElementById('most-read');
+  top.forEach(function (href) {
+    var a = list.filter(function (x) { return x.href === href; })[0]; if (!a) return;
+    var li = el('li'), link = el('a', '', a.title); link.href = a.href; li.appendChild(link); mr.appendChild(li);
+  });
+
+  function show(cat) {
+    var n = 0;
+    arch.querySelectorAll('.arch-card').forEach(function (c) {
+      var on = cat === 'all' || (' ' + c.getAttribute('data-cats') + ' ').indexOf(' ' + cat + ' ') > -1;
+      c.hidden = !on; if (on) n++;
+    });
+    count.textContent = n + (n === 1 ? ' article' : ' articles');
+    document.querySelectorAll('.fpill').forEach(function (b) {
+      var on = b.getAttribute('data-cat') === cat; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+  document.getElementById('filters').addEventListener('click', function (e) {
+    var b = e.target.closest('.fpill'); if (b) show(b.getAttribute('data-cat'));
+  });
+  show('all');
+})();
+</script>
+
+<script src="js/shell.js" data-part="footer"></script>
+</body>
+</html>
