@@ -38,6 +38,20 @@
   select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
   .ibox{display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;}
   .ibox span{padding:0 12px;color:var(--muted);font-size:14px;background:var(--stone);align-self:stretch;display:flex;align-items:center;border-right:1px solid var(--line);}
+  /* city search */
+  .pg-combo{position:relative;}
+  .cityq{width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font-family:var(--serif);font-weight:700;font-size:20px;padding:11px 13px;outline:0;}
+  .cityq:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
+  .pg-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 4px);margin:0;padding:6px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 10px 28px rgba(0,0,0,.14);max-height:330px;overflow:auto;}
+  .pg-list li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 10px;border-radius:6px;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:16px;color:var(--ink);}
+  .pg-list li:hover,.pg-list li[aria-selected=true]{background:var(--navy-soft);}
+  .pg-list .pg-c{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);white-space:nowrap;}
+  .pg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .ctry-note{font-size:13px;line-height:1.45;color:var(--ink);background:var(--navy-soft);border-radius:9px;padding:10px 12px;margin:10px 0 0;}
+  .ctry-note b{color:var(--navy);}
+  .switch{font-size:14px;color:var(--muted);margin:10px 0 0;}
+  .switch a{color:var(--navy);font-weight:600;}
+  [hidden]{display:none !important;}
   .ibox input{border:0;outline:0;font-size:20px;font-family:var(--serif);font-weight:700;color:var(--navy);padding:11px 13px;width:100%;font-variant-numeric:tabular-nums;background:#fff;}
 
   .slider{margin-bottom:18px;}
@@ -199,22 +213,20 @@
   <header>
     <p class="kicker">Clarity for the Nations</p>
     <h1>The Brutal Facts Calculator</h1>
-    <p class="lede">Pick a North American metro, tune the assumptions, and confront the math. How many people would need to come to faith and be baptized each day just to hold the evangelical share steady against births, migration, and death?</p>
+    <p class="lede">Pick a city, tune the assumptions, and confront the math. How many people would need to come to faith and be baptized each day just to hold the evangelical share steady against births, migration, and death?</p>
+    <p class="switch">Working on a people group instead? <a href="brutal-facts-calculator-segments.html">Use the People Group calculator &rarr;</a></p>
   </header>
 
   <!-- ================= CONTROLS ================= -->
   <section class="panel">
     <h2>Set the inputs</h2>
-    <p class="hint">Choosing a metro loads its population and an estimated evangelical share. Edit anything.</p>
+    <p class="hint">Choosing a city loads its population and an evangelical share. Edit anything.</p>
 
     <div class="field">
-      <label for="city">Metro area</label>
-      <select id="city" aria-label="Metro area"></select>
-    </div>
-
-    <div class="field" id="cityNameField" style="display:none;">
-      <label for="cityName">City / place name</label>
-      <div class="ibox"><input id="cityName" value="" placeholder="e.g., Your City, ST" aria-label="City or place name"></div>
+      <label for="cityQ">City or metro area</label>
+      <div class="pg-combo"><input id="cityQ" class="cityq" type="text" value="Dallas-Fort Worth, TX" placeholder="Start typing a city" aria-label="City or metro area">
+      <ul class="pg-list" id="cityList" hidden></ul><div class="pg-sr" id="cityStatus" role="status" aria-live="polite"></div></div>
+      <p class="slider-note" id="cityHelp" style="margin:8px 0 0;">Search 50 North American metros and 398 world cities of a million people or more. Or type any place name and enter your own numbers.</p>
     </div>
 
     <div class="field">
@@ -225,13 +237,13 @@
     <div class="slider">
       <div class="slider-top"><span class="lwrap"><label for="birthRate">Birth rate</label></span><span class="slider-val"><span id="birthRateV">12.4</span> / 1,000</span></div>
       <p class="slider-note">Live births per 1,000 each year. (US about 12, Canada about 10.)</p>
-      <input type="range" id="birthRate" min="5" max="20" step="0.1" value="12.4">
+      <input type="range" id="birthRate" min="4" max="50" step="0.1" value="12.4">
     </div>
 
     <div class="slider">
       <div class="slider-top"><span class="lwrap"><label for="deathRate">Death rate</label></span><span class="slider-val"><span id="deathRateV">9.1</span> / 1,000</span></div>
       <p class="slider-note">Deaths per 1,000 each year.</p>
-      <input type="range" id="deathRate" min="4" max="15" step="0.1" value="9.1">
+      <input type="range" id="deathRate" min="1" max="21" step="0.1" value="9.1">
     </div>
 
     <div class="slider">
@@ -242,20 +254,21 @@
 
     <div class="slider">
       <div class="slider-top"><span class="lwrap"><label for="resBel">Evangelical share, residents</label><button class="info" type="button" aria-label="Definition of evangelical share">i<span class="tip">The share of residents who are evangelical, the way Pew's Religious Landscape Study counts it: self-identified affiliation with an evangelical-tradition denomination, not a measure of who is actively practicing. National average is about 23%, but secular metros run far lower (New York and San Francisco near 9 to 10%, Seattle about 21%).</span></button></span><span class="slider-val"><span id="resBelV">30</span>%</span></div>
-      <p class="slider-note">Sets the lost-population snapshot and the reach goal. Auto-filled per metro; edit freely.</p>
-      <input type="range" id="resBel" min="0" max="60" step="0.5" value="30">
+      <p class="slider-note">Sets the lost-population snapshot and the reach goal. Filled in when you choose a city. Edit freely.</p>
+      <input type="range" id="resBel" min="0" max="60" step="0.01" value="30">
+      <p class="ctry-note" id="ctryNote" hidden></p>
     </div>
 
     <div class="slider">
       <div class="slider-top"><span class="lwrap"><label for="migBel">Evangelical share, in-migrants</label><button class="info" type="button" aria-label="Definition of in-migrant believer share">i<span class="tip">The share of net new arrivals who are already evangelical. Lower this when migration is heavily international, since most of the world's migrants come from non-evangelical backgrounds. It reduces how many newcomers arrive already reached.</span></button></span><span class="slider-val"><span id="migBelV">23</span>%</span></div>
       <p class="slider-note">Lower if migration is heavily international.</p>
-      <input type="range" id="migBel" min="0" max="60" step="1" value="23">
+      <input type="range" id="migBel" min="0" max="60" step="0.01" value="23">
     </div>
 
     <div class="slider">
       <div class="slider-top"><span class="lwrap"><label for="deathBel">Evangelical share among the dying</label><button class="info right" type="button" aria-label="Definition of believer share among the dying">i<span class="tip">The share of those who die each year who were evangelical. Usually higher than the general share, since older people are more religious. Raising it increases the believers needing replacement but lowers the number dying separated from God. Pick one premise and stay consistent.</span></button></span><span class="slider-val"><span id="deathBelV">30</span>%</span></div>
       <p class="slider-note">Usually above the base, since older people are more religious.</p>
-      <input type="range" id="deathBel" min="0" max="80" step="1" value="30">
+      <input type="range" id="deathBel" min="0" max="80" step="0.01" value="30">
     </div>
 
     <div class="field">
@@ -266,7 +279,7 @@
         <button id="goalReach10" aria-pressed="true">Reach 10%</button>
         <button id="goalInc10" aria-pressed="false">Increase by 10 points</button>
       </div>
-      <p class="slider-note" id="goalNote" style="margin-top:8px;">Reach targets switch off once the metro is already above that level.</p>
+      <p class="slider-note" id="goalNote" style="margin-top:8px;">Reach targets switch off once the city is already above that level.</p>
     </div>
 
     <div class="field">
@@ -334,7 +347,7 @@
 
       <div class="card-foot">
         <span><b>4thenations.com</b></span>
-        <span>Data: user provided</span>
+        <span id="cSource">Data: user provided</span>
       </div>
     </div>
   </section>
@@ -368,7 +381,7 @@
         <div class="rc-col req"><div class="cnum" id="rcReqN">759</div><div class="bk" id="rcReqBar" style="height:100%"></div><div class="clbl">Required<br>per day</div></div>
         <div class="rc-col act"><div class="cnum" id="rcActN">50</div><div class="bk" id="rcActBar" style="height:7%"></div><div class="clbl">Actual<br>per day</div></div>
       </div>
-      <p class="gap-line">This metro is running <b id="gapX">15x</b> short of holding the share.</p>
+      <p class="gap-line"><span id="placeWord">This metro</span> is running <b id="gapX">15x</b> short of holding the share.</p>
     </div>
 
     <button class="btn" id="reset">Reset to DFW defaults</button>
@@ -436,6 +449,7 @@
       <p><b>The reach goal.</b> Separate from the keep-even number, this solves for the baptisms per day to move the evangelical share to the chosen target over the chosen horizon, accounting for population growth, migration, and believer deaths. A reach target turns off once the metro is already above it; most US metros are above 2% and 10% evangelical, so the increase goals are usually the live ones.</p>
       <p><b>Definitions matter.</b> Evangelical share here is self-identified, not practicing. State the definition whenever you cite a number from this tool.</p>
       <p><b>City evangelical estimates.</b> Per-metro shares are starting estimates anchored to Pew's 2023-24 Religious Landscape Study, which reports evangelical share for 34 large metros. Edit any value. For precise figures use the Pew RLS metro pages.</p>
+      <p><b>World cities.</b> Outside the US and Canada the list holds every city of a million people or more (five million or more in South Asia), with 2025 populations from the UN World Urbanization Prospects 2025. The UN now draws each city by its continuous built-up area, so a few names and sizes will look unfamiliar. Evangelical and Christian shares for these cities are country-level figures from Joshua Project people group data, weighted by population. Where Joshua Project publishes no evangelical figure for a country, the Christian share is used as an upper limit. Birth and death rates are World Bank 2024 country figures, and migration starts at zero. A city can differ from its country, so change any value you know better.</p>
       <p><b>Sources.</b> Metro populations: US Census Bureau 2024 and Statistics Canada 2024 estimates. Evangelical shares: Pew Research Center 2023-24 Religious Landscape Study. Births: March of Dimes PeriStats. Baptism benchmark: Lifeway Research 2024 Annual Church Profile. Figures are estimates for strategy and mobilization, rounded for display.</p>
     </div>
   </details>
@@ -445,6 +459,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
+<script src="js/people-search.js"></script>
 <script>
 (function(){
   var nf=new Intl.NumberFormat('en-US');
@@ -477,34 +492,31 @@
     ["Calgary, AB",1690000,10],["Edmonton, AB",1550000,10],["Ottawa-Gatineau, ON-QC",1490000,6]
   ];
 
-  function slug(name){return name.toLowerCase().replace(/[^a-z0-9]+/g,'-');}
-  var lookup={};
-  var sel=$('city');
-  function addGroup(label,arr){
-    var g=document.createElement('optgroup'); g.label=label;
-    arr.forEach(function(row){
-      var o=document.createElement('option');
-      var key=slug(row[0]); o.value=key; o.textContent=row[0]+'  ('+nf.format(row[1])+')';
-      lookup[key]={pop:row[1],ev:row[2]}; g.appendChild(o);
-    });
-    sel.appendChild(g);
-  }
-  addGroup('United States',US);
-  addGroup('Canada',CA);
-  var customOpt=document.createElement('option'); customOpt.value='custom'; customOpt.textContent='Not listed (enter values)';
-  sel.appendChild(customOpt);
-  sel.value=slug('Dallas-Fort Worth, TX');
+  // ---- world cities: [name, UN name if different, country code, population in thousands] ----
+  // Populations: UN World Urbanization Prospects 2025 (cities of 1 million or more outside the US and Canada;
+  // 5 million or more in South Asia).
+  var WORLD=[["Jakarta","","IDN",41914],["Dhaka","","BGD",36585],["Tokyo","Tōkyō (Tokyo)","JPN",33413],["New Delhi","","IND",30222],["Shanghai","","CHN",29559],["Guangzhou","","CHN",27563],["Cairo","Al-Qahirah (Cairo)","EGY",25566],["Manila","","PHL",24735],["Kolkata","","IND",22550],["Seoul","","KOR",22490],["Karachi","","PAK",21423],["Mumbai","","IND",20203],["São Paulo","","BRA",18950],["Bangkok","Krung Thep Maha Nakhon (Bangkok)","THA",18180],["Mexico City","Ciudad de México (Mexico City)","MEX",17734],["Beijing","","CHN",17013],["Lahore","","PAK",15156],["Istanbul","","TUR",15015],["Moscow","Moskva (Moscow)","RUS",14525],["Ho Chi Minh City","","VNM",14053],["Buenos Aires","","ARG",14018],["Shenzhen","","CHN",13878],["Bengaluru","","IND",13187],["Osaka","","JPN",12964],["Lagos","","NGA",12792],["Luanda","","AGO",11370],["Chennai","","IND",11153],["Kinshasa","","COD",10944],["Bogotá","","COL",10624],["Lima","","PER",10580],["London","","GBR",10416],["Hajipur","","IND",9942],["Rio de Janeiro","","BRA",9500],["Paris","","FRA",9382],["Hyderabad","","IND",9191],["Tehran","Tehrān (Tehran)","IRN",9175],["Taipei","","TWN",9137],["Bandung","","IDN",8909],["Kuala Lumpur","","MYS",8444],["Dar es Salaam","","TZA",7795],["Suzhou","","CHN",7731],["Ahmedabad","","IND",7632],["Hangzhou","","CHN",7500],["Wuhan","","CHN",7364],["Tianjin","","CHN",7285],["Alexandria","","EGY",7267],["Nagoya","","JPN",7146],["Johannesburg","","ZAF",7077],["Chongqing","","CHN",7071],["Riyadh","Ar-Riyāḑ (Riyadh)","SAU",6916],["Surat","","IND",6909],["Surabaya","","IDN",6844],["Pune","","IND",6818],["Khartoum","Al-Kharṭūm (Khartoum)","SDN",6809],["Nanjing","","CHN",6801],["Santiago","","CHL",6726],["Addis Ababa","Ādīs Ᾱbeba (Addis Ababa)","ETH",6706],["Abidjan","","CIV",6622],["Chaozhou","","CHN",6408],["Amman","Ammān (Amman)","JOR",6404],["Baghdad","Baghdād (Baghdad)","IRQ",6391],["Chengdu","","CHN",6140],["Nairobi","","KEN",6134],["Kozhikode","","IND",6124],["Shenyang","","CHN",5703],["Kabul","Kābul (Kabul)","AFG",5636],["Onitsha","","NGA",5628],["Yangon","","MMR",5618],["Accra","","GHA",5593],["Madrid","","ESP",5584],["Faisalabad","","PAK",5566],["Mashhad","","IRN",5398],["Dubai","","ARE",5284],["Xi'an","","CHN",5231],["Sri Jayawardenepura Kotte - Colombo","","LKA",5224],["Yaoundé","","CMR",5106],["Kochi","","IND",5078],["Hanoi","Hà Nội (Hanoi)","VNM",5068],["Lucknow","","IND",5052],["Singapore","","SGP",4964],["Kampala","","UGA",4881],["Zhengzhou","","CHN",4878],["Hefei","","CHN",4867],["Kano","","NGA",4840],["Hong Kong","Tamar (Hong Kong)","HKG",4750],["Saint Petersburg","","RUS",4736],["Santo Domingo","","DOM",4600],["Cape Town","","ZAF",4509],["Casablanca","","MAR",4457],["Mogadishu","Muqdisho (Mogadishu)","SOM",4399],["Harbin","","CHN",4376],["Kumasi","","GHA",4298],["Damascus","Dimashq (Damascus)","SYR",4288],["Jeddah","","SAU",4284],["Kuwait City","Al Kuwayt (Kuwait City)","KWT",4265],["Medan","","IDN",4246],["Bamako","","MLI",4245],["Luxor","","EGY",4188],["Belo Horizonte","","BRA",4163],["Wenzhou","","CHN",4158],["Sydney","","AUS",4151],["Guadalajara","","MEX",4135],["Douala","","CMR",4105],["Sana'a","Şan'ā' (Sana'a)","YEM",4019],["Taiyuan","","CHN",4006],["Puning","","CHN",3989],["Barcelona","","ESP",3983],["Monterrey","","MEX",3938],["Tashkent","Toshkent (Tashkent)","UZB",3936],["Antananarivo","","MDG",3916],["Dakar","","SEN",3852],["Owerri","","NGA",3833],["Ürümqi","","CHN",3755],["Ibadan","","NGA",3721],["Recife","","BRA",3691],["Brazzaville","","COG",3656],["Melbourne","","AUS",3640],["Qingdao","","CHN",3617],["Ankara","","TUR",3612],["Kasaï-Oriental","","COD",3606],["Karaj","","IRN",3599],["Berlin","","DEU",3561],["Lusaka","","ZMB",3511],["Jinan","","CHN",3473],["Changsha","","CHN",3458],["Medellín","","COL",3350],["Changchun","","CHN",3350],["Nanchang","","CHN",3300],["Nanning","","CHN",3289],["Quanzhou","","CHN",3286],["Busan","","KOR",3263],["Algiers","El Djazaïr (Algiers)","DZA",3246],["Fortaleza","","BRA",3244],["Kunming","","CHN",3228],["Ouagadougou","","BFA",3206],["Durban","","ZAF",3178],["Maputo","","MOZ",3166],["Guayaquil","","ECU",3158],["Salvador","","BRA",3135],["Athens","Athína (Athens)","GRC",3102],["Ningbo","","CHN",3095],["Cebu City","","PHL",3045],["Shijiazhuang","","CHN",2990],["Aleppo","","SYR",2922],["Fuzhou","","CHN",2911],["Pyongyang","P'yŏngyang (Pyongyang)","PRK",2902],["Guatemala City","Ciudad de Guatemala (Guatemala City)","GTM",2838],["Lubumbashi","","COD",2833],["Tasikmalaya","","IDN",2827],["Dalian","","CHN",2796],["Yogyakarta","","IDN",2794],["Naples","","ITA",2768],["Conacry","Coyah (Conacry)","GIN",2728],["Essen","","DEU",2717],["Cali","","COL",2700],["Guiyang","","CHN",2687],["Semarang","","IDN",2679],["Izmir","","TUR",2650],["Changzhou","","CHN",2650],["Tel Aviv","","ISR",2643],["Birmingham","","GBR",2632],["Kiev","Kyiv (Kiev)","UKR",2615],["Wuxi","","CHN",2613],["Milan","","ITA",2599],["Caracas","","VEN",2577],["Manchester","","GBR",2535],["Quito","","ECU",2535],["Cotonou","","BEN",2506],["Curitiba","","BRA",2475],["Tunis","","TUN",2473],["Lomé","","TGO",2415],["Rome","Roma (Rome)","ITA",2376],["Almaty","","KAZ",2368],["Denpasar","","IDN",2353],["Port Harcourt","","NGA",2341],["Dammam","","SAU",2336],["Daegu","","KOR",2334],["Goiânia","","BRA",2321],["Tangshan","","CHN",2287],["Bursa","","TUR",2282],["Manaus","","BRA",2277],["Lanzhou","","CHN",2272],["Taichung","","TWN",2269],["Phnom Penh","Phnum Pénh (Phnom Penh)","KHM",2261],["Makassar","","IDN",2255],["Fukuoka","","JPN",2225],["Barranquilla","","COL",2208],["Macau - Zhuhai","","MAC",2203],["Doha","Ad-Dawhah (Doha)","QAT",2194],["Kaohsiung","","TWN",2187],["Belém","","BRA",2180],["Cixi","","CHN",2177],["San José","","CRI",2171],["Palembang","","IDN",2133],["Harare","","ZWE",2117],["Banha","","EGY",2089],["Rabat","","MAR",2069],["Basra","","IRQ",2034],["Vienna","Wien (Vienna)","AUT",2031],["Maracaibo","","VEN",2031],["La Paz","","BOL",2024],["Hohhot","","CHN",1993],["Santa Cruz de la Sierra","","BOL",1980],["Baku","Bakı (Baku)","AZE",1978],["Sapporo","","JPN",1965],["Minsk","","BLR",1951],["Puebla","","MEX",1948],["Freetown","","SLE",1936],["N'Djaména","","TCD",1935],["Beni","","COD",1924],["Tarogong","","IDN",1917],["Lisbon","Lisboa (Lisbon)","PRT",1914],["Bucharest","București (Bucharest)","ROU",1910],["Malang","","IDN",1900],["Kaduna","","NGA",1890],["Warsaw","Warszawa (Warsaw)","POL",1883],["Monrovia","","LBR",1879],["Putian","","CHN",1872],["Port-au-Prince","","HTI",1868],["Benin City","","NGA",1845],["Isfahan","","IRN",1844],["Pretoria","","ZAF",1836],["Munich","","DEU",1815],["Beirut","Bayrūt (Beirut)","LBN",1794],["Yinchuan","","CHN",1793],["Xiamen City","","CHN",1788],["Handan","","CHN",1777],["Hamburg","","DEU",1759],["Porto Alegre","","BRA",1756],["Slawi","","IDN",1733],["Luoyang","","CHN",1728],["El Mansura","","EGY",1713],["Johor Bahru","","MYS",1696],["Mecca","","SAU",1692],["Nantong","","CHN",1684],["Sao Goncalo","","BRA",1679],["Mosul","","IRQ",1665],["Pointe-Noire","","COG",1663],["Ahwaz","","IRN",1639],["Campinas","","BRA",1631],["Wuhu","","CHN",1631],["Zibo","","CHN",1621],["San Salvador","","SLV",1615],["Gaziantep","","TUR",1613],["Budapest","","HUN",1609],["Warri","","NGA",1608],["Tegucigalpa","","HND",1607],["Ulaanbaatar","","MNG",1597],["Havana","La Habana (Havana)","CUB",1594],["Hargeisa","","SOM",1594],["Ta'izz","","YEM",1587],["Erbil","","IRQ",1583],["Datong","","CHN",1574],["Uyo","","NGA",1567],["Cirebon","","IDN",1567],["Nouakchott","","MRT",1562],["Tijuana","","MEX",1558],["Davao City","","PHL",1546],["Mandalay","","MMR",1541],["Manama","Al-Manāmah (Manama)","BHR",1539],["Surakarta","","IDN",1539],["Panama City","Ciudad de Panamá (Panama City)","PAN",1527],["Brasília","","BRA",1521],["Daejeon","","KOR",1517],["Toluca","","MEX",1505],["Kananga","","COD",1504],["Batam City","","IDN",1500],["Stockholm","","SWE",1500],["Baotou","","CHN",1492],["Anyang","","CHN",1489],["Taizhou","","CHN",1484],["Kigali","","RWA",1484],["Cordoba","","ARG",1460],["Xiuying District","","CHN",1458],["Mombasa","","KEN",1456],["Jilin City","","CHN",1449],["Angeles","","PHL",1446],["Gwangju","","KOR",1441],["Dushanbe","","TJK",1441],["Valencia","","VEN",1436],["Medina","","SAU",1432],["Aba","","NGA",1428],["Al Zaqaziq","","EGY",1417],["Asyut","","EGY",1407],["Brussels","Bruxelles (Brussels)","BEL",1406],["Xuzhou","","CHN",1402],["Niamey","","NER",1401],["Liuzhou","","CHN",1401],["Valencia","","ESP",1390],["Aboh","","NGA",1374],["Abuja","","NGA",1374],["León","","MEX",1368],["Xining","","CHN",1360],["Fez","","MAR",1360],["Huaiyin District","","CHN",1350],["Cochabamba","","BOL",1347],["Bishkek","","KGZ",1343],["Novosibirsk","","RUS",1331],["Purwokerto","","IDN",1331],["Cần Thơ","","VNM",1328],["Zhongshan","","CHN",1326],["Samarinda","","IDN",1326],["Anshan","","CHN",1322],["Managua","","NIC",1316],["Yichang","","CHN",1315],["Asunción","","PRY",1315],["Tabriz","","IRN",1309],["Kharkiv","","UKR",1309],["Klipgat","","ZAF",1301],["San Pedro Sula","","HND",1299],["Tembisa","","ZAF",1299],["Ilorin","","NGA",1282],["Lubango","","AGO",1281],["Antalya","","TUR",1274],["Al-Najaf","","IRQ",1273],["São Luís","","BRA",1264],["Sendai","","JPN",1256],["Bujumbura","","BDI",1247],["Montevideo","","URY",1240],["Tripoli","Ţarābulus (Tripoli)","LBY",1240],["Amsterdam","","NLD",1236],["Zhangzhou","","CHN",1233],["Copenhagen","København (Copenhagen)","DNK",1229],["Torreón","","MEX",1228],["Liverpool","","GBR",1227],["Vitória","","BRA",1227],["Maiduguri","","NGA",1226],["Ashgabat","Aşgabat (Ashgabat)","TKM",1218],["Tangier","","MAR",1218],["Ganzhou","","CHN",1216],["Ciudad Juárez","","MEX",1212],["Pekanbaru","","IDN",1209],["Kitakyushu","","JPN",1207],["Lyon","","FRA",1203],["Prague","Praha (Prague)","CZE",1198],["Nizhny Novgorod","","RUS",1197],["Oran","","DZA",1192],["Hiroshima","","JPN",1186],["Padang","","IDN",1184],["Shymkent","","KAZ",1184],["Bandar Lampung","","IDN",1184],["Yueqing","","CHN",1160],["Cabinda","","AGO",1157],["Serrekunda","","GMB",1157],["El Mahalla El Kubra","","EGY",1157],["Kirkuk","","IRQ",1153],["Rosario","","ARG",1152],["Touba","","SEN",1152],["Turin","","ITA",1151],["Sincan","","TUR",1150],["Yekaterinburg","","RUS",1148],["Dublin","","IRL",1143],["Đà Nẵng","","VNM",1143],["Huizhou","","CHN",1138],["Kazan","","RUS",1133],["Sekondi-Takoradi","","GHA",1127],["Cologne","","DEU",1125],["Bobo-Dioulasso","","BFA",1125],["Suhaj","","EGY",1123],["Auckland","","NZL",1123],["Belgrade","Beograd (Belgrade)","SRB",1121],["Enugu","","NGA",1115],["East Jerusalem","Al-Quds (East Jerusalem)","PSE",1106],["Tianjia‘an","","CHN",1100],["Yancheng","","CHN",1093],["Natal","","BRA",1089],["Yerevan","","ARM",1089],["Kaifeng","","CHN",1087],["Perth","","AUS",1079],["Brisbane","","AUS",1072],["Zhangjiagang","","CHN",1068],["Sofia","","BGR",1067],["Rostov-on-Don","","RUS",1066],["Leeds","","GBR",1066],["Astana","","KAZ",1065],["João Pessoa","","BRA",1064],["Honghuagang","","CHN",1063],["Naha","","JPN",1060],["Bangui","","CAF",1057],["Al Hillah","","IRQ",1055],["Tshikapa","","COD",1055],["Tuen Mun","","HKG",1053],["Sarvestan","","IRN",1039],["Gaza","","PSE",1038],["Mendoza","","ARG",1028],["Santos","","BRA",1028],["Maceió","","BRA",1024],["Rotterdam","","NLD",1024],["Karbala","","IRQ",1023],["Marrakesh","","MAR",1022],["Otite","","NGA",1020],["Tanta","","EGY",1019],["Luohe","","CHN",1018],["Binhai New Area","","CHN",1017],["Abu Dhabi","Abū Ẓabī (Abu Dhabi)","ARE",1016],["Hải Phòng","","VNM",1015],["Helsingfors","Helsinki (Helsingfors)","FIN",1014],["Cartagena","","COL",1009]];
+  // ---- countries: [name, % evangelical, % Christian, births per 1,000, deaths per 1,000] ----
+  // Percentages: Joshua Project people group data, weighted by population. null = Joshua Project lists it as unknown.
+  // Rates: World Bank, 2024. null = no World Bank figure.
+  var CTRY={"AFG":["Afghanistan",0.02,0.02,35.0,5.7],"AGO":["Angola",23.27,91.06,37.2,6.8],"ARE":["United Arab Emirates",1.45,6.64,9.8,1.0],"ARG":["Argentina",11.09,93.07,11.1,7.7],"ARM":["Armenia",9.8,93.7,11.1,8.4],"AUS":["Australia",13.73,62.34,10.7,6.9],"AUT":["Austria",0.61,67.27,8.4,9.6],"AZE":["Azerbaijan",0.22,1.35,10.0,5.8],"BDI":["Burundi",30.49,93.13,33.2,6.7],"BEL":["Belgium",1.44,64.11,9.2,9.5],"BEN":["Benin",7.51,31.44,33.4,8.7],"BFA":["Burkina Faso",10.71,21.09,31.3,7.9],"BGD":["Bangladesh",null,0.5,20.0,5.1],"BGR":["Bulgaria",2.0,82.14,8.3,15.6],"BHR":["Bahrain",2.29,8.58,12.0,2.2],"BLR":["Belarus",1.68,68.97,7.0,13.1],"BOL":["Bolivia",19.46,91.75,21.0,7.2],"BRA":["Brazil",25.18,89.74,12.1,7.1],"CAF":["Central African Republic",32.2,70.99,46.2,9.4],"CHL":["Chile",23.16,87.07,8.7,6.6],"CHN":["China",7.58,9.21,6.8,7.8],"CIV":["Côte d'Ivoire",12.78,37.13,31.6,7.6],"CMR":["Cameroon",8.93,50.54,33.3,7.0],"COD":["Congo, Democratic Republic of",19.35,91.06,40.9,8.4],"COG":["Congo, Republic of the",14.76,84.84,30.4,6.2],"COL":["Colombia",10.8,93.29,13.3,5.5],"CRI":["Costa Rica",18.55,95.4,10.0,5.6],"CUB":["Cuba",11.39,56.0,8.6,10.4],"CZE":["Czechia",0.74,27.9,7.7,10.3],"DEU":["Germany",2.13,61.54,8.1,12.1],"DNK":["Denmark",3.59,81.47,9.5,9.5],"DOM":["Dominican Republic",10.94,93.58,17.6,6.2],"DZA":["Algeria",0.05,0.06,18.8,4.6],"ECU":["Ecuador",10.61,93.45,14.8,5.2],"EGY":["Egypt",1.46,9.51,20.9,5.5],"ESP":["Spain",1.43,77.37,6.5,8.9],"ETH":["Ethiopia",17.89,61.01,31.5,5.9],"FIN":["Finland",10.24,80.41,7.8,10.4],"FRA":["France",1.26,62.19,9.7,9.4],"GBR":["United Kingdom",7.51,55.61,9.9,9.7],"GHA":["Ghana",25.93,61.97,25.9,7.0],"GIN":["Guinea",0.68,4.15,33.3,9.0],"GMB":["Gambia",0.9,3.49,29.9,6.2],"GRC":["Greece",0.48,87.93,6.6,12.1],"GTM":["Guatemala",25.15,95.05,20.6,4.9],"HKG":["China, Hong Kong",6.11,13.07,4.9,7.0],"HND":["Honduras",27.72,95.36,21.6,4.5],"HTI":["Haiti",17.71,94.53,21.9,7.8],"HUN":["Hungary",3.06,87.0,8.2,13.4],"IDN":["Indonesia",3.45,11.67,15.8,7.6],"IND":["India",null,2.04,16.0,6.6],"IRL":["Ireland",1.66,90.49,10.0,6.5],"IRN":["Iran",1.2,1.77,12.6,4.8],"IRQ":["Iraq",0.22,0.92,25.6,4.2],"ISR":["Israel",0.68,1.4,18.6,5.3],"ITA":["Italy",1.48,81.85,6.3,11.0],"JOR":["Jordan",0.56,2.96,20.5,3.1],"JPN":["Japan",0.45,1.86,5.7,13.3],"KAZ":["Kazakhstan",0.54,11.76,19.5,6.7],"KEN":["Kenya",45.79,80.29,27.0,7.2],"KGZ":["Kyrgyzstan",0.2,2.45,19.4,4.4],"KHM":["Cambodia",1.38,3.3,20.3,6.5],"KOR":["Korea, South",16.34,29.95,4.7,7.0],"KWT":["Kuwait",1.61,10.47,10.0,1.5],"LBN":["Lebanon",0.72,31.51,16.0,6.0],"LBR":["Liberia",11.74,39.78,30.6,8.0],"LBY":["Libya",0.18,2.42,16.5,6.5],"LKA":["Sri Lanka",null,7.26,10.1,7.8],"MAC":["China, Macau",1.95,7.98,5.3,3.6],"MAR":["Morocco",0.11,0.19,16.4,5.7],"MDG":["Madagascar",6.14,49.42,31.7,7.5],"MEX":["Mexico",10.5,95.12,15.5,6.2],"MLI":["Mali",0.68,2.79,39.5,8.5],"MMR":["Myanmar (Burma)",5.31,9.0,16.5,9.2],"MNG":["Mongolia",1.34,2.34,16.9,5.5],"MOZ":["Mozambique",10.76,45.84,37.0,6.9],"MRT":["Mauritania",0.08,0.21,34.0,5.4],"MYS":["Malaysia",3.58,9.72,12.4,5.3],"NER":["Niger",1.02,1.63,41.4,8.7],"NGA":["Nigeria",26.83,51.62,32.5,11.6],"NIC":["Nicaragua",43.38,96.09,19.1,4.6],"NLD":["Netherlands",4.01,46.74,9.2,9.6],"NZL":["New Zealand",17.82,50.77,11.0,7.1],"PAK":["Pakistan",null,0.86,27.4,6.4],"PAN":["Panama",21.67,88.0,15.9,4.9],"PER":["Peru",14.53,94.07,15.8,5.6],"PHL":["Philippines",11.35,88.21,15.9,6.3],"POL":["Poland",0.31,89.63,6.9,11.2],"PRK":["Korea, North",1.59,1.66,12.9,9.9],"PRT":["Portugal",3.52,92.59,7.9,11.1],"PRY":["Paraguay",8.12,94.46,19.7,5.7],"PSE":["West Bank / Gaza",1.11,2.46,26.5,5.9],"QAT":["Qatar",0.96,6.42,9.5,1.1],"ROU":["Romania",6.4,93.64,7.5,12.8],"RUS":["Russia",1.42,69.23,8.4,12.4],"RWA":["Rwanda",26.86,90.2,28.1,5.9],"SAU":["Saudi Arabia",0.52,3.68,16.5,2.3],"SDN":["Sudan",0.48,2.26,33.0,6.3],"SEN":["Senegal",0.19,4.54,29.2,5.5],"SGP":["Singapore",7.13,12.88,7.4,6.0],"SLE":["Sierra Leone",4.97,12.78,30.1,8.2],"SLV":["El Salvador",45.42,94.11,15.6,7.5],"SOM":["Somalia",0.15,0.48,42.3,9.7],"SRB":["Serbia",0.71,78.13,9.2,14.9],"SWE":["Sweden",5.67,54.86,9.3,8.6],"SYR":["Syria",0.1,2.6,23.2,4.9],"TCD":["Chad",7.32,25.26,43.3,11.1],"TGO":["Togo",11.14,45.2,32.1,8.5],"THA":["Thailand",0.75,1.8,8.1,9.0],"TJK":["Tajikistan",0.07,0.39,25.3,4.6],"TKM":["Turkmenistan",0.04,1.78,20.9,5.8],"TUN":["Tunisia",0.03,0.44,13.4,6.1],"TUR":["Türkiye (Turkey)",0.04,0.65,11.0,5.7],"TWN":["Taiwan",3.33,6.37,null,null],"TZA":["Tanzania",11.04,50.42,34.8,5.7],"UGA":["Uganda",34.14,84.34,34.4,4.8],"UKR":["Ukraine",3.66,72.6,5.5,13.6],"URY":["Uruguay",7.35,66.31,9.8,9.9],"UZB":["Uzbekistan",0.19,2.31,25.6,6.0],"VEN":["Venezuela",12.26,82.36,15.2,7.7],"VNM":["Vietnam",2.17,10.19,13.4,6.6],"YEM":["Yemen",0.02,0.2,34.4,4.7],"ZAF":["South Africa",21.2,76.81,18.5,9.2],"ZMB":["Zambia",25.1,86.34,32.7,5.2],"ZWE":["Zimbabwe",25.46,76.67,29.9,7.5]};
+  var WORLD_B=16.3, WORLD_D=7.6;   // World Bank world average, 2024, used when a country has no rate
 
-  function placeName(){
-    if(sel.value==='custom'){var n=$('cityName').value.trim();return n||'Your city';}
-    var t=sel.options[sel.selectedIndex].textContent;
-    return t.replace(/\s*\(.*\)$/,'');
-  }
+  // one searchable list of every city
+  var LIST=[];
+  function nrm(x){return window.CNPeople?CNPeople.norm(x):String(x).toLowerCase();}
+  function addNA(arr,country){arr.forEach(function(r){LIST.push({name:r[0],label:r[0],n:nrm(r[0]),c:{name:country,n:nrm(country),rog:'NA'},id:'n'+LIST.length,w:Math.log(r[1])/Math.LN10,pop:r[1],ev:r[2],kind:'na'});});}
+  addNA(US,'United States'); addNA(CA,'Canada');
+  WORLD.forEach(function(r){var c=CTRY[r[2]];LIST.push({name:r[0],label:r[0]+', '+c[0],n:nrm(r[0]+' '+r[1]),c:{name:c[0],n:nrm(c[0]),rog:r[2]},id:'w'+LIST.length,w:Math.log(r[3]*1000)/Math.LN10,pop:r[3]*1000,iso:r[2],kind:'world'});});
+  var current={kind:'na'}, edited=false;
+
+  function placeName(){ return $('cityQ').value.trim()||'Your city'; }
+  function pct(v){ v=+v; return v<2 ? v.toFixed(2) : (Math.round(v*10)/10).toString(); }
 
   var ids=['pop','birthRate','deathRate','netMig','resBel','migBel','deathBel','actual'];
   var goal='reach10';   // reach2 | inc2 | reach10 | inc10
   var years=10;
-  var defaults={city:slug('Dallas-Fort Worth, TX'),pop:'8,344,032',birthRate:12.4,deathRate:9.1,netMig:15.2,resBel:30,migBel:23,deathBel:30,actual:50};
+  var defaults={city:'Dallas-Fort Worth, TX',pop:'8,344,032',birthRate:12.4,deathRate:9.1,netMig:15.2,resBel:30,migBel:23,deathBel:30,actual:50};
 
   function setFill(el){var mn=+el.min,mx=+el.max,v=+el.value;el.style.setProperty('--fill',((v-mn)/(mx-mn)*100)+'%');}
   function flash(el){el.style.opacity='.55';requestAnimationFrame(function(){requestAnimationFrame(function(){el.style.opacity='1';});});}
@@ -554,9 +566,9 @@
     $('goalReach10').setAttribute('aria-pressed',goal==='reach10');
     $('goalInc10').setAttribute('aria-pressed',goal==='inc10');
     var note;
-    if(dis10) note='This metro is already above 10% evangelical, so reach targets are off. Use the increase goals.';
-    else if(dis2) note='This metro is above 2% evangelical, so Reach 2% is off. Reach 10% and the increase goals remain.';
-    else note='All four goals are available while the metro is below that level.';
+    if(dis10) note='This city is already above 10% evangelical, so reach targets are off. Use the increase goals.';
+    else if(dis2) note='This city is above 2% evangelical, so Reach 2% is off. Reach 10% and the increase goals remain.';
+    else note='All four goals are available while the city is below that level.';
     $('goalNote').textContent=note;
   }
 
@@ -605,9 +617,9 @@
     $('birthRateV').textContent=(+$('birthRate').value).toFixed(1);
     $('deathRateV').textContent=(+$('deathRate').value).toFixed(1);
     $('netMigV').textContent=(+$('netMig').value).toFixed(1);
-    $('resBelV').textContent=(+$('resBel').value);
-    $('migBelV').textContent=$('migBel').value;
-    $('deathBelV').textContent=$('deathBel').value;
+    $('resBelV').textContent=pct($('resBel').value);
+    $('migBelV').textContent=pct($('migBel').value);
+    $('deathBelV').textContent=pct($('deathBel').value);
     ids.forEach(function(id){var e=$(id);if(e.type==='range')setFill(e);});
     updateGoalAvailability();
 
@@ -650,7 +662,7 @@
     $('sGoal').textContent=fmt(goalDay)+' / day';
 
     // brutal-fact sentence
-    $('cFact').innerHTML='Holding the evangelical share steady takes <b>'+fmt(perDay)+' baptisms a day</b>. At an estimated '+fmt(actual)+' a day, this metro runs <b>'+gapTxt+'</b> short, while <b>'+fmt(lostDay)+'</b> die each day separated from God.';
+    $('cFact').innerHTML='Holding the evangelical share steady takes <b>'+fmt(perDay)+' baptisms a day</b>. At an estimated '+fmt(actual)+' a day, '+(current.kind==='na'?'this metro':'this city')+' runs <b>'+gapTxt+'</b> short, while <b>'+fmt(lostDay)+'</b> die each day separated from God.';
 
     // analysis breakdown
     $('bBirth').textContent=fmt(r.cBirth);
@@ -670,26 +682,47 @@
     $('rcReqBar').style.height=(perDay/top*100)+'%';
     $('rcActBar').style.height=(actual/top*100)+'%';
     $('gapX').textContent=gapTxt;
+    $('placeWord').textContent=current.kind==='na'?'This metro':'This city';
+    $('cSource').textContent=(current.kind==='world')?('Data: UN, World Bank, Joshua Project'+(edited?', edited':'')):'Data: user provided';
     renderMult();
   }
 
   // events
-  ids.forEach(function(id){$(id).addEventListener('input',render);});
+  ids.forEach(function(id){$(id).addEventListener('input',function(){edited=true;render();});});
   ['mDisc','mPct','mEach','mGen'].forEach(function(id){var e=$(id);if(e)e.addEventListener('input',render);});
-  $('cityName').addEventListener('input',render);
-  $('pop').addEventListener('input',function(){ sel.value='custom'; $('cityNameField').style.display=''; render(); });
   $('pop').addEventListener('blur',function(){var v=num(this.value);this.value=v?nf.format(v):'0';render();});
   $('actual').addEventListener('blur',function(){this.value=fmt(num(this.value));render();});
 
-  sel.addEventListener('change',function(){
-    if(sel.value!=='custom' && lookup[sel.value]){
-      $('pop').value=nf.format(lookup[sel.value].pop);
-      $('resBel').value=lookup[sel.value].ev;
+  /* Choosing a city fills the form. North American metros keep their own estimates.
+     World cities use the country's figures, which a city can differ from. */
+  function chooseCity(p){
+    var note=$('ctryNote');
+    $('cityQ').value=p.label; $('pop').value=nf.format(p.pop); edited=false; current=p;
+    if(p.kind==='na'){
+      $('resBel').value=p.ev; $('birthRate').value=defaults.birthRate; $('deathRate').value=defaults.deathRate; $('netMig').value=defaults.netMig;
+      $('migBel').value=defaults.migBel; $('deathBel').value=defaults.deathBel; note.hidden=true;
+    } else {
+      var c=CTRY[p.iso], ev=c[1], ch=c[2], unknown=(ev==null), share=unknown?(ch||0):ev;
+      $('resBel').value=share; $('migBel').value=share; $('deathBel').value=share; $('netMig').value=0;
+      $('birthRate').value=c[3]!=null?c[3]:WORLD_B; $('deathRate').value=c[4]!=null?c[4]:WORLD_D;
+      note.innerHTML='<b>'+c[0]+', country level:</b> '+(unknown?'evangelical share unknown':pct(ev)+'% evangelical')+', <b>'+(ch!=null?pct(ch)+'% Christian':'Christian share unknown')+'</b> (Joshua Project). '+
+        (unknown?'Joshua Project does not publish an evangelical figure for '+c[0]+', so the Christian share is used as an upper limit. Lower it if you know better. ':'A city can differ from its country, so change the share if you know better. ')+
+        (c[3]==null?'No World Bank birth and death rates for '+c[0]+', so the world average is used. ':'')+'Migration starts at zero.';
+      note.hidden=false;
+      goal = share<2 ? 'reach2' : share<10 ? 'reach10' : 'inc2';
     }
-    $('cityNameField').style.display=(sel.value==='custom')?'':'none';
-    if(sel.value==='custom') $('cityName').focus();
     render();
-  });
+  }
+  if(window.CNPeople){
+    CNPeople.attach({
+      input:$('cityQ'), list:$('cityList'), status:$('cityStatus'),
+      statusText:function(n){return n+' cities found. Use the arrow keys to choose one.';},
+      search:function(q){return CNPeople.search(q,'',8,LIST);},
+      onType:function(){ if(current.kind!=='custom' && $('cityQ').value.trim()!==current.label){ current={kind:'custom'}; $('ctryNote').hidden=true; } render(); },
+      onChoose:chooseCity
+    });
+  } else { $('cityQ').addEventListener('input',function(){ current={kind:'custom'}; render(); }); }
+  $('cityQ').addEventListener('focus',function(){ this.select(); });
 
 
   $('goalReach2').addEventListener('click',function(){ if(this.disabled)return; goal='reach2'; render(); });
@@ -760,15 +793,13 @@
   });
 
   $('reset').addEventListener('click',function(){
-    sel.value=defaults.city; $('cityNameField').style.display='none'; $('cityName').value=''; $('pop').value=defaults.pop;
-    $('birthRate').value=defaults.birthRate; $('deathRate').value=defaults.deathRate; $('netMig').value=defaults.netMig;
-    $('resBel').value=defaults.resBel; $('migBel').value=defaults.migBel;
-    $('deathBel').value=defaults.deathBel; $('actual').value=defaults.actual;
-    goal='reach10'; years=10;
+    $('actual').value=defaults.actual; years=10;
     Array.prototype.forEach.call(document.querySelectorAll('.yr'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-y')==='10');});
-    render();
+    goal='reach10';
+    chooseCity(LIST.filter(function(x){return x.label===defaults.city;})[0]);
   });
 
+  current=LIST.filter(function(x){return x.label===defaults.city;})[0];
   render();
 })();
 </script>

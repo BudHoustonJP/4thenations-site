@@ -52,7 +52,7 @@
 .cn-shell .cn-btn-solid:hover { background: var(--cn-paper); border-color: var(--cn-paper); color: var(--cn-ink); }
 .cn-shell .cn-btn-line { color: var(--cn-lamp); }
 .cn-shell .cn-btn-line:hover { background: var(--cn-lamp); color: var(--cn-ink); }
-.cn-shell .cn-mobile { display: none; }
+.cn-shell .cn-mobile { display: none; margin: 0; padding: 0; border: 0; }   /* resets guard against a page's own details styles */
 .cn-shell [data-give] { display: none; }
 html.give-live .cn-shell .cn-cta [data-give] { display: inline-flex; }
 html.give-live .cn-shell .cn-panel [data-give] { display: block; }

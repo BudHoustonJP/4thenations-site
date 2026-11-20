@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Brutal Facts Calculator: People Groups | Clarity for the Nations</title>
+<meta name="description" content="Pick a people group and see what it would take to reach it: the daily baptisms needed, set against births and deaths. Built on Joshua Project data.">
 <link rel="stylesheet" href="css/shell.css">
 <style>
   :root{
@@ -97,15 +98,6 @@
   .info:hover .tip,.info:focus .tip,.info.open .tip{display:block;}
   .tin{width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--navy);font-family:var(--serif);font-weight:700;font-size:18px;padding:11px 13px;outline:0;}
   .tin.name{color:var(--ink);}
-  /* People group search (Joshua Project) */
-  .pg-combo{position:relative;}
-  .pg-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 4px);margin:0;padding:6px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 10px 28px rgba(0,0,0,.14);max-height:330px;overflow:auto;}
-  .pg-list li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 10px;border-radius:6px;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:16px;color:var(--ink);}
-  .pg-list li:hover,.pg-list li[aria-selected=true]{background:var(--navy-soft);}
-  .pg-list .pg-c{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);white-space:nowrap;}
-  .pg-help{margin:7px 0 0;font-size:13px;line-height:1.45;color:var(--muted);}
-  .pg-help a{color:var(--navy);font-weight:600;}
-  .pg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   .tin:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
   .ibox{display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;}
   .ibox input{border:0;outline:0;font-size:18px;font-family:var(--serif);font-weight:700;color:var(--navy);padding:11px 13px;width:100%;font-variant-numeric:tabular-nums;background:#fff;}
@@ -134,28 +126,14 @@
 
   .btn{border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:9px;padding:10px 18px;font-weight:600;font-size:14px;cursor:pointer;font-family:var(--sans);margin-top:6px;}
   .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
-  details{margin-top:24px;border-top:1px solid var(--line);padding-top:16px;}
-  summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--navy);}
+  .notes-d{margin-top:30px;border-top:1px solid var(--line);padding-top:16px;}
+  .notes-d > summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--navy);}
   .notes{font-size:13px;color:var(--muted);margin-top:12px;}
   .notes p{margin:0 0 9px;}
   .sig{margin-top:30px;font-size:13px;color:var(--muted);text-align:center;}
   .sig b{color:var(--ink);}
   @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
 
-  .sitenav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.4rem;padding:12px 20px;background:#F3EFE6;border-bottom:1px solid var(--line);flex-wrap:wrap;font-family:var(--sans)}
-  .sitenav .brand{font-family:var(--serif);font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--ink)}
-  .sitenav .links{display:flex;gap:1.3rem;flex-wrap:wrap;align-items:center}
-  .sitenav .links>a{text-decoration:none;font-weight:600;font-size:.9rem;color:var(--ink);opacity:.85}
-  .sitenav .links>a:hover{opacity:1;color:var(--clay)}
-  .nav-dd{position:relative}
-  .nav-ddbtn{background:none;border:none;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;color:var(--ink);opacity:.85;display:flex;align-items:center;gap:.3rem;padding:0}
-  .nav-ddbtn:hover{opacity:1;color:var(--clay)}
-  .nav-dd .caret{font-size:.7em;transition:transform .2s}
-  .nav-dd.open .caret{transform:rotate(180deg)}
-  .nav-ddmenu{position:absolute;top:150%;right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,.14);min-width:240px;display:none;flex-direction:column;padding:6px;z-index:60}
-  .nav-dd.open .nav-ddmenu{display:flex}
-  .nav-ddmenu a{padding:.6rem .8rem;border-radius:8px;font-size:.9rem;font-weight:600;color:var(--ink);text-decoration:none;opacity:1}
-  .nav-ddmenu a:hover{background:var(--stone)}
   .mult-h{font-family:var(--serif);font-size:27px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
   .mult .mult-rate{font-size:14px;color:var(--muted);margin:14px 0 0;}
   .mult .mult-rate b{color:var(--navy);}
@@ -172,6 +150,65 @@
   .mc-para{font-size:15px;line-height:1.55;color:var(--ink);margin:16px 0 0;}
   .mc-export{margin-top:14px;}
   @media(max-width:430px){.mc-two{grid-template-columns:1fr;}}
+
+  /* ===== layout: steps on the left, the answer on the right ===== */
+  [hidden]{display:none !important;}
+  .wrap{max-width:1180px;display:block;padding:26px 20px 60px;}
+  .switch{font-size:14px;color:var(--muted);margin:10px 0 0;}
+  .switch a,.linkbtn{color:var(--navy);font-weight:600;}
+  .grid{display:grid;grid-template-columns:minmax(0,1fr);margin-top:22px;}
+  .grid > .panel,.grid > .cardcol{margin:0 0 18px;}
+  .stepno{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);font-weight:700;margin:0 0 4px;}
+  .panel.step h2{font-size:22px;margin:0 0 14px;}
+  .panel.step .field:last-child,.panel.step .slider:last-of-type{margin-bottom:0;}
+  .linkbtn{background:none;border:0;padding:0;margin:12px 0 0;font:inherit;font-size:14px;cursor:pointer;text-decoration:underline;}
+  .linkbtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .adjust > summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;font-family:var(--serif);font-weight:700;font-size:19px;}
+  .adjust > summary::-webkit-details-marker{display:none;}
+  .adjust > summary::after{content:'+';font-family:var(--sans);font-weight:400;font-size:22px;line-height:1;color:var(--navy);}
+  .adjust[open] > summary::after{content:'\2212';}
+  .adjust > summary span{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);flex:1;min-width:200px;}
+  .adjust[open] > summary{margin-bottom:18px;}
+  .adjust > summary:focus-visible{outline:2px solid var(--gold);outline-offset:4px;}
+  .rates-note{font-size:12.5px;color:var(--muted);margin:-6px 0 0;}
+  .rates-note:empty{display:none;}
+  .rowfoot .btn{margin-top:0;}
+  .empty{display:none;min-height:300px;border:1.5px dashed #CFC9C0;border-radius:16px;background:var(--paper);flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:36px 24px;}
+  .empty svg{width:54px;height:54px;color:var(--navy);}
+  .empty p{font-family:var(--serif);font-weight:700;font-size:22px;line-height:1.25;margin:0;max-width:17em;}
+  .empty span{font-size:14px;color:var(--muted);max-width:26em;}
+  .is-blank .empty{display:flex;}
+  .is-blank .cardcol > .card,.is-blank .plain,.is-blank .share,.is-blank #rowB{display:none;}
+  .plain{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:0 12px 12px 0;padding:14px 18px;margin:0 0 14px;font-size:16px;line-height:1.5;}
+  .plain b{color:var(--clay);}
+  .plain-k{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--navy);margin-bottom:4px;}
+  .share{margin-top:16px;}
+  .share h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 9px;}
+  .share .sizebar{margin:0 0 10px;}
+  .share .dlrow{margin:0;}
+  .mc-export{margin-top:14px;}
+  #rowB{margin-top:14px;padding-top:26px;border-top:1px solid var(--line);}
+  .minibar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:flex;align-items:center;gap:12px;width:100%;border:0;border-top:1px solid #16294a;background:var(--navy);color:#fff;padding:10px 16px calc(10px + env(safe-area-inset-bottom));font-family:var(--sans);text-align:left;cursor:pointer;}
+  .minibar b{font-family:var(--serif);font-size:30px;line-height:1;font-variant-numeric:tabular-nums;}
+  .minibar span{font-size:13px;line-height:1.3;flex:1;}
+  .minibar i{font-style:normal;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;opacity:.85;}
+  body.has-mini{padding-bottom:64px;}
+  /* people group search */
+  .pg-combo{position:relative;}
+  .pg-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 4px);margin:0;padding:6px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 10px 28px rgba(0,0,0,.14);max-height:330px;overflow:auto;}
+  .pg-list li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 10px;border-radius:6px;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:16px;color:var(--ink);}
+  .pg-list li:hover,.pg-list li[aria-selected=true]{background:var(--navy-soft);}
+  .pg-list .pg-c{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);white-space:nowrap;}
+  .pg-help{margin:8px 0 0;font-size:13px;line-height:1.45;color:var(--muted);}
+  .pg-help a{color:var(--navy);font-weight:600;}
+  .pg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  @media(min-width:980px){
+    .grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);grid-template-rows:auto auto auto auto 1fr;column-gap:30px;align-items:start;}
+    .grid > *{grid-column:1;}
+    .grid > .cardcol{grid-column:2;grid-row:1 / -1;}
+  }
+  @media(min-width:980px) and (min-height:940px){ .grid > .cardcol{position:sticky;top:84px;} }
+  @media print{ .minibar{display:none !important;} }
 </style>
 </head>
 <body>
@@ -180,205 +217,241 @@
 <div class="wrap">
 
   <header>
-    <p class="kicker">Clarity for the Nations</p>
+    <p class="kicker">Mission tools &middot; People groups</p>
     <h1>The Brutal Facts Calculator</h1>
-    <p class="lede">For an unreached people, the birth rate is the brutal fact. Enter a group below, and the card updates into a one-screen infographic you can screenshot and share.</p>
+    <p class="lede">For an unreached people, the birth rate is the brutal fact. Pick a people group and see what it would take to reach it.</p>
+    <p class="switch">Working on a city instead? <a href="brutal-facts-calculator-cities.html">Use the City calculator &rarr;</a></p>
   </header>
 
-  <div class="sizebar">
-    <span class="sizebar-l">Fit to image</span>
-    <div class="seg" role="group" aria-label="Card size">
-      <button class="sz" data-s="fit" aria-pressed="true">Fit screen</button>
-      <button class="sz" data-s="portrait" aria-pressed="false">Portrait</button>
-      <button class="sz" data-s="story" aria-pressed="false">Story</button>
-      <button class="sz" data-s="square" aria-pressed="false">Square</button>
-      <button class="sz" data-s="wide" aria-pressed="false">Wide</button>
-    </div>
-  </div>
+  <!-- ============ STEPS 1 AND 2, WITH THE ANSWER BESIDE THEM ============ -->
+  <div class="grid" id="rowA">
 
-  <div class="dlrow">
-    <button class="dlbtn" id="downloadBtn">Download PNG</button>
-    <span class="dlhint">Saves the card as a high-resolution image.</span>
-  </div>
+    <section class="panel step" id="step1">
+      <p class="stepno">Step 1</p>
+      <h2>Pick a people group</h2>
+      <div class="field">
+        <label for="pg">People group name</label>
+        <div class="pg-combo"><input id="pg" class="tin name" type="text" value="" placeholder="Start typing a people group" aria-label="People group name">
+        <ul class="pg-list" id="pgList" hidden></ul><div class="pg-sr" id="pgStatus" role="status" aria-live="polite"></div></div>
+        <p class="pg-help" id="pgHelp">Search Joshua Project people groups. Picking one fills in the country, population, percentages, and birth and death rates.</p>
+      </div>
+      <button class="linkbtn" type="button" id="ownBtn">Or enter your own numbers</button>
+    </section>
 
-  <!-- ================= INFOGRAPHIC CARD ================= -->
-  <section class="card size-fit" aria-live="polite">
-    <div class="card-top"></div>
-    <div class="card-body">
-      <div class="card-head-row">
-        <div>
-          <p class="card-eyebrow">The Brutal Facts</p>
-          <h2 class="card-pg" id="cPg">Unnamed people group</h2>
-          <p class="card-country" id="cCountry">Country not set</p>
+    <div class="cardcol">
+      <div class="empty" id="empty">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="21" cy="21" r="13"/><path d="M31 31l11 11" stroke-linecap="round"/></svg>
+        <p id="emptyMsg">Pick a people group to see its brutal facts.</p>
+        <span>The card shows how many baptisms a day it would take, set against births and deaths.</span>
+      </div>
+
+      <p class="plain" id="plain" aria-live="polite"></p>
+
+      <!-- ================= INFOGRAPHIC CARD ================= -->
+      <section class="card size-fit" aria-live="polite">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <div class="card-head-row">
+            <div>
+              <p class="card-eyebrow">The Brutal Facts</p>
+              <h2 class="card-pg" id="cPg">Unnamed people group</h2>
+              <p class="card-country" id="cCountry">Country not set</p>
+            </div>
+            <span class="badge frontier" id="cBadge">Frontier</span>
+          </div>
+
+          <div class="hero">
+            <div class="hero-num"><span id="cPerDay">0</span><span class="hero-unit">/ day</span></div>
+            <p class="hero-label" id="cLabel">baptisms a day for <b>10 years</b> to reach <b>2% evangelical</b></p>
+          </div>
+
+          <div class="cost">
+            <p class="cost-l">Die without Christ each year</p>
+            <p class="cost-v"><span id="sDie">0</span> <span class="cost-sub" id="sDieDay">(0 a day)</span></p>
+          </div>
+
+          <!-- left column: today. right column: at the end of the goal. -->
+          <div class="stats">
+            <div class="stat"><p class="l">Lost today</p><p class="v clay" id="sLostNow">0</p></div>
+            <div class="stat"><p class="l" id="lblLostY">Lost in 10 years</p><p class="v clay" id="sLostY">0</p></div>
+            <div class="stat"><p class="l">Population today</p><p class="v" id="sPopNow">0</p></div>
+            <div class="stat"><p class="l" id="lblPopY">Population in 10 years</p><p class="v" id="sPopY">0</p></div>
+            <div class="stat"><p class="l">Evangelical today</p><p class="v" id="sEv">0.00%</p></div>
+            <div class="stat"><p class="l" id="lblEvGoal">Evangelical goal in 10 years</p><p class="v" id="sEvGoal">2.00%</p></div>
+            <div class="stat"><p class="l">Christian today</p><p class="v" id="sCh">0.00%</p></div>
+            <div class="stat"><p class="l">Baptisms needed in total</p><p class="v" id="sTotal">0</p></div>
+          </div>
+
+          <div class="card-fact" id="cFact"></div>
+
+          <div class="card-foot">
+            <span><b>4thenations.com</b></span>
+            <span id="cSource">Data: user provided</span>
+          </div>
         </div>
-        <span class="badge frontier" id="cBadge">Frontier</span>
-      </div>
+      </section>
 
-      <div class="hero">
-        <div class="hero-num"><span id="cPerDay">8</span><span class="hero-unit">/ day</span></div>
-        <p class="hero-label" id="cLabel">baptisms a day for <b>10 years</b> to reach <b>2% evangelical</b></p>
-      </div>
-
-      <div class="cost">
-        <p class="cost-l">Die without Christ each year</p>
-        <p class="cost-v"><span id="sDie">8,400</span> <span class="cost-sub" id="sDieDay">(23 a day)</span></p>
-      </div>
-
-      <div class="stats">
-        <div class="stat"><p class="l">Lost today</p><p class="v clay" id="sLostNow">1,200,000</p></div>
-        <div class="stat"><p class="l" id="lblLostY">Lost in 10 years</p><p class="v clay" id="sLostY">1,420,335</p></div>
-        <div class="stat"><p class="l">Evangelical today</p><p class="v" id="sEv">0.00%</p></div>
-        <div class="stat"><p class="l">Christian today</p><p class="v" id="sCh">0.05%</p></div>
-        <div class="stat"><p class="l">Population now to future</p><p class="v" id="sPop">1.2M &rarr; 1.4M</p></div>
-        <div class="stat"><p class="l">Required growth</p><p class="v" id="sGrowth">117% / yr</p></div>
-        <div class="stat full"><p class="l">Baptisms needed in total</p><p class="v" id="sTotal">29,300</p></div>
-      </div>
-
-      <div class="card-fact" id="cFact"></div>
-
-      <div class="card-foot">
-        <span><b>4thenations.com</b></span>
-        <span>Data: user provided</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CONTROLS ================= -->
-  <section class="panel">
-    <h2>Enter the people group</h2>
-
-    <div class="field">
-      <label for="pg">People group name</label>
-      <div class="pg-combo"><input id="pg" class="tin name" type="text" value="" placeholder="Start typing a people group" aria-label="People group name">
-      <ul class="pg-list" id="pgList" hidden></ul><div class="pg-sr" id="pgStatus" role="status" aria-live="polite"></div></div>
-      <p class="pg-help" id="pgHelp">Start typing to search Joshua Project people groups. Picking one fills in the country, population, and percentages. You can change any number.</p>
-    </div>
-
-    <div class="field">
-      <label for="country">Country</label>
-      <input id="country" class="tin name" type="text" value="" placeholder="Country" aria-label="Country">
-    </div>
-
-    <div class="field">
-      <label for="pop">Population</label>
-      <div class="ibox"><input id="pop" inputmode="numeric" value="1,200,000" aria-label="Population"><span>people</span></div>
-    </div>
-
-    <div class="field">
-      <label>Current percentages (two decimals)</label>
-      <div class="row2">
-        <div>
-          <span class="sublbl">Evangelical<button class="info" type="button" aria-label="Definition of Evangelical">i<span class="tip">Joshua Project, following Operation World: Christians affiliated with denominations that are evangelical in theology, emphasizing salvation through faith in Christ alone, personal conversion and new birth, the Bible as the final authority, and active evangelism. A theological count, not a measure of who is personally born again. Shown as a percent of the group's total population.</span></button></span>
-          <div class="ibox"><input id="evPct" inputmode="decimal" value="0.00" aria-label="Evangelical percent"><span>%</span></div>
+      <div class="share" id="share">
+        <h3>Share this card</h3>
+        <div class="sizebar">
+          <span class="sizebar-l">Shape</span>
+          <div class="seg" role="group" aria-label="Card shape">
+            <button class="sz" data-s="fit" aria-pressed="true">Fit screen</button>
+            <button class="sz" data-s="portrait" aria-pressed="false">Portrait</button>
+            <button class="sz" data-s="story" aria-pressed="false">Story</button>
+            <button class="sz" data-s="square" aria-pressed="false">Square</button>
+            <button class="sz" data-s="wide" aria-pressed="false">Wide</button>
+          </div>
         </div>
-        <div>
-          <span class="sublbl">Christian<button class="info right" type="button" aria-label="Definition of Christian Adherent">i<span class="tip">Joshua Project, following Operation World: anyone who professes to follow Christianity in any form, by self-identification rather than belief or practice. It spans Protestant, Roman Catholic, Orthodox, and marginal traditions, and counts nominal as well as active Christians. Shown as a percent of the group's total population.</span></button></span>
-          <div class="ibox"><input id="chPct" inputmode="decimal" value="0.05" aria-label="Christian percent"><span>%</span></div>
+        <div class="dlrow">
+          <button class="dlbtn" id="downloadBtn">Download PNG</button>
+          <span class="dlhint">Saves the card as a high-resolution image.</span>
         </div>
       </div>
     </div>
 
-    <div class="slider">
-      <div class="slider-top"><label for="birthRate">Birth rate</label><span class="slider-val"><span id="birthRateV">24</span> / 1,000</span></div>
-      <p class="slider-note">Live births per 1,000 each year (from the group's country).</p>
-      <input type="range" id="birthRate" min="5" max="45" step="0.5" value="24">
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><label for="deathRate">Death rate</label><span class="slider-val"><span id="deathRateV">7</span> / 1,000</span></div>
-      <p class="slider-note">Deaths per 1,000 each year.</p>
-      <input type="range" id="deathRate" min="3" max="15" step="0.5" value="7">
-    </div>
-
-    <div class="field">
-      <label>Goal</label>
-      <div class="seg4" role="group" aria-label="Goal">
-        <button id="goalReach2" aria-pressed="true">Reach 2%</button>
-        <button id="goalInc2" aria-pressed="false">Increase by 2 points</button>
-        <button id="goalReach10" aria-pressed="false">Reach 10%</button>
-        <button id="goalInc10" aria-pressed="false">Increase by 10 points</button>
+    <section class="panel step" id="step2">
+      <p class="stepno">Step 2</p>
+      <h2>Set the goal</h2>
+      <div class="field">
+        <label>Goal</label>
+        <div class="seg4" role="group" aria-label="Goal">
+          <button id="goalReach2" aria-pressed="true">Reach 2%</button>
+          <button id="goalReach10" aria-pressed="false">Reach 10%</button>
+          <button id="goalInc2" aria-pressed="false">Increase by 2 points</button>
+          <button id="goalInc10" aria-pressed="false">Increase by 10 points</button>
+        </div>
+        <p class="slider-note" id="goalNote" style="margin-top:8px;" hidden></p>
       </div>
-      <p class="slider-note" id="goalNote" style="margin-top:8px;">Reach targets are available while the group is below that level.</p>
-    </div>
-
-    <div class="field" style="margin-bottom:0;">
-      <label>Years to get there</label>
-      <div class="seg" role="group" aria-label="Years">
-        <button class="yr" data-y="5" aria-pressed="false">5</button>
-        <button class="yr" data-y="10" aria-pressed="true">10</button>
-        <button class="yr" data-y="20" aria-pressed="false">20</button>
+      <div class="field">
+        <label>Years to get there</label>
+        <div class="seg" role="group" aria-label="Years">
+          <button class="yr" data-y="5" aria-pressed="false">5</button>
+          <button class="yr" data-y="10" aria-pressed="true">10</button>
+          <button class="yr" data-y="20" aria-pressed="false">20</button>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <button class="btn" id="reset">Reset</button>
-  </section>
+    <details class="panel adjust" id="adjust">
+      <summary>Adjust the numbers <span>Country, population, percentages, birth and death rates</span></summary>
 
-  <section class="panel mult">
-    <h2 class="mult-h">Second perspective: multiplication</h2>
-    <p class="slider-note" style="margin:0 0 14px;">The same goal, reached not by addition but by disciples who make disciples.</p>
-
-    <div class="field">
-      <label for="mDisc">Disciples you are starting with</label>
-      <div class="ibox"><input id="mDisc" inputmode="numeric" value="100" aria-label="Starting disciples"><span>disciples</span></div>
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><label for="mPct">Share who multiply</label><span class="slider-val"><span id="mPctV">50</span>%</span></div>
-      <p class="slider-note">Each generation, the share of disciples who make new disciples.</p>
-      <input type="range" id="mPct" min="0" max="100" step="1" value="50">
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><label for="mEach">New disciples each multiplier makes</label><span class="slider-val"><span id="mEachV">3</span></span></div>
-      <p class="slider-note">Per generation. Growth per generation = 1 + share &times; new-each.</p>
-      <input type="range" id="mEach" min="1" max="10" step="1" value="3">
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><label for="mGen">Generation length</label><span class="slider-val"><span id="mGenV">1.0</span> yr</span></div>
-      <p class="slider-note">Time for one reproduction cycle.</p>
-      <input type="range" id="mGen" min="0.5" max="5" step="0.5" value="1">
-    </div>
-
-    <p class="mult-rate">Each generation multiplies the disciples by <b id="mFactor">2.5x</b>.<span class="mult-note" id="mClarify"></span></p>
-  </section>
-
-  <section class="card mcard size-fit" aria-live="polite">
-    <div class="card-top"></div>
-    <div class="card-body">
-      <p class="card-eyebrow">Two ways to the same goal</p>
-      <h2 class="card-pg" id="mcPg">Unnamed people group</h2>
-      <p class="card-country" id="mcCountry"></p>
-      <div class="mc-two">
-        <div class="mc-col"><p class="mc-k">Addition</p><p class="mc-big" id="mcAddDay">8</p><p class="mc-u">baptisms / day</p><p class="mc-sm">every day for <b id="mcAddYears">10</b> years</p></div>
-        <div class="mc-col mc-col2"><p class="mc-k">Multiplication</p><p class="mc-big" id="mcMultYears">11</p><p class="mc-u">years</p><p class="mc-sm">from <b id="mcD0">100</b> disciples at <b id="mcFactor2">2.5x</b> / yr</p></div>
+      <div class="field">
+        <label for="country">Country</label>
+        <input id="country" class="tin name" type="text" value="" placeholder="Country" aria-label="Country">
       </div>
-      <p class="mc-para" id="mcPara"></p>
-      <div class="card-foot"><span><b>4thenations.com</b></span><span id="mcGoalFoot">Goal</span></div>
-    </div>
-  </section>
 
-  <div class="dlrow mc-export">
-    <button class="dlbtn" id="mDownloadBtn">Download PNG</button>
-    <span class="dlhint">Saves the two-perspective card as an image.</span>
+      <div class="field">
+        <label for="pop">Population</label>
+        <div class="ibox"><input id="pop" inputmode="numeric" value="" placeholder="0" aria-label="Population"><span>people</span></div>
+      </div>
+
+      <div class="field">
+        <label>Current percentages</label>
+        <div class="row2">
+          <div>
+            <span class="sublbl">Evangelical<button class="info" type="button" aria-label="Definition of Evangelical">i<span class="tip">Joshua Project, following Operation World: Christians affiliated with denominations that are evangelical in theology, emphasizing salvation through faith in Christ alone, personal conversion and new birth, the Bible as the final authority, and active evangelism. A theological count, not a measure of who is personally born again. Shown as a percent of the group's total population.</span></button></span>
+            <div class="ibox"><input id="evPct" inputmode="decimal" value="0.00" aria-label="Evangelical percent"><span>%</span></div>
+          </div>
+          <div>
+            <span class="sublbl">Christian<button class="info right" type="button" aria-label="Definition of Christian Adherent">i<span class="tip">Joshua Project, following Operation World: anyone who professes to follow Christianity in any form, by self-identification rather than belief or practice. It spans Protestant, Roman Catholic, Orthodox, and marginal traditions, and counts nominal as well as active Christians. Shown as a percent of the group's total population.</span></button></span>
+            <div class="ibox"><input id="chPct" inputmode="decimal" value="0.00" aria-label="Christian percent"><span>%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><label for="birthRate">Birth rate</label><span class="slider-val"><span id="birthRateV">24</span> / 1,000</span></div>
+        <p class="slider-note">Live births per 1,000 people each year.</p>
+        <input type="range" id="birthRate" min="4" max="50" step="0.1" value="24">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><label for="deathRate">Death rate</label><span class="slider-val"><span id="deathRateV">7</span> / 1,000</span></div>
+        <p class="slider-note">Deaths per 1,000 people each year.</p>
+        <input type="range" id="deathRate" min="1" max="21" step="0.1" value="7">
+      </div>
+      <p class="rates-note" id="ratesNote"></p>
+    </details>
+
+    <div class="rowfoot"><button class="btn" id="reset">Start over</button></div>
   </div>
 
-  <details>
+  <!-- ============ STEP 3: ADDITION OR MULTIPLICATION ============ -->
+  <div class="grid" id="rowB">
+
+    <section class="panel mult step" id="step3">
+      <p class="stepno">Step 3</p>
+      <h2>Addition or multiplication?</h2>
+      <p class="slider-note" style="margin:-6px 0 16px;">The same goal, reached by disciples who make disciples.</p>
+
+      <div class="field">
+        <label for="mDisc">Disciples you are starting with</label>
+        <div class="ibox"><input id="mDisc" inputmode="numeric" value="100" aria-label="Starting disciples"><span>disciples</span></div>
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><label for="mPct">Share who multiply</label><span class="slider-val"><span id="mPctV">50</span>%</span></div>
+        <p class="slider-note">Each generation, the share of disciples who make new disciples.</p>
+        <input type="range" id="mPct" min="0" max="100" step="1" value="50">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><label for="mEach">New disciples each multiplier makes</label><span class="slider-val"><span id="mEachV">3</span></span></div>
+        <p class="slider-note">Per generation.</p>
+        <input type="range" id="mEach" min="1" max="10" step="1" value="3">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><label for="mGen">Generation length</label><span class="slider-val"><span id="mGenV">1.0</span> yr</span></div>
+        <p class="slider-note">Time for one reproduction cycle.</p>
+        <input type="range" id="mGen" min="0.5" max="5" step="0.5" value="1">
+      </div>
+
+      <p class="mult-rate">Each generation multiplies the disciples by <b id="mFactor">2.5x</b>.<span class="mult-note" id="mClarify"></span></p>
+    </section>
+
+    <div class="cardcol">
+      <section class="card mcard size-fit" aria-live="polite" style="margin-top:0">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <p class="card-eyebrow">Two ways to the same goal</p>
+          <h2 class="card-pg" id="mcPg">Unnamed people group</h2>
+          <p class="card-country" id="mcCountry"></p>
+          <div class="mc-two">
+            <div class="mc-col"><p class="mc-k">Addition</p><p class="mc-big" id="mcAddDay">0</p><p class="mc-u">baptisms / day</p><p class="mc-sm">every day for <b id="mcAddYears">10</b> years</p></div>
+            <div class="mc-col mc-col2"><p class="mc-k">Multiplication</p><p class="mc-big" id="mcMultYears">0</p><p class="mc-u">years</p><p class="mc-sm">from <b id="mcD0">100</b> disciples at <b id="mcFactor2">2.5x</b> / yr</p></div>
+          </div>
+          <p class="mc-para" id="mcPara"></p>
+          <div class="card-foot"><span><b>4thenations.com</b></span><span id="mcGoalFoot">Goal</span></div>
+        </div>
+      </section>
+      <div class="dlrow mc-export">
+        <button class="dlbtn" id="mDownloadBtn">Download PNG</button>
+        <span class="dlhint">Saves the two-perspective card as an image.</span>
+      </div>
+    </div>
+  </div>
+
+  <details class="notes-d">
     <summary>How the math works, assumptions, and sources</summary>
     <div class="notes">
       <p><b>The target moves with the population.</b> The tool projects the population forward by births minus deaths (no migration), then solves for the steady annual baptisms needed so the evangelical share lands on the goal as a percent of the larger future population. Growing lostness is built into that growing denominator.</p>
       <p><b>Every birth is counted as lost.</b> No one is born evangelical. The evangelical population grows only through conversion and loses members through death at the group's death rate.</p>
-      <p><b>The goal options.</b> Reach 2% and Reach 10% target that share of the future population. Increase by 2 points and Increase by 10 points add that many percentage points to the current share. A Reach target turns off once the group is already at or above that level, leaving the increase goals and the higher reach target available.</p>
+      <p><b>The goal options.</b> Two goals show at a time. A group below 2% evangelical can aim to reach 2% or 10% of the future population. Once a group is at 2% or above, the choices become reaching 10% or adding 2 percentage points to the current share. At 10% or above, the choices are adding 2 or 10 points.</p>
       <p><b>Zero base.</b> A group reporting 0.00% evangelical is treated as 0.001% so the projection has a starting point. Even then the required growth rate runs to the hundreds of percent per year, which is the mathematical case for reproducing movements rather than one-by-one addition.</p>
-      <p><b>Data.</b> You enter the population, percent evangelical, and percent Christian, typically from Joshua Project. Birth and death rates are demographic and come from the group's country (World Bank or UN). Unreached is 2% evangelical or below and 5% Christian adherent or below; Frontier is 0.1% Christian adherent or below. Figures are estimates for strategy and mobilization.</p>
+      <p><b>Multiplication.</b> Each generation multiplies the disciples by 1 + (share who multiply &times; new disciples each multiplier makes). The tool finds how long that growth takes to reach the same goal, allowing for population growth along the way.</p>
+      <p><b>Data.</b> Picking a group fills in population, percent evangelical, and percent Christian from Joshua Project, and birth and death rates from the World Bank (2024, by country). You can change any of them. Unreached is 2% evangelical or below and 5% Christian adherent or below; Frontier is 0.1% Christian adherent or below. Figures are estimates for strategy and mobilization.</p>
     </div>
   </details>
 
   <p class="sig"><b>4thenations.com</b></p>
-
 </div>
 
+<button class="minibar" id="minibar" type="button" hidden><b id="mbNum">0</b><span id="mbGoal"></span><i>See the card &uarr;</i></button>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
+<script src="js/people-search.js"></script>
 <script>
 (function(){
   var nf=new Intl.NumberFormat('en-US');
@@ -389,28 +462,22 @@
 
   var goal='reach2';   // reach2 | inc2 | reach10 | inc10
   var years=10;
+  var ownMode=false, chosen='', src={jp:false,wb:false,edited:false};   // how the numbers got here
   var ids=['pop','evPct','chPct','birthRate','deathRate'];
 
   function setFill(el){var mn=+el.min,mx=+el.max,v=+el.value;el.style.setProperty('--fill',((v-mn)/(mx-mn)*100)+'%');}
   function flash(el){el.style.opacity='.55';requestAnimationFrame(function(){requestAnimationFrame(function(){el.style.opacity='1';});});}
 
+  /* Two goals show at a time. Which two depends on where the group is today. */
   function updateGoalAvailability(){
     var ev=num($('evPct').value);
-    var dis2=ev>=2, dis10=ev>=10;
-    $('goalReach2').disabled=dis2;
-    $('goalReach10').disabled=dis10;
-    // if the selected reach goal is no longer valid, fall back sensibly
-    if(goal==='reach2'&&dis2){ goal=dis10?'inc2':'reach10'; }
-    if(goal==='reach10'&&dis10){ goal='inc2'; }
-    $('goalReach2').setAttribute('aria-pressed',goal==='reach2');
-    $('goalInc2').setAttribute('aria-pressed',goal==='inc2');
-    $('goalReach10').setAttribute('aria-pressed',goal==='reach10');
-    $('goalInc10').setAttribute('aria-pressed',goal==='inc10');
-    var note;
-    if(dis10) note='This group is at or above 10%, so reach targets are off; choose how many points to add.';
-    else if(dis2) note='This group is at or above 2%, so Reach 2% is off. Reach 10% and the increase goals remain.';
-    else note='All four goals are available while the group is below that level.';
-    $('goalNote').textContent=note;
+    var show = ev<2 ? ['reach2','reach10'] : ev<10 ? ['reach10','inc2'] : ['inc2','inc10'];
+    if(show.indexOf(goal)<0) goal=show[0];
+    [['goalReach2','reach2'],['goalReach10','reach10'],['goalInc2','inc2'],['goalInc10','inc10']].forEach(function(g){
+      var b=$(g[0]); b.hidden=show.indexOf(g[1])<0; b.disabled=b.hidden; b.setAttribute('aria-pressed',goal===g[1]);
+    });
+    var note = ev<2 ? '' : ev<10 ? 'This group is already at 2% evangelical or above, so the goals move up.' : 'This group is already at 10% evangelical or above, so the goal is to add points.';
+    $('goalNote').textContent=note; $('goalNote').hidden=!note;
   }
 
   function calc(){
@@ -481,6 +548,12 @@
     [$('birthRate'),$('deathRate')].forEach(setFill);
     updateGoalAvailability();
 
+    // nothing to show until there is a group (or the visitor's own numbers) and a population
+    var hasName=$('pg').value.trim()!=='', hasPop=num($('pop').value)>0;
+    var blank=!(hasPop&&(hasName||ownMode));
+    document.body.classList.toggle('is-blank',blank);
+    $('emptyMsg').textContent=((hasName||ownMode)&&!hasPop)?'Add a population under \u201cAdjust the numbers\u201d to see the brutal facts.':'Pick a people group to see its brutal facts.';
+
     var r=calc();
     var crossDay=Math.max(0,Math.round(isFinite(r.crossDay)?r.crossDay:0));
     var evShown=num($('evPct').value), chShown=num($('chPct').value);
@@ -506,14 +579,17 @@
     $('cLabel').innerHTML='baptisms a day for <b>'+years+' years</b> to '+goalLabel;
 
     // stats
-    $('sPop').textContent=fmtPop(r.P0)+' \u2192 '+fmtPop(r.PY);
+    $('sPopNow').textContent=fmtPop(r.P0);
+    $('sPopY').textContent=fmtPop(r.PY);
+    $('lblPopY').textContent='Population in '+years+' years';
+    $('sEvGoal').textContent=(r.eT*100).toFixed(2)+'%';
+    $('lblEvGoal').textContent='Evangelical goal in '+years+' years';
     $('sEv').textContent=evShown.toFixed(2)+'%';
     $('sCh').textContent=chShown.toFixed(2)+'%';
     $('sLostNow').textContent=fmt(r.lostNow);
     $('sLostY').textContent=fmt(r.lostFuture);
     $('lblLostY').textContent='Lost in '+years+' years';
     $('sTotal').textContent=fmt(r.total);
-    $('sGrowth').textContent=fmt(r.growth*100)+'% / yr';
     $('sDie').textContent=fmt(r.dieLostYear);
     $('sDieDay').textContent='('+fmt(r.dieLostYear/365)+' a day)';
 
@@ -525,10 +601,23 @@
                             'That is steady, reachable growth if conversions are discipled and reproduce.';
     var floored=(r.evRaw<0.00001)?' (reported 0.00%, treated as 0.001% to compute a base).':'';
     $('cFact').innerHTML='To get there, the evangelical community must grow <b>'+fmt(pct)+'% per year</b>, every year, for '+years+' years'+floored+'. '+framing;
+
+    // the same result in one plain sentence, above the card
+    var bYear=r.P0*(+$('birthRate').value/1000), perYear=r.total/years;
+    var daily=bYear/365>=1 && r.dieLostYear/365>=1;
+    var need=crossDay>=1 ? '<b>'+fmt(crossDay)+'</b> people would need to be baptized every day' : '<b>'+fmt(perYear)+'</b> people would need to be baptized every year';
+    $('plain').innerHTML='<span class="plain-k">In plain words</span>In this people group, about <b>'+fmt(daily?bYear/365:bYear)+'</b> babies are born and <b>'+fmt(daily?r.dieLostYear/365:r.dieLostYear)+'</b> people die without Christ every '+(daily?'day':'year')+'. To '+goalLabel+' in <b>'+years+' years</b>, about '+need+'.';
+
+    // where the numbers came from
+    $('cSource').textContent = src.jp ? (src.edited ? 'Data: Joshua Project, edited' : 'Data: Joshua Project'+(src.wb?' and World Bank':'')) : 'Data: user provided';
+
+    // small pinned summary for phones
+    $('mbNum').textContent=fmt(crossDay);
+    $('mbGoal').innerHTML='baptisms a day to '+goalLabel.replace(/<\/?b>/g,'')+' in '+years+' years';
     renderMult();
   }
 
-  ids.forEach(function(id){$(id).addEventListener('input',render);});
+  ids.forEach(function(id){$(id).addEventListener('input',function(){src.edited=true;render();});});
   ['mDisc','mPct','mEach','mGen'].forEach(function(id){var e=$(id);if(e)e.addEventListener('input',render);});
   $('pg').addEventListener('input',render);
   $('country').addEventListener('input',render);
@@ -616,44 +705,63 @@
       .catch(function(err){ restore(); console.error(err); alert('Could not generate the image. Try again, or screenshot.'); btn.textContent=label; btn.disabled=false; });
   });
 
-  $('reset').addEventListener('click',function(){
-    $('pg').value=''; $('country').value='';
-    $('pop').value='1,200,000'; $('evPct').value='0.00'; $('chPct').value='0.05';
-    $('birthRate').value=24; $('deathRate').value=7; goal='reach2'; years=10;
-    Array.prototype.forEach.call(document.querySelectorAll('.yr'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-y')==='10');});
-    render();
+  /* ---------- country birth and death rates: World Bank, 2024, per 1,000 people ---------- */
+  var RATES={"AA":[7.6,7.8],"AC":[11.7,7.0],"AE":[9.8,1.0],"AF":[35.0,5.7],"AG":[18.8,4.6],"AJ":[10.0,5.8],"AL":[10.1,8.5],"AM":[11.1,8.4],"AN":[6.9,6.1],"AO":[37.2,6.8],"AQ":[15.0,7.3],"AR":[11.1,7.7],"AS":[10.7,6.9],"AU":[8.4,9.6],"BA":[12.0,2.2],"BB":[11.1,10.2],"BC":[24.4,5.7],"BD":[7.9,9.0],"BE":[9.2,9.5],"BF":[10.8,8.8],"BG":[20.0,5.1],"BH":[18.1,5.0],"BK":[7.7,13.5],"BL":[21.0,7.2],"BM":[16.5,9.2],"BN":[33.4,8.7],"BO":[7.0,13.1],"BP":[26.7,5.1],"BR":[12.1,7.1],"BT":[12.5,6.1],"BU":[8.3,15.6],"BX":[13.3,5.3],"BY":[33.2,6.7],"CA":[8.9,7.9],"CB":[20.3,6.5],"CD":[43.3,11.1],"CE":[10.1,7.8],"CF":[30.4,6.2],"CG":[40.9,8.4],"CH":[6.8,7.8],"CI":[8.7,6.6],"CJ":[11.6,4.9],"CM":[33.3,7.0],"CN":[28.2,7.1],"CO":[13.3,5.5],"CQ":[12.1,5.0],"CS":[10.0,5.6],"CT":[46.2,9.4],"CU":[8.6,10.4],"CV":[12.2,5.1],"CY":[10.5,7.0],"DA":[9.5,9.5],"DJ":[20.9,7.5],"DO":[11.0,12.6],"DR":[17.6,6.2],"EC":[14.8,5.2],"EG":[20.9,5.5],"EI":[10.0,6.5],"EK":[30.0,7.9],"EN":[7.1,11.5],"ER":[28.7,6.0],"ES":[15.6,7.5],"ET":[31.5,5.9],"EZ":[7.7,10.3],"FI":[7.8,10.4],"FJ":[17.9,9.5],"FM":[22.3,7.7],"FO":[10.8,8.2],"FP":[10.7,3.8],"FR":[9.7,9.4],"GA":[29.9,6.2],"GB":[27.1,6.2],"GG":[11.3,11.8],"GH":[25.9,7.0],"GI":[12.2,6.6],"GJ":[11.5,8.9],"GL":[12.0,9.3],"GM":[8.1,12.1],"GQ":[17.3,6.9],"GR":[6.6,12.1],"GT":[20.6,4.9],"GV":[33.3,9.0],"GY":[19.9,7.5],"HA":[21.9,7.8],"HK":[4.9,7.0],"HO":[21.6,4.5],"HR":[8.3,13.2],"HU":[8.2,13.4],"IC":[11.2,6.8],"ID":[15.8,7.6],"IM":[8.3,10.6],"IN":[16.0,6.6],"IR":[12.6,4.8],"IS":[18.6,5.3],"IT":[6.3,11.0],"IV":[31.6,7.6],"IZ":[25.6,4.2],"JA":[5.7,13.3],"JM":[11.4,8.2],"JO":[20.5,3.1],"KE":[27.0,7.2],"KG":[19.4,4.4],"KN":[12.9,9.9],"KR":[25.3,7.1],"KS":[4.7,7.0],"KU":[10.0,1.5],"KV":[11.9,6.0],"KZ":[19.5,6.7],"LA":[20.9,6.2],"LE":[16.0,6.0],"LG":[6.9,14.3],"LH":[6.6,13.0],"LI":[30.6,8.0],"LO":[8.5,9.9],"LS":[8.4,7.5],"LT":[23.8,10.5],"LU":[9.5,6.6],"LY":[16.5,6.5],"MA":[31.7,7.5],"MC":[5.3,3.6],"MD":[10.6,13.8],"MG":[16.9,5.5],"MI":[31.1,5.3],"MJ":[11.2,10.2],"MK":[8.8,11.1],"ML":[39.5,8.5],"MN":[9.6,20.1],"MO":[16.4,5.7],"MP":[10.3,10.0],"MR":[34.0,5.4],"MT":[7.7,7.3],"MU":[16.8,1.9],"MV":[10.6,2.4],"MX":[15.5,6.2],"MY":[12.4,5.3],"MZ":[37.0,6.9],"NC":[14.0,6.3],"NG":[41.4,8.7],"NH":[27.7,5.0],"NI":[32.5,11.6],"NL":[9.2,9.6],"NN":[9.1,8.3],"NO":[9.7,7.9],"NP":[19.0,7.0],"NR":[24.6,7.6],"NS":[17.2,6.8],"NU":[19.1,4.6],"NZ":[11.0,7.1],"OD":[29.2,9.8],"PA":[19.7,5.7],"PE":[15.8,5.6],"PK":[27.4,6.4],"PL":[6.9,11.2],"PM":[15.9,4.9],"PO":[7.9,11.1],"PP":[24.3,6.6],"PS":[10.7,11.7],"PU":[29.6,7.0],"QA":[9.5,1.1],"RI":[9.2,14.9],"RM":[20.1,7.1],"RO":[7.5,12.8],"RP":[15.9,6.3],"RQ":[5.7,10.3],"RS":[8.4,12.4],"RW":[28.1,5.9],"SA":[16.5,2.3],"SC":[11.7,10.0],"SE":[11.0,7.0],"SF":[18.5,9.2],"SG":[29.2,5.5],"SI":[7.9,10.1],"SL":[30.1,8.2],"SM":[4.2,7.5],"SN":[7.4,6.0],"SO":[42.3,9.7],"SP":[6.5,8.9],"ST":[11.2,8.7],"SU":[33.0,6.3],"SW":[9.3,8.6],"SY":[23.2,4.9],"SZ":[8.7,8.0],"TD":[10.5,8.7],"TH":[8.1,9.0],"TI":[25.3,4.6],"TK":[10.5,7.4],"TN":[23.0,6.4],"TO":[32.1,8.5],"TP":[28.1,5.5],"TS":[13.4,6.1],"TT":[21.8,7.2],"TU":[11.0,5.7],"TV":[22.0,9.3],"TX":[20.9,5.8],"TZ":[34.8,5.7],"UC":[7.2,10.1],"UG":[34.4,4.8],"UK":[9.9,9.7],"UP":[5.5,13.6],"US":[10.6,9.0],"UV":[31.3,7.9],"UY":[9.8,9.9],"UZ":[25.6,6.0],"VC":[12.0,11.5],"VE":[15.2,7.7],"VI":[8.2,6.0],"VM":[13.4,6.6],"VQ":[11.1,9.2],"WA":[25.9,6.2],"WS":[25.0,6.2],"WZ":[23.6,7.7],"XP":[26.5,5.9],"YM":[34.4,4.7],"ZA":[32.7,5.2],"ZI":[29.9,7.5]};
+  var DEF_B=24, DEF_D=7;
+  function setRates(rog,name){
+    var r=RATES[rog], note=$('ratesNote');
+    if(r){ $('birthRate').value=r[0]; $('deathRate').value=r[1]; note.textContent=name+': '+r[0]+' births and '+r[1]+' deaths per 1,000 people each year (World Bank, 2024).'; }
+    else { $('birthRate').value=DEF_B; $('deathRate').value=DEF_D; note.textContent='No World Bank rate found for '+name+'. Using '+DEF_B+' births and '+DEF_D+' deaths per 1,000. Change them if you know better.'; }
+    return !!r;
+  }
+  /* A country typed by hand still gets its rates when the name matches. */
+  $('country').addEventListener('change',function(){
+    var d=window.CN_PEOPLES, want=this.value.trim().toLowerCase(); if(!d||!want||chosen) return;
+    for(var i=0;i<d.c.length;i++){ var a=d.c[i].split('|'); if(a[0].toLowerCase()===want){ setRates(a[1],a[0]); render(); return; } }
   });
 
-  render();
-})();
-</script>
-<script>(function(){var dd=document.querySelector(".nav-dd");if(!dd)return;var b=dd.querySelector(".nav-ddbtn");b.addEventListener("click",function(e){e.stopPropagation();var o=dd.classList.toggle("open");b.setAttribute("aria-expanded",o);});document.addEventListener("click",function(){dd.classList.remove("open");b.setAttribute("aria-expanded","false");});})();</script>
-<script src="js/people-search.js"></script>
-<script>
-/* People group search: picking a group fills the form from Joshua Project data. */
-(function () {
-  if (!window.CNPeople) return;
-  var $ = function (id) { return document.getElementById(id); };
-  var help = $('pgHelp'), START = help.textContent, chosen = '';
-  function fire(id) { $(id).dispatchEvent(new Event('input', { bubbles: true })); }
-  CNPeople.attach({
-    input: $('pg'), list: $('pgList'), status: $('pgStatus'),
-    onType: function () { if (chosen && $('pg').value.trim() !== chosen) { chosen = ''; help.textContent = START; } },
-    onChoose: function (p) {
-      var missing = [];
-      $('pg').value = p.name; $('country').value = p.c.name; chosen = p.name;
-      if (p.pop != null) $('pop').value = p.pop.toLocaleString('en-US'); else { $('pop').value = '0'; missing.push('population'); }
-      if (p.adh != null) $('chPct').value = p.adh.toFixed(2); else { $('chPct').value = '0.00'; missing.push('Christian percentage'); }
-      if (p.ev != null) $('evPct').value = p.ev.toFixed(2); else { $('evPct').value = '0.00'; missing.push('Evangelical percentage'); }
-      fire('pop'); fire('evPct'); fire('chPct');
-      help.textContent = 'Filled from Joshua Project data. ' + (missing.length ? 'Joshua Project has no ' + missing.join(' or ') + ' for this group, so enter your own. ' : 'You can change any number. ');
-      var a = document.createElement('a'); a.href = CNPeople.profileUrl(p); a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'See the Joshua Project profile →';
-      help.appendChild(a);
-    }
+  /* ---------- Step 1: people group search (Joshua Project) ---------- */
+  var help=$('pgHelp'), HELP=help.textContent;
+  if(window.CNPeople){
+    CNPeople.attach({
+      input:$('pg'), list:$('pgList'), status:$('pgStatus'),
+      onType:function(){ if(chosen && $('pg').value.trim()!==chosen){ chosen=''; src.jp=false; src.wb=false; help.textContent=HELP; } },
+      onChoose:function(p){
+        var missing=[];
+        $('pg').value=p.name; $('country').value=p.c.name; chosen=p.name; ownMode=false;
+        if(p.pop!=null) $('pop').value=p.pop.toLocaleString('en-US'); else { $('pop').value=''; missing.push('population'); }
+        if(p.adh!=null) $('chPct').value=p.adh.toFixed(2); else { $('chPct').value='0.00'; missing.push('Christian percentage'); }
+        if(p.ev!=null) $('evPct').value=p.ev.toFixed(2); else { $('evPct').value='0.00'; missing.push('Evangelical percentage'); }
+        src={jp:true, wb:setRates(p.c.rog,p.c.name), edited:false};
+        help.textContent='Filled from Joshua Project data. '+(missing.length?'Joshua Project has no '+missing.join(' or ')+' for this group, so add your own under Adjust the numbers. ':'');
+        var a=document.createElement('a'); a.href=CNPeople.profileUrl(p); a.target='_blank'; a.rel='noopener'; a.textContent='See the Joshua Project profile →'; help.appendChild(a);
+        if(!src.wb){ help.insertBefore(document.createTextNode('The World Bank has no birth and death rates for '+p.c.name+', so typical values are used. Set your own under Adjust the numbers. '), a); }
+        if(missing.length || !src.wb) $('adjust').open=true;
+        render();
+      }
+    });
+    /* load the list in the background so the first search is instant */
+    if(document.readyState==='complete') CNPeople.load(); else window.addEventListener('load',function(){CNPeople.load();});
+  }
+  $('pg').addEventListener('blur',function(){ if(this.value.trim() && !(num($('pop').value)>0)) $('adjust').open=true; });
+  $('ownBtn').addEventListener('click',function(){ ownMode=true; $('adjust').open=true; render(); $('pop').focus(); });
+
+  /* ---------- pinned summary on phones: shows once the card's big number scrolls away ---------- */
+  var mini=$('minibar'), heroEl=document.querySelector('.card .hero'), heroSeen=true;
+  function miniUpdate(){ var on=!heroSeen && !document.body.classList.contains('is-blank') && window.innerWidth<980; mini.hidden=!on; document.body.classList.toggle('has-mini',on); }
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ heroSeen=es[0].isIntersecting; miniUpdate(); }).observe(heroEl); window.addEventListener('resize',miniUpdate); }
+  mini.addEventListener('click',function(){ document.querySelector('.card').scrollIntoView({behavior:'smooth',block:'start'}); });
+
+  $('reset').addEventListener('click',function(){
+    $('pg').value=''; $('country').value=''; $('pop').value=''; $('evPct').value='0.00'; $('chPct').value='0.00';
+    $('birthRate').value=DEF_B; $('deathRate').value=DEF_D; goal='reach2'; years=10;
+    ownMode=false; chosen=''; src={jp:false,wb:false,edited:false};
+    help.textContent=HELP; $('ratesNote').textContent=''; $('adjust').open=false;
+    Array.prototype.forEach.call(document.querySelectorAll('.yr'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-y')==='10');});
+    render(); miniUpdate(); window.scrollTo({top:0,behavior:'smooth'}); $('pg').focus();
   });
-  $('reset').addEventListener('click', function () { chosen = ''; help.textContent = START; });
-  /* Load the list in the background so the first search is instant. */
-  if (document.readyState === 'complete') CNPeople.load(); else window.addEventListener('load', function () { CNPeople.load(); });
+
+  render(); miniUpdate();
 })();
 </script>
 <script src="js/shell.js" data-part="footer"></script>
