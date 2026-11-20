@@ -78,15 +78,16 @@ window.CNPeople = (function () {
     return best <= max ? 6 - best * 2 : 0;
   }
 
-  /* Best matches for what was typed. place (optional) lifts groups in that country. */
-  function search(q, place, limit) {
-    var nq = norm(q);
-    if (!PG || nq.length < 2) return [];
+  /* Best matches for what was typed. place (optional) lifts groups in that country.
+     list (optional) searches another list of the same shape, such as cities. */
+  function search(q, place, limit, list) {
+    var nq = norm(q), PGL = list || PG;
+    if (!PGL || nq.length < 2) return [];
     var toks = nq.split(' '), np = norm(place || '');
     function run(typos) {
       var out = [], i, k, p, s, t, score, ok;
-      for (i = 0; i < PG.length; i++) {
-        p = PG[i]; score = 0; ok = true;
+      for (i = 0; i < PGL.length; i++) {
+        p = PGL[i]; score = 0; ok = true;
         for (k = 0; k < toks.length; k++) {
           t = toks[k];
           s = wordScore(t, p.n);
@@ -116,11 +117,13 @@ window.CNPeople = (function () {
 
   /* Turn a text input into a search box.
      opts: input, list (an empty <ul>), place (optional input), status (optional element for screen readers),
-           statusText(n), onChoose(p), onType() */
+           statusText(n), onChoose(p), onType(),
+           search(text): optional. Give your own results and the people group list is never loaded. */
   function attach(opts) {
     var input = opts.input, list = opts.list, place = opts.place || null, status = opts.status || null;
     if (!input || !list) return;
     var items = [], active = -1, timer = 0, uid = list.id || 'cn-pg';
+    var ready = opts.search ? function (cb) { cb(); } : load;
     input.setAttribute('role', 'combobox'); input.setAttribute('aria-autocomplete', 'list'); input.setAttribute('autocomplete', 'off');
     input.setAttribute('aria-expanded', 'false'); if (list.id) input.setAttribute('aria-controls', list.id);
     list.setAttribute('role', 'listbox');
@@ -132,7 +135,7 @@ window.CNPeople = (function () {
     }
     function choose(p) { close(); if (opts.onChoose) opts.onChoose(p); }
     function show() {
-      items = search(input.value, place ? place.value : '');
+      items = opts.search ? opts.search(input.value) : search(input.value, place ? place.value : '');
       if (!items.length) { close(); if (status) status.textContent = ''; return; }
       list.innerHTML = items.map(function (p, i) {
         return '<li role="option" id="' + uid + '-' + i + '" aria-selected="false"><span>' + esc(p.name) + '</span><span class="pg-c">' + esc(p.c.name) + '</span></li>';
@@ -144,9 +147,9 @@ window.CNPeople = (function () {
       if (opts.onType) opts.onType();
       clearTimeout(timer);
       if (norm(input.value).length < 2) { close(); return; }
-      timer = setTimeout(function () { load(function () { if (document.activeElement === input) show(); }); }, 90);
+      timer = setTimeout(function () { ready(function () { if (document.activeElement === input) show(); }); }, 90);
     });
-    input.addEventListener('focus', function () { load(); });
+    input.addEventListener('focus', function () { ready(function () {}); });
     input.addEventListener('keydown', function (e) {
       if (list.hidden) return;
       if (e.key === 'ArrowDown') { e.preventDefault(); active = (active + 1) % items.length; mark(); }
