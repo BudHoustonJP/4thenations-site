@@ -97,6 +97,15 @@
   .info:hover .tip,.info:focus .tip,.info.open .tip{display:block;}
   .tin{width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--navy);font-family:var(--serif);font-weight:700;font-size:18px;padding:11px 13px;outline:0;}
   .tin.name{color:var(--ink);}
+  /* People group search (Joshua Project) */
+  .pg-combo{position:relative;}
+  .pg-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 4px);margin:0;padding:6px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 10px 28px rgba(0,0,0,.14);max-height:330px;overflow:auto;}
+  .pg-list li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 10px;border-radius:6px;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:16px;color:var(--ink);}
+  .pg-list li:hover,.pg-list li[aria-selected=true]{background:var(--navy-soft);}
+  .pg-list .pg-c{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);white-space:nowrap;}
+  .pg-help{margin:7px 0 0;font-size:13px;line-height:1.45;color:var(--muted);}
+  .pg-help a{color:var(--navy);font-weight:600;}
+  .pg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
   .tin:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
   .ibox{display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;}
   .ibox input{border:0;outline:0;font-size:18px;font-family:var(--serif);font-weight:700;color:var(--navy);padding:11px 13px;width:100%;font-variant-numeric:tabular-nums;background:#fff;}
@@ -240,7 +249,9 @@
 
     <div class="field">
       <label for="pg">People group name</label>
-      <input id="pg" class="tin name" type="text" value="Sample People Group" aria-label="People group name">
+      <div class="pg-combo"><input id="pg" class="tin name" type="text" value="Sample People Group" aria-label="People group name">
+      <ul class="pg-list" id="pgList" hidden></ul><div class="pg-sr" id="pgStatus" role="status" aria-live="polite"></div></div>
+      <p class="pg-help" id="pgHelp">Start typing to search Joshua Project people groups. Picking one fills in the country, population, and percentages. You can change any number.</p>
     </div>
 
     <div class="field">
@@ -617,6 +628,34 @@
 })();
 </script>
 <script>(function(){var dd=document.querySelector(".nav-dd");if(!dd)return;var b=dd.querySelector(".nav-ddbtn");b.addEventListener("click",function(e){e.stopPropagation();var o=dd.classList.toggle("open");b.setAttribute("aria-expanded",o);});document.addEventListener("click",function(){dd.classList.remove("open");b.setAttribute("aria-expanded","false");});})();</script>
+<script src="js/people-search.js"></script>
+<script>
+/* People group search: picking a group fills the form from Joshua Project data. */
+(function () {
+  if (!window.CNPeople) return;
+  var $ = function (id) { return document.getElementById(id); };
+  var help = $('pgHelp'), START = help.textContent, chosen = '';
+  function fire(id) { $(id).dispatchEvent(new Event('input', { bubbles: true })); }
+  CNPeople.attach({
+    input: $('pg'), list: $('pgList'), status: $('pgStatus'),
+    onType: function () { if (chosen && $('pg').value.trim() !== chosen) { chosen = ''; help.textContent = START; } },
+    onChoose: function (p) {
+      var missing = [];
+      $('pg').value = p.name; $('country').value = p.c.name; chosen = p.name;
+      if (p.pop != null) $('pop').value = p.pop.toLocaleString('en-US'); else { $('pop').value = '0'; missing.push('population'); }
+      if (p.adh != null) $('chPct').value = p.adh.toFixed(2); else { $('chPct').value = '0.00'; missing.push('Christian percentage'); }
+      if (p.ev != null) $('evPct').value = p.ev.toFixed(2); else { $('evPct').value = '0.00'; missing.push('Evangelical percentage'); }
+      fire('pop'); fire('evPct'); fire('chPct');
+      help.textContent = 'Filled from Joshua Project data. ' + (missing.length ? 'Joshua Project has no ' + missing.join(' or ') + ' for this group, so enter your own. ' : 'You can change any number. ');
+      var a = document.createElement('a'); a.href = CNPeople.profileUrl(p); a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'See the Joshua Project profile →';
+      help.appendChild(a);
+    }
+  });
+  $('reset').addEventListener('click', function () { chosen = ''; help.textContent = START; });
+  /* Load the list in the background so the first search is instant. */
+  if (document.readyState === 'complete') CNPeople.load(); else window.addEventListener('load', function () { CNPeople.load(); });
+})();
+</script>
 <script src="js/shell.js" data-part="footer"></script>
 </body>
 </html>

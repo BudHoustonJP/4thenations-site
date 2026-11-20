@@ -192,6 +192,8 @@
 
 <main id="wiw" class="wiw"></main>
 
+<script src="js/people-search.js"></script>
+
 <footer class="site">
   <small id="wiw-footer"></small>
 </footer>
@@ -844,7 +846,6 @@
   const LINKS = {
     report: "https://ee.kobotoolbox.org/x/58GyeIQF",
     coachPage: "work-with-me.html",
-    peopleData: "js/people-groups.js",
     jpProfile: "https://joshuaproject.net/people_groups/{id}/{rog}",
     toolkit: "https://media.joshuaproject.net/public/assets/media/articles/Engagement-Phases-Toolkit.pdf",
     functions: "https://clarity4thenations.substack.com/p/the-five-functions-in-the-expansion",
@@ -1039,146 +1040,25 @@
   }
 
   /* ================================================================
-     PEOPLE GROUP SEARCH. Names come from js/people-groups.js (a Joshua
-     Project export stored on this site). The list loads only when the
-     visitor starts typing. Nothing typed here is sent anywhere.
-     Typing a name that is not on the list still works.
+     PEOPLE GROUP SEARCH. The search itself lives in js/people-search.js,
+     shared with the People Segment calculator. Nothing typed here is sent
+     anywhere. Typing a name that is not on the list still works.
      ================================================================ */
-  let PG = null, pgLoading = false, pgWaiters = [];
-  function pgNorm(s) {
-    return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
-  }
-  function loadPeoples(cb) {
-    if (PG) { cb(); return; }
-    pgWaiters.push(cb);
-    if (pgLoading) return;
-    pgLoading = true;
-    const s = document.createElement("script");
-    s.src = LINKS.peopleData; s.async = true;
-    s.onload = function () {
-      const d = window.CN_PEOPLES;
-      if (!d) { pgLoading = false; pgWaiters = []; return; }
-      const ctry = d.c.map(function (x) { const a = x.split("|"); return { name: a[0], rog: a[1], n: pgNorm(a[0]) }; });
-      PG = d.p.split("\n").map(function (line) {
-        const a = line.split("|");
-        return { name: a[0], n: pgNorm(a[0]), c: ctry[+a[1]], id: a[2], w: +a[3] };
-      });
-      pgWaiters.splice(0).forEach(function (f) { f(); });
-    };
-    s.onerror = function () { pgLoading = false; pgWaiters = []; };
-    document.head.appendChild(s);
-  }
-  /* How well one typed word matches a name: start of name, start of a word, or inside a word. */
-  function pgWordScore(t, hay) {
-    if (hay.indexOf(t) === 0) return 15;
-    if ((" " + hay).indexOf(" " + t) > -1) return 10;
-    if (t.length >= 3 && hay.indexOf(t) > -1) return 4;
-    return 0;
-  }
-  /* Edit distance, stopping early once it passes max. Catches typing mistakes. */
-  function pgDist(a, b, max) {
-    if (Math.abs(a.length - b.length) > max) return max + 1;
-    let prev = [], cur = [];
-    for (let j = 0; j <= b.length; j++) prev[j] = j;
-    for (let i = 1; i <= a.length; i++) {
-      cur = [i]; let rowMin = i;
-      for (let j = 1; j <= b.length; j++) {
-        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1));
-        if (cur[j] < rowMin) rowMin = cur[j];
-      }
-      if (rowMin > max) return max + 1;
-      prev = cur;
-    }
-    return prev[b.length];
-  }
-  function pgTypoScore(t, hay) {
-    const max = t.length >= 7 ? 2 : t.length >= 4 ? 1 : 0;
-    if (!max) return 0;
-    let best = max + 1;
-    const words = hay.split(" ");
-    for (let i = 0; i < words.length; i++) {
-      const w = words[i];
-      const d = Math.min(pgDist(t, w.slice(0, t.length), max), pgDist(t, w.slice(0, t.length + 1), max));
-      if (d < best) best = d;
-    }
-    return best <= max ? 6 - best * 2 : 0;
-  }
-  function searchPeoples(q, place) {
-    const nq = pgNorm(q);
-    if (!PG || nq.length < 2) return [];
-    const toks = nq.split(" "), np = pgNorm(place || "");
-    function run(typos) {
-      const out = [];
-      for (let i = 0; i < PG.length; i++) {
-        const p = PG[i]; let score = 0, ok = true;
-        for (let k = 0; k < toks.length; k++) {
-          const t = toks[k];
-          let s = pgWordScore(t, p.n);
-          if (!s) s = pgWordScore(t, p.c.n) / 2;              /* a country name narrows the list */
-          if (!s && typos) s = pgTypoScore(t, p.n);
-          if (!s) { ok = false; break; }
-          score += s;
-        }
-        if (!ok) continue;
-        if (p.n === nq) score += 40; else if (p.n.indexOf(nq) === 0) score += 20;
-        if (np && (p.c.n === np || p.c.n.indexOf(np) === 0)) score += 15;
-        out.push({ p: p, s: score + p.w / 2 });                /* larger groups first when tied */
-      }
-      return out;
-    }
-    let hits = run(false);
-    if (hits.length < 8) {                                    /* add near misses, ranked below exact matches */
-      const seen = {}; hits.forEach(function (h) { seen[h.p.id + h.p.c.rog] = 1; });
-      run(true).forEach(function (h) { if (!seen[h.p.id + h.p.c.rog]) hits.push(h); });
-    }
-    hits.sort(function (a, b) { return b.s - a.s || (a.p.name < b.p.name ? -1 : 1); });
-    return hits.slice(0, 8).map(function (h) { return h.p; });
-  }
   function setupPeopleSearch() {
     const input = document.getElementById("wiw-people"), place = document.getElementById("wiw-place");
-    const list = document.getElementById("wiw-people-list"), status = document.getElementById("wiw-people-status");
-    if (!input || !list) return;
+    const list = document.getElementById("wiw-people-list");
+    if (!input || !list || !window.CNPeople) return;
     const u = T.ui, E = LANGS.en.ui;
-    let items = [], active = -1, timer = 0, autoPlace = state.jp ? state.jp.ctry : "";
-    function close() { list.hidden = true; list.innerHTML = ""; items = []; active = -1; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); }
-    function mark() {
-      list.querySelectorAll("li").forEach(function (li, i) { li.setAttribute("aria-selected", i === active ? "true" : "false"); });
-      if (active > -1) { input.setAttribute("aria-activedescendant", "wiw-pg-" + active); list.children[active].scrollIntoView({ block: "nearest" }); }
-      else input.removeAttribute("aria-activedescendant");
-    }
-    function choose(p) {
-      input.value = p.name;
-      if (!place.value.trim() || place.value.trim() === autoPlace) { place.value = p.c.name; autoPlace = p.c.name; }
-      state.jp = { id: p.id, rog: p.c.rog, name: p.name, ctry: p.c.name };
-      close();
-    }
-    function show() {
-      items = searchPeoples(input.value, place.value);
-      if (!items.length) { close(); if (status) status.textContent = ""; return; }
-      list.innerHTML = items.map(function (p, i) {
-        return '<li role="option" id="wiw-pg-' + i + '" aria-selected="false"><span>' + esc(p.name) + '</span><span class="pg-c">' + esc(p.c.name) + "</span></li>";
-      }).join("");
-      list.hidden = false; active = -1; input.setAttribute("aria-expanded", "true");
-      if (status) status.textContent = fill(u.peopleCount || E.peopleCount, { n: items.length });
-    }
-    input.addEventListener("input", function () {
-      if (state.jp && input.value.trim() !== state.jp.name) state.jp = null;
-      clearTimeout(timer);
-      if (pgNorm(input.value).length < 2) { close(); return; }
-      timer = setTimeout(function () { loadPeoples(function () { if (document.activeElement === input) show(); }); }, 90);
-    });
-    input.addEventListener("focus", function () { loadPeoples(function () {}); });
-    input.addEventListener("keydown", function (e) {
-      if (list.hidden) return;
-      if (e.key === "ArrowDown") { e.preventDefault(); active = (active + 1) % items.length; mark(); }
-      else if (e.key === "ArrowUp") { e.preventDefault(); active = active <= 0 ? items.length - 1 : active - 1; mark(); }
-      else if (e.key === "Enter" && active > -1) { e.preventDefault(); choose(items[active]); }
-      else if (e.key === "Escape") { e.preventDefault(); close(); }
-    });
-    input.addEventListener("blur", function () { setTimeout(function () { if (document.activeElement !== input) close(); }, 150); });
-    list.addEventListener("mousedown", function (e) {
-      const li = e.target.closest("li"); if (!li) return;
-      e.preventDefault(); choose(items[Array.prototype.indexOf.call(list.children, li)]);
+    let autoPlace = state.jp ? state.jp.ctry : "";
+    window.CNPeople.attach({
+      input: input, list: list, place: place, status: document.getElementById("wiw-people-status"),
+      statusText: function (n) { return fill(u.peopleCount || E.peopleCount, { n: n }); },
+      onType: function () { if (state.jp && input.value.trim() !== state.jp.name) state.jp = null; },
+      onChoose: function (p) {
+        input.value = p.name;
+        if (!place.value.trim() || place.value.trim() === autoPlace) { place.value = p.c.name; autoPlace = p.c.name; }
+        state.jp = { id: p.id, rog: p.c.rog, name: p.name, ctry: p.c.name };
+      }
     });
   }
   function jpProfileUrl() {
