@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<!--
+  Frontier Trail™ © 2026 Bud Houston
+  Code (HTML, CSS, JavaScript): GPL-3.0-or-later, see LICENSE
+  Story text, events, debrief, facilitator guide: CC BY-SA 4.0, see LICENSE-CONTENT
+  Quoted Joshua Project and Phases of Engagement Toolkit definitions, figures, links
+  and the embedded prayer map belong to their owners and are not covered by these licenses
+  "Frontier Trail" name: not licensed, see TRADEMARK.md
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -52,6 +60,8 @@ a.btn{text-decoration:none;display:inline-block}
 .title-blurb{max-width:640px;margin:0 auto 26px;color:var(--text)}
 .title-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
 .footer-note{margin-top:40px;color:var(--muted);font-size:.8em}
+.tm{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:.32em;vertical-align:super;margin-left:3px;text-shadow:none}
+.lic{margin-top:8px;font-size:.92em}
 .footer-note a{color:var(--muted)}
 
 /* ---------- Modal ---------- */
@@ -495,7 +505,7 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
 <!-- ================= TITLE ================= -->
 <section id="title" class="screen on center">
   <svg class="title-art" id="titleArt" viewBox="0 0 160 64" aria-hidden="true"></svg>
-  <h1 class="pix title-h">FRONTIER TRAIL</h1>
+  <h1 class="pix title-h">FRONTIER TRAIL<span class="tm">&trade;</span></h1>
   <p class="title-sub">The Road to Every People</p>
   <p class="title-blurb">A journey game for the Great Commission. Choose a path. Make the calls. Face the barriers. The destination is not survival: it is multiplying churches among a people who have never had one.</p>
   <div class="resume hidden" id="resumeBox"></div>
@@ -517,6 +527,7 @@ details summary{cursor:pointer;font-family:var(--pix);font-size:.65rem;color:var
   </div>
   <p class="vt muted blink">30 to 60 minutes &middot; one player or one room</p>
   <p class="footer-note">Fictional peoples, real patterns. Every people group in this game is a composite; every barrier is one someone has actually faced.<br>Built on <a href="https://joshuaproject.net/frontier" target="_blank" rel="noopener">Joshua Project</a> people group data patterns and the <a href="https://media.joshuaproject.net/public/assets/media/articles/Engagement-Phases-Toolkit.pdf" target="_blank" rel="noopener">Phases of Engagement Toolkit</a>.</p>
+  <p class="footer-note lic">Frontier Trail&trade; &copy; 2026 Bud Houston. Code <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener">GPL-3.0</a>, content <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. An independent project, not an official Joshua Project product.</p>
 </section>
 
 <!-- ================= MODALS ================= -->
@@ -3650,7 +3661,7 @@ function endGame(quit){
     </div>
     <div class="report"><details><summary>Glossary (${GLOSSARY.length} terms)</summary><div class="gl-print">${GLOSSARY.map(x=>`<div class="gl-row"><b>${x.term}</b> <span class="gl-src ${x.src}">${glossSrc(x.src)}</span><p>${x.def}</p></div>`).join('')}</div></details></div>
     <div class="end-btns"><button class="btn" onclick="restart()">Play again</button><button class="btn ghost" onclick="window.print()">Print report</button></div>
-    <p class="footer-note">Fictional peoples, real patterns. Built on <a href="${UOTD.frontier}" target="_blank" rel="noopener">Joshua Project</a> people group data and the <a href="${TOOLKIT_URL}" target="_blank" rel="noopener">Phases of Engagement Toolkit</a>. Checkpoint figures from joshuaproject.net as of September 2026.</p>`;
+    <p class="footer-note">Fictional peoples, real patterns. Built on <a href="${UOTD.frontier}" target="_blank" rel="noopener">Joshua Project</a> people group data and the <a href="${TOOLKIT_URL}" target="_blank" rel="noopener">Phases of Engagement Toolkit</a>. Checkpoint figures from joshuaproject.net as of September 2026.<br>Frontier Trail&trade; &copy; 2026 Bud Houston &middot; CC BY-SA 4.0 &middot; Independent project, not an official Joshua Project product.</p>`;
   show('end');
 }
 
