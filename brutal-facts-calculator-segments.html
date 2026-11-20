@@ -208,8 +208,8 @@
       <div class="card-head-row">
         <div>
           <p class="card-eyebrow">The Brutal Facts</p>
-          <h2 class="card-pg" id="cPg">Sample People Group</h2>
-          <p class="card-country" id="cCountry">Sample Country</p>
+          <h2 class="card-pg" id="cPg">Unnamed people group</h2>
+          <p class="card-country" id="cCountry">Country not set</p>
         </div>
         <span class="badge frontier" id="cBadge">Frontier</span>
       </div>
@@ -249,14 +249,14 @@
 
     <div class="field">
       <label for="pg">People group name</label>
-      <div class="pg-combo"><input id="pg" class="tin name" type="text" value="Sample People Group" aria-label="People group name">
+      <div class="pg-combo"><input id="pg" class="tin name" type="text" value="" placeholder="Start typing a people group" aria-label="People group name">
       <ul class="pg-list" id="pgList" hidden></ul><div class="pg-sr" id="pgStatus" role="status" aria-live="polite"></div></div>
       <p class="pg-help" id="pgHelp">Start typing to search Joshua Project people groups. Picking one fills in the country, population, and percentages. You can change any number.</p>
     </div>
 
     <div class="field">
       <label for="country">Country</label>
-      <input id="country" class="tin name" type="text" value="Sample Country" aria-label="Country">
+      <input id="country" class="tin name" type="text" value="" placeholder="Country" aria-label="Country">
     </div>
 
     <div class="field">
@@ -347,8 +347,8 @@
     <div class="card-top"></div>
     <div class="card-body">
       <p class="card-eyebrow">Two ways to the same goal</p>
-      <h2 class="card-pg" id="mcPg">Sample People Group</h2>
-      <p class="card-country" id="mcCountry">Sample Country</p>
+      <h2 class="card-pg" id="mcPg">Unnamed people group</h2>
+      <p class="card-country" id="mcCountry"></p>
       <div class="mc-two">
         <div class="mc-col"><p class="mc-k">Addition</p><p class="mc-big" id="mcAddDay">8</p><p class="mc-u">baptisms / day</p><p class="mc-sm">every day for <b id="mcAddYears">10</b> years</p></div>
         <div class="mc-col mc-col2"><p class="mc-k">Multiplication</p><p class="mc-big" id="mcMultYears">11</p><p class="mc-u">years</p><p class="mc-sm">from <b id="mcD0">100</b> disciples at <b id="mcFactor2">2.5x</b> / yr</p></div>
@@ -617,7 +617,7 @@
   });
 
   $('reset').addEventListener('click',function(){
-    $('pg').value='Sample People Group'; $('country').value='Sample Country';
+    $('pg').value=''; $('country').value='';
     $('pop').value='1,200,000'; $('evPct').value='0.00'; $('chPct').value='0.05';
     $('birthRate').value=24; $('deathRate').value=7; goal='reach2'; years=10;
     Array.prototype.forEach.call(document.querySelectorAll('.yr'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-y')==='10');});
