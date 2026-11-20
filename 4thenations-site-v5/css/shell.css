@@ -1,0 +1,93 @@
+/* ==========================================================================
+   SHARED HEADER AND FOOTER for every page on 4thenations.com.
+   Safe on any page: every class starts with "cn-" and carries its own
+   colors and fonts, so it cannot clash with a page's own styles.
+   ========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sofia+Sans+Extra+Condensed:wght@600;800&display=swap");
+
+.cn-shell {
+  --cn-ink: #0A1018; --cn-panel: #101924; --cn-line: #22303F; --cn-paper: #EEE9DD; --cn-muted: #94A1AF; --cn-lamp: #F5B83D;
+  --cn-display: "Sofia Sans Extra Condensed", "Arial Narrow", Impact, sans-serif;
+  --cn-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cn-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-family: var(--cn-body); font-size: 17px; line-height: 1.55; font-weight: 400; letter-spacing: normal;
+  text-align: left; text-transform: none; color: var(--cn-paper); color-scheme: dark;
+}
+.cn-shell, .cn-shell *, .cn-shell *::before, .cn-shell *::after { box-sizing: border-box; }
+.cn-shell a { color: inherit; text-decoration: none; opacity: 1; font-weight: inherit; background: none; }
+.cn-shell :focus-visible { outline: 2px solid var(--cn-lamp); outline-offset: 3px; }
+.cn-shell .cn-wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+
+/* ---------- Header ---------- */
+.cn-shell.cn-head { position: sticky; top: 0; z-index: 50; margin: 0; background: rgba(10,16,24,.94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--cn-line); }
+.cn-shell.cn-head.cn-static { position: relative; }
+.cn-shell .cn-skip { position: absolute; left: -999px; top: 0; background: var(--cn-lamp); color: var(--cn-ink); padding: 8px 14px; z-index: 5; }
+.cn-shell .cn-skip:focus { left: 12px; top: 12px; }
+.cn-shell .cn-row { display: flex; align-items: center; gap: 28px; height: 68px; }
+.cn-shell .cn-brand { display: inline-flex; align-items: center; gap: 10px; margin-right: auto; }
+.cn-shell .cn-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--cn-lamp); box-shadow: 0 0 0 4px rgba(245,184,61,.18), 0 0 18px rgba(245,184,61,.7); flex: none; }
+.cn-shell .cn-name { font-family: var(--cn-display); font-weight: 800; font-size: 26px; text-transform: uppercase; letter-spacing: .02em; line-height: 1; color: var(--cn-paper); }
+.cn-shell .cn-name span { font-weight: 600; color: var(--cn-muted); }
+.cn-shell .cn-nav { display: flex; align-items: center; gap: 26px; }
+.cn-shell .cn-nav > a, .cn-shell .cn-menu-btn {
+  font: 500 15px/1 var(--cn-body); color: var(--cn-paper); background: none; border: 0; border-bottom: 1.5px solid transparent;
+  border-radius: 0; margin: 0; padding: 8px 0; cursor: pointer; box-shadow: none; text-transform: none; letter-spacing: normal; width: auto;
+}
+.cn-shell .cn-nav > a:hover, .cn-shell .cn-menu-btn:hover, .cn-shell .cn-has-menu.cn-open > .cn-menu-btn, .cn-shell .cn-nav > a[aria-current="page"] { border-bottom-color: var(--cn-lamp); color: var(--cn-paper); }
+.cn-shell .cn-has-menu { position: relative; }
+.cn-shell .cn-caret { font-size: 10px; color: var(--cn-muted); margin-left: 5px; }
+.cn-shell .cn-menu { display: none; position: absolute; top: 100%; left: -18px; width: 320px; padding: 8px; background: var(--cn-panel); border: 1px solid var(--cn-line); border-top: 2px solid var(--cn-lamp); }
+.cn-shell .cn-has-menu:hover .cn-menu, .cn-shell .cn-has-menu:focus-within .cn-menu, .cn-shell .cn-has-menu.cn-open .cn-menu { display: block; }
+.cn-shell .cn-menu a { display: block; padding: 12px; }
+.cn-shell .cn-menu a:hover { background: var(--cn-ink); }
+.cn-shell .cn-mt { display: block; font-weight: 600; font-size: 15px; line-height: 1.2; margin-bottom: 5px; }
+.cn-shell .cn-ms { display: block; font-size: 13.5px; line-height: 1.4; color: var(--cn-muted); }
+.cn-shell .cn-menu a.cn-menu-all { border-top: 1px solid var(--cn-line); margin-top: 4px; color: var(--cn-lamp); font: 500 12px/1 var(--cn-mono); letter-spacing: .1em; text-transform: uppercase; padding: 14px 12px 10px; }
+.cn-shell .cn-cta { display: flex; gap: 10px; }
+.cn-shell .cn-btn {
+  display: inline-flex; align-items: center; white-space: nowrap; font: 500 13px/1.55 var(--cn-mono); letter-spacing: .08em; text-transform: uppercase;
+  padding: 11px 18px; border: 1.5px solid var(--cn-lamp); border-radius: 2px; transition: background-color .15s, color .15s;
+}
+.cn-shell .cn-btn-solid { background: var(--cn-lamp); color: var(--cn-ink); }
+.cn-shell .cn-btn-solid:hover { background: var(--cn-paper); border-color: var(--cn-paper); color: var(--cn-ink); }
+.cn-shell .cn-btn-line { color: var(--cn-lamp); }
+.cn-shell .cn-btn-line:hover { background: var(--cn-lamp); color: var(--cn-ink); }
+.cn-shell .cn-mobile { display: none; }
+.cn-shell [data-give] { display: none; }
+html.give-live .cn-shell .cn-cta [data-give] { display: inline-flex; }
+html.give-live .cn-shell .cn-panel [data-give] { display: block; }
+
+/* ---------- Footer ---------- */
+.cn-shell.cn-foot { margin: 84px 0 0; border-top: 1px solid var(--cn-line); background: var(--cn-panel); }
+.cn-shell .cn-foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; padding-top: 48px; padding-bottom: 40px; }
+.cn-shell .cn-foot-h { font: 500 12px/1.55 var(--cn-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--cn-muted); margin: 0 0 14px; }
+.cn-shell .cn-foot-list { display: grid; gap: 9px; }
+.cn-shell .cn-foot-list a { font-size: 15.5px; color: var(--cn-paper); }
+.cn-shell .cn-foot-list a:hover { color: var(--cn-lamp); }
+.cn-shell .cn-foot-by { color: var(--cn-muted); font-size: 15px; margin: 14px 0 0; max-width: 24em; }
+.cn-shell .cn-foot-base { border-top: 1px solid var(--cn-line); padding-top: 18px; padding-bottom: 26px; font: 400 11.5px/1.55 var(--cn-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--cn-muted); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .cn-shell .cn-nav, .cn-shell .cn-cta .cn-btn-line { display: none !important; }
+  .cn-shell .cn-row { gap: 10px; }
+  .cn-shell .cn-mobile { display: block; }
+  .cn-shell .cn-mobile summary { list-style: none; cursor: pointer; font: 400 13px/1.55 var(--cn-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--cn-paper); padding: 11px 14px; border: 1.5px solid var(--cn-line); border-radius: 2px; }
+  .cn-shell .cn-mobile summary::-webkit-details-marker { display: none; }
+  .cn-shell .cn-mobile[open] summary { border-color: var(--cn-lamp); color: var(--cn-lamp); }
+  .cn-shell .cn-panel { position: absolute; left: 0; right: 0; top: 68px; background: var(--cn-panel); border-bottom: 2px solid var(--cn-lamp); padding: 10px 28px 22px; display: grid; }
+  .cn-shell .cn-panel a { padding: 13px 0; border-bottom: 1px solid var(--cn-line); font-weight: 500; color: var(--cn-paper); }
+  .cn-shell .cn-panel a.cn-sub { padding-left: 18px; font-weight: 400; color: var(--cn-muted); }
+  .cn-shell .cn-panel a.cn-give { color: var(--cn-lamp); border-bottom: 0; }
+  .cn-shell .cn-foot-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .cn-shell .cn-wrap { padding: 0 18px; }
+  .cn-shell .cn-row { height: 60px; }
+  .cn-shell .cn-brand { gap: 8px; }
+  .cn-shell .cn-name { font-size: 19px; }
+  .cn-shell .cn-cta .cn-btn, .cn-shell .cn-mobile summary { padding: 8px 10px; font-size: 11.5px; }
+  .cn-shell .cn-panel { top: 60px; padding: 6px 18px 18px; }
+  .cn-shell.cn-foot { margin-top: 60px; }
+}
+@media print { .cn-shell { display: none !important; } }

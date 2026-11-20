@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountains Don&rsquo;t Make People Unreached &middot; Clarity for the Nations</title>
+<meta name="description" content="Innsbruck's first Protestant church opened in 1906, nearly four centuries after Wittenberg. The Alps did not keep the Reformation out. An interactive look at roads, rulers, hidden valleys, and a test of terrain against 10,959 people groups.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shell.css">
+<style>
+:root{
+--paper:#F3EFE6;--ink:#1C1A17;--mute:#6E665B;
+--accent:#4D6A86;--deep:#2E4459;
+--lamp:#C9892B;--lampdeep:#8E5E17;
+--warn:#A63A2E;
+--line:rgba(28,26,23,.12)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65}
+a{color:inherit}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+#prog{position:fixed;top:0;left:0;height:4px;width:0;background:var(--lamp);z-index:60}
+.topnav{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.6rem;padding:13px 24px;background:rgba(243,239,230,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.topnav .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;text-decoration:none;color:var(--ink)}
+.topnav .links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.topnav .links a{text-decoration:none;font-weight:600;font-size:.92rem;color:var(--ink);opacity:.85}
+.topnav .links a:hover{opacity:1;color:var(--accent)}
+header.hero{background:linear-gradient(165deg,#111C28 0%,var(--deep) 55%,var(--accent) 100%);color:#F6F4EE;padding:12vh 0 0;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:2;padding-bottom:3vh}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#E9C27E;margin-bottom:1.2rem}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.06;max-width:22ch}
+.hero .sub{margin-top:1.4rem;font-size:1.08rem;color:rgba(246,244,238,.84);max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:2.4rem}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:.9rem 1.3rem;min-width:150px;flex:1 1 190px}
+.chip .n{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;line-height:1;color:#F0CF8F}
+.chip .l{font-size:.82rem;font-weight:600;color:rgba(246,244,238,.8);margin-top:.35rem}
+.heroridge{display:block;width:100%;height:auto;margin-top:2vh;position:relative;z-index:1}
+.qband{background:var(--accent);color:#F7F5F0;padding:6vh 0}
+.qband .q{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.4rem,3.4vw,2.1rem);line-height:1.2;margin:0 auto;max-width:36ch;text-align:center}
+.qband .q + .q{margin-top:2rem;color:#F2DDB3}
+main{padding:6vh 0 2vh}
+.mod{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;margin:0 0 9vh}
+.mod.in{opacity:1;transform:none}
+.kicker{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:.6rem}
+.mod h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.5rem,3.6vw,2.3rem);line-height:1.12;margin-bottom:.8rem}
+.mod .intro{color:#39342d;max-width:64ch;margin-bottom:1.6rem}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 6px 26px rgba(0,0,0,.05)}
+.note{font-size:.8rem;color:var(--mute);margin-top:1rem}
+svg{width:100%;height:auto;display:block}
+.ctrllabel{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+input[type=range]{width:100%;accent-color:var(--accent);height:34px;cursor:pointer;display:block}
+.slabels{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--mute);margin-top:.1rem}
+.bigread{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:1.3rem}
+.bigread .box{flex:1 1 160px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem}
+.bigread .box .lab{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.bigread .box .val{font-family:'Fraunces',serif;font-weight:900;font-size:1.9rem;line-height:1.1;margin-top:.25rem;color:var(--accent)}
+.bigread .box .val.lampv{color:var(--lampdeep)}
+.stag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem;background:var(--mute)}
+.st-before{background:var(--ink)} .st-arrived{background:var(--lampdeep)} .st-suppressed{background:var(--warn)} .st-hidden{background:#6B5A3A} .st-expelled{background:var(--warn)} .st-opened{background:var(--accent)}
+.slider-read{margin-top:1.1rem;font-size:1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.95rem 1.1rem;min-height:7.4rem}
+.slider-read b{color:var(--deep)}
+.evrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem}
+.evbtn{font:inherit;font-size:.8rem;font-weight:700;padding:.4rem .85rem;border-radius:50px;border:1.5px solid var(--line);background:#fff;cursor:pointer;color:var(--ink)}
+.evbtn:hover,.evbtn:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+/* segmented */
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.3rem}
+.segbtn{font:inherit;font-weight:700;font-size:.95rem;padding:.6rem 1.3rem;border-radius:50px;border:2px solid var(--line);background:#fff;cursor:pointer;color:var(--ink);transition:all .2s}
+.segbtn:hover{border-color:var(--ink)}
+.segbtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.segbtn.on.warnon{background:var(--warn);border-color:var(--warn)}
+.crows{display:flex;flex-direction:column;gap:10px;margin-top:1.2rem}
+.crow{display:flex;gap:14px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}
+.crow .ck{flex:0 0 150px;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);padding-top:.15rem}
+.crow .cv{flex:1;min-width:200px;font-size:.98rem}
+.verdict{margin-top:1.2rem;border-radius:12px;padding:1rem 1.2rem;font-size:.98rem;background:rgba(77,106,134,.09)}
+.verdict .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;color:#fff;margin-bottom:.5rem;background:var(--accent)}
+.verdict.bad{background:rgba(166,58,46,.08)}
+.verdict.bad .tag{background:var(--warn)}
+.hsread{margin-top:1.1rem;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;min-height:6.4rem}
+.hsread .hn{display:block;font-family:'Fraunces',serif;font-weight:900;font-size:1.25rem;color:var(--deep);margin-bottom:.3rem}
+.mapwrap{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+/* chart */
+.chartbox{position:relative;height:320px}
+.scalebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem}
+/* accordion */
+.pbar{height:10px;background:rgba(28,26,23,.1);border-radius:6px;overflow:hidden;margin:0 0 .5rem}
+.pbar .fill{height:100%;width:0;background:var(--accent);transition:width .45s ease}
+.plab{font-size:.78rem;font-weight:700;color:var(--mute);margin-bottom:1.1rem}
+.step{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:#fff;overflow:hidden}
+.step .sh{display:flex;align-items:center;gap:14px;padding:.95rem 1rem;cursor:pointer;width:100%;background:none;border:0;font:inherit;text-align:left;color:var(--ink)}
+.step .sh:hover{background:rgba(77,106,134,.05)}
+.step .sh:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.step .num{flex:0 0 32px;height:32px;border-radius:50%;background:rgba(28,26,23,.08);color:var(--mute);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:background .3s,color .3s}
+.step.seen .num{background:var(--accent);color:#fff}
+.step .stt{flex:1;font-weight:700;font-size:1rem}
+.step .stt small{display:block;font-weight:600;font-size:.8rem;color:var(--mute)}
+.step .chev{font-weight:800;color:var(--mute);transition:transform .25s}
+.step.open .chev{transform:rotate(90deg)}
+.step .sb{display:none;padding:0 1rem 1.1rem 3.8rem;font-size:.97rem;color:#2f2b26}
+.step.open .sb{display:block}
+.step .sb p + p{margin-top:.6rem}
+.big3{display:flex;flex-wrap:wrap;gap:10px;margin:.8rem 0 .2rem}
+.big3 .b{flex:1 1 120px;background:var(--paper);border-radius:10px;padding:.6rem .8rem}
+.big3 .b .v{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;color:var(--accent);line-height:1.1}
+.big3 .b .k{font-size:.75rem;font-weight:600;color:var(--mute)}
+.rug{margin-top:.9rem}
+.rug .rl{font-size:.8rem;font-weight:700;color:var(--mute);margin:.5rem 0 .25rem}
+.rug .rt{height:16px;background:rgba(28,26,23,.07);border-radius:8px;overflow:hidden}
+.rug .rf{height:100%;width:0;border-radius:8px;transition:width .9s ease}
+/* prediction */
+.pred{border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;margin-bottom:10px}
+.pred .pt{font-weight:700;margin-bottom:.6rem}
+.pred .pbtns{display:flex;gap:8px;flex-wrap:wrap}
+.pbtn{font:inherit;font-size:.85rem;font-weight:700;padding:.45rem 1rem;border-radius:50px;border:1.5px solid var(--line);background:#fff;cursor:pointer;color:var(--ink)}
+.pbtn.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.revealbtn{font:inherit;font-weight:700;font-size:1rem;padding:.75rem 1.6rem;border-radius:50px;border:0;background:var(--accent);color:#fff;cursor:pointer;margin-top:.6rem}
+.revealbtn:hover{background:var(--deep)}
+.revealbox{display:none;margin-top:1.2rem;border-radius:12px;padding:1.1rem 1.2rem;background:rgba(166,58,46,.07);border-left:4px solid var(--warn)}
+.revealbox.show{display:block}
+.revealbox .rt1{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;color:var(--warn);margin-bottom:.4rem}
+.revealbox p + p{margin-top:.6rem}
+.closing{background:var(--ink);color:#F6F4EE;padding:10vh 0;text-align:center}
+.closing .big{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.15;max-width:28ch;margin:0 auto 2rem}
+.cta-btn{display:inline-block;background:#F0CF8F;color:#3A2A0E;text-decoration:none;font-weight:700;font-size:1.05rem;padding:1rem 2.3rem;border-radius:50px;transition:transform .15s,filter .2s}
+.cta-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:5vh 0 7vh}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center}
+footer .name{font-family:'Fraunces',serif;font-weight:900;font-size:1.2rem}
+footer a.sub{text-decoration:none;font-weight:700;color:var(--accent)}
+footer small{display:block;color:var(--mute);margin-top:.8rem}
+@media (max-width:560px){
+.crow .ck{flex:1 1 100%}
+.bigread .box .val{font-size:1.55rem}
+.step .sb{padding-left:1rem}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<script src="js/shell.js" data-part="header"></script>
+
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Clarity for the Nations &middot; Data &amp; Frontier Peoples</div>
+<h1>The Alps did not keep the Reformation out of Tyrol, and rugged terrain does not keep people unreached today.</h1>
+<p class="sub">Innsbruck&rsquo;s first Protestant church opened in May 1906, nearly four centuries after Wittenberg. Look up from any street and the explanation seems obvious: the mountains kept it out. It is a tidy theory, and it is wrong. The same theory was then tested against today&rsquo;s people groups. It failed there too, and the reason it failed is the lesson.</p>
+<div class="chips">
+<div class="chip"><div class="n" data-count="3">0</div><div class="l">years for Reformation ideas to reach Tyrol after Wittenberg</div></div>
+<div class="chip"><div class="n" data-count="389">0</div><div class="l">years from Luther&rsquo;s theses (1517) to Innsbruck&rsquo;s first Protestant church (1906)</div></div>
+<div class="chip"><div class="n" data-count="10959">0</div><div class="l">indigenous people groups in 119 countries tested against terrain</div></div>
+</div>
+</div>
+<svg class="heroridge" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120 L0 78 L70 52 L130 74 L210 26 L280 66 L340 44 L420 82 L500 30 L560 58 L640 14 L720 64 L790 40 L860 76 L940 34 L1010 62 L1090 22 L1150 56 L1200 44 L1200 120 Z" fill="rgba(243,239,230,.12)"/><path d="M0 120 L0 96 L90 80 L170 100 L260 70 L350 94 L450 66 L540 92 L620 72 L720 98 L810 74 L900 96 L990 70 L1080 92 L1200 78 L1200 120 Z" fill="#4D6A86"/></svg>
+</header>
+
+<section class="qband">
+<div class="wrap">
+<p class="q">&ldquo;It was stopped by rulers, not rocks.&rdquo;</p>
+<p class="q">&ldquo;The mountains did not keep the gospel out. They protected whatever people already held.&rdquo;</p>
+</div>
+</section>
+
+<main>
+<div class="wrap">
+
+<section class="mod" id="m1">
+<div class="kicker">The church that came late</div>
+<h2>Three years in. Nearly four centuries to a church.</h2>
+<p class="intro">If the peaks had kept the Reformation out, nothing would have happened in the valleys until 1906. A great deal happened. Drag through the years and watch what actually arrived, what was crushed, and what survived out of sight.</p>
+<div class="panel">
+<div class="bigread">
+<div class="box"><div class="lab">Year</div><div class="val" id="tlYear">1517</div></div>
+<div class="box"><div class="lab">Years since Wittenberg</div><div class="val lampv" id="tlSince">0</div></div>
+</div>
+<svg id="tlSvg" viewBox="0 0 860 300" role="img" aria-label="A timeline from 1517 to 1906 under a mountain ridge, showing when Protestant faith reached the Alpine valleys, when it was suppressed and hidden, the expulsions, and the opening of Innsbruck's first Protestant church"></svg>
+<div class="ctrllabel" style="margin-top:.8rem">Move through the years</div>
+<input type="range" id="tlSlider" min="1517" max="1906" step="1" value="1517" aria-label="Year, from 1517 to 1906">
+<div class="slabels"><span>1517</span><span>1600</span><span>1700</span><span>1800</span><span>1906</span></div>
+<div class="evrow" id="evRow" aria-label="Jump to an event"></div>
+<div class="slider-read" id="tlRead"></div>
+<p class="note">Dates and figures are those stated in the essay. The open versus hidden shading is the essay&rsquo;s narrative of what happened to Protestant faith in the valleys, not a measured series. Defereggen and Salzburg were ruled by the Archbishop of Salzburg; they are shown with Tyrol because the essay tells them as one Alpine story.</p>
+</div>
+</section>
+
+<section class="mod" id="m2">
+<div class="kicker">Road, mine, ruler</div>
+<h2>Rocks or rulers? Watch the ideas move.</h2>
+<p class="intro">Switch between the tidy theory and what actually happened. In one, the peaks stop everything. In the other, ideas pour through the main trade route between Germany and Italy, and the barrier turns out to be a throne. Tap the marked places on the map to read what happened there.</p>
+<div class="panel">
+<div class="seg" id="modeSeg" role="group" aria-label="Choose an explanation">
+<button class="segbtn on warnon" type="button" data-k="theory" aria-pressed="true">The tidy theory</button>
+<button class="segbtn" type="button" data-k="history" aria-pressed="false">What actually happened</button>
+</div>
+<div class="mapwrap"><svg id="mapSvg" viewBox="0 0 860 430" role="group" aria-label="Schematic map of Tyrol between Germany and Italy, with moving dots showing Reformation ideas, and selectable places: Brenner Pass, Schwaz, Innsbruck, and the remote valleys"></svg></div>
+<div class="hsread" id="hsRead"><span class="hn">Select a place on the map</span>Tap a marked place above, or tab to it and press Enter.</div>
+<div class="crows" id="modeRows"></div>
+<div class="verdict bad" id="modeVerdict"></div>
+<p class="note">Schematic, not to scale. Moving dots illustrate the essay&rsquo;s argument about how ideas traveled and what stopped them; they are not counts of people.</p>
+</div>
+</section>
+
+<section class="mod" id="m3">
+<div class="kicker">Expelled in winter</div>
+<h2>The state drove them out, by the thousands</h2>
+<p class="intro">The mountains did not remove anyone. Rulers did. In the Defereggen Valley the Archbishop of Salzburg expelled Protestants in the middle of winter and kept their children under 15 behind to be raised Catholic. Switch the scale to see the smaller expulsions next to the largest.</p>
+<div class="panel">
+<div class="scalebar" id="scaleSeg" role="group" aria-label="Chart scale">
+<button class="segbtn on" type="button" data-s="linear" aria-pressed="true">Linear scale</button>
+<button class="segbtn" type="button" data-s="logarithmic" aria-pressed="false">Log scale</button>
+</div>
+<div class="chartbox"><canvas id="expChart" aria-label="Bar chart of Protestants expelled: more than 600 from the Defereggen Valley in 1684 and 1685, more than 20,000 from Salzburg in 1731, and 427 from the Zillertal in 1837" role="img"></canvas></div>
+<p class="note">Figures as stated in the essay. Defereggen and Salzburg are stated as &ldquo;more than&rdquo; 600 and 20,000, so those bars are minimums. The Zillertal figure, 427, is a stated count; most of those families resettled at Erdmannsdorf in Prussian Silesia.</p>
+</div>
+</section>
+
+<section class="mod" id="m4">
+<div class="kicker">Testing it today</div>
+<h2>How the terrain test was built</h2>
+<p class="intro">History is one thing. Does terrain still separate people from the gospel now? The question went to the Joshua Project dataset. Open each step to see how the test was designed so that mountains, and only mountains, would be measured.</p>
+<div class="panel">
+<div class="pbar"><div class="fill" id="stFill"></div></div>
+<div class="plab" id="stLab">0 of 5 steps opened</div>
+<div id="steps">
+<div class="step" data-i="0"><button class="sh" type="button" aria-expanded="false"><span class="num">1</span><span class="stt">The groups<small>Who was in, and who was left out</small></span><span class="chev">&#8250;</span></button><div class="sb">
+<div class="big3"><div class="b"><div class="v">10,959</div><div class="k">indigenous people groups</div></div><div class="b"><div class="v">119</div><div class="k">countries</div></div></div>
+<p>Drawn from the current Joshua Project people group file. Diaspora groups, Deaf communities, and groups listed as scattered were left out, since a single point on a map tells us little about where they live.</p>
+</div></div>
+<div class="step" data-i="1"><button class="sh" type="button" aria-expanded="false"><span class="num">2</span><span class="stt">The terrain<small>What &ldquo;rugged&rdquo; means here</small></span><span class="chev">&#8250;</span></button><div class="sb">
+<p>A global elevation model measured how rugged the land is within about 130 km of each group&rsquo;s mapped location.</p>
+</div></div>
+<div class="step" data-i="2"><button class="sh" type="button" aria-expanded="false"><span class="num">3</span><span class="stt">The comparison<small>Nepal against Nepal, not Brazil</small></span><span class="chev">&#8250;</span></button><div class="sb">
+<p>Groups were compared only with other groups in the same country. That holds laws, persecution, colonial history, and national church strength constant.</p>
+<p>A Nepali group is measured against other Nepali groups, not against Brazil. If a mountainous country also has harsh laws, a global comparison would blame the mountains for what the laws did. A within-country comparison cannot make that mistake.</p>
+</div></div>
+<div class="step" data-i="3"><button class="sh" type="button" aria-expanded="false"><span class="num">4</span><span class="stt">The controls<small>What else could explain the gap</small></span><span class="chev">&#8250;</span></button><div class="sb">
+<p>Each group&rsquo;s main religion, its population size, and whether Joshua Project lists it as nomadic.</p>
+</div></div>
+<div class="step" data-i="4"><button class="sh" type="button" aria-expanded="false"><span class="num">5</span><span class="stt">A reality check on the map points<small>Do the dots sit where people actually live?</small></span><span class="chev">&#8250;</span></button><div class="sb">
+<div class="big3"><div class="b"><div class="v">603</div><div class="k">groups of 1 million or more, profiles read and coded by hand</div></div><div class="b"><div class="v">237</div><div class="k">of those profiles describe terrain</div></div></div>
+<p>A single point can mislead for a large group. So every Joshua Project profile for groups of 1 million or more was read and coded for where the group lives. Where the profile describes terrain, the mountain groups it names sit on terrain more than three times as rugged as the lowland groups. The map points and the profiles agree.</p>
+<div class="rug">
+<div class="rl">Lowland groups named in profiles</div><div class="rt"><div class="rf" id="rugLow" style="background:var(--lamp)"></div></div>
+<div class="rl">Mountain groups named in profiles: more than three times as rugged</div><div class="rt"><div class="rf" id="rugHigh" style="background:var(--accent)"></div></div>
+</div>
+</div></div>
+</div>
+<p class="note">All figures are as stated in the essay. The two ruggedness bars show the stated ratio (more than three times), not the underlying elevation values.</p>
+</div>
+</section>
+
+<section class="mod" id="m5">
+<div class="kicker">Make the call</div>
+<h2>If mountains still keep people unreached, what should the data show?</h2>
+<p class="intro">The test made three predictions. If terrain still separates people from the gospel, the most rugged groups in each country should come out worse on all three. Make your call on each, then reveal the result.</p>
+<div class="panel">
+<div id="predList"></div>
+<button class="revealbtn" type="button" id="revealBtn">Reveal the result</button>
+<div class="revealbox" id="revealBox" aria-live="polite">
+<div class="rt1">The idea failed.</div>
+<p id="predSummary"></p>
+<p>Tyrol already pointed the same way. The gospel arrived within three years, by road and by mine. Rulers, not rocks, decided what could stay in the open. And the mountains did something unexpected: they hid the believers, protecting whatever people already held.</p>
+<p>The full result, and what it means for how we think about unreached peoples today, is in the essay.</p>
+</div>
+<p class="note">The three predictions are stated in the essay. The verdict shown here is the essay&rsquo;s own summary; the detailed figures behind it are in the full essay.</p>
+</div>
+</section>
+
+</div>
+</main>
+
+<section class="closing">
+<div class="wrap">
+<p class="big">Terrain did not decide who heard. Roads carried it in, rulers held it back, and the valleys kept what people already held.</p>
+<a class="cta-btn" href="https://clarity4thenations.substack.com/p/mountains-dont-make-people-unreached" target="_blank" rel="noopener">Read the full essay &#8594;</a>
+</div>
+</section>
+
+<script src="js/shell.js" data-part="footer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(x,y,s,attrs,parent){var a={x:x,y:y,"font-family":"Inter,system-ui,sans-serif"};for(var k in attrs)a[k]=attrs[k];var t=el("text",a,parent);t.textContent=s;return t;}
+function tween(dur,fn,done){var t0=null;function step(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/dur);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(step);else if(done)done();}requestAnimationFrame(step);}
+function onKey(node,fn){node.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});}
+var ACC="#4D6A86",DEEP="#2E4459",LAMP="#C9892B",LAMPD="#8E5E17",WARN="#A63A2E",MUTE="#6E665B",INK="#1C1A17";
+var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* scroll progress */
+var prog=document.getElementById("prog");
+window.addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/Math.max(1,(h.scrollHeight-h.clientHeight));prog.style.width=(p*100)+"%";},{passive:true});
+
+/* reveal on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:.12});
+document.querySelectorAll(".mod").forEach(function(m){io.observe(m);});
+
+/* hero count-up */
+document.querySelectorAll(".chip .n").forEach(function(n){
+var target=parseFloat(n.getAttribute("data-count"));
+tween(1700,function(p){n.textContent=Math.round(target*p).toLocaleString("en-US");});
+});
+
+/* ================= Module 1: timeline slider ================= */
+(function(){
+var svg=document.getElementById("tlSvg");
+var X0=60,X1=800,AX=232,LANE=196;
+var YA=1517,YB=1906;
+function xOf(y){return X0+(y-YA)/(YB-YA)*(X1-X0);}
+var defs=el("defs",{},svg);
+var pat=el("pattern",{id:"hatch",patternUnits:"userSpaceOnUse",width:8,height:8,patternTransform:"rotate(45)"},defs);
+el("rect",{x:0,y:0,width:8,height:8,fill:"rgba(201,137,43,.16)"},pat);
+el("line",{x1:0,y1:0,x2:0,y2:8,stroke:"rgba(201,137,43,.75)","stroke-width":3},pat);
+/* ridge */
+el("path",{d:"M"+X0+" 150 L110 98 L150 126 L205 72 L250 118 L300 86 L350 130 L410 64 L470 120 L520 92 L575 134 L630 78 L690 124 L740 100 L"+X1+" 140 L"+X1+" 160 L"+X0+" 160 Z",fill:"rgba(77,106,134,.10)",stroke:"rgba(77,106,134,.4)","stroke-width":2,"stroke-linejoin":"round"},svg);
+txt(X0,30,"THE ALPINE VALLEYS, 1517 TO 1906",{fill:MUTE,"font-size":"11.5","font-weight":"700","letter-spacing":"1.6"},svg);
+/* lane label and track */
+txt(X0,LANE-14,"Protestant faith in the valleys",{fill:LAMPD,"font-size":"12","font-weight":"700"},svg);
+el("rect",{x:X0,y:LANE-7,width:X1-X0,height:14,rx:7,fill:"rgba(28,26,23,.05)"},svg);
+var barOpen=el("rect",{x:xOf(1520),y:LANE-7,width:0,height:14,rx:4,fill:LAMP},svg);
+var barHid=el("rect",{x:xOf(1536),y:LANE-7,width:0,height:14,fill:"url(#hatch)"},svg);
+/* legend */
+var lg=el("g",{},svg);
+el("rect",{x:X1-250,y:22,width:14,height:10,fill:LAMP,rx:2},lg);
+txt(X1-230,31,"in the open",{fill:MUTE,"font-size":"11","font-weight":"600"},lg);
+el("rect",{x:X1-150,y:22,width:14,height:10,fill:"url(#hatch)",rx:2},lg);
+txt(X1-130,31,"hidden in the valleys",{fill:MUTE,"font-size":"11","font-weight":"600"},lg);
+/* axis */
+el("line",{x1:X0,y1:AX,x2:X1,y2:AX,stroke:"rgba(28,26,23,.25)","stroke-width":2},svg);
+[1517,1600,1700,1800,1906].forEach(function(y){
+el("line",{x1:xOf(y),y1:AX,x2:xOf(y),y2:AX+6,stroke:"rgba(28,26,23,.3)","stroke-width":2},svg);
+});
+var EV=[
+{y:1517,c:INK,st:"before",tag:"Before",short:"Wittenberg",txt:"<b>1517.</b> Luther posts his theses in Wittenberg. Germany and Switzerland, on the other side of the peaks, are where the Reformation catches fire. Tyrol has not heard yet."},
+{y:1520,c:LAMP,st:"arrived",tag:"Arrived",short:"Reaches Tyrol",txt:"<b>Around 1520.</b> Reformation ideas and writings reach Tyrol, within three years of Wittenberg. They come by road over the Brenner Pass, and by mine: the silver miners of Schwaz embrace Lutheran and Anabaptist teaching early. The mountains did not slow it down."},
+{y:1536,c:WARN,st:"suppressed",tag:"Suppressed",short:"Hutter burned",txt:"<b>February 25, 1536.</b> Jakob Hutter, a Tyrolean and founder of the Hutterites, is burned at the stake in Innsbruck on orders of King Ferdinand. Under the principle that a ruler&rsquo;s religion set his territory&rsquo;s religion, dissent is executed, expelled, or driven underground."},
+{y:1537,c:LAMPD,st:"hidden",tag:"Hidden",short:"Into the valleys",txt:"<b>The hidden generations.</b> Then the mountains do something unexpected: they hide the believers. Protestant families survive in remote valleys for generations. The faith is still present. It is simply out of sight."},
+{y:1684,c:WARN,st:"expelled",tag:"Expelled",short:"Defereggen",txt:"<b>1684 and 1685.</b> The Archbishop of Salzburg expels more than 600 Protestants from the Defereggen Valley in the middle of winter, and keeps their children under 15 behind to be raised Catholic."},
+{y:1731,c:WARN,st:"expelled",tag:"Expelled",short:"Salzburg",txt:"<b>1731.</b> His successor expels more than 20,000 Protestants from Salzburg itself. Two centuries after the ideas arrived, they are still there to be expelled."},
+{y:1837,c:WARN,st:"expelled",tag:"Expelled",short:"Zillertal",txt:"<b>1837.</b> As late as this, 427 Protestants are forced out of the Zillertal. Most resettle at Erdmannsdorf in Prussian Silesia. The faith had survived three centuries in a mountain valley."},
+{y:1906,c:ACC,st:"opened",tag:"Opened",short:"Christuskirche",txt:"<b>May 1906.</b> The Christuskirche, Innsbruck&rsquo;s first Protestant church, opens. Nearly four centuries after Wittenberg. The delay was never about the peaks."}
+];
+var marks=EV.map(function(e){
+if(e.y===1537)return null;
+return el("circle",{cx:xOf(e.y),cy:AX,r:6,fill:e.c,stroke:"#fff","stroke-width":2},svg);
+});
+/* cursor */
+var cur=el("line",{x1:X0,y1:52,x2:X0,y2:AX+2,stroke:DEEP,"stroke-width":2,"stroke-dasharray":"4 4"},svg);
+var curDot=el("circle",{cx:X0,cy:AX,r:9,fill:"none",stroke:DEEP,"stroke-width":3},svg);
+var callBg=el("rect",{x:X0,y:46,width:10,height:30,rx:8,fill:"#fff",stroke:"rgba(28,26,23,.18)"},svg);
+var callTx=txt(X0,66,"",{fill:INK,"font-size":"13","font-weight":"800"},svg);
+txt(X0,AX+26,"1517",{fill:MUTE,"font-size":"12","font-weight":"600","text-anchor":"start"},svg);
+txt(X1,AX+26,"1906",{fill:MUTE,"font-size":"12","font-weight":"600","text-anchor":"end"},svg);
+txt(X0,288,"Dates as stated in the essay. Shading is narrative, not measured.",{fill:MUTE,"font-size":"11","font-weight":"600"},svg);
+
+var slider=document.getElementById("tlSlider"),yv=document.getElementById("tlYear"),sv=document.getElementById("tlSince"),rd=document.getElementById("tlRead");
+function current(y){var c=EV[0];EV.forEach(function(e){if(y>=e.y)c=e;});return c;}
+function draw(){
+var y=parseInt(slider.value,10);
+var x=xOf(y);
+cur.setAttribute("x1",x);cur.setAttribute("x2",x);curDot.setAttribute("cx",x);
+barOpen.setAttribute("width",Math.max(0,Math.min(xOf(y),xOf(1536))-xOf(1520)));
+barHid.setAttribute("width",Math.max(0,xOf(y)-xOf(1536)));
+var e=current(y);
+callTx.textContent=y+" · "+e.short;
+var w=callTx.getComputedTextLength?callTx.getComputedTextLength():120;
+var bx=Math.min(Math.max(x-w/2-12,X0-10),X1+10-w-24);
+callBg.setAttribute("x",bx);callBg.setAttribute("width",w+24);
+callTx.setAttribute("x",bx+12);
+yv.textContent=y;sv.textContent=(y-1517);
+rd.innerHTML='<span class="stag st-'+e.st+'">'+e.tag+'</span><div>'+e.txt+'</div>';
+marks.forEach(function(m,i){if(m)m.setAttribute("r",EV[i]===e?9:6);});
+}
+slider.addEventListener("input",draw);
+/* jump buttons */
+var row=document.getElementById("evRow");
+EV.forEach(function(e){
+if(e.y===1537)return;
+var b=document.createElement("button");
+b.type="button";b.className="evbtn";b.textContent=e.y+" "+e.short;
+b.addEventListener("click",function(){
+var from=parseInt(slider.value,10),to=e.y;
+tween(reduce?1:650,function(p){slider.value=Math.round(from+(to-from)*p);draw();});
+});
+row.appendChild(b);
+});
+draw();
+/* entrance: sweep once when visible */
+var did=false;
+var io1=new IntersectionObserver(function(es){es.forEach(function(en){
+if(en.isIntersecting&&!did){did=true;io1.unobserve(en.target);
+if(reduce)return;
+tween(1400,function(p){slider.value=Math.round(1517+3*p);draw();});
+}
+});},{threshold:.35});
+io1.observe(document.getElementById("m1"));
+})();
+
+/* ================= Module 2: rocks or rulers map ================= */
+(function(){
+var svg=document.getElementById("mapSvg");
+var W=860,H=430;
+/* bands */
+el("rect",{x:0,y:0,width:W,height:H,fill:"#FBF9F4"},svg);
+el("rect",{x:0,y:0,width:W,height:88,fill:"rgba(201,137,43,.10)"},svg);
+el("rect",{x:0,y:96,width:W,height:236,fill:"rgba(77,106,134,.08)"},svg);
+el("rect",{x:0,y:340,width:W,height:90,fill:"rgba(28,26,23,.04)"},svg);
+txt(22,32,"GERMANY AND SWITZERLAND",{fill:LAMPD,"font-size":"12.5","font-weight":"800","letter-spacing":"1.6"},svg);
+txt(22,52,"where the Reformation caught fire",{fill:MUTE,"font-size":"12","font-weight":"600"},svg);
+txt(22,394,"ITALY",{fill:MUTE,"font-size":"12.5","font-weight":"800","letter-spacing":"1.6"},svg);
+txt(22,124,"THE ALPS",{fill:DEEP,"font-size":"12.5","font-weight":"800","letter-spacing":"1.6"},svg);
+/* valley path */
+var VAL=[[30,178],[200,172],[330,182],[400,186],[520,192],[640,186],[830,198]];
+function lineD(pts){return pts.map(function(p,i){return (i?"L":"M")+p[0]+" "+p[1];}).join(" ");}
+/* mountains: deterministic scatter avoiding valley, road, labels */
+var seed=7;function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
+var mt=el("g",{},svg);
+for(var i=0;i<120;i++){
+var mx=20+rnd()*820,my=136+rnd()*186;
+var vy=178+(mx/860)*20;
+if(Math.abs(my-vy)<26)continue;
+if(Math.abs(mx-410)<34)continue;
+if(mx<170&&my<150)continue;
+if(mx>560&&mx>575&&mx<700&&my>200&&my<300)continue;
+var s=8+rnd()*10;
+el("path",{d:"M"+(mx-s)+" "+(my+s*0.8)+" L"+mx+" "+(my-s*0.8)+" L"+(mx+s)+" "+(my+s*0.8)+" Z",fill:"rgba(77,106,134,"+(0.16+rnd()*0.16).toFixed(2)+")"},mt);
+}
+el("path",{d:lineD(VAL),fill:"none",stroke:"rgba(77,106,134,.45)","stroke-width":7,"stroke-linecap":"round","stroke-linejoin":"round"},svg);
+txt(40,166,"Inn Valley",{fill:DEEP,"font-size":"11.5","font-weight":"700"},svg);
+/* side valley */
+var SIDE=[[520,192],[585,192],[612,250],[640,286]];
+el("path",{d:lineD(SIDE.slice(1)),fill:"none",stroke:"rgba(77,106,134,.35)","stroke-width":4,"stroke-linecap":"round","stroke-dasharray":"2 7"},svg);
+/* road */
+var G=[400,64],Q=[396,122],INN=[400,186],BR=[420,300],IT=[432,428];
+var ROAD=[G,Q,INN,[410,248],BR,[428,362],IT];
+el("path",{d:lineD(ROAD),fill:"none",stroke:LAMP,"stroke-width":3,"stroke-dasharray":"9 6","stroke-linecap":"round",opacity:.85},svg);
+txt(440,356,"Brenner route: Germany to Italy",{fill:LAMPD,"font-size":"11.5","font-weight":"700"},svg);
+/* wall for theory mode */
+var wall=el("g",{opacity:1},svg);
+el("rect",{x:0,y:90,width:W,height:8,fill:"rgba(166,58,46,.55)"},wall);
+txt(W-16,112,"the tidy theory: the peaks block it",{fill:WARN,"font-size":"12","font-weight":"800","text-anchor":"end"},wall);
+/* ruler ring for history mode */
+var ring=el("g",{opacity:0},svg);
+el("circle",{cx:INN[0],cy:INN[1],r:30,fill:"rgba(166,58,46,.07)",stroke:WARN,"stroke-width":2,"stroke-dasharray":"5 4"},ring);
+txt(INN[0]-38,INN[1]-34,"the ruler’s religion",{fill:WARN,"font-size":"11.5","font-weight":"800","text-anchor":"end"},ring);
+txt(W-16,132,"expelled →",{fill:WARN,"font-size":"11.5","font-weight":"800","text-anchor":"end"},ring);
+/* particle layer */
+var layer=el("g",{"pointer-events":"none"},svg);
+/* hotspots */
+var HS=[
+{n:"Brenner Pass",p:BR,lx:BR[0]+20,ly:BR[1]+5,anch:"start",h:"It came by road.",b:"Tyrol sits on the Brenner Pass, the main trade route between Germany and Italy. Merchants, printed pamphlets, and preachers moved through it constantly. The mountains were not a wall. They were a corridor."},
+{n:"Schwaz",p:[520,192],lx:532,ly:214,anch:"start",h:"It came by mine.",b:"The silver miners of Schwaz, just down the Inn Valley from Innsbruck, embraced Lutheran and Anabaptist teaching early. Jakob Hutter, founder of the Hutterites, was a Tyrolean."},
+{n:"Innsbruck",p:INN,lx:INN[0]-20,ly:INN[1]+28,anch:"end",h:"It was stopped by rulers, not rocks.",b:"Tyrol&rsquo;s Habsburg rulers were Catholic. Under the principle that a ruler&rsquo;s religion set his territory&rsquo;s religion, dissent was executed, expelled, or driven underground. On orders of King Ferdinand, Jakob Hutter was burned at the stake here on February 25, 1536. The city&rsquo;s first Protestant church did not open until May 1906."},
+{n:"Remote valleys",p:[640,286],lx:656,ly:291,anch:"start",h:"Then the mountains hid the believers.",b:"Protestant families survived in remote valleys for generations. The Defereggen Valley expulsions came in 1684 and 1685; the Zillertal expulsion came as late as 1837. The mountains protected whatever people already held: for the state, Catholic unity; for the hidden families in the high valleys, their Protestant faith."}
+];
+var hsRead=document.getElementById("hsRead");
+var hsNodes=[];
+HS.forEach(function(h,i){
+var g=el("g",{tabindex:"0",role:"button",style:"cursor:pointer","aria-label":h.n+". Press Enter to read."},svg);
+el("circle",{cx:h.p[0],cy:h.p[1],r:22,fill:"transparent"},g);
+var halo=el("circle",{cx:h.p[0],cy:h.p[1],r:15,fill:"rgba(46,68,89,.12)"},g);
+var c=el("circle",{cx:h.p[0],cy:h.p[1],r:8,fill:"#fff",stroke:DEEP,"stroke-width":3},g);
+var lb=el("text",{x:h.lx,y:h.ly,"font-family":"Inter,system-ui,sans-serif",fill:INK,"font-size":"13.5","font-weight":"800","text-anchor":h.anch,"paint-order":"stroke",stroke:"#FBF9F4","stroke-width":4},g);
+lb.textContent=h.n;
+hsNodes.push({c:c,halo:halo});
+function show(){
+hsRead.innerHTML='<span class="hn">'+h.h+'</span><div><b>'+h.n+'.</b> '+h.b+'</div>';
+hsNodes.forEach(function(n,k){n.c.setAttribute("r",k===i?11:8);n.c.setAttribute("fill",k===i?DEEP:"#fff");});
+}
+g.addEventListener("click",show);
+g.addEventListener("mouseenter",show);
+onKey(g,show);
+});
+/* particles */
+var mode="theory";
+var parts=[];
+var ROUTES={
+trade:{w:.3,pts:[G,Q,INN,[410,248],BR,[428,362],IT],hold:0},
+mine:{w:.25,pts:[G,Q,INN,[460,190],[520,192]],hold:1400},
+hidden:{w:.2,pts:[G,Q,INN,[520,192],[585,192],[612,250],[640,286]],hold:2600},
+expelled:{w:.25,pts:[G,Q,INN,[520,150],[700,124],[880,112]],hold:0,turn:2}
+};
+function pickRoute(){var r=Math.random(),acc=0;for(var k in ROUTES){acc+=ROUTES[k].w;if(r<=acc)return k;}return "trade";}
+function segLens(pts){var L=[],tot=0;for(var i=1;i<pts.length;i++){var d=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);L.push(d);tot+=d;}return {L:L,tot:tot};}
+function posAt(pts,sl,dist){var d=dist;for(var i=0;i<sl.L.length;i++){if(d<=sl.L[i]){var t=d/sl.L[i];return [pts[i][0]+(pts[i+1][0]-pts[i][0])*t,pts[i][1]+(pts[i+1][1]-pts[i][1])*t,i];}d-=sl.L[i];}var e=pts[pts.length-1];return [e[0],e[1],sl.L.length-1];}
+function spawn(){
+if(parts.length>40)return;
+var p={};
+if(mode==="theory"){
+var sx=300+Math.random()*460;
+p.pts=[[sx+ (Math.random()*20-10),40],[sx,92]];p.hold=0;p.kind="blocked";
+}else{
+var k=pickRoute();var R=ROUTES[k];
+var jit=Math.random()*14-7;
+p.pts=R.pts.map(function(q,i){return i===0?[q[0]+jit*3,q[1]]:[q[0]+jit*0.4,q[1]+jit*0.4];});
+p.hold=R.hold;p.kind=k;p.turn=R.turn;
+}
+p.sl=segLens(p.pts);p.d=0;p.speed=(mode==="theory"?0.05:0.09)*(0.8+Math.random()*0.4);p.held=0;p.fade=1;
+p.c=el("circle",{cx:p.pts[0][0],cy:p.pts[0][1],r:4.5,fill:LAMP,opacity:.95},layer);
+parts.push(p);
+}
+var running=false,last=0,acc=0,raf=null;
+function frame(ts){
+if(!running){raf=null;return;}
+var dt=last?Math.min(60,ts-last):16;last=ts;
+acc+=dt;
+var every=reduce?900:240;
+while(acc>every){acc-=every;spawn();}
+for(var i=parts.length-1;i>=0;i--){
+var p=parts[i];
+if(p.d<p.sl.tot){
+p.d=Math.min(p.sl.tot,p.d+p.speed*dt);
+var q=posAt(p.pts,p.sl,p.d);
+p.c.setAttribute("cx",q[0].toFixed(1));p.c.setAttribute("cy",q[1].toFixed(1));
+if(p.turn!==undefined&&q[2]>=p.turn){p.c.setAttribute("fill",WARN);}
+}else{
+p.held+=dt;
+if(p.kind==="blocked"){p.c.setAttribute("fill",WARN);}
+if(p.kind==="hidden"||p.kind==="mine"){p.c.setAttribute("r",5.5);}
+if(p.held>p.hold){
+p.fade-=dt/500;
+p.c.setAttribute("opacity",Math.max(0,p.fade).toFixed(2));
+if(p.fade<=0){layer.removeChild(p.c);parts.splice(i,1);}
+}
+}
+}
+raf=requestAnimationFrame(frame);
+}
+function start(){if(running)return;running=true;last=0;raf=requestAnimationFrame(frame);}
+function stop(){running=false;}
+var io2=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)start();else stop();});},{threshold:.15});
+io2.observe(svg);
+/* mode content */
+var MODES={
+theory:{rows:[["What stopped it","The Alps. Germany and Switzerland, where the Reformation caught fire, sit on the other side of the peaks."],["How it traveled","It did not. The theory needs the ideas to arrive late, so the late church makes sense."],["What the mountains did","Kept the gospel out."],["The evidence","Innsbruck&rsquo;s first Protestant church did not open until May 1906."]],tag:"Tidy, and wrong",v:"The theory explains the late church and nothing else. It cannot explain why there were Protestants in the valleys to expel in 1684, 1731, and 1837.",bad:true},
+history:{rows:[["What stopped it","Rulers. Tyrol&rsquo;s Habsburg rulers were Catholic, and a ruler&rsquo;s religion set his territory&rsquo;s religion."],["How it traveled","By road over the Brenner Pass, and by mine in Schwaz. It reached Tyrol around 1520, within three years of Wittenberg."],["What the mountains did","Hid the believers. Protestant families survived in remote valleys for generations."],["The evidence","Hutter burned in Innsbruck in 1536; more than 600 expelled from Defereggen in 1684 and 1685; more than 20,000 from Salzburg in 1731; 427 from the Zillertal in 1837."]],tag:"Rulers, not rocks",v:"The mountains did not keep the gospel out. They protected whatever people already held. For the state, that was Catholic unity. For the hidden families in the high valleys, it was their Protestant faith.",bad:false}
+};
+var seg=document.getElementById("modeSeg"),rows=document.getElementById("modeRows"),ver=document.getElementById("modeVerdict");
+function render(k){
+mode=k;
+var d=MODES[k];
+rows.innerHTML=d.rows.map(function(r){return '<div class="crow"><div class="ck">'+r[0]+'</div><div class="cv">'+r[1]+'</div></div>';}).join("");
+ver.className="verdict"+(d.bad?" bad":"");
+ver.innerHTML='<span class="tag">'+d.tag+'</span><div>'+d.v+'</div>';
+parts.forEach(function(p){if(p.c.parentNode)layer.removeChild(p.c);});parts=[];
+var wFrom=parseFloat(wall.getAttribute("opacity")),rFrom=parseFloat(ring.getAttribute("opacity"));
+var wTo=k==="theory"?1:0,rTo=k==="theory"?0:1;
+tween(400,function(p){wall.setAttribute("opacity",wFrom+(wTo-wFrom)*p);ring.setAttribute("opacity",rFrom+(rTo-rFrom)*p);});
+}
+seg.querySelectorAll(".segbtn").forEach(function(b){
+b.addEventListener("click",function(){
+seg.querySelectorAll(".segbtn").forEach(function(x){x.classList.remove("on","warnon");x.setAttribute("aria-pressed","false");});
+b.classList.add("on");if(b.getAttribute("data-k")==="theory")b.classList.add("warnon");
+b.setAttribute("aria-pressed","true");
+render(b.getAttribute("data-k"));
+});
+});
+render("theory");
+})();
+
+/* ================= Module 3: expulsions chart ================= */
+(function(){
+var chart=null;
+function make(){
+if(typeof Chart==="undefined")return;
+chart=new Chart(document.getElementById("expChart").getContext("2d"),{
+type:"bar",
+data:{
+labels:["Defereggen Valley, 1684 to 1685","Salzburg, 1731","Zillertal, 1837"],
+datasets:[{label:"Protestants expelled",data:[600,20000,427],backgroundColor:["#A63A2E","#7A2A21","#C9892B"],borderRadius:8,borderWidth:0}]
+},
+options:{
+responsive:true,maintainAspectRatio:false,
+animation:{duration:reduce?0:1100},
+plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){var v=c.parsed.y;var pre=(c.dataIndex===2)?"":"more than ";return pre+v.toLocaleString("en-US")+" expelled";}}}},
+scales:{
+y:{type:"linear",beginAtZero:true,ticks:{color:"#6E665B",font:{family:"Inter"},callback:function(v){return Number(v).toLocaleString("en-US");}},grid:{color:"rgba(28,26,23,.08)"},title:{display:true,text:"Protestants expelled",color:"#6E665B",font:{family:"Inter",weight:"700"}}},
+x:{ticks:{color:"#1C1A17",font:{family:"Inter",weight:"600",size:11},maxRotation:0,autoSkip:false,callback:function(v){return this.getLabelForValue(v).split(", ");}},grid:{display:false}}
+}
+}
+});
+}
+var made=false;
+var io3=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!made){made=true;make();io3.unobserve(en.target);}});},{threshold:.2});
+io3.observe(document.getElementById("m3"));
+var seg=document.getElementById("scaleSeg");
+seg.querySelectorAll(".segbtn").forEach(function(b){
+b.addEventListener("click",function(){
+seg.querySelectorAll(".segbtn").forEach(function(x){x.classList.remove("on");x.setAttribute("aria-pressed","false");});
+b.classList.add("on");b.setAttribute("aria-pressed","true");
+if(!chart)return;
+var s=b.getAttribute("data-s");
+var y=chart.options.scales.y;
+y.type=s;
+if(s==="logarithmic"){y.min=100;y.max=50000;y.beginAtZero=false;y.ticks.callback=function(v){return [100,1000,10000].indexOf(v)>-1?Number(v).toLocaleString("en-US"):"";};}
+else{delete y.min;delete y.max;y.beginAtZero=true;y.ticks.callback=function(v){return Number(v).toLocaleString("en-US");};}
+chart.update();
+});
+});
+})();
+
+/* ================= Module 4: method accordion ================= */
+(function(){
+var steps=[].slice.call(document.querySelectorAll("#steps .step"));
+var seen=steps.map(function(){return false;});
+var fill=document.getElementById("stFill"),lab=document.getElementById("stLab");
+function upd(){var n=seen.filter(Boolean).length;fill.style.width=(n/steps.length*100)+"%";lab.textContent=n+" of "+steps.length+" steps opened"+(n===steps.length?": the test is fully specified.":"");}
+steps.forEach(function(s,i){
+var btn=s.querySelector(".sh");
+btn.addEventListener("click",function(){
+var open=!s.classList.contains("open");
+s.classList.toggle("open",open);btn.setAttribute("aria-expanded",open?"true":"false");
+if(open){seen[i]=true;s.classList.add("seen");upd();
+if(i===4){var lo=document.getElementById("rugLow"),hi=document.getElementById("rugHigh");lo.style.width="0";hi.style.width="0";setTimeout(function(){lo.style.width="27%";hi.style.width="88%";},60);}
+}
+});
+});
+upd();
+})();
+
+/* ================= Module 5: prediction ================= */
+(function(){
+var P=["Fewer believers among the most rugged groups in each country","More Frontier People Groups among the most rugged groups","Weaker access to Scripture among the most rugged groups"];
+var list=document.getElementById("predList");
+var picks=P.map(function(){return null;});
+P.forEach(function(t,i){
+var d=document.createElement("div");d.className="pred";
+d.innerHTML='<div class="pt">'+(i+1)+'. '+t+'</div><div class="pbtns" role="group" aria-label="Your prediction"><button type="button" class="pbtn" data-v="yes" aria-pressed="false">I expect this</button><button type="button" class="pbtn" data-v="no" aria-pressed="false">I do not</button></div>';
+d.querySelectorAll(".pbtn").forEach(function(b){
+b.addEventListener("click",function(){
+d.querySelectorAll(".pbtn").forEach(function(x){x.classList.remove("on");x.setAttribute("aria-pressed","false");});
+b.classList.add("on");b.setAttribute("aria-pressed","true");picks[i]=b.getAttribute("data-v");
+});
+});
+list.appendChild(d);
+});
+var box=document.getElementById("revealBox"),sum=document.getElementById("predSummary");
+document.getElementById("revealBtn").addEventListener("click",function(){
+var made=picks.filter(function(p){return p!==null;}).length;
+var yes=picks.filter(function(p){return p==="yes";}).length;
+var lead=made===0?"You kept your cards close. ":"You expected terrain to matter on "+yes+" of the "+made+" prediction"+(made===1?"":"s")+" you made. ";
+sum.textContent=lead+"The test put the idea that rugged terrain keeps people from the gospel to the Joshua Project data, comparing each group only with groups in its own country, and the idea failed.";
+box.classList.add("show");
+box.style.opacity=0;
+tween(reduce?1:500,function(p){box.style.opacity=p;});
+});
+})();
+
+})();
+</script>
+</body>
+</html>
