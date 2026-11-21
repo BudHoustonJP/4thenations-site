@@ -18,7 +18,7 @@
   var ARTICLES = 'articles.html';
 
   var TOOLS = [
-    ['brutal-facts-calculator-cities.html', 'City Brutal Facts', 'How many people in a North American metro likely have no relationship with Jesus.'],
+    ['brutal-facts-calculator-cities.html', 'City Brutal Facts', 'How many people in a city likely have no relationship with Jesus.'],
     ['brutal-facts-calculator-segments.html', 'People Segment Brutal Facts', 'Size the lostness of a people segment and what it would take to reach it.'],
     ['where-is-the-work.html', 'Where Is the Work?', 'Find the phase of the work among one people and the part you play.']
   ];
