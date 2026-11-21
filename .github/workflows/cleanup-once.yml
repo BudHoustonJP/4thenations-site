@@ -1,0 +1,19 @@
+name: Remove old duplicate files
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Delete the files and this workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm --ignore-unmatch -q -- CHRIST~1.HTM CITY-I~1.HTM COUNTI~1.HTM EGO-AN~1.HTM EVERY-~1.HTM FOLLOW~1.HTM FOUR-Q~1.HTM GEOGRA~1.HTM GOSPEL~1.HTM JAPAN-~1.HTM JAPAN-~2.HTM LABOR-~1.HTM LEARN-~1.HTM MIGRAT~1.HTM MULTI-~1.HTM OPERAT~1.HTM SEA-OF~1.HTM THE-AC~1.HTM THE-WA~1.HTM TURKME~1.HTM VISION~1.HTM WALKIN~1.HTM WHEN-T~1.HTM WHY-LE~1.HTM WHY-MI~1.HTM WHY-MO~1.HTM WITH-T~1.HTM WORLD-~1.HTM WRANGL~1.JSO YOUNG-~1.HTM articles.js people-groups.js people-search.js shell.js .github/workflows/cleanup-once.yml
+          git commit -m "Remove old duplicate files" && git push || echo "Nothing to remove."
