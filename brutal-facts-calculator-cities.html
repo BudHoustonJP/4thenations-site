@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Brutal Facts Calculator: North American metros | Clarity for the Nations</title>
+<title>The Brutal Facts Calculator: Cities | Clarity for the Nations</title>
+<meta name="description" content="Pick a city and see how many baptisms a day it would take just to hold the evangelical share steady against births, migration, and death. Covers 50 North American metros and 398 world cities.">
 <link rel="stylesheet" href="css/shell.css">
 <style>
   :root{
@@ -38,20 +39,6 @@
   select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
   .ibox{display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;}
   .ibox span{padding:0 12px;color:var(--muted);font-size:14px;background:var(--stone);align-self:stretch;display:flex;align-items:center;border-right:1px solid var(--line);}
-  /* city search */
-  .pg-combo{position:relative;}
-  .cityq{width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font-family:var(--serif);font-weight:700;font-size:20px;padding:11px 13px;outline:0;}
-  .cityq:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
-  .pg-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 4px);margin:0;padding:6px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 10px 28px rgba(0,0,0,.14);max-height:330px;overflow:auto;}
-  .pg-list li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 10px;border-radius:6px;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:16px;color:var(--ink);}
-  .pg-list li:hover,.pg-list li[aria-selected=true]{background:var(--navy-soft);}
-  .pg-list .pg-c{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);white-space:nowrap;}
-  .pg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
-  .ctry-note{font-size:13px;line-height:1.45;color:var(--ink);background:var(--navy-soft);border-radius:9px;padding:10px 12px;margin:10px 0 0;}
-  .ctry-note b{color:var(--navy);}
-  .switch{font-size:14px;color:var(--muted);margin:10px 0 0;}
-  .switch a{color:var(--navy);font-weight:600;}
-  [hidden]{display:none !important;}
   .ibox input{border:0;outline:0;font-size:20px;font-family:var(--serif);font-weight:700;color:var(--navy);padding:11px 13px;width:100%;font-variant-numeric:tabular-nums;background:#fff;}
 
   .slider{margin-bottom:18px;}
@@ -163,28 +150,14 @@
 
   .btn{border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:9px;padding:10px 18px;font-weight:600;font-size:14px;cursor:pointer;font-family:var(--sans);margin-top:18px;}
   .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
-  details{margin-top:24px;border-top:1px solid var(--line);padding-top:16px;}
-  summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--navy);}
+  .notes-d{margin-top:30px;border-top:1px solid var(--line);padding-top:16px;}
+  .notes-d > summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--navy);}
   .notes{font-size:13px;color:var(--muted);margin-top:12px;}
   .notes p{margin:0 0 9px;}
   .sig{margin-top:30px;font-size:13px;color:var(--muted);text-align:center;}
   .sig b{color:var(--ink);}
   @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
 
-  .sitenav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:1rem 1.4rem;padding:12px 20px;background:#F3EFE6;border-bottom:1px solid var(--line);flex-wrap:wrap;font-family:var(--sans)}
-  .sitenav .brand{font-family:var(--serif);font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--ink)}
-  .sitenav .links{display:flex;gap:1.3rem;flex-wrap:wrap;align-items:center}
-  .sitenav .links>a{text-decoration:none;font-weight:600;font-size:.9rem;color:var(--ink);opacity:.85}
-  .sitenav .links>a:hover{opacity:1;color:var(--clay)}
-  .nav-dd{position:relative}
-  .nav-ddbtn{background:none;border:none;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;color:var(--ink);opacity:.85;display:flex;align-items:center;gap:.3rem;padding:0}
-  .nav-ddbtn:hover{opacity:1;color:var(--clay)}
-  .nav-dd .caret{font-size:.7em;transition:transform .2s}
-  .nav-dd.open .caret{transform:rotate(180deg)}
-  .nav-ddmenu{position:absolute;top:150%;right:0;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,.14);min-width:240px;display:none;flex-direction:column;padding:6px;z-index:60}
-  .nav-dd.open .nav-ddmenu{display:flex}
-  .nav-ddmenu a{padding:.6rem .8rem;border-radius:8px;font-size:.9rem;font-weight:600;color:var(--ink);text-decoration:none;opacity:1}
-  .nav-ddmenu a:hover{background:var(--stone)}
   .wrap > .mult-block{order:5;}
   .mult-block{margin-top:24px;}
   .mult-h{font-family:var(--serif);font-size:27px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em;}
@@ -203,6 +176,86 @@
   .mc-para{font-size:15px;line-height:1.55;color:var(--ink);margin:16px 0 0;}
   .mc-export{margin-top:14px;}
   @media(max-width:430px){.mc-two{grid-template-columns:1fr;}}
+  /* ===== layout: steps on the left, the answer on the right ===== */
+  [hidden]{display:none !important;}
+  .wrap{max-width:1180px;display:block;padding:26px 20px 60px;}
+  .switch{font-size:14px;color:var(--muted);margin:10px 0 0;}
+  .switch a,.linkbtn{color:var(--navy);font-weight:600;}
+  .grid{display:grid;grid-template-columns:minmax(0,1fr);margin-top:22px;}
+  .grid > .panel,.grid > .cardcol{margin:0 0 18px;}
+  .stepno{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);font-weight:700;margin:0 0 4px;}
+  .panel.step h2{font-size:22px;margin:0 0 14px;}
+  .panel.step .field:last-child,.panel.step .slider:last-of-type{margin-bottom:0;}
+  .linkbtn{background:none;border:0;padding:0;margin:12px 0 0;font:inherit;font-size:14px;cursor:pointer;text-decoration:underline;}
+  .linkbtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .adjust > summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;font-family:var(--serif);font-weight:700;font-size:19px;}
+  .adjust > summary::-webkit-details-marker{display:none;}
+  .adjust > summary::after{content:'+';font-family:var(--sans);font-weight:400;font-size:22px;line-height:1;color:var(--navy);}
+  .adjust[open] > summary::after{content:'\2212';}
+  .adjust > summary span{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);flex:1;min-width:200px;}
+  .adjust[open] > summary{margin-bottom:18px;}
+  .adjust > summary:focus-visible{outline:2px solid var(--gold);outline-offset:4px;}
+  .rates-note{font-size:12.5px;color:var(--muted);margin:-6px 0 0;}
+  .rates-note:empty{display:none;}
+  .rowfoot .btn{margin-top:0;}
+  .empty{display:none;min-height:300px;border:1.5px dashed #CFC9C0;border-radius:16px;background:var(--paper);flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:36px 24px;}
+  .empty svg{width:54px;height:54px;color:var(--navy);}
+  .empty p{font-family:var(--serif);font-weight:700;font-size:22px;line-height:1.25;margin:0;max-width:17em;}
+  .empty span{font-size:14px;color:var(--muted);max-width:26em;}
+  .is-blank .empty{display:flex;}
+  .is-blank .cardcol > .card,.is-blank .plain,.is-blank .share,.is-blank #rowB{display:none;}
+  .plain{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:0 12px 12px 0;padding:14px 18px;margin:0 0 14px;font-size:16px;line-height:1.5;}
+  .plain b{color:var(--clay);}
+  .plain-k{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--navy);margin-bottom:4px;}
+  .cardcol .card{max-width:100%;}
+  .share{margin-top:16px;}
+  .share h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 9px;}
+  .share .sizebar{margin:0 0 10px;}
+  .share .dlrow{margin:0;}
+  .mc-export{margin-top:14px;}
+  #rowB{margin-top:14px;padding-top:26px;border-top:1px solid var(--line);}
+  .minibar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:flex;align-items:center;gap:12px;width:100%;border:0;border-top:1px solid #16294a;background:var(--navy);color:#fff;padding:10px 16px calc(10px + env(safe-area-inset-bottom));font-family:var(--sans);text-align:left;cursor:pointer;}
+  .minibar b{font-family:var(--serif);font-size:30px;line-height:1;font-variant-numeric:tabular-nums;}
+  .minibar span{font-size:13px;line-height:1.3;flex:1;}
+  .minibar i{font-style:normal;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;opacity:.85;}
+  body.has-mini{padding-bottom:64px;}
+  /* people group search */
+  .pg-combo{position:relative;}
+  .pg-list{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 4px);margin:0;padding:6px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 10px 28px rgba(0,0,0,.14);max-height:330px;overflow:auto;}
+  .pg-list li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 10px;border-radius:6px;cursor:pointer;font-family:var(--serif);font-weight:700;font-size:16px;color:var(--ink);}
+  .pg-list li:hover,.pg-list li[aria-selected=true]{background:var(--navy-soft);}
+  .pg-list .pg-c{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);white-space:nowrap;}
+  .pg-help{margin:8px 0 0;font-size:13px;line-height:1.45;color:var(--muted);}
+  .pg-help a{color:var(--navy);font-weight:600;}
+  .pg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  @media(min-width:980px){
+    .grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);grid-template-rows:auto auto auto auto 1fr;column-gap:30px;align-items:start;}
+    .grid > *{grid-column:1;}
+    .grid > .cardcol{grid-column:2;grid-row:1 / -1;}
+  }
+  @media(min-width:980px) and (min-height:940px){ .grid > .cardcol{position:sticky;top:84px;} }
+  @media print{ .minibar{display:none !important;} }
+  /* ===== city page only ===== */
+  .cityq{width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font-family:var(--serif);font-weight:700;font-size:20px;padding:11px 13px;outline:0;}
+  .cityq:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
+  .ctry-note{font-size:13px;line-height:1.5;color:var(--ink);background:var(--navy-soft);border-radius:9px;padding:10px 12px;margin:10px 0 0;}
+  .ctry-note b{color:var(--navy);}
+  .ibox span{white-space:nowrap;}
+  .step-lead{font-size:13.5px;color:var(--muted);margin:-8px 0 16px;}
+  #step2 .rc{margin-top:18px;}
+  #step2 .rc-grid{height:auto;margin:0 0 10px;}
+  #step2 .rc-col{height:auto;}
+  #step2 .rc-col .bk{flex:none;}
+  #step2 .gap-line{margin:0;}
+  #step2 .gap-line.ok{background:var(--navy-soft);}
+  #step2 .gap-line.ok b{color:var(--navy);}
+  .is-blank #step2 .rc,.no-actual #step2 .rc,.is-blank #why{display:none;}
+  .is-blank #step2 .field,.no-actual #step2 .field{margin-bottom:0;}
+  .why{margin-top:16px;}
+  .why > summary em{font-style:normal;}
+  .why .totline{margin-bottom:0;}
+  .why .brk-row:last-of-type{margin-bottom:14px;}
+  @media(min-width:980px){ #rowA{grid-template-rows:repeat(5,auto) 1fr;} }
 </style>
 </head>
 <body>
@@ -211,186 +264,210 @@
 <div class="wrap">
 
   <header>
-    <p class="kicker">Clarity for the Nations</p>
+    <p class="kicker">Mission tools &middot; Cities</p>
     <h1>The Brutal Facts Calculator</h1>
-    <p class="lede">Pick a city, tune the assumptions, and confront the math. How many people would need to come to faith and be baptized each day just to hold the evangelical share steady against births, migration, and death?</p>
+    <p class="lede">In a city, births, migration, and death never stop. Pick a city and see how many people would need to come to faith and be baptized each day just to hold the evangelical share steady. Where evangelicals are under 2%, it shows what reaching 2% would take.</p>
     <p class="switch">Working on a people group instead? <a href="brutal-facts-calculator-segments.html">Use the People Group calculator &rarr;</a></p>
   </header>
 
-  <!-- ================= CONTROLS ================= -->
-  <section class="panel">
-    <h2>Set the inputs</h2>
-    <p class="hint">Choosing a city loads its population and an evangelical share. Edit anything.</p>
+  <!-- ============ STEPS 1 TO 3, WITH THE ANSWER BESIDE THEM ============ -->
+  <div class="grid" id="rowA">
 
-    <div class="field">
-      <label for="cityQ">City or metro area</label>
-      <div class="pg-combo"><input id="cityQ" class="cityq" type="text" value="Dallas-Fort Worth, TX" placeholder="Start typing a city" aria-label="City or metro area">
-      <ul class="pg-list" id="cityList" hidden></ul><div class="pg-sr" id="cityStatus" role="status" aria-live="polite"></div></div>
-      <p class="slider-note" id="cityHelp" style="margin:8px 0 0;">Search 50 North American metros and 398 world cities of a million people or more. Or type any place name and enter your own numbers.</p>
-    </div>
-
-    <div class="field">
-      <label for="pop">Population</label>
-      <div class="ibox"><span>people</span><input id="pop" inputmode="numeric" value="8,344,032" aria-label="Population"></div>
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><span class="lwrap"><label for="birthRate">Birth rate</label></span><span class="slider-val"><span id="birthRateV">12.4</span> / 1,000</span></div>
-      <p class="slider-note">Live births per 1,000 each year. (US about 12, Canada about 10.)</p>
-      <input type="range" id="birthRate" min="4" max="50" step="0.1" value="12.4">
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><span class="lwrap"><label for="deathRate">Death rate</label></span><span class="slider-val"><span id="deathRateV">9.1</span> / 1,000</span></div>
-      <p class="slider-note">Deaths per 1,000 each year.</p>
-      <input type="range" id="deathRate" min="1" max="21" step="0.1" value="9.1">
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><span class="lwrap"><label for="netMig">Net in-migration</label></span><span class="slider-val"><span id="netMigV">15.2</span> / 1,000<span class="ab">&#8776; <span id="netMigAbs">126,829</span> / yr</span></span></div>
-      <p class="slider-note">Net arrivals per 1,000. Scales with population. Can go negative.</p>
-      <input type="range" id="netMig" min="-10" max="30" step="0.1" value="15.2">
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><span class="lwrap"><label for="resBel">Evangelical share, residents</label><button class="info" type="button" aria-label="Definition of evangelical share">i<span class="tip">The share of residents who are evangelical, the way Pew's Religious Landscape Study counts it: self-identified affiliation with an evangelical-tradition denomination, not a measure of who is actively practicing. National average is about 23%, but secular metros run far lower (New York and San Francisco near 9 to 10%, Seattle about 21%).</span></button></span><span class="slider-val"><span id="resBelV">30</span>%</span></div>
-      <p class="slider-note">Sets the lost-population snapshot and the reach goal. Filled in when you choose a city. Edit freely.</p>
-      <input type="range" id="resBel" min="0" max="60" step="0.01" value="30">
-      <p class="ctry-note" id="ctryNote" hidden></p>
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><span class="lwrap"><label for="migBel">Evangelical share, in-migrants</label><button class="info" type="button" aria-label="Definition of in-migrant believer share">i<span class="tip">The share of net new arrivals who are already evangelical. Lower this when migration is heavily international, since most of the world's migrants come from non-evangelical backgrounds. It reduces how many newcomers arrive already reached.</span></button></span><span class="slider-val"><span id="migBelV">23</span>%</span></div>
-      <p class="slider-note">Lower if migration is heavily international.</p>
-      <input type="range" id="migBel" min="0" max="60" step="0.01" value="23">
-    </div>
-
-    <div class="slider">
-      <div class="slider-top"><span class="lwrap"><label for="deathBel">Evangelical share among the dying</label><button class="info right" type="button" aria-label="Definition of believer share among the dying">i<span class="tip">The share of those who die each year who were evangelical. Usually higher than the general share, since older people are more religious. Raising it increases the believers needing replacement but lowers the number dying separated from God. Pick one premise and stay consistent.</span></button></span><span class="slider-val"><span id="deathBelV">30</span>%</span></div>
-      <p class="slider-note">Usually above the base, since older people are more religious.</p>
-      <input type="range" id="deathBel" min="0" max="80" step="0.01" value="30">
-    </div>
-
-    <div class="field">
-      <label>Reach goal (shown on the card)</label>
-      <div class="seg4" role="group" aria-label="Reach goal">
-        <button id="goalReach2" aria-pressed="false">Reach 2%</button>
-        <button id="goalInc2" aria-pressed="false">Increase by 2 points</button>
-        <button id="goalReach10" aria-pressed="true">Reach 10%</button>
-        <button id="goalInc10" aria-pressed="false">Increase by 10 points</button>
+    <section class="panel step" id="step1">
+      <p class="stepno">Step 1</p>
+      <h2>Pick a city</h2>
+      <div class="field">
+        <label for="cityQ">City or metro area</label>
+        <div class="pg-combo"><input id="cityQ" class="cityq" type="text" value="" placeholder="Start typing a city" aria-label="City or metro area">
+        <ul class="pg-list" id="cityList" hidden></ul><div class="pg-sr" id="cityStatus" role="status" aria-live="polite"></div></div>
+        <p class="pg-help" id="cityHelp">Search 50 North American metros and 398 world cities of a million people or more. Picking one fills in the population, evangelical share, and birth and death rates.</p>
+        <p class="ctry-note" id="cityNote" hidden></p>
       </div>
-      <p class="slider-note" id="goalNote" style="margin-top:8px;">Reach targets switch off once the city is already above that level.</p>
-    </div>
+      <button class="linkbtn" type="button" id="ownBtn">Or enter your own numbers</button>
+    </section>
 
-    <div class="field">
-      <label>Years to reach the goal</label>
-      <div class="seg" role="group" aria-label="Years">
-        <button class="yr" data-y="5" aria-pressed="false">5</button>
-        <button class="yr" data-y="10" aria-pressed="true">10</button>
-        <button class="yr" data-y="20" aria-pressed="false">20</button>
+    <div class="cardcol">
+      <div class="empty" id="empty">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="21" cy="21" r="13"/><path d="M31 31l11 11" stroke-linecap="round"/></svg>
+        <p id="emptyMsg">Pick a city to see its brutal facts.</p>
+        <span>The card shows how many baptisms a day it would take to hold the evangelical share steady, or to reach 2% where evangelicals are fewer than that.</span>
       </div>
-    </div>
 
-    <div class="field" style="margin-bottom:0;">
-      <label for="actual">Actual baptisms per day (your estimate)</label>
-      <div class="ibox"><span>per day</span><input id="actual" inputmode="numeric" value="50" aria-label="Actual baptisms per day"></div>
-    </div>
-  </section>
+      <p class="plain" id="plain" aria-live="polite"></p>
 
-  <!-- ================= EXPORT BAR ================= -->
-  <div class="exportbar">
-    <div class="sizebar">
-      <span class="sizebar-l">Fit to image</span>
-      <div class="seg" role="group" aria-label="Card size">
-        <button class="sz" data-s="fit" aria-pressed="true">Fit screen</button>
-        <button class="sz" data-s="portrait" aria-pressed="false">Portrait</button>
-        <button class="sz" data-s="story" aria-pressed="false">Story</button>
-        <button class="sz" data-s="square" aria-pressed="false">Square</button>
-        <button class="sz" data-s="wide" aria-pressed="false">Wide</button>
+      <!-- ================= INFOGRAPHIC CARD ================= -->
+      <section class="card size-fit" aria-live="polite">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <p class="card-eyebrow">The Brutal Facts</p>
+          <h2 class="card-pg" id="cPlace">Your city</h2>
+          <p class="card-sub" id="cSub">Baptisms required to hold the share steady</p>
+
+          <div class="hero">
+            <div class="hero-num"><span id="perDay">0</span><span class="hero-unit">/ day</span></div>
+            <p class="hero-label" id="heroLabel">to hold the evangelical share steady</p>
+            <p class="hero-sub"><span id="perYear">0</span> per year &middot; about <span id="perHour">0</span> per hour</p>
+          </div>
+
+          <div class="cost">
+            <p class="cost-l">Die separated from God</p>
+            <p class="cost-v"><span id="lostDay">0</span> / day<span class="cost-sub" id="lostSub"></span></p>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><p class="l">Lost people now</p><p class="v clay" id="sLostNow">0</p></div>
+            <div class="stat"><p class="l">To offset each year</p><p class="v" id="sPerYear">0</p></div>
+            <div class="stat"><p class="l">Believer deaths to replace / day</p><p class="v" id="sRepl">0</p></div>
+            <div class="stat"><p class="l">Net in-migration / yr</p><p class="v" id="sMig">0</p></div>
+            <div class="stat"><p class="l" id="sGapL">Running short of replacement</p><p class="v clay" id="sGap">0x</p></div>
+            <div class="stat"><p class="l" id="sGoalL">To reach 10% evangelical</p><p class="v" id="sGoal">0 / day</p></div>
+          </div>
+
+          <div class="card-fact" id="cFact"></div>
+
+          <div class="card-foot">
+            <span><b>4thenations.com</b></span>
+            <span id="cSource">Data: user provided</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="share" id="share">
+        <h3>Share this card</h3>
+        <div class="sizebar">
+          <span class="sizebar-l">Shape</span>
+          <div class="seg" role="group" aria-label="Card shape">
+            <button class="sz" data-s="fit" aria-pressed="true">Fit screen</button>
+            <button class="sz" data-s="portrait" aria-pressed="false">Portrait</button>
+            <button class="sz" data-s="story" aria-pressed="false">Story</button>
+            <button class="sz" data-s="square" aria-pressed="false">Square</button>
+            <button class="sz" data-s="wide" aria-pressed="false">Wide</button>
+          </div>
+        </div>
+        <div class="dlrow">
+          <button class="dlbtn" id="downloadBtn">Download PNG</button>
+          <span class="dlhint">Saves the card as a high-resolution image.</span>
+        </div>
       </div>
+
+      <details class="panel adjust why" id="why">
+        <summary><em id="whyT">What makes up that number</em> <span>Births, migration, and deaths</span></summary>
+          <div class="brk-row">
+            <div class="brk-line"><span class="nm">Believers to match new births</span><span class="vl"><b id="bBirth">103,466</b> / yr</span></div>
+            <div class="bar"><i class="c-birth" id="barBirth" style="width:37%"></i></div>
+          </div>
+          <div class="brk-row">
+            <div class="brk-line"><span class="nm">Net dilution from migration</span><span class="vl"><b id="bMig">97,658</b> / yr</span></div>
+            <div class="bar"><i class="c-mig" id="barMig" style="width:35%"></i></div>
+          </div>
+          <div class="brk-row">
+            <div class="brk-line"><span class="nm" id="deathLbl">Net believer deaths to replace</span><span class="vl"><b id="bDeath">75,931</b> / yr</span></div>
+            <div class="bar"><i class="c-death" id="barDeath" style="width:27%"></i></div>
+          </div>
+          <div class="totline">
+            <span class="nm">Total per year to hold the share</span>
+            <span class="vl" id="bTotal">277,055</span>
+          </div>
+      </details>
     </div>
-    <div class="dlrow">
-      <button class="dlbtn" id="downloadBtn">Download PNG</button>
-      <span class="dlhint">Saves the card as a high-resolution image.</span>
-    </div>
+
+    <section class="panel step" id="step2">
+      <p class="stepno">Step 2</p>
+      <h2>How many are baptized now?</h2>
+      <div class="field">
+        <label for="actual">Baptisms a day right now</label>
+        <div class="ibox"><span>per day</span><input id="actual" inputmode="numeric" value="" placeholder="Your estimate" aria-label="Actual baptisms per day"></div>
+        <p class="pg-help">Your best estimate for the whole city. The card compares it with what is needed.</p>
+      </div>
+      <div class="rc">
+        <div class="rc-grid">
+          <div class="rc-col req"><div class="cnum" id="rcReqN">0</div><div class="bk" id="rcReqBar" style="height:4px"></div><div class="clbl" id="rcReqL">Needed to hold<br>per day</div></div>
+          <div class="rc-col act"><div class="cnum" id="rcActN">0</div><div class="bk" id="rcActBar" style="height:4px"></div><div class="clbl">Your estimate<br>per day</div></div>
+        </div>
+        <p class="gap-line" id="gapLine"></p>
+      </div>
+    </section>
+
+    <section class="panel step" id="step3">
+      <p class="stepno">Step 3</p>
+      <h2>Set a goal</h2>
+      <p class="step-lead" id="stepLead">Holding steady is the floor. Pick a goal to see what growth would take.</p>
+      <div class="field">
+        <label>Goal</label>
+        <div class="seg4" role="group" aria-label="Goal">
+          <button id="goalReach2" aria-pressed="false">Reach 2%</button>
+          <button id="goalReach10" aria-pressed="false">Reach 10%</button>
+          <button id="goalInc2" aria-pressed="false">Increase by 2 points</button>
+          <button id="goalInc10" aria-pressed="false">Increase by 10 points</button>
+        </div>
+        <p class="slider-note" id="goalNote" style="margin-top:8px;" hidden></p>
+      </div>
+      <div class="field">
+        <label>Years to get there</label>
+        <div class="seg" role="group" aria-label="Years">
+          <button class="yr" data-y="5" aria-pressed="false">5</button>
+          <button class="yr" data-y="10" aria-pressed="true">10</button>
+          <button class="yr" data-y="20" aria-pressed="false">20</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="panel adjust" id="adjust">
+      <summary>Adjust the numbers <span>Population, birth and death rates, migration, evangelical shares</span></summary>
+
+      <div class="field">
+        <label for="pop">Population</label>
+        <div class="ibox"><span>people</span><input id="pop" inputmode="numeric" value="" placeholder="0" aria-label="Population"></div>
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><span class="lwrap"><label for="birthRate">Birth rate</label></span><span class="slider-val"><span id="birthRateV">12.4</span> / 1,000</span></div>
+        <p class="slider-note">Live births per 1,000 each year. (US about 12, Canada about 10.)</p>
+        <input type="range" id="birthRate" min="4" max="50" step="0.1" value="12.4">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><span class="lwrap"><label for="deathRate">Death rate</label></span><span class="slider-val"><span id="deathRateV">9.1</span> / 1,000</span></div>
+        <p class="slider-note">Deaths per 1,000 each year.</p>
+        <input type="range" id="deathRate" min="1" max="21" step="0.1" value="9.1">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><span class="lwrap"><label for="netMig">Net in-migration</label></span><span class="slider-val"><span id="netMigV">15.2</span> / 1,000<span class="ab">&#8776; <span id="netMigAbs">126,829</span> / yr</span></span></div>
+        <p class="slider-note">Net arrivals per 1,000. Scales with population. Can go negative.</p>
+        <input type="range" id="netMig" min="-10" max="30" step="0.1" value="15.2">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><span class="lwrap"><label for="resBel">Evangelical share, residents</label><button class="info" type="button" aria-label="Definition of evangelical share">i<span class="tip">The share of residents who are evangelical, the way Pew's Religious Landscape Study counts it: self-identified affiliation with an evangelical-tradition denomination, not a measure of who is actively practicing. National average is about 23%, but secular metros run far lower (New York and San Francisco near 9 to 10%, Seattle about 21%).</span></button></span><span class="slider-val"><span id="resBelV">30</span>%</span></div>
+        <p class="slider-note">Sets the lost-population snapshot and the reach goal. Filled in when you choose a city. Edit freely.</p>
+        <input type="range" id="resBel" min="0" max="60" step="0.01" value="30">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><span class="lwrap"><label for="migBel">Evangelical share, in-migrants</label><button class="info" type="button" aria-label="Definition of in-migrant believer share">i<span class="tip">The share of net new arrivals who are already evangelical. Lower this when migration is heavily international, since most of the world's migrants come from non-evangelical backgrounds. It reduces how many newcomers arrive already reached.</span></button></span><span class="slider-val"><span id="migBelV">23</span>%</span></div>
+        <p class="slider-note">Lower if migration is heavily international.</p>
+        <input type="range" id="migBel" min="0" max="60" step="0.01" value="23">
+      </div>
+
+      <div class="slider">
+        <div class="slider-top"><span class="lwrap"><label for="deathBel">Evangelical share among the dying</label><button class="info right" type="button" aria-label="Definition of believer share among the dying">i<span class="tip">The share of those who die each year who were evangelical. Usually higher than the general share, since older people are more religious. Raising it increases the believers needing replacement but lowers the number dying separated from God. Pick one premise and stay consistent.</span></button></span><span class="slider-val"><span id="deathBelV">30</span>%</span></div>
+        <p class="slider-note">Usually above the base, since older people are more religious.</p>
+        <input type="range" id="deathBel" min="0" max="80" step="0.01" value="30">
+      </div>
+      <p class="rates-note" id="ratesNote"></p>
+    </details>
+
+    <div class="rowfoot"><button class="btn" id="reset">Start over</button></div>
   </div>
 
-  <!-- ================= INFOGRAPHIC CARD ================= -->
-  <section class="card size-fit" aria-live="polite">
-    <div class="card-top"></div>
-    <div class="card-body">
-      <p class="card-eyebrow">The Brutal Facts</p>
-      <h2 class="card-pg" id="cPlace">Dallas-Fort Worth</h2>
-      <p class="card-sub">Baptisms required to hold the share steady</p>
+  <!-- ============ STEP 4: ADDITION OR MULTIPLICATION ============ -->
+  <div class="grid" id="rowB">
 
-      <div class="hero">
-        <div class="hero-num"><span id="perDay">759</span><span class="hero-unit">/ day</span></div>
-        <p class="hero-label">to hold the evangelical share steady</p>
-        <p class="hero-sub"><span id="perYear">277,055</span> per year &middot; about <span id="perHour">32</span> per hour</p>
-      </div>
-
-      <div class="cost">
-        <p class="cost-l">Die separated from God</p>
-        <p class="cost-v"><span id="lostDay">146</span> / day<span class="cost-sub" id="lostSub">(53,290 a year &middot; about 6 an hour)</span></p>
-      </div>
-
-      <div class="stats">
-        <div class="stat"><p class="l">Lost people now</p><p class="v clay" id="sLostNow">6,424,905</p></div>
-        <div class="stat"><p class="l">To offset each year</p><p class="v" id="sPerYear">277,055</p></div>
-        <div class="stat"><p class="l">Believer deaths to replace / day</p><p class="v" id="sRepl">62</p></div>
-        <div class="stat"><p class="l">Net in-migration / yr</p><p class="v" id="sMig">126,829</p></div>
-        <div class="stat"><p class="l">Running short of replacement</p><p class="v clay" id="sGap">15x</p></div>
-        <div class="stat"><p class="l" id="sGoalL">To reach 10% evangelical</p><p class="v" id="sGoal">0 / day</p></div>
-      </div>
-
-      <div class="card-fact" id="cFact"></div>
-
-      <div class="card-foot">
-        <span><b>4thenations.com</b></span>
-        <span id="cSource">Data: user provided</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ANALYSIS ================= -->
-  <section class="panel analysis">
-    <h2>What erodes the evangelical share</h2>
-    <p class="hint">The pieces behind holding the share steady, and a reality check.</p>
-
-    <div class="brk-row">
-      <div class="brk-line"><span class="nm">Believers to match new births</span><span class="vl"><b id="bBirth">103,466</b> / yr</span></div>
-      <div class="bar"><i class="c-birth" id="barBirth" style="width:37%"></i></div>
-    </div>
-    <div class="brk-row">
-      <div class="brk-line"><span class="nm">Net dilution from migration</span><span class="vl"><b id="bMig">97,658</b> / yr</span></div>
-      <div class="bar"><i class="c-mig" id="barMig" style="width:35%"></i></div>
-    </div>
-    <div class="brk-row">
-      <div class="brk-line"><span class="nm" id="deathLbl">Net believer deaths to replace</span><span class="vl"><b id="bDeath">75,931</b> / yr</span></div>
-      <div class="bar"><i class="c-death" id="barDeath" style="width:27%"></i></div>
-    </div>
-    <div class="totline">
-      <span class="nm">Total per year to hold the share</span>
-      <span class="vl" id="bTotal">277,055</span>
-    </div>
-
-    <div class="rc">
-      <h2 style="font-size:18px;margin-bottom:2px;">Reality check</h2>
-      <p class="hint" style="margin-bottom:0;">Required versus what is actually happening.</p>
-      <div class="rc-grid">
-        <div class="rc-col req"><div class="cnum" id="rcReqN">759</div><div class="bk" id="rcReqBar" style="height:100%"></div><div class="clbl">Required<br>per day</div></div>
-        <div class="rc-col act"><div class="cnum" id="rcActN">50</div><div class="bk" id="rcActBar" style="height:7%"></div><div class="clbl">Actual<br>per day</div></div>
-      </div>
-      <p class="gap-line"><span id="placeWord">This metro</span> is running <b id="gapX">15x</b> short of holding the share.</p>
-    </div>
-
-    <button class="btn" id="reset">Reset to DFW defaults</button>
-  </section>
-
-  <div class="mult-block">
-    <section class="panel mult">
-      <h2 class="mult-h">Second perspective: multiplication</h2>
-      <p class="hint">The same goal, reached not by addition but by disciples who make disciples.</p>
+    <section class="panel mult step" id="step4">
+      <p class="stepno">Step 4</p>
+      <h2>Addition or multiplication?</h2>
+      <p class="slider-note" style="margin:-6px 0 16px;">The same goal, reached by disciples who make disciples.</p>
 
       <div class="field">
         <label for="mDisc">Disciples you are starting with</label>
@@ -405,7 +482,7 @@
 
       <div class="slider">
         <div class="slider-top"><span class="lwrap"><label for="mEach">New disciples each multiplier makes</label></span><span class="slider-val"><span id="mEachV">3</span></span></div>
-        <p class="slider-note">Per generation. Growth per generation = 1 + share &times; new-each.</p>
+        <p class="slider-note">Per generation.</p>
         <input type="range" id="mEach" min="1" max="10" step="1" value="3">
       </div>
 
@@ -418,35 +495,37 @@
       <p class="mult-rate">Each generation multiplies the disciples by <b id="mFactor">2.5x</b>.<span class="mult-note" id="mClarify"></span></p>
     </section>
 
-    <section class="card mcard size-fit" aria-live="polite">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <p class="card-eyebrow">Two ways to the same goal</p>
-        <h2 class="card-pg" id="mcPlace">Dallas-Fort Worth</h2>
-        <div class="mc-two">
-          <div class="mc-col"><p class="mc-k">Addition</p><p class="mc-big" id="mcAddDay">184</p><p class="mc-u">baptisms / day</p><p class="mc-sm">every day for <b id="mcAddYears">10</b> years</p></div>
-          <div class="mc-col mc-col2"><p class="mc-k">Multiplication</p><p class="mc-big" id="mcMultYears">11</p><p class="mc-u">years</p><p class="mc-sm">from <b id="mcD0">100</b> disciples at <b id="mcFactor2">2.5x</b> / yr</p></div>
+    <div class="cardcol">
+      <section class="card mcard size-fit" aria-live="polite" style="margin-top:0">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <p class="card-eyebrow">Two ways to the same goal</p>
+          <h2 class="card-pg" id="mcPlace">Your city</h2>
+          <div class="mc-two">
+            <div class="mc-col"><p class="mc-k">Addition</p><p class="mc-big" id="mcAddDay">0</p><p class="mc-u">baptisms / day</p><p class="mc-sm">every day for <b id="mcAddYears">10</b> years</p></div>
+            <div class="mc-col mc-col2"><p class="mc-k">Multiplication</p><p class="mc-big" id="mcMultYears">0</p><p class="mc-u">years</p><p class="mc-sm">from <b id="mcD0">100</b> disciples at <b id="mcFactor2">2.5x</b> / yr</p></div>
+          </div>
+          <p class="mc-para" id="mcPara"></p>
+          <div class="card-foot"><span><b>4thenations.com</b></span><span id="mcGoalFoot">Goal</span></div>
         </div>
-        <p class="mc-para" id="mcPara"></p>
-        <div class="card-foot"><span><b>4thenations.com</b></span><span id="mcGoalFoot">Goal</span></div>
-      </div>
-    </section>
-
-    <div class="exportbar mc-export">
-      <div class="dlrow">
+      </section>
+      <div class="dlrow mc-export">
         <button class="dlbtn" id="mDownloadBtn">Download PNG</button>
         <span class="dlhint">Saves the two-perspective card as an image.</span>
       </div>
     </div>
   </div>
 
-  <details>
-    <summary>Assumptions, model notes, and sources</summary>
+  <details class="notes-d">
+    <summary>How the math works, assumptions, and sources</summary>
     <div class="notes">
       <p><b>What this is.</b> A keep-the-share model. It sizes the baptisms per year needed to hold the evangelical share steady as the population changes, counting new believers to match births, the dilution from non-believer migration, and the net loss of believers through death.</p>
       <p><b>How it is computed.</b> Per year: share times births, plus migration times the gap between the local share and the believing share of migrants, plus deaths times the gap between the believer share of the dying and the local share. Children of believers are not counted as believers; they need their own conversion.</p>
       <p><b>The migration lever.</b> Migration is a rate per 1,000 so it scales with population. International-heavy migration lowers the in-migrant evangelical share, which raises the figure.</p>
-      <p><b>The reach goal.</b> Separate from the keep-even number, this solves for the baptisms per day to move the evangelical share to the chosen target over the chosen horizon, accounting for population growth, migration, and believer deaths. A reach target turns off once the metro is already above it; most US metros are above 2% and 10% evangelical, so the increase goals are usually the live ones.</p>
+      <p><b>The reach goal.</b> Separate from the keep-even number, this solves for the baptisms per day to move the evangelical share to the chosen target over the chosen horizon, accounting for population growth, migration, and believer deaths. Two goals show at a time. A city below 2% evangelical can aim to reach 2% or 10%. From 2% up, the choices are reaching 10% or adding 2 percentage points to the current share. At 10% or above, the choices are adding 2 or 10 points. Most US metros are above 10%.</p>
+      <p><b>Multiplication.</b> Each generation multiplies the disciples by 1 + (share who multiply &times; new disciples each multiplier makes). The tool finds how long that growth takes to reach the same goal, allowing for population growth along the way.</p>
+      <p><b>The reality check.</b> The baptisms a day figure is your own estimate for the whole city, so it starts empty. Until you add one, the card shows the evangelical share in that tile. When your estimate already covers what holding the share takes, the card says so and points to the goal instead.</p>
+      <p><b>Cities under 2% evangelical.</b> Holding a very small share steady takes very few baptisms, so that number says little. When the evangelical share is under 2%, the big number on the card switches to the goal: what it takes to reach 2% (or 10%) in the years you choose. The hold-steady figure moves to a tile, and the reality check compares your estimate with the goal.</p>
       <p><b>Definitions matter.</b> Evangelical share here is self-identified, not practicing. State the definition whenever you cite a number from this tool.</p>
       <p><b>City evangelical estimates.</b> Per-metro shares are starting estimates anchored to Pew's 2023-24 Religious Landscape Study, which reports evangelical share for 34 large metros. Edit any value. For precise figures use the Pew RLS metro pages.</p>
       <p><b>World cities.</b> Outside the US and Canada the list holds every city of a million people or more (five million or more in South Asia), with 2025 populations from the UN World Urbanization Prospects 2025. The UN now draws each city by its continuous built-up area, so a few names and sizes will look unfamiliar. Evangelical and Christian shares for these cities are country-level figures from Joshua Project people group data, weighted by population. Where Joshua Project publishes no evangelical figure for a country, the Christian share is used as an upper limit. Birth and death rates are World Bank 2024 country figures, and migration starts at zero. A city can differ from its country, so change any value you know better.</p>
@@ -455,8 +534,9 @@
   </details>
 
   <p class="sig"><b>4thenations.com</b></p>
-
 </div>
+
+<button class="minibar" id="minibar" type="button" hidden><b id="mbNum">0</b><span id="mbGoal">baptisms a day to hold the share steady</span><i id="mbGo">See the card &uarr;</i></button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
 <script src="js/people-search.js"></script>
@@ -508,10 +588,12 @@
   function addNA(arr,country){arr.forEach(function(r){LIST.push({name:r[0],label:r[0],n:nrm(r[0]),c:{name:country,n:nrm(country),rog:'NA'},id:'n'+LIST.length,w:Math.log(r[1])/Math.LN10,pop:r[1],ev:r[2],kind:'na'});});}
   addNA(US,'United States'); addNA(CA,'Canada');
   WORLD.forEach(function(r){var c=CTRY[r[2]];LIST.push({name:r[0],label:r[0]+', '+c[0],n:nrm(r[0]+' '+r[1]),c:{name:c[0],n:nrm(c[0]),rog:r[2]},id:'w'+LIST.length,w:Math.log(r[3]*1000)/Math.LN10,pop:r[3]*1000,iso:r[2],kind:'world'});});
-  var current={kind:'na'}, edited=false;
+  var current={kind:'none'}, edited=false, ownMode=false;   // how the numbers got here
 
   function placeName(){ return $('cityQ').value.trim()||'Your city'; }
   function pct(v){ v=+v; return v<2 ? v.toFixed(2) : (Math.round(v*10)/10).toString(); }
+  function esc(x){ return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function thisPlace(){ return current.kind==='na'?'this metro':'this city'; }
 
   var ids=['pop','birthRate','deathRate','netMig','resBel','migBel','deathBel','actual'];
   var goal='reach10';   // reach2 | inc2 | reach10 | inc10
@@ -554,22 +636,16 @@
     return {perDay:X/365, eT:eT};
   }
 
+  /* Two goals show at a time. Which two depends on where the city is today. */
+  function goalFor(ev){ return ev<2 ? ['reach2','reach10'] : ev<10 ? ['reach10','inc2'] : ['inc2','inc10']; }
   function updateGoalAvailability(){
-    var ev=+$('resBel').value;
-    var dis2=ev>=2, dis10=ev>=10;
-    $('goalReach2').disabled=dis2;
-    $('goalReach10').disabled=dis10;
-    if(goal==='reach2'&&dis2){ goal=dis10?'inc2':'reach10'; }
-    if(goal==='reach10'&&dis10){ goal='inc2'; }
-    $('goalReach2').setAttribute('aria-pressed',goal==='reach2');
-    $('goalInc2').setAttribute('aria-pressed',goal==='inc2');
-    $('goalReach10').setAttribute('aria-pressed',goal==='reach10');
-    $('goalInc10').setAttribute('aria-pressed',goal==='inc10');
-    var note;
-    if(dis10) note='This city is already above 10% evangelical, so reach targets are off. Use the increase goals.';
-    else if(dis2) note='This city is above 2% evangelical, so Reach 2% is off. Reach 10% and the increase goals remain.';
-    else note='All four goals are available while the city is below that level.';
-    $('goalNote').textContent=note;
+    var ev=+$('resBel').value, show=goalFor(ev);
+    if(show.indexOf(goal)<0) goal=show[0];
+    [['goalReach2','reach2'],['goalReach10','reach10'],['goalInc2','inc2'],['goalInc10','inc10']].forEach(function(g){
+      var b=$(g[0]); b.hidden=show.indexOf(g[1])<0; b.disabled=b.hidden; b.setAttribute('aria-pressed',goal===g[1]);
+    });
+    var note = ev<2 ? '' : ev<10 ? 'This city is already at 2% evangelical or above, so the goals move up.' : 'This city is already at 10% evangelical or above, so the goal is to add points.';
+    $('goalNote').textContent=note; $('goalNote').hidden=!note;
   }
 
   function renderMult(){
@@ -597,7 +673,7 @@
     $('mcAddYears').textContent=years;
     $('mcD0').textContent=fmt(D0);
     $('mcGoalFoot').textContent='Goal: '+goalShort;
-    $('mClarify').textContent='Note: the '+$('perDay').textContent+' a day at the top only holds the share steady. This is the pace to actually raise it to your goal.';
+    $('mClarify').textContent=(resBel<0.02)?'Note: this is the same goal as the big number on the card above.':'Note: the '+$('perDay').textContent+' a day at the top only holds the share steady. This is the pace to actually raise it to your goal.';
     var never=false, solveT=0;
     if(K<=D0){ solveT=0; }
     else if(aYr<=c){ never=true; }
@@ -623,6 +699,13 @@
     ids.forEach(function(id){var e=$(id);if(e.type==='range')setFill(e);});
     updateGoalAvailability();
 
+    // nothing to show until there is a city (or the visitor's own numbers) and a population
+    var hasName=$('cityQ').value.trim()!=='', hasPop=num($('pop').value)>0;
+    var blank=!(hasPop&&(hasName||ownMode));
+    document.body.classList.toggle('is-blank',blank);
+    $('emptyMsg').textContent=((hasName||ownMode)&&!hasPop)?'Add a population under \u201cAdjust the numbers\u201d to see the brutal facts.':'Pick a city to see its brutal facts.';
+    if(blank) $('goalNote').hidden=true;
+
     var r=calc();
     $('netMigAbs').textContent=fmt(r.netMig);
 
@@ -634,9 +717,12 @@
 
     // card header + hero
     $('cPlace').textContent=placeName();
-    var pd=$('perDay'); if(pd.textContent!==fmt(perDay))flash(pd); pd.textContent=fmt(perDay);
-    $('perYear').textContent=fmt(perYear);
-    $('perHour').textContent=fmt(perHour);
+    // Under 2% evangelical, holding the share takes almost nothing, so the goal is the big number.
+    var rc0=reachCalc(), goalMode=(+$('resBel').value)<2;
+    var heroDay=goalMode?Math.max(0,Math.round(rc0.perDay)):perDay;
+    var pd=$('perDay'); if(pd.textContent!==fmt(heroDay))flash(pd); pd.textContent=fmt(heroDay);
+    $('perYear').textContent=fmt(goalMode?Math.max(0,Math.round(rc0.perDay*365)):perYear);
+    $('perHour').textContent=fmt(goalMode?Math.round(heroDay/24):perHour);
 
     // cost banner
     $('lostDay').textContent=fmt(lostDay);
@@ -648,11 +734,16 @@
     $('sRepl').textContent=fmt(replDay);
     $('sMig').textContent=fmt(r.netMig);
 
+    var hasActual=$('actual').value.trim()!=='';      // the estimate is the visitor's: nothing is claimed until they give one
     var actual=Math.max(0,num($('actual').value));
     var gapTxt;
     if(actual<=0) gapTxt='infinite';
-    else{var x=perDay/actual; gapTxt=(x>=10?Math.round(x):x.toFixed(1))+'x';}
-    $('sGap').textContent=gapTxt;
+    else{var x=heroDay/actual; gapTxt=(x>=10?Math.round(x):x.toFixed(1))+'x';}
+    var onPace=hasActual && heroDay<=actual;           // the estimate already covers what holding the share takes
+    $('sGapL').textContent=!hasActual?'Evangelical share today':onPace?(goalMode?'Pace for the goal':'Holding the share'):(goalMode?'Running short of the goal':'Running short of replacement');
+    $('sGap').textContent=!hasActual?pct($('resBel').value)+'%':onPace?'On pace':gapTxt;
+    $('sGap').className='v'+(hasActual&&!onPace?' clay':'');
+    document.body.classList.toggle('no-actual',!hasActual);
 
     // reach goal
     var rc=reachCalc();
@@ -662,7 +753,11 @@
     $('sGoal').textContent=fmt(goalDay)+' / day';
 
     // brutal-fact sentence
-    $('cFact').innerHTML='Holding the evangelical share steady takes <b>'+fmt(perDay)+' baptisms a day</b>. At an estimated '+fmt(actual)+' a day, '+(current.kind==='na'?'this metro':'this city')+' runs <b>'+gapTxt+'</b> short, while <b>'+fmt(lostDay)+'</b> die each day separated from God.';
+    var goalText=goalName.charAt(0).toLowerCase()+goalName.slice(1);
+    $('cFact').innerHTML='Holding the evangelical share steady takes <b>'+fmt(perDay)+' baptisms a day</b>'+
+      (!hasActual ? (goalDay>perDay?'. '+goalName+' in '+years+' years takes <b>'+fmt(goalDay)+' a day</b>':'')+', while <b>'+fmt(lostDay)+'</b> die each day separated from God.'
+       : !onPace ? '. At an estimated '+fmt(actual)+' a day, '+thisPlace()+' runs <b>'+gapTxt+'</b> short, while <b>'+fmt(lostDay)+'</b> die each day separated from God.'
+               : ', and an estimated '+fmt(actual)+' a day covers that. '+(goalDay>actual?'But '+goalText+' in '+years+' years takes <b>'+fmt(goalDay)+' a day</b>, while ':'Meanwhile ')+'<b>'+fmt(lostDay)+'</b> die each day separated from God.');
 
     // analysis breakdown
     $('bBirth').textContent=fmt(r.cBirth);
@@ -676,54 +771,115 @@
     $('barDeath').style.width=(Math.abs(r.cDeath)/mx*100)+'%';
 
     // reality check
-    $('rcReqN').textContent=fmt(perDay);
+    $('rcReqN').textContent=fmt(heroDay);
     $('rcActN').textContent=fmt(actual);
-    var top=Math.max(perDay,actual,1);
-    $('rcReqBar').style.height=(perDay/top*100)+'%';
-    $('rcActBar').style.height=(actual/top*100)+'%';
-    $('gapX').textContent=gapTxt;
-    $('placeWord').textContent=current.kind==='na'?'This metro':'This city';
+    var top=Math.max(heroDay,actual,1);
+    $('rcReqBar').style.height=Math.max(4,heroDay/top*64)+'px';
+    $('rcActBar').style.height=Math.max(4,actual/top*64)+'px';
+    var tp=thisPlace();
+    $('gapLine').classList.toggle('ok',onPace);
+    $('gapLine').innerHTML = onPace ? 'At an estimated <b>'+fmt(actual)+'</b> a day, '+tp+' is holding its share. Growing it is the next question.'
+                                    : tp.charAt(0).toUpperCase()+tp.slice(1)+' is running <b>'+gapTxt+'</b> short of holding the share.';
+
+    // the same result in plain words, above the card
+    var hold = perDay>=1 ? 'Just to keep evangelicals at <b>'+pct($('resBel').value)+'%</b> of '+esc(placeName())+', about <b>'+fmt(perDay)+'</b> people would need to be baptized every day.'
+             : perYear>=1 ? 'Just to keep evangelicals at <b>'+pct($('resBel').value)+'%</b> of '+esc(placeName())+', about <b>'+fmt(perYear)+'</b> people would need to be baptized every year.'
+             : 'With these numbers, the evangelical share of '+esc(placeName())+' holds at <b>'+pct($('resBel').value)+'%</b> without new baptisms.';
+    $('plain').innerHTML='<span class="plain-k">In plain words</span>'+hold+(goalDay>=1?' '+goalName+' in <b>'+years+' years</b>, it would take about <b>'+fmt(goalDay)+'</b> a day.':'');
+
+    // where the numbers came from
     $('cSource').textContent=(current.kind==='world')?('Data: UN, World Bank, Joshua Project'+(edited?', edited':'')):'Data: user provided';
+
+    // the words that change when the goal is the big number
+    var share=pct($('resBel').value)+'%', place=esc(placeName());
+    document.body.classList.toggle('goal-mode',goalMode);
+    $('cSub').textContent=goalMode?'Baptisms required '+goalText:'Baptisms required to hold the share steady';
+    $('heroLabel').innerHTML=goalMode?'every day for <b>'+years+' years</b> '+goalText.replace(/(\d+% evangelical)/,'<b>$1</b>'):'to hold the evangelical share steady';
+    $('stepLead').textContent=goalMode?'This city is under 2% evangelical, so the goal is the big number on the card.':'Holding steady is the floor. Pick a goal to see what growth would take.';
+    $('rcReqL').innerHTML=goalMode?'Needed for the goal<br>per day':'Needed to hold<br>per day';
+    $('whyT').textContent=goalMode?'What holding the share takes':'What makes up that number';
+    $('mbGoal').textContent=goalMode?'baptisms a day '+goalText+' in '+years+' years':'baptisms a day to hold the share steady';
+    if(goalMode){
+      var goalIng='Reaching '+(goal==='reach10'?'10%':'2%')+' evangelical in '+years+' years', goalYear=Math.max(0,Math.round(rc0.perDay*365));
+      var holdBit=perDay>=1?'<b>'+fmt(perDay)+'</b> a day':perYear>=1?'<b>'+fmt(perYear)+'</b> a year':'';
+      $('sGoalL').textContent='To hold the share steady';
+      $('sGoal').textContent=perDay>=1?fmt(perDay)+' / day':fmt(perYear)+' / yr';
+      $('cFact').innerHTML=goalIng+' takes <b>'+fmt(goalDay)+' baptisms a day</b>'+
+        (!hasActual ? '. Holding today\u2019s '+share+' takes '+(holdBit?'only '+holdBit:'almost none')+', while <b>'+fmt(lostDay)+'</b> die each day separated from God.'
+         : !onPace ? '. At an estimated '+fmt(actual)+' a day, '+tp+' runs <b>'+gapTxt+'</b> short, while <b>'+fmt(lostDay)+'</b> die each day separated from God.'
+                   : ', and an estimated '+fmt(actual)+' a day covers that. Meanwhile <b>'+fmt(lostDay)+'</b> die each day separated from God.');
+      $('gapLine').innerHTML = onPace ? 'At an estimated <b>'+fmt(actual)+'</b> a day, '+tp+' is on pace for the goal.'
+                                      : tp.charAt(0).toUpperCase()+tp.slice(1)+' is running <b>'+gapTxt+'</b> short of the goal.';
+      $('plain').innerHTML='<span class="plain-k">In plain words</span>'+goalName+' in <b>'+years+' years</b>, about <b>'+(goalDay>=1?fmt(goalDay):fmt(goalYear))+'</b> people in '+place+' would need to be baptized every '+(goalDay>=1?'day':'year')+'.'+
+        (holdBit?' Just holding today\u2019s <b>'+share+'</b> takes about '+holdBit+'.':'');
+    }
+
+    // small pinned summary for phones
+    $('mbNum').textContent=fmt(heroDay);
     renderMult();
+    if(mini) miniUpdate();
   }
 
   // events
   ids.forEach(function(id){$(id).addEventListener('input',function(){edited=true;render();});});
   ['mDisc','mPct','mEach','mGen'].forEach(function(id){var e=$(id);if(e)e.addEventListener('input',render);});
-  $('pop').addEventListener('blur',function(){var v=num(this.value);this.value=v?nf.format(v):'0';render();});
-  $('actual').addEventListener('blur',function(){this.value=fmt(num(this.value));render();});
+  $('pop').addEventListener('blur',function(){var v=num(this.value);this.value=v?nf.format(v):'';render();});
+  $('actual').addEventListener('blur',function(){this.value=this.value.trim()===''?'':fmt(num(this.value));render();});
 
-  /* Choosing a city fills the form. North American metros keep their own estimates.
+  /* ---------- Step 1: choosing a city fills the form ----------
+     North American metros keep their own estimates.
      World cities use the country's figures, which a city can differ from. */
+  var help=$('cityHelp'), note=$('cityNote');
   function chooseCity(p){
-    var note=$('ctryNote');
-    $('cityQ').value=p.label; $('pop').value=nf.format(p.pop); edited=false; current=p;
+    var open=false, html, rates='';
+    if(current!==p) $('actual').value='';            // an estimate belongs to one city
+    $('cityQ').value=p.label; $('pop').value=nf.format(p.pop); edited=false; ownMode=false; current=p;
     if(p.kind==='na'){
       $('resBel').value=p.ev; $('birthRate').value=defaults.birthRate; $('deathRate').value=defaults.deathRate; $('netMig').value=defaults.netMig;
-      $('migBel').value=defaults.migBel; $('deathBel').value=defaults.deathBel; note.hidden=true;
+      $('migBel').value=defaults.migBel; $('deathBel').value=defaults.deathBel;
+      html='<b>'+esc(p.name)+':</b> '+nf.format(p.pop)+' people, about <b>'+p.ev+'% evangelical</b> (an estimate anchored to Pew, 2023-24). '+
+        (p.label===defaults.city?'':'Birth, death, and migration rates start at the Dallas-Fort Worth values. ')+'Change any number under Adjust the numbers.';
+      if(p.label!==defaults.city) rates='Birth, death, and migration rates start at the Dallas-Fort Worth values. Set them for this metro if you know them.';
     } else {
       var c=CTRY[p.iso], ev=c[1], ch=c[2], unknown=(ev==null), share=unknown?(ch||0):ev;
       $('resBel').value=share; $('migBel').value=share; $('deathBel').value=share; $('netMig').value=0;
       $('birthRate').value=c[3]!=null?c[3]:WORLD_B; $('deathRate').value=c[4]!=null?c[4]:WORLD_D;
-      note.innerHTML='<b>'+c[0]+', country level:</b> '+(unknown?'evangelical share unknown':pct(ev)+'% evangelical')+', <b>'+(ch!=null?pct(ch)+'% Christian':'Christian share unknown')+'</b> (Joshua Project). '+
-        (unknown?'Joshua Project does not publish an evangelical figure for '+c[0]+', so the Christian share is used as an upper limit. Lower it if you know better. ':'A city can differ from its country, so change the share if you know better. ')+
-        (c[3]==null?'No World Bank birth and death rates for '+c[0]+', so the world average is used. ':'')+'Migration starts at zero.';
-      note.hidden=false;
-      goal = share<2 ? 'reach2' : share<10 ? 'reach10' : 'inc2';
+      html='<b>'+esc(p.name)+':</b> '+nf.format(p.pop)+' people (UN, 2025). <b>'+esc(c[0])+', country level:</b> '+(unknown?'evangelical share unknown':pct(ev)+'% evangelical')+', <b>'+(ch!=null?pct(ch)+'% Christian':'Christian share unknown')+'</b> (Joshua Project). '+
+        (unknown?'Joshua Project does not publish an evangelical figure for '+esc(c[0])+', so the Christian share is used as an upper limit. Lower it under Adjust the numbers if you know better. ':'A city can differ from its country, so change the share under Adjust the numbers if you know better. ')+
+        (c[3]==null?'No World Bank birth and death rates for '+esc(c[0])+', so the world average is used.':'');
+      rates=(c[3]!=null?c[0]+': '+c[3]+' births and '+c[4]+' deaths per 1,000 people each year (World Bank, 2024). ':'No World Bank rates for '+c[0]+'. Using the world average of '+WORLD_B+' births and '+WORLD_D+' deaths per 1,000. ')+'Migration starts at zero.';
+      open=unknown||c[3]==null;
     }
+    goal=goalFor(+$('resBel').value)[0];
+    note.innerHTML=html; note.hidden=false; help.hidden=true; $('ratesNote').textContent=rates;
+    if(open) $('adjust').open=true;
     render();
   }
+  function unpick(){ current={kind:'custom'}; note.hidden=true; help.hidden=false; $('ratesNote').textContent=''; }
   if(window.CNPeople){
     CNPeople.attach({
       input:$('cityQ'), list:$('cityList'), status:$('cityStatus'),
       statusText:function(n){return n+' cities found. Use the arrow keys to choose one.';},
       search:function(q){return CNPeople.search(q,'',8,LIST);},
-      onType:function(){ if(current.kind!=='custom' && $('cityQ').value.trim()!==current.label){ current={kind:'custom'}; $('ctryNote').hidden=true; } render(); },
+      onType:function(){ if((current.kind==='na'||current.kind==='world') && $('cityQ').value.trim()!==current.label) unpick(); render(); },
       onChoose:chooseCity
     });
-  } else { $('cityQ').addEventListener('input',function(){ current={kind:'custom'}; render(); }); }
+  } else { $('cityQ').addEventListener('input',function(){ unpick(); render(); }); }
   $('cityQ').addEventListener('focus',function(){ this.select(); });
+  $('cityQ').addEventListener('blur',function(){ if(this.value.trim() && !(num($('pop').value)>0)) $('adjust').open=true; });
+  $('ownBtn').addEventListener('click',function(){
+    ownMode=true; $('adjust').open=true;
+    if(current.kind==='none') $('ratesNote').textContent='The rates and shares start at typical North American values. Set them for your city.';
+    render(); $('pop').focus();
+  });
 
+  /* ---------- pinned summary on phones: shows once the card's big number scrolls away ---------- */
+  var mini=$('minibar'), heroEl=document.querySelector('.card .hero'), heroSeen=true;
+  function miniUpdate(){ var on=!heroSeen && !document.body.classList.contains('is-blank') && window.innerWidth<980; mini.hidden=!on; document.body.classList.toggle('has-mini',on); if(on) miniArrow(); }
+  function miniArrow(){ $('mbGo').innerHTML='See the card '+(heroEl.getBoundingClientRect().top>0?'&darr;':'&uarr;'); }
+  window.addEventListener('scroll',function(){ if(!mini.hidden) miniArrow(); },{passive:true});
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ heroSeen=es[0].isIntersecting; miniUpdate(); }).observe(heroEl); window.addEventListener('resize',miniUpdate); }
+  mini.addEventListener('click',function(){ document.querySelector('.card').scrollIntoView({behavior:'smooth',block:'start'}); });
 
   $('goalReach2').addEventListener('click',function(){ if(this.disabled)return; goal='reach2'; render(); });
   $('goalInc2').addEventListener('click',function(){ goal='inc2'; render(); });
@@ -793,17 +949,17 @@
   });
 
   $('reset').addEventListener('click',function(){
-    $('actual').value=defaults.actual; years=10;
+    $('cityQ').value=''; $('pop').value=''; $('actual').value='';
+    ['birthRate','deathRate','netMig','resBel','migBel','deathBel'].forEach(function(id){ $(id).value=defaults[id]; });
+    goal='reach10'; years=10; current={kind:'none'}; edited=false; ownMode=false;
+    note.hidden=true; help.hidden=false; $('ratesNote').textContent=''; $('adjust').open=false; $('why').open=false;
     Array.prototype.forEach.call(document.querySelectorAll('.yr'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-y')==='10');});
-    goal='reach10';
-    chooseCity(LIST.filter(function(x){return x.label===defaults.city;})[0]);
+    render(); miniUpdate(); window.scrollTo({top:0,behavior:'smooth'}); $('cityQ').focus();
   });
 
-  current=LIST.filter(function(x){return x.label===defaults.city;})[0];
-  render();
+  render(); miniUpdate();
 })();
 </script>
-<script>(function(){var dd=document.querySelector(".nav-dd");if(!dd)return;var b=dd.querySelector(".nav-ddbtn");b.addEventListener("click",function(e){e.stopPropagation();var o=dd.classList.toggle("open");b.setAttribute("aria-expanded",o);});document.addEventListener("click",function(){dd.classList.remove("open");b.setAttribute("aria-expanded","false");});})();</script>
 <script src="js/shell.js" data-part="footer"></script>
 </body>
 </html>

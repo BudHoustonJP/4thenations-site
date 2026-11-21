@@ -182,6 +182,7 @@
   .plain{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:0 12px 12px 0;padding:14px 18px;margin:0 0 14px;font-size:16px;line-height:1.5;}
   .plain b{color:var(--clay);}
   .plain-k{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--navy);margin-bottom:4px;}
+  .cardcol .card{max-width:100%;}
   .share{margin-top:16px;}
   .share h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ink);margin:0 0 9px;}
   .share .sizebar{margin:0 0 10px;}
@@ -448,7 +449,7 @@
   <p class="sig"><b>4thenations.com</b></p>
 </div>
 
-<button class="minibar" id="minibar" type="button" hidden><b id="mbNum">0</b><span id="mbGoal"></span><i>See the card &uarr;</i></button>
+<button class="minibar" id="minibar" type="button" hidden><b id="mbNum">0</b><span id="mbGoal"></span><i id="mbGo">See the card &uarr;</i></button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
 <script src="js/people-search.js"></script>
@@ -615,6 +616,7 @@
     $('mbNum').textContent=fmt(crossDay);
     $('mbGoal').innerHTML='baptisms a day to '+goalLabel.replace(/<\/?b>/g,'')+' in '+years+' years';
     renderMult();
+    if(mini) miniUpdate();
   }
 
   ids.forEach(function(id){$(id).addEventListener('input',function(){src.edited=true;render();});});
@@ -748,7 +750,9 @@
 
   /* ---------- pinned summary on phones: shows once the card's big number scrolls away ---------- */
   var mini=$('minibar'), heroEl=document.querySelector('.card .hero'), heroSeen=true;
-  function miniUpdate(){ var on=!heroSeen && !document.body.classList.contains('is-blank') && window.innerWidth<980; mini.hidden=!on; document.body.classList.toggle('has-mini',on); }
+  function miniUpdate(){ var on=!heroSeen && !document.body.classList.contains('is-blank') && window.innerWidth<980; mini.hidden=!on; document.body.classList.toggle('has-mini',on); if(on) miniArrow(); }
+  function miniArrow(){ $('mbGo').innerHTML='See the card '+(heroEl.getBoundingClientRect().top>0?'&darr;':'&uarr;'); }
+  window.addEventListener('scroll',function(){ if(!mini.hidden) miniArrow(); },{passive:true});
   if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ heroSeen=es[0].isIntersecting; miniUpdate(); }).observe(heroEl); window.addEventListener('resize',miniUpdate); }
   mini.addEventListener('click',function(){ document.querySelector('.card').scrollIntoView({behavior:'smooth',block:'start'}); });
 
