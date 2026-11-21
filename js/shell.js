@@ -20,7 +20,9 @@
   var TOOLS = [
     ['brutal-facts-calculator-cities.html', 'City Brutal Facts', 'How many people in a city likely have no relationship with Jesus.'],
     ['brutal-facts-calculator-segments.html', 'People Segment Brutal Facts', 'Size the lostness of a people segment and what it would take to reach it.'],
-    ['where-is-the-work.html', 'Where Is the Work?', 'Find the phase of the work among one people and the part you play.']
+    ['where-is-the-work.html', 'Where Is the Work?', 'Find the phase of the work among one people and the part you play.'],
+    ['access-finder.html', 'Access Finder', 'See where a passport opens short-term entry, and the Frontier peoples there.'],
+    ['digital-readiness.html', 'Digital Readiness', 'How a country connects and reads, and what that means for media and oral strategy.']
   ];
   var brand = '<span class="cn-dot" aria-hidden="true"></span><span class="cn-name">Clarity <span>for the</span> Nations</span>';
 

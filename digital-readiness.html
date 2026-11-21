@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Readiness | Clarity for the Nations</title>
+<meta name="description" content="How a country connects, reads, and lives, and what that suggests for media and oral strategy among its unreached peoples.">
+<meta property="og:title" content="Digital Readiness | Clarity for the Nations">
+<meta property="og:description" content="Internet use, literacy, and the unreached: a strategy read for any country.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sofia+Sans+Extra+Condensed:wght@600;800&display=swap" rel="stylesheet" crossorigin="anonymous">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body>
+<script src="js/shell.js" data-part="header"></script>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Mission tools <b>/</b> Data tool</p>
+    <h1>Digital Readiness</h1>
+    <p class="lede">How a country connects, reads, and lives, and what that suggests for media and oral strategy among its unreached peoples.</p>
+  </div>
+</section>
+
+<section class="tool">
+  <div class="wrap tool-grid">
+
+    <div class="panel panel-pad">
+      <div class="controls">
+        <div class="field">
+          <label class="field-label" for="addC">Countries <span class="muted">(compare up to 3)</span></label>
+          <select class="select" id="addC"></select>
+        </div>
+        <div class="field">
+          <span class="field-label">Selected</span>
+          <div class="chips" id="chips"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel empty" id="noData" hidden>
+      <strong>World Bank figures are on the way</strong>
+      They arrive with the first data refresh. Joshua Project figures below are already live.
+    </div>
+
+    <div class="card-wrap">
+      <div class="rcard" id="card">
+        <div class="rcard-top">
+          <p class="eyebrow">Digital Readiness <b>/</b> <span id="cEyebrow"></span></p>
+        </div>
+        <p class="rcard-title" id="cTitle"></p>
+        <div class="profiles" id="profiles"></div>
+        <div class="rcard-foot">
+          <span><b>4thenations.com</b></span>
+          <span id="cSrc">Data: World Bank / Joshua Project</span>
+        </div>
+      </div>
+      <div class="export">
+        <div class="seg" role="group" aria-label="Image size" id="fmt">
+          <button type="button" data-f="wide" aria-pressed="true">Wide</button>
+          <button type="button" data-f="square" aria-pressed="false">Square</button>
+        </div>
+        <button type="button" class="btn btn-solid" id="dl">Download PNG</button>
+        <span class="map-note" id="dlNote"></span>
+      </div>
+    </div>
+
+    <p class="note"><b>Averages hide gaps.</b> These are national figures. Rural areas and minority language communities, where many unreached peoples live, usually sit below them.</p>
+
+    <details class="panel thresholds" id="th">
+      <summary>Adjust the strategy thresholds</summary>
+      <div class="th-grid">
+        <div>
+          <h3>Digital-first</h3>
+          <p class="th-hint">Both must be true.</p>
+          <div class="range"><label for="dNet">Internet use at least <output id="dNetO"></output></label><input type="range" id="dNet" min="0" max="100" step="5"></div>
+          <div class="range range-2"><label for="dLit">Adult literacy at least <output id="dLitO"></output></label><input type="range" id="dLit" min="0" max="100" step="5"></div>
+        </div>
+        <div>
+          <h3>Oral and offline-first</h3>
+          <p class="th-hint">Either one is enough.</p>
+          <div class="range"><label for="oNet">Internet use under <output id="oNetO"></output></label><input type="range" id="oNet" min="0" max="100" step="5"></div>
+          <div class="range range-2"><label for="oLit">Adult literacy under <output id="oLitO"></output></label><input type="range" id="oLit" min="0" max="100" step="5"></div>
+        </div>
+      </div>
+      <div class="th-foot"><button type="button" class="linkbtn" id="thReset">Reset to defaults</button></div>
+    </details>
+
+    <div class="panel">
+      <div class="tbl-tools">
+        <div class="seg" role="group" aria-label="Filter by strategy" id="filter">
+          <button type="button" data-k="all" aria-pressed="true">All</button>
+          <button type="button" data-k="digital" aria-pressed="false">Digital-first</button>
+          <button type="button" data-k="hybrid" aria-pressed="false">Hybrid</button>
+          <button type="button" data-k="oral" aria-pressed="false">Oral and offline-first</button>
+          <button type="button" data-k="none" aria-pressed="false">No data</button>
+        </div>
+        <input class="input" id="find" type="search" placeholder="Find a country" aria-label="Find a country">
+      </div>
+      <div class="tbl-sub"><span class="tbl-count" id="count"></span></div>
+      <div class="tbl-scroll">
+        <table class="dtable stack" id="tbl">
+          <thead><tr>
+            <th scope="col"><button type="button" data-s="name">Country</button></th>
+            <th scope="col"><button type="button" data-s="trank">Strategy</button></th>
+            <th scope="col" class="num"><button type="button" data-s="net">Internet</button></th>
+            <th scope="col" class="num"><button type="button" data-s="lit">Literacy</button></th>
+            <th scope="col" class="num"><button type="button" data-s="mob">Mobile / 100</button></th>
+            <th scope="col" class="num"><button type="button" data-s="fr">Frontier groups</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="tbl-more"><button type="button" class="linkbtn" id="more">Show all countries</button></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><div><p class="eyebrow">Method</p><h2>How to read it</h2></div></div>
+    <div class="methods">
+      <div>
+        <h3>What it shows</h3>
+        <p>Four World Bank indicators for each country, with the year of each figure. Not every country reports every year, so years differ.</p>
+        <p>The strategy tag is a starting read, not a verdict. Move the thresholds to match your own field experience.</p>
+        <p>Joshua Project figures: Unreached is 2% or fewer Evangelical and 5% or fewer professing Christian. Frontier is 0.1% or fewer professing Christian.</p>
+      </div>
+      <div>
+        <h3>Read it carefully</h3>
+        <ul>
+          <li>Mobile subscriptions count SIM cards, not people. Many people carry two, so the figure can pass 100.</li>
+          <li>Many wealthy countries no longer report adult literacy. When it is missing, the tag uses internet use alone and says so.</li>
+          <li>Being online is not the same as finding the gospel online in your heart language.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Sources</h3>
+        <p>World Bank, World Development Indicators: Individuals using the Internet (IT.NET.USER.ZS), Mobile cellular subscriptions (IT.CEL.SETS.P2), Adult literacy rate (SE.ADT.LITR.ZS), Urban population (SP.URB.TOTL.IN.ZS).</p>
+        <p>People groups: Joshua Project, AllPeoplesInCountry export stored on this site.</p>
+        <p id="srcDate">Data refreshes monthly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="js/shell.js" data-part="footer"></script>
+<script src="js/country-data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
+<script>
+(function () {
+  var CC = window.CN_COUNTRIES;
+  var $ = function (id) { return document.getElementById(id); };
+  var byIso = {}; CC.list.forEach(function (c) { byIso[c.iso] = c; });
+  var hasWB = CC.list.some(function (c) { return c.wb && c.wb.net; });
+
+  var DEF = { dNet: 70, dLit: 85, oNet: 35, oLit: 60 };
+  var S = { sel: ['IND'], th: Object.assign({}, DEF), filter: 'all', sort: 'fr', dir: -1, all: false, find: '', fmt: 'wide' };
+  var m = /c=([A-Z,]+)/.exec(location.hash);
+  if (m) {
+    var h = m[1].split(',').filter(function (c) { return byIso[c]; }).slice(0, 3);
+    if (h.length) S.sel = h;
+  }
+
+  var TAG = {
+    digital: { rank: 1, label: 'Digital-first', cls: 'ptag-digital', read: 'Most people are online and read. Digital media can carry first contact; plan for discipleship that moves offline and face to face.' },
+    hybrid:  { rank: 2, label: 'Hybrid', cls: 'ptag-hybrid', read: 'Reach is mixed. Pair digital media with audio, oral Bible stories, and personal networks.' },
+    oral:    { rank: 3, label: 'Oral and offline-first', cls: 'ptag-oral', read: 'Many people are offline or do not read. Lead with oral, audio, and relational approaches; keep digital as support.' },
+    none:    { rank: 4, label: 'No data', cls: 'ptag-none', read: 'The World Bank has no recent internet figure for this country.' }
+  };
+  var v = function (c, k) { return c.wb && c.wb[k] ? c.wb[k][0] : null; };
+  function tagOf(c) {
+    var net = v(c, 'net'), lit = v(c, 'lit'), t = S.th;
+    if (net == null) return 'none';
+    if (net < t.oNet || (lit != null && lit < t.oLit)) return 'oral';
+    if (net >= t.dNet && (lit == null || lit >= t.dLit)) return 'digital';
+    return 'hybrid';
+  }
+  var fmt = function (n) { return Math.round(n).toLocaleString('en-US'); };
+  function words(n) {
+    if (n >= 1e9) return (n / 1e9).toFixed(1) + ' billion';
+    if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e8 ? 0 : 1) + ' million';
+    return fmt(n);
+  }
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  function dots(pct) {
+    var on = Math.max(0, Math.min(100, pct)) / 5, out = '';
+    for (var i = 0; i < 20; i++) out += '<i class="' + (i < Math.floor(on) ? 'on' : (i < on ? 'half' : '')) + '"></i>';
+    return '<div class="dotbar" aria-hidden="true">' + out + '</div>';
+  }
+
+  /* ---------- picker ---------- */
+  var order = CC.list.slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
+  function fillPicker() {
+    var full = S.sel.length >= 3;
+    $('addC').innerHTML = '<option value="">' + (full ? 'Comparing 3 (remove one to add)' : '+ Add a country') + '</option>' +
+      order.map(function (c) { return '<option value="' + c.iso + '"' + (S.sel.indexOf(c.iso) > -1 ? ' disabled' : '') + '>' + esc(c.name) + '</option>'; }).join('');
+    $('addC').disabled = full;
+    $('chips').innerHTML = S.sel.map(function (iso) {
+      return '<span class="chip">' + esc(byIso[iso].name) + (S.sel.length > 1 ? '<button type="button" data-rm="' + iso + '" aria-label="Remove ' + esc(byIso[iso].name) + '">&times;</button>' : '') + '</span>';
+    }).join('');
+  }
+  $('addC').addEventListener('change', function () {
+    var x = this.value; if (x && S.sel.length < 3 && S.sel.indexOf(x) < 0) S.sel.push(x); update();
+  });
+  $('chips').addEventListener('click', function (e) {
+    var x = e.target.getAttribute('data-rm'); if (!x) return;
+    S.sel = S.sel.filter(function (y) { return y !== x; }); update();
+  });
+
+  /* ---------- profiles card ---------- */
+  var IND = [['net', 'Internet use', '%'], ['lit', 'Adult literacy', '%'], ['mob', 'Mobile subscriptions', '/100'], ['urb', 'Urban population', '%']];
+  function renderCard() {
+    $('cEyebrow').textContent = S.sel.length > 1 ? 'Compare ' + S.sel.length + ' countries' : 'Country profile';
+    $('cTitle').textContent = S.sel.map(function (i) { return byIso[i].name; }).join(' / ');
+    $('profiles').innerHTML = S.sel.map(function (iso) {
+      var c = byIso[iso], t = tagOf(c), litMissing = v(c, 'lit') == null && t !== 'none';
+      var rows = IND.map(function (d) {
+        var x = c.wb && c.wb[d[0]];
+        return '<div class="ind"><span class="ind-name">' + d[1] + '</span>' +
+          '<span class="ind-val">' + (x ? (d[0] === 'mob' ? Math.round(x[0]) : x[0].toFixed(0)) + '<small>' + d[2].trim() + ' &middot; ' + x[1] + '</small>' : '<small>no figure</small>') + '</span>' +
+          (x ? dots(x[0]) : '') + '</div>';
+      }).join('');
+      var share = c.jp.pop ? Math.round(c.jp.urPop / c.jp.pop * 100) : 0;
+      return '<div class="profile">' + (S.sel.length > 1 ? '<h3>' + esc(c.name) + '</h3>' : '') +
+        '<span class="ptag ' + TAG[t].cls + '">' + TAG[t].label + '</span>' +
+        '<p class="profile-read">' + TAG[t].read + (litMissing ? ' Literacy is not reported, so this tag uses internet use alone.' : '') + '</p>' +
+        rows +
+        '<div class="jp-row"><div><b>' + fmt(c.jp.fr) + '</b><span>Frontier groups</span></div>' +
+        '<div><b>' + fmt(c.jp.ur) + '</b><span>Unreached groups</span></div>' +
+        '<div><b>' + share + '%</b><span>Pop. in unreached peoples</span></div></div>' +
+        '<p class="profile-link"><a class="linkbtn" href="access-finder.html">Entry rules in Access Finder &rarr;</a></p></div>';
+    }).join('');
+    var wbDate = CC.meta.wb && CC.meta.wb.refreshed;
+    $('cSrc').textContent = 'Data: World Bank WDI' + (wbDate ? ' (refreshed ' + wbDate + ')' : '') + ' / Joshua Project';
+  }
+
+  /* ---------- table ---------- */
+  function rowsAll() {
+    return CC.list.map(function (c) {
+      var t = tagOf(c);
+      return { iso: c.iso, name: c.name, t: t, trank: TAG[t].rank, net: v(c, 'net'), lit: v(c, 'lit'), mob: v(c, 'mob'), fr: c.jp.fr };
+    });
+  }
+  function renderTable() {
+    var q = S.find.trim().toLowerCase();
+    var list = rowsAll().filter(function (r) {
+      return (S.filter === 'all' || r.t === S.filter) && (!q || r.name.toLowerCase().indexOf(q) > -1);
+    });
+    list.sort(function (a, b) {
+      var x = a[S.sort], y = b[S.sort];
+      if (S.sort === 'name') return x.localeCompare(y) * -S.dir;
+      if (x == null && y == null) return b.fr - a.fr;
+      if (x == null) return 1; if (y == null) return -1;
+      return (x - y) * S.dir || b.fr - a.fr;
+    });
+    var shown = S.all || q ? list : list.slice(0, 25);
+    $('count').textContent = list.length + ' countries' + (shown.length < list.length ? ', showing ' + shown.length : '');
+    $('more').hidden = shown.length >= list.length;
+    document.querySelectorAll('#tbl th').forEach(function (th) {
+      var b = th.querySelector('button');
+      if (b && b.getAttribute('data-s') === S.sort) th.setAttribute('aria-sort', S.dir < 0 ? 'descending' : 'ascending'); else th.removeAttribute('aria-sort');
+    });
+    var cell = function (x, suf) { return x == null ? '<span class="muted">&ndash;</span>' : Math.round(x) + (suf || ''); };
+    $('tbl').tBodies[0].innerHTML = shown.map(function (r) {
+      return '<tr' + (S.sel.indexOf(r.iso) > -1 ? ' class="is-sel"' : '') + '>' +
+        '<td class="name"><button type="button" data-pick="' + r.iso + '">' + esc(r.name) + '</button></td>' +
+        '<td data-l=""><span class="ptag ' + TAG[r.t].cls + '">' + TAG[r.t].label + '</span></td>' +
+        '<td class="num" data-l="Internet">' + cell(r.net, '%') + '</td>' +
+        '<td class="num" data-l="Literacy">' + cell(r.lit, '%') + '</td>' +
+        '<td class="num" data-l="Mobile / 100">' + cell(r.mob) + '</td>' +
+        '<td class="num" data-l="Frontier groups">' + fmt(r.fr) + '</td></tr>';
+    }).join('') || '<tr><td colspan="6" class="muted">No countries match.</td></tr>';
+  }
+  document.querySelector('#tbl thead').addEventListener('click', function (e) {
+    var s = e.target.getAttribute && e.target.getAttribute('data-s'); if (!s) return;
+    if (S.sort === s) S.dir = -S.dir; else { S.sort = s; S.dir = s === 'name' || s === 'trank' ? 1 : -1; }
+    renderTable();
+  });
+  $('tbl').addEventListener('click', function (e) {
+    var iso = e.target.getAttribute && e.target.getAttribute('data-pick'); if (!iso) return;
+    S.sel = [iso]; update(); $('card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  $('filter').addEventListener('click', function (e) {
+    var k = e.target.getAttribute('data-k'); if (!k) return;
+    S.filter = k; this.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b === e.target ? 'true' : 'false'); });
+    renderTable();
+  });
+  $('find').addEventListener('input', function () { S.find = this.value; renderTable(); });
+  $('more').addEventListener('click', function () { S.all = true; renderTable(); });
+
+  /* ---------- thresholds ---------- */
+  function syncTh() {
+    ['dNet', 'dLit', 'oNet', 'oLit'].forEach(function (k) { $(k).value = S.th[k]; $(k + 'O').textContent = S.th[k] + '%'; });
+  }
+  ['dNet', 'dLit', 'oNet', 'oLit'].forEach(function (k) {
+    $(k).addEventListener('input', function () { S.th[k] = +this.value; $(k + 'O').textContent = this.value + '%'; renderCard(); renderTable(); });
+  });
+  $('thReset').addEventListener('click', function () { S.th = Object.assign({}, DEF); syncTh(); renderCard(); renderTable(); });
+
+  function update() {
+    fillPicker(); renderCard(); renderTable();
+    history.replaceState(null, '', '#c=' + S.sel.join(','));
+  }
+
+  /* ---------- PNG ---------- */
+  $('fmt').addEventListener('click', function (e) {
+    var f = e.target.getAttribute('data-f'); if (!f) return;
+    S.fmt = f; this.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b === e.target ? 'true' : 'false'); });
+  });
+  $('dl').addEventListener('click', function () {
+    var card = $('card'), btn = this, label = btn.textContent;
+    if (!window.htmlToImage) { $('dlNote').textContent = 'Image tool did not load. Try again.'; return; }
+    btn.disabled = true; btn.textContent = 'Preparing...';
+    card.classList.add('as-' + S.fmt);
+    var w = S.fmt === 'wide' ? 1200 : 1080, h = Math.max(card.scrollHeight, S.fmt === 'wide' ? 675 : 1080);
+    var name = 'digital-readiness-' + S.sel.join('-').toLowerCase() + '.png';
+    var done = function () { card.classList.remove('as-wide', 'as-square'); btn.disabled = false; btn.textContent = label; };
+    window.htmlToImage.toPng(card, { pixelRatio: 1, backgroundColor: '#0A1018', width: w, height: h, cacheBust: true })
+      .then(function (url) { done(); var a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); })
+      .catch(function () { done(); $('dlNote').textContent = 'Could not make the image. Try again.'; });
+  });
+
+  $('noData').hidden = hasWB;
+  if (CC.meta.wb && CC.meta.wb.refreshed) $('srcDate').textContent = 'World Bank figures refreshed ' + CC.meta.wb.refreshed + '. Data refreshes monthly.';
+  syncTh(); update();
+})();
+</script>
+</body>
+</html>

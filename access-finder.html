@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Access Finder | Clarity for the Nations</title>
+<meta name="description" content="Pick a passport. See where it opens short-term entry, and how many Frontier people groups live behind each door.">
+<meta property="og:title" content="Access Finder | Clarity for the Nations">
+<meta property="og:description" content="Where a passport opens short-term entry, and the Frontier people groups in each country.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sofia+Sans+Extra+Condensed:wght@600;800&display=swap" rel="stylesheet" crossorigin="anonymous">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body>
+<script src="js/shell.js" data-part="header"></script>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Mission tools <b>/</b> Data tool</p>
+    <h1>Access Finder</h1>
+    <p class="lede">Pick a passport. See where it opens short-term entry, and how many Frontier people groups live behind each door.</p>
+  </div>
+</section>
+
+<section class="tool">
+  <div class="wrap tool-grid">
+
+    <div class="panel panel-pad">
+      <div class="controls">
+        <div class="field">
+          <label class="field-label" for="addPass">Passports <span class="muted">(up to 4 for a team)</span></label>
+          <select class="select" id="addPass"></select>
+        </div>
+        <div class="field">
+          <span class="field-label">Selected</span>
+          <div class="chips" id="chips"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-wrap">
+      <div class="rcard" id="card">
+        <div class="rcard-top">
+          <p class="eyebrow">Access Finder <b>/</b> <span id="cEyebrow">Passport</span></p>
+        </div>
+        <p class="rcard-title" id="cTitle">Passport</p>
+        <div class="rcard-hero">
+          <span class="rcard-num" id="cNum">0</span>
+          <p class="rcard-lede" id="cLede"></p>
+        </div>
+        <div class="stats" id="cStats"></div>
+        <div class="rcard-foot">
+          <span><b>4thenations.com</b></span>
+          <span id="cSrc">Entry: Passport Index / Peoples: Joshua Project</span>
+        </div>
+      </div>
+      <div class="export">
+        <div class="seg" role="group" aria-label="Image size" id="fmt">
+          <button type="button" data-f="wide" aria-pressed="true">Wide</button>
+          <button type="button" data-f="square" aria-pressed="false">Square</button>
+        </div>
+        <button type="button" class="btn btn-solid" id="dl">Download PNG</button>
+        <span class="map-note" id="dlNote"></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Where the doors open</h2>
+        <div class="legend" aria-label="Map key">
+          <span><i class="sw sw-4"></i>Visa free</span>
+          <span><i class="sw sw-3"></i>On arrival</span>
+          <span><i class="sw sw-2"></i>Travel authorization</span>
+          <span><i class="sw sw-1"></i>e-Visa</span>
+          <span><i class="sw sw-0"></i>Visa required or no entry</span>
+        </div>
+      </div>
+      <div class="map-panel">
+        <div class="map-scroll"><canvas id="map" role="img" aria-label="World map of entry requirements for the selected passports"></canvas></div>
+        <div class="map-foot">
+          <p class="map-note">Lines mark 10&deg;N and 40&deg;N, the 10/40 Window. Tap a country to find it in the table.</p>
+          <p class="map-note">Microstates and Kosovo are too small for a dot; the table lists them.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="note"><b>Short-term entry only.</b> These are the rules for a short visit. They say nothing about residence, work, or study, and they change. Confirm with the destination government before anyone travels.</p>
+
+    <div class="panel">
+      <div class="tbl-tools">
+        <div class="seg" role="group" aria-label="Filter by entry" id="filter">
+          <button type="button" data-k="all" aria-pressed="true">All</button>
+          <button type="button" data-k="easy" aria-pressed="false">No visa in advance</button>
+          <button type="button" data-k="evisa" aria-pressed="false">e-Visa</button>
+          <button type="button" data-k="req" aria-pressed="false">Visa required</button>
+          <button type="button" data-k="no" aria-pressed="false">No admission</button>
+        </div>
+        <input class="input" id="find" type="search" placeholder="Find a country" aria-label="Find a country">
+      </div>
+      <div class="tbl-sub">
+        <span class="tbl-count" id="count"></span>
+      </div>
+      <div class="tbl-scroll">
+        <table class="dtable stack" id="tbl">
+          <thead><tr>
+            <th scope="col"><button type="button" data-s="name">Country</button></th>
+            <th scope="col"><button type="button" data-s="rank">Entry</button></th>
+            <th scope="col" class="num"><button type="button" data-s="fr">Frontier groups</button></th>
+            <th scope="col" class="num"><button type="button" data-s="ur">Unreached groups</button></th>
+            <th scope="col" class="num"><button type="button" data-s="urPop">Unreached people</button></th>
+            <th scope="col"><span class="visually-hidden">Digital profile</span></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="tbl-more"><button type="button" class="linkbtn" id="more">Show all countries</button></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><div><p class="eyebrow">Method</p><h2>How to read it</h2></div></div>
+    <div class="methods">
+      <div>
+        <h3>What it shows</h3>
+        <p>For each destination, the easiest short-term entry any selected passport gets, from visa free down to no admission.</p>
+        <p>"No visa in advance" counts visa free entry, visa on arrival, and electronic travel authorizations such as the US ESTA.</p>
+        <p>People group counts use Joshua Project thresholds. Unreached: 2% or fewer Evangelical and 5% or fewer professing Christian. Frontier: 0.1% or fewer professing Christian.</p>
+      </div>
+      <div>
+        <h3>Read it carefully</h3>
+        <ul>
+          <li>Entry is not access. A visa free week is not a residence permit.</li>
+          <li>Team mode shows the best passport for each country, so one teammate may be the only one who gets in easily.</li>
+          <li>Territories (Puerto Rico, Greenland, and others) follow their governing country and are not in the entry data.</li>
+          <li>Frontier is shown by the percentage test only. Joshua Project also checks for known movements, so its own counts can differ slightly.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Sources</h3>
+        <p id="srcEntry">Entry rules: Passport Index data, compiled at github.com/imorte/passport-index-data (MIT license).</p>
+        <p>People groups: Joshua Project, AllPeoplesInCountry export stored on this site.</p>
+        <p>Map positions: Natural Earth country borders (public domain).</p>
+        <p>Data refreshes monthly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="js/shell.js" data-part="footer"></script>
+<script src="js/country-data.js"></script>
+<script src="js/passport-data.js"></script>
+<script src="js/map-cells.js"></script>
+<script src="js/dotmap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js"></script>
+<script>
+(function () {
+  var PP = window.CN_PASSPORT, CC = window.CN_COUNTRIES;
+  var $ = function (id) { return document.getElementById(id); };
+  var byIso = {}; CC.list.forEach(function (c) { byIso[c.iso] = c; });
+  var pIdx = {}; PP.codes.forEach(function (c, i) { pIdx[c] = i; });
+  var NAMES = PP.codes.map(function (c) { return byIso[c] ? byIso[c].name : c; });
+
+  /* Entry types, easiest first. lvl drives the map and legend. */
+  var T = {
+    own:   { rank: 0, label: 'Own country', lvl: 1 },
+    free:  { rank: 1, label: 'Visa free', lvl: 1 },
+    voa:   { rank: 2, label: 'Visa on arrival', lvl: .82 },
+    eta:   { rank: 3, label: 'Travel authorization', lvl: .62 },
+    evisa: { rank: 4, label: 'e-Visa', lvl: .4 },
+    req:   { rank: 5, label: 'Visa required', lvl: 0 },
+    no:    { rank: 6, label: 'No admission', lvl: 0 },
+    none:  { rank: 7, label: 'No data (territory)', lvl: 0 }
+  };
+  var SW = { own: 4, free: 4, voa: 3, eta: 2, evisa: 1, req: 0, no: 'x', none: 'x' };
+  function decode(ch) {
+    if (ch >= 'a' && ch <= 'q') return { k: 'free', days: PP.days[ch.charCodeAt(0) - 97] };
+    return { k: { '-': 'own', F: 'free', A: 'voa', T: 'eta', E: 'evisa', R: 'req', N: 'no' }[ch] || 'none', days: null };
+  }
+  function entryFor(passports, dest) {
+    if (pIdx[dest] == null) return { k: 'none', days: null, via: null };
+    var best = null;
+    passports.forEach(function (p) {
+      var e = decode(PP.m[pIdx[p]].charAt(pIdx[dest])); e.via = p;
+      if (!best || T[e.k].rank < T[best.k].rank ||
+          (e.k === best.k && e.k === 'free' && (e.days == null ? 999 : e.days) > (best.days == null ? 999 : best.days))) best = e;
+    });
+    return best;
+  }
+  var group = function (k) { return k === 'free' || k === 'voa' || k === 'eta' ? 'easy' : k; };
+
+  /* ---------- state ---------- */
+  var S = { pass: ['USA'], filter: 'all', sort: 'fr', dir: -1, all: false, find: '', sel: null, fmt: 'wide' };
+  var m = /p=([A-Z,]+)/.exec(location.hash);
+  if (m) {
+    var fromHash = m[1].split(',').filter(function (c) { return pIdx[c] != null; }).slice(0, 4);
+    if (fromHash.length) S.pass = fromHash;
+  }
+
+  var fmt = function (n) { return Math.round(n).toLocaleString('en-US'); };
+  function words(n) {
+    if (n >= 1e9) return (n / 1e9).toFixed(n >= 1e10 ? 0 : 1) + ' billion';
+    if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e8 ? 0 : 1) + ' million';
+    return fmt(n);
+  }
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+  /* ---------- passport picker ---------- */
+  function fillPicker() {
+    var order = PP.codes.slice().sort(function (a, b) { return NAMES[pIdx[a]].localeCompare(NAMES[pIdx[b]]); });
+    var full = S.pass.length >= 4;
+    $('addPass').innerHTML = '<option value="">' + (full ? 'Team is full (4)' : (S.pass.length ? '+ Add a passport' : 'Choose a passport')) + '</option>' +
+      order.map(function (c) { return '<option value="' + c + '"' + (S.pass.indexOf(c) > -1 ? ' disabled' : '') + '>' + esc(NAMES[pIdx[c]]) + '</option>'; }).join('');
+    $('addPass').disabled = full;
+    $('chips').innerHTML = S.pass.map(function (c) {
+      return '<span class="chip">' + esc(NAMES[pIdx[c]]) + (S.pass.length > 1 ? '<button type="button" data-rm="' + c + '" aria-label="Remove ' + esc(NAMES[pIdx[c]]) + '">&times;</button>' : '') + '</span>';
+    }).join('');
+  }
+  $('addPass').addEventListener('change', function () {
+    var v = this.value; if (v && S.pass.length < 4 && S.pass.indexOf(v) < 0) S.pass.push(v); update();
+  });
+  $('chips').addEventListener('click', function (e) {
+    var c = e.target.getAttribute('data-rm'); if (!c) return;
+    S.pass = S.pass.filter(function (x) { return x !== c; }); update();
+  });
+
+  /* ---------- rows ---------- */
+  var rows = [];
+  function buildRows() {
+    rows = CC.list.map(function (c) {
+      var e = entryFor(S.pass, c.iso);
+      return { iso: c.iso, name: c.name, e: e, k: e.k, g: group(e.k), rank: T[e.k].rank, fr: c.jp.fr, ur: c.jp.ur, urPop: c.jp.urPop, frPop: c.jp.frPop };
+    });
+  }
+
+  /* ---------- card ---------- */
+  function renderCard() {
+    var names = S.pass.map(function (c) { return NAMES[pIdx[c]]; });
+    var team = S.pass.length > 1;
+    var t = { easy: [0, 0, 0], evisa: [0, 0, 0], req: [0, 0, 0], no: [0, 0, 0] };
+    rows.forEach(function (r) {
+      if (r.k === 'own' || r.k === 'none') return;
+      var b = t[r.g]; b[0]++; b[1] += r.fr; b[2] += r.frPop;
+    });
+    $('cEyebrow').textContent = team ? 'Team of ' + S.pass.length + ' passports' : 'One passport';
+    $('cTitle').textContent = names.join(' + ');
+    $('cNum').textContent = t.easy[0];
+    $('cLede').innerHTML = 'countries open ' + (team ? 'to this team ' : '') + 'without a visa arranged in advance. They hold <b>' + fmt(t.easy[1]) +
+      ' Frontier people groups</b>, about ' + words(t.easy[2]) + ' people.';
+    var cells = [['easy', 'No visa in advance', 4], ['evisa', 'e-Visa', 1], ['req', 'Visa required', 0], ['no', 'No admission', 'x']];
+    $('cStats').innerHTML = cells.map(function (c) {
+      return '<div class="stat"><div class="stat-v">' + t[c[0]][0] + '<small>' + fmt(t[c[0]][1]) + ' FPGs</small></div>' +
+        '<div class="stat-l"><i class="sw sw-' + c[2] + '"></i>' + c[1] + '</div></div>';
+    }).join('');
+    $('cSrc').textContent = 'Entry: Passport Index, ' + PP.updated + ' / Peoples: Joshua Project';
+  }
+
+  /* ---------- table ---------- */
+  function renderTable() {
+    var q = S.find.trim().toLowerCase();
+    var list = rows.filter(function (r) {
+      if (r.k === 'own') return false;
+      if (S.filter !== 'all' && r.g !== S.filter) return false;
+      return !q || r.name.toLowerCase().indexOf(q) > -1;
+    });
+    list.sort(function (a, b) {
+      var x = a[S.sort], y = b[S.sort];
+      if (S.sort === 'name') return x.localeCompare(y) * -S.dir;
+      return (x - y) * S.dir || b.fr - a.fr || a.name.localeCompare(b.name);
+    });
+    var shown = S.all || q ? list : list.slice(0, 25);
+    $('count').textContent = list.length + ' countries' + (shown.length < list.length ? ', showing ' + shown.length : '');
+    $('more').hidden = shown.length >= list.length;
+    document.querySelectorAll('#tbl th').forEach(function (th) {
+      var b = th.querySelector('button');
+      if (b && b.getAttribute('data-s') === S.sort) th.setAttribute('aria-sort', S.dir < 0 ? 'descending' : 'ascending'); else th.removeAttribute('aria-sort');
+    });
+    $('tbl').tBodies[0].innerHTML = shown.map(function (r) {
+      var e = r.e, label = T[r.k].label, sub = '';
+      if (r.k === 'free' && e.days) sub = e.days + ' days';
+      if (S.pass.length > 1 && e.via && r.rank < 5) sub += (sub ? ', ' : '') + 'via ' + NAMES[pIdx[e.via]];
+      return '<tr' + (r.iso === S.sel ? ' class="is-sel"' : '') + ' data-iso="' + r.iso + '">' +
+        '<td class="name"><button type="button" data-pick="' + r.iso + '">' + esc(r.name) + '</button></td>' +
+        '<td data-l="Entry"><span class="entry"><i class="sw sw-' + SW[r.k] + '"></i>' + label + (sub ? ' <small>' + esc(sub) + '</small>' : '') + '</span></td>' +
+        '<td class="num" data-l="Frontier groups">' + fmt(r.fr) + '</td>' +
+        '<td class="num" data-l="Unreached groups">' + fmt(r.ur) + '</td>' +
+        '<td class="num" data-l="Unreached people">' + fmt(r.urPop) + '</td>' +
+        '<td><a href="digital-readiness.html#c=' + r.iso + '">Digital profile &rarr;</a></td></tr>';
+    }).join('') || '<tr><td colspan="6" class="muted">No countries match.</td></tr>';
+  }
+  document.querySelector('#tbl thead').addEventListener('click', function (e) {
+    var s = e.target.getAttribute && e.target.getAttribute('data-s'); if (!s) return;
+    if (S.sort === s) S.dir = -S.dir; else { S.sort = s; S.dir = s === 'name' || s === 'rank' ? 1 : -1; }
+    renderTable();
+  });
+  $('tbl').addEventListener('click', function (e) {
+    var iso = e.target.getAttribute && e.target.getAttribute('data-pick'); if (!iso) return;
+    S.sel = iso; map.select(iso); renderTable();
+  });
+  $('filter').addEventListener('click', function (e) {
+    var k = e.target.getAttribute('data-k'); if (!k) return;
+    S.filter = k; this.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b === e.target ? 'true' : 'false'); });
+    renderTable();
+  });
+  $('find').addEventListener('input', function () { S.find = this.value; renderTable(); });
+  $('more').addEventListener('click', function () { S.all = true; renderTable(); });
+
+  /* ---------- map ---------- */
+  var lvl = {};
+  var map = CNDotMap($('map'), {
+    level: function (iso) { return lvl[iso] || 0; },
+    label: function (iso) {
+      var r = rows.filter(function (x) { return x.iso === iso; })[0];
+      if (!r) return iso;
+      return r.name + ': ' + T[r.k].label + (r.e.days ? ' (' + r.e.days + ' days)' : '') + '. ' + fmt(r.fr) + ' Frontier groups.';
+    },
+    onPick: function (iso) {
+      var r = byIso[iso]; if (!r) return;
+      S.sel = iso; S.filter = 'all'; S.find = r.name; $('find').value = r.name;
+      $('filter').querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-k') === 'all' ? 'true' : 'false'); });
+      map.select(iso); renderTable();
+    }
+  });
+
+  function update() {
+    buildRows();
+    lvl = {}; rows.forEach(function (r) { lvl[r.iso] = T[r.k].lvl; });
+    fillPicker(); renderCard(); renderTable(); map.draw();
+    history.replaceState(null, '', '#p=' + S.pass.join(','));
+  }
+
+  /* ---------- PNG ---------- */
+  $('fmt').addEventListener('click', function (e) {
+    var f = e.target.getAttribute('data-f'); if (!f) return;
+    S.fmt = f; this.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b === e.target ? 'true' : 'false'); });
+  });
+  $('dl').addEventListener('click', function () {
+    var card = $('card'), btn = this, label = btn.textContent;
+    if (!window.htmlToImage) { $('dlNote').textContent = 'Image tool did not load. Try again.'; return; }
+    btn.disabled = true; btn.textContent = 'Preparing...';
+    card.classList.add('as-' + S.fmt);
+    var w = S.fmt === 'wide' ? 1200 : 1080, h = Math.max(card.scrollHeight, S.fmt === 'wide' ? 675 : 1080);
+    var name = 'access-finder-' + S.pass.join('-').toLowerCase() + '.png';
+    var done = function () { card.classList.remove('as-wide', 'as-square'); btn.disabled = false; btn.textContent = label; };
+    window.htmlToImage.toPng(card, { pixelRatio: 1, backgroundColor: '#0A1018', width: w, height: h, cacheBust: true })
+      .then(function (url) { done(); var a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); })
+      .catch(function () { done(); $('dlNote').textContent = 'Could not make the image. Try again.'; });
+  });
+
+  $('srcEntry').textContent = 'Entry rules: Passport Index data, updated ' + PP.updated + ', compiled at github.com/imorte/passport-index-data (MIT license).';
+  update();
+  /* On narrow screens the map scrolls; start it on the 10/40 Window. */
+  var ms = document.querySelector('.map-scroll');
+  if (ms.scrollWidth > ms.clientWidth) ms.scrollLeft = (ms.scrollWidth - ms.clientWidth) * 0.6;
+})();
+</script>
+</body>
+</html>
