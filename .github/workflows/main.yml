@@ -1,0 +1,30 @@
+name: Refresh tool data
+
+on:
+  schedule:
+    - cron: "17 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rebuild data files
+        run: python3 scripts/refresh_data.py
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/country-data.js js/passport-data.js
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "Refresh tool data"
+            git push
+          fi
