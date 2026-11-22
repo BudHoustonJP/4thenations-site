@@ -110,7 +110,7 @@
             <th scope="col"><button type="button" data-s="trank">Strategy</button></th>
             <th scope="col" class="num"><button type="button" data-s="net">Internet</button></th>
             <th scope="col" class="num"><button type="button" data-s="lit">Literacy</button></th>
-            <th scope="col" class="num"><button type="button" data-s="mob">Mobile / 100</button></th>
+            <th scope="col" class="num"><button type="button" data-s="mob" title="SIM cards per 100 people">SIMs / 100</button></th>
             <th scope="col" class="num"><button type="button" data-s="fr">Frontier groups</button></th>
           </tr></thead>
           <tbody></tbody>
@@ -135,14 +135,14 @@
       <div>
         <h3>Read it carefully</h3>
         <ul>
-          <li>Mobile subscriptions count SIM cards, not people. Many people carry two, so the figure can pass 100.</li>
+          <li>SIM cards per 100 people is a proxy for how connected a country is. It counts active SIM cards, not people. Many carry two (work and personal, or one per carrier), so it can pass 100. Read it as how saturated the mobile market is, not how many people own a phone.</li>
           <li>Many wealthy countries no longer report adult literacy. When it is missing, the tag uses internet use alone and says so.</li>
           <li>Being online is not the same as finding the gospel online in your heart language.</li>
         </ul>
       </div>
       <div>
         <h3>Sources</h3>
-        <p>World Bank, World Development Indicators: Individuals using the Internet (IT.NET.USER.ZS), Mobile cellular subscriptions (IT.CEL.SETS.P2), Adult literacy rate (SE.ADT.LITR.ZS), Urban population (SP.URB.TOTL.IN.ZS).</p>
+        <p>World Bank, World Development Indicators: Individuals using the Internet (IT.NET.USER.ZS), Mobile cellular subscriptions, shown as SIM cards per 100 people (IT.CEL.SETS.P2), Adult literacy rate (SE.ADT.LITR.ZS), Urban population (SP.URB.TOTL.IN.ZS).</p>
         <p>People groups: Joshua Project, AllPeoplesInCountry export stored on this site.</p>
         <p id="srcDate">Data refreshes monthly.</p>
       </div>
@@ -217,7 +217,7 @@
   });
 
   /* ---------- profiles card ---------- */
-  var IND = [['net', 'Internet use', '%'], ['lit', 'Adult literacy', '%'], ['mob', 'Mobile subscriptions', '/100'], ['urb', 'Urban population', '%']];
+  var IND = [['net', 'Internet use', '%'], ['lit', 'Adult literacy', '%'], ['mob', 'SIM cards per 100 people', '/100'], ['urb', 'Urban population', '%']];
   function renderCard() {
     $('cEyebrow').textContent = S.sel.length > 1 ? 'Compare ' + S.sel.length + ' countries' : 'Country profile';
     $('cTitle').textContent = S.sel.map(function (i) { return byIso[i].name; }).join(' / ');
@@ -225,7 +225,7 @@
       var c = byIso[iso], t = tagOf(c), litMissing = v(c, 'lit') == null && t !== 'none';
       var rows = IND.map(function (d) {
         var x = c.wb && c.wb[d[0]];
-        return '<div class="ind"><span class="ind-name">' + d[1] + '</span>' +
+        return '<div class="ind"><span class="ind-name">' + d[1] + (d[0] === 'mob' ? '<br><small class="muted">A proxy for connectedness. Can pass 100.</small>' : '') + '</span>' +
           '<span class="ind-val">' + (x ? (d[0] === 'mob' ? Math.round(x[0]) : x[0].toFixed(0)) + '<small>' + d[2].trim() + ' &middot; ' + x[1] + '</small>' : '<small>no figure</small>') + '</span>' +
           (x ? dots(x[0]) : '') + '</div>';
       }).join('');
@@ -276,7 +276,7 @@
         '<td data-l=""><span class="ptag ' + TAG[r.t].cls + '">' + TAG[r.t].label + '</span></td>' +
         '<td class="num" data-l="Internet">' + cell(r.net, '%') + '</td>' +
         '<td class="num" data-l="Literacy">' + cell(r.lit, '%') + '</td>' +
-        '<td class="num" data-l="Mobile / 100">' + cell(r.mob) + '</td>' +
+        '<td class="num" data-l="SIMs / 100">' + cell(r.mob) + '</td>' +
         '<td class="num" data-l="Frontier groups">' + fmt(r.fr) + '</td></tr>';
     }).join('') || '<tr><td colspan="6" class="muted">No countries match.</td></tr>';
   }

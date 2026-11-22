@@ -113,6 +113,8 @@
             <th scope="col" class="num"><button type="button" data-s="fr">Frontier groups</button></th>
             <th scope="col" class="num"><button type="button" data-s="ur">Unreached groups</button></th>
             <th scope="col" class="num"><button type="button" data-s="urPop">Unreached people</button></th>
+            <th scope="col" class="num"><button type="button" data-s="open" title="How many of the other passports enter without a visa arranged in advance">Open to</button></th>
+            <th scope="col" class="num"><button type="button" data-s="mig" title="Share of residents born in another country">Foreign-born</button></th>
             <th scope="col"><span class="visually-hidden">Digital profile</span></th>
           </tr></thead>
           <tbody></tbody>
@@ -132,12 +134,14 @@
         <h3>What it shows</h3>
         <p>For each destination, the easiest short-term entry any selected passport gets, from visa free down to no admission.</p>
         <p>"No visa in advance" counts visa free entry, visa on arrival, and electronic travel authorizations such as the US ESTA.</p>
+        <p>Days are the longest stay that entry type allows, usually per visit. Open to: how many of the other 198 passports enter a country without a visa arranged in advance, a read on how open it is to visitors in general. Foreign-born: share of residents born in another country, a rough sign of whether foreigners live there long term.</p>
         <p>People group counts use Joshua Project thresholds. Unreached: 2% or fewer Evangelical and 5% or fewer professing Christian. Frontier: 0.1% or fewer professing Christian.</p>
       </div>
       <div>
         <h3>Read it carefully</h3>
         <ul>
           <li>Entry is not access. A visa free week is not a residence permit.</li>
+          <li>Stay limits are per visit. Extensions, and how often you can come back, vary by country.</li>
           <li>Team mode shows the best passport for each country, so one teammate may be the only one who gets in easily.</li>
           <li>Territories (Puerto Rico, Greenland, and others) follow their governing country and are not in the entry data.</li>
           <li>Frontier is shown by the percentage test only. Joshua Project also checks for known movements, so its own counts can differ slightly.</li>
@@ -147,6 +151,7 @@
         <h3>Sources</h3>
         <p id="srcEntry">Entry rules: Passport Index data, compiled at github.com/imorte/passport-index-data (MIT license).</p>
         <p>People groups: Joshua Project, AllPeoplesInCountry export stored on this site.</p>
+        <p>Foreign-born: UN international migrant stock, via the World Bank (SM.POP.TOTL.ZS).</p>
         <p>Map positions: Natural Earth country borders (public domain).</p>
         <p>Data refreshes monthly.</p>
       </div>
@@ -182,20 +187,35 @@
     none:  { rank: 7, label: 'No data (territory)', lvl: 0 }
   };
   var SW = { own: 4, free: 4, voa: 3, eta: 2, evisa: 1, req: 0, no: 'x', none: 'x' };
-  function decode(ch) {
+  var KIND = { '-': 'own', F: 'free', A: 'voa', T: 'eta', E: 'evisa', R: 'req', N: 'no' };
+  /* Reads both data formats: v2 keeps stay length for every entry type in PP.dm;
+     the older file only had days for visa free entry. */
+  function decode(pi, di) {
+    var ch = PP.m[pi].charAt(di);
+    if (PP.dm) {
+      var dc = PP.dm[pi].charAt(di);
+      return { k: KIND[ch] || 'none', days: dc >= 'a' && dc <= 'q' ? PP.days[dc.charCodeAt(0) - 97] : null };
+    }
     if (ch >= 'a' && ch <= 'q') return { k: 'free', days: PP.days[ch.charCodeAt(0) - 97] };
-    return { k: { '-': 'own', F: 'free', A: 'voa', T: 'eta', E: 'evisa', R: 'req', N: 'no' }[ch] || 'none', days: null };
+    return { k: KIND[ch] || 'none', days: null };
   }
+  var dval = function (e) { return e.days == null ? (e.k === 'free' ? 999 : 0) : e.days; };
   function entryFor(passports, dest) {
     if (pIdx[dest] == null) return { k: 'none', days: null, via: null };
     var best = null;
     passports.forEach(function (p) {
-      var e = decode(PP.m[pIdx[p]].charAt(pIdx[dest])); e.via = p;
-      if (!best || T[e.k].rank < T[best.k].rank ||
-          (e.k === best.k && e.k === 'free' && (e.days == null ? 999 : e.days) > (best.days == null ? 999 : best.days))) best = e;
+      var e = decode(pIdx[p], pIdx[dest]); e.via = p;
+      if (!best || T[e.k].rank < T[best.k].rank || (e.k === best.k && dval(e) > dval(best))) best = e;
     });
     return best;
   }
+  var OPEN = {};
+  PP.codes.forEach(function (d, di) {
+    var n = 0;
+    PP.codes.forEach(function (p, pi) { if (pi !== di) { var k = decode(pi, di).k; if (k === 'free' || k === 'voa' || k === 'eta') n++; } });
+    OPEN[d] = n;
+  });
+  var NPASS = PP.codes.length - 1;
   var group = function (k) { return k === 'free' || k === 'voa' || k === 'eta' ? 'easy' : k; };
 
   /* ---------- state ---------- */
@@ -238,7 +258,10 @@
   function buildRows() {
     rows = CC.list.map(function (c) {
       var e = entryFor(S.pass, c.iso);
-      return { iso: c.iso, name: c.name, e: e, k: e.k, g: group(e.k), rank: T[e.k].rank, fr: c.jp.fr, ur: c.jp.ur, urPop: c.jp.urPop, frPop: c.jp.frPop };
+      var mig = c.wb && c.wb.mig;
+      return { iso: c.iso, name: c.name, e: e, k: e.k, g: group(e.k), rank: T[e.k].rank, days: e.days,
+        fr: c.jp.fr, ur: c.jp.ur, urPop: c.jp.urPop, frPop: c.jp.frPop,
+        open: OPEN[c.iso] == null ? null : OPEN[c.iso], mig: mig ? mig[0] : null, migYr: mig ? mig[1] : null };
     });
   }
 
@@ -275,6 +298,9 @@
     list.sort(function (a, b) {
       var x = a[S.sort], y = b[S.sort];
       if (S.sort === 'name') return x.localeCompare(y) * -S.dir;
+      if (S.sort === 'rank') return (x - y) * S.dir || dval(b.e) - dval(a.e) || b.fr - a.fr;
+      if (x == null && y == null) return b.fr - a.fr;
+      if (x == null) return 1; if (y == null) return -1;
       return (x - y) * S.dir || b.fr - a.fr || a.name.localeCompare(b.name);
     });
     var shown = S.all || q ? list : list.slice(0, 25);
@@ -286,7 +312,7 @@
     });
     $('tbl').tBodies[0].innerHTML = shown.map(function (r) {
       var e = r.e, label = T[r.k].label, sub = '';
-      if (r.k === 'free' && e.days) sub = e.days + ' days';
+      if (e.days && r.rank < 5) sub = e.days + ' days';
       if (S.pass.length > 1 && e.via && r.rank < 5) sub += (sub ? ', ' : '') + 'via ' + NAMES[pIdx[e.via]];
       return '<tr' + (r.iso === S.sel ? ' class="is-sel"' : '') + ' data-iso="' + r.iso + '">' +
         '<td class="name"><button type="button" data-pick="' + r.iso + '">' + esc(r.name) + '</button></td>' +
@@ -294,8 +320,10 @@
         '<td class="num" data-l="Frontier groups">' + fmt(r.fr) + '</td>' +
         '<td class="num" data-l="Unreached groups">' + fmt(r.ur) + '</td>' +
         '<td class="num" data-l="Unreached people">' + fmt(r.urPop) + '</td>' +
-        '<td><a href="digital-readiness.html#c=' + r.iso + '">Digital profile &rarr;</a></td></tr>';
-    }).join('') || '<tr><td colspan="6" class="muted">No countries match.</td></tr>';
+        '<td class="num" data-l="Open to">' + (r.open == null ? '<span class="muted">&ndash;</span>' : r.open + '<span class="muted">/' + NPASS + '</span>') + '</td>' +
+        '<td class="num" data-l="Foreign-born"' + (r.migYr ? ' title="' + r.migYr + ' estimate"' : '') + '>' + (r.mig == null ? '<span class="muted">&ndash;</span>' : (r.mig < 1 ? r.mig.toFixed(1) : Math.round(r.mig)) + '%') + '</td>' +
+        '<td><a href="digital-readiness.html#c=' + r.iso + '" aria-label="Digital readiness profile for ' + esc(r.name) + '">Profile &rarr;</a></td></tr>';
+    }).join('') || '<tr><td colspan="8" class="muted">No countries match.</td></tr>';
   }
   document.querySelector('#tbl thead').addEventListener('click', function (e) {
     var s = e.target.getAttribute && e.target.getAttribute('data-s'); if (!s) return;
@@ -321,7 +349,7 @@
     label: function (iso) {
       var r = rows.filter(function (x) { return x.iso === iso; })[0];
       if (!r) return iso;
-      return r.name + ': ' + T[r.k].label + (r.e.days ? ' (' + r.e.days + ' days)' : '') + '. ' + fmt(r.fr) + ' Frontier groups.';
+      return r.name + ': ' + T[r.k].label + (r.e.days && r.rank < 5 ? ', ' + r.e.days + ' days' : '') + '. ' + fmt(r.fr) + ' Frontier groups.';
     },
     onPick: function (iso) {
       var r = byIso[iso]; if (!r) return;
