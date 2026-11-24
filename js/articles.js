@@ -7,6 +7,8 @@
    Topics (cats), space separated: data strategy migration bible frontier culture
    ========================================================================== */
 window.CN_ARTICLES = [
+  { href: "the-158-million-muslims-the-1040.html", title: "The 158 Million Muslims the 10/40 Window Misses", blurb: "If they were one country, it would rank fourth in the world. Filter a priority list by the Window, and they disappear.", cats: "data frontier strategy" },
+  { href: "the-largest-cities-on-earth-is-filling.html", title: "The Largest Cities on Earth Are Filling Up With Villages", blurb: "Megacities grow by arrival, one family from one district at a time. Research the city for the sake of the village.", cats: "migration strategy data" },
   { href: "pakistan-passes-indonesia-as-most.html", title: "Pakistan Passes Indonesia", blurb: "A near tie in raw people group totals becomes a 15 million gap once you count who actually follows Islam.", cats: "data frontier" },
   { href: "the-lost-art-of-imitation.html", title: "The Lost Art of Imitation", blurb: "The discipleship debate argues about what disciples are taught. Reproduction runs on what they have seen.", cats: "bible strategy" },
   { href: "who-becomes-their-tribe.html", title: "Who Becomes Their Tribe?", blurb: "People go where they belong. When following Jesus costs a new believer their community, the church has to form in its place.", cats: "frontier culture strategy" },
