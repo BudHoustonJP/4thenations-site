@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Largest Cities on Earth Are Filling Up With Villages | Clarity for the Nations</title>
+<meta name="description" content="Megacities grow by arrival. Our maps count people groups by country, and the growth is happening by city. An interactive piece from Clarity for the Nations by Bud Houston.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sofia+Sans+Extra+Condensed:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shell.css">
+<script>document.documentElement.className += ' js';</script>
+<style>
+:root{
+--ink:#0A1018;--panel:#101924;--line:#22303F;--land:#2F4358;--paper:#EEE9DD;--muted:#94A1AF;--lamp:#F5B83D;
+--steel:#7FA7C9;--pale:#B7C9D9;--slate:#6F8193;
+--display:"Sofia Sans Extra Condensed","Arial Narrow",Impact,sans-serif;
+--body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6}
+svg,canvas{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lamp);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.narrow{max-width:960px}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--lamp);box-shadow:0 0 12px rgba(245,184,61,.55);z-index:60}
+
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.eyebrow b{color:var(--lamp);font-weight:500}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.92;margin:0;letter-spacing:.005em;text-wrap:balance}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero-art{position:absolute;inset:0;pointer-events:none;max-width:1440px;margin:0 auto}
+.hero-art svg{position:absolute;right:0;top:40%;transform:translateY(-50%);width:54%;height:auto}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,rgba(10,16,24,.93) 36%,rgba(10,16,24,0) 64%)}
+.hero-inner{position:relative;z-index:2;padding:60px 28px 0}
+.hero h1{font-size:clamp(54px,7.8vw,108px);max-width:7.4em;margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--lamp)}
+.hero .lede{font-size:19px;max-width:31em;margin:24px 0 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin:44px 0 0;border:1px solid var(--line);background:rgba(16,25,36,.88)}
+.stat{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat .num{font-family:var(--display);font-weight:800;font-size:76px;line-height:.8;color:var(--lamp);font-variant-numeric:tabular-nums}
+.stat .lab{font-size:15.5px;line-height:1.4}
+.map-note{position:relative;z-index:2;margin:18px 0 0;padding-bottom:30px;text-align:right;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+
+.copy{padding:72px 0 0}
+.copy p{font-size:19px;line-height:1.65;max-width:34em;margin:0}
+.copy p+p{margin-top:18px}
+.copy p.dim{color:var(--muted)}
+
+.mod{padding:96px 0 0}
+.mod-head{display:grid;gap:14px;margin-bottom:28px;max-width:46em}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.kicker b{color:var(--lamp);font-weight:500}
+.mod h2{font-size:clamp(42px,5.4vw,70px)}
+.mod .intro{color:var(--muted);font-size:17.5px;margin:0;max-width:40em}
+.viz{position:relative;border:1px solid var(--line);background:var(--panel);padding:28px}
+.viz::before{content:"";position:absolute;left:-1px;top:-1px;width:64px;height:3px;background:var(--lamp)}
+.viz+.viz{margin-top:20px}
+.viz h3{font-size:clamp(30px,3.4vw,40px);margin-bottom:16px}
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+.seg{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.seg button{font:500 12.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--paper);background:none;border:1.5px solid var(--line);border-radius:2px;padding:11px 14px;cursor:pointer;transition:border-color .15s,color .15s,background-color .15s}
+.seg button:hover{border-color:var(--lamp)}
+.seg button.on{background:var(--lamp);border-color:var(--lamp);color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:500 13px/1.55 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:11px 18px;border:1.5px solid var(--lamp);border-radius:2px;background:none;color:var(--lamp);cursor:pointer;transition:background-color .15s,color .15s,opacity .15s}
+.btn:hover{background:var(--lamp);color:var(--ink)}
+.btn.solid{background:var(--lamp);color:var(--ink)}
+.btn.solid:hover{background:var(--paper);border-color:var(--paper)}
+.btn.lg{padding:15px 24px;font-size:14px}
+.btn:disabled{opacity:.35;cursor:default;background:none;color:var(--lamp);border-color:var(--lamp)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.readout{margin-top:22px;padding:14px 18px;border-left:3px solid var(--lamp);background:var(--ink);font-size:16.5px;line-height:1.55;min-height:3.6em}
+.readout b{color:var(--lamp);font-weight:600}
+.readout a{color:var(--lamp)}
+.caption{margin:14px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;line-height:1.55;color:var(--muted)}
+.tag{display:inline-block;font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:7px 10px;border:1px dashed var(--muted);color:var(--muted)}
+.tag.hot{border:1px solid var(--lamp);color:var(--lamp)}
+.vrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:20px}
+.figs{display:flex;flex-wrap:wrap;margin-top:20px;border:1px solid var(--line)}
+.figs div{flex:1 1 200px;padding:14px 18px;font-size:14px;color:var(--muted)}
+.figs div+div{border-left:1px solid var(--line)}
+.figs b{display:block;font-family:var(--display);font-weight:800;font-size:44px;line-height:.9;color:var(--paper);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.figs b.hot{color:var(--lamp)}
+
+.t-axis{font-family:var(--mono);font-size:12px;fill:#94A1AF;letter-spacing:.04em}
+.t-lab{font-family:var(--mono);font-size:14px;font-weight:500;fill:#EEE9DD}
+.t-lab.hot{fill:#F5B83D}
+.t-big{font-family:var(--display);font-size:26px;font-weight:800}
+.hit{cursor:pointer;outline:none}
+.hit:focus-visible rect,.hit:focus-visible circle{stroke:#F5B83D;stroke-width:3}
+
+/* module 1: timeline */
+.tl-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px 24px;margin-bottom:18px}
+.tl-num{display:flex;align-items:flex-end;gap:14px}
+.tl-num b{font-family:var(--display);font-weight:800;font-size:96px;line-height:.78;color:var(--lamp);font-variant-numeric:tabular-nums}
+.tl-num span{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);max-width:14em;line-height:1.4}
+input[type=range]{width:100%;accent-color:var(--lamp);margin:18px 0 0;cursor:pointer}
+.ticks{display:flex;justify-content:space-between;font:500 12px/1 var(--mono);letter-spacing:.08em;color:var(--muted);margin-top:8px}
+.ticks span.on{color:var(--lamp)}
+.top5{list-style:none;margin:22px 0 0;padding:0;border:1px solid var(--line);transition:opacity .4s ease}
+.top5.dim{opacity:.32}
+.top5 li{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:12px 16px}
+.top5 li+li{border-top:1px solid var(--line)}
+.top5 .rk{font-family:var(--display);font-weight:800;font-size:34px;line-height:1;color:var(--muted)}
+.top5 li.upg .rk{color:var(--lamp)}
+.top5 .nm{font-weight:600}
+.top5 .nm small{display:block;font-weight:400;color:var(--muted);font-size:14px}
+.top5 .pc{font:500 12px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:right}
+.top5 li.upg .pc{color:var(--lamp)}
+
+/* module 2 */
+.chartwrap{position:relative;height:330px}
+
+/* module 3 */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+.chips li{font:500 12.5px/1 var(--mono);letter-spacing:.04em;padding:8px 10px;border:1px dashed var(--line);color:var(--muted);transition:color .3s,border-color .3s}
+.chips li.on{border:1px solid var(--lamp);color:var(--lamp)}
+.verse{margin:20px 0 0;padding:16px 18px;border:1px solid var(--line);font-size:17px}
+.verse span{display:block;margin-top:8px;font:500 11.5px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* module 4 */
+.cities{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.cities button{font:500 13px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--paper);background:var(--ink);border:1.5px solid var(--line);border-radius:2px;padding:11px 13px;cursor:pointer;transition:border-color .15s,color .15s}
+.cities button:hover,.cities button.on{border-color:var(--lamp);color:var(--lamp)}
+.swap{transition:opacity .5s ease}
+
+/* module 5 */
+.frictions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.fcard{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;font:inherit;color:var(--paper);background:var(--ink);border:1.5px solid var(--line);border-radius:2px;padding:16px 18px;cursor:pointer;transition:border-color .15s}
+.fcard:hover,.fcard.open{border-color:var(--lamp)}
+.fcard .ft{font-family:var(--display);font-weight:800;font-size:28px;line-height:1;text-transform:uppercase}
+.fcard .fx{font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--lamp)}
+.fcard .fb{display:none;color:var(--muted);font-size:15.5px;line-height:1.5}
+.fcard.open .fb{display:block}
+
+/* module 6 */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.legend button{display:inline-flex;align-items:center;gap:9px;font:500 12.5px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--paper);background:none;border:1.5px solid var(--line);border-radius:2px;padding:10px 12px;cursor:pointer;transition:border-color .15s}
+.legend button i{width:12px;height:12px;display:inline-block}
+.legend button.on,.legend button:hover{border-color:var(--lamp)}
+.audit{border:1px solid var(--line);background:var(--panel)}
+.qcard+.qcard{border-top:1px solid var(--line)}
+.qcard .head{width:100%;display:flex;align-items:center;gap:16px;text-align:left;background:none;border:0;color:var(--paper);font:inherit;padding:20px 24px;cursor:pointer}
+.qcard .qn{flex:none;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--lamp);color:var(--lamp);font:500 13px/1 var(--mono);border-radius:2px;transition:background-color .2s,color .2s}
+.qcard.reviewed .qn{background:var(--lamp);color:var(--ink)}
+.qcard .qt{flex:1;font-family:var(--display);font-weight:800;font-size:30px;line-height:1;text-transform:uppercase}
+.qcard .chev{font:500 22px/1 var(--mono);color:var(--lamp);transition:transform .25s}
+.qcard.open .chev{transform:rotate(45deg)}
+.qcard .body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qcard.open .body{max-height:520px}
+.qcard .body-in{padding:0 24px 22px 76px;color:var(--muted)}
+.qcard .body-in p{margin:0 0 10px}
+.qcard .body-in p.q{color:var(--paper);font-size:18px;line-height:1.5}
+.meter{height:6px;background:var(--line);margin-top:20px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--lamp);transition:width .5s ease}
+.meter-lab{font:500 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.direction{margin-top:24px;padding:22px 24px;border:1px solid var(--lamp);background:rgba(245,184,61,.06)}
+.direction p{margin:10px 0 0;max-width:46em}
+.direction a{color:var(--lamp)}
+.qlist{list-style:none;counter-reset:q;margin:22px 0 0;padding:0;border:1px solid var(--line)}
+.qlist li{counter-increment:q;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 18px;font-size:16.5px}
+.qlist li+li{border-top:1px solid var(--line)}
+.qlist li::before{content:counter(q);font-family:var(--display);font-weight:800;font-size:34px;line-height:.9;color:var(--lamp)}
+.method{margin-top:28px;padding-top:18px;border-top:1px dashed var(--line);font-size:14.5px;color:var(--muted);max-width:52em}
+.method b{color:var(--paper);font-weight:600}
+
+.quoteband{margin-top:104px;background:var(--lamp);color:var(--ink);padding:72px 0}
+.quoteband .q{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(38px,4.8vw,64px);line-height:.95;max-width:17em;margin:0;text-wrap:balance}
+.quoteband .q+.q{margin-top:34px;padding-top:34px;border-top:1px solid rgba(10,16,24,.25)}
+.quoteband .qsrc{display:block;margin-top:12px;font:500 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#3A2C0C}
+.closing{padding:96px 0 0}
+.closing-box{border:1px solid var(--line);background:var(--panel);padding:48px 40px;display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.closing-box h2{font-size:clamp(44px,6vw,86px);max-width:12em}
+.afoot{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:28px;font:500 12.5px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.afoot a{color:var(--muted);text-decoration:none;border-bottom:1.5px solid transparent}
+.afoot a:hover{color:var(--lamp);border-bottom-color:var(--lamp)}
+
+@media (max-width:900px){
+.stats{grid-template-columns:1fr}
+.stat+.stat{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:680px){
+body{font-size:16px}
+.wrap{padding:0 18px}
+.hero{display:flex;flex-direction:column}
+.hero-inner{padding:44px 18px 0;order:1}
+.hero-art{position:relative;order:2;inset:auto;margin-top:18px}
+.hero-art svg{position:relative;top:auto;transform:none;width:100%}
+.hero-art::after{display:none}
+.map-note{order:3;text-align:left;padding:10px 18px 26px;margin:0}
+.stat .num{font-size:64px}
+.copy{padding-top:52px}
+.copy p{font-size:17.5px}
+.mod{padding-top:72px}
+.viz{padding:20px 16px}
+.tl-num b{font-size:80px}
+.top5 li{grid-template-columns:48px 1fr;padding:12px}
+.top5 .pc{grid-column:2;text-align:left}
+.frictions{grid-template-columns:1fr}
+.qcard .head{padding:18px 16px;gap:12px}
+.qcard .qt{font-size:24px}
+.qcard .body-in{padding:0 16px 20px}
+.closing-box{padding:30px 22px}
+.quoteband{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<script src="js/shell.js" data-part="header"></script>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-art" aria-hidden="true"><svg id="heroArt" viewBox="0 0 700 440" preserveAspectRatio="xMidYMid meet"></svg></div>
+<div class="wrap hero-inner">
+<p class="eyebrow">Clarity for the Nations &middot; <b>Migration &amp; Cities</b></p>
+<h1>The largest cities on earth are filling up with <em>villages.</em></h1>
+<p class="lede">Megacities grow by arrival. Our maps count people groups by country, and the growth is happening by city.</p>
+<div class="stats">
+<div class="stat"><span class="num" data-target="52" data-suffix="M">0</span><span class="lab">people projected in Dhaka by 2050, the largest city on earth</span></div>
+<div class="stat"><span class="num" data-target="37">0</span><span class="lab">megacities the UN expects by 2050, up from 8 in 1975</span></div>
+<div class="stat"><span class="num" data-target="98.9" data-dec="1" data-suffix="%">0</span><span class="lab">of Bangladesh&rsquo;s population in unreached people groups</span></div>
+</div>
+</div>
+<p class="map-note wrap">Illustrative: families arrive from home districts and settle near kin.</p>
+</section>
+
+<section class="copy">
+<div class="wrap">
+<p class="reveal">By 2050, the largest city on earth will be Dhaka. The UN&rsquo;s World Urbanization Prospects 2025 projects it passing Jakarta at mid-century with about 52 million people. Delhi is projected fourth and Karachi fifth, near 33 million.</p>
+<p class="reveal">Joshua Project places 98.9% of Bangladesh&rsquo;s population in unreached people groups, 99.1% of Pakistan&rsquo;s, and 95.9% of India&rsquo;s. Most of that city growth arrives from the countryside, one family at a time, and each family belongs to a specific people from a specific district.</p>
+<p class="reveal dim">Scroll through, and work the controls.</p>
+</div>
+</section>
+
+<!-- MODULE 1: TIMELINE -->
+<section class="mod" id="m1">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>01</b> / Megacities grow by arrival</p>
+<h2 class="reveal">From 8 megacities to 37</h2>
+<p class="intro reveal">Drag through time. Each square is one megacity. At 2050, see which cities lead and where they sit.</p>
+</div>
+<div class="viz reveal">
+<div class="tl-top">
+<div class="tl-num"><b id="tlNum">8</b><span id="tlLab">megacities in 1975</span></div>
+<button type="button" class="btn" id="tlPlay">&#9654; Play the timeline</button>
+</div>
+<svg id="tlSvg" viewBox="0 0 640 150" width="100%" role="img" aria-label="Megacities: 8 in 1975, 33 in 2025, 37 expected by 2050"></svg>
+<input type="range" id="tlRange" min="0" max="2" step="1" value="0" aria-label="Year: 1975, 2025, or 2050" aria-valuetext="1975">
+<div class="ticks"><span data-i="0" class="on">1975</span><span data-i="1">2025</span><span data-i="2">2050 (projected)</span></div>
+<div class="readout" id="tlDesc"><b>1975: 8 megacities</b> in the whole world.</div>
+<ol class="top5 dim" id="top5" aria-label="Projected largest cities, 2050">
+<li class="upg"><span class="rk">#1</span><span class="nm">Dhaka<small>About 52 million, passing Jakarta at mid-century</small></span><span class="pc">Bangladesh: 98.9% in unreached groups</span></li>
+<li class="upg"><span class="rk">#4</span><span class="nm">Delhi<small>Projected fourth</small></span><span class="pc">India: 95.9% in unreached groups</span></li>
+<li class="upg"><span class="rk">#5</span><span class="nm">Karachi<small>Near 33 million, ahead of Cairo and Tokyo</small></span><span class="pc">Pakistan: 99.1% in unreached groups</span></li>
+</ol>
+<p class="caption">UN DESA, World Urbanization Prospects 2025. 2050 figures are projections. Ranks shown are those the article names; three of the five largest cities of 2050 sit in countries where nearly everyone belongs to an unreached people group.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 2: CHART -->
+<section class="mod" id="m2">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>02</b> / Where the growth concentrates</p>
+<h2 class="reveal">Seven countries, 500 million new city residents</h2>
+<p class="intro reveal">The UN expects the coming growth to concentrate in seven countries that together add more than 500 million city residents between 2025 and 2050. Six of them are charted here with the share of each population in unreached people groups. Tap a bar.</p>
+</div>
+<div class="viz reveal">
+<div class="seg" id="chSeg" role="group" aria-label="Bar order">
+<button type="button" class="on" data-v="listed" aria-pressed="true">As listed</button>
+<button type="button" data-v="sorted" aria-pressed="false">Sorted by share</button>
+</div>
+<div class="chartwrap"><canvas id="cChart" role="img" aria-label="Share of population in unreached people groups: India 95.9%, Nigeria 30.6%, Pakistan 99.1%, Egypt 90.1%, Bangladesh 98.9%, Ethiopia 17.1%"></canvas></div>
+<div class="readout" id="chDesc">Four of the six sit at 90% or higher. Nigeria and Ethiopia sit far lower. Tap a bar for detail.</div>
+<div class="figs">
+<div><b class="hot">500M+</b>new city residents in seven countries, 2025 to 2050</div>
+<div><b>300K to 500K</b>rural migrants arriving in Dhaka each year</div>
+</div>
+<p class="caption">Sources: UN DESA, World Urbanization Prospects 2025; Joshua Project country data. Gold bars: 90% or more in unreached people groups. Blue bars: under 35%.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 3: NARNIA DOOR -->
+<section class="mod" id="m3">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>03</b> / The Narnia door</p>
+<h2 class="reveal">The city is a door back to the village</h2>
+<p class="intro reveal">A few members of a people group living in a city open access to their whole home network. Let the families arrive, then carry it home.</p>
+</div>
+<div class="viz reveal">
+<svg id="ndSvg" viewBox="0 0 640 420" width="100%" role="img" aria-label="Eight home districts around one city, joined to four arrival neighborhoods"></svg>
+<div class="controls">
+<button type="button" class="btn solid" id="ndArrive">Families arrive</button>
+<button type="button" class="btn" id="ndHome" disabled>Carry it home</button>
+<button type="button" class="btn" id="ndReset">Reset</button>
+</div>
+<div class="figs">
+<div><b class="hot" id="ndFam">0</b>families settled near kin</div>
+<div><b id="ndVil">0 of 8</b>home districts reached from the city</div>
+</div>
+<div class="readout" id="ndDesc">Eight home districts, one city. Press <b>Families arrive</b>.</div>
+<p class="caption">Illustrative: the argument, not measured data.</p>
+</div>
+<div class="viz reveal">
+<h3>The door narrows with time</h3>
+<svg id="drSvg" viewBox="0 0 640 190" width="100%" role="img" aria-label="A doorway whose opening narrows as time since arrival grows"></svg>
+<input type="range" id="drRange" min="0" max="100" step="1" value="0" aria-label="Time since arrival" aria-valuetext="Just arrived">
+<div class="ticks"><span>Just arrived</span><span>Settling in</span><span>Re-embedded</span></div>
+<ul class="chips" id="drChips"><li data-at="30">The mosque rebuilt</li><li data-at="55">The temple rebuilt</li><li data-at="80">Family oversight rebuilt</li></ul>
+<div class="readout" id="drDesc"><b>Just arrived.</b> The months after arrival matter most.</div>
+<div class="verse">&ldquo;So that all the Jews and Greeks who lived in the province of Asia heard the word of the Lord.&rdquo;<span>Acts 19:10 (NIV). Paul taught daily in one city for two years.</span></div>
+<p class="caption">Illustrative: the article gives no timescale. Arrivals re-embed, rebuilding the mosque, the temple, and the family oversight they left behind.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 4: TWO KINDS OF GROWTH CITY -->
+<section class="mod" id="m4">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>04</b> / Two different strategies</p>
+<h2 class="reveal">Growth cities fall into two groups</h2>
+<p class="intro reveal">Each group calls for a different posture. Switch between them, then tap a city.</p>
+</div>
+<div class="viz reveal">
+<div class="seg" id="gcSeg" role="group" aria-label="Group of growth cities">
+<button type="button" class="on" data-v="a" aria-pressed="true">Inside the unreached world</button>
+<button type="button" data-v="b" aria-pressed="false">Beside a national church</button>
+</div>
+<svg id="gcSvg" viewBox="0 0 640 230" width="100%" role="img" aria-label="Schematic of the two postures"></svg>
+<div class="vrow"><span class="tag hot" id="gcTag">Frontier and door</span></div>
+<div class="cities" id="gcCities" role="group" aria-label="Cities in this group"></div>
+<div class="readout" id="gcDesc"></div>
+<p class="caption">Schematic. City groupings and figures as stated in the article.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 5: DITCHES -->
+<section class="mod" id="m5">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>05</b> / Between two ditches</p>
+<h2 class="reveal">Cities are doors. Breakthrough has come beyond them.</h2>
+<p class="intro reveal">The record invites two easy conclusions, and both miss the point. Pick one and watch where the road goes.</p>
+</div>
+<div class="viz reveal">
+<div class="seg" id="rdSeg" role="group" aria-label="Choose a conclusion">
+<button type="button" data-v="move" aria-pressed="false">Move the workers to the city</button>
+<button type="button" data-v="wait" aria-pressed="false">The city can wait</button>
+<button type="button" data-v="way" aria-pressed="false">Research the city for the village</button>
+</div>
+<svg id="rdSvg" viewBox="0 0 640 300" width="100%" role="img" aria-label="A road between two ditches"></svg>
+<div class="vrow"><span class="tag" id="rdTag">Pick a conclusion</span></div>
+<div class="readout" id="rdDesc">The people are moving to cities. Breakthrough has mostly come in villages. Which conclusion do you draw?</div>
+</div>
+<div class="viz reveal">
+<h3>Why the city works against the spread</h3>
+<div class="frictions" id="fr">
+<button type="button" class="fcard" aria-expanded="false"><span class="fx">01</span><span class="ft">Family lines break</span><span class="fb">The gospel tends to travel along family and clan lines, and the city breaks many of them.</span></button>
+<button type="button" class="fcard" aria-expanded="false"><span class="fx">02</span><span class="ft">Identities layer</span><span class="fb">A clan at home, a trade at work, a language that changes by room.</span></button>
+<button type="button" class="fcard" aria-expanded="false"><span class="fx">03</span><span class="ft">Networks span the city</span><span class="fb">Networks stretch across the whole city, so living near someone carries the gospel only so far.</span></button>
+<button type="button" class="fcard" aria-expanded="false"><span class="fx">04</span><span class="ft">The city consumes time</span><span class="fb">A garment worker on a long shift, a rickshaw puller renting his vehicle by the day, and a family sharing one room with relatives have few of the slow evenings where village conversations happen.</span></button>
+</div>
+<div class="meter" aria-hidden="true"><i id="frFill"></i></div>
+<p class="meter-lab" id="frLab">0 of 4 opened</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 6: RESEARCH LAYERS -->
+<section class="mod" id="m6">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>06</b> / Research the city for the sake of the village</p>
+<h2 class="reveal">The road home rarely runs in one hop</h2>
+<p class="intro reveal">Under the UN&rsquo;s new method, humanity splits three ways. Tap each step on the road home.</p>
+</div>
+<div class="viz reveal">
+<svg id="stSvg" viewBox="0 0 640 128" width="100%" role="group" aria-label="Share of humanity: rural areas 19%, towns 36%, cities 45%"></svg>
+<div class="legend" id="stLegend" role="group" aria-label="Choose a settlement type"></div>
+<div class="readout" id="stDesc"></div>
+<p class="caption">UN DESA, World Urbanization Prospects 2025, new method: 45% of humanity in cities, 36% in towns, 19% in rural areas.</p>
+</div>
+<div class="viz reveal">
+<h3>Three layers need dedicated attention</h3>
+<div class="audit" id="audit">
+<div class="qcard"><button type="button" class="head" aria-expanded="false" aria-controls="lb1"><span class="qn">1</span><span class="qt">Sociological makeup</span><span class="chev" aria-hidden="true">+</span></button><div class="body" id="lb1"><div class="body-in"><p class="q">Map which peoples live in which parts of the city, how they cluster, and which identity each one leads with away from home.</p></div></div></div>
+<div class="qcard"><button type="button" class="head" aria-expanded="false" aria-controls="lb2"><span class="qn">2</span><span class="qt">Missiological segments</span><span class="chev" aria-hidden="true">+</span></button><div class="body" id="lb2"><div class="body-in"><p class="q">Name the reachable slices inside each people, such as new arrivals, students, laborers, and the city-born second generation, because each carries its own barriers and openings.</p></div></div></div>
+<div class="qcard"><button type="button" class="head" aria-expanded="false" aria-controls="lb3"><span class="qn">3</span><span class="qt">Bridging practice</span><span class="chev" aria-hidden="true">+</span></button><div class="body" id="lb3"><div class="body-in"><p class="q">Learn which patterns produce disciples who carry the gospel back to their districts and villages of origin.</p></div></div></div>
+</div>
+<div class="meter" aria-hidden="true"><i id="auditFill"></i></div>
+<p class="meter-lab" id="auditLab">0 of 3 opened</p>
+<div class="direction">
+<p class="eyebrow"><b>The direction</b></p>
+<p>For every priority people group, name the towns and cities it is feeding. Then reverse it: for each growth city, name the people groups arriving and the districts they left. Connect the teams at both ends. That is multi-node engagement at city resolution, and most of it can start from what field contacts already know. <a href="multi-node-strategy.html">Multi-Node Strategy &rarr;</a></p>
+</div>
+<p class="eyebrow" style="margin-top:28px">Questions for your team</p>
+<ol class="qlist">
+<li>Which towns and cities is your priority people group moving to, and can anyone on your team name the neighborhoods where they land?</li>
+<li>If you serve in Dhaka, Karachi, Lahore, or Delhi, which rural districts feed your neighborhood, and does any team working in those districts know you exist?</li>
+<li>If you serve in Lagos, Nairobi, Kinshasa, or Dar es Salaam, which unreached people groups now live within walking distance of a national church, and who has asked that church to engage them?</li>
+<li>Which of your city efforts has produced a disciple who started something in his or her home district, and has anyone written down how it happened?</li>
+</ol>
+<div class="method"><b>About the sources.</b> UN DESA Population Division, World Urbanization Prospects 2025. Joshua Project country data: India, Pakistan, Bangladesh accessed September 2026; Nigeria, DR Congo, Egypt, Ethiopia accessed November 2026. Historical notes draw on J. Waskom Pickett, Christian Mass Movements in India (1933), and Thomas A. Robinson, Who Were the First Christians? (2017). Full source list in the essay.</div>
+</div>
+</div>
+</section>
+
+<!-- QUOTES -->
+<section class="quoteband">
+<div class="wrap narrow">
+<p class="q reveal">&ldquo;A city that grows by arrival is a city made of people groups.&rdquo;</p>
+<p class="q reveal">&ldquo;Our maps count people groups by country. The growth is happening by city.&rdquo;<span class="qsrc">Bud Houston, Clarity for the Nations</span></p>
+</div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+<div class="wrap narrow">
+<div class="closing-box reveal">
+<p class="eyebrow"><b>The takeaway</b></p>
+<h2>Research the city for the sake of the village.</h2>
+<a class="btn solid lg" href="https://clarity4thenations.substack.com/p/the-largest-cities-on-earth-is-filling" target="_blank" rel="noopener">Read the full essay &rarr;</a>
+</div>
+<nav class="afoot" aria-label="More from Clarity for the Nations">
+<a href="articles.html">&larr; All articles</a>
+<a href="index.html">Home</a>
+<a href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Clarity for the Nations on Substack</a>
+</nav>
+</div>
+</section>
+
+</main>
+
+<script src="js/shell.js" data-part="footer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+var NS = 'http://www.w3.org/2000/svg';
+function S(tag, attrs, parent) { var e = document.createElementNS(NS, tag); if (attrs) for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function T(txt, attrs, parent) { var e = S('text', attrs, parent); e.textContent = txt; return e; }
+function tween(dur, fn, done) { var s = performance.now(); function f(n) { var k = Math.min((n - s) / dur, 1), e = 1 - Math.pow(1 - k, 3); fn(e); if (k < 1) requestAnimationFrame(f); else if (done) done(); } requestAnimationFrame(f); }
+function onView(node, cb, th) { if (!node) return; if (!('IntersectionObserver' in window)) { cb(); return; } var o = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { cb(); o.unobserve(e.target); } }); }, { threshold: th || 0.3 }); o.observe(node); }
+function seg(el, cb) { var bs = [].slice.call(el.querySelectorAll('button')); bs.forEach(function (b) { b.addEventListener('click', function () { bs.forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); cb(b.getAttribute('data-v')); }); }); }
+function pressable(node, label, fn) { node.setAttribute('tabindex', '0'); node.setAttribute('role', 'button'); node.setAttribute('aria-label', label); node.setAttribute('class', ((node.getAttribute('class') || '') + ' hit').trim()); node.addEventListener('click', fn); node.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } }); }
+function rnd(n) { var s = Math.sin(n * 12.9898) * 43758.5453; return s - Math.floor(s); }
+function qpt(p0, c, p1, t) { var u = 1 - t; return [u * u * p0[0] + 2 * u * t * c[0] + t * t * p1[0], u * u * p0[1] + 2 * u * t * c[1] + t * t * p1[1]]; }
+var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* progress bar */
+(function () { var bar = document.getElementById('progress'); function f() { var h = document.documentElement, m = h.scrollHeight - h.clientHeight; bar.style.width = (m > 0 ? h.scrollTop / m * 100 : 0) + '%'; } document.addEventListener('scroll', f, { passive: true }); f(); })();
+
+/* reveal on scroll */
+(function () {
+var ns = document.querySelectorAll('.reveal');
+if (!('IntersectionObserver' in window)) { ns.forEach(function (n) { n.classList.add('in'); }); return; }
+var o = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); } }); }, { threshold: 0.15 });
+ns.forEach(function (n) { o.observe(n); });
+})();
+
+/* count-up stats */
+(function () {
+function run() { document.querySelectorAll('.stat .num').forEach(function (n) { var t = parseFloat(n.dataset.target), d = parseInt(n.dataset.dec || '0', 10), s = n.dataset.suffix || ''; tween(1500, function (e) { n.textContent = (e * t).toFixed(d) + s; }, function () { n.textContent = t.toFixed(d) + s; }); }); }
+if (document.readyState === 'complete') run(); else window.addEventListener('load', run);
+})();
+
+/* hero: villages feeding one city */
+(function () {
+var svg = document.getElementById('heroArt'); if (!svg) return;
+var C = [380, 220], N = 120, routes = [];
+var pathG = S('g', {}, svg);
+for (var v = 0; v < 10; v++) {
+var a = v / 10 * Math.PI * 2 + 0.3 + (rnd(v + 4) - 0.5) * 0.3;
+var vx = Math.max(30, Math.min(670, C[0] + Math.cos(a) * 300)), vy = Math.max(24, Math.min(416, C[1] + Math.sin(a) * 180));
+var ex = C[0] + Math.cos(a) * 86, ey = C[1] + Math.sin(a) * 86;
+var cx = (vx + ex) / 2 + Math.sin(a) * 40, cy = (vy + ey) / 2 - Math.cos(a) * 40;
+var p = S('path', { d: 'M' + vx.toFixed(1) + ' ' + vy.toFixed(1) + ' Q' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + ex.toFixed(1) + ' ' + ey.toFixed(1), fill: 'none', stroke: '#2F4358', 'stroke-width': 1.3, 'stroke-dasharray': '2 5' }, pathG);
+routes.push(p);
+for (var k = 0; k < 3; k++) S('circle', { cx: (vx + (k - 1) * 9).toFixed(1), cy: (vy + (k % 2) * 7 - 3).toFixed(1), r: 3.6, fill: '#2F4358' }, svg);
+}
+for (var i = 0; i < N; i++) { var r = 80 * Math.sqrt((i + 0.5) / N), t = i * 2.39996; S('circle', { cx: (C[0] + Math.cos(t) * r).toFixed(1), cy: (C[1] + Math.sin(t) * r).toFixed(1), r: 3.2, fill: rnd(i) > 0.82 ? '#EEE9DD' : '#2F4358', opacity: rnd(i) > 0.82 ? 0.7 : 1 }, svg); }
+S('circle', { cx: C[0], cy: C[1], r: 96, fill: 'none', stroke: '#22303F', 'stroke-width': 1.3 }, svg);
+var toks = [];
+for (var j = 0; j < 16; j++) { var back = j % 5 === 0; toks.push({ p: routes[j % routes.length], back: back, s: rnd(j + 11), sp: 0.00012 + rnd(j + 2) * 0.00012, c: S('circle', { r: back ? 4.2 : 3, fill: back ? '#F5B83D' : '#EEE9DD', opacity: 0 }, svg) }); }
+function frame(now) {
+toks.forEach(function (k) { var L = k.p.getTotalLength(), f = (k.s + now * k.sp) % 1, d = k.back ? 1 - f : f, pt = k.p.getPointAtLength(L * d); k.c.setAttribute('cx', pt.x.toFixed(1)); k.c.setAttribute('cy', pt.y.toFixed(1)); k.c.setAttribute('opacity', (Math.sin(f * Math.PI) * 0.95).toFixed(2)); });
+if (!still) requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();
+
+/* MODULE 1: megacity timeline */
+(function () {
+var svg = document.getElementById('tlSvg'); if (!svg) return;
+var COUNTS = [8, 33, 37], YEARS = ['1975', '2025', '2050'], cols = 13, sz = 34, gap = 12, sq = [];
+var x0 = (640 - (cols * sz + (cols - 1) * gap)) / 2;
+for (var i = 0; i < 37; i++) { var c = i % cols, r = Math.floor(i / cols); sq.push(S('rect', { x: (x0 + c * (sz + gap)).toFixed(1), y: 4 + r * (sz + gap), width: sz, height: sz, fill: 'none', stroke: '#2F4358', 'stroke-width': 1.4 }, svg)); }
+var range = document.getElementById('tlRange'), num = document.getElementById('tlNum'), lab = document.getElementById('tlLab'), desc = document.getElementById('tlDesc'), top5 = document.getElementById('top5'), ticks = [].slice.call(document.querySelectorAll('.ticks span[data-i]'));
+var texts = [
+'<b>1975: 8 megacities</b> in the whole world.',
+'<b>2025: 33 megacities.</b> Births drive part of the growth, and migration drives much of the rest. Dhaka alone takes in between 300,000 and 500,000 rural migrants a year.',
+'<b>2050: 37 expected.</b> Dhaka becomes the largest city on earth. Three of the five largest cities of 2050 sit in countries where nearly everyone belongs to an unreached people group.'
+];
+var shown = 0, cur = -1, timers = [];
+function set(i, animate) {
+if (i === cur) return; cur = i; var target = COUNTS[i];
+timers.forEach(clearTimeout); timers = [];
+sq.forEach(function (s, k) { var on = k < target, d = animate ? Math.abs(k - shown) * 35 : 0; timers.push(setTimeout(function () { s.setAttribute('fill', on ? ((i === 0 || k >= COUNTS[i - 1]) ? '#F5B83D' : '#B9822A') : 'none'); s.setAttribute('stroke', on ? '#F5B83D' : '#2F4358'); }, d)); });
+var from = shown; tween(700, function (e) { num.textContent = Math.round(from + (target - from) * e); });
+shown = target;
+lab.textContent = (i === 2 ? 'megacities expected by ' : 'megacities in ') + YEARS[i];
+desc.innerHTML = texts[i];
+range.value = i; range.setAttribute('aria-valuetext', YEARS[i]);
+ticks.forEach(function (t) { t.classList.toggle('on', +t.dataset.i === i); });
+top5.classList.toggle('dim', i !== 2);
+}
+range.addEventListener('input', function () { set(+range.value, true); });
+var play = document.getElementById('tlPlay');
+play.addEventListener('click', function () { cur = -1; shown = 0; set(0, true); setTimeout(function () { set(1, true); }, 1300); setTimeout(function () { set(2, true); }, 2900); });
+sq.forEach(function (s) { s.setAttribute('opacity', 0); });
+onView(svg, function () { sq.forEach(function (s, k) { setTimeout(function () { s.setAttribute('opacity', 1); }, k * 18); }); setTimeout(function () { shown = 0; cur = -1; set(0, true); }, 500); }, 0.4);
+})();
+
+/* MODULE 2: Chart.js, built when scrolled into view */
+(function () {
+var cv = document.getElementById('cChart'); if (!cv) return;
+var base = [['India', 95.9], ['Nigeria', 30.6], ['Pakistan', 99.1], ['Egypt', 90.1], ['Bangladesh', 98.9], ['Ethiopia', 17.1]];
+var notes = {
+India: 'Delhi is projected fourth largest by 2050, and Kolkata is a growth city too. Both sit inside the unreached world.',
+Nigeria: 'A country with a large national church. Lagos is a growth city where workers are already present.',
+Pakistan: 'Karachi is projected fifth largest by 2050, near 33 million. Lahore is a growth city too.',
+Egypt: 'Cairo falls behind Karachi in the 2050 projection.',
+Bangladesh: 'Dhaka is projected to be the largest city on earth by 2050, about 52 million.',
+Ethiopia: 'The lowest share of the six.'
+};
+var order = base.slice(), chart = null, desc = document.getElementById('chDesc');
+function col(v) { return v >= 90 ? '#F5B83D' : '#7FA7C9'; }
+function say(i) { var d = order[i]; desc.innerHTML = '<b>' + d[0] + ': ' + d[1].toFixed(1) + '% in unreached people groups.</b> ' + notes[d[0]]; }
+function build() {
+if (typeof Chart === 'undefined') { cv.parentNode.innerHTML = '<p class="caption">The chart could not load. India 95.9%, Nigeria 30.6%, Pakistan 99.1%, Egypt 90.1%, Bangladesh 98.9%, Ethiopia 17.1%.</p>'; return; }
+Chart.defaults.color = '#94A1AF'; Chart.defaults.borderColor = '#22303F'; Chart.defaults.font.family = '"IBM Plex Mono", ui-monospace, monospace';
+chart = new Chart(cv, {
+type: 'bar',
+data: { labels: order.map(function (d) { return d[0]; }), datasets: [{ data: order.map(function (d) { return d[1]; }), backgroundColor: order.map(function (d) { return col(d[1]); }), borderWidth: 0, borderRadius: 0, maxBarThickness: 64 }] },
+options: {
+responsive: true, maintainAspectRatio: false,
+animation: { duration: 1200, easing: 'easeOutCubic' },
+plugins: { legend: { display: false }, tooltip: { backgroundColor: '#0A1018', borderColor: '#F5B83D', borderWidth: 1, callbacks: { label: function (c) { return c.parsed.y.toFixed(1) + '% in unreached people groups'; } } } },
+scales: { y: { beginAtZero: true, max: 100, ticks: { callback: function (v) { return v + '%'; } }, grid: { color: '#22303F' } }, x: { grid: { display: false }, ticks: { color: '#EEE9DD', font: { size: 12.5 } } } },
+onClick: function (e, els) { if (els && els.length) say(els[0].index); },
+onHover: function (e, els) { if (e.native && e.native.target) e.native.target.style.cursor = els && els.length ? 'pointer' : 'default'; }
+}
+});
+}
+seg(document.getElementById('chSeg'), function (v) {
+order = v === 'sorted' ? base.slice().sort(function (a, b) { return b[1] - a[1]; }) : base.slice();
+desc.textContent = v === 'sorted' ? 'Sorted: Pakistan, Bangladesh, India, and Egypt at 90% or more. Then a cliff to Nigeria and Ethiopia.' : 'Four of the six sit at 90% or higher. Nigeria and Ethiopia sit far lower. Tap a bar for detail.';
+if (chart) { chart.data.labels = order.map(function (d) { return d[0]; }); chart.data.datasets[0].data = order.map(function (d) { return d[1]; }); chart.data.datasets[0].backgroundColor = order.map(function (d) { return col(d[1]); }); chart.update(); }
+});
+onView(cv, build, 0.3);
+})();
+
+/* MODULE 3a: Narnia door network */
+(function () {
+var svg = document.getElementById('ndSvg'); if (!svg) return;
+var C = [320, 210];
+S('circle', { cx: C[0], cy: C[1], r: 98, fill: '#0A1018', stroke: '#22303F', 'stroke-width': 1.5 }, svg);
+T('CITY', { x: C[0], y: C[1] - 70, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+var hoods = [[284, 186], [356, 186], [284, 246], [356, 246]].map(function (p) {
+var g = S('g', {}, svg);
+var r = S('rect', { x: p[0] - 16, y: p[1] - 16, width: 32, height: 32, fill: '#101924', stroke: '#94A1AF', 'stroke-width': 1.4 }, g);
+var t = T('0', { x: p[0], y: p[1] + 6, 'text-anchor': 'middle', 'class': 't-lab' }, g);
+return { p: p, r: r, t: t, n: 0 };
+});
+var routeG = S('g', {}, svg);
+var vils = [];
+for (var i = 0; i < 8; i++) {
+var a = -Math.PI / 2 + i / 8 * Math.PI * 2 + Math.PI / 8;
+var vx = C[0] + Math.cos(a) * 270, vy = C[1] + Math.sin(a) * 168;
+var h = hoods[(Math.cos(a) < 0 ? 0 : 1) + (Math.sin(a) < 0 ? 0 : 2)];
+var cx = (vx + h.p[0]) / 2 + Math.sin(a) * 36, cy = (vy + h.p[1]) / 2 - Math.cos(a) * 36;
+var path = S('path', { d: 'M' + vx.toFixed(1) + ' ' + vy.toFixed(1) + ' Q' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + h.p[0] + ' ' + h.p[1], fill: 'none', stroke: '#2F4358', 'stroke-width': 1.4, 'stroke-dasharray': '3 5' }, routeG);
+var g = S('g', {}, svg);
+var box = S('rect', { x: vx - 15, y: vy - 15, width: 30, height: 30, fill: '#101924', stroke: '#94A1AF', 'stroke-width': 1.4 }, g);
+S('circle', { cx: vx - 5, cy: vy + 3, r: 3, fill: '#94A1AF' }, g); S('circle', { cx: vx + 5, cy: vy + 3, r: 3, fill: '#94A1AF' }, g); S('circle', { cx: vx, cy: vy - 6, r: 3, fill: '#94A1AF' }, g);
+vils.push({ v: [vx, vy], c: [cx, cy], h: h, path: path, box: box, lit: false });
+}
+T('HOME DISTRICTS', { x: 18, y: 22, 'class': 't-axis' }, svg);
+var tokG = S('g', {}, svg);
+var fam = document.getElementById('ndFam'), vil = document.getElementById('ndVil'), desc = document.getElementById('ndDesc');
+var bA = document.getElementById('ndArrive'), bH = document.getElementById('ndHome'), bR = document.getElementById('ndReset');
+var run = 0, settled = 0, reached = 0;
+function travel(p0, c, p1, color, rad, delay, my, done) {
+setTimeout(function () {
+if (run !== my) return;
+var dot = S('circle', { cx: p0[0], cy: p0[1], r: rad, fill: color }, tokG);
+tween(1500, function (e) { if (run !== my) return; var pt = qpt(p0, c, p1, e); dot.setAttribute('cx', pt[0].toFixed(1)); dot.setAttribute('cy', pt[1].toFixed(1)); }, function () { if (run !== my) return; dot.remove(); done(); });
+}, delay);
+}
+bA.addEventListener('click', function () {
+var my = ++run; bA.disabled = true; bH.disabled = true;
+var total = vils.length * 3, doneN = 0;
+desc.innerHTML = 'Families leave their home districts, <b>one family at a time</b>, and head for kin already in the city.';
+vils.forEach(function (v, i) { for (var k = 0; k < 3; k++) {
+travel(v.v, v.c, v.h.p, '#EEE9DD', 4, i * 140 + k * 520, my, function (vv) { return function () {
+vv.h.n++; vv.h.t.textContent = vv.h.n; vv.h.r.setAttribute('stroke', '#EEE9DD'); vv.path.setAttribute('stroke', '#4A6178');
+settled++; fam.textContent = settled; doneN++;
+if (doneN === total) { bH.disabled = false; desc.innerHTML = '<b>Arrivals follow kin and settle near people from their home district.</b> They speak their language at home, send money back, and return for weddings and funerals. Each neighborhood becomes a node of the old village.'; }
+}; }(v));
+} });
+});
+bH.addEventListener('click', function () {
+var my = ++run; bH.disabled = true;
+desc.innerHTML = 'The same routes run both ways. <b>Bus routes, phone calls, and remittances</b> carry news home.';
+vils.forEach(function (v, i) {
+travel(v.h.p, v.c, v.v, '#F5B83D', 5, i * 220, my, function () {
+v.lit = true; v.box.setAttribute('stroke', '#F5B83D'); v.box.setAttribute('fill', 'rgba(245,184,61,.18)'); v.path.setAttribute('stroke', '#F5B83D');
+reached++; vil.textContent = reached + ' of 8';
+if (reached === 8) desc.innerHTML = '<b>The door opens both ways.</b> A worker who cannot get a permit or a welcome in a rural district can drink tea with that district’s sons and daughters in a rented room across town, and the gospel can travel back along the same routes the migrants use.';
+});
+});
+});
+bR.addEventListener('click', function () {
+run++; settled = 0; reached = 0; while (tokG.firstChild) tokG.removeChild(tokG.firstChild);
+hoods.forEach(function (h) { h.n = 0; h.t.textContent = '0'; h.r.setAttribute('stroke', '#94A1AF'); });
+vils.forEach(function (v) { v.lit = false; v.box.setAttribute('stroke', '#94A1AF'); v.box.setAttribute('fill', '#101924'); v.path.setAttribute('stroke', '#2F4358'); });
+fam.textContent = '0'; vil.textContent = '0 of 8'; bA.disabled = false; bH.disabled = true;
+desc.innerHTML = 'Eight home districts, one city. Press <b>Families arrive</b>.';
+});
+})();
+
+/* MODULE 3b: the door narrows */
+(function () {
+var svg = document.getElementById('drSvg'); if (!svg) return;
+var X = 250, W0 = 140, Y = 14, H = 166;
+S('rect', { x: X - 8, y: Y - 6, width: W0 + 16, height: H + 6, fill: 'none', stroke: '#94A1AF', 'stroke-width': 2 }, svg);
+var glow = S('rect', { x: X, y: Y, width: W0, height: H, fill: '#F5B83D', opacity: 0.9 }, svg);
+var panel = S('rect', { x: X, y: Y, width: 0, height: H, fill: '#2F4358' }, svg);
+var knob = S('circle', { cx: X + 12, cy: Y + H / 2, r: 4, fill: '#94A1AF', opacity: 0 }, svg);
+T('CITY SIDE', { x: X - 26, y: Y + H - 6, 'text-anchor': 'end', 'class': 't-axis' }, svg);
+T('THE HOME NETWORK', { x: X + W0 + 26, y: Y + H - 6, 'class': 't-axis', fill: '#F5B83D' }, svg);
+var range = document.getElementById('drRange'), desc = document.getElementById('drDesc'), chips = [].slice.call(document.querySelectorAll('#drChips li'));
+var cur = 0, target = 0, raf = null;
+function draw() { cur += (target - cur) * 0.18; if (Math.abs(target - cur) < 0.2) cur = target; var w = W0 * cur / 100 * 0.9; panel.setAttribute('width', w.toFixed(1)); glow.setAttribute('opacity', (0.9 - cur / 100 * 0.6).toFixed(2)); knob.setAttribute('cx', (X + w - 12).toFixed(1)); knob.setAttribute('opacity', w > 24 ? 1 : 0); if (cur !== target) raf = requestAnimationFrame(draw); else raf = null; }
+function update() {
+var v = +range.value; target = v; if (!raf) raf = requestAnimationFrame(draw);
+chips.forEach(function (c) { c.classList.toggle('on', v >= +c.dataset.at); });
+var t;
+if (v < 34) { t = '<b>Just arrived.</b> The months after arrival matter most. The old obligations are far away, and the new ones are not yet rebuilt.'; range.setAttribute('aria-valuetext', 'Just arrived'); }
+else if (v < 67) { t = '<b>Settling in.</b> Arrivals begin rebuilding what they left behind. The door is still open, but narrowing.'; range.setAttribute('aria-valuetext', 'Settling in'); }
+else { t = '<b>Re-embedded.</b> The mosque, the temple, and the family oversight are rebuilt. The door has narrowed.'; range.setAttribute('aria-valuetext', 'Re-embedded'); }
+desc.innerHTML = t;
+}
+range.addEventListener('input', update);
+update();
+})();
+
+/* MODULE 4: two kinds of growth city */
+(function () {
+var svg = document.getElementById('gcSvg'); if (!svg) return;
+var G = {
+a: { tag: 'Frontier and door', cities: ['Dhaka', 'Karachi', 'Lahore', 'Delhi', 'Kolkata'],
+d: '<b>The city is both frontier and door.</b> A team that concentrates in arrival neighborhoods can meet people groups whose home districts it may never enter, and the gospel can travel back along the same routes the migrants use.' },
+b: { tag: 'Church already inside', cities: ['Lagos', 'Kinshasa', 'Nairobi', 'Luanda', 'Dar es Salaam'],
+d: '<b>Workers are already present in these cities.</b> What remains open is whether the church in the city sees who is arriving, and whether anyone has asked it to engage them. <a href="the-sending-force-is-already-next.html">The Sending Force Is Already Next Door &rarr;</a>' }
+};
+var notes = {
+Dhaka: 'Projected to be the largest city on earth by 2050, about 52 million. It takes in 300,000 to 500,000 rural migrants a year. Bangladesh: 98.9% in unreached people groups.',
+Karachi: 'Projected fifth largest by 2050, near 33 million, ahead of Cairo and Tokyo. Pakistan: 99.1% in unreached people groups.',
+Lahore: 'A growth city in Pakistan, where 99.1% of the population belongs to unreached people groups.',
+Delhi: 'Projected fourth largest by 2050. India: 95.9% in unreached people groups.',
+Kolkata: 'A growth city in India, where 95.9% of the population belongs to unreached people groups.',
+Lagos: 'Nigeria: 30.6% in unreached people groups. The urban missions workshop with NEMA in Abuja treated Nigeria’s capital as a door to the least-reached peoples of the Sahel.',
+Kinshasa: 'A growth city in a country with a large national church. Workers are already present.',
+Nairobi: 'A growth city in a country with a large national church. A Somali believer in Nairobi may be one phone call from a cousin in Mogadishu. <a href="the-158-million-muslims-the-1040.html">The 158 Million Muslims the 10/40 Window Misses &rarr;</a>',
+Luanda: 'A growth city in a country with a large national church. Workers are already present.',
+'Dar es Salaam': 'Expected to cross 10 million by 2050. Tanzania holds 21.4 million Muslims, more than any other country outside the 10/40 Window, and its largest city is about to become a megacity with a national church already inside it. <a href="the-158-million-muslims-the-1040.html">The 158 Million Muslims the 10/40 Window Misses &rarr;</a>'
+};
+var C = [320, 120];
+var ring = S('circle', { cx: C[0], cy: C[1], r: 62, fill: '#0A1018', stroke: '#94A1AF', 'stroke-width': 1.6 }, svg);
+var A = S('g', { 'class': 'swap' }, svg), B = S('g', { 'class': 'swap', opacity: 0 }, svg);
+var outs = [];
+[[-1, -0.4], [-1, 0.5], [1, -0.4], [1, 0.5], [-0.35, 1], [0.35, 1]].forEach(function (d) {
+var tx = C[0] + d[0] * 250, ty = C[1] + d[1] * 92;
+S('line', { x1: C[0] + d[0] * 66, y1: C[1] + d[1] * 40, x2: tx, y2: ty, stroke: '#F5B83D', 'stroke-width': 1.4, 'stroke-dasharray': '3 5' }, A);
+S('rect', { x: tx - 9, y: ty - 9, width: 18, height: 18, fill: '#101924', stroke: '#F5B83D', 'stroke-width': 1.4 }, A);
+});
+T('FRONTIER + DOOR', { x: C[0], y: C[1] + 5, 'text-anchor': 'middle', 'class': 't-axis', fill: '#F5B83D' }, A);
+T('THE GOSPEL TRAVELS BACK ALONG THE ROUTES', { x: C[0], y: 224, 'text-anchor': 'middle', 'class': 't-axis' }, A);
+S('rect', { x: C[0] - 14, y: C[1] - 14, width: 28, height: 28, fill: '#F5B83D' }, B);
+T('NATIONAL CHURCH', { x: C[0], y: C[1] + 34, 'text-anchor': 'middle', 'class': 't-axis', fill: '#F5B83D' }, B);
+T('HAS ANYONE ASKED IT TO ENGAGE THE ARRIVALS?', { x: C[0], y: 224, 'text-anchor': 'middle', 'class': 't-axis' }, B);
+for (var i = 0; i < 10; i++) { var a = i / 10 * Math.PI * 2; outs.push({ a: a, c: S('circle', { cx: C[0] + Math.cos(a) * 240, cy: C[1] + Math.sin(a) * 90, r: 5, fill: '#EEE9DD' }, B) }); }
+var tag = document.getElementById('gcTag'), wrap = document.getElementById('gcCities'), desc = document.getElementById('gcDesc');
+var tok = 0;
+function arrive() { var my = ++tok; tween(1400, function (e) { if (tok !== my) return; outs.forEach(function (o) { var rx = 240 - 150 * e, ry = 90 - 50 * e; o.c.setAttribute('cx', (C[0] + Math.cos(o.a) * rx).toFixed(1)); o.c.setAttribute('cy', (C[1] + Math.sin(o.a) * ry).toFixed(1)); }); }); }
+function set(k) {
+var g = G[k];
+A.setAttribute('opacity', k === 'a' ? 1 : 0); B.setAttribute('opacity', k === 'b' ? 1 : 0);
+ring.setAttribute('stroke', k === 'a' ? '#F5B83D' : '#94A1AF');
+if (k === 'b') arrive();
+tag.textContent = g.tag; desc.innerHTML = g.d;
+wrap.innerHTML = '';
+g.cities.forEach(function (name) {
+var b = document.createElement('button'); b.type = 'button'; b.textContent = name;
+b.addEventListener('click', function () { [].forEach.call(wrap.children, function (x) { x.classList.toggle('on', x === b); }); desc.innerHTML = '<b>' + name + '.</b> ' + notes[name]; });
+wrap.appendChild(b);
+});
+}
+seg(document.getElementById('gcSeg'), set);
+set('a');
+})();
+
+/* MODULE 5: the road between two ditches */
+(function () {
+var svg = document.getElementById('rdSvg'); if (!svg) return;
+S('rect', { x: 0, y: 0, width: 640, height: 300, fill: '#0A1018' }, svg);
+S('path', { d: 'M0 300 L0 60 L250 30 L210 300 Z', fill: '#16202B' }, svg);
+S('path', { d: 'M640 300 L640 60 L390 30 L430 300 Z', fill: '#16202B' }, svg);
+S('path', { d: 'M210 300 L290 22 L350 22 L430 300 Z', fill: '#1B2836' }, svg);
+S('line', { x1: 210, y1: 300, x2: 290, y2: 22, stroke: '#EEE9DD', 'stroke-width': 1.5 }, svg);
+S('line', { x1: 430, y1: 300, x2: 350, y2: 22, stroke: '#EEE9DD', 'stroke-width': 1.5 }, svg);
+S('line', { x1: 320, y1: 296, x2: 320, y2: 26, stroke: '#F5B83D', 'stroke-width': 2, 'stroke-dasharray': '12 12', opacity: 0.7 }, svg);
+var L1 = T('DITCH', { x: 96, y: 196, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+T('MOVE THE WORKERS', { x: 96, y: 214, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+T('TO THE CITY', { x: 96, y: 230, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+var R1 = T('DITCH', { x: 544, y: 196, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+T('THE CITY', { x: 544, y: 214, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+T('CAN WAIT', { x: 544, y: 230, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+var TOP = T('THE BRIDGE BACK HOME', { x: 320, y: 14, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+var halo = S('circle', { cx: 320, cy: 280, r: 20, fill: '#F5B83D', opacity: 0.18 }, svg);
+var dot = S('circle', { cx: 320, cy: 280, r: 10, fill: '#F5B83D' }, svg);
+var pos = [320, 280], tok = 0;
+var paths = { move: [[320, 280], [300, 200], [104, 150]], wait: [[320, 280], [340, 200], [536, 150]], way: [[320, 280], [320, 160], [320, 40]] };
+var tags = { move: ['Ditch', 'tag'], wait: ['Ditch', 'tag'], way: ['The way between', 'tag hot'] };
+var text = {
+move: '<b>It ignores where breakthrough has actually come.</b> The Indian mass movements that J. Waskom Pickett studied in 1933 spread through village communities, and Donald McGavran built his thinking on people movements from that research. Even practitioners who report urban breakthroughs today say most movements have emerged in rural settings.',
+wait: '<b>It ignores where the people are going,</b> and where the next generation of village peoples will grow up.',
+way: '<b>Dedicated research on peoples in cities, aimed at the bridge back home.</b> Paul planted in cities, but Ephesus mattered because the province came through it.'
+};
+var tag = document.getElementById('rdTag'), desc = document.getElementById('rdDesc');
+function go(k) {
+var my = ++tok, p = paths[k], from = pos.slice();
+var c = [p[1][0], p[1][1]], end = p[2];
+tween(1300, function (e) { if (tok !== my) return; var pt = qpt(from, c, end, e); pos = pt; dot.setAttribute('cx', pt[0].toFixed(1)); dot.setAttribute('cy', pt[1].toFixed(1)); halo.setAttribute('cx', pt[0].toFixed(1)); halo.setAttribute('cy', pt[1].toFixed(1)); });
+L1.setAttribute('fill', k === 'move' ? '#F5B83D' : '#94A1AF'); R1.setAttribute('fill', k === 'wait' ? '#F5B83D' : '#94A1AF'); TOP.setAttribute('fill', k === 'way' ? '#F5B83D' : '#94A1AF');
+tag.textContent = tags[k][0]; tag.className = tags[k][1]; desc.innerHTML = text[k];
+}
+seg(document.getElementById('rdSeg'), go);
+/* frictions */
+var cards = [].slice.call(document.querySelectorAll('#fr .fcard')), seen = {};
+var fill = document.getElementById('frFill'), lab = document.getElementById('frLab');
+cards.forEach(function (c, i) { c.addEventListener('click', function () { var o = c.classList.toggle('open'); c.setAttribute('aria-expanded', o ? 'true' : 'false'); if (o) seen[i] = true; var n = Object.keys(seen).length; fill.style.width = (n / cards.length * 100) + '%'; lab.textContent = n + ' of ' + cards.length + ' opened' + (n === cards.length ? '. The city is a door, not the destination.' : ''); }); });
+})();
+
+/* MODULE 6a: rural, towns, cities */
+(function () {
+var svg = document.getElementById('stSvg'); if (!svg) return;
+var D = [
+{ n: 'Rural areas', v: 19, c: '#6F8193', tc: '#EEE9DD', d: '<b>Rural areas: 19% of humanity.</b> Cities are doors, and most breakthrough has happened on the far side of them, in village communities.' },
+{ n: 'Towns', v: 36, c: '#7FA7C9', tc: '#0A1018', d: '<b>Towns: 36%.</b> Market towns and regional cities where families shop, send their students, and stop on the way to the capital. For many rural-majority peoples, a town like that is the natural first node of engagement and the best sending base back into the villages. <a href="world-isnt-what-you-think.html">The World Isn’t What You Think &rarr;</a>' },
+{ n: 'Cities', v: 45, c: '#F5B83D', tc: '#0A1018', d: '<b>Cities: 45%.</b> Small and medium cities already hold more people than megacities and are growing faster, and 96% of the world’s cities have fewer than a million residents. Hajipur, across the Ganges from Patna in Bihar, is one of four places the UN expects to cross 10 million by 2050.' }
+];
+var x = 20, W = 600, y = 30, h = 62, leg = document.getElementById('stLegend'), desc = document.getElementById('stDesc');
+T('VILLAGE', { x: 20, y: 18, 'class': 't-axis' }, svg);
+T('THE ROAD HOME RUNS THIS WAY', { x: 320, y: 18, 'text-anchor': 'middle', 'class': 't-axis', fill: '#F5B83D' }, svg);
+T('CITY', { x: 620, y: 18, 'text-anchor': 'end', 'class': 't-axis' }, svg);
+S('path', { d: 'M620 112 H20 M30 106 L20 112 L30 118', fill: 'none', stroke: '#F5B83D', 'stroke-width': 1.4 }, svg);
+D.forEach(function (d, i) {
+d.w = W * d.v / 100; d.x = x;
+d.g = S('g', {}, svg);
+d.r = S('rect', { x: (x + 1).toFixed(1), y: y, width: 0, height: h, fill: d.c }, d.g);
+d.t = T(d.v + '%', { x: (x + d.w / 2).toFixed(1), y: y + h / 2 + 9, 'text-anchor': 'middle', 'class': 't-big', fill: d.tc, opacity: 0 }, d.g);
+pressable(d.g, d.n + ', ' + d.v + ' percent', function () { pick(i); });
+d.g.addEventListener('mouseenter', function () { pick(i); });
+var b = document.createElement('button'); b.type = 'button'; b.innerHTML = '<i style="background:' + d.c + '"></i>' + d.n + ' ' + d.v + '%';
+b.addEventListener('click', function () { pick(i); }); leg.appendChild(b); d.b = b;
+x += d.w;
+});
+var cur = -1;
+function pick(i) { if (i === cur) return; cur = i; D.forEach(function (d, j) { d.r.setAttribute('opacity', j === i ? 1 : 0.35); d.b.classList.toggle('on', j === i); }); desc.innerHTML = D[i].d; }
+pick(1);
+onView(svg, function () { D.forEach(function (d, i) { setTimeout(function () { tween(800, function (e) { d.r.setAttribute('width', Math.max(0, (d.w - 2) * e).toFixed(1)); }, function () { d.t.setAttribute('opacity', 1); }); }, i * 200); }); }, 0.4);
+})();
+
+/* MODULE 6b: research layers accordion */
+(function () {
+var audit = document.getElementById('audit'); if (!audit) return;
+var cards = [].slice.call(audit.querySelectorAll('.qcard')), seen = {};
+var fill = document.getElementById('auditFill'), lab = document.getElementById('auditLab');
+cards.forEach(function (card, i) {
+var head = card.querySelector('.head');
+head.addEventListener('click', function () {
+var open = card.classList.toggle('open'); head.setAttribute('aria-expanded', open ? 'true' : 'false');
+if (open) { card.classList.add('reviewed'); seen[i] = true; }
+var n = Object.keys(seen).length; fill.style.width = (n / cards.length * 100) + '%';
+lab.textContent = n + ' of ' + cards.length + ' opened' + (n === cards.length ? '. Now connect the teams at both ends.' : '');
+});
+});
+})();
+</script>
+</body>
+</html>

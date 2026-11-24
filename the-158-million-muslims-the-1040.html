@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 158 Million Muslims the 10/40 Window Misses | Clarity for the Nations</title>
+<meta name="description" content="If the Muslims outside the 10/40 Window were one country, it would rank fourth in the world. An interactive piece from Clarity for the Nations by Bud Houston.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Sofia+Sans+Extra+Condensed:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shell.css">
+<script>document.documentElement.className += ' js';</script>
+<style>
+:root{
+--ink:#0A1018;--panel:#101924;--line:#22303F;--land:#2F4358;--paper:#EEE9DD;--muted:#94A1AF;--lamp:#F5B83D;
+--steel:#7FA7C9;--pale:#B7C9D9;--slate:#6F8193;
+--display:"Sofia Sans Extra Condensed","Arial Narrow",Impact,sans-serif;
+--body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6}
+svg,canvas{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--lamp);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.narrow{max-width:960px}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--lamp);box-shadow:0 0 12px rgba(245,184,61,.55);z-index:60}
+
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.eyebrow b{color:var(--lamp);font-weight:500}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.92;margin:0;letter-spacing:.005em;text-wrap:balance}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero-art{position:absolute;inset:0;pointer-events:none;max-width:1440px;margin:0 auto}
+.hero-art svg{position:absolute;right:0;top:40%;transform:translateY(-50%);width:54%;height:auto}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,rgba(10,16,24,.93) 36%,rgba(10,16,24,0) 64%)}
+.hero-inner{position:relative;z-index:2;padding:60px 28px 0}
+.hero h1{font-size:clamp(54px,7.8vw,108px);max-width:7em;margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--lamp)}
+.hero .lede{font-size:19px;max-width:31em;margin:24px 0 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin:44px 0 0;border:1px solid var(--line);background:rgba(16,25,36,.88)}
+.stat{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat .num{font-family:var(--display);font-weight:800;font-size:76px;line-height:.8;color:var(--lamp);font-variant-numeric:tabular-nums}
+.stat .lab{font-size:15.5px;line-height:1.4}
+.map-note{position:relative;z-index:2;margin:18px 0 0;padding-bottom:30px;text-align:right;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+
+/* intro copy */
+.copy{padding:72px 0 0}
+.copy p{font-size:19px;line-height:1.65;max-width:34em;margin:0}
+.copy p+p{margin-top:18px}
+.copy p.dim{color:var(--muted)}
+
+/* modules */
+.mod{padding:96px 0 0}
+.mod-head{display:grid;gap:14px;margin-bottom:28px;max-width:46em}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.kicker b{color:var(--lamp);font-weight:500}
+.mod h2{font-size:clamp(42px,5.4vw,70px)}
+.mod .intro{color:var(--muted);font-size:17.5px;margin:0;max-width:40em}
+.viz{position:relative;border:1px solid var(--line);background:var(--panel);padding:28px}
+.viz::before{content:"";position:absolute;left:-1px;top:-1px;width:64px;height:3px;background:var(--lamp)}
+.viz+.viz{margin-top:20px}
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+.seg{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.seg button{font:500 12.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--paper);background:none;border:1.5px solid var(--line);border-radius:2px;padding:11px 14px;cursor:pointer;transition:border-color .15s,color .15s,background-color .15s}
+.seg button:hover{border-color:var(--lamp)}
+.seg button.on{background:var(--lamp);border-color:var(--lamp);color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:500 13px/1.55 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:11px 18px;border:1.5px solid var(--lamp);border-radius:2px;background:none;color:var(--lamp);cursor:pointer;transition:background-color .15s,color .15s}
+.btn:hover{background:var(--lamp);color:var(--ink)}
+.btn.solid{background:var(--lamp);color:var(--ink)}
+.btn.solid:hover{background:var(--paper);border-color:var(--paper)}
+.btn.lg{padding:15px 24px;font-size:14px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.readout{margin-top:22px;padding:14px 18px;border-left:3px solid var(--lamp);background:var(--ink);font-size:16.5px;line-height:1.55;min-height:3.6em}
+.readout b{color:var(--lamp);font-weight:600}
+.readout a{color:var(--lamp)}
+.caption{margin:14px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;line-height:1.55;color:var(--muted)}
+.tag{display:inline-block;font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:7px 10px;border:1px dashed var(--muted);color:var(--muted)}
+.tag.hot{border:1px solid var(--lamp);color:var(--lamp)}
+.vrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:20px}
+.figs{display:flex;flex-wrap:wrap;gap:0;margin-top:20px;border:1px solid var(--line)}
+.figs div{flex:1 1 180px;padding:14px 18px;font-size:14px;color:var(--muted)}
+.figs div+div{border-left:1px solid var(--line)}
+.figs b{display:block;font-family:var(--display);font-weight:800;font-size:44px;line-height:.9;color:var(--paper);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.figs b.hot{color:var(--lamp)}
+
+/* svg text */
+.t-axis{font-family:var(--mono);font-size:12px;fill:#94A1AF;letter-spacing:.04em}
+.t-lab{font-family:var(--mono);font-size:14px;font-weight:500;fill:#EEE9DD}
+.t-lab.hot{fill:#F5B83D}
+.t-sub{font-family:var(--mono);font-size:12px;fill:#94A1AF}
+.t-val{font-family:var(--display);font-size:22px;font-weight:800}
+.t-rank{font-family:var(--display);font-size:28px;font-weight:800;fill:#94A1AF}
+.t-rank.hot{fill:#F5B83D}
+.t-big{font-family:var(--display);font-size:24px;font-weight:800}
+.hit{cursor:pointer;outline:none}
+.hit:focus-visible rect,.hit:focus-visible circle{stroke:#F5B83D;stroke-width:3}
+
+/* module 2: regions */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.legend button{display:inline-flex;align-items:center;gap:9px;font:500 12.5px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--paper);background:none;border:1.5px solid var(--line);border-radius:2px;padding:10px 12px;cursor:pointer;transition:border-color .15s}
+.legend button i{width:12px;height:12px;display:inline-block}
+.legend button.on,.legend button:hover{border-color:var(--lamp)}
+.reg-panel{margin-top:22px;border:1px solid var(--line);background:var(--ink);padding:22px 22px 20px}
+.reg-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px 28px}
+.reg-top h3{font-size:clamp(36px,4.4vw,52px);margin-top:8px}
+.reg-num{text-align:right}
+.reg-num b{display:block;font-family:var(--display);font-weight:800;font-size:56px;line-height:.85;color:var(--lamp)}
+.reg-num span{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
+.chips li{font:500 12.5px/1 var(--mono);letter-spacing:.04em;padding:8px 10px;border:1px solid var(--line);color:var(--paper)}
+.chips li b{color:var(--lamp);font-weight:500;margin-left:6px}
+.reg-note{margin:16px 0 0;color:var(--paper);max-width:46em}
+.more-link{display:inline-block;margin-top:14px;font:500 12.5px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--lamp);text-decoration:none;border-bottom:1.5px solid transparent}
+.more-link:hover{border-bottom-color:var(--lamp)}
+
+/* module 3: chart */
+.chartwrap{position:relative;height:340px}
+
+/* module 4 + 5 */
+.pg-node{transition:opacity .5s ease}
+
+/* module 6: accordion */
+.audit{border:1px solid var(--line);background:var(--panel)}
+.qcard+.qcard{border-top:1px solid var(--line)}
+.qcard .head{width:100%;display:flex;align-items:center;gap:16px;text-align:left;background:none;border:0;color:var(--paper);font:inherit;padding:20px 24px;cursor:pointer}
+.qcard .qn{flex:none;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--lamp);color:var(--lamp);font:500 13px/1 var(--mono);border-radius:2px;transition:background-color .2s,color .2s}
+.qcard.reviewed .qn{background:var(--lamp);color:var(--ink)}
+.qcard .qt{flex:1;font-family:var(--display);font-weight:800;font-size:30px;line-height:1;text-transform:uppercase}
+.qcard .chev{font:500 22px/1 var(--mono);color:var(--lamp);transition:transform .25s}
+.qcard.open .chev{transform:rotate(45deg)}
+.qcard .body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qcard.open .body{max-height:560px}
+.qcard .body-in{padding:0 24px 22px 76px;color:var(--muted)}
+.qcard .body-in p{margin:0 0 10px}
+.qcard .body-in p.q{color:var(--paper);font-size:18px;line-height:1.5}
+.qcard .body-in a{color:var(--lamp)}
+.meter{height:6px;background:var(--line);margin-top:20px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--lamp);transition:width .5s ease}
+.meter-lab{font:500 12px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.method{margin-top:28px;padding-top:18px;border-top:1px dashed var(--line);font-size:14.5px;color:var(--muted);max-width:52em}
+.method b{color:var(--paper);font-weight:600}
+
+/* quote + closing */
+.quoteband{margin-top:104px;background:var(--lamp);color:var(--ink);padding:72px 0}
+.quoteband .q{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(38px,4.8vw,64px);line-height:.95;max-width:17em;margin:0;text-wrap:balance}
+.quoteband .q+.q{margin-top:34px;padding-top:34px;border-top:1px solid rgba(10,16,24,.25)}
+.quoteband .qsrc{display:block;margin-top:12px;font:500 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#3A2C0C}
+.closing{padding:96px 0 0}
+.closing-box{border:1px solid var(--line);background:var(--panel);padding:48px 40px;display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.closing-box h2{font-size:clamp(44px,6vw,86px);max-width:12em}
+.afoot{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:28px;font:500 12.5px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.afoot a{color:var(--muted);text-decoration:none;border-bottom:1.5px solid transparent}
+.afoot a:hover{color:var(--lamp);border-bottom-color:var(--lamp)}
+
+@media (max-width:900px){
+.stats{grid-template-columns:1fr}
+.stat+.stat{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:680px){
+body{font-size:16px}
+.wrap{padding:0 18px}
+.hero{display:flex;flex-direction:column}
+.hero-inner{padding:44px 18px 0;order:1}
+.hero-art{position:relative;order:2;inset:auto;margin-top:18px}
+.hero-art svg{position:relative;top:auto;transform:none;width:100%}
+.hero-art::after{display:none}
+.map-note{order:3;text-align:left;padding:10px 18px 26px;margin:0}
+.stat .num{font-size:64px}
+.copy{padding-top:52px}
+.copy p{font-size:17.5px}
+.mod{padding-top:72px}
+.viz{padding:20px 16px}
+.reg-num{text-align:left}
+.qcard .head{padding:18px 16px;gap:12px}
+.qcard .qt{font-size:24px}
+.qcard .body-in{padding:0 16px 20px}
+.closing-box{padding:30px 22px}
+.quoteband{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<script src="js/shell.js" data-part="header"></script>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-art" aria-hidden="true"><svg id="heroArt" viewBox="0 0 700 440" preserveAspectRatio="xMidYMid meet"></svg></div>
+<div class="wrap hero-inner">
+<p class="eyebrow">Clarity for the Nations &middot; <b>Data &amp; Frontier</b></p>
+<h1>The 10/40 Window misses <em>158 million</em> Muslims.</h1>
+<p class="lede">If the Muslims outside the 10/40 Window formed one country, it would have the fourth-largest Muslim population on earth, just ahead of Bangladesh.</p>
+<div class="stats">
+<div class="stat"><span class="num" data-target="158" data-suffix="M">0</span><span class="lab">Muslims live outside the 10/40 Window</span></div>
+<div class="stat"><span class="num" data-target="102">0</span><span class="lab">countries they are spread across</span></div>
+<div class="stat"><span class="num" data-target="7.5" data-dec="1" data-suffix="%">0</span><span class="lab">of the world&rsquo;s roughly 2.09 billion Muslims</span></div>
+</div>
+</div>
+<p class="map-note wrap">Each dot is about 10 million Muslims. 15 of 200 sit outside the box. Illustrative.</p>
+</section>
+
+<section class="copy">
+<div class="wrap">
+<p class="reveal">Joshua Project&rsquo;s current people group data tests an assumption mission strategy has leaned on since 1990, and the assumption holds. Of roughly 2.09 billion Muslims in the world, more than 1.9 billion (92.5%) live inside the 10/40 Window.</p>
+<p class="reveal">The Window will need many more workers, sent from every continent, for a long time to come. This piece is about the 7.5% it leaves out.</p>
+<p class="reveal dim">Scroll through, and work the controls.</p>
+</div>
+</section>
+
+<!-- MODULE 1: RANK INSERT -->
+<section class="mod" id="m1">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>01</b> / If they were one country</p>
+<h2 class="reveal">A Bangladesh-sized Muslim world</h2>
+<p class="intro reveal">Five countries carry nearly half the world&rsquo;s Muslims. Add the Muslims outside the Window as if they were one country, and watch where they land.</p>
+</div>
+<div class="viz reveal">
+<div class="seg" id="rankSeg" role="group" aria-label="Ranking view">
+<button type="button" class="on" data-v="countries" aria-pressed="true">Countries only</button>
+<button type="button" data-v="bloc" aria-pressed="false">Add the outside-the-Window bloc</button>
+</div>
+<svg id="rankSvg" viewBox="0 0 640 336" width="100%" role="img" aria-label="Largest Muslim populations: Pakistan 251 million, Indonesia 236 million, India 205 million, outside the 10/40 Window 158 million, Bangladesh 156 million, Egypt 105 million"></svg>
+<div class="vrow"><span class="tag" id="rankTag">Top five: all inside the Window</span></div>
+<div class="readout" id="rankDesc">Five countries carry nearly half the global total: Pakistan (251 million), Indonesia (236 million), India (205 million), Bangladesh (156 million) and Egypt (105 million).</div>
+<p class="caption">Joshua Project people group data as of 8 November 2026, weighted by each group&rsquo;s recorded percentage Muslim. All figures are estimates.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 2: REGIONS -->
+<section class="mod" id="m2">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>02</b> / Where the 158 million live</p>
+<h2 class="reveal">Africa holds more than half</h2>
+<p class="intro reveal">The bar is the full 158 million, split by region. Tap a region to see who lives there and what it means for strategy.</p>
+</div>
+<div class="viz reveal">
+<svg id="regSvg" viewBox="0 0 640 112" width="100%" role="group" aria-label="158 million Muslims outside the 10/40 Window by region"></svg>
+<div class="legend" id="regLegend" role="group" aria-label="Choose a region"></div>
+<div class="reg-panel" aria-live="polite">
+<div class="reg-top">
+<div><p class="eyebrow" id="regPosture">&nbsp;</p><h3 id="regName">Africa</h3></div>
+<div class="reg-num"><b id="regVal">89.2M</b><span id="regWhere">&nbsp;</span></div>
+</div>
+<ul class="chips" id="regChips"></ul>
+<p class="reg-note" id="regNote"></p>
+<a class="more-link" id="regLink" href="the-sending-force-is-already-next.html">Read more &rarr;</a>
+</div>
+<p class="caption">Region totals as stated in the article: Africa 89.2 million, Western Europe 23.8 million, Eastern Europe and Eurasia 23.1 million, the rest of the world 21.9 million. Country figures shown where the article states them.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 3: CHART -->
+<section class="mod" id="m3">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>03</b> / The country totals</p>
+<h2 class="reveal">Five countries hold 41%</h2>
+<p class="intro reveal">The largest totals outside the Window, in millions of Muslims. Switch views, then tap a bar.</p>
+</div>
+<div class="viz reveal">
+<div class="seg" id="chartSeg" role="group" aria-label="Chart coloring">
+<button type="button" class="on" data-v="region" aria-pressed="true">Color by region</button>
+<button type="button" data-v="top" aria-pressed="false">Highlight the top five</button>
+</div>
+<div class="chartwrap"><canvas id="cChart" role="img" aria-label="Muslims outside the 10/40 Window by country: Tanzania 21.4 million, Russia 15.0, Cote d'Ivoire 12.7, Philippines 8.3, Ghana 7.9, Germany 6.7, France 5.8"></canvas></div>
+<div class="readout" id="chartDesc">Tap a bar to read about that country.</div>
+<div class="figs">
+<div><b class="hot">65.3M</b>in the top five: Tanzania, Russia, C&ocirc;te d&rsquo;Ivoire, the Philippines, Ghana</div>
+<div><b>41%</b>of the 158 million in those five countries</div>
+<div><b>102</b>countries hold the rest of the total</div>
+</div>
+<p class="caption">Cameroon is close behind Ghana; the article does not state its figure. Germany and France are the largest totals in Western Europe.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 4: PGIC / PGAC -->
+<section class="mod" id="m4">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>04</b> / The Window is drawn around countries</p>
+<h2 class="reveal">People groups do not stop at borders</h2>
+<p class="intro reveal">Joshua Project lists Hausa people groups in 16 countries, seven inside the Window and nine outside it. Filter by the Window, then count the people as a whole.</p>
+</div>
+<div class="viz reveal">
+<div class="seg" id="pgSeg" role="group" aria-label="Counting view">
+<button type="button" class="on" data-v="pgic" aria-pressed="true">Every PGIC</button>
+<button type="button" data-v="filter" aria-pressed="false">Filter by the Window</button>
+<button type="button" data-v="pgac" aria-pressed="false">See the PGAC</button>
+</div>
+<svg id="pgSvg" viewBox="0 0 640 360" width="100%" role="img" aria-label="Sixteen Hausa people groups in country, seven inside the 10/40 Window and nine outside"></svg>
+<div class="figs">
+<div><b class="hot" id="pgOn">16</b><span id="pgOnLab">Hausa PGICs on the list</span></div>
+<div><b id="pgOff">0</b><span id="pgOffLab">dropped by a Window filter</span></div>
+</div>
+<div class="readout" id="pgDesc"><b>PGIC: people group in country.</b> One people in one specific country. Each square places the Hausa under a specific government, a specific set of laws, and a specific church landscape.</div>
+<p class="caption">Layout is illustrative. Squares do not represent specific countries. Counts (16 countries, 7 inside, 9 outside) are Joshua Project figures.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 5: KIN BRIDGES -->
+<section class="mod" id="m5">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>05</b> / Ties that cross the edge</p>
+<h2 class="reveal">Families carry news, money, and ideas</h2>
+<p class="intro reveal">Tap a community on the left to trace its ties. Those ties can carry the gospel.</p>
+</div>
+<div class="viz reveal">
+<svg id="brSvg" viewBox="0 0 640 440" width="100%" role="group" aria-label="Communities outside the 10/40 Window and the kin and homelands they stay tied to"></svg>
+<div class="controls">
+<button type="button" class="btn" id="brAll">Trace every route</button>
+<button type="button" class="btn" id="brClear">Clear</button>
+</div>
+<div class="meter" aria-hidden="true"><i id="brFill"></i></div>
+<p class="meter-lab" id="brLab">0 of 5 communities traced</p>
+<div class="readout" id="brDesc">Start with any community on the left.</div>
+<p class="caption">Ties named in the article. Lines show relationships, not travel volumes.</p>
+</div>
+</div>
+</section>
+
+<!-- MODULE 6: QUESTIONS -->
+<section class="mod" id="m6">
+<div class="wrap narrow">
+<div class="mod-head">
+<p class="kicker reveal"><b>06</b> / Questions for your team</p>
+<h2 class="reveal">Remove the filter. See who appears.</h2>
+<p class="intro reveal">Four questions from the essay. Open each one; the bar fills as you go.</p>
+</div>
+<div class="audit reveal" id="audit">
+<div class="qcard"><button type="button" class="head" aria-expanded="false" aria-controls="qb1"><span class="qn">1</span><span class="qt">Remove the 10/40 filter</span><span class="chev" aria-hidden="true">+</span></button><div class="body" id="qb1"><div class="body-in"><p class="q">If you removed the 10/40 filter from your priority list today, which Muslim people groups would appear that are not on it now?</p><p>Filter a priority list by the Window, and 158 million Muslims disappear from it. A bigger box would only move the edge.</p></div></div></div>
+<div class="qcard"><button type="button" class="head" aria-expanded="false" aria-controls="qb2"><span class="qn">2</span><span class="qt">Ask the church next door</span><span class="chev" aria-hidden="true">+</span></button><div class="body" id="qb2"><div class="body-in"><p class="q">For the Muslim people groups you prioritize in Tanzania, Ghana, C&ocirc;te d&rsquo;Ivoire or Cameroon, which national church in the same country has been asked to engage them, and who asked?</p><p>Here the distance to the gospel is short. The question is whether anyone has asked that church to cross it. <a href="the-sending-force-is-already-next.html">The Sending Force Is Already Next Door &rarr;</a></p></div></div></div>
+<div class="qcard"><button type="button" class="head" aria-expanded="false" aria-controls="qb3"><span class="qn">3</span><span class="qt">Connect both ends of the corridor</span><span class="chev" aria-hidden="true">+</span></button><div class="body" id="qb3"><div class="body-in"><p class="q">Does your work among Turks in Germany or North Africans in France share a strategy lead, a prayer list or a data source with the teams serving in Turkey, Tunisia or Morocco?</p><p>Diaspora families still call and visit the homelands they came from. <a href="the-most-receptive-tunisians-are.html">The Most Receptive Tunisians Are on the Move &rarr;</a></p></div></div></div>
+<div class="qcard"><button type="button" class="head" aria-expanded="false" aria-controls="qb4"><span class="qn">4</span><span class="qt">Check your own country</span><span class="chev" aria-hidden="true">+</span></button><div class="body" id="qb4"><div class="body-in"><p class="q">Joshua Project lists every people group by country. Which Muslim people groups appear on the list for your own country, and can you name who is engaging each one?</p><p><a href="https://joshuaproject.net" target="_blank" rel="noopener">Explore Joshua Project data &rarr;</a></p></div></div></div>
+</div>
+<div class="meter" aria-hidden="true"><i id="auditFill"></i></div>
+<p class="meter-lab" id="auditLab">0 of 4 opened</p>
+<div class="method"><b>About the numbers.</b> Joshua Project people group data as of 8 November 2026. For each of the 16,419 people group in country (PGIC) records, the population was multiplied by its recorded percentage Muslim, and the results were summed. The 10/40 Window here is Joshua Project&rsquo;s revised list of 68 countries. Counting every member of a Muslim-majority people group as Muslim puts 94% inside the Window, because that method misses Christians inside Muslim groups and Muslims inside mixed groups such as the Yoruba of Nigeria. A rough cross-check against Pew Research Center&rsquo;s 2020 regional estimates also lands near 93%.</div>
+</div>
+</section>
+
+<!-- QUOTES -->
+<section class="quoteband">
+<div class="wrap narrow">
+<p class="q reveal">&ldquo;If the Muslims outside the 10/40 Window were one country, it would rank fourth in the world.&rdquo;</p>
+<p class="q reveal">&ldquo;Filter a priority list by the 10/40 Window, and 158 million Muslims disappear from it.&rdquo;<span class="qsrc">Bud Houston, Clarity for the Nations</span></p>
+</div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+<div class="wrap narrow">
+<div class="closing-box reveal">
+<p class="eyebrow"><b>The takeaway</b></p>
+<h2>The distance to the gospel is short. Has anyone asked the church next door to cross it?</h2>
+<a class="btn solid lg" href="https://clarity4thenations.substack.com/p/the-158-million-muslims-the-1040" target="_blank" rel="noopener">Read the full essay &rarr;</a>
+</div>
+<nav class="afoot" aria-label="More from Clarity for the Nations">
+<a href="articles.html">&larr; All articles</a>
+<a href="index.html">Home</a>
+<a href="https://clarity4thenations.substack.com" target="_blank" rel="noopener">Clarity for the Nations on Substack</a>
+</nav>
+</div>
+</section>
+
+</main>
+
+<script src="js/shell.js" data-part="footer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+var NS = 'http://www.w3.org/2000/svg';
+function S(tag, attrs, parent) { var e = document.createElementNS(NS, tag); if (attrs) for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function T(txt, attrs, parent) { var e = S('text', attrs, parent); e.textContent = txt; return e; }
+function tween(dur, fn, done) { var s = performance.now(); function f(n) { var k = Math.min((n - s) / dur, 1), e = 1 - Math.pow(1 - k, 3); fn(e); if (k < 1) requestAnimationFrame(f); else if (done) done(); } requestAnimationFrame(f); }
+function onView(node, cb, th) { if (!node) return; if (!('IntersectionObserver' in window)) { cb(); return; } var o = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { cb(); o.unobserve(e.target); } }); }, { threshold: th || 0.3 }); o.observe(node); }
+function seg(el, cb) { var bs = [].slice.call(el.querySelectorAll('button')); bs.forEach(function (b) { b.addEventListener('click', function () { bs.forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); cb(b.getAttribute('data-v')); }); }); }
+function pressable(node, label, fn) { node.setAttribute('tabindex', '0'); node.setAttribute('role', 'button'); node.setAttribute('aria-label', label); node.setAttribute('class', ((node.getAttribute('class') || '') + ' hit').trim()); node.addEventListener('click', fn); node.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } }); }
+function rnd(n) { var s = Math.sin(n * 12.9898) * 43758.5453; return s - Math.floor(s); }
+var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* progress bar */
+(function () { var bar = document.getElementById('progress'); function f() { var h = document.documentElement, m = h.scrollHeight - h.clientHeight; bar.style.width = (m > 0 ? h.scrollTop / m * 100 : 0) + '%'; } document.addEventListener('scroll', f, { passive: true }); f(); })();
+
+/* reveal on scroll */
+(function () {
+var ns = document.querySelectorAll('.reveal');
+if (!('IntersectionObserver' in window)) { ns.forEach(function (n) { n.classList.add('in'); }); return; }
+var o = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); } }); }, { threshold: 0.15 });
+ns.forEach(function (n) { o.observe(n); });
+})();
+
+/* count-up stats */
+(function () {
+function run() { document.querySelectorAll('.stat .num').forEach(function (n) { var t = parseFloat(n.dataset.target), d = parseInt(n.dataset.dec || '0', 10), s = n.dataset.suffix || ''; tween(1500, function (e) { n.textContent = (e * t).toFixed(d) + s; }, function () { n.textContent = t.toFixed(d) + s; }); }); }
+if (document.readyState === 'complete') run(); else window.addEventListener('load', run);
+})();
+
+/* hero: 200 dots, 185 inside the box, 15 outside */
+(function () {
+var svg = document.getElementById('heroArt'); if (!svg) return;
+var bx = 150, by = 112, bw = 400, bh = 210;
+S('rect', { x: bx, y: by, width: bw, height: bh, fill: 'none', stroke: '#94A1AF', 'stroke-width': 1.3, 'stroke-dasharray': '5 6' }, svg);
+T('10/40 WINDOW', { x: bx + 2, y: by - 12, 'class': 't-axis' }, svg);
+var cols = 19, rows = 10, n = 0;
+for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
+if (n >= 185) break;
+var x = bx + 18 + c * (bw - 36) / (cols - 1) + (rnd(n + 3) - 0.5) * 6, y = by + 18 + r * (bh - 36) / (rows - 1) + (rnd(n + 9) - 0.5) * 6;
+S('circle', { cx: x.toFixed(1), cy: y.toFixed(1), r: 4.2, fill: '#2F4358' }, svg); n++;
+}
+var out = [[72, 96], [96, 180], [58, 262], [110, 344], [196, 372], [292, 392], [384, 366], [470, 386], [566, 352], [618, 290], [640, 206], [600, 126], [632, 64], [520, 70], [404, 82]];
+out.forEach(function (p, i) {
+S('circle', { cx: p[0], cy: p[1], r: 13, fill: '#F5B83D', opacity: 0.16 }, svg);
+var c = S('circle', { cx: p[0], cy: p[1], r: 5, fill: '#F5B83D' }, svg);
+if (!still && i % 3 === 0) S('animate', { attributeName: 'opacity', values: '1;.35;1', dur: (2.4 + rnd(i) * 2).toFixed(1) + 's', repeatCount: 'indefinite' }, c);
+});
+})();
+
+/* MODULE 1: rank insertion */
+(function () {
+var svg = document.getElementById('rankSvg'); if (!svg) return;
+var X0 = 182, XW = 398, MAX = 260, RH = 48, Y0 = 14, BH = 34;
+function W(v) { return XW * v / MAX; }
+[0, 100, 200].forEach(function (t) { var x = X0 + W(t); S('line', { x1: x, y1: 6, x2: x, y2: Y0 + 6 * RH, stroke: '#22303F', 'stroke-dasharray': t ? '3 5' : '0' }, svg); T(t ? t + 'M' : '0', { x: x, y: Y0 + 6 * RH + 20, 'text-anchor': 'middle', 'class': 't-axis' }, svg); });
+var rows = [
+{ k: 'pk', n: 'Pakistan', v: 251 }, { k: 'id', n: 'Indonesia', v: 236 }, { k: 'in', n: 'India', v: 205 },
+{ k: 'bd', n: 'Bangladesh', v: 156 }, { k: 'eg', n: 'Egypt', v: 105 }, { k: 'out', n: 'Outside the Window', v: 158 }
+];
+rows.forEach(function (r) {
+var hot = r.k === 'out';
+r.g = S('g', {}, svg);
+T(r.n, { x: X0 - 12, y: BH / 2 + 5, 'text-anchor': 'end', 'class': hot ? 't-lab hot' : 't-lab' }, r.g);
+S('rect', { x: X0, y: 0, width: XW, height: BH, fill: 'rgba(238,233,221,.035)' }, r.g);
+r.bar = S('rect', { x: X0, y: 0, width: 0, height: BH, fill: hot ? '#F5B83D' : '#3B5673' }, r.g);
+r.val = T(r.v + 'M', { x: X0, y: BH / 2 + 8, 'text-anchor': 'end', 'class': 't-val', fill: hot ? '#0A1018' : '#EEE9DD', opacity: 0 }, r.g);
+r.rank = T('', { x: 636, y: BH / 2 + 10, 'text-anchor': 'end', 'class': hot ? 't-rank hot' : 't-rank' }, r.g);
+r.y = Y0 + 5 * RH; r.w = 0; r.o = hot ? 0 : 1; r.tok = 0;
+r.g.setAttribute('transform', 'translate(0,' + r.y + ')'); r.g.setAttribute('opacity', r.o);
+});
+var order = { countries: ['pk', 'id', 'in', 'bd', 'eg', 'out'], bloc: ['pk', 'id', 'in', 'out', 'bd', 'eg'] };
+rows.forEach(function (r) { r.y = Y0 + order.countries.indexOf(r.k) * RH; r.g.setAttribute('transform', 'translate(0,' + r.y + ')'); });
+var tag = document.getElementById('rankTag'), desc = document.getElementById('rankDesc'), mode = 'countries';
+function apply(m) {
+mode = m;
+rows.forEach(function (r) {
+var idx = order[m].indexOf(r.k), show = !(m === 'countries' && r.k === 'out');
+var ty = Y0 + idx * RH, tw = show ? W(r.v) : 0, to = show ? 1 : 0, fy = r.y, fw = r.w, fo = r.o, my = ++r.tok;
+r.rank.textContent = show ? '#' + (idx + 1) : '';
+tween(950, function (e) {
+if (r.tok !== my) return;
+r.y = fy + (ty - fy) * e; r.w = fw + (tw - fw) * e; r.o = fo + (to - fo) * e;
+r.g.setAttribute('transform', 'translate(0,' + r.y.toFixed(1) + ')'); r.g.setAttribute('opacity', r.o.toFixed(2));
+r.bar.setAttribute('width', r.w.toFixed(1)); r.val.setAttribute('x', (X0 + r.w - 10).toFixed(1)); r.val.setAttribute('opacity', r.w > 80 ? 1 : 0);
+});
+});
+if (m === 'bloc') { tag.textContent = 'Rank 4: just ahead of Bangladesh'; tag.className = 'tag hot'; desc.innerHTML = '<b>Counted as one country, the 158 million rank fourth.</b> They sit just ahead of Bangladesh (156 million), but they are spread across 102 countries, and a priority list filtered by the Window never sees them.'; }
+else { tag.textContent = 'Top five: all inside the Window'; tag.className = 'tag'; desc.textContent = 'Five countries carry nearly half the global total: Pakistan (251 million), Indonesia (236 million), India (205 million), Bangladesh (156 million) and Egypt (105 million).'; }
+}
+seg(document.getElementById('rankSeg'), apply);
+onView(svg, function () { apply(mode); }, 0.35);
+})();
+
+/* MODULE 2: regions */
+(function () {
+var svg = document.getElementById('regSvg'); if (!svg) return;
+var R = [
+{ n: 'Africa', v: 89.2, c: '#F5B83D', tc: '#0A1018', posture: 'Church next door', where: '57% of the total, in 32 African countries',
+chips: [['Tanzania', '21.4M'], ['Côte d’Ivoire', '12.7M'], ['Ghana', '7.9M'], ['Cameroon', ''], ['Kenya', ''], ['Sierra Leone', ''], ['Mozambique', ''], ['Uganda', '']],
+note: 'Eight countries hold 80% of the African total. A Muslim people group in northern Ghana or on the Tanzanian coast may live a bus ride from a growing church that shares its national language, schools, and market towns. A worker sent from abroad to a Muslim people group inside the Window usually needs a visa, a new language and years of preparation.',
+link: ['the-sending-force-is-already-next.html', 'Read: The Sending Force Is Already Next Door'] },
+{ n: 'Western Europe', v: 23.8, c: '#7FA7C9', tc: '#0A1018', posture: 'Down the street, tied to the homeland', where: 'Mostly communities formed by migration since the 1950s',
+chips: [['Germany', '6.7M'], ['France', '5.8M']],
+note: 'Turkish families in Berlin and North African families in Paris and Marseille live down the street from established churches, and they still call and visit the homelands they came from.',
+link: ['the-most-receptive-tunisians-are.html', 'Read: The Most Receptive Tunisians Are on the Move'] },
+{ n: 'Eastern Europe and Eurasia', v: 23.1, c: '#B7C9D9', tc: '#0A1018', posture: 'A frontier inside a post-Soviet state', where: '65% of them live in Russia',
+chips: [['Russia', '15.0M'], ['Tatars', ''], ['Bashkirs', ''], ['Chechens', ''], ['Peoples of the North Caucasus', '']],
+note: 'Tatars, Bashkirs, Chechens and the peoples of the North Caucasus have been Muslim for centuries on their own land. The Russian peoples are a frontier inside a post-Soviet state.',
+link: null },
+{ n: 'Rest of the world', v: 21.9, c: '#6F8193', tc: '#EEE9DD', posture: 'A minority inside a Christian-majority nation', where: 'Led by the Philippines',
+chips: [['Philippines', '8.3M'], ['Mindanao', ''], ['Sulu archipelago', '']],
+note: 'The Muslim peoples of Mindanao and the Sulu archipelago live inside a majority-Christian nation. That pattern looks more like Tanzania than Pakistan.',
+link: null }
+];
+var X = 20, WT = 600, TOT = 158, y = 14, h = 70, x = X;
+var leg = document.getElementById('regLegend');
+R.forEach(function (r, i) {
+r.x = x; r.w = WT * r.v / TOT;
+r.g = S('g', {}, svg);
+r.rect = S('rect', { x: (x + 1).toFixed(1), y: y, width: 0, height: h, fill: r.c }, r.g);
+r.t = T(r.v + 'M', { x: (x + r.w / 2).toFixed(1), y: y + h / 2 + 9, 'text-anchor': 'middle', 'class': 't-big', fill: r.tc, opacity: 0 }, r.g);
+pressable(r.g, r.n + ', ' + r.v + ' million', function () { pick(i); });
+r.g.addEventListener('mouseenter', function () { pick(i); });
+var b = document.createElement('button'); b.type = 'button'; b.innerHTML = '<i style="background:' + r.c + '"></i>' + r.n;
+b.addEventListener('click', function () { pick(i); }); leg.appendChild(b); r.btn = b;
+x += r.w;
+});
+S('path', { d: 'M20 96v8h600v-8', fill: 'none', stroke: '#94A1AF', 'stroke-width': 1 }, svg);
+T('158 MILLION', { x: 320, y: 110, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+var cur = -1;
+function pick(i) {
+if (i === cur) return; cur = i; var r = R[i];
+R.forEach(function (q, j) { q.rect.setAttribute('opacity', j === i ? 1 : 0.32); q.btn.classList.toggle('on', j === i); });
+document.getElementById('regPosture').innerHTML = '<b>' + r.posture + '</b>';
+document.getElementById('regName').textContent = r.n;
+document.getElementById('regVal').textContent = r.v + 'M';
+document.getElementById('regWhere').textContent = r.where;
+document.getElementById('regChips').innerHTML = r.chips.map(function (c) { return '<li>' + c[0] + (c[1] ? '<b>' + c[1] + '</b>' : '') + '</li>'; }).join('');
+document.getElementById('regNote').textContent = r.note;
+var L = document.getElementById('regLink');
+if (r.link) { L.hidden = false; L.href = r.link[0]; L.innerHTML = r.link[1] + ' &rarr;'; } else { L.hidden = true; }
+}
+pick(0);
+onView(svg, function () {
+R.forEach(function (r, i) { setTimeout(function () { tween(800, function (e) { r.rect.setAttribute('width', Math.max(0, (r.w - 2) * e).toFixed(1)); }, function () { r.t.setAttribute('opacity', 1); }); }, i * 180); });
+}, 0.4);
+})();
+
+/* MODULE 3: Chart.js, built when scrolled into view */
+(function () {
+var cv = document.getElementById('cChart'); if (!cv) return;
+var labels = ['Tanzania', 'Russia', 'Côte d’Ivoire', 'Philippines', 'Ghana', 'Germany', 'France'];
+var vals = [21.4, 15.0, 12.7, 8.3, 7.9, 6.7, 5.8];
+var reg = ['af', 'ee', 'af', 'rw', 'af', 'we', 'we'];
+var RC = { af: '#F5B83D', ee: '#B7C9D9', we: '#7FA7C9', rw: '#6F8193' };
+var RN = { af: 'Africa', ee: 'Eastern Europe and Eurasia', we: 'Western Europe', rw: 'Rest of the world' };
+var notes = [
+'The largest country total outside the Window.',
+'Tatars, Bashkirs, Chechens and the peoples of the North Caucasus. Russia holds 65% of Eastern Europe and Eurasia’s 23.1 million.',
+'One of eight countries that hold 80% of the African total.',
+'The Muslim peoples of Mindanao and the Sulu archipelago, inside a majority-Christian nation.',
+'A Hausa family in Ghana shares a language with Hausa in Nigeria, but lives under a different government, beside a different church.',
+'The largest total in Western Europe, mostly communities formed by migration since the 1950s.',
+'North African families in Paris and Marseille, down the street from established churches.'
+];
+var mode = 'region', chart = null, desc = document.getElementById('chartDesc');
+function colors() { return vals.map(function (v, i) { return mode === 'top' ? (i < 5 ? '#F5B83D' : 'rgba(148,161,175,.22)') : RC[reg[i]]; }); }
+function say(i) { desc.innerHTML = '<b>' + labels[i] + ': ' + vals[i].toFixed(1) + ' million.</b> ' + RN[reg[i]] + '. ' + notes[i]; }
+function build() {
+if (typeof Chart === 'undefined') { cv.parentNode.innerHTML = '<p class="caption">The chart could not load. Tanzania 21.4 million, Russia 15.0, Côte d’Ivoire 12.7, the Philippines 8.3, Ghana 7.9, Germany 6.7, France 5.8.</p>'; return; }
+Chart.defaults.color = '#94A1AF'; Chart.defaults.borderColor = '#22303F'; Chart.defaults.font.family = '"IBM Plex Mono", ui-monospace, monospace';
+chart = new Chart(cv, {
+type: 'bar',
+data: { labels: labels, datasets: [{ data: vals, backgroundColor: colors(), borderWidth: 0, borderRadius: 0, maxBarThickness: 32 }] },
+options: {
+indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+animation: { duration: 1200, easing: 'easeOutCubic' },
+plugins: { legend: { display: false }, tooltip: { backgroundColor: '#0A1018', borderColor: '#F5B83D', borderWidth: 1, callbacks: { label: function (c) { return c.parsed.x.toFixed(1) + ' million Muslims'; } } } },
+scales: { x: { beginAtZero: true, max: 24, ticks: { callback: function (v) { return v + 'M'; } }, grid: { color: '#22303F' } }, y: { grid: { display: false }, ticks: { color: '#EEE9DD', font: { size: 13 } } } },
+onClick: function (e, els) { if (els && els.length) say(els[0].index); },
+onHover: function (e, els) { if (e.native && e.native.target) e.native.target.style.cursor = els && els.length ? 'pointer' : 'default'; }
+}
+});
+}
+seg(document.getElementById('chartSeg'), function (v) {
+mode = v;
+if (v === 'top') desc.innerHTML = '<b>Tanzania, Russia, Côte d’Ivoire, the Philippines and Ghana: 65.3 million.</b> Those five countries hold 41% of the 158 million.';
+else desc.textContent = 'Colored by region: Africa in lamp gold, Western Europe in blue, Eastern Europe and Eurasia in pale blue, the rest of the world in slate. Tap a bar to read about that country.';
+if (chart) { chart.data.datasets[0].backgroundColor = colors(); chart.update(); }
+});
+onView(cv, build, 0.3);
+})();
+
+/* MODULE 4: PGIC vs PGAC */
+(function () {
+var svg = document.getElementById('pgSvg'); if (!svg) return;
+var EX = 300, HUB = [300, 196];
+T('INSIDE THE WINDOW', { x: 150, y: 28, 'text-anchor': 'middle', 'class': 't-axis' }, svg);
+T('OUTSIDE THE WINDOW', { x: 470, y: 28, 'text-anchor': 'middle', 'class': 't-axis', fill: '#F5B83D' }, svg);
+var edge = S('line', { x1: EX, y1: 40, x2: EX, y2: 350, stroke: '#F5B83D', 'stroke-width': 1.5, 'stroke-dasharray': '6 6' }, svg);
+var linkG = S('g', {}, svg);
+var ins = [[78, 92], [176, 72], [244, 138], [110, 176], [206, 226], [70, 272], [168, 306]];
+var outs = [[358, 84], [452, 64], [552, 96], [396, 154], [500, 168], [594, 206], [364, 264], [466, 282], [570, 300]];
+var nodes = [];
+ins.concat(outs).forEach(function (p, i) {
+var inside = i < ins.length;
+var g = S('g', { 'class': 'pg-node' }, svg);
+var cell = S('rect', { x: p[0] - 22, y: p[1] - 22, width: 44, height: 44, fill: 'none', stroke: '#2F4358', 'stroke-width': 1.3 }, g);
+S('circle', { cx: p[0], cy: p[1], r: 9, fill: inside ? '#7FA7C9' : '#F5B83D' }, g);
+var link = S('line', { x1: HUB[0], y1: HUB[1], x2: p[0], y2: p[1], stroke: inside ? '#7FA7C9' : '#F5B83D', 'stroke-width': 1.4, opacity: 0.85 }, linkG);
+var len = Math.hypot(p[0] - HUB[0], p[1] - HUB[1]);
+link.setAttribute('stroke-dasharray', len.toFixed(1)); link.setAttribute('stroke-dashoffset', len.toFixed(1));
+nodes.push({ g: g, cell: cell, inside: inside, link: link, len: len });
+});
+var hub = S('g', { opacity: 0 }, svg);
+S('circle', { cx: HUB[0], cy: HUB[1], r: 30, fill: '#0A1018', stroke: '#F5B83D', 'stroke-width': 2 }, hub);
+T('HAUSA', { x: HUB[0], y: HUB[1] + 5, 'text-anchor': 'middle', 'class': 't-axis', fill: '#EEE9DD' }, hub);
+T('ONE PGAC, 16 COUNTRIES', { x: HUB[0], y: HUB[1] + 50, 'text-anchor': 'middle', 'class': 't-axis', fill: '#F5B83D' }, hub);
+var on = document.getElementById('pgOn'), off = document.getElementById('pgOff'), onL = document.getElementById('pgOnLab'), offL = document.getElementById('pgOffLab'), desc = document.getElementById('pgDesc');
+var tok = 0;
+function links(show) {
+var my = ++tok;
+nodes.forEach(function (n) { var from = parseFloat(n.link.getAttribute('stroke-dashoffset')), to = show ? 0 : n.len; tween(show ? 900 : 300, function (e) { if (tok !== my) return; n.link.setAttribute('stroke-dashoffset', (from + (to - from) * e).toFixed(1)); }); });
+}
+function set(m) {
+nodes.forEach(function (n) { var hide = m === 'filter' && !n.inside; n.g.style.opacity = hide ? 0.08 : 1; n.cell.setAttribute('stroke', m === 'pgac' ? '#22303F' : '#2F4358'); });
+hub.setAttribute('opacity', m === 'pgac' ? 1 : 0);
+edge.setAttribute('opacity', m === 'pgac' ? 0.3 : 1);
+links(m === 'pgac');
+if (m === 'filter') { on.textContent = '7'; off.textContent = '9'; onL.textContent = 'Hausa PGICs left on the list'; offL.textContent = 'dropped by the Window filter'; off.className = 'hot'; on.className = '';
+desc.innerHTML = '<b>Filter by the Window</b> and nine of the sixteen Hausa PGICs drop off the list. Across every people, the same filter removes 158 million Muslims. A bigger box would only move the edge.'; }
+else if (m === 'pgac') { on.textContent = '1'; off.textContent = '16'; onL.textContent = 'people as a whole (PGAC)'; offL.textContent = 'countries it lives in'; on.className = 'hot'; off.className = '';
+desc.innerHTML = '<b>PGAC: people group across countries.</b> A people as a whole, wherever they live. Families, clans, marriages and trade cross borders every day, and those ties can carry the gospel. Strategy needs both views.'; }
+else { on.textContent = '16'; off.textContent = '0'; onL.textContent = 'Hausa PGICs on the list'; offL.textContent = 'dropped by a Window filter'; on.className = 'hot'; off.className = '';
+desc.innerHTML = '<b>PGIC: people group in country.</b> One people in one specific country. Each square places the Hausa under a specific government, a specific set of laws, and a specific church landscape.'; }
+}
+seg(document.getElementById('pgSeg'), set);
+nodes.forEach(function (n) { n.g.style.opacity = 0; });
+onView(svg, function () { nodes.forEach(function (n, i) { setTimeout(function () { n.g.style.opacity = 1; }, i * 60); }); }, 0.35);
+})();
+
+/* MODULE 5: kin bridges */
+(function () {
+var svg = document.getElementById('brSvg'); if (!svg) return;
+var LX = 232, RX = 430;
+T('OUTSIDE THE WINDOW', { x: LX, y: 22, 'text-anchor': 'end', 'class': 't-axis', fill: '#F5B83D' }, svg);
+T('KIN AND HOMELAND', { x: RX, y: 22, 'class': 't-axis' }, svg);
+var left = [
+{ a: 'Somali families', b: 'Kenya', to: [0, 1], d: '<b>A Somali family in Kenya stays tied to relatives in Mogadishu and Minneapolis.</b> A Somali believer in Nairobi may be one phone call from a cousin in Mogadishu.' },
+{ a: 'Tatar families', b: 'Russia', to: [2, 3], d: '<b>Tatar families in Russia have kin in Uzbekistan and Kazakhstan.</b> Tatars have been Muslim for centuries on their own land, a frontier inside a post-Soviet state.' },
+{ a: 'Turkish families', b: 'Berlin', to: [4], d: '<b>Turkish families in Berlin live down the street from established churches.</b> They still call and visit the homeland. Does the Berlin team share a strategy lead, a prayer list or a data source with the teams in Turkey?' },
+{ a: 'North African families', b: 'Paris and Marseille', to: [5, 6], d: '<b>North African families in Paris and Marseille still call and visit the homelands they came from.</b> One of those corridors runs from Tunisia to France, Italy and Germany. <a href="the-most-receptive-tunisians-are.html">Trace it here &rarr;</a>' },
+{ a: 'Hausa families', b: 'Ghana', to: [7], d: '<b>A Hausa family in Ghana shares a language with Hausa in Nigeria,</b> but it lives under a different government, beside a different church. That Ghanaian church may be the one positioned to reach it this year.' }
+];
+var right = ['Mogadishu', 'Minneapolis', 'Uzbekistan', 'Kazakhstan', 'Turkey', 'Tunisia', 'Morocco', 'Nigeria'];
+var LY = [70, 152, 234, 316, 398], RY = [52, 102, 152, 202, 252, 302, 352, 402];
+var arcG = S('g', {}, svg), arcs = [];
+left.forEach(function (l, i) { l.to.forEach(function (j) {
+var y1 = LY[i], y2 = RY[j];
+var p = S('path', { d: 'M' + LX + ' ' + y1 + ' C' + (LX + 100) + ' ' + y1 + ' ' + (RX - 100) + ' ' + y2 + ' ' + RX + ' ' + y2, fill: 'none', stroke: '#2F4358', 'stroke-width': 1.4 }, arcG);
+arcs.push({ p: p, l: i, r: j });
+}); });
+var rN = right.map(function (name, j) {
+var g = S('g', {}, svg);
+var c = S('circle', { cx: RX, cy: RY[j], r: 7, fill: '#0A1018', stroke: '#94A1AF', 'stroke-width': 1.6 }, g);
+var t = T(name, { x: RX + 16, y: RY[j] + 5, 'class': 't-lab' }, g);
+return { c: c, t: t };
+});
+var lit = {}, active = {}, desc = document.getElementById('brDesc'), fill = document.getElementById('brFill'), lab = document.getElementById('brLab');
+var lN = left.map(function (l, i) {
+var g = S('g', {}, svg);
+S('rect', { x: 20, y: LY[i] - 30, width: LX - 4, height: 60, fill: 'transparent' }, g);
+var c = S('circle', { cx: LX, cy: LY[i], r: 9, fill: '#0A1018', stroke: '#F5B83D', 'stroke-width': 2 }, g);
+T(l.a, { x: LX - 18, y: LY[i] - 2, 'text-anchor': 'end', 'class': 't-lab' }, g);
+T(l.b, { x: LX - 18, y: LY[i] + 16, 'text-anchor': 'end', 'class': 't-sub' }, g);
+pressable(g, l.a + ', ' + l.b, function () { trace(i, true); });
+g.addEventListener('mouseenter', function () { trace(i, false); });
+return { c: c };
+});
+function paint() {
+arcs.forEach(function (a) { var on = active[a.l]; a.p.setAttribute('stroke', on ? '#F5B83D' : '#2F4358'); a.p.setAttribute('stroke-width', on ? 2.6 : 1.4); a.p.setAttribute('stroke-dasharray', on ? '7 7' : '0'); });
+lN.forEach(function (n, i) { n.c.setAttribute('fill', active[i] ? '#F5B83D' : '#0A1018'); });
+rN.forEach(function (n, j) { var on = arcs.some(function (a) { return a.r === j && active[a.l]; }); n.c.setAttribute('stroke', on ? '#F5B83D' : '#94A1AF'); n.c.setAttribute('fill', on ? '#F5B83D' : '#0A1018'); n.t.setAttribute('class', on ? 't-lab hot' : 't-lab'); });
+var k = Object.keys(lit).length; fill.style.width = (k / left.length * 100) + '%'; lab.textContent = k + ' of ' + left.length + ' communities traced' + (k === left.length ? '. Every route crosses the edge.' : '');
+}
+function trace(i, keep) { if (!keep && active[i]) return; active = {}; active[i] = true; lit[i] = true; desc.innerHTML = left[i].d; paint(); run(); }
+document.getElementById('brAll').addEventListener('click', function () { left.forEach(function (l, i) { active[i] = true; lit[i] = true; }); desc.innerHTML = '<b>Every route crosses the edge of the Window.</b> Those ties carry news, money and ideas, and they can carry the gospel.'; paint(); run(); });
+document.getElementById('brClear').addEventListener('click', function () { active = {}; desc.textContent = 'Start with any community on the left.'; paint(); });
+var off = 0, running = false;
+function run() { if (running || still) return; running = true; (function step() { var any = Object.keys(active).length; if (!any) { running = false; return; } off = (off - 0.6) % 14; arcs.forEach(function (a) { if (active[a.l]) a.p.setAttribute('stroke-dashoffset', off.toFixed(1)); }); requestAnimationFrame(step); })(); }
+paint();
+onView(svg, function () { trace(0, true); }, 0.4);
+})();
+
+/* MODULE 6: accordion */
+(function () {
+var audit = document.getElementById('audit'); if (!audit) return;
+var cards = [].slice.call(audit.querySelectorAll('.qcard')), seen = {};
+var fill = document.getElementById('auditFill'), lab = document.getElementById('auditLab');
+cards.forEach(function (card, i) {
+var head = card.querySelector('.head');
+head.addEventListener('click', function () {
+var open = card.classList.toggle('open'); head.setAttribute('aria-expanded', open ? 'true' : 'false');
+if (open) { card.classList.add('reviewed'); seen[i] = true; }
+var n = Object.keys(seen).length; fill.style.width = (n / cards.length * 100) + '%';
+lab.textContent = n + ' of ' + cards.length + ' opened' + (n === cards.length ? '. Now take them to your team.' : '');
+});
+});
+})();
+</script>
+</body>
+</html>
